@@ -3,14 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to nonBleedingEdge's documentation!
+Welcome to nonBleedingEdge!
 ===========================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   cheatsheets/python-django
+   cheatsheets/daemontools
+   cheatsheets/git
+   cheatsheets/iptables
+   cheatsheets/django
 
 Indices and tables
 ==================
