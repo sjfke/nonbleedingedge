@@ -14,6 +14,10 @@ Welcome to nonBleedingEdge!
    cheatsheets/git
    cheatsheets/iptables
    cheatsheets/django
+   cheatsheets/javascript
+   cheatsheets/jquery
+   cheatsheets/mvn
+   cheatsheets/mysql
 
 Indices and tables
 ==================
