@@ -18,6 +18,7 @@ Welcome to nonBleedingEdge!
    cheatsheets/jquery
    cheatsheets/mvn
    cheatsheets/mysql
+   cheatsheets/perl
 
 Indices and tables
 ==================
