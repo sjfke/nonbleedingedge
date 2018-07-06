@@ -7,18 +7,19 @@ Welcome to nonBleedingEdge!
 ===========================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-   cheatsheets/daemontools
-   cheatsheets/git
-   cheatsheets/iptables
-   cheatsheets/django
-   cheatsheets/javascript
-   cheatsheets/jquery
-   cheatsheets/mvn
-   cheatsheets/mysql
-   cheatsheets/perl
+	:maxdepth: 2
+	:caption: Contents:
+	
+	cheatsheets/daemontools
+	cheatsheets/git
+	cheatsheets/iptables
+	cheatsheets/django
+	cheatsheets/javascript
+	cheatsheets/jquery
+	cheatsheets/mvn
+	cheatsheets/mysql
+	cheatsheets/perl
+	cheatsheets/screen
 
 Indices and tables
 ==================
