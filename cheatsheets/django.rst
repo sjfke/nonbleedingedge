@@ -92,6 +92,24 @@ Create the Django App (A Django project can have many apps)::
 	$ python manage.py runserver 0:8000    # http://<ext-ip>:8000/polls
 
 
+REST API
+========
+
+* `Django REST framework <http://www.django-rest-framework.org/tutorial/quickstart/>`_
+
+Project setup::
+
+	pipenv install djangorestframework
+	django-admin.py startproject tutorial
+	cd tutorial/
+	django-admin.py startapp quickstart
+	
+Sync database for first time (password123)::
+
+	python manage.py migrate
+	python manage.py createsuperuser --email admin@example.com --username admin
+
+
 Useful Links
 ============
 
