@@ -20,6 +20,7 @@ Welcome to nonBleedingEdge!
 	cheatsheets/mysql
 	cheatsheets/perl
 	cheatsheets/screen
+	cheatsheets/systemctl-service
 
 Indices and tables
 ==================
