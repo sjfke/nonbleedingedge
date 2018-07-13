@@ -1,0 +1,25 @@
+*****************
+jQuery CheatSheet
+*****************
+
+Selectors
+=========
+::
+
+	$("div") - all <div> tags
+	$("#surname") - element id="surname"
+	$(".warning") - element class="warning"
+
+jQuery Object (array like)::
+	
+	$("body").length - there is only 1 body
+	$("body")[0] - <body>..</body>
+
+	$("body").size() - object-like equivalent of length
+	$("body").get(0) - <body>..</body>
+	
+	$("body").jquery - 2.2.4 exists is a jQuery object
+	$("body").selector - "body"
+	$("body").context "#document"
+	
+	$(".tab").length // 12 tab elements 
