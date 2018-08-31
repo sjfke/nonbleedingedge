@@ -19,6 +19,7 @@ Welcome to nonBleedingEdge!
 	cheatsheets/mvn
 	cheatsheets/mysql
 	cheatsheets/perl
+	cheatsheets/python
 	cheatsheets/screen
 	cheatsheets/systemctl-service
 
