@@ -317,5 +317,38 @@ The **Person** object supports Python attribute style and also Java-like getters
 	  File "<stdin>", line 1, in <module>
 	AttributeError: can't set attribute
 
+Try/Except
+==========
 
+::
+
+	import sys
 	
+	for arg in sys.argv[1:]:
+	    try:
+	        f = open(arg, 'r')
+	    except OSError:
+	        print('cannot open', arg)
+	    else:
+	        print(arg, 'has', len(f.readlines()), 'lines')
+	        f.close()
+	
+	# Clumsy file handling
+	try:
+	    f = open('myfile.txt')
+	    s = f.readline()
+	    i = int(s.strip())
+	except OSError as err:
+	    print("OS error: {0}".format(err))
+	except ValueError:
+	    print("Could not convert data to an integer.")
+	except:
+	    print("Unexpected error:", sys.exc_info()[0])
+	    raise
+	finally:
+		print("always executed exception or not")	    
+
+	# Better using the predefined clean-up actions	    
+	with open("myfile.txt") as f:
+	    for line in f:
+	        print(line, end="")
