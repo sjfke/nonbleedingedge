@@ -378,6 +378,39 @@ Try/Except
 	    for line in f:
 	        print(line, end="")
 	        
+Heapq
+=====
+
+* `builtin heap implementation <https://docs.python.org/3.0/library/heapq.html>`_
+
+::
+	
+	import heapq
+	
+	heap = []
+	data = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
+	for item in data:
+	    heapq.heappush(heap, item)
+	
+	heap = [11, 3, 15, 7, 9, 23, 4, 6, 8, 10]
+	heapq.heapify(heap)
+	
+	print('nlargest(3): {0}'.format(heapq.nlargest(3, heap)))
+	print('nsmallest(3): {0}'.format(heapq.nsmallest(3, heap)))
+	
+	smallest_item = heapq.heappop(heap)
+	
+	# convert to sorted list
+	ordered = []
+	while heap:
+	    ordered.append(heapq.heappop(heap))
+	
+	# heap of tuples
+	data = [(1, 'J'), (4, 'N'), (3, 'H'), (2, 'O')]
+	for item in data:
+	    heapq.heappush(heap, item)
+
+	        
 Pipenv
 ======
 
