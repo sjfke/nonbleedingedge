@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'nonBleedingEdge'
+project = 'NonBleedingEdge'
 copyright = '2018, Geoffrey Collis'
 author = 'Geoffrey Collis'
 
@@ -76,7 +76,8 @@ pygments_style = 'sphinx'
 # a list of builtin themes.
 #
 # html_theme = 'alabaster'
-html_theme = 'classic'
+# html_theme = 'classic'
+html_theme = "sphinx_rtd_theme"
 
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -84,6 +85,20 @@ html_theme = 'classic'
 # documentation.
 #
 # html_theme_options = {}
+html_theme_options = {
+    'canonical_url': '',
+    'analytics_id': '',
+    'logo_only': False,
+    'display_version': True,
+    'prev_next_buttons_location': 'bottom',
+    'style_external_links': False,
+    # Toc options
+    'collapse_navigation': True,
+    'sticky_navigation': True,
+    'navigation_depth': 4,
+    'includehidden': True,
+    'titles_only': False
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -104,7 +119,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'nonBleedingEdgedoc'
+htmlhelp_basename = 'NonBleedingEdge'
 
 
 # -- Options for LaTeX output ------------------------------------------------
