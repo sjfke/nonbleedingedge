@@ -1,6 +1,6 @@
-***********
-Daemontools
-***********
+**********************
+Daemontools Cheatsheet
+**********************
 
 Installing ``daemontools``
 ==========================

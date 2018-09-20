@@ -1,5 +1,5 @@
 *******************
-IPTABLES CheatSheet
+Iptables CheatSheet
 *******************
 
 Basic Commands

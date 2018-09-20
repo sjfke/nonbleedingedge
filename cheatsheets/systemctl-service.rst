@@ -1,12 +1,9 @@
-Cheat Sheet: systemctl vs chkconfig/service
--------------------------------------------
-
 *******************************
 Systemctl vs Service Cheatsheet
 *******************************
 
 Useful Links
-=============
+============
 
 * `Blog <http://0pointer.de/blog/>`_
 * `Sytsemd Docs <http://0pointer.de/blog/projects/systemd-docs.html>`_
@@ -15,7 +12,8 @@ Useful Links
 
 
 Basic Command Comparison
-------------------------
+========================
+
 ::
 
 	List Processes 
@@ -70,11 +68,12 @@ Basic Command Comparison
 
 
 Systemctl Commands
-------------------
+==================
 
 Wants and Needs
 
 These three targets take care of the system's basic configuration, including mounting filesystems and starting udev.
+
 ::
 
  # systemctl show -p Wants multi-user.target --no-pager
@@ -87,6 +86,7 @@ These three targets take care of the system's basic configuration, including mou
  Wants=local-fs.target swap.target lvm2-monitor.service mdmonitor-takeover.service systemd-tmpfiles-setup.service cryptsetup.target plymouth-start.service systemd-journald.service sys-fs-fuse-connections.mount systemd-ask-password-console.path systemd-random-seed-load.service systemd-modules-load.service dev-mqueue.mount proc-sys-fs-binfmt_misc.automount systemd-binfmt.service sys-kernel-debug.mount systemd-vconsole-setup.service sys-kernel-config.mount systemd-sysctl.service plymouth-read-write.service dev-hugepages.mount
 
 Alternative form of the above (using the symlinks)
+
 ::
 
  # ls /*/systemd/system/multi-user.target.wants/
@@ -169,7 +169,8 @@ Looking for Answers::
 	# systemctl kill --signal=USR1 rsyslogd.service
 
 Runlevels/targets
------------------
+=================
+
 ::
 
 	Runlevel: 0            # runlevel0.target, poweroff.target    # Halt the system
@@ -182,14 +183,16 @@ Runlevels/targets
 	Runlevel: emergency    # emergency.target                     # Emergency shell
 
 Changing runlevels
-------------------
+==================
+
 ::
 
 	# telinit 3
 	# systemctl isolate multi-user.target, systemctl isolate runlevel3.target
 
 Setting the default runlevel
-----------------------------
+============================
+
 ::
 
 	# sed s/^id:.*:initdefault:/id:3:initdefault:/
