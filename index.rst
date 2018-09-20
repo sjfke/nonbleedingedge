@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to nonBleedingEdge!
-===========================================
+Welcome to NonBleedingEdge!
+===========================
 
 .. toctree::
 	:maxdepth: 2
@@ -19,7 +19,9 @@ Welcome to nonBleedingEdge!
 	cheatsheets/mvn
 	cheatsheets/mysql
 	cheatsheets/perl
+	cheatsheets/php
 	cheatsheets/python
+	cheatsheets/pymysql
 	cheatsheets/screen
 	cheatsheets/systemctl-service
 

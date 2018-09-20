@@ -430,6 +430,7 @@ Using pipenv with Eclipse PyDev
 	$ pipenv --rm                # remove virtualenv
 	$ pipenv shell               # virtualenv interactive shell 
 	$ pipenv run <program.py>    # virtualenv: run script 
+	$ pipenv check               # PEP8 check of the Pipfile
 
 	
 Setup a new Python interpretor in Eclipse, and change the project to use it.
