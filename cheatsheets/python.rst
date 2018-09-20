@@ -124,7 +124,7 @@ Files
 * `Python 101: Redirecting stdout <https://www.blog.pythonlibrary.org/2016/06/16/python-101-redirecting-stdout/>`_
 
 
-::
+Sequential access::
 
 	output = open('tmp/spam', 'w')  # create/overwrite output file
 	input = open('data', 'r')       # open input file
@@ -149,6 +149,31 @@ Files
 	except Exception as error:	
 		print('{0}'.format(error))
 
+
+Random access::
+
+    # "Anchovies? You've got the wrong man! I spell my name DANGER! (click)"
+    # %
+    # "Benson, you are so free of the ravages of intelligence."
+    #         ― Time Bandits
+    # %
+
+    with open(filename, 'r') as fd:
+	    current_offset = fd.tell()  # save file cursor
+	    fd.seek(offset)
+	    cookie_text = fd.readline()
+
+		# Cannot use for..loop and .tell() method, use repeat..until loop
+	    while True:
+	        line = fd.readline()
+	        if not line:
+	            break
+	        elif re.match(r'^%$', line):
+	            break
+	        else:
+	            cookie_text += line
+	
+	    fd.seek(current_offset)  # restore file cursor
 
        
 Comparisons, Equality, and Truth
@@ -352,3 +377,32 @@ Try/Except
 	with open("myfile.txt") as f:
 	    for line in f:
 	        print(line, end="")
+	        
+Pipenv
+======
+
+* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
+* `Basic Usage <https://pipenv.readthedocs.io/en/latest/>`_
+* `Advanced Usage <https://pipenv.readthedocs.io/en/latest/advanced/#configuration-with-environment-variables>`_
+* `Which VirtualEnv <https://github.com/pypa/pipenv/issues/796>`_
+
+Using pipenv with Eclipse PyDev
+::
+
+	$ export PIPENV_VENV_IN_PROJECT=1 # force creation of '.venv' in project
+	$ cd <eclipse-workspace>/<project>
+	$ pipenv --three
+	$ pipenv install <package>
+	$ pipenv uninstall <package>
+	$ pipenv --rm                # remove virtualenv
+	$ pipenv run shell
+	
+Setup a new Python interpretor in Eclipse, and change the project to use it.
+
+* `PyDev and virtualenv <https://www.michaelpollmeier.com/eclipse-pydev-and-virtualenv>`_
+	
+	
+	
+
+
+
