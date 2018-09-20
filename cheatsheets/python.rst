@@ -391,11 +391,13 @@ Using pipenv with Eclipse PyDev
 
 	$ export PIPENV_VENV_IN_PROJECT=1 # force creation of '.venv' in project
 	$ cd <eclipse-workspace>/<project>
-	$ pipenv --three
-	$ pipenv install <package>
-	$ pipenv uninstall <package>
+	$ pipenv --three             # python3 project
+	$ pipenv install <package>   # updates the Pipfile
+	$ pipenv uninstall <package> # updates the Pipfile
 	$ pipenv --rm                # remove virtualenv
-	$ pipenv run shell
+	$ pipenv shell               # virtualenv interactive shell 
+	$ pipenv run <program.py>    # virtualenv: run script 
+
 	
 Setup a new Python interpretor in Eclipse, and change the project to use it.
 
