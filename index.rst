@@ -19,6 +19,7 @@ Welcome to NonBleedingEdge!
 	cheatsheets/mvn
 	cheatsheets/mysql
 	cheatsheets/perl
+	cheatsheets/php
 	cheatsheets/python
 	cheatsheets/pymysql
 	cheatsheets/screen
