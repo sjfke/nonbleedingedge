@@ -7,6 +7,7 @@ Welcome to NonBleedingEdge!
 ===========================
 
 .. toctree::
+	:maxdepth: 2
 	:caption: Contents:
 	
 	cheatsheets/daemontools
@@ -19,6 +20,7 @@ Welcome to NonBleedingEdge!
 	cheatsheets/mysql
 	cheatsheets/perl
 	cheatsheets/python
+	cheatsheets/pymysql
 	cheatsheets/screen
 	cheatsheets/systemctl-service
 
