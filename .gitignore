@@ -45,3 +45,8 @@ Thumbs.db
 .project
 .pydevproject
 .settings
+
+# Pipenv configuration files #
+##############################
+.venv
+Pipfile.lock
