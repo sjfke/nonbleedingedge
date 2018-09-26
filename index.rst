@@ -10,6 +10,7 @@ Welcome to NonBleedingEdge!
 	:maxdepth: 2
 	:caption: Contents:
 	
+	mojave-issues
 	cheatsheets/daemontools
 	cheatsheets/git
 	cheatsheets/iptables
