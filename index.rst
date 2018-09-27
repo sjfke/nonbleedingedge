@@ -6,29 +6,41 @@
 Welcome to NonBleedingEdge!
 ===========================
 
+This site is an online collection of my programming and application notes, cheatsheets and howtos.
+
+I admit the name *NonBleedingEdge* is kind of strange, but resulted from a discussion with another 
+aging *techie* who also found himself forced into semi-retirement... afterall your brain stops 
+functioning at 50, so how can you be of any use in the ever changing I.T. industry? 
+
+:Answer: *experience* which should never be under-valued.
+
+So this site is not *Bleeding Edge* (urgh) but attempts to condense some of my work experience into 
+quick reference guides. The style is deliberately terse, for us *seniors* it's more like an 
+engineering logbook.
+
+Hope you find it useful.
+
+Suggestions, comments, corrections or contributions are always welcomed.
+
+
+
 .. toctree::
 	:maxdepth: 2
 	:caption: Contents:
-	
+	:hidden:
+
+	cheatsheets/python
+	cheatsheets/git
+	cheatsheets/django
+	cheatsheets/perl
 	mojave-issues
 	cheatsheets/daemontools
-	cheatsheets/git
 	cheatsheets/iptables
-	cheatsheets/django
 	cheatsheets/javascript
 	cheatsheets/jquery
 	cheatsheets/mvn
 	cheatsheets/mysql
-	cheatsheets/perl
 	cheatsheets/php
-	cheatsheets/python
 	cheatsheets/pymysql
 	cheatsheets/screen
 	cheatsheets/systemctl-service
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
