@@ -6,7 +6,7 @@
 Welcome to NonBleedingEdge!
 ===========================
 
-This site is an online collection of my programming and application notes, cheatsheets and howtos.
+This site is an online collection of my cheatsheets and howtos.
 
 I admit the name *NonBleedingEdge* is kind of strange, but resulted from a discussion with another 
 aging *techie* who also found himself forced into semi-retirement... afterall your brain stops 
@@ -23,17 +23,22 @@ Hope you find it useful.
 Suggestions, comments, corrections or contributions are always welcomed.
 
 
-
+.. toctree::
+	:caption: HowTo's
+	:maxdepth: 2
+	
+	howtos/eclipse-remote-dev
+   
 .. toctree::
 	:maxdepth: 2
-	:caption: Contents:
+	:caption: Cheatsheets:
 	:hidden:
 
 	cheatsheets/python
 	cheatsheets/git
+	cheatsheets/sphinx
 	cheatsheets/django
 	cheatsheets/perl
-	mojave-issues
 	cheatsheets/daemontools
 	cheatsheets/iptables
 	cheatsheets/javascript
@@ -44,3 +49,10 @@ Suggestions, comments, corrections or contributions are always welcomed.
 	cheatsheets/pymysql
 	cheatsheets/screen
 	cheatsheets/systemctl-service
+	
+.. toctree::
+	:caption: Notes
+	:maxdepth: 2
+	
+	notes/mojave-issues
+
