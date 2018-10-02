@@ -6,14 +6,14 @@ Git Hub Fork
 ============
 ::
 
-	#1 - go to the git repo you are going to work (http://git.corp.yahoo.com/netops/$repo) on and 'fork' it to your personal org
+	#1 - go to the git repo you are going to work (http://git.corp.xyzab.com/dev/$repo) on and 'fork' it to your personal org
 	#2 - go to the box you are going to be developing on: 
-	 $ git clone git@git.corp.yahoo.com:$user/$repo
+	 $ git clone git@git.corp.xyzab.com:$user/$repo
 	#3 - add "upstream": 
-	 $ cd $repo && git remote add upstream git@git.corp.yahoo.com:netops/$repo
+	 $ cd $repo && git remote add upstream git@git.corp.xyzab.com:dev/$repo
 	# then updating will work.
 	$ git add $changedfile
-	$ git commit -m 'I changed this because I said so!'
+	$ git commit -m 'I changed this because I can!'
 	$ git push
 
 Git Hub Fork - fetching upstream
@@ -44,14 +44,14 @@ Git Starting
 ============
 ::
 
-	$ git config --global user.name "Geoff Collis"
-	$ git config --global user.email gcollis@yahoo-inc.com
+	$ git config --global user.name "Joseph Public"
+	$ git config --global user.email jpublic@xyzab.com
 	$ git config --global color.ui true
 	$ git config --global color.status auto
 	$ git config --global push.default simple
 	$ git config --global merge.tool vimdiff  # kdiff3,tkdiff,meld,xxdiff,emerge,vimdiff,gvimdiff,ecmerge,opendiff 
 
-These update ".gitconfig", which is in $HOME or "C:\Users\gcollis".
+These update ".gitconfig", which is in $HOME or "C:\Users\user1".
 
 Commits - 50 / 72 rule
 ======================
@@ -221,7 +221,7 @@ Diff options::
 
 Log|Shortlog Options::
 
-	# --author=gcollis, --pretty=oneline, --abbrev-comment, --no-merges, --stat, --since, --topo-order|--date-order
+	# --author=user1, --pretty=oneline, --abbrev-comment, --no-merges, --stat, --since, --topo-order|--date-order
 	$ git log -- <file>     # history of filem deleted too
 	$ git log dir/          # commits that modify any file under dir/
 	$ git log test..master  # commits on test but not on master
@@ -233,13 +233,13 @@ Git Remotes
 ===========
 First clone the repository::
 
-	$ git clone git@git.corp.yahoo.com:gcollis/NetworkInterfaceTools.git
+	$ git clone git@git.corp.xyzab.com:user1/repo1.git
 
 What are the remotes::
 	
 	$ git remote -v
-	origin  git@git.corp.yahoo.com:gcollis/NetworkInterfaceTools.git (fetch)
-	origin  git@git.corp.yahoo.com:gcollis/NetworkInterfaceTools.git (push)
+	origin  git@git.corp.xyzab.com:user1/repo1.git (fetch)
+	origin  git@git.corp.xyzab.com:user1/repo1.git (push)
 
 Adding a remote repo::
 
@@ -288,7 +288,7 @@ Creating an upstream branch
 
 	$ git push --set-upstream origin alpha
 	Total 0 (delta 0), reused 0 (delta 0)
-	To git@git.corp.yahoo.com:gcollis/PeeringWebUI.git
+	To git@git.corp.xyzab.com:user1/repo1.git
 	 * [new branch]      alpha -> alpha
 	Branch alpha set up to track remote branch alpha from origin.
 
@@ -298,8 +298,8 @@ Example command output
 
 	C:\Workspace\PeeringWebUI>git remote show origin
 	* remote origin
-	  Fetch URL: git@git.corp.yahoo.com:gcollis/PeeringWebUI.git
-	  Push  URL: git@git.corp.yahoo.com:gcollis/PeeringWebUI.git
+	  Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
+	  Push  URL: git@git.corp.xyzab.com:user1/repo1.git
 	  HEAD branch (remote HEAD is ambiguous, may be one of the following
 	    alpha
 	    master
@@ -325,8 +325,8 @@ Example command output
 
 	C:\Workspace\PeeringWebUI>git remote show origin
 	* remote origin
-	  Fetch URL: git@git.corp.yahoo.com:gcollis/PeeringWebUI.git
-	  Push  URL: git@git.corp.yahoo.com:gcollis/PeeringWebUI.git
+	  Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
+	  Push  URL: git@git.corp.xyzab.com:user1/repo1.git
 	  HEAD branch (remote HEAD is ambiguous, may be one of the following
 	    alpha
 	    master
@@ -341,8 +341,8 @@ Example command output
 ::
 
 	C:\Workspace\PeeringWebUI>git remote -v
-	origin  git@git.corp.yahoo.com:gcollis/PeeringWebUI.git (fetch)
-	origin  git@git.corp.yahoo.com:gcollis/PeeringWebUI.git (push)
+	origin  git@git.corp.xyzab.com:user1/repo1.git (fetch)
+	origin  git@git.corp.xyzab.com:user1/repo1.git (push)
 
 ::
 
@@ -401,15 +401,15 @@ Example command output
 	Compressing objects: 100% (2/2), done.
 	Writing objects: 100% (2/2), 232 bytes | 0 bytes/s, done.
 	Total 2 (delta 1), reused 0 (delta 0)
-	To git@git.corp.yahoo.com:gcollis/PeeringWebUI.git
+	To git@git.corp.xyzab.com:user1/repo1.git
 	   933bacd..3fd83a7  master -> master
 
 ::
 
 	C:\Workspace\PeeringWebUI>git remote show origin
 	* remote origin
-	  Fetch URL: git@git.corp.yahoo.com:gcollis/PeeringWebUI.git
-	  Push  URL: git@git.corp.yahoo.com:gcollis/PeeringWebUI.git
+	  Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
+	  Push  URL: git@git.corp.xyzab.com:user1/repo1.git
 	  HEAD branch: master
 	  Remote branches:
 	    alpha  tracked
@@ -436,8 +436,8 @@ Am I up to date with remote?
 	$ git diff --raw origin/master master
 	$ git remote show origin # up to date example (see last line)
 	* remote origin
-	  Fetch URL: git@git.corp.yahoo.com:gcollis/NetworkInterfaceTools.git
-	  Push  URL: git@git.corp.yahoo.com:gcollis/NetworkInterfaceTools.git
+	  Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
+	  Push  URL: git@git.corp.xyzab.com:user1/repo1.git
 	  HEAD branch: master
 	  Remote branch:
 	    master tracked
@@ -448,8 +448,8 @@ Am I up to date with remote?
 
 	$ git remote show origin # out of date example (see last line)
 	* remote origin
-	  Fetch URL: git@git.corp.yahoo.com:gcollis/PeeringWebUI.git
-	  Push  URL: git@git.corp.yahoo.com:gcollis/PeeringWebUI.git
+	  Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
+	  Push  URL: git@git.corp.xyzab.com:user1/repo1.git
 	  HEAD branch: master
 	  Remote branch:
 	    master tracked

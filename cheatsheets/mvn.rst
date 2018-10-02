@@ -17,84 +17,84 @@ Basics
 
 Change in Maven and source the environment::
 
-	geoff@morph$ cd $HOME/maven/
-	geoff@morph$ cd <project>
-	geoff@morph$ source $HOME/etc/maven.sh 
+	user1@desktop$ cd $HOME/maven/
+	user1@desktop$ cd <project>
+	user1@desktop$ source $HOME/etc/maven.sh 
 	# - see $HOME/.m2 - your local maven cache 
 
 Creating your simple project::
 
 	# - this creates the project tree with the hello world application
-	geoff@morph$ mvn archetype:create -DarchetypeGroupId=org.apache.maven.archetypes \
-	 -DgroupId=com.yahoo.peg.emea \
+	user1@desktop$ mvn archetype:create -DarchetypeGroupId=org.apache.maven.archetypes \
+	 -DgroupId=com.xyzab.dev \
 	 -DartifactId=LoadData
 
 Create the site directory structure to fill out using APT::
 
-	geoff@morph$ mvn archetype:create -DarchetypeGroupId=org.apache.maven.archetypes \
+	user1@desktop$ mvn archetype:create -DarchetypeGroupId=org.apache.maven.archetypes \
 	 -DarchetypeArtifactId=maven-archetype-site-simple \
-	 -DgroupId=com.yahoo.peg.emea -DartifactId=LoadData
+	 -DgroupId=com.xyzab.dev -DartifactId=LoadData
 
 Frequenctly used Basic commands::
 
-	geoff@morph$ mvn compile
-	geoff@morph$ mvn [clean] install # see <packaging> and <version> in pom.xml
+	user1@desktop$ mvn compile
+	user1@desktop$ mvn [clean] install # see <packaging> and <version> in pom.xml
 	
-	geoff@morph$ mvn site # build project website, see 
+	user1@desktop$ mvn site # build project website, see 
 	# - http://maven.apache.org/plugins/maven-site-plugin/ and 
 	# - http://maven.apache.org/plugins/maven-archetype-plugin/examples/site.html (-DarchetypeArtifactId=maven-archetype-site-simple)
 	# - "almost plain text" http://maven.apache.org/doxia/references/apt-format.html
 	
-	geoff@morph$ mvn help:effective-pom # list all parent POM settings
+	user1@desktop$ mvn help:effective-pom # list all parent POM settings
 	
 	# Exec Maven Plugin - http://mojo.codehaus.org/exec-maven-plugin/
 	# - see Exec-plugin.xml below for pom.xml details
-	geoff@morph$ mvn exec:java -Dexec.mainClass=com.yahoo.peg.emea.LoadData # "main" in lowercase
-	geoff@morph$ mvn exec:java -Dexec.mainClass=org.sonatype.mavenbook.weather.Main -Dexec.args="70112"
-	geoff@morph$ mvn exec:java -Dexec.args="-v" # run LoadData -v (see Exec-plugin.xml below)
-	geoff@morph$ mvn exec:java -Dexec.args="-h" # run LoadData -h (see Exec-plugin.xml below)
+	user1@desktop$ mvn exec:java -Dexec.mainClass=com.xyzab.dev.LoadData # "main" in lowercase
+	user1@desktop$ mvn exec:java -Dexec.mainClass=org.sonatype.mavenbook.weather.Main -Dexec.args="70112"
+	user1@desktop$ mvn exec:java -Dexec.args="-v" # run LoadData -v (see Exec-plugin.xml below)
+	user1@desktop$ mvn exec:java -Dexec.args="-h" # run LoadData -h (see Exec-plugin.xml below)
 	
-	geoff@morph$ mvn javadoc:javadoc # build api docs; http://maven.apache.org/plugins/maven-javadoc-plugin/
+	user1@desktop$ mvn javadoc:javadoc # build api docs; http://maven.apache.org/plugins/maven-javadoc-plugin/
 	
-	geoff@morph$ mvn clean javadoc:jar source:jar install # will install three jar files to your local repository
+	user1@desktop$ mvn clean javadoc:jar source:jar install # will install three jar files to your local repository
 	#    * (artifactId)-(version).jar - containing the compiled artifact
 	#    * (artifactId)-(version)-javadoc.jar - containing the artifact's javadoc
 	#    * (artifactId)-(version)-sources.jar - containing the artifact's source files
 	
-	geoff@morph$ mvn help:describe -Dplugin=exec -Dfull # Full description of exec plugin
+	user1@desktop$ mvn help:describe -Dplugin=exec -Dfull # Full description of exec plugin
 	
-	geoff@morph$ mvn help:effective-pom # display the effective pom
+	user1@desktop$ mvn help:effective-pom # display the effective pom
 	
-	geoff@morph$ mvn dependency:resolve # list resolved dependencies
+	user1@desktop$ mvn dependency:resolve # list resolved dependencies
 	
-	geoff@morph$ mvn dependency:tree # entire dependency tree
+	user1@desktop$ mvn dependency:tree # entire dependency tree
 	
-	geoff@morph$ mvn install -X # fully dependency including artifacts - debug mode
+	user1@desktop$ mvn install -X # fully dependency including artifacts - debug mode
 	
-	geoff@morph$ mvn install -Dmaven.test.skip=true # skip unit tests and produce a jar
+	user1@desktop$ mvn install -Dmaven.test.skip=true # skip unit tests and produce a jar
 	
-	geoff@morph$ mvn eclipse:eclipse # convert so can be imported into eclipse
-	geoff@morph$ mvn eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true # if source are missing
+	user1@desktop$ mvn eclipse:eclipse # convert so can be imported into eclipse
+	user1@desktop$ mvn eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true # if source are missing
 
 Setting up a new project::
 
-	geoff@morph$ mvn archetype:create -DarchetypeGroupId=org.apache.maven.archetypes  \
-	 -DgroupId=com.yahoo.peg.emea  -DartifactId=ViewData
+	user1@desktop$ mvn archetype:create -DarchetypeGroupId=org.apache.maven.archetypes  \
+	 -DgroupId=com.xyzab.dev  -DartifactId=ViewData
 	
-	geoff@morph$ mvn archetype:create -DarchetypeGroupId=org.apache.maven.archetypes  \
+	user1@desktop$ mvn archetype:create -DarchetypeGroupId=org.apache.maven.archetypes  \
 	 -DarchetypeArtifactId=maven-archetype-site-simple \
-	 -DgroupId=com.yahoo.peg.emea  -DartifactId=ViewData
+	 -DgroupId=com.xyzab.dev  -DartifactId=ViewData
 
-	geoff@morph$ cd ViewData/
-	geoff@morph$ cd src/main/java/com/yahoo/peg/emea
-	geoff@morph$ rm App.java # delete the HelloWorld example
-	geoff@morph$ cp /home/geoff/workspace-broken/ysarView/src/com/yahoo/peg/emea/ysarData/viewData.java ViewData.java
+	user1@desktop$ cd ViewData/
+	user1@desktop$ cd src/main/java/com/xyzab/dev
+	user1@desktop$ rm App.java # delete the HelloWorld example
+	user1@desktop$ cp /home/user/viewData.java ViewData.java
 	# - edit the above file so it is ViewData
 	
-	geoff@morph$ cd ViewData/ # return to maven top level
-	geoff@morph$ rm src/test/java/com/yahoo/peg/emea/AppTest.java # remove JUnit test for HelloWorld exmple
+	user1@desktop$ cd ViewData/ # return to maven top level
+	user1@desktop$ rm src/test/java/com/xyzab/dev/AppTest.java # remove JUnit test for HelloWorld exmple
 	
-	geoff@morph$ gvim pom.xml # edit the POM and make the following updates
+	user1@desktop$ gvim pom.xml # edit the POM and make the following updates
 	- add forcing JDK-1.5 before <dependencies>
 	- add Artifactory proxy after <url>...</url> and before <build> 
 	- setup the dependencies: (Hint: mvn compile until no more errors)
@@ -102,32 +102,32 @@ Setting up a new project::
 	  - log4j,
 	  - common-cli,
 	  - mysql/mysql-connetor-java,
-	  - com.yahoo.peg.emea/YsarBufferedReader 
+	  - com.xyzab.dev/MyBufferedReader 
 	  - jcommon
 	  - jfreechart
-	geoff@morph$ mvn compile # should now build clean
+	user1@desktop$ mvn compile # should now build clean
 	
-	geoff@morph$ mvn eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true
+	user1@desktop$ mvn eclipse:eclipse -DdownloadSources=true -DdownloadJavadocs=true
 
 Check the project into SVN::
 
-	geoff@morph$ cd .. # so no longer in ViewData
-	geoff@morph$ svn import ViewData svn://wallace.gibson.ave/Java/ViewData -m "initial import"
+	user1@desktop$ cd .. # so no longer in ViewData
+	user1@desktop$ svn import ViewData svn://subversion.xyzab.corp.com/Java/ViewData -m "initial import"
 
 Check out the project from SVN and ignore the thing do not need to track::
 
-	geoff@morph$ mv ViewData VDATA
-	geoff@morph$ svn co svn://wallace.gibson.ave/Java/ViewData
-	geoff@morph$ cd ViewData
-	geoff@morph$ echo  "*.class *.classpath *.jar target/surefire target/test-classes target/classes" > .cvsignore
-	geoff@morph$ svn propset svn:ignore -F .cvsignore .
-	geoff@morph$ svn add .cvsignore
-	geoff@morph$ svn commit -m "tell svn to ignore dynamic files/directories"
+	user1@desktop$ mv ViewData VDATA
+	user1@desktop$ svn co svn://subversion.xyzab.corp.com/Java/ViewData
+	user1@desktop$ cd ViewData
+	user1@desktop$ echo  "*.class *.classpath *.jar target/surefire target/test-classes target/classes" > .cvsignore
+	user1@desktop$ svn propset svn:ignore -F .cvsignore .
+	user1@desktop$ svn add .cvsignore
+	user1@desktop$ svn commit -m "tell svn to ignore dynamic files/directories"
 
 Import into Eclipse::
 
 	# - File -> Import -> Existing Projects into Workspace
-	# You may have to add classpath variable "M2_REPO" = "/home/geoff/.m2"
+	# You may have to add classpath variable "M2_REPO" = "/home/user/.m2"
 	# - Right-click and select buildpath for the java file
 
 
@@ -209,7 +209,7 @@ Exec-plugin.xml - setting up exec:java mainClass
 	          </execution>
 	        </executions>
 	        <configuration>
-	          <mainClass>com.yahoo.peg.emea.LoadData</mainClass>
+	          <mainClass>com.xyzab.dev.LoadData</mainClass>
 	        </configuration>
 	    </plugin>
 	  </plugins>
@@ -242,7 +242,7 @@ Create runnable jar, by including all dependies and creating mainClass
 		    </descriptorRefs>
 		    <archive>
 		      <manifest>
-		        <mainClass>com.yahoo.peg.emea.LoadData</mainClass>
+		        <mainClass>com.xyzab.dev.LoadData</mainClass>
 		      </manifest>
 		    </archive>
 	          </configuration>
@@ -259,7 +259,7 @@ Developed because almost impossible to run anything other than Icedtea on FC11.
 ::
 
 
-	geoff@morph$ cat ~/etc/maven.sh 
+	user1@desktop$ cat ~/etc/maven.sh 
 	#!/bin/bash -x
 	#
 	export M2_HOME=/opt/apache-maven-2.2.0/
@@ -324,13 +324,13 @@ Subversion
 ==========
 ::
 
-	geoff@morph$ svn list svn://wallace.gibson.ave
-	geoff@morph$ svn list svn://wallace.gibson.ave/Java
+	user1@desktop$ svn list svn://wallace.gibson.ave
+	user1@desktop$ svn list svn://wallace.gibson.ave/Java
 	
-	geoff@morph$ svn import LoadData svn://wallace.gibson.ave/Java/LoadData -m "initial import"
+	user1@desktop$ svn import LoadData svn://wallace.gibson.ave/Java/LoadData -m "initial import"
 	# ** DO NOT FORGET ** Java/LoadData - otherwise FSFS is messed up
 	
-	geoff@morph$ edit $HOME/.subversion/config
+	user1@desktop$ edit $HOME/.subversion/config
 	### Section for configuring miscelleneous Subversion options.
 	#[miscellany]
 	#### Set global-ignores to a set of whitespace-delimited globs
@@ -340,15 +340,15 @@ Subversion
 	## global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo
 	global-ignores = *.o *.lo *.la *.al .libs *.so *.so.[0-9]* *.a *.pyc *.pyo *.rej *~ #*# .#* .*.swp .DS_Store *.class *.classpath *.jar target
 	
-	geoff@morph$ cat .cvsignore 
+	user1@desktop$ cat .cvsignore 
 	*.class *.jar target/surefire target/test-classes target/classes
-	geoff@morph$ svn propset svn:ignore -F .cvsignore .
+	user1@desktop$ svn propset svn:ignore -F .cvsignore .
 	property 'svn:ignore' set on '.'
 	
 	# - Keywords $Revision$ and $Id$
-	geoff@morph$ svn propset svn:keywords "Revision Id" src/main/java/com/yahoo/peg/emea/ViewData.java
-	property 'svn:keywords' set on 'src/main/java/com/yahoo/peg/emea/ViewData.java'
-	geoff@morph$ svn commit
+	user1@desktop$ svn propset svn:keywords "Revision Id" src/main/java/com/xyzab/dev/ViewData.java
+	property 'svn:keywords' set on 'src/main/java/com/xyzab/dev/ViewData.java'
+	user1@desktop$ svn commit
 
 Install m2eclipse on FC11
 =========================
@@ -396,7 +396,7 @@ Making eclipse use a JDK
 # using Sun JavaSE (not IcedTea)
 ::
 
-	[geoff@morph Java]$ cat ~/bin/galileo
+	[user1@desktop Java]$ cat ~/bin/galileo
 	#!/bin/bash
 	#
 	export M2_REPO=${HOME}/.m2
@@ -407,15 +407,15 @@ Making eclipse use a JDK
 	export JAVA_HOME=/usr/java/latest
 	export PATH=$JAVA_HOME/bin:$PATH
 	#
-	/home/geoff/Applications/eclipse/eclipse $*
+	/home/user1/Applications/eclipse/eclipse $*
 	
 	m2eclipse: Adding M2_REPO
 	http://www.mkyong.com/maven/how-to-configure-m2_repo-variable-in-eclipse-ide/
-	$ mvn -Declipse.workspace=/home/geoff/my-workspace eclipse:configure-workspace
+	$ mvn -Declipse.workspace=/home/user1/my-workspace eclipse:configure-workspace
 	You do not need any pom.xml file to execute this command, just run this “mvn” command everywhere you want.
 	
 	m2eclipse: Adding M2_REPO
 	http://maven.apache.org/guides/mini/guide-ide-eclipse.html
 	Eclipse needs to know the path to the local maven repository. 
 	Therefore the classpath variable M2_REPO has to be set. Execute the following command:
-	$ mvn -Declipse.workspace=/home/geoff/my-workspace eclipse:add-maven-repo
+	$ mvn -Declipse.workspace=/home/user1/my-workspace eclipse:add-maven-repo
