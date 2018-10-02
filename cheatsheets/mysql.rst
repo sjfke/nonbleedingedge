@@ -21,7 +21,7 @@ Copy a table::
 
 	mysql> CREATE TABLE mail2 like mail;
 	mysql> INSERT INTO mail2 SELECT * FROM mail [WHERE ...];
-	mysql> INSERT INTO topn.site_list SELECT * FROM capplan.site_list; # across DB's
+	mysql> INSERT INTO dbase2.table1 SELECT * FROM dbase1.table1; # across DB's
 
 Add, create or delete an index::
 
@@ -37,7 +37,7 @@ Add, delete or modify a column::
 	
 	mysql> ALTER TABLE <table> ADD <col> VARCHAR(20) AFTER <some-col>;
 	
-	mysql> ALTER TABLE interfaces MODIFY COLUMN mrtg VARCHAR(95);
+	mysql> ALTER TABLE table1 MODIFY COLUMN name VARCHAR(95);
 
 Creating a TSV, mysqld must be able to write, i.e use "/tmp"::
 
@@ -46,11 +46,11 @@ Creating a TSV, mysqld must be able to write, i.e use "/tmp"::
 
 `Loading data from a TSV file <https://dev.mysql.com/doc/refman/5.7/en/load-data.html>`_::
 
-	mysql> LOAD LOCAL DATA INFILE '/home/gcollis/newpat/site_list.txt' INTO TABLE site_list;
+	mysql> LOAD LOCAL DATA INFILE '/home/user/table1.txt' INTO TABLE table1;
 	mysql> SHOW WARNINGS;
 	
 	# Ignore first line in TSV file, and update the 'id' auto-increment
-	mysql> LOAD DATA LOCAL INFILE '/home/gcollis/plutus/vendor.tsv' INTO TABLE vendors (english,oracle,english2,short);
+	mysql> LOAD DATA LOCAL INFILE '/home/user/vendor.tsv' INTO TABLE vendors (english,oracle,legal,short);
 	mysql> DESCRIBE vendors;
 	+----------+--------------+------+-----+---------+----------------+
 	| Field    | Type         | Null | Key | Default | Extra          |
@@ -58,14 +58,14 @@ Creating a TSV, mysqld must be able to write, i.e use "/tmp"::
 	| id       | int(11)      | NO   | PRI | NULL    | auto_increment |
 	| english  | varchar(100) | NO   | MUL | NULL    |                |
 	| oracle   | varchar(100) | NO   |     | NULL    |                |
-	| english2 | varchar(100) | NO   |     | NULL    |                |
+	| legal    | varchar(100) | NO   |     | NULL    |                |
 	| short    | varchar(80)  | NO   | MUL | NULL    |                |
 	+----------+--------------+------+-----+---------+----------------+
 
 Exporting a Table in CSV format::
 
-	$ mysqldump -u root --no-create-info --tab=/tmp topn site_list
-	$ mysqldump -u root --tab=/tmp topn site_list
+	$ mysqldump -u root --no-create-info --tab=/tmp dbase2 table1
+	$ mysqldump -u root --tab=/tmp dbase2 table1
 
 Common User commands
 --------------------
@@ -80,7 +80,7 @@ Show User Grants::
 
 Show User Grants on Databases::
 
-	mysql> SELECT user,host,db,select_priv,insert_priv,grant_priv FROM mysql.db WHERE db IN ('pdbclone','ypeering') ORDER BY db;
+	mysql> SELECT user,host,db,select_priv,insert_priv,grant_priv FROM mysql.db WHERE db IN ('dbase1','dbase2') ORDER BY db;
 
 Change User password::
 
@@ -89,29 +89,29 @@ Change User password::
 
 Show Userr grants::
 
-	mysql> SHOW GRANTS FOR 'prod.dcn.user'@'localhost';
-	mysql> GRANT SELET ON <db>.* TO 'prod.dcn.user'@'<remote-host>' IDENTIFIED BY '<passwd>'; # passwd from SHOW GRANTS
-	mysql> REVOKE SELECT ON <db>.* FROM 'prod.dcn.user'@'localhost';
+	mysql> SHOW GRANTS FOR 'readonly.user'@'localhost';
+	mysql> GRANT SELET ON <db>.* TO 'readonly.user'@'<remote-host>' IDENTIFIED BY '<passwd>'; # passwd from SHOW GRANTS
+	mysql> REVOKE SELECT ON <db>.* FROM 'readonly.user'@'localhost';
 
 Which Users have access to which database::
 
-	mysql> SELECT user,host,db,select_priv,insert_priv,grant_priv FROM mysql.db WHERE db IN ('pdbclone','ypeering') ORDER BY db;
+	mysql> SELECT user,host,db,select_priv,insert_priv,grant_priv FROM mysql.db WHERE db IN ('dbase1','dbase2') ORDER BY db;
 	+--------------+-------------------------------+----------+-------------+-------------+------------+
 	| user         | host                          | db       | select_priv | insert_priv | grant_priv |
 	+--------------+-------------------------------+----------+-------------+-------------+------------+
-	| peeringdb    | netops2.corp.gq1.yahoo.com    | pdbclone | Y           | Y           | N          |
-	| peeringdb    | growschose.corp.gq1.yahoo.com | pdbclone | Y           | Y           | N          |
-	| peeringdb_ro | netops2.corp.gq1.yahoo.com    | pdbclone | Y           | N           | N          |
-	| peeringdb    | netops2.corp.ne1.yahoo.com    | ypeering | Y           | N           | N          |
-	| peeringdb_ro | netops2.corp.ne1.yahoo.com    | ypeering | Y           | N           | N          |
-	| peeringdb    | netops2.corp.gq1.yahoo.com    | ypeering | Y           | Y           | N          |
-	| peeringdb_ro | netops2.corp.gq1.yahoo.com    | ypeering | Y           | N           | N          |
+	| rw_user      | server2.corp.dc1.xyzab.com    | dbase1   | Y           | Y           | N          |
+	| rw_user      | desktop1.corp.xyzab.com       | dbase1   | Y           | Y           | N          |
+	| ro_user      | server2.corp.dc1.xyzab.com    | dbase1   | Y           | N           | N          |
+	| rw_user      | server2.corp.dc2.xyzab.com    | dbase2   | Y           | N           | N          |
+	| ro_user      | server2.corp.ne1.xyzab.com    | dbase2   | Y           | N           | N          |
+	| rw_user      | server2.corp.dc1.xyzab.com    | dbase2   | Y           | Y           | N          |
+	| ro_user      | server2.corp.dc1.xyzab.com    | dbase2   | Y           | N           | N          |
 	+--------------+-------------------------------+----------+-------------+-------------+------------+
 
 Changing Password::
 
 	$ mysql -u root
-	mysql> set password for 'prod.dcn.user'@'localhost' = password('LB4wK81Mp2BEFwxOQ7saVq2PEOgss3hUYVF2.cqKfkk-');
+	mysql> set password for 'readonly.user'@'localhost' = password('LB4wK81Mp2BEFwxOQ7saVq2PEOgss3hUYVF2.cqKfkk-');
 
 Display Table details
 ---------------------
@@ -129,7 +129,7 @@ Deleting rows which match::
 
 	mysql> DELETE FROM <table> WHERE start_date >= '2014.02.02';
 
-Deleting the entire conetnts of a table::
+Deleting the entire contents of a table::
 
 	mysql> TRUNCATE TABLE <table>;
 	mysql> DELETE FROM <table>;
@@ -146,26 +146,27 @@ Calculated column in where clause::
 
 Data in t1 and NOT in t2::
 
-	mysql> SELECT t1.name,t1.ltype,t1.id FROM interfaces AS t1 LEFT JOIN traffic AS t2 ON t1.id=t2.id WHERE t2.id IS NULL;
+	mysql> SELECT t1.name,t1.qty,t1.id FROM table1 AS t1 LEFT JOIN table2 AS t2 ON t1.id=t2.id WHERE t2.id IS NULL;
 
 Non-ASCII data `manual <https://dev.mysql.com/doc/refman/5.7/en/binary-varbinary.html>`_::
 
-	mysql> SELECT name FROM interfaces WHERE BINARY provider='X';
+	mysql> SELECT name FROM table1 WHERE BINARY provider='X';
 
 Using aggregates in filters::
 
-	- WHERE is applied before GROUP BY
-	- HAVING is applied after and so can filter on aggregates
+	# WHERE is applied before GROUP BY
+	# HAVING is applied after GROUP BY and hence can filter on aggregates
 	mysql> SELECT intfid,COUNT(id) AS num FROM missed_polls GROUP BY intfid HAVING COUNT(id) > 10;
 	mysql> SELECT intfid,COUNT(id) AS count FROM missed_polls GROUP BY intfid HAVING count > 10;
 
 Inner Join example::
 
-	mysql> SELECT MAX(t2.outmax) FROM lsp_interfaces AS t1 INNER JOIN lsp_traffic AS t2 ON t1.id = t2.lspid WHERE t1.dc='ams' AND RIGHT(t1.dst_rtr,3)<>'ams' AND t2.start_date>='2013.03.01' AND t2.end_date<='2014.06.28';
+	mysql> SELECT MAX(t2.outmax) FROM table1 AS t1 INNER JOIN table2 AS t2 ON t1.id = t2.id WHERE t1.dc='dc1' AND RIGHT(t1.rtr,3)<>'dc1' AND t2.start_date>='2013.03.01' AND t2.end_date<='2014.06.28';
 
-``SELECT DISTINCT`` like on first part of string, e.g. Wash_DC-to-Amsterdam::
+``SELECT DISTINCT`` like on first part of string, e.g. john-to-paul::
 
-	mysql> SELECT LEFT(name,INSTR(name,'-to-')-1) AS metro FROM lsp_metros GROUP BY metro;
+	mysql> SELECT LEFT(name,INSTR(name,'-to-')-1) AS gift FROM presents GROUP BY gift;
+	mysql> SELECT LEFT(name,INSTR(name,'-to-')-1) AS gift FROM presents GROUP BY gift;
 
 Confirming week numbers::
 
@@ -213,37 +214,37 @@ Handling Databases forced to read-only mode
 
 Full Read-Write access to the database::
 
-	mysql> CREATE USER 'prod.dcn.adm'@'localhost' IDENTIFIED BY 'JizrAjPpd_1o8pQEXm4UzJb_k_R7KS2UPV.1YJ59k34-';
-	mysql> SHOW GRANTS FOR 'prod.dcn.adm'@'localhost';
+	mysql> CREATE USER 'admin.user'@'localhost' IDENTIFIED BY 'JizrAjPpd_1o8pQEXm4UzJb_k_R7KS2UPV.1YJ59k34-';
+	mysql> SHOW GRANTS FOR 'admin.user'@'localhost';
 	+---------------------------------------------------------------------------------------------------------------------+
-	| Grants for prod.dcn.adm@localhost                                                                                   |
+	| Grants for admin.user@localhost                                                                                   |
 	+---------------------------------------------------------------------------------------------------------------------+
-	| GRANT USAGE ON *.* TO 'prod.dcn.adm'@'localhost' IDENTIFIED BY PASSWORD '*8FBE06BA12F769A27C408DE19A951866541D018E' |
+	| GRANT USAGE ON *.* TO 'admin.user'@'localhost' IDENTIFIED BY PASSWORD '*8FBE06BA12F769A27C408DE19A951866541D018E' |
 	+---------------------------------------------------------------------------------------------------------------------+
 	
-	mysql> GRANT SUPER ON *.* TO 'prod.dcn.adm'@'localhost' IDENTIFIED BY PASSWORD '*8FBE06BA12F769A27C408DE19A951866541D018E'
-	mysql> GRANT ALL ON topn2.* TO 'prod.dcn.adm'@'localhost';
-	mysql> CREATE USER 'prod.dcn.user'@'localhost' IDENTIFIED BY 'bj1NJMvEjTGM_rgcSGCD.LDPOoyTy.5.vMfBaB3g4uk-';
-	mysql> GRANT SELECT ON topn2.* TO 'prod.dcn.user'@'localhost';
-	mysql> GRANT SELECT ON topn2.* TO 'prod.dcn.user'@'netops2.corp.gq1.yahoo.com' IDENTIFIED BY PASSWORD '*1C4A2249CAD2B46EC5B71D84DC72F555276F06D5';
+	mysql> GRANT SUPER ON *.* TO 'admin.user'@'localhost' IDENTIFIED BY PASSWORD '*8FBE06BA12F769A27C408DE19A951866541D018E'
+	mysql> GRANT ALL ON dbase2.* TO 'admin.user'@'localhost';
+	mysql> CREATE USER 'readonly.user'@'localhost' IDENTIFIED BY 'bj1NJMvEjTGM_rgcSGCD.LDPOoyTy.5.vMfBaB3g4uk-';
+	mysql> GRANT SELECT ON dbase2.* TO 'readonly.user'@'localhost';
+	mysql> GRANT SELECT ON dbase2.* TO 'readonly.user'@'server2.corp.dc1.xyzab.com' IDENTIFIED BY PASSWORD '*1C4A2249CAD2B46EC5B71D84DC72F555276F06D5';
 	mysql> FLUSH PRIVILEGES;
 	
-	mysql> SHOW GRANTS FOR 'prod.dcn.adm'@'localhost';
+	mysql> SHOW GRANTS FOR 'admin.user'@'localhost';
 	+---------------------------------------------------------------------------------------------------------------------+
-	| Grants for prod.dcn.adm@localhost                                                                                   |
+	| Grants for admin.user@localhost                                                                                   |
 	+---------------------------------------------------------------------------------------------------------------------+
-	| GRANT SUPER ON *.* TO 'prod.dcn.adm'@'localhost' IDENTIFIED BY PASSWORD '*8FBE06BA12F769A27C408DE19A951866541D018E' |
-	| GRANT ALL PRIVILEGES ON `transpeer`.* TO 'prod.dcn.adm'@'localhost'                                                 |
-	| GRANT ALL PRIVILEGES ON `fullmonty`.* TO 'prod.dcn.adm'@'localhost'                                                 |
+	| GRANT SUPER ON *.* TO 'admin.user'@'localhost' IDENTIFIED BY PASSWORD '*8FBE06BA12F769A27C408DE19A951866541D018E' |
+	| GRANT ALL PRIVILEGES ON `transpeer`.* TO 'admin.user'@'localhost'                                                 |
+	| GRANT ALL PRIVILEGES ON `fullmonty`.* TO 'admin.user'@'localhost'                                                 |
 	+---------------------------------------------------------------------------------------------------------------------+
 
 Read-Only access to the database::
 
-	mysql> SHOW GRANTS FOR 'prod.dcn.user'@'localhost';
+	mysql> SHOW GRANTS FOR 'readonly.user'@'localhost';
 	+----------------------------------------------------------------------------------------------------------------------+
-	| Grants for prod.dcn.user@localhost                                                                                   |
+	| Grants for readonly.user@localhost                                                                                   |
 	+----------------------------------------------------------------------------------------------------------------------+
-	| GRANT USAGE ON *.* TO 'prod.dcn.user'@'localhost' IDENTIFIED BY PASSWORD '*1C4A2249CAD2B46EC5B71D84DC72F555276F06D5' |
-	| GRANT SELECT ON `transpeer`.* TO 'prod.dcn.user'@'localhost'                                                         |
-	| GRANT SELECT ON `fullmonty`.* TO 'prod.dcn.user'@'localhost'                                                         |
+	| GRANT USAGE ON *.* TO 'readonly.user'@'localhost' IDENTIFIED BY PASSWORD '*1C4A2249CAD2B46EC5B71D84DC72F555276F06D5' |
+	| GRANT SELECT ON `transpeer`.* TO 'readonly.user'@'localhost'                                                         |
+	| GRANT SELECT ON `fullmonty`.* TO 'readonly.user'@'localhost'                                                         |
 	+----------------------------------------------------------------------------------------------------------------------+
