@@ -1,3 +1,5 @@
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/git.rst
+
 **************
 Git Cheatsheet
 **************
@@ -271,15 +273,16 @@ Renaming a remote::
 	origin
 	paul
 
-How does my fork (current revision on github) differ from the remote master on github?
-======================================================================================
+How does myfork differ from the remote master?
+==============================================
 ::
 
 	$ git diff origin/myfork origin/master
 
-How does my local stuff differ from master on github?
+How does my local copy differ from the remote master?
 =====================================================
 ::
+
 	$ git diff origin/master
 
 Creating an upstream branch

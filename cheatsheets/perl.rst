@@ -1,3 +1,5 @@
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/perl.rst
+
 ****************
 Perl Cheatsheet
 ****************
