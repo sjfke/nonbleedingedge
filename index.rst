@@ -8,14 +8,14 @@ Welcome to NonBleedingEdge!
 
 This site is an online collection of my cheatsheets and howtos.
 
-I admit the name *NonBleedingEdge* is kind of strange, but resulted from a discussion with another 
-aging *techie* who also found himself forced into semi-retirement... afterall your brain stops 
-functioning at 50, so how can you be of any use in the ever changing I.T. industry? 
+I admit the name *"NonBleedingEdge"* is kind of strange, but resulted from a discussion with another 
+*"aging techie"* who also found himself forced into semi-retirement... **afterall** your brain stops 
+functioning at 50... right? So how can you be of any use in the ever changing I.T. industry? 
 
-:Answer: *experience* which should never be under-valued.
+:Answer: *"Experience"* which should never be under-valued.
 
-So this site is not *Bleeding Edge* (urgh) but attempts to condense some of my work experience into 
-quick reference guides. The style is deliberately terse, for us *seniors* it's more like an 
+So this site is not *"Bleeding Edge"* (urgh) but attempts to condense some of my work experience into 
+quick reference guides. The style is deliberately terse, for us *"seniors"* it's more like an 
 engineering logbook.
 
 Hope you find it useful.
@@ -25,14 +25,13 @@ Suggestions, comments, corrections or contributions are always welcomed.
 
 .. toctree::
 	:caption: HowTo's
-	:maxdepth: 2
+	:maxdepth: 1
 	
 	howtos/eclipse-remote-dev
    
 .. toctree::
-	:maxdepth: 2
+	:maxdepth: 1
 	:caption: Cheatsheets:
-	:hidden:
 
 	cheatsheets/python
 	cheatsheets/git
@@ -52,7 +51,7 @@ Suggestions, comments, corrections or contributions are always welcomed.
 	
 .. toctree::
 	:caption: Notes
-	:maxdepth: 2
+	:maxdepth: 1
 	
 	notes/mojave-issues
 
