@@ -10,6 +10,7 @@ Useful Links
 * `Sphinx Domains <http://www.sphinx-doc.org/en/stable/usage/restructuredtext/domains.html>`_
 * `Sphinx HomePage <http://www.sphinx-doc.org/en/stable/index.html>`_
 * `Sphinx Extensions <http://www.sphinx-doc.org/en/stable/usage/extensions/index.html>`_
+* `Read the Docs theme <https://sphinx-rtd-theme.readthedocs.io/en/latest/index.html>`_
 
 Miscellaneous
 =============
