@@ -1,3 +1,5 @@
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/notes/mojave-issues.rst
+
 *********************
 Mojave upgrade issues
 *********************
@@ -327,3 +329,74 @@ Update Brew (just in case)
 	==> pipenv
 	Bash completion has been installed to:
 	  /usr/local/etc/bash_completion.d
+
+Check brew
+==========
+::
+
+	$ brew config
+	HOMEBREW_VERSION: 1.7.6
+	ORIGIN: https://github.com/Homebrew/brew
+	HEAD: f239b7a62790cfb4f33bda9aab7597d43f1b1e3b
+	Last commit: 13 days ago
+	Core tap ORIGIN: https://github.com/Homebrew/homebrew-core
+	Core tap HEAD: 6b72baa7d65ae0a742e8903f8d9afcdb26f55615
+	Core tap last commit: 16 minutes ago
+	HOMEBREW_PREFIX: /usr/local
+	HOMEBREW_GIT: git
+	HOMEBREW_MACOS_VERSION_NUMERIC: 101400
+	CPU: octa-core 64-bit haswell
+	Homebrew Ruby: 2.3.7 => /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin/ruby
+	Clang: 10.0 build 1000
+	Git: 2.17.1 => /Library/Developer/CommandLineTools/usr/bin/git
+	Curl: 7.54.0 => /usr/bin/curl
+	Java: 10.0.1, 9.0.1
+	macOS: 10.14-x86_64
+	CLT: 10.0.0.0.1.1535735448
+	CLT headers: N/A
+	Xcode: N/A
+	XQuartz: N/A
+	
+	$ brew doctor
+	Please note that these warnings are just used to help the Homebrew maintainers
+	with debugging if you file an issue. If everything you use Homebrew for is
+	working fine: please don't worry or file an issue; just ignore this. Thanks!
+
+	Warning: The following directories do not exist:
+	/usr/local/sbin
+
+	You should create these directories and change their ownership to your account.
+	  sudo mkdir -p /usr/local/sbin
+	  sudo chown -R $(whoami) /usr/local/sbin
+	$ sudo mkdir -p /usr/local/sbin
+	$ sudo chown -R $(whoami) /usr/local/sbin
+	$ brew doctor
+	Your system is ready to brew.
+	$ brew update
+	Already up-to-date.
+
+Upgrade brew cask
+=================
+::
+
+	$ brew cask upgrade
+	==> Casks with `auto_updates` or `version :latest` will not be upgraded
+	==> Upgrading 1 outdated package, with result:
+	eclipse-ptp 4.7.2,oxygen:2 -> 4.7.3a,oxygen:3a
+	==> Satisfying dependencies
+	==> Downloading https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/oxygen/3a/ecl
+	==> Downloading from http://download.eclipse.org/technology/epp/downloads/release/oxygen/3a/eclipse-parallel-oxygen
+	######################################################################## 100.0%
+	==> Verifying SHA-256 checksum for Cask 'eclipse-ptp'.
+	==> Starting upgrade for Cask eclipse-ptp
+	==> Backing App 'Eclipse PTP.app' up to '/usr/local/Caskroom/eclipse-ptp/4.7.2,oxygen:2/Eclipse.app'.
+	==> Removing App '/Applications/Eclipse PTP.app'.
+	hdiutil attach -plist -nobrowse -readonly -noidme -mountrandom /var/folders/06/6q5dfrq12qvcbkyd62kd65l00000gn/T/d20181005-19955-168p4tu /Users/gcollis/Library/Caches/Homebrew/downloads/7e067b39049e2c1e5f3bc862e840c0c1898eee11a8857da6e0c2d4e6d6ee76c1--eclipse-parallel-oxygen-3a-macosx-cocoa-x86_64.dmg
+	mkbom -s -i /var/folders/06/6q5dfrq12qvcbkyd62kd65l00000gn/T/20181005-19955-pzvf6t.list -- /var/folders/06/6q5dfrq12qvcbkyd62kd65l00000gn/T/20181005-19955-v0unqc.bom
+	ditto --bom /var/folders/06/6q5dfrq12qvcbkyd62kd65l00000gn/T/20181005-19955-v0unqc.bom -- /private/var/folders/06/6q5dfrq12qvcbkyd62kd65l00000gn/T/d20181005-19955-168p4tu/dmg.qV8IAl /var/folders/06/6q5dfrq12qvcbkyd62kd65l00000gn/T/d20181005-19955-nlqu5o
+	diskutil eject /private/var/folders/06/6q5dfrq12qvcbkyd62kd65l00000gn/T/d20181005-19955-168p4tu/dmg.qV8IAl
+	cp -pR /var/folders/06/6q5dfrq12qvcbkyd62kd65l00000gn/T/d20181005-19955-nlqu5o/Eclipse.app/. /usr/local/Caskroom/eclipse-ptp/4.7.3a,oxygen:3a/Eclipse.app
+	==> Moving App 'Eclipse.app' to '/Applications/Eclipse PTP.app'.
+	==> Purging files for version 4.7.2,oxygen:2 of Cask eclipse-ptp
+	🍺  eclipse-ptp was successfully upgraded!
+
