@@ -20,10 +20,17 @@ So this site is not *"Bleeding Edge"* (urgh) but attempts to condense some of my
 quick reference guides. The style is deliberately terse, for us *"seniors"* it's more like an 
 engineering logbook.
 
+Suggestions, comments, corrections or contributions are always welcomed. 
+
 Hope you find it useful.
 
-Suggestions, comments, corrections or contributions are always welcomed.
+.. rst-class:: fa fa-linkedin-square 
 
+	`gcollis <https://www.linkedin.com/in/gcollis/>`_
+	
+.. rst-class:: fa fa-envelope
+
+	gcollis@ymail.com
 
 .. toctree::
 	:caption: HowTo's

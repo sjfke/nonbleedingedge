@@ -9,7 +9,8 @@ Useful Links
 
 * `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
 * `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
-
+* `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
+* `Execute Python Online (Python v2.7.13) <https://www.tutorialspoint.com/execute_python_online.php>`_
 
 Lists
 =====
@@ -52,6 +53,7 @@ Lists
 	L4 = [x**2 for x in range(5)]   # [0, 1, 4, 9, 16]
 	
 	textstr = ''.join(map(str, L2)) # convert List into a string concateneated with ''
+	isinstance(L1, list)            # list object? 
 	
 Dictionaries
 ============
@@ -84,6 +86,10 @@ Dictionaries
 	keys = ['spam', 'eggs']               # or tuple: keys = ('spam', 'eggs')
 	vals = [2, 3]                         # or tuple: vals = (2, 3)
 	D4 = dict(zip(keys, vals))            # {'eggs': 3, 'spam': 2}
+	
+	isinstance(D3, dict)                  # True
+    isinstance(D3['food'], dict)          # True
+    isinstance(D3['food']['eggs'], dict)  # False
 
 	
 Tuples
@@ -198,6 +204,55 @@ Comparisons, Equality, and Truth
 	S2 = 'a longer string'
 	S1 == S2, S1 is S2     # (True, False)
 	
+Object Checking
+===============
+
+List of classinfo types::
+	
+	print([t.__name__ for t in __builtins__.__dict__.values() if isinstance(t, type)])
+	
+	['BuiltinImporter', 'bool', 'memoryview', 'bytearray', 'bytes', 'classmethod', 'complex', 
+	'dict', 'enumerate', 'filter', 'float', 'frozenset', 'property', 'int', 'list', 'map', 
+	'object', 'range', 'reversed', 'set', 'slice', 'staticmethod', 'str', 'super', 'tuple', 
+	'type', 'zip', 'BaseException', 'Exception', 'TypeError', 'StopAsyncIteration', 
+	'StopIteration', 'GeneratorExit', 'SystemExit', 'KeyboardInterrupt', 'ImportError', 
+	'ModuleNotFoundError', 'OSError', 'OSError', 'OSError', 'EOFError', 'RuntimeError', 
+	'RecursionError', 'NotImplementedError', 'NameError', 'UnboundLocalError', 
+	'AttributeError', 'SyntaxError', 'IndentationError', 'TabError', 'LookupError', 'IndexError', 
+	'KeyError', 'ValueError', 'UnicodeError', 'UnicodeEncodeError', 'UnicodeDecodeError', 
+	'UnicodeTranslateError', 'AssertionError', 'ArithmeticError', 'FloatingPointError', 
+	'OverflowError', 'ZeroDivisionError', 'SystemError', 'ReferenceError', 'MemoryError', 
+	'BufferError', 'Warning', 'UserWarning', 'DeprecationWarning', 'PendingDeprecationWarning', 
+	'SyntaxWarning', 'RuntimeWarning', 'FutureWarning', 'ImportWarning', 'UnicodeWarning', 
+	'BytesWarning', 'ResourceWarning', 'ConnectionError', 'BlockingIOError', 'BrokenPipeError', 
+	'ChildProcessError', 'ConnectionAbortedError', 'ConnectionRefusedError', 
+	'ConnectionResetError', FileExistsError', 'FileNotFoundError', 'IsADirectoryError', 
+	'NotADirectoryError', 'InterruptedError', 'PermissionError', 'ProcessLookupError', 
+	'TimeoutError']
+
+Object is::
+
+	isinstance (object, classinfo)
+	
+	isinstance('fred', str)               # True
+	isinstance(123, int)                  # True
+	isinstance(1.23, float)               # True
+	isinstance([1, 2, 3], list)           # True
+	isinstance((1, 2, 3), tuple)          # True
+	
+	D3 = {'food': {'ham': 2, 'eggs': 3}}
+	isinstance(D3, dict)                  # True
+	isinstance(D3['food'], dict)          # True
+	isinstance(D3['food']['eggs'], dict)  # False
+	isinstance(D3['food']['eggs'], str)   # False
+	isinstance(D3['food']['eggs'], int)   # True
+	isinstance(D3['food']['eggs'], float) # False
+	
+	L = [1,2,3]
+	T = (1, 2, 3)
+	isinstance(L, (list, tuple))          # True
+	isinstance(T, (list, tuple))          # True
+
 IF statements
 =============
 
