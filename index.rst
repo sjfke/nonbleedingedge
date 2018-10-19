@@ -13,9 +13,9 @@ This site is an online collection of my cheatsheets and howtos.
 I admit the name *"NonBleedingEdge"* is kind of strange, but resulted from a discussion with another 
 *"aging techie"* who also found himself forced into semi-retirement... 
 
-**Afterall** your brain stops functioning at 50... right? 
+:Question: How can an *"aging techie"* be of any use in the ever changing I.T. industry? 
 
-:Question: How can you be of any use in the ever changing I.T. industry? 
+:Afterall: Your brain stops functioning at 50... right? 
 
 :Answer: *"Experience"* which should never be under-valued.
 
