@@ -10,7 +10,8 @@ Useful Links
 * `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
 * `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
 * `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
-* `Execute Python Online (Python v2.7.13) <https://www.tutorialspoint.com/execute_python_online.php>`_
+* `Execute Python-3 Online (Python v3.6.2) <https://www.tutorialspoint.com/execute_python3_online.php>`_
+* `Python IDE Online (Python v2.7.13) <https://www.tutorialspoint.com/online_python_ide.php>`_
 
 Lists
 =====
