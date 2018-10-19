@@ -11,8 +11,11 @@ Welcome to NonBleedingEdge!
 This site is an online collection of my cheatsheets and howtos.
 
 I admit the name *"NonBleedingEdge"* is kind of strange, but resulted from a discussion with another 
-*"aging techie"* who also found himself forced into semi-retirement... **afterall** your brain stops 
-functioning at 50... right? So how can you be of any use in the ever changing I.T. industry? 
+*"aging techie"* who also found himself forced into semi-retirement... 
+
+**Afterall** your brain stops functioning at 50... right? 
+
+:Question: How can you be of any use in the ever changing I.T. industry? 
 
 :Answer: *"Experience"* which should never be under-valued.
 
@@ -24,7 +27,7 @@ Suggestions, comments, corrections or contributions are always welcomed.
 
 Hope you find it useful.
 
-.. rst-class:: fa fa-linkedin-square 
+.. rst-class:: fa fa-linkedin-square
 
 	`gcollis <https://www.linkedin.com/in/gcollis/>`_
 	
@@ -36,6 +39,7 @@ Hope you find it useful.
 	:caption: HowTo's
 	:maxdepth: 1
 	
+	howtos/docker
 	howtos/eclipse-remote-dev
    
 .. toctree::
