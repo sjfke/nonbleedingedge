@@ -231,5 +231,50 @@ WebApps with Docker
 	Client-Date: Thu, 18 Oct 2018 14:34:56 GMT
 	Client-Warning: Internal response
 
+Build Your Own
+==============
+
+By default `dockerd <https://docs.docker.com/engine/reference/commandline/dockerd/>`_ will 
+attempt to do 5 `pushes` in parallel, which will not work on a *modest* ADSL connection. 
+Try adjusting `"--max-concurrent-uploads"` officially this is in `"/etc/docker/daemon.json"` 
+but this is not true on Fedora or MacOS.
+::
+
+	Fedora: 
+	$ sudo vim /etc/sysconfig/docker
+	# Modify these options if you want to change the way the docker daemon runs
+	# OPTIONS='--selinux-enabled --log-driver=journald --live-restore'
+	OPTIONS='--max-concurrent-uploads 1 --selinux-enabled --log-driver=journald --live-restore'
+	$ sudo systemctl restart docker
+	
+	MacOS:
+	Docker Icon > Preferences > Daemon > Advanced
+
+So having stopped `"docker push"` from hanging your ADSL connection, you can continue.
+::
+
+	$ git clone https://github.com/prakhar1989/docker-curriculum
+	$ cd docker-curriculum/flask-app
+	
+	cat > Dockerfile <<EOT
+	# our base image
+	FROM python:3-onbuild
+	# specify the port number the container should expose
+	EXPOSE 5000
+	# run the application
+	CMD ["python", "./app.py"]
+	EOT
+	
+	$ sudo docker build -t sjfke/catnip .  # 'sjfke' my DockerHub account
+	$ sudo docker login                    # login to DockerHub
+	$ sudo docker push sjfke/catnip        # push my container to DockerHub
+ 
+	$ docker run -p 8888:5000 sjfke/catnip # download and run on another system
+	
+AWS Elastic Beanstalk (EB)
+==========================
+
+* `AWS EB <https://aws.amazon.com/elasticbeanstalk/>`_
 
 
+	
