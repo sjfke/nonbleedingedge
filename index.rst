@@ -51,6 +51,7 @@ Hope you find it useful.
 	cheatsheets/sphinx
 	cheatsheets/django
 	cheatsheets/perl
+	cheatsheets/linux-tricks
 	cheatsheets/daemontools
 	cheatsheets/iptables
 	cheatsheets/javascript
