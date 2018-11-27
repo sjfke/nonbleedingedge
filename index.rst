@@ -41,6 +41,7 @@ Hope you find it useful, and keep coming back because the site will be updated f
 	
 	howtos/docker
 	howtos/eclipse-remote-dev
+	howtos/fedora29-install
    
 .. toctree::
 	:maxdepth: 1
