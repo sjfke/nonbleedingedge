@@ -25,7 +25,7 @@ engineering logbook.
 
 Suggestions, comments, corrections or contributions are always welcomed. 
 
-Hope you find it useful.
+Hope you find it useful, and keep coming back because the site will be updated frequently.
 
 .. rst-class:: fa fa-linkedin-square
 
@@ -41,6 +41,7 @@ Hope you find it useful.
 	
 	howtos/docker
 	howtos/eclipse-remote-dev
+	howtos/fedora29-install
    
 .. toctree::
 	:maxdepth: 1

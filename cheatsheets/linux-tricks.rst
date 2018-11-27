@@ -46,3 +46,32 @@ Password Generators
 	$ tree /path/to/directory
 	$ tree [options]
 	$ tree [options] /path/to/directory
+
+``dnf`` Useful Commands
+=======================
+
+* `dnf examples <https://www.rootusers.com/25-useful-dnf-command-examples-for-package-management-in-linux/>`_
+
+Fedora package installer::
+
+	$ sudo dnf install httpd                            # install httpd
+	$ sudo dnf install httpd-manual -y                  # assume yes
+	$ sudo dnf dnf check-update                         # check for available updates
+	$ sudo dnf update                                   # updateb installed packages
+	$ sudo dnf install unbound-1.4.20-28.el7.x86_64.rpm # install local package
+	$ sudo dnf remove httpd                             # remove package
+	$ sudo dnf reinstall httpd -y                       # reinstall package
+	$ sudo dnf search php                               # search for a package
+	$ sudo dnf provides /etc/httpd/conf/httpd.conf      # which package provides the file
+	$ sudo dnf info httpd                               # 
+	$ sudo dnf history                                  # installation history
+	$ sudo dnf history info 13                          # what did install 13 do
+	$ sudo dnf history undo 13 -y                       # undo install 13
+	$ sudo dnf history redo 13 -y
+	$ sudo dnf list installed
+	$ sudo dnf grouplist                                # list which groups are available, installed, not-installed.
+	$ sudo dnf groupinfo "Web Server"                   # what is installed by this group
+	
+	
+	
+	
