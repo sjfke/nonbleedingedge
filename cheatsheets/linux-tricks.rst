@@ -50,9 +50,9 @@ Password Generators
 ``dnf`` Useful Commands
 =======================
 
-* `dnf examples <https://www.rootusers.com/25-useful-dnf-command-examples-for-package-management-in-linux/>`_
+Fedora package installer `DNF <https://www.rootusers.com/25-useful-dnf-command-examples-for-package-management-in-linux/>`_
 
-Fedora package installer::
+::
 
 	$ sudo dnf install httpd                            # install httpd
 	$ sudo dnf install httpd-manual -y                  # assume yes
@@ -64,6 +64,7 @@ Fedora package installer::
 	$ sudo dnf search php                               # search for a package
 	$ sudo dnf provides /etc/httpd/conf/httpd.conf      # which package provides the file
 	$ sudo dnf info httpd                               # 
+	$ sudo dnf repoquery --list httpd                   # list the files installed
 	$ sudo dnf history                                  # installation history
 	$ sudo dnf history info 13                          # what did install 13 do
 	$ sudo dnf history undo 13 -y                       # undo install 13
@@ -71,7 +72,4 @@ Fedora package installer::
 	$ sudo dnf list installed
 	$ sudo dnf grouplist                                # list which groups are available, installed, not-installed.
 	$ sudo dnf groupinfo "Web Server"                   # what is installed by this group
-	
-	
-	
-	
+

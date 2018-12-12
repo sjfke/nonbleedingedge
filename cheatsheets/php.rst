@@ -180,15 +180,15 @@ Variables
 	$this reserved for Object Orientated PHP.
 	# globally scoped unless inside a function
 
-Data-Types:
-- Boolean        - (TRUE|FALSE)
-- Integer        - whole numbers
-- Float (double) - 12.56 ..
-- String         - characters, letter, or numbers in ".." or '..' 
-- Array          - multi-dimenstional arrays
-- Object         - basics for class definitions
-- NULL           - like MySQL
-- Resource       - reference to functions, databases, files outside of PHP
+	Data-Types:
+	- Boolean        - (TRUE|FALSE)
+	- Integer        - whole numbers
+	- Float (double) - 12.56 ..
+	- String         - characters, letter, or numbers in ".." or '..' 
+	- Array          - multi-dimenstional arrays
+	- Object         - basics for class definitions
+	- NULL           - like MySQL
+	- Resource       - reference to functions, databases, files outside of PHP
 
 Defined Constants
 =================
@@ -211,18 +211,20 @@ Expressions - collective term for code statements
 	$name = MyName();
 	$name ? $last = "MacIntyre" : $last = "" ;
 
-If...Else...
-============
+If...Then...Else...
+===================
 ::
 
-	the '==' the string is converted to a number prior to comparison (passes)
-	the '===' no conversion compared on content and type (fails on type: number vs string)
-	NB this is one-line form use "{}" for clarity
+	Note with: '==' the string is converted to a number prior to comparison (passes)
+	Note with:  '===' no conversion compared on content and type (fails on type: number vs string)
+	
 	if (1 == '1') echo "true 1 equals '1' <br/>";
+	
 	if (1 === '1') echo "true 1 equals '1'";
 	else echo "false 1 does not equal '1' " ;
 	
-	other forms
+	Better form than one-line form above:
+	
 	if ($weekday == "Monday") {
 	    $discount = $tax_rate * 0.05 ;
 	}
