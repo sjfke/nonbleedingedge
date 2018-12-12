@@ -276,5 +276,78 @@ AWS Elastic Beanstalk (EB)
 
 * `AWS EB <https://aws.amazon.com/elasticbeanstalk/>`_
 
+Much of this is interacting with Web graphical interfaces, so `follow the tutorial instructions <https://docker-curriculum.com/#docker-on-aws>`_. 
 
+
+Multi-Container Environments
+============================
+
+::
+
+	$ git clone https://github.com/prakhar1989/FoodTrucks
+	$ cd FoodTrucks/
+	$ sudo docker pull docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+	$ sudo docker run -d --name es -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+	$ sudo docker container ls # inconviently the name is the last field!
+	$ sudo docker container logs es
 	
+	$ curl 0.0.0.0:9200
+	{
+	  "name" : "MYk3rl7",
+	  "cluster_name" : "docker-cluster",
+	  "cluster_uuid" : "dCG3beIgQSq3mGhSVHku_g",
+	  "version" : {
+	    "number" : "6.3.2",
+	    "build_flavor" : "default",
+	    "build_type" : "tar",
+	    "build_hash" : "053779d",
+	    "build_date" : "2018-07-20T05:20:23.451332Z",
+	    "build_snapshot" : false,
+	    "lucene_version" : "7.3.1",
+	    "minimum_wire_compatibility_version" : "5.6.0",
+	    "minimum_index_compatibility_version" : "5.0.0"
+	  },
+	  "tagline" : "You Know, for Search"
+	}
+
+So cool we have `ElasticSearch` running in its own container `es`.
+
+Now build the `flask` application, but because we need to customize it by running 
+commands, we will use an ubuntu container as can be seen in the `Dockerfile`::
+
+	# start from base
+	FROM ubuntu:latest
+	MAINTAINER Prakhar Srivastav <prakhar@prakhar.me>
+	
+	# install system-wide deps for python and node
+	RUN apt-get -yqq update
+	RUN apt-get -yqq install python-pip python-dev curl gnupg
+	RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
+	RUN apt-get install -yq nodejs
+	
+	# copy our application code
+	ADD flask-app /opt/flask-app
+	WORKDIR /opt/flask-app
+	
+	# fetch app specific deps
+	RUN npm install
+	RUN npm run build
+	RUN pip install -r requirements.txt
+	
+	# expose port
+	EXPOSE 5000
+	
+	# start app
+	CMD [ "python", "./app.py" ]
+
+	# check we are Foodtrucks directory
+	$ sudo docker build -t prakhar1989/foodtrucks-web .
+
+So now lets try to run it::
+
+	$ sudo docker run -P --rm prakhar1989/foodtrucks-web
+	Unable to connect to ES. Retrying in 5 secs...
+	Unable to connect to ES. Retrying in 5 secs...
+	Unable to connect to ES. Retrying in 5 secs...
+	Out of retries. Bailing out...
+ 	

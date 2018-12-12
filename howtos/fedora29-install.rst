@@ -21,7 +21,7 @@ Tutorial Links
 Upgrade rather than Fresh Installation
 ======================================
 
-Simpler, safer, but you you should still backup your data and then follow:
+Simpler, safer, but you should still backup your data and then follow:
 
 * `DNF system upgrade <https://fedoraproject.org/wiki/DNF_system_upgrade>`_
 
@@ -69,6 +69,12 @@ Click on the appropriate links and use install (default) action.
 
 Suggest `RPM Fusion free` and `RPM Fusion nonfree`.
 
+Via the command-line::
+
+	$ sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+	$ sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+
 Additional Updates
 ==================
 
@@ -86,7 +92,9 @@ Despite all attempts to kill `Adobe Flash`, some sites still use it::
 	
 Install Chromium (not Google Chrome)::
 
-	$ sudo dnf install chromium # bad? see Multimedia post-install
+	$ sudo dnf install chromiun
+	
+**Note**: `chromuim` caused installation problems later, see `Multimedia post-install`_
 	
 Stolen from mjmwired.net, but still seems relevant
 ==================================================
@@ -187,7 +195,7 @@ Other Groups to Consider
 	$ sudo dnf groupinfo 'System Tools'
 	
 	# Some personal preferences
-	$ sudo dnf install perl-libwww-perl -y # $ sudo dnf provides HEAD
+	$ sudo dnf install perl-libwww-perl -y # $ provides HEAD command
 	$ sudo dnf install vim-enhanced vim-X11 -y
 	$ sudo dnf install vim-syntastic-perl.noarch vim-syntastic-json.noarch vim-syntastic-sh.noarch vim-syntastic-yaml.noarch -y
 
