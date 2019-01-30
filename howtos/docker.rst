@@ -350,4 +350,564 @@ So now lets try to run it::
 	Unable to connect to ES. Retrying in 5 secs...
 	Unable to connect to ES. Retrying in 5 secs...
 	Out of retries. Bailing out...
- 	
+	
+	$ grep -n Elasticsearch flask-app/app.py # shows the failing connection, on line 8
+	1:from elasticsearch import Elasticsearch, exceptions
+	8:es = Elasticsearch(host='es')
+
+	
+This fails be the `foodtrucks-web` container cannot connect to `es` container on 0.0.0.0:9200
+To understand why need to understand docker networks.
+
+Docker networks
+===============
+
+Our Elasticsearch is running, but on 0.0.0.0:9200
+::
+
+	$ sudo docker container ls
+	CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                                            NAMES
+	712659c6d89c        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/do..."   31 minutes ago      Up 31 minutes       0.0.0.0:9200->9200/tcp, 0.0.0.0:9300->9300/tcp   es
+
+	$ sudo docker network ls # bridge is the default network for containers
+	NETWORK ID          NAME                DRIVER              SCOPE
+	544ab266e4de        bridge              bridge              local
+	09a4096c7d69        host                host                local
+	baf3cfdf732b        none                null                local
+
+	$ sudo docker inspect bridge
+	[
+	    {
+	        "Name": "bridge",
+	        "Id": "544ab266e4de0d21850a4994cad1bc8faa916786ac637f0d32e9f192933c46c1",
+	        "Created": "2018-12-13T18:41:45.124184344+01:00",
+	        "Scope": "local",
+	        "Driver": "bridge",
+	        "EnableIPv6": false,
+	        "IPAM": {
+	            "Driver": "default",
+	            "Options": null,
+	            "Config": [
+	                {
+	                    "Subnet": "172.17.0.0/16",
+	                    "Gateway": "172.17.0.1"
+	                }
+	            ]
+	        },
+	        "Internal": false,
+	        "Attachable": false,
+	        "Containers": {
+	            "712659c6d89c205d9e24b5a1060c6f47c3a69dc5abb8f66279dfcac398cbf731": {
+	                "Name": "es",
+	                "EndpointID": "cde9ba10ebe16df0fd7f919b46814e5251ab4af0d2a56b668ef2fc5c256fd76e",
+	                "MacAddress": "02:42:ac:11:00:02",
+	                "IPv4Address": "172.17.0.2/16",
+	                "IPv6Address": ""
+	            }
+	        },
+	        "Options": {
+	            "com.docker.network.bridge.default_bridge": "true",
+	            "com.docker.network.bridge.enable_icc": "true",
+	            "com.docker.network.bridge.enable_ip_masquerade": "true",
+	            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+	            "com.docker.network.bridge.name": "docker0",
+	            "com.docker.network.driver.mtu": "1500"
+	        },
+	        "Labels": {}
+	    }
+	]
+
+So the `es` container is bond to 172.17.0.2:9200 but this is the default docker network, 
+let's isolate our app to anothe rbridged network.::
+
+	$ sudo docker network create foodtrucks-net
+	f9005012280de00eda23d3ff18a5924ff1e410cb7a11a077db62da2b408767c0
+	
+	$ sudo docker network ls
+	NETWORK ID          NAME                DRIVER              SCOPE
+	544ab266e4de        bridge              bridge              local
+	f9005012280d        foodtrucks-net      bridge              local
+	09a4096c7d69        host                host                local
+	baf3cfdf732b        none                null                local
+	
+	$ sudo docker stop es
+	$ sudo docker rm es
+	es
+	$ sudo docker run -d --name es --net foodtrucks-net -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+	3ba626d4716ae921ec42b22a5fe5e65accba477ec4b66a319e214ae7bbdeed2f
+
+	$ sudo docker network inspect foodtrucks-net
+	[
+	    {
+	        "Name": "foodtrucks-net",
+	        "Id": "f9005012280de00eda23d3ff18a5924ff1e410cb7a11a077db62da2b408767c0",
+	        "Created": "2018-12-13T19:40:47.281917543+01:00",
+	        "Scope": "local",
+	        "Driver": "bridge",
+	        "EnableIPv6": false,
+	        "IPAM": {
+	            "Driver": "default",
+	            "Options": {},
+	            "Config": [
+	                {
+	                    "Subnet": "172.18.0.0/16",
+	                    "Gateway": "172.18.0.1"
+	                }
+	            ]
+	        },
+	        "Internal": false,
+	        "Attachable": false,
+	        "Containers": {
+	            "3ba626d4716ae921ec42b22a5fe5e65accba477ec4b66a319e214ae7bbdeed2f": {
+	                "Name": "es",
+	                "EndpointID": "129c8ffdddaa13c9ac3d2c394e8abc9cf96ca14685875408b7f38cbe6b32b481",
+	                "MacAddress": "02:42:ac:12:00:02",
+	                "IPv4Address": "172.18.0.2/16",
+	                "IPv6Address": ""
+	            }
+	        },
+	        "Options": {},
+	        "Labels": {}
+	    }
+	]
+
+	$ sudo docker run -it --rm --net foodtrucks-net prakhar1989/foodtrucks-web bash
+	root@9e892d64b9d9:/opt/flask-app# curl es:9200
+	{
+	  "name" : "5pAqhsu",
+	  "cluster_name" : "docker-cluster",
+	  "cluster_uuid" : "4etLMfQmTmamKqaayrLAyw",
+	  "version" : {
+	    "number" : "6.3.2",
+	    "build_flavor" : "default",
+	    "build_type" : "tar",
+	    "build_hash" : "053779d",
+	    "build_date" : "2018-07-20T05:20:23.451332Z",
+	    "build_snapshot" : false,
+	    "lucene_version" : "7.3.1",
+	    "minimum_wire_compatibility_version" : "5.6.0",
+	    "minimum_index_compatibility_version" : "5.0.0"
+	  },
+	  "tagline" : "You Know, for Search"
+	}
+	root@9e892d64b9d9:/opt/flask-app# ls
+	app.py  node_modules  package-lock.json  package.json  requirements.txt  static  templates  webpack.config.js
+	root@9e892d64b9d9:/opt/flask-app# python app.py
+	Index not found...
+	Loading data in elasticsearch ...
+	Total trucks loaded:  623
+	 * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+	^C
+	root@9e892d64b9d9:/opt/flask-app# exit
+	exit
+
+Thanks to *automatic service discovery* the communication works and it resolves the container names!::
+
+	$ sudo docker run -d --net foodtrucks-net -p 5000:5000 --name foodtrucks-web prakhar1989/foodtrucks-web
+	019f0602b51eb71324909b351f4bb217e08efd1309bb625c243acfd08bc5a21a
+	$ curl -I 0.0.0.0:5000
+	HTTP/1.0 200 OK
+	Content-Type: text/html; charset=utf-8
+	Content-Length: 3697
+	Server: Werkzeug/0.11.2 Python/2.7.15rc1
+	Date: Thu, 13 Dec 2018 18:52:28 GMT
+ 
+The application is git repo is distributed with `setup-docker.sh` bash script::
+
+	#!/bin/bash
+	
+	# build the flask container
+	docker build -t prakhar1989/foodtrucks-web .
+	
+	# create the network
+	docker network create foodtrucks-net
+	
+	# start the ES container
+	docker run -d --name es --net foodtrucks-net -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+	
+	# start the flask app container
+	docker run -d --net foodtrucks-net -p 5000:5000 --name foodtrucks-web prakhar1989/foodtrucks-web
+
+So to download and run the application all that is needed::
+
+	$ git clone https://github.com/prakhar1989/FoodTrucks
+	$ cd FoodTrucks
+	$ ./setup-docker.sh
+	
+	# if following the toturial you need to clean up
+	$ sudo docker stop foodtrucks-web es
+	$ sudo docker rm foodtrucks-web es
+	$ sudo docker network rm foodtrucks-net
+	$ sudo docker network ls
+	NETWORK ID          NAME                DRIVER              SCOPE
+	544ab266e4de        bridge              bridge              local
+	09a4096c7d69        host                host                local
+	baf3cfdf732b        none                null                local
+	#
+	$ sudo ./setup-docker.sh
+
+Docker Compose
+==============
+
+Various tools exists for running multiple docker containers:
+
+* `Docker Machine <https://docs.docker.com/machine/overview/>`_ Create Docker hosts on your computer, on cloud providers, or own data center
+* `Docker Compose <https://docs.docker.com/compose/overview/>`_ A tool for defining and running multi-container Docker applications.
+* `Docker Swarm <https://docs.docker.com/swarm/overview/>`_ A native clustering solution for Docker.
+* `Kubernetes <https://kubernetes.io/>`_ Production-Grade Container Orchestration.
+
+Will focus on `Docker Compose`.
+
+Docker Compose
+--------------
+
+::
+
+	$ sudo dnf install docker-compose # F28 need to install
+	$ docker-compose --version
+	docker-compose version 1.20.1, build 5d8c71b
+
+	$ cat docker-compose.yml 
+	version: "3"
+	services:
+	  es:
+	    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+	    container_name: es
+	    environment:
+	      - discovery.type=single-node
+	    ports:
+	      - 9200:9200
+	    volumes:
+	      - esdata1:/usr/share/elasticsearch/data
+	  web:
+	    image: prakhar1989/foodtrucks-web
+	    command: python app.py
+	    depends_on:
+	      - es
+	    ports:
+	      - 5000:5000
+	    volumes:
+	      - ./flask-app:/opt/flask-app
+	volumes:
+	    esdata1:
+	      driver: local
+
+	$ sudo docker stop es web # stop 'es' and 'web' containers
+	$ sudo docker ps -a       # check that everything has exited
+	
+	
+Online manuals:
+
+* `Docker Compose V3 <https://docs.docker.com/compose/compose-file/compose-file-v3/>`_
+* `Docker Compose V2 <https://docs.docker.com/compose/compose-file/compose-file-v2/>`_
+* `Docker Compose V1 <https://docs.docker.com/compose/compose-file/compose-file-v1/>`_
+
+::
+
+	$ sudo docker-compose up
+	Creating network "foodtrucks_default" with the default driver
+	Creating volume "foodtrucks_esdata1" with local driver
+	Creating es ... done
+	Creating foodtrucks_web_1 ... done
+	Attaching to es, foodtrucks_web_1
+	es     | OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+	es     | OpenJDK 64-Bit Server VM warning: UseAVX=2 is not supported on this CPU, setting it to UseAVX=1
+	es     | [2019-01-24T10:03:01,941][INFO ][o.e.n.Node               ] [] initializing ...
+	es     | [2019-01-24T10:03:02,029][INFO ][o.e.e.NodeEnvironment    ] [SeQUrzx] using [1] data paths, mounts [[/usr/share/elasticsearch/data (/dev/mapper/fedora-root)]], net usable_space [33.1gb], net total_space [48.9gb], types [ext4]
+	es     | [2019-01-24T10:03:02,030][INFO ][o.e.e.NodeEnvironment    ] [SeQUrzx] heap size [990.7mb], compressed ordinary object pointers [true]
+	es     | [2019-01-24T10:03:02,033][INFO ][o.e.n.Node               ] [SeQUrzx] node name derived from node ID [SeQUrzxwQZW2cvh3rOmcCg]; set [node.name] to override
+	es     | [2019-01-24T10:03:02,033][INFO ][o.e.n.Node               ] [SeQUrzx] version[6.3.2], pid[1], build[default/tar/053779d/2018-07-20T05:20:23.451332Z], OS[Linux/4.19.16-200.fc28.x86_64/amd64], JVM["Oracle Corporation"/OpenJDK 64-Bit Server VM/10.0.2/10.0.2+13]
+	es     | [2019-01-24T10:03:02,034][INFO ][o.e.n.Node               ] [SeQUrzx] JVM arguments [-Xms1g, -Xmx1g, -XX:+UseConcMarkSweepGC, -XX:CMSInitiatingOccupancyFraction=75, -XX:+UseCMSInitiatingOccupancyOnly, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.io.tmpdir=/tmp/elasticsearch.S5IHZOuq, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Djava.locale.providers=COMPAT, -XX:UseAVX=2, -Des.cgroups.hierarchy.override=/, -Des.path.home=/usr/share/elasticsearch, -Des.path.conf=/usr/share/elasticsearch/config, -Des.distribution.flavor=default, -Des.distribution.type=tar]
+	es     | [2019-01-24T10:03:05,044][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [aggs-matrix-stats]
+	es     | [2019-01-24T10:03:05,044][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [analysis-common]
+	es     | [2019-01-24T10:03:05,044][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [ingest-common]
+	es     | [2019-01-24T10:03:05,044][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [lang-expression]
+	es     | [2019-01-24T10:03:05,044][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [lang-mustache]
+	es     | [2019-01-24T10:03:05,044][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [lang-painless]
+	es     | [2019-01-24T10:03:05,044][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [mapper-extras]
+	es     | [2019-01-24T10:03:05,044][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [parent-join]
+	es     | [2019-01-24T10:03:05,045][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [percolator]
+	es     | [2019-01-24T10:03:05,045][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [rank-eval]
+	es     | [2019-01-24T10:03:05,045][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [reindex]
+	es     | [2019-01-24T10:03:05,045][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [repository-url]
+	es     | [2019-01-24T10:03:05,045][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [transport-netty4]
+	es     | [2019-01-24T10:03:05,045][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [tribe]
+	es     | [2019-01-24T10:03:05,045][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [x-pack-core]
+	es     | [2019-01-24T10:03:05,045][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [x-pack-deprecation]
+	es     | [2019-01-24T10:03:05,045][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [x-pack-graph]
+	es     | [2019-01-24T10:03:05,046][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [x-pack-logstash]
+	es     | [2019-01-24T10:03:05,046][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [x-pack-ml]
+	es     | [2019-01-24T10:03:05,046][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [x-pack-monitoring]
+	es     | [2019-01-24T10:03:05,046][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [x-pack-rollup]
+	es     | [2019-01-24T10:03:05,046][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [x-pack-security]
+	es     | [2019-01-24T10:03:05,046][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [x-pack-sql]
+	es     | [2019-01-24T10:03:05,046][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [x-pack-upgrade]
+	es     | [2019-01-24T10:03:05,046][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded module [x-pack-watcher]
+	es     | [2019-01-24T10:03:05,047][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded plugin [ingest-geoip]
+	es     | [2019-01-24T10:03:05,047][INFO ][o.e.p.PluginsService     ] [SeQUrzx] loaded plugin [ingest-user-agent]
+	es     | [2019-01-24T10:03:09,588][INFO ][o.e.x.s.a.s.FileRolesStore] [SeQUrzx] parsed [0] roles from file [/usr/share/elasticsearch/config/roles.yml]
+	es     | [2019-01-24T10:03:10,304][INFO ][o.e.x.m.j.p.l.CppLogMessageHandler] [controller/92] [Main.cc@109] controller (64 bit): Version 6.3.2 (Build 903094f295d249) Copyright (c) 2018 Elasticsearch BV
+	es     | [2019-01-24T10:03:11,083][INFO ][o.e.d.DiscoveryModule    ] [SeQUrzx] using discovery type [single-node]
+	es     | [2019-01-24T10:03:12,264][INFO ][o.e.n.Node               ] [SeQUrzx] initialized
+	es     | [2019-01-24T10:03:12,265][INFO ][o.e.n.Node               ] [SeQUrzx] starting ...
+	es     | [2019-01-24T10:03:12,474][INFO ][o.e.t.TransportService   ] [SeQUrzx] publish_address {172.18.0.2:9300}, bound_addresses {[::]:9300}
+	es     | [2019-01-24T10:03:12,501][WARN ][o.e.b.BootstrapChecks    ] [SeQUrzx] max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+	es     | [2019-01-24T10:03:12,567][INFO ][o.e.x.s.t.n.SecurityNetty4HttpServerTransport] [SeQUrzx] publish_address {172.18.0.2:9200}, bound_addresses {[::]:9200}
+	es     | [2019-01-24T10:03:12,568][INFO ][o.e.n.Node               ] [SeQUrzx] started
+	es     | [2019-01-24T10:03:12,698][WARN ][o.e.x.s.a.s.m.NativeRoleMappingStore] [SeQUrzx] Failed to clear cache for realms [[]]
+	es     | [2019-01-24T10:03:12,816][INFO ][o.e.g.GatewayService     ] [SeQUrzx] recovered [0] indices into cluster_state
+	es     | [2019-01-24T10:03:13,038][INFO ][o.e.c.m.MetaDataIndexTemplateService] [SeQUrzx] adding template [.triggered_watches] for index patterns [.triggered_watches*]
+	es     | [2019-01-24T10:03:13,069][INFO ][o.e.c.m.MetaDataIndexTemplateService] [SeQUrzx] adding template [.watches] for index patterns [.watches*]
+	es     | [2019-01-24T10:03:13,153][INFO ][o.e.c.m.MetaDataIndexTemplateService] [SeQUrzx] adding template [.watch-history-7] for index patterns [.watcher-history-7*]
+	es     | [2019-01-24T10:03:13,239][INFO ][o.e.c.m.MetaDataIndexTemplateService] [SeQUrzx] adding template [.monitoring-logstash] for index patterns [.monitoring-logstash-6-*]
+	es     | [2019-01-24T10:03:13,417][INFO ][o.e.c.m.MetaDataIndexTemplateService] [SeQUrzx] adding template [.monitoring-es] for index patterns [.monitoring-es-6-*]
+	es     | [2019-01-24T10:03:13,456][INFO ][o.e.c.m.MetaDataIndexTemplateService] [SeQUrzx] adding template [.monitoring-alerts] for index patterns [.monitoring-alerts-6]
+	es     | [2019-01-24T10:03:13,500][INFO ][o.e.c.m.MetaDataIndexTemplateService] [SeQUrzx] adding template [.monitoring-beats] for index patterns [.monitoring-beats-6-*]
+	es     | [2019-01-24T10:03:13,537][INFO ][o.e.c.m.MetaDataIndexTemplateService] [SeQUrzx] adding template [.monitoring-kibana] for index patterns [.monitoring-kibana-6-*]
+	es     | [2019-01-24T10:03:13,611][INFO ][o.e.l.LicenseService     ] [SeQUrzx] license [5701f0fd-0b32-434f-9012-d6bf97b9cf89] mode [basic] - valid
+	es     | [2019-01-24T10:03:17,066][INFO ][o.e.c.m.MetaDataCreateIndexService] [SeQUrzx] [sfdata] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+	es     | [2019-01-24T10:03:17,587][INFO ][o.e.c.m.MetaDataMappingService] [SeQUrzx] [sfdata/rt5RjW3OTR6J59uCWVCoYQ] create_mapping [truck]
+	es     | [2019-01-24T10:03:17,727][INFO ][o.e.c.m.MetaDataMappingService] [SeQUrzx] [sfdata/rt5RjW3OTR6J59uCWVCoYQ] update_mapping [truck]
+	es     | [2019-01-24T10:03:17,785][INFO ][o.e.c.m.MetaDataMappingService] [SeQUrzx] [sfdata/rt5RjW3OTR6J59uCWVCoYQ] update_mapping [truck]
+	es     | [2019-01-24T10:03:18,356][INFO ][o.e.c.m.MetaDataMappingService] [SeQUrzx] [sfdata/rt5RjW3OTR6J59uCWVCoYQ] update_mapping [truck]
+	es     | [2019-01-24T10:03:18,563][INFO ][o.e.c.m.MetaDataMappingService] [SeQUrzx] [sfdata/rt5RjW3OTR6J59uCWVCoYQ] update_mapping [truck]
+	web_1  |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+	Gracefully stopping... (press Ctrl+C again to force)
+	Stopping foodtrucks_web_1 ... done
+	Stopping es               ... done
+	
+	$ sudo docker network ls   # only default docker networks
+	NETWORK ID          NAME                DRIVER              SCOPE
+	aa71d2892122        bridge              bridge              local
+	09a4096c7d69        host                host                local
+	baf3cfdf732b        none                null                local
+	
+	$ sudo docker-compose up -d
+	Creating network "foodtrucks_default" with the default driver
+	Creating volume "foodtrucks_esdata1" with local driver
+	Creating es ... done
+	Creating foodtrucks_web_1 ... done
+
+	$ sudo docker-compose ps
+	      Name                    Command               State                Ports              
+	--------------------------------------------------------------------------------------------
+	es                 /usr/local/bin/docker-entr ...   Up      0.0.0.0:9200->9200/tcp, 9300/tcp
+	foodtrucks_web_1   python app.py                    Up      0.0.0.0:5000->5000/tcp          
+
+	$ sudo docker-compose down -v
+	Stopping foodtrucks_web_1 ... done
+	Stopping es               ... done
+	Removing foodtrucks_web_1 ... done
+	Removing es               ... done
+	Removing network foodtrucks_default
+	Removing volume foodtrucks_esdata1
+	
+So basic create, deletion works, let's dig a little deeper.
+::
+	
+	$ sudo docker-compose up -d
+	Creating network "foodtrucks_default" with the default driver
+	Creating volume "foodtrucks_esdata1" with local driver
+	Creating es ... done
+	Creating foodtrucks_web_1 ... done
+	
+	$ sudo docker ps
+	CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                              NAMES
+	058a65ab3666        prakhar1989/foodtrucks-web                            "python app.py"          6 minutes ago       Up 6 minutes        0.0.0.0:5000->5000/tcp             foodtrucks_web_1
+	f753db91d1cb        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/do..."   6 minutes ago       Up 6 minutes        0.0.0.0:9200->9200/tcp, 9300/tcp   es
+
+	[gcollis@neo FoodTrucks]$ sudo docker network ls
+	NETWORK ID          NAME                 DRIVER              SCOPE
+	aa71d2892122        bridge               bridge              local
+	9750b16baa88        foodtrucks_default   bridge              local
+	09a4096c7d69        host                 host                local
+	baf3cfdf732b        none                 null                local
+	
+	$ sudo docker network inspect foodtrucks_default
+	[
+	    {
+	        "Name": "foodtrucks_default",
+	        "Id": "9750b16baa88d35d9a613526bb164b9c6c87160e26c9a2c85df26769f6a02b78",
+	        "Created": "2019-01-24T11:09:51.061011438+01:00",
+	        "Scope": "local",
+	        "Driver": "bridge",
+	        "EnableIPv6": false,
+	        "IPAM": {
+	            "Driver": "default",
+	            "Options": null,
+	            "Config": [
+	                {
+	                    "Subnet": "172.18.0.0/16",
+	                    "Gateway": "172.18.0.1"
+	                }
+	            ]
+	        },
+	        "Internal": false,
+	        "Attachable": true,
+	        "Containers": {
+	            "058a65ab36662d049a88b2f23b889972ddf87f0c7c3b0e5c9e227bc29a5b3c0b": {
+	                "Name": "foodtrucks_web_1",
+	                "EndpointID": "b83a4cbbe78698fbcfe90b2221f7287ceaea12d566ab81a072d337823cf14a7c",
+	                "MacAddress": "02:42:ac:12:00:03",
+	                "IPv4Address": "172.18.0.3/16",
+	                "IPv6Address": ""
+	            },
+	            "f753db91d1cb084464c6b0b80c400641e6a0d747d7d00907ef2feaaf8c711136": {
+	                "Name": "es",
+	                "EndpointID": "8f8840837c9b0d9c0458cd32878e2c028d2124242bea806e4ddaa538ca1b2e9f",
+	                "MacAddress": "02:42:ac:12:00:02",
+	                "IPv4Address": "172.18.0.2/16",
+	                "IPv6Address": ""
+	            }
+	        },
+	        "Options": {},
+	        "Labels": {
+	            "com.docker.compose.network": "default",
+	            "com.docker.compose.project": "foodtrucks"
+	        }
+	    }
+	]
+	
+Development Workflow
+--------------------
+
+::
+
+	$ sudo docker ps
+	CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                              NAMES
+	058a65ab3666        prakhar1989/foodtrucks-web                            "python app.py"          12 minutes ago      Up 12 minutes       0.0.0.0:5000->5000/tcp             foodtrucks_web_1
+	f753db91d1cb        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   "/usr/local/bin/do..."   12 minutes ago      Up 12 minutes       0.0.0.0:9200->9200/tcp, 9300/tcp   es
+	
+	$ curl -I 0.0.0.0:5000/hello  # fails, flask-app/app.py has no "@app.route('/hello')"
+	HTTP/1.0 404 NOT FOUND
+	Content-Type: text/html
+	Content-Length: 233
+	Server: Werkzeug/0.11.2 Python/2.7.15rc1
+	Date: Thu, 24 Jan 2019 10:23:23 GMT
+	
+	$ curl -I 0.0.0.0:5000/debug  # works, flask-app/app.py has "@app.route('/debug')"
+	HTTP/1.0 200 OK
+	Content-Type: application/json
+	Content-Length: 104
+	Server: Werkzeug/0.11.2 Python/2.7.15rc1
+	Date: Thu, 24 Jan 2019 10:29:12 GMT
+
+Now let's add `hello` so `flask-app/app.py`::
+
+	@app.route('/')
+	def index():
+	  return render_template("index.html")
+	
+	# add a new hello route
+	@app.route('/hello')
+	def hello():
+	  return "hello world!"
+
+But if we try again, it will still fail, because we are still using `image: prakhar1989/foodtrucks-web`::
+	
+	# While local app.py has been updated, the container one hasn't
+	$ sudo docker-compose run web bash
+	Starting es ... done
+	root@bceaa248f333:/opt/flask-app# ls
+	app.py  package-lock.json  package.json  requirements.txt  static  templates  webpack.config.js
+	root@bceaa248f333:/opt/flask-app# grep hello app.py
+	root@bceaa248f333:/opt/flask-app# exit
+
+
+So rather than run the 'web' container, let's use the local one and use `debug` as well::
+
+	$ cat docker-compose.yml 
+	version: "3"
+	services:
+	  es:
+	    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+	    container_name: es
+	    environment:
+	      - discovery.type=single-node
+	    ports:
+	      - 9200:9200
+	    volumes:
+	      - esdata1:/usr/share/elasticsearch/data
+	  web:
+	    build: . # replacing image: prakhar1989/foodtrucks-web
+	    command: python app.py
+	    environment:
+	      - DEBUG=True  # add an environment variable for flask
+	    depends_on:
+	      - es
+	    ports:
+	      - 5000:5000
+	    volumes:
+	      - ./flask-app:/opt/flask-app
+	volumes:
+	    esdata1:
+	      driver: local
+
+When specifying `environment` in teh `web` section the application does not work when started as a daemon?::
+
+	$ sudo docker-compose up -d
+	$ sudo netstat -tlpn | grep 5000
+	tcp6       0      0 :::5000                 :::*                    LISTEN      17166/docker-proxy- 
+	
+	$ curl -I 0.0.0.0:5000/debug
+	curl: (56) Recv failure: Connection reset by peer
+	$ curl -I 0.0.0.0:5000/hello
+	curl: (56) Recv failure: Connection reset by peer
+	$ curl -I 0.0.0.0:5000/hello
+	$ sudo docker-compose down -v
+	Stopping foodtrucks_web_1 ... done
+	Stopping es               ... done
+	Removing foodtrucks_web_1 ... done
+	Removing es               ... done
+	Removing network foodtrucks_default
+	Removing volume foodtrucks_esdata1
+
+Staring in the foreground `sudo docker-compose up` works.
+
+Removing `enviroment` section, as show, then the applications works.::
+
+	extract from "docker-compose.yml"
+	  web:
+	    build: . # replacing image: prakhar1989/foodtrucks-web
+	    command: python app.py
+	    depends_on:
+	      - es
+	    ports:
+	      - 5000:5000
+	    volumes:
+	      - ./flask-app:/opt/flask-app
+
+	$ sudo docker-compose up -d
+	Creating network "foodtrucks_default" with the default driver
+	Creating volume "foodtrucks_esdata1" with local driver
+	Creating es ... done
+	Creating foodtrucks_web_1 ... done
+	
+	$ curl -I 0.0.0.0:5000/debug
+	HTTP/1.0 200 OK
+	Content-Type: application/json
+	Content-Length: 104
+	Server: Werkzeug/0.11.2 Python/2.7.15rc1
+	Date: Wed, 30 Jan 2019 17:52:25 GMT
+	
+	$ curl -I 0.0.0.0:5000/hello
+	HTTP/1.0 200 OK
+	Content-Type: text/html; charset=utf-8
+	Content-Length: 12
+	Server: Werkzeug/0.11.2 Python/2.7.15rc1
+	Date: Wed, 30 Jan 2019 17:52:40 GMT
+	
+
+	$ sudo docker-compose down -v
+	Stopping foodtrucks_web_1 ... done
+	Stopping es               ... done
+	Removing foodtrucks_web_1 ... done
+	Removing es               ... done
+	Removing network foodtrucks_default
+	Removing volume foodtrucks_esdata1
+	$ sudo docker-compose up -d # will list build steps, on first run (not shown)
+	Creating network "foodtrucks_default" with the default driver
+	Creating volume "foodtrucks_esdata1" with local driver
+	Creating es ... done
+	Creating foodtrucks_web_1 ... done
+
