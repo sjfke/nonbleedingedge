@@ -73,3 +73,9 @@ Fedora package installer `DNF <https://www.rootusers.com/25-useful-dnf-command-e
 	$ sudo dnf grouplist                                # list which groups are available, installed, not-installed.
 	$ sudo dnf groupinfo "Web Server"                   # what is installed by this group
 
+
+Managing ``.rc`` files
+======================
+
+* `Managing dotfiles with rcm on Fedora <https://fedoramagazine.org/managing-dotfiles-rcm/>`_
+
