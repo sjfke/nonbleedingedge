@@ -22,7 +22,7 @@ Useful Links
 * `BusyBox: The Swiss Army Knife of Embedded Linux <https://busybox.net/about.html>`_
 * `Homebrew: The missing package manager for macOS <https://brew.sh/>`_
 * `Homebrew installation <https://www.howtogeek.com/211541/homebrew-for-os-x-easily-installs-desktop-apps-and-terminal-utilities/>`_
-
+* `AWS CloudFormation <https://aws.amazon.com/cloudformation/>`_
 
 Installation
 ============
@@ -910,4 +910,70 @@ Removing `enviroment` section, as show, then the applications works.::
 	Creating volume "foodtrucks_esdata1" with local driver
 	Creating es ... done
 	Creating foodtrucks_web_1 ... done
+
+
+AWS Elastic Container Service
+=============================
+
+* `Installing the Amazon ECS CLI <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html>`_
+
+Download and install ECS CLI::
+
+	$ sudo curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest
+	$ echo "$(curl -s https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest.md5) /usr/local/bin/ecs-cli" | md5sum -c -
+	/usr/local/bin/ecs-cli: OK
+
+Setup GPG keys::
+
+	$ gpg --version
+	$ sudo gpg --keyserver hkp://keys.gnupg.net --recv BCE9D9A42D51784F
+	gpg: requesting key 2D51784F from hkp server keys.gnupg.net
+	gpg: key 2D51784F: public key "Amazon ECS <ecs-security@amazon.com>" imported
+	gpg: no ultimately trusted keys found
+	gpg: Total number processed: 1
+	gpg:               imported: 1  (RSA: 1)
+
+	$ curl -o ecs-cli.asc https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest.asc
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+	                                 Dload  Upload   Total   Spent    Left  Speed
+	100   821  100   821    0     0   1225      0 --:--:-- --:--:-- --:--:--  1223
+	$ sudo gpg --verify ecs-cli.asc /usr/local/bin/ecs-cli
+	gpg: Signature made Thu 13 Dec 2018 08:02:11 PM CET using RSA key ID ADAF8B8E
+	gpg: Good signature from "Amazon ECS <ecs-security@amazon.com>"
+	gpg: WARNING: This key is not certified with a trusted signature!
+	gpg:          There is no indication that the signature belongs to the owner.
+	Primary key fingerprint: F34C 3DDA E729 26B0 79BE  AEC6 BCE9 D9A4 2D51 784F
+	     Subkey fingerprint: EB3D F841 E2C9 212A 2BD4  2232 DE3C BD61 ADAF 8B8E
+
+Make the binary executable::
+
+	$ ls -al /usr/local/bin/ecs-cli
+	-rw-r--r-- 1 root root 28327232 Jan 30 19:46 /usr/local/bin/ecs-cli
+	$ sudo chmod +x /usr/local/bin/ecs-cli
+	$ ls -al /usr/local/bin/ecs-cli
+	-rwxr-xr-x 1 root root 28327232 Jan 30 19:46 /usr/local/bin/ecs-cli
+	
+	$ ecs-cli --version
+	ecs-cli version 1.12.1 (e70f1b1)
+
+Using the `EC2 Console <https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#KeyPairs:sort=keyName>`_ create a key-pair.
+::
+
+	$ ecs-cli configure --region us-east-1 --cluster foodtrucks
+	INFO[0000] Saved ECS CLI cluster configuration default. 
+	$ ecs-cli up --keypair ecs --capability-iam --size 2 --instance-type t2.micro
+	FATA[0040] Error executing 'up': NoCredentialProviders: no valid providers in chain. Deprecated.
+		For verbose messaging see aws.Config.CredentialsChainVerboseErrors 
+		
+	$ sudo dnf install awscli # install the aws command-line
+	$ aws configure get region
+	$
+	
+	$ sudo ecs-cli compose --file aws-compose.yml up
+	WARN[0000] Skipping unsupported YAML option for service...  option name=networks service name=es
+	WARN[0000] Skipping unsupported YAML option for service...  option name=networks service name=web
+	ERRO[0020] Error listing tasks                           error="NoCredentialProviders: no valid providers in chain. Deprecated.\n\tFor verbose messaging see aws.Config.CredentialsChainVerboseErrors" request="{\n  Cluster: \"foodtrucks\",\n  DesiredStatus: \"RUNNING\",\n  Family: \"FoodTrucks\"\n}"
+	FATA[0020] NoCredentialProviders: no valid providers in chain. Deprecated.
+		For verbose messaging see aws.Config.CredentialsChainVerboseErrors 
+
 
