@@ -1,13 +1,15 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/howtos/docker.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/howtos/docker-walkthrough.rst
 
-******
-Docker
-******
+***************************
+Docker Tutorial Walkthrough
+***************************
 
 Introduction
 ============
 
-This HOWTO explains how to use `docker` on `Fedora 28`, `MacOS`, and it is based on the tutorial links below.
+This is a `walkthrough` of `Docker for Beginners` tutorial using a `Fedora 28` system.
+
+Generally everything works as anticipated, but the `docker` commands need to be run as root on `Fedora 28`.
 
 Tutorial Links
 ==============

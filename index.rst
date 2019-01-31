@@ -39,7 +39,7 @@ Hope you find it useful, and keep coming back because the site will be updated f
 	:caption: HowTo's
 	:maxdepth: 1
 	
-	howtos/docker
+	howtos/docker-walkthrough
 	howtos/eclipse-remote-dev
 	howtos/fedora29-install
    
