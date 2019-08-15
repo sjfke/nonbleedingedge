@@ -14,7 +14,7 @@ Generally everything works as anticipated, but the `docker` commands need to be 
 Tutorial Links
 ==============
 
-* `Docker for Beginners <https://docker-curriculum.com/>`_
+* `Docker for Beginners by Prakhar Srivastav <https://docker-curriculum.com/>`_
 * `Docker Getting Started <https://docs.docker.com/get-started/>`_
 
 Useful Links
@@ -978,4 +978,5 @@ Using the `EC2 Console <https://console.aws.amazon.com/ec2/v2/home?region=us-eas
 	FATA[0020] NoCredentialProviders: no valid providers in chain. Deprecated.
 		For verbose messaging see aws.Config.CredentialsChainVerboseErrors 
 
+* Added `AWS Elastic Container Service - instructions do not work?  <https://github.com/prakhar1989/docker-curriculum/issues/163>`_ to the GutHub issues.
 
