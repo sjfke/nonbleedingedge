@@ -1,13 +1,7 @@
 :github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/brew.rst
 
-*******************************
-MacOS Brew and Brew Cask
-*******************************
 
-Useful Links
-============
-
-* `HomeBrew - The missing package manager for macOS (or Linux)<https://brew.sh/>`_
+* `HomeBrew - The missing package manager for macOS (or Linux) <https://brew.sh/>`_
 * `HomeBrew Installation <http://0pointer.de/blog/projects/systemd-docs.html>`_
 
 
@@ -61,7 +55,7 @@ installation process of large binary files with the use of the Terminal App. App
 as Google Chrome, Firefox, Alfred, and Docker can be easily installed without having to 
 download the .dmg file. 
 
-* `How to Install and Use Homebrew-Cask on macOS<https://help.macstadium.com/articles/how-to-install-and-use-homebrew-cask-on-macos>`_
+* `How to Install and Use Homebrew-Cask on macOS <https://help.macstadium.com/articles/how-to-install-and-use-homebrew-cask-on-macos>`_
 
 
 Fixing the pesky 'depends_on macos' value: ":lion"

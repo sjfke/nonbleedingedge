@@ -52,8 +52,9 @@ Hope you find it useful, and keep coming back because the site will be updated f
 	cheatsheets/sphinx
 	cheatsheets/django
 	cheatsheets/perl
-    cheatsheets/brew
+	cheatsheets/brew
 	cheatsheets/linux-tricks
+	cheatsheets/svn
 	cheatsheets/daemontools
 	cheatsheets/iptables
 	cheatsheets/javascript
