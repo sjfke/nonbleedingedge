@@ -10,6 +10,7 @@ Useful Links
 * `Apache Subversion <https://subversion.apache.org/>`_
 * `Version Control with Subversion <http://svnbook.red-bean.com/>`_
 * `Subversion 1.6 <http://svnbook.red-bean.com/en/1.6/index.html>`_
+* `Subversion 1.7 <http://svnbook.red-bean.com/en/1.7/index.html>`_
 * `Subversion Nightly build 1.8 <http://svnbook.red-bean.com/nightly/en/index.html>`_
 
 Which version is installed?
@@ -20,8 +21,8 @@ Which version is installed?
 	geoff@morph$ svn --version --quiet
 	1.6.9
 
-Checking out using different access methods
-===========================================
+Different access methods
+========================
 
 ::
 
@@ -42,8 +43,8 @@ SVN Help
 	geoff@morph$ svn help
 	geoff@morph$ svn help import
 
-Getting Data into a repository
-==============================
+Repository Creation
+===================
 
 ::
 
@@ -69,35 +70,36 @@ Basic Work Cycle
 
 ::
 
-	# - update your working copy
+	# update your working copy
 	geoff@morph$ svn update # CAUTION will update your local copy
 	geoff@morph$ svn status # to get an overview of changes
 
-	# - make changes
+	# make changes
 	geoff@morph$ svn add
 	geoff@morph$ svn delete
 	geoff@morph$ svn copy 
 	geoff@morph$ svn move 
 
-	# - examine your changes
+	# examine your changes
 	geoff@morph$ svn status
 	geoff@morph$ svn diff
 
-	# - undo some changes
+	# undo some changes
 	geoff@morph$ svn revert
 
-	# - resolve conflicts
+	# resolve conflicts
 	geoff@morph$ svn update
 	geoff@morph$ svn resolve
 
-	# - commit your changes
+	# commit your changes
 	geoff@morph$ svn commit
 
-svn status prefixes; column 1 = files, column = 2 properies
-===========================================================
+Status prefixes; ``snv status``
+===============================
 
 ::
 
+	# column 1 = files, column = 2 properties
 	geoff@morph$ svn status [$ svn status --verbose (-v) # for more details]
 	A item # scheduled for addition
 	C item # is in a state of conflict (updates blocked, until resolved)
@@ -105,8 +107,8 @@ svn status prefixes; column 1 = files, column = 2 properies
 	M item # file contents modified
 	 M prop # property has been changed ($svn diff item # to see what) 
   
-Examining history
-=================
+History Commands
+================
 
 ::
 
@@ -115,12 +117,12 @@ Examining history
 	geoff@morph$ svn cat  # cat version in repository
 	geoff@morph$ svn list # display files in a directory
 	
-	geoff@morph$ svn log foo.c   # show log history of foo.c
+	geoff@morph$ svn log foo.c                               # show log history of foo.c
 	geoff@morph$ svn log http://foo.com/svn/trunk/code/foo.c # show log history of foo.c
-	geoff@morph$ svn log -r 5:19 # shows logs 5 thru 19 (chronological order)
-	geoff@morph$ svn log -r 19:5 # shows logs 19 thru 5 (reversed order)
-	geoff@morph$ svn log -r 8 -v # shows verbose log for revision 8
-	geoff@morph$ svn log --quiet --verbose # show only changed files
+	geoff@morph$ svn log -r 5:19                             # shows logs 5 thru 19 (chronological order)
+	geoff@morph$ svn log -r 19:5                             # shows logs 19 thru 5 (reversed order)
+	geoff@morph$ svn log -r 8 -v                             # shows verbose log for revision 8
+	geoff@morph$ svn log --quiet --verbose                   # show only changed files
 
 Ignoring files and directories
 ==============================
@@ -142,12 +144,12 @@ Revision Keywords / Dates
 
 ::
 
-	HEAD         # latest revision in repository ("youngest")
-	BASE         # revision number of item working copy
-	COMMITTED    # most recent prior to, or equal to BASE
-	PREV         # COMMITTED-1
-	{2006-02-17} # version at 2006-02-16_00:00:00
-	{15:30}      # version at 15:30
+	HEAD                        # latest revision in repository ("youngest")
+	BASE                        # revision number of item working copy
+	COMMITTED                   # most recent prior to, or equal to BASE
+	PREV                        # COMMITTED-1
+	{2006-02-17}                # version at 2006-02-16_00:00:00
+	{15:30}                     # version at 15:30
 	{"2006-02-17 15:30"}
 	{"2006-02-17 15:30 +2:30"}
 	{2006-11-20}:{2006-11-29}
@@ -170,7 +172,7 @@ Subversion Unversioned Properties
 
 ::
 
-	# By default disabled (because dangerous)
+	# By default disabled (considered dangerous)
 	$ svn propset svn:log 'updated log message' -r11 -revprop
 	$ svn propset svn:log 'updated log message' -r11 -revprop http://svn.example.com/repos/project
 	$ svnadmin setlog repos/project 'updates log message' -r 11
@@ -203,45 +205,44 @@ Common Useful Properties
 	  svn:keywords
 	    Date Author Revision HeadURL Id
 
-Subversion Keywords (Case Sensitive)
-====================================
+Subversion Keywords 
+===================
 
 ::
 
+	# Note: Case Sensitive
 	Date     # [LastChangedDate] NOTE local time-zone
 	Revision # [LastChangedRevision] last known revision (repository revision)
 	Author   # last known user to change the file
 	HeadURL  # full URL to the latest version of the file
 	Id       # like RCS/CVS "$Id: calc.c 148 2006-07-28 21:30:43Z sally $"
 
-Creating lock (typically use on binary/image files)
-===================================================
+Creating lock entries
+=====================
 
 ::
-
+	
+	# typically use on binary/image files, so no deltas
 	$ svn lock raisin.jpg             # lock file, other lock requests will fail
 	$ svn unlock raisin.jpg           # unlock file
 	$ svn status [-u|--show-updates]  # will list lock status (third/sixth columns)
 	$ svn lock --force raisin.jpg     # force/override lock
 	$ svn update                      # fetch locked copy
 	$ svnadmin lslocks /var/svn/repos
-  
-Lock status in column six are:
-------------------------------
 
-::
-
+	$ svn status [-u|--show-updates]  # will list lock status (third/sixth columns)
 	#  ' ' # file is not locked
 	#  K   # file is locked in this working copy
 	#  O   # file is locked by another user or directory
 	#  B   # file is locked but lock has been broken
 	#  T   # file is locked but lock has been stolen
 
-Change-lists (local copy only (not repo))
-=========================================
+Change-lists
+============
 
 ::
 
+	# Works only local copy (not on repo)
 	$ svn changelist maths-fixes integer.c mathops.c
 	$ svn changelist --remove  button.c
 	$ svn diff --changelist math-fixes
