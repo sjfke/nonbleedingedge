@@ -21,8 +21,8 @@ Which version is installed?
 	geoff@morph$ svn --version --quiet
 	1.6.9
 
-Different access methods
-========================
+Repository Access Methods
+=========================
 
 ::
 
@@ -93,6 +93,7 @@ Basic Work Cycle
 
 	# commit your changes
 	geoff@morph$ svn commit
+
 
 Status prefixes; ``snv status``
 ===============================
