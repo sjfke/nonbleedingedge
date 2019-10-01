@@ -69,5 +69,5 @@ download the .dmg file.
 Fixing the pesky 'depends_on macos' value: ":lion"
 --------------------------------------------------
 
-* Fixing casks with **depends_on** that reference pre-Mavericks<https://github.com/Homebrew/homebrew-cask/issues/58046>`_
+* `Fixing casks with **depends_on** that reference pre-Mavericks <https://github.com/Homebrew/homebrew-cask/issues/58046>`_
 
