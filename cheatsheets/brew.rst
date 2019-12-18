@@ -71,3 +71,32 @@ Fixing the pesky 'depends_on macos' value: ":lion"
 
 * `Fixing casks with **depends_on** that reference pre-Mavericks <https://github.com/Homebrew/homebrew-cask/issues/58046>`_
 
+Catlina Upgrade
+===============
+
+Unsurprisingly ``brew`` is broken by the upgrade and the effects of trying to force ``zsh`` as the default shell need to be seen.
+
+* `Use zsh as the default shell on your Mac <https://support.apple.com/en-us/HT208050>`_
+* `MacOS Cataline <https://www.apple.com/macos/catalina/>`_
+* `Why macOS Catalina is breaking so many apps, and what to do about it <https://www.theverge.com/2019/10/12/20908567/apple-macos-catalina-breaking-apps-32-bit-support-how-to-prepare-avoid-update>`_
+
+Steps taken post Catlina upgrade
+
+::
+
+  $ brew doctor   # report git missing and other issues
+  $ brew update   # update brew, to fix git warning
+  $ brew upgrade  # upgrade just to be safe
+
+  $ brew doctor # now complains of missing xcode and ``sbin`` not being in your path.
+  $ xcode-select --install
+  $ echo 'export PATH="/usr/local/sbin:$PATH"' >> ~/.bash_profile
+  $ brew doctor # still report missing ``sbin`` need to exist and open a new terminal
+
+  $ brew doctor       # reports clean
+  $ brew cask list    # good my casks are still there
+  $ brew cask upgrade # nothing to be upgraded.
+
+
+
+
