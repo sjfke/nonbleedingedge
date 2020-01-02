@@ -1,8 +1,8 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/brew.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/svn.rst
 
-*******************************
+*********************
 Subversion Cheatsheet
-*******************************
+*********************
 
 Useful Links
 ============
@@ -124,7 +124,7 @@ This works with the (command-line) SVN version 1.6+ clients on both Linux and Wi
 
 ::
 
-	$ notepad <filename> # use 'save as' :-)
+	$ notepad <filename> # use 'save as' :-), Try 'ANSI' on Windows ;-)
 
 Subversion Keywords 
 ===================
