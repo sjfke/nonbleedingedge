@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/notes/mojave-issues.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/notes/mojave-upgrade.rst
 
 *********************
 Mojave upgrade issues
