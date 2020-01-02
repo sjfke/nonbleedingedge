@@ -1,8 +1,8 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/brew.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/svn.rst
 
-*******************************
+*********************
 Subversion Cheatsheet
-*******************************
+*********************
 
 Useful Links
 ============
@@ -12,6 +12,8 @@ Useful Links
 * `Subversion 1.6 <http://svnbook.red-bean.com/en/1.6/index.html>`_
 * `Subversion 1.7 <http://svnbook.red-bean.com/en/1.7/index.html>`_
 * `Subversion Nightly build 1.8 <http://svnbook.red-bean.com/nightly/en/index.html>`_
+* `TortoiseSVN (Subversion for Windows) <https://tortoisesvn.net/>`_
+
 
 Which version is installed?
 ===========================
@@ -21,20 +23,6 @@ Which version is installed?
 	geoff@morph$ svn --version --quiet
 	1.6.9
 
-Repository Access Methods
-=========================
-
-::
-
-	geoff@morph$ svn checkout http://svn.example.com:9834/repos (WebDAV protocol)
-	geoff@morph$ svn checkout https://svn.example.com:9834/repos (SSL WebDAV protocol)
-	geoff@morph$ svn checkout file:///var/svn/repos (on local disk)
-	geoff@morph$ svn checkout file://localhost/var/svn/repos (on local disk)
-	c:\> svn checkout file:///X:/var/svn/repos (on local drive X)
-	c:\> svn checkout file:///X|/var/svn/repos (on local drive X)
-	geoff@morph$ svn checkout svn://svn.example.com/repos (svnserve port 3690)
-	geoff@morph$ svn checkout svn+ssh://svn.example.com/repos (svnserve + ssh tunnel port 22)
-
 SVN Help
 ========
 
@@ -43,20 +31,10 @@ SVN Help
 	geoff@morph$ svn help
 	geoff@morph$ svn help import
 
-Repository Creation
-===================
-
-::
-
- 
-	# - you need to checkout into a different location (like CVS)
-	geoff@morph$ svnadmin create /var/sv/newrepos
-	geoff@morph$ svn import myfile file:///var/svn/trunk/newrepos/some/project -m "initial import"
-	geoff@morph$ svn list file:///var/svn/trunk/newrepos/some/project
-	geoff@morph$ cd somedir; svn checkout file:///var/svn/newrepos/trunk/some/project
-
 Recommended Repository Layout
 =============================
+
+You can have multiple ``release directories`` in a repository, each should have the following:
 
 ::
 
@@ -65,14 +43,16 @@ Recommended Repository Layout
 	/branches
 	/tags
 
+
 Basic Work Cycle
 ================
 
 ::
 
 	# update your working copy
-	geoff@morph$ svn update # CAUTION will update your local copy
-	geoff@morph$ svn status # to get an overview of changes
+	geoff@morph$ svn update    # CAUTION will update your local copy
+	geoff@morph$ svn status    # to get an overview of changes
+	geoff@morph$ svn status -v # to get an detailed view, includes version number
 
 	# make changes
 	geoff@morph$ svn add
@@ -93,6 +73,107 @@ Basic Work Cycle
 
 	# commit your changes
 	geoff@morph$ svn commit
+	geoff@morph$ svn commit -m 'commital message' -a          # all changes
+	geoff@morph$ svn commit -m 'commital message' <filename>  # specific file
+
+	
+Undo ``svn add`` without reverting local edits
+==============================================
+
+* `Undo svn add without reverting local edits <https://stackoverflow.com/questions/5083242/undo-svn-add-without-reverting-local-edits>`_
+
+::
+
+	svm rm --keep-local <filename>
+	svn rm --keep-local .
+
+Reversing a committed change
+============================
+
+::
+
+	# make sure working copy is consistent with 173 commit
+	$ svn status -v <filename>
+	$ svn revert <filename>
+	$ svn merge --revision 173:122 https://svn.example.com/repo/<filename>
+
+Subversion version versus Unicode
+=================================
+
+* `Subversion and Unicode <https://rhubbarb.wordpress.com/2012/04/28/svn-unicode/>`_
+
+By default, Subversion tends to regard UTF-16 files as binary. It assigns them a MIME type of application/octet-stream. As a result, when an attempt is made to merge a change from a branched version of the file, there is always a conflict that must be hand-edited.
+
+However, there is a solution. By giving the UTF-16 files a correct MIME type, SVN is able to perform merges just like a basic text file.
+
+The required MIME type is one of::
+
+    text/plain;encoding=UTF-16LE
+    text/plain;encoding=UTF-16BE
+
+depending upon whether the encoding is LittleEndian or BigEndian respectively.
+
+To set the property, use a command along the lines of::
+
+	$ svn propset "svn:mime-type" "text/plain;encoding=UTF-16LE" *.utf-16.txt
+
+This works with the (command-line) SVN version 1.6+ clients on both Linux and Windows.
+
+
+* `Get encoding of a file in Windows <https://stackoverflow.com/questions/3710374/get-encoding-of-a-file-in-windows>`_
+
+::
+
+	$ notepad <filename> # use 'save as' :-), Try 'ANSI' on Windows ;-)
+
+Subversion Keywords 
+===================
+
+To aid with page layout there are 2 forms:
+
+::
+
+	# Variable length (Case Sensitive)
+	$Date$            # [LastChangedDate] NOTE local time-zone
+	$Revision$        # [LastChangedRevision] last known revision (repository revision)
+	$Author$          # last known user to change the file
+	$HeadURL$         # full URL to the latest version of the file
+	$Id$              # like RCS/CVS "$Id: calc.c 148 2006-07-28 21:30:43Z sally $"
+	$LastChangedDate$
+
+	# Fixed length (Case Sensitive), <space> padded and '#' truncated
+	$Date::            $ # [LastChangedDate] NOTE local time-zone
+	$Revision::        $ # [LastChangedRevision] last known revision (repository revision)
+	$Author::          $ # last known user to change the file
+	$HeadURL::         $ # full URL to the latest version of the file
+	$Id::              $ # like RCS/CVS "$Id: calc.c 148 2006-07-28 21:30:43Z sally $"
+	$LastChangedDate:: $
+
+Repository Creation
+===================
+
+::
+
+	# - you need to checkout into a different location (like CVS)
+	geoff@morph$ svnadmin create /var/sv/newrepos
+	geoff@morph$ svn import myfile file:///var/svn/trunk/newrepos/some/project -m "initial import"
+	geoff@morph$ svn list file:///var/svn/trunk/newrepos/some/project
+	geoff@morph$ cd somedir; svn checkout file:///var/svn/newrepos/trunk/some/project
+
+
+Repository Access Methods
+=========================
+
+::
+
+	geoff@morph$ svn checkout http://svn.example.com:9834/repos (WebDAV protocol)
+	geoff@morph$ svn checkout https://svn.example.com:9834/repos (SSL WebDAV protocol)
+	geoff@morph$ svn checkout file:///var/svn/repos (on local disk)
+	geoff@morph$ svn checkout file://localhost/var/svn/repos (on local disk)
+	c:\> svn checkout file:///X:/var/svn/repos (on local drive X)
+	c:\> svn checkout file:///X|/var/svn/repos (on local drive X)
+	geoff@morph$ svn checkout svn://svn.example.com/repos (svnserve port 3690)
+	geoff@morph$ svn checkout svn+ssh://svn.example.com/repos (svnserve + ssh tunnel port 22)
 
 
 Status prefixes; ``snv status``
@@ -154,7 +235,32 @@ Revision Keywords / Dates
 	{"2006-02-17 15:30"}
 	{"2006-02-17 15:30 +2:30"}
 	{2006-11-20}:{2006-11-29}
-  
+
+
+Creating a Subversion release
+=============================
+
+* `SVN: How to release software properly <https://www.devroom.io/2006/11/21/svn-how-to-release-software-properly/>`_
+
+::
+
+	# Should already exist
+	$ svn mkdir -m "Branches directory" https://svn.sourceforge.net/svnroot/cse-tool/branches
+	$ svn mkdir -m "Tags directory" https://svn.sourceforge.net/svnroot/cse-tool/tags
+	
+	$ svn copy -m "Release branch 1.1.0" https://svn.sourceforge.net/svnroot/cse-tool/trunk \
+	  https://svn.sourceforge.net/svnroot/cse-tool/branches/RB-1.1.0
+	  
+	# Switch if work is needed on branch
+	$ svn switch https://svn.sourceforge.net/svnroot/cse-tool/branches/RB-1.0.0 
+	
+	# Tag the release
+	$ svn copy -m "Release 1.1.0" https://svn.sourceforge.net/svnroot/cse-tool/branches/RB-1.1.0 \
+	  https://svn.sourceforge.net/svnroot/cse-tool/tags/REL-1.1.0
+	
+	# Switch back to the trunk
+	$ svn switch https://svn.sourceforge.net/svnroot/cse-tool/trunk
+
 Subversion Properties
 =====================
 
@@ -205,18 +311,6 @@ Common Useful Properties
 	  Properties on 'src/HelloWorld.java':
 	  svn:keywords
 	    Date Author Revision HeadURL Id
-
-Subversion Keywords 
-===================
-
-::
-
-	# Note: Case Sensitive
-	Date     # [LastChangedDate] NOTE local time-zone
-	Revision # [LastChangedRevision] last known revision (repository revision)
-	Author   # last known user to change the file
-	HeadURL  # full URL to the latest version of the file
-	Id       # like RCS/CVS "$Id: calc.c 148 2006-07-28 21:30:43Z sally $"
 
 Creating lock entries
 =====================
