@@ -46,6 +46,10 @@ Thumbs.db
 .pydevproject
 .settings
 
+# Zsh configuration files #
+###########################
+.env
+
 # Pipenv configuration files #
 ##############################
 .venv

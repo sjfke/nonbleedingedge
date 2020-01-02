@@ -79,3 +79,23 @@ Managing ``.rc`` files
 
 * `Managing dotfiles with rcm on Fedora <https://fedoramagazine.org/managing-dotfiles-rcm/>`_
 
+Zsh versus Bash
+===============
+
+MacOS catalina default shell has changed ``zsh`` from ``bash``
+
+* `Practical differences between Zsh and Bash  <https://apple.stackexchange.com/questions/361870/what-are-the-practical-differences-between-bash-and-zsh>`_
+* `Zsh vs Bash (Sunlight Media) <https://sunlightmedia.org/bash-vs-zsh/>`_
+* `Zsh vs Bash (educba) <https://www.educba.com/zsh-vs-bash/>`_
+* `Zsh vs Bash (StackABuse) <https://stackabuse.com/zsh-vs-bash/>`_
+
+Installling ``Oh My ZSH``
+-------------------------
+To install Oh My ZSH, simply run
+
+::
+
+ % curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+ 
+
