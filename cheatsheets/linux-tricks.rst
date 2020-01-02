@@ -73,29 +73,38 @@ Fedora package installer `DNF <https://www.rootusers.com/25-useful-dnf-command-e
 	$ sudo dnf grouplist                                # list which groups are available, installed, not-installed.
 	$ sudo dnf groupinfo "Web Server"                   # what is installed by this group
 
+Terminal Pagers
+===============
+
+Stolen from the `Fedora Magazine: 5 cool terminal pages <https://fedoramagazine.org/5-cool-terminal-pagers-in-fedora/#more-29502>`_ post.
+
+::
+
+	$ more --help                   # trusty original with limited features
+	$ more <file>                   # 
+	$ more <file1> <file2> <file3>  # ':n' next file, ':p' previous file
+
+	$ less --help                   # many features
+	$ less <file>                   # 
+	$ less <file1> <file2> <file3>  # ':n' next file, ':p' previous file, ':e' new file
+
+	$ most --help                   # good for 'wide' files
+	$ most <file>                   # screens: 'ctl-x 2' split, 'ctl-x 1' close , 'ctl-x o' switch 
+	$ most <file1> <file2> <file3>  # split-screen and ':n' next file, ':p' previous file
+
+	$ pspg --help                   # table friendly pager
+	$ cat t.csv
+	a;b;c;d;e
+	1;2;3;4;5
+	$ cat t.csv | pspg --csv
+	
+	mysql> pager pspg;              # replace less or more as pager	
+	$ export PAGER=pspg; mycli ...  # MySQL CLI example
+	$ export PAGER=pspg; pgcli ...  # PostygreSQL CLI example	
+	
 
 Managing ``.rc`` files
 ======================
 
 * `Managing dotfiles with rcm on Fedora <https://fedoramagazine.org/managing-dotfiles-rcm/>`_
-
-Zsh versus Bash
-===============
-
-MacOS catalina default shell has changed ``zsh`` from ``bash``
-
-* `Practical differences between Zsh and Bash  <https://apple.stackexchange.com/questions/361870/what-are-the-practical-differences-between-bash-and-zsh>`_
-* `Zsh vs Bash (Sunlight Media) <https://sunlightmedia.org/bash-vs-zsh/>`_
-* `Zsh vs Bash (educba) <https://www.educba.com/zsh-vs-bash/>`_
-* `Zsh vs Bash (StackABuse) <https://stackabuse.com/zsh-vs-bash/>`_
-
-Installling ``Oh My ZSH``
--------------------------
-To install Oh My ZSH, simply run
-
-::
-
- % curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-
- 
 

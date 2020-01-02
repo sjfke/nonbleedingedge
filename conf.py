@@ -16,18 +16,16 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-
 # -- Project information -----------------------------------------------------
 
 project = 'NonBleedingEdge'
-copyright = '2019, Geoffrey Collis'
+copyright = '2020, Geoffrey Collis'
 author = 'Geoffrey Collis'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
 release = ''
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -69,7 +67,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.venv']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -78,7 +75,6 @@ pygments_style = 'sphinx'
 # html_theme = 'alabaster'
 # html_theme = 'classic'
 html_theme = "sphinx_rtd_theme"
-
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -115,12 +111,10 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 
-
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'NonBleedingEdge'
-
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -150,7 +144,6 @@ latex_documents = [
      'Geoffrey Collis', 'manual'),
 ]
 
-
 # -- Options for manual page output ------------------------------------------
 
 # One entry per manual page. List of tuples
@@ -159,7 +152,6 @@ man_pages = [
     (master_doc, 'nonbleedingedge', 'nonBleedingEdge Documentation',
      [author], 1)
 ]
-
 
 # -- Options for Texinfo output ----------------------------------------------
 
@@ -171,6 +163,5 @@ texinfo_documents = [
      author, 'nonBleedingEdge', 'One line description of project.',
      'Miscellaneous'),
 ]
-
 
 # -- Extension configuration -------------------------------------------------
