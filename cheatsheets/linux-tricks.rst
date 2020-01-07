@@ -110,9 +110,9 @@ Managing ``.rc`` files
 
 By default, rcm uses ``~/.dotfiles`` for storing all the dotfiles it manages.
 
-A managed dotfile is actually stored inside ``~/.dotfiles``, and a symlink is placed in the expected file’s location.
+A managed dotfile is actually stored inside ``~/.dotfiles``, and a symlinked.
 
-For example, if ``~/.bashrc`` is tracked by rcm, a long listing would look like this.
+For example, if ``~/.bashrc`` is tracked by ``rcm``, a long listing would look like this.
 
 ::
 
