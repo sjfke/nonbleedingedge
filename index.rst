@@ -63,6 +63,7 @@ Hope you find it useful, and keep coming back because the site will be updated f
 	cheatsheets/mysql
 	cheatsheets/php
 	cheatsheets/pymysql
+	cheatsheets/powershell
 	cheatsheets/screen
 	cheatsheets/systemctl-service
 	

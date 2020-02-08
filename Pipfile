@@ -9,5 +9,5 @@ sphinx-rtd-theme = "*"
 
 [dev-packages]
 
-[requires]
-python_version = "3.7.6"
+[required]
+python_version = ">=3.6"
