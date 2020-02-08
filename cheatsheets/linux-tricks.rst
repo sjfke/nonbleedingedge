@@ -108,3 +108,22 @@ Managing ``.rc`` files
 
 * `Managing dotfiles with rcm on Fedora <https://fedoramagazine.org/managing-dotfiles-rcm/>`_
 
+By default, rcm uses ``~/.dotfiles`` for storing all the dotfiles it manages.
+
+A managed dotfile is actually stored inside ``~/.dotfiles``, and a symlinked.
+
+For example, if ``~/.bashrc`` is tracked by ``rcm``, a long listing would look like this.
+
+::
+
+	$ ls -l ~/.bashrc
+	lrwxrwxrwx. 1 link link 27 Dec 16 05:19 .bashrc -> /home/geoff/.dotfiles/bashrc
+	
+	
+``rcm`` consists of 4 commands:
+
+* ``mkrc`` – convert a file into a dotfile managed by rcm
+* ``lsrc`` – list files managed by rcm
+* ``rcup`` – synchronize dotfiles managed by rcm
+* ``rcdn`` – remove all the symlinks managed by rcm
+
