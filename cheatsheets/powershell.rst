@@ -4,16 +4,16 @@
 PowerShell Cheatsheet
 **********************
 
-About Powershell
-================
+According to Microsoft
+======================
 
-PowerShell is a task automation and configuration management framework from Microsoft, with a command-line shell and 
-associated scripting language. It is a modern replacement for the familiar ``DOS`` propmpt. Tasks are performed by cmdlets 
+PowerShell is a task automation and configuration management framework, with a command-line shell and 
+associated scripting language. It is a modern replacement for the familiar ``DOS`` propmpt. Tasks are performed by ``cmdlets`` 
 (pronounced *command-lets*), which are specialized ``.NET`` classes implementing a particular operation which can be connected 
 a UNIX like way.
 
 While there are similarties to a UNIX Shell, ``PowerShell`` uses ``.Net`` objects, so you pipe ``objects`` not ``strings`` 
-which some consider more powerful, others confusing, if you are from a UNIX Shell background you will find it frustrating.  
+which some consider more powerful, others confusing, if you are from a UNIX Shell background, initially you will find it frustrating.  
 
 Useful Links
 ------------
@@ -25,21 +25,38 @@ Useful Links
 Introduction
 ============
 
-PowerShell enforces a consistent naming convention for ease of learning, then promptily provides a set of aliases, 
-which you can extend... to make things less consistent. There are ``Setters`` and ``Getters`` like most Object Oriented 
-languages, and there is a Get-Help cmdlet, which provides help. This document tries to use the **consistent** form.
+Some bascis, PowerShell has a consistent naming convention for ease of learning, which is cumbersome, esepecially for the command line, 
+and so introduces an aliase mechanism, which is extensible... to make things more **obvious** (but less consistent), but 
+that said ``ls`` is probably more intuative than ``get-childitem``. UNIX like `>` `<`, `|` redirection is supported.
 
-The <TAB> key will do command expansion, and because the PowerShell usually returns objects, ``get-member`` comes to the rescue.
- 
+A useful feature is ``TAB`` completion for commands and arguments, and it cycles through alterntive choices try ``import <tab>``, and the 
+command line is color highlighted by default. Cmdlets are case-insensitive but hyphens are important. 
+There is also a ``Windows Powershell ISE`` (Integrated Scripting Environment) if you need more interactive help.
+
+The cmdlets which you will use most when starting are ``Get-Help`` and ``Get-Member``::
+
+	PS> Get-Help Get-ChildItem         # Help on GetChildItem
+	PS> Get-Help Get-ChildIten -Online # Online Web based documentation from Microsoft
+	PS> Get-ChildItem | Get-Member     # What is object type, its methods and properties
+	PS> Get-Help Get-Content           # Aliases gc, cat, type
+	PS> Get-Help Select-String         # Grep-like, with regular expressions (returns String)
+	
+	
+
+Like with many object oriented languages, *inheritance*, *getters*, *setters*, and *modules* 
+
+In this document I try to use the **consistent** canonical form, but I tend to ignore ``camelCase``. 
 
 ::
 
-	PS> get-help get-location         # help on the cmd-let.
-	PS> get-help get-location -online # opens the help in your browser
-	PS> get-location | get-member     # what object is returned?
+	PS> get-help get-location   # alias gl and pwd.
+	PS> get-help get-command    # available commands
+	PS> get-help select-object  # select or set object properties
+	PS> get-help where-object   # (where) filter on object property
+	PS> get-help tee-object     # (tee) UNIX `tee` command
+	PS> get-help out-host       # 
 
-
-There are many online guides and tutorials.
+There are many online guides and tutorials, the ones I found most useful.
 
 * `Learning PowerShell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
 * `PowerShell 3.0 <https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0>`_
@@ -50,7 +67,33 @@ There are many online guides and tutorials.
 PowerShell Variables
 ====================
 
+::
 
+	PS> $loc = get-location                    # assign 'get-location' output object to $loc
+    PS> $loc | Get-Member -MemberType Property # shows $loc is a PathInfo object
+     
+    # What commands work with variables
+    PS> Get-Command -Noun Variable
+    > Clear-Variable, Get-Variable, New-Variable, Remove-Variable, Set-Variable
+     
+    PS> clear-variable loc                     # clears '$loc', NOTE the missing '$'
+    PS> remove-variable loc                    # removes '$loc', NOTE the missing '$'
+
+    PS> get-childitem variable:                # list PowerShell environment variables, 'PSHome', 'PWD' etc.
+    PS> $pshome                                # which PowerShell and version
+    PS> $pwd
+
+    PS> Get-ChildItem env:                     # get 'cmd.exe' enviroment variables, UCASE by convention
+    PS> $env:SystemRoot                        # C:\Windows
+    PS> $env:COMPUTERNAME                      # MYCHCWHQLT01080
+    PS> $env:LIB_PATH='/usr/local/lib'         # setting LIB_PATH     
+
+    PS> $PSVersionTable                        # PowerShell version information.
+    PS> get-host                               # PowerShell version information.
+
+Automatic Variables
+
+* 
     Advanced DOS Commands:
 
     - starting services: services.msc
@@ -196,46 +239,7 @@ PowerShell Variables
 
     ---------
 
-    PS Y:\> $loc = get-location                    # assign 'get-location' output object to $loc
-
-    PS Y:\> $loc | Get-Member -MemberType Property # shows $loc is a PathInfo object
-
-     
-
-    PS Y:\> Get-Command -Noun Variable | Format-Table -Property Name,Definition -AutoSize -Wrap
-
-    > Clear-Variable, Get-Variable, New-Variable, Remove-Variable, Set-Variable
-
-     
-
-    PS Y:\> clear-variable loc                     # clears '$loc'
-
-    PS Y:\> remove-variable loc                    # removes '$loc'
-
-     
-
-    PS Y:\> get-childitem variable:                # list PowerShell environment variables, 'PSHome', 'PWD' etc.
-
-    PS Y:\> $pshome                                # which PowerShell and version
-
-    PS Y:\> $pwd
-
-     
-
-    PS Y:\> Get-ChildItem env:                     # get 'cmd.exe' enviroment variables, UCASE by convention
-
-    PS Y:\> $env:SystemRoot                        # C:\Windows
-
-    PS Y:\> $env:COMPUTERNAME                      # MYCHCWHQLT01080
-
-    PS Y:\> $env:LIB_PATH='/usr/local/lib'         # setting LIB_PATH
-
-     
-
-    PS Y:\> $PSVersionTable                        # PowerShell version information.
-
-    PS Y:\> get-host                               # PowerShell version information.
-
+ 
      
 
     Pipelines
