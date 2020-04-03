@@ -31,6 +31,9 @@ Basic Command Comparison
    brew config
    brew doctor
    brew install --verbose --debug FORMULA
+   
+ Housekeeping:
+   brew cleanup
 
  Contributing:
    brew create [URL [--no-fetch]]
@@ -50,7 +53,7 @@ The **"update"** updates Homebrew itself, where as **"upgrade"** updates the ins
 ::
 
   $ brew update            # update the formulae and Homebrew itself
-  $ brew outdated          #  what is outdated
+  $ brew outdated          # what is outdated
   $ brew upgrade           # Upgrade everything
   $ brew upgrade <formula> # Or upgrade a specific formula
   
