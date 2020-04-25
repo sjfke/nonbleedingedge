@@ -1,6 +1,5 @@
 :github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/brew.rst
 
-
 ***************************
 Brew / Brew Cask Cheatsheet
 ***************************
@@ -13,62 +12,80 @@ Useful Links
 * `HomeBrew Installation <http://0pointer.de/blog/projects/systemd-docs.html>`_
 
 
-Basic Command Comparison
-========================
+Basic Commands
+==============
 
+
+Example usage
+-------------
+::
+ 
+	$ brew update            # update brew itself
+	$ brew upgrade           # update/upgrade everything managed by brew
+	$ brew install python    # install python, often newer than the O.S version
+	$ brew outdated          # what is outdated
+	
+	# More formally
+	$ brew upgrade <formula>     # upgrade a specific formula
+	$ brew search [TEXT|/REGEX/]
+	$ brew info [FORMULA...]
+	$ brew install FORMULA...
+	$ brew update                # update brew itself
+	$ brew upgrade [FORMULA...]  # update what brew manages
+	$ brew uninstall FORMULA...
+	$ brew list [FORMULA...]
+
+Troubleshooting
+---------------
 ::
 
- Example usage:
-   brew search [TEXT|/REGEX/]
-   brew info [FORMULA...]
-   brew install FORMULA...
-   brew update
-   brew upgrade [FORMULA...]
-   brew uninstall FORMULA...
-   brew list [FORMULA...]
-
- Troubleshooting:
-   brew config
-   brew doctor
-   brew install --verbose --debug FORMULA
+	$ brew config
+	$ brew doctor
+	$ brew install --verbose --debug FORMULA
    
- Housekeeping:
-   brew cleanup
-
- Contributing:
-   brew create [URL [--no-fetch]]
-   brew edit [FORMULA...]
-
- Further help:
-   brew commands
-   brew help [COMMAND]
-   man brew
-   https://docs.brew.sh
-
-Brew Update vs Upgrade
-======================
-
-The **"update"** updates Homebrew itself, where as **"upgrade"** updates the installed packages.
-
+Housekeeping
+------------
 ::
+ 
+	$ brew cleanup
 
-  $ brew update            # update the formulae and Homebrew itself
-  $ brew outdated          # what is outdated
-  $ brew upgrade           # Upgrade everything
-  $ brew upgrade <formula> # Or upgrade a specific formula
-  
-  
+Contributing
+------------
+::
+ 
+	$ brew create [URL [--no-fetch]]
+	$ brew edit [FORMULA...]
+
+Further help
+------------
+
+	* `Homebrew documentation <https://docs.brew.sh>`_
+::
+ 
+	$ brew commands
+	$ brew help [COMMAND]
+	$ man brew
+
 HomeBrew Casks
 ==============
 
 Homebrew-Cask is an extension built on top of `HomeBrew <https://brew.sh/>`_ which speeds up the 
 installation process of large binary files with the use of the Terminal App. Applications such 
-as Google Chrome, Firefox, Alfred, and Docker can be easily installed without having to 
+as Eclipse, Google Chrome, Firefox, VirtualBox, LibreOffice, and Docker can be easily installed without having to 
 download the .dmg file. 
 
 ::
 
 	$ brew cask install firefox
+	$ brew cask install google-chrome
+	$ brew cask install eclipse-ptp
+	
+	$ brew cask list            # list installed casks
+	$ brew cask upgrade         # upgrades everything (did not work in earlier versions)
+	$ brew cash upgrade firefox # upgrade firefox
+	$ brew cask doctor 
+	$ brew cask info firefox
+	$ brew cask help
 
 * `Listing of all casks available via the Homebrew package manager <https://formulae.brew.sh/cask/>`_
 
@@ -91,18 +108,18 @@ Steps taken post Catlina upgrade
 
 ::
 
-  $ brew doctor   # report git missing and other issues
-  $ brew update   # update brew, to fix git warning
-  $ brew upgrade  # upgrade just to be safe
-
-  $ brew doctor # now complains of missing xcode and ``sbin`` not being in your path.
-  $ xcode-select --install
-  $ echo 'export PATH="/usr/local/sbin:$PATH"' >> ~/.bash_profile
-  $ brew doctor # still report missing ``sbin`` need to exist and open a new terminal
-
-  $ brew doctor       # reports clean
-  $ brew cask list    # good my casks are still there
-  $ brew cask upgrade # nothing to be upgraded.
+	$ brew doctor   # report git missing and other issues
+	$ brew update   # update brew, to fix git warning
+	$ brew upgrade  # upgrade just to be safe
+	
+	$ brew doctor   # now complains of missing xcode and ``sbin`` not being in your path.
+	$ xcode-select --install
+	$ echo 'export PATH="/usr/local/sbin:$PATH"' >> ~/.bash_profile
+	$ brew doctor   # still report missing ``sbin`` need to exist and open a new terminal
+	
+	$ brew doctor              # reports clean
+	$ brew cask list           # good my casks are still there
+	$ brew cask upgrade <cask> # nothing to be upgraded.
 
 
 
