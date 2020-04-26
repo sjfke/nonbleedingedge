@@ -5,56 +5,74 @@ PowerShell Cheatsheet
 **********************
 
 According to Microsoft
-======================
+----------------------
 
 PowerShell is a task automation and configuration management framework, with a command-line shell and 
 associated scripting language. It is a modern replacement for the familiar ``DOS`` propmpt. Tasks are performed by ``cmdlets`` 
 (pronounced *command-lets*), which are specialized ``.NET`` classes implementing a particular operation which can be connected 
 a UNIX like way.
 
-While there are similarties to a UNIX Shell, ``PowerShell`` uses ``.Net`` objects, so you pipe ``objects`` not ``strings`` 
-which some consider more powerful, others confusing, if you are from a UNIX Shell background, initially you will find it frustrating.  
+In Practice
+-----------
+
+While there are similarties to a DOS, and UNIX Shell, ``PowerShell`` uses ``.Net`` objects, so you pipe ``objects`` not ``strings`` 
+which is considered more powerful, but initially you may find confusing, especially if you are from a UNIX Shell background.  
 
 Useful Links
 ------------
 
-* `PowerShell Explained <https://powershellexplained.com/>`_ ** Excellent Reference **
+There are a lot of online documents and tutorials about ``PowerShell`` but many use short-cuts and tricks, imported modules or don't 
+specify which version etc. The ones listed are general introductions I found useful and topic related links are given where appropriate.
+
+
+* `PowerShell Explained <https://powershellexplained.com/>`_ *Excellent Reference*
 * `MicroSoft PowerShell examples <https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0>`_
-* `Powershell Linux <https://mathieubuisson.github.io/powershell-linux-bash/>`_
+* `PowerShell GitHub < https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell`>_
+* `Powershell Linux Equivalents <https://mathieubuisson.github.io/powershell-linux-bash/>`_
 
 Introduction
 ============
 
-Some bascis, PowerShell has a consistent naming convention for ease of learning, which is cumbersome, esepecially for the command line, 
-and so introduces an aliase mechanism, which is extensible... to make things more **obvious** (but less consistent), but 
-that said ``ls`` is probably more intuative than ``get-childitem``. UNIX like `>` `<`, `|` redirection is supported.
+``PowerShell`` has a consistent naming convention for ease of learning, which is cumbersome, esepecially for the command line, 
+and so introduces an alias mechanism, which is extensible... to make things more **obvious**  (but less consistent). 
+For example ``ls`` is probably more intuative than ``get-childitem``, likewise ``where``, ``sort``, ``tee``,
+``select`` and easier on the eye than the ``*-object`` fullname form, but using short forms like ``gc``, ``gci`` or ``sls`` 
+can be confusing.
 
-A useful feature is ``TAB`` completion for commands and arguments, and it cycles through alterntive choices try ``import <tab>``, and the 
-command line is color highlighted by default. Cmdlets are case-insensitive but hyphens are important. 
-There is also a ``Windows Powershell ISE`` (Integrated Scripting Environment) if you need more interactive help.
+Streams of objects can be redirected in a UNIX like ``>`` ``<``, ``|`` fashion, streams of text may not work, becareful with 
+``write-output``, ``write-host``, and ``select-string`` in particular.
 
-The cmdlets which you will use most when starting are ``Get-Help`` and ``Get-Member``::
+In common with other object oriented languages, ``PowerShell`` has *inheritance* *getters*, *setters*, and *modules*.
+Passing function arguments can be confusing, so in most cases I use ``splatting`` rather than individual name or positional parameters.
 
-	PS> Get-Help Get-ChildItem         # Help on GetChildItem
-	PS> Get-Help Get-ChildIten -Online # Online Web based documentation from Microsoft
-	PS> Get-ChildItem | Get-Member     # What is object type, its methods and properties
-	PS> Get-Help Get-Content           # Aliases gc, cat, type
-	PS> Get-Help Select-String         # Grep-like, with regular expressions (returns String)
-	
-	
+The command-line has color-highlighting and ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
+through the alterntives. Cmdlets are **case-insensitive** but hyphens are important, I try to avoid Camel-Case and use a consistent 
+lower-case format ``get-help`` and not ``Get-Help`` but often fail! Variable names are also **case-insensitive** but I often use CamelCase 
+to make them more readable ``dateString`` , rather than '_' ``date_string``.
 
-Like with many object oriented languages, *inheritance*, *getters*, *setters*, and *modules* 
+A `Windows Powershell ISE <https://docs.microsoft.com/en-us/powershell/scripting/components/ise/introducing-the-windows-powershell-ise?view=powershell-7>`_  
+is provided if you need more interactive assistance, and it is useful for checking your scripts are consistent with Mircosoft's conventions.
 
-In this document I try to use the **consistent** canonical form, but I tend to ignore ``camelCase``. 
+There have been many `Powershell versions <https://en.wikipedia.org/wiki/PowerShell>`_ which are mainly backwards compatable, 
+becareful if writing for older Windows releases, writing scripts with ``#Requires -version X`` as the very first line is a good habit.
+ 
 
+The cmdlets which you will use most when starting are ``get-help`` and ``get-member``
 ::
 
-	PS> get-help get-location   # alias gl and pwd.
-	PS> get-help get-command    # available commands
-	PS> get-help select-object  # select or set object properties
-	PS> get-help where-object   # (where) filter on object property
-	PS> get-help tee-object     # (tee) UNIX `tee` command
-	PS> get-help out-host       # 
+	PS> get-help get-childitem         # Help on GetChildItem
+	PS> get-help get-childiten -online # Online Web based documentation from Microsoft
+	PS> get-childitem | get-member     # What is object type, its methods and properties
+	PS> get-help get-content           # notice its aliases 'gc', 'cat', 'type'
+	PS> get-help select-string         # regular expressions based string search (grep like)
+
+
+	PS> get-help get-location          # alias 'gl' and 'pwd'.
+	PS> get-help get-command           # what commands are available
+	PS> get-help select-object         # 'select' or set object properties
+	PS> get-help where-object          # 'where' filter on object property
+	PS> get-help tee-object            # 'tee' like the UNIX command
+	PS> get-help out-host              # UNIX 'more', 'less' like
 
 There are many online guides and tutorials, the ones I found most useful.
 
@@ -63,18 +81,69 @@ There are many online guides and tutorials, the ones I found most useful.
 * `TutorialsPoint PowerShell <https://www.tutorialspoint.com/powershell/index.htm>`_
 * `PowerShell Tutorial <http://powershelltutorial.net/>`_
 
+Running PowerShell scripts
+==========================
 
-PowerShell Variables
-====================
+PowerShell is an often abused hackers attack vector, so modern versions of Windows prevent PowerShell scripts from
+being executed *out-of-the-box*, although the command line will work. 
 
+Many articles suggest the disabling the security feature... **DO NOT DO THIS** 
+
+Furthermore most companies harden their Windows laptop and server installations, so this will probably not work in these situations.
+
+Ways to work with this restriction, are not intuitive... it took me some time to figure it out, and I am 
+still be no means an expert, but this will get you started, and hopefully you can inform me of better approaches in the future.
+
+
+
+All is goverened by the execution-policy, and you should probably check out:
+
+* `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
+* `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
+* `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
+
+Start the PowerShell as administrator, to be able to change them. A default install will most likely look as shown, 
+and the one to change is the 'CurrentUser' *your* rights, see Get-ExecutionPolicy link.
+::
+
+	PS> Get-ExecutionPolicy -list
+	MachinePolicy    Undefined
+	   UserPolicy    Undefined
+	      Process    Undefined
+	  CurrentUser    Restricted
+	 LocalMachine    Restricted
+	 
+	# Permit yourself to run PowerShell scripts
+	PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Mandated, Prefered
+	PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # RemotelySigned
+	PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # EVIL / BAD
+
+If you choose **Unrestricted** you have been **warned** that any PowerShell, even ones inadvertently or unknowingly downloaded 
+from the Internet will run, as you and with your priviliges.
+
+For development the following saves getting certificates generate and installed.
+::
+
+  PS> powershell.exe -noprofile -executionpolicy bypass -file .\script.ps1 
+  
+Generating and Installing Certificates
+======================================
+
+To come shortly. 
+
+PowerShell Notes
+================
+
+Variables
+---------
 ::
 
 	PS> $loc = get-location                    # assign 'get-location' output object to $loc
-    PS> $loc | Get-Member -MemberType Property # shows $loc is a PathInfo object
+    PS> $loc | get-member -membertype property # shows $loc is a PathInfo object
      
-    # What commands work with variables
-    PS> Get-Command -Noun Variable
-    > Clear-Variable, Get-Variable, New-Variable, Remove-Variable, Set-Variable
+    
+    PS> get-command -noun variable             # What commands work with variables
+    > clear-variable, get-variable, new-variable, remove-variable, set-variable
      
     PS> clear-variable loc                     # clears '$loc', NOTE the missing '$'
     PS> remove-variable loc                    # removes '$loc', NOTE the missing '$'
@@ -83,81 +152,124 @@ PowerShell Variables
     PS> $pshome                                # which PowerShell and version
     PS> $pwd
 
-    PS> Get-ChildItem env:                     # get 'cmd.exe' enviroment variables, UCASE by convention
+    PS> get-childitem env:                     # get 'cmd.exe' enviroment variables, UCASE by convention
     PS> $env:SystemRoot                        # C:\Windows
     PS> $env:COMPUTERNAME                      # MYCHCWHQLT01080
     PS> $env:LIB_PATH='/usr/local/lib'         # setting LIB_PATH     
 
-    PS> $PSVersionTable                        # PowerShell version information.
+    PS> $psversiontable                        # PowerShell version information.
     PS> get-host                               # PowerShell version information.
 
-Automatic Variables
+Command Line History
+--------------------
 
-* 
-    Advanced DOS Commands:
+You can recall and repeat commands::
 
-    - starting services: services.msc
+	PS> get-history
+	PS> invoke-history 1
+	PS> get-history | select-string -pattern 'ping'
+	PS> get-history | format-list -property *
+	PS> get-history -count 100 # get 100 lines (default is 32)
+	PS> clear-history
+	
+	
+Formatting Output
+-----------------
+Very similar to Python ``-f`` operator, examples use ``write-host`` but can be other output commands.
+Specified as ``{<index>, <alignment><width>:<format_spec>}``
 
-     
+::
 
-    DOS Commands:
+	$shortText = "Align me"
+	$longerText = "Please Align me, but I am very wide"
+	PS> write-host("{0,-20}" -f $shortText)		# Left-align; no overflow.
+	PS> write-host("{0,20}"  -f $shortText)		# Right-align; no overflow.
+	PS> write-host("{0,-20}" -f $longerText)	# Left-align; data overflows width.
+	
+	PS> write-host("Room: {0:D}" -f 232)		# Room: 232
+	PS> write-host("Invoice No.: {0:D8}" -f 17)	# Invoice No.: 00000017
+	
+	PS> write-host("Temp: {0:F}°C" -f 18.456)	# Temp: 18.46°C
+	PS> write-host("Grade: {0:p}" -f 0.875)		# Grade: 87.50%
+	PS> write-host('Grade: {0:p0}' -f 0.875)	# Grade: 88%
+	
+	PS> write-host('{1}: {0:p0}' -f 0.875, 'Maths')	# Maths: 88%
+	
+	# Custom formats
+	PS> write-output('{1:00000}' -f 'x', 1234)	# 01234
+	PS> write-output('{0:0.000}' -f [Math]::Pi)	# 3.142
+	PS> write-output('{0:00.0000}' -f 1.23)		# 01.2300
+	PS> write-host({0:####}' -f 1234.567)		# 1235
+	PS> write-host('{0:####.##}' -f 1234.567)	# 1234.57
+	PS> write-host('{0:#,#}' -f 1234567)		# 1,234,567
+	PS> write-host('{0:#,#.##}' -f 1234567.891)	# 1,234,567.89
 
-    - https://en.wikipedia.org/wiki/List_of_DOS_commands
 
-    - find /?     # https://www.robvanderwoude.com/find.php
+More examples:
+* `Formatting Output <http://powershellprimer.com/html/0013.html>`_
 
-    - findstr /?  # https://www.robvanderwoude.com/findstr.php
+Powershell Hashes
+-----------------
+::
 
-    - more /?
+	$ageList = @{}              # empty hash
+	$key = 'Kevin'
+	$value = 36
+	$ageList.add($key, $value)
+	
+	$ageList.add('Alex', 9 )
+	$ageList['Peter'] = 25
+	$ageList.John = 40
+	
+	$ageList                     # hash, printed if on command-line
+	$ageList['Kevin']            # 36
+	$ageList[$key]               # 36
+	$ageList.kevin               # 36
+	
+	# creating a populated hash
+	$ageList = @{
+	    Kevin = 36
+	    Alex  = 9
+	    Peter = 25
+	    John = 40
+	}
+	# creating a populated hash, one-liner
+	$ageList = @{ Kevin = 36; Alex  = 9; Peter = 25; John = 40 }
+	
+	# Order not guaranteed, use sort or $hash = [ordered]@{}, if supported
+	
+	foreach($key in $ageList.keys) {
+	    write-output ('{0} is {1} years old' -f $key, $ageList[$key])
+	}
+	
+	$ageList.keys                        # Kevin, John, Alex, Peter
+	$ageList.values                      # 36, 40, 9, 25
+	if ($ageList.ContainsKey('alex')) {} # safest way to check
+	
+	$ageList.remove('John')
+	$ageList.clear()
 
-     
+Excellent review:
+* `Hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
 
-    UNIX-isms
+Splatting
+---------
+Higly recommended, avoids issues with passing function arguments, because PowerShell allows mixed named and positional arguments.
+::
+  
+	$arguments = @{
+		Name        = 'TestNetwork'
+		StartRange  = '10.0.0.2'
+		EndRange    = '10.0.0.254'
+		SubnetMask  = '255.255.255.0'
+		Description = 'Network for testlab A'
+		LeaseDuration = (New-TimeSpan -Days 8)
+		Type = "Both"
+	}
+	Add-DhcpServerv4Scope @arguments   
 
-    $ wc -l          # find /v /c "" <filename>
-
-    $ tail -f <file> # https://stackify.com/13-ways-to-tail-a-log-file-on-windows-unix/
-
-    $ history        # https://www.howtogeek.com/298244/how-to-use-your-command-history-in-windows-powershell/
-
-     
-
- 
-     
-
-    DOS Tips: https://www.dostips.com/
-
-    PowerShell: https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell
-
-    Grep/Powershell: https://communary.net/2014/11/10/grep-the-powershell-way/
-
-    PowerShell Intro: https://programminghistorian.org/en/lessons/intro-to-powershell#open-powershell
-
-    PowerShell Cmds: https://devblogs.microsoft.com/scripting/table-of-basic-powershell-commands/
-
-    DOS Batch: https://www.robvanderwoude.com/batchfiles.php
-
-     
-
-    PS> $PSVersionTable           # PowerShell version information.
-
-    PS> Y:\> get-host             # PowerShell version information.
-
-     
-
-    Format strings (Python-like)
-
-    http://powershellprimer.com/html/0013.html
-
-     
-
-    Powershell Hashes
-
-    https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/
-
-     
-
-    Powershell Arrays
+Powershell Arrays
+-----------------
 
     https://www.tutorialspoint.com/powershell/powershell_array.htm
 
