@@ -96,7 +96,7 @@ still be no means an expert, but this will get you started, and hopefully you ca
 
 
 
-All is goverened by the execution-policy, and you should probably check out:
+All is governed by the execution-policy, and you should probably check out:
 
 * `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
 * `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
@@ -119,9 +119,9 @@ and you need to change 'CurrentUser' *your* rights, see Get-ExecutionPolicy link
 	PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # EVIL / BAD
 
 If you choose **Unrestricted** you have been **Warned** that any PowerShell script, even ones inadvertently or unknowingly 
-downloaded from the Internet will run as you, and with your priviliges.
+downloaded from the Internet will run as you, and with your privileges.
 
-For development the following saves getting certificates generated and installed.
+During development the following avoids having certificates installed and updating the signature each time.
 ::
 
   PS> powershell.exe -noprofile -executionpolicy bypass -file .\script.ps1 
