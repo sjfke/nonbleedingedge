@@ -102,8 +102,8 @@ All is goverened by the execution-policy, and you should probably check out:
 * `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
 * `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
 
-Start the PowerShell as administrator, to be able to change them. A default install will most likely look as shown, 
-and the one to change is the 'CurrentUser' *your* rights, see Get-ExecutionPolicy link.
+Start the PowerShell as administrator, to be able to change these settings. A default install will most likely look as shown, 
+and you need to change 'CurrentUser' *your* rights, see Get-ExecutionPolicy link.
 ::
 
 	PS> Get-ExecutionPolicy -list
@@ -114,14 +114,14 @@ and the one to change is the 'CurrentUser' *your* rights, see Get-ExecutionPolic
 	 LocalMachine    Restricted
 	 
 	# Permit yourself to run PowerShell scripts
-	PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Mandated, Prefered
+	PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
 	PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # RemotelySigned
 	PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # EVIL / BAD
 
-If you choose **Unrestricted** you have been **warned** that any PowerShell, even ones inadvertently or unknowingly downloaded 
-from the Internet will run, as you and with your priviliges.
+If you choose **Unrestricted** you have been **Warned** that any PowerShell script, even ones inadvertently or unknowingly 
+downloaded from the Internet will run as you, and with your priviliges.
 
-For development the following saves getting certificates generate and installed.
+For development the following saves getting certificates generated and installed.
 ::
 
   PS> powershell.exe -noprofile -executionpolicy bypass -file .\script.ps1 
@@ -154,7 +154,7 @@ Variables
 
     PS> get-childitem env:                     # get 'cmd.exe' enviroment variables, UCASE by convention
     PS> $env:SystemRoot                        # C:\Windows
-    PS> $env:COMPUTERNAME                      # MYCHCWHQLT01080
+    PS> $env:COMPUTERNAME                      # MYLAPTOP001
     PS> $env:LIB_PATH='/usr/local/lib'         # setting LIB_PATH     
 
     PS> $psversiontable                        # PowerShell version information.
@@ -203,58 +203,71 @@ Specified as ``{<index>, <alignment><width>:<format_spec>}``
 	PS> write-host('{0:####.##}' -f 1234.567)	# 1234.57
 	PS> write-host('{0:#,#}' -f 1234567)		# 1,234,567
 	PS> write-host('{0:#,#.##}' -f 1234567.891)	# 1,234,567.89
-
+	
+	PS> get-date -Format 'yyyy-MM-dd:hh:mm:ss'  # 2020-04-27T07:19:05
+	PS> get-date -Format 'yyyy-MM-dd:HH:mm:ss'  # 2020-04-27T19:19:05
+	PS> get-date -UFormat "%A %m/%d/%Y %R %Z"   # Monday 04/27/2020 19:19 +02
 
 More examples:
 * `Formatting Output <http://powershellprimer.com/html/0013.html>`_
+* `Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
 
 Powershell Hashes
 -----------------
 ::
 
-	$ageList = @{}              # empty hash
-	$key = 'Kevin'
-	$value = 36
-	$ageList.add($key, $value)
+	$flintstones = @{}              # empty hash
+	$key = 'Fred'
+	$value = 30
+	$flintstones.add($key, $value)
 	
-	$ageList.add('Alex', 9 )
-	$ageList['Peter'] = 25
-	$ageList.John = 40
+	$flintstones.add('Wilma', 25 )
+	$flintstones['Pebbles'] = 1
+	$flintstones.Dino = 5
 	
-	$ageList                     # hash, printed if on command-line
-	$ageList['Kevin']            # 36
-	$ageList[$key]               # 36
-	$ageList.kevin               # 36
+	$flinstones                  # actual hash, printed if on command-line
+	$flintstones['Fred']         # 30
+	$flintstones[$key]           # 30
+	$flintstones.fred            # 30
 	
 	# creating a populated hash
-	$ageList = @{
-	    Kevin = 36
-	    Alex  = 9
-	    Peter = 25
-	    John = 40
+	$flintstones = @{
+	    Fred = 30
+	    Wilma  = 25
+	    Pebbles = 1
+	    Dino = 5
 	}
 	# creating a populated hash, one-liner
-	$ageList = @{ Kevin = 36; Alex  = 9; Peter = 25; John = 40 }
+	$flintstones = @{ Fred = 30; Wilma  = 25; Pebbles = 1; Dino = 5 }
 	
-	# Order not guaranteed, use sort or $hash = [ordered]@{}, if supported
+	# Order not guaranteed in the folloiwng, use sort or $hash = [ordered]@{}, if supported
 	
-	foreach($key in $ageList.keys) {
-	    write-output ('{0} is {1} years old' -f $key, $ageList[$key])
+	foreach($key in $flintstones.keys) {
+	    write-output ('{0} Flintstone is {1:D} years old' -f $key, $flintstones[$key])
 	}
 	
-	$ageList.keys                        # Kevin, John, Alex, Peter
-	$ageList.values                      # 36, 40, 9, 25
-	if ($ageList.ContainsKey('alex')) {} # safest way to check
+	$flintstones.keys                          # Fred, Wilma, Pebbles, Dino
+	$flintstones.values                        # 30, 25, 1, 5 
 	
-	$ageList.remove('John')
-	$ageList.clear()
+	if ($flintstones.ContainsKey('fred')) {}   # true 
+	if ($flintstones.ContainsKey('barney')) {} # false
+
+	
+	$flintstones.remove('Dino')                # Dino ran away
+	$flintstones.clear()                       # family deceased
 
 Excellent review:
 * `Hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
 
-Splatting
+Functions
 ---------
-Higly recommended, avoids issues with passing function arguments, because PowerShell allows mixed named and positional arguments.
+Write something
+
+Function Arguments
+--------------------------
+PowerShell allows mixed named and positional arguments which is not always clear.
+Safest way of passing function arguments, is to use ``splatting`` 
+
 ::
   
 	$arguments = @{
@@ -270,10 +283,26 @@ Higly recommended, avoids issues with passing function arguments, because PowerS
 
 Powershell Arrays
 -----------------
+Arrays are a fixed size, can have mixed values, and be multi-dimensional.
+::
 
-    https://www.tutorialspoint.com/powershell/powershell_array.htm
+	$A = (1, 2, 3, 4)                 # 1, 2, 3, 4
+	$A = 1..4                         # 1, 2, 3, 4
+	$B = ('F', 'W', 'P', 'D')         # 'F', 'W', 'P', 'D'
+	$C = (5.6, 4.5, 3.3, 13.2)        # 5.6, 4.5, 3.3, 13.2
+	$D = ('Apple', 3.3, 13.2, $B)     # 'Apple', 3.3, 13.2, 'F', 'W', 'P', 'D'
+	
+	[char[]]$E = ('F', 'W', 'P', 'D') # only [char] values
 
-     
+
+* `Arrays TutorialsPoint <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
+
+PowerShell ArrayList and Generic List
+-------------------------------------
+
+* `ArrayList PowerS<https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_
+* `ArrayList Microsoft <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8>`_
+* `Collections in General <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_ 
 
     PowerShell Objects
 
