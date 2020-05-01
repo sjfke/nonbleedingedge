@@ -304,7 +304,8 @@ PowerShell ArrayList and Generic List
 * `ArrayList Microsoft <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8>`_
 * `Collections in General <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_ 
 
-    PowerShell Objects
+PowerShell Objects
+------------------
 
     https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/
 
