@@ -64,6 +64,7 @@ Hope you find it useful, and keep coming back because the site will be updated f
 	cheatsheets/php
 	cheatsheets/pymysql
 	cheatsheets/powershell
+	cheatsheets/powershell-scripts
 	cheatsheets/screen
 	cheatsheets/systemctl-service
 	

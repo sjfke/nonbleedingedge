@@ -1,41 +1,64 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/powershell.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/powershell-scripts.rst
 
-**********************
-PowerShell Cheatsheet
-**********************
+*******************************
+PowerShell Scripting Cheatsheet
+*******************************
 
-PowerShell is a modern replacement for the familiar ``DOS`` prompt, and while there are similarities to a DOS, and UNIX Shell, 
-``PowerShell`` is built on ``.Net`` objects, where tasks are performed by ``cmdlets`` (pronounced *command-lets*).
+According to Microsoft
+----------------------
 
-It has a consistent naming convention for ease of learning, which is cumbersome, especially for the command line, 
+PowerShell is a task automation and configuration management framework, with a command-line shell and 
+associated scripting language. It is a modern replacement for the familiar ``DOS`` propmpt. Tasks are performed by ``cmdlets`` 
+(pronounced *command-lets*), which are specialized ``.NET`` classes implementing a particular operation which can be connected 
+a UNIX like way.
+
+In Practice
+-----------
+
+While there are similarties to a DOS, and UNIX Shell, ``PowerShell`` uses ``.Net`` objects, so you pipe ``objects`` not ``strings`` 
+which is considered more powerful, but initially you may find confusing, especially if you are from a UNIX Shell background.  
+
+Useful Links
+------------
+
+There are a lot of online documents and tutorials about ``PowerShell`` but many use short-cuts and tricks, imported modules or don't 
+specify which version etc. The ones listed are general introductions I found useful and topic related links are given where appropriate.
+
+
+* `PowerShell Explained <https://powershellexplained.com/>`_ *Excellent Reference*
+* `MicroSoft PowerShell examples <https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0>`_
+* `PowerShell GitHub < https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell`>_
+* `Powershell Linux Equivalents <https://mathieubuisson.github.io/powershell-linux-bash/>`_
+
+Introduction
+============
+
+``PowerShell`` has a consistent naming convention for ease of learning, which is cumbersome, esepecially for the command line, 
 and so introduces an alias mechanism, which is extensible... to make things more **obvious**  (but less consistent). 
-For example ``ls`` is probably more intuitive than ``get-childitem``, likewise ``where``, ``sort``, ``tee``,
+For example ``ls`` is probably more intuative than ``get-childitem``, likewise ``where``, ``sort``, ``tee``,
 ``select`` and easier on the eye than the ``*-object`` full-name form, but using short forms like ``gc``, ``gci`` or ``sls`` 
 can be confusing.
 
-The ``cmdlets`` usually produce streams of objects which can be redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion, some
-such as ``select-string`` produce streams of text, so be careful. Another common issue is the difference between ``write-output``, 
-and ``write-host``, the latter writes only to the console.
+Streams of objects can be redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion, streams of text may not work, be careful with 
+``write-output``, ``write-host``, and ``select-string`` in particular.
+
+Like other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses, *getters*, *setters*, *modules* etc.
+Passing function arguments can be confusing, because both ``named`` and ``positional`` arguments are supported, in most cases I 
+prefer to use ``splatting`` rather than individual name or positional parameters.
 
 The command-line has color-highlighting and ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
-through the alternatives. Cmdlets are **case-insensitive** but hyphens are important, I try to avoid Camel-Case and use a consistent 
+through the alternatives. Cmdlets are **case-insensitive** but hyphens are important, I try to avoid Camel-Case and try use a consistent 
 lower-case format ``get-help`` and not ``Get-Help``. Variable names are also **case-insensitive** but I often use CamelCase 
-to make them more readable so ``dateString`` , rather than ``date_string``.
+to make them more readable ``dateString`` , rather than underscore ``date_string``.
 
 A `Windows Powershell ISE <https://docs.microsoft.com/en-us/powershell/scripting/components/ise/introducing-the-windows-powershell-ise?view=powershell-7>`_  
 is provided if you need more interactive assistance, which is also useful for checking your scripts are consistent with Mircosoft's conventions.
 
-There are a lot of online documents and tutorials about ``PowerShell`` but many use short-cuts and tricks, imported modules or don't 
-specify which version etc. To learn the command line, I suggest you start with the following:
+There have been many `Powershell versions <https://en.wikipedia.org/wiki/PowerShell>`_ which are mainly backwards compatible, 
+be careful if writing for older Windows releases, writing scripts with ``#Requires -version X`` as the very first line is a good habit.
+ 
 
-* `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
-* `PowerShell equivalents for common Linux/bash commands <https://mathieubuisson.github.io/powershell-linux-bash/>`_
-* `10 PowerShell cmdlets you can use instead of CMD commands <https://www.techrepublic.com/article/pro-tip-migrate-to-powershell-from-cmd-with-these-common-cmdlets/>`_
-
-Common Cmdlets when starting
-============================
-
-You should become familiar with ``get-help`` and ``get-member`` cmdlets.
+Commonly used cmdlets when starting are ``get-help`` and ``get-member``
 ::
 
 	PS> get-help get-childitem         # Help on GetChildItem
