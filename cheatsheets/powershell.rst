@@ -4,67 +4,45 @@
 PowerShell Cheatsheet
 **********************
 
-According to Microsoft
-----------------------
+PowerShell is a modern replacement for the familiar ``DOS`` prompt, and while there are similarities to a DOS, and UNIX Shell, 
+``PowerShell`` is built on ``.Net`` objects, where tasks are performed by ``cmdlets`` (pronounced *command-lets*).
 
-PowerShell is a task automation and configuration management framework, with a command-line shell and 
-associated scripting language. It is a modern replacement for the familiar ``DOS`` propmpt. Tasks are performed by ``cmdlets`` 
-(pronounced *command-lets*), which are specialized ``.NET`` classes implementing a particular operation which can be connected 
-a UNIX like way.
-
-In Practice
------------
-
-While there are similarties to a DOS, and UNIX Shell, ``PowerShell`` uses ``.Net`` objects, so you pipe ``objects`` not ``strings`` 
-which is considered more powerful, but initially you may find confusing, especially if you are from a UNIX Shell background.  
-
-Useful Links
-------------
-
-There are a lot of online documents and tutorials about ``PowerShell`` but many use short-cuts and tricks, imported modules or don't 
-specify which version etc. The ones listed are general introductions I found useful and topic related links are given where appropriate.
-
-
-* `PowerShell Explained <https://powershellexplained.com/>`_ *Excellent Reference*
-* `MicroSoft PowerShell examples <https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0>`_
-* `PowerShell GitHub < https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell`>_
-* `Powershell Linux Equivalents <https://mathieubuisson.github.io/powershell-linux-bash/>`_
-
-Introduction
-============
-
-``PowerShell`` has a consistent naming convention for ease of learning, which is cumbersome, esepecially for the command line, 
+It has a consistent naming convention for ease of learning, which is cumbersome, especially for the command line, 
 and so introduces an alias mechanism, which is extensible... to make things more **obvious**  (but less consistent). 
-For example ``ls`` is probably more intuative than ``get-childitem``, likewise ``where``, ``sort``, ``tee``,
-``select`` and easier on the eye than the ``*-object`` fullname form, but using short forms like ``gc``, ``gci`` or ``sls`` 
+For example ``ls`` is probably more intuitive than ``get-childitem``, likewise ``where``, ``sort``, ``tee``,
+``select`` and easier on the eye than the ``*-object`` full-name form, but using short forms like ``gc``, ``gci`` or ``sls`` 
 can be confusing.
 
-Streams of objects can be redirected in a UNIX like ``>`` ``<``, ``|`` fashion, streams of text may not work, becareful with 
-``write-output``, ``write-host``, and ``select-string`` in particular.
-
-In common with other object oriented languages, ``PowerShell`` has *inheritance* *getters*, *setters*, and *modules*.
-Passing function arguments can be confusing, so in most cases I use ``splatting`` rather than individual name or positional parameters.
+The ``cmdlets`` usually produce streams of objects which can be redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion, some
+such as ``select-string`` produce streams of text, so be careful. Another common issue is the difference between ``write-output``, 
+and ``write-host``, the latter writes only to the console.
 
 The command-line has color-highlighting and ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
-through the alterntives. Cmdlets are **case-insensitive** but hyphens are important, I try to avoid Camel-Case and use a consistent 
-lower-case format ``get-help`` and not ``Get-Help`` but often fail! Variable names are also **case-insensitive** but I often use CamelCase 
-to make them more readable ``dateString`` , rather than '_' ``date_string``.
+through the alternatives. Cmdlets are **case-insensitive** but hyphens are important, I try to avoid Camel-Case and use a consistent 
+lower-case format ``get-help`` and not ``Get-Help``. Variable names are also **case-insensitive** but I often use CamelCase 
+to make them more readable so ``dateString`` , rather than ``date_string``.
 
 A `Windows Powershell ISE <https://docs.microsoft.com/en-us/powershell/scripting/components/ise/introducing-the-windows-powershell-ise?view=powershell-7>`_  
-is provided if you need more interactive assistance, and it is useful for checking your scripts are consistent with Mircosoft's conventions.
+is provided if you need more interactive assistance, which is also useful for checking your scripts are consistent with Mircosoft's conventions.
 
-There have been many `Powershell versions <https://en.wikipedia.org/wiki/PowerShell>`_ which are mainly backwards compatable, 
-becareful if writing for older Windows releases, writing scripts with ``#Requires -version X`` as the very first line is a good habit.
- 
+There are a lot of online documents and tutorials about ``PowerShell`` but many use short-cuts and tricks, imported modules or don't 
+specify which version etc. To learn the command line, I suggest you start with the following:
 
-The cmdlets which you will use most when starting are ``get-help`` and ``get-member``
+* `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
+* `PowerShell equivalents for common Linux/bash commands <https://mathieubuisson.github.io/powershell-linux-bash/>`_
+* `10 PowerShell cmdlets you can use instead of CMD commands <https://www.techrepublic.com/article/pro-tip-migrate-to-powershell-from-cmd-with-these-common-cmdlets/>`_
+
+Common Cmdlets when starting
+============================
+
+You should become familiar with ``get-help`` and ``get-member`` cmdlets.
 ::
 
 	PS> get-help get-childitem         # Help on GetChildItem
 	PS> get-help get-childiten -online # Online Web based documentation from Microsoft
 	PS> get-childitem | get-member     # What is object type, its methods and properties
 	PS> get-help get-content           # notice its aliases 'gc', 'cat', 'type'
-	PS> get-help select-string         # regular expressions based string search (grep like)
+	PS> get-help select-string         # regular expressions based string searching (grep like)
 
 
 	PS> get-help get-location          # alias 'gl' and 'pwd'.
@@ -72,9 +50,9 @@ The cmdlets which you will use most when starting are ``get-help`` and ``get-mem
 	PS> get-help select-object         # 'select' or set object properties
 	PS> get-help where-object          # 'where' filter on object property
 	PS> get-help tee-object            # 'tee' like the UNIX command
-	PS> get-help out-host              # UNIX 'more', 'less' like
+	PS> get-help out-host              # Similar to UNIX 'more' and 'less'
 
-There are many online guides and tutorials, the ones I found most useful.
+There are many online guides and tutorials, which usually means the subject matter is complex or misunderstood, the ones I found most useful.
 
 * `Learning PowerShell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
 * `PowerShell 3.0 <https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0>`_
@@ -87,23 +65,22 @@ Running PowerShell scripts
 PowerShell is an often abused hackers attack vector, so modern versions of Windows prevent PowerShell scripts from
 being executed *out-of-the-box*, although the command line will work. 
 
-Many articles suggest the disabling the security feature... **DO NOT DO THIS** 
+Many articles suggest the disabling this security feature... **DO NOT DO THIS** 
 
-Furthermore most companies harden their Windows laptop and server installations, so this will probably not work in these situations.
+Furthermore most companies harden their Windows laptop and server installations, so disabling may not work anyway.
 
 Ways to work with this restriction, are not intuitive... it took me some time to figure it out, and I am 
-still be no means an expert, but this will get you started, and hopefully you can inform me of better approaches in the future.
+still be no means an expert, hopefully this will get you started, and you can inform me once you have mastered ``PowerShell``.
 
-
-
-All is governed by the execution-policy, and you should probably check out:
+The execution-policy, controls this and you should probably look at the following:
 
 * `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
 * `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
 * `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
 
-Start the PowerShell as administrator, to be able to change these settings. A default install will most likely look as shown, 
-and you need to change 'CurrentUser' *your* rights, see Get-ExecutionPolicy link.
+If you start ``PowerShell`` as administrator, then some of these settings can be changed. 
+The execution policy to change is 'CurrentUser', *your* rights, see Get-ExecutionPolicy link.
+A default install will most likely look as shown. 
 ::
 
 	PS> Get-ExecutionPolicy -list
@@ -115,13 +92,13 @@ and you need to change 'CurrentUser' *your* rights, see Get-ExecutionPolicy link
 	 
 	# Permit yourself to run PowerShell scripts
 	PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
-	PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # RemotelySigned
-	PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # EVIL / BAD
+	PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
+	PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
 
-If you choose **Unrestricted** you have been **Warned** that any PowerShell script, even ones inadvertently or unknowingly 
-downloaded from the Internet will run as you, and with your privileges.
+Choosing **Unrestricted** means that any PowerShell script, even ones inadvertently or unknowingly 
+downloaded from the Internet will run as you, and with your privileges, so **be careful**
 
-During development the following avoids having certificates installed and updating the signature each time.
+When developing the following avoids having certificates installed and updating the signature each time.
 ::
 
   PS> powershell.exe -noprofile -executionpolicy bypass -file .\script.ps1 
