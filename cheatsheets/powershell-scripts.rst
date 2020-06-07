@@ -21,23 +21,28 @@ which is considered more powerful, but initially you may find confusing, especia
 Useful Links
 ------------
 
-There are a lot of online documents and tutorials about ``PowerShell`` but many use short-cuts and tricks, imported modules or don't 
+There are many online documents and tutorials about ``PowerShell`` but these use short-cuts, aliases, tricks, imported modules or don't 
 specify which version etc. The ones listed are general introductions I found useful and topic related links are given where appropriate.
+Unfortunately I cannot check the examples on every PowerShell version, so assume I am referring to the latest on Windows 10, to check your version.
+::
+
+	PS> $PSVersionTable
+	PS> get-host | select Version
 
 
 * `PowerShell Explained <https://powershellexplained.com/>`_ *Excellent Reference*
 * `MicroSoft PowerShell examples <https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0>`_
-* `PowerShell GitHub < https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell`>_
+* `PowerShell GitHub <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
 * `Powershell Linux Equivalents <https://mathieubuisson.github.io/powershell-linux-bash/>`_
 
 Introduction
 ============
 
-``PowerShell`` has a consistent naming convention for ease of learning, which is cumbersome, esepecially for the command line, 
+``PowerShell`` has a consistent naming convention for ease of learning, which is cumbersome, especially for the command line, 
 and so introduces an alias mechanism, which is extensible... to make things more **obvious**  (but less consistent). 
-For example ``ls`` is probably more intuative than ``get-childitem``, likewise ``where``, ``sort``, ``tee``,
+For example ``ls`` is probably more intuitive than ``get-childitem``, likewise ``where``, ``sort``, ``tee``,
 ``select`` and easier on the eye than the ``*-object`` full-name form, but using short forms like ``gc``, ``gci`` or ``sls`` 
-can be confusing.
+definitely can be confusing.
 
 Streams of objects can be redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion, streams of text may not work, be careful with 
 ``write-output``, ``write-host``, and ``select-string`` in particular.
@@ -46,7 +51,7 @@ Like other object oriented languages, ``PowerShell`` has features such *inherita
 Passing function arguments can be confusing, because both ``named`` and ``positional`` arguments are supported, in most cases I 
 prefer to use ``splatting`` rather than individual name or positional parameters.
 
-The command-line has color-highlighting and ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
+The command-line has colour-highlighting and ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
 through the alternatives. Cmdlets are **case-insensitive** but hyphens are important, I try to avoid Camel-Case and try use a consistent 
 lower-case format ``get-help`` and not ``Get-Help``. Variable names are also **case-insensitive** but I often use CamelCase 
 to make them more readable ``dateString`` , rather than underscore ``date_string``.
