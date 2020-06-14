@@ -4,23 +4,23 @@
 PowerShell Cheatsheet
 *********************
 
-PowerShell is a modern replacement for the familiar ``DOS`` prompt, and while there are similarities to a DOS, and UNIX Shell, 
-``PowerShell`` is built on ``.Net`` objects, where tasks are performed by ``cmdlets`` (pronounced *command-lets*).
+``PowerShell`` is a modern replacement for the familiar ``DOS`` prompt, which is similar to a DOS, and UNIX Shell, but
+is built on ``.Net`` objects, where tasks are performed by ``cmdlets`` (pronounced *command-lets*).
 
-It has a consistent naming convention for ease of learning, which is cumbersome, especially for the command line, 
+Almost all ``cmdlets`` produce streams of objects which can be redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion, but be
+careful, ``select-string`` produce streams of text. Note ``write-output`` should be used to produce a stream of 
+objects to be passed to another ``cmdlet``, and ``write-host``, ``write-warning`` to write only to the console.
+
+``PowerShell`` has a consistent naming convention for ease of learning, which is cumbersome, especially for the command line, 
 and so provides an alias mechanism, which is extensible... to make things more **obvious**  (but less *consistent*). 
 For example ``ls`` is probably more intuitive than ``get-childitem``, likewise ``cat`` or ``type`` is more intuitive than ``get-content``.
-Likewise ``tee``, ``select``, ``where``, ``sort`` and easier on the eye than the ``*-object`` full-name form.
-Some aliases like ``gc``, ``gci`` or ``sls`` can be confusing and frustrating.
-
-The ``cmdlets`` produce streams of objects which can be redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion, but some
-such as ``select-string`` produce streams of text, so be careful. Note ``write-output`` should be used to produce a stream of 
-objects, ``write-host``, ``write-warning`` write to the console.
+However aliases like ``gc``, ``gci`` or ``sls`` can be confusing. Some ``cmdlets`` can be shortened, for 
+example ``where`` as opposed to ``where-object``, other examples include ``select``, ``sort``, ``tee``,  and ``measure``.
 
 The command-line has color-highlighting and ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
-through the alternatives. Cmdlets are **case-insensitive** but hyphens are often required, I will try to consistently
+through the alternatives. Cmdlets are **case-insensitive** but hyphens are often required, I try to consistently
 use a lower-case format ``get-help`` and not ``Get-Help``. Variable names are also **case-insensitive**, my personal preference 
-is to use CamelCase to make things more readable, so ``dateString`` , rather than ``date_string``. 
+is to use CamelCase, so ``dateString`` , rather than ``date_string`` although both are supported.
 
 A `Windows Powershell ISE <https://docs.microsoft.com/en-us/powershell/scripting/components/ise/introducing-the-windows-powershell-ise?view=powershell-7>`_  
 is provided if you need more interactive assistance.
@@ -62,89 +62,217 @@ processes, services, event logs, and computers.
 
 Common forms::
 
-   PS> $age = 5                       # System.Int32
-   PS> [int]$age = "5"                # System.Int32
-   PS> $name = "Dino"                 # System.String
-   PS> $name + $age                   # Fails; System.String + System.Int32
-   PS> $name + [string]$age           # Dino5; System.String + System.String
+   $age = 5                       # System.Int32
+   [int]$age = "5"                # System.Int32
+   $name = "Dino"                 # System.String
+   $name + $age                   # Fails; System.String + System.Int32
+   $name + [string]$age           # Dino5; System.String + System.String
 
-   PS> $c = (5, 30, 25, 1)            # array of System.Int32
-   PS> $c = (5, "Dino")               # array of (System.Int32, System.String)
+   $a = (5, 30, 25, 1)            # array of System.Int32
+   $a = (5, "Dino")               # array of (System.Int32, System.String)
 
-   PS> $f = @{ Fred = 30; Wilma  = 25; Pebbles = 1; Dino = 5 } # hash table
+   $h = @{ Fred = 30; Wilma  = 25; Pebbles = 1; Dino = 5 } # hash table
    
-   PS> $d = Get-ChildItem C:\Windows  # directory listing, FileInfo and DirectoryInfo types, 
-   PS> $d | get-member                # FileInfo, DirectoryInfo Properties and Methods
+   $d = Get-ChildItem C:\Windows  # directory listing, FileInfo and DirectoryInfo types, 
+   mak$d | get-member                # FileInfo, DirectoryInfo Properties and Methods
    
-   PS> $p = Get-Process               # System.Diagnostics.Process type
+   $p = Get-Process               # System.Diagnostics.Process type
 
 Less common forms::
  
-   PS> set-variable -name age 5       # same as $age = 5
-   PS> set-variable -name name Dino   # same as $name = "Dino"
+   set-variable -name age 5       # same as $age = 5
+   set-variable -name name Dino   # same as $name = "Dino"
    
-   PS> set-variable -name pi -option Constant 3.14159 # Declare a constant
-   PS> $pi = 42                       # Fails $pi is a constant
+   set-variable -name pi -option Constant 3.14159
+   $pi = 42                       # Fails $pi is a constant
    
-   PS> clear-variable -name age       # clear $age, ($null)
-   PS> clear-variable -name p         # clear $p ($null)
+   clear-variable -name age       # clear $age; $name = $null
+   clear-variable -name p         # clear $p; $p = $null
    
-   PS> remove-variable -name age      # delete variable $age
-   PS> Remove-Item -Path Variable:\p  # delete variable $p
+   remove-variable -name age      # delete variable $age
+   remove-item -path variable:\p  # delete variable $p
 
 
 Array Variables
 ===============
 
-::   
-   $c = 1, 2, 3                    # array of integers
-   $c = (1, 2, 3)                  # array of integers
-   $c = (1, 2, 3, 'x')             # array of System.Int32's, System.String
-   [int[]]$c = (1, 2, 3, 'x')      # will fail 'x', array of System.Int32 only
+Array variables are a fixed size, can have mixed values and can be multi-dimensional.
 
+::
+  
+   $a = 1, 2, 3                    # array of integers
+   $a = (1, 2, 3)                  # array of integers
+   $a = ('a','b','c')
+   $a = (1, 2, 3, 'x')             # array of System.Int32's, System.String
+   [int[]]$a = (1, 2, 3, 'x')      # will fail 'x', array of System.Int32 only
+   
+   $a = ('fred','wilma','pebbles')
+   $a[0]             # fred
+   $a[2]             # pebbles
+   $a.length         # 3
+   $a[0] = 'freddie' # fred becomes freddie
+   $a[4] = 'dino'    # Error: Index was outside the bounds of the array.
+   
+   $b = ('barbey', 'betty', 'bambam')
+   $a = ($a, $b)    # [0]:fred [1]:wilma [2]:pebbles [3]:barney [4]:betty [5]:bambam 
+   $a.length        # 6
+   $a = ($a, ($b))  # [0]:fred [1]:wilma [2]:pebbles [3][0]:barney [3][1]:betty [3][2]:bambam 
+   $a.length        # 4
+   
+   $ages = (30, 25, 1, 5)
+   $names = ('fred','wilma','pebbles', 'dino')
+   $a = (($names),($ages))
+   $a.length # 4
+   $a[0]     # fred wilma pebbles dino
+   $a[1]     # 30 25 1 5
+   $a[0][0]  # fred
+   $a[0][1]  # 30
    
    
+Hashe Tables
+============
+
+Unordered collection of key:value pairs, later versions of ``PowersShell`` support ``$hash = [ordered]@{}``
 
 ::
 
+   $h = @{}              # empty hash
+   $key = 'Fred'
+   $value = 30
+   $h.add($key, $value)
+   
+   $h.add('Wilma', 25 )
+   $h['Pebbles'] = 1
+   $h.Dino = 5
+   
+   $h                 # actual hash, printed if on command-line
+   $h['Fred']         # 30
+   $h[$key]           # 30
+   $h.fred            # 30
+   
+   # creating a populated hash
+   $h = @{
+       Fred = 30
+       Wilma  = 25
+       Pebbles = 1
+       Dino = 5
+   }
+   # creating a populated hash, one-liner
+   $h = @{ Fred = 30; Wilma  = 25; Pebbles = 1; Dino = 5 }
+   
+   $h.keys            # unordered: Dino, Pebbles, Fred, Wilma
+   $h.values          # unordered: 5, 1, 30, 25 (same as .keys order)
+   
+   # random order
+   foreach($key in $h.keys) {
+       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
+   }
+   
+   # ascending alphabetic order (Dino, Fred, Pebbles, Wilma)
+   foreach($key in $h.keys | sort) {
+       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
+   }
+   
+   # descending alphabetic order (Wilma, Pebbles, Fred, Dino)
+   foreach($key in $h.keys | sort -descending) {
+       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
+   }
+   
+   # specfific order (Fred, Wilma, Pebbles, Dino)
+   $keys = ('fred', 'wilma', 'pebbles', 'dino')
+   for ($i = 0; $i -lt $keys.length; $i++) {
+      write-output ('{0} Flintstone is {1:D} years old' -f $keys[$i], $h[$keys[$i]])
+   }
+   
+   if ($h.ContainsKey('fred')) { ... }   # true 
+   if ($h.ContainsKey('barney')) { ... } # false
+   
+   $h.remove('Dino')                # remove Dino ran away
+   $h.clear()                       # family deceased
 
-	PS> $loc = get-location                    # assign 'get-location' output object to $loc
-    PS> $loc | get-member -membertype property # shows $loc is a PathInfo object
-     
-    
-    PS> get-command -noun variable             # What commands work with variables
-    > clear-variable, get-variable, new-variable, remove-variable, set-variable
-     
-    PS> clear-variable loc                     # clears '$loc', NOTE the missing '$'
-    PS> remove-variable loc                    # removes '$loc', NOTE the missing '$'
+Excellent review:
+* `Hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
 
-    PS> get-childitem variable:                # list PowerShell environment variables, 'PSHome', 'PWD' etc.
-    PS> $pshome                                # which PowerShell and version
-    PS> $pwd
+Environment
+===========
 
-    PS> get-childitem env:                     # get 'cmd.exe' enviroment variables, UCASE by convention
-    PS> $env:SystemRoot                        # C:\Windows
-    PS> $env:COMPUTERNAME                      # MYLAPTOP001
-    PS> $env:LIB_PATH='/usr/local/lib'         # setting LIB_PATH     
+::
 
-    PS> $psversiontable                        # PowerShell version information.
-    PS> get-host                               # PowerShell version information.
+   $ get-childitem variable:        # list PowerShell environment variables, 'PSHome', 'PWD' etc.
+   $pshome                          # which PowerShell and version
+   $pwd                             # working directory
+   
+   $ get-childitem env:             # get 'cmd.exe' enviroment variables, UCASE by convention
+   $env:SystemRoot                  # C:\Windows
+   $env:COMPUTERNAME                # MYLAPTOP001
+   $env:USERNAME                    # username
+   $env:TMP, $env:TEMP              # temp directory
+   $env:LIB_PATH='/usr/local/lib'   # setting LIB_PATH     
+   
+   $psversiontable                  # PowerShell version information.
+   $ get-host                       # PowerShell version information.
 
-Command Line History
---------------------
+Processes
+=========
 
-You can recall and repeat commands::
+::
 
-	PS> get-history
-	PS> invoke-history 1
-	PS> get-history | select-string -pattern 'ping'
-	PS> get-history | format-list -property *
-	PS> get-history -count 100 # get 100 lines (default is 32)
-	PS> clear-history
-	
-	
+   $ get-process | get-member                                       # show returned object
+   $ get-process | select -first 10                                 # first 10 processes
+   $ get-process | select -last 10                                  # last 10 processes
+   $ get-process | sort -property ws | select -last 10              # last 10 sorted
+   $ get-process | sort -property ws | select -first 10             # first 10 sorted
+   $ get-process | sort -property ws -descending | select -first 10 # reverse sort first 10
+   $ get-process | where {$_.processname -match "^p.*"}             # all processes starting with "p"
+   $ get-process | select -property Name,Id,WS | out-host -paging   # paged (more/less) output
+
+Viewing Files
+=============
+::
+
+   $ get-content <file> | select-object -last 20             # get last 20 lines
+   $ get-content <file> -wait                                # tailing a log-file
+   $ get-content <file> | select-object -first 10            # first 10 lines
+   $ get-content <file> | select-object -last 10             # last 10 lines
+   
+   $ select-string <regex> <file> | select-object -first 10  # first 10 occurences of <regex>
+   $ select-string <regex> <file> | select-object -last 10   # last 10 occurences of <regex>
+
+
+Compter Information
+===================
+::
+
+   # Classnames: Win32_BIOS, Win32_Processor, Win32_ComputerSystem, Win32_LocalTime, 
+   #             Win32_LogicalDisk, Win32_LogonSession, Win32_QuickFixEngineering, Win32_Service
+
+   $ get-ciminstance -classname Win32_BIOS                # bios version
+   $ get-ciminstance -classname Win32_Processor           # processor information
+   $ get-ciminstance -classname Win32_ComputerSystem      # computer name, model etc.
+   $ get-ciminstance -classname Win32_QuickFixEngineering # hotfixes installed
+   $ get-ciminstance -classname Win32_QuickFixEngineering -property HotFixID | select -property hotfixid
+
+Viewing EventLog
+================
+
+* `Event Log Parsing <http://colleenmorrow.com/2012/09/20/parsing-windows-event-logs-with-powershell/>`_
+* `Get-WinEvent <https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Diagnostics/Get-WinEvent>`_
+
+::
+
+   $ get-eventlog -logname application | out-host -paging
+   $ get-eventlog -logname application -source MSSQLSERVER | out-host -paging
+   $ get-eventlog -logname application -source MSSQLSERVER -after 18/6/2019 | out-host -paging
+   
+   $ (Get-WinEvent -ListLog Application).ProviderNames | out-host -paging
+   $ get-winevent -filterhashtable @{logname='application'} | get-member
+   $ get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | out-host -paging
+   $ get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | where {$_.Message -like '*error*'} | out-host -paging
+
+
 Formatting Output
------------------
+=================
+
 Very similar to Python ``-f`` operator, examples use ``write-host`` but can be other output commands.
 Specified as ``{<index>, <alignment><width>:<format_spec>}``
 
@@ -182,178 +310,18 @@ More examples:
 * `Formatting Output <http://powershellprimer.com/html/0013.html>`_
 * `Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
 
-Powershell Hashes
------------------
-::
+Command Line History
+====================
 
-	$flintstones = @{}              # empty hash
-	$key = 'Fred'
-	$value = 30
-	$flintstones.add($key, $value)
-	
-	$flintstones.add('Wilma', 25 )
-	$flintstones['Pebbles'] = 1
-	$flintstones.Dino = 5
-	
-	$flinstones                  # actual hash, printed if on command-line
-	$flintstones['Fred']         # 30
-	$flintstones[$key]           # 30
-	$flintstones.fred            # 30
-	
-	# creating a populated hash
-	$flintstones = @{
-	    Fred = 30
-	    Wilma  = 25
-	    Pebbles = 1
-	    Dino = 5
-	}
-	# creating a populated hash, one-liner
-	$flintstones = @{ Fred = 30; Wilma  = 25; Pebbles = 1; Dino = 5 }
-	
-	# Order not guaranteed in the folloiwng, use sort or $hash = [ordered]@{}, if supported
-	
-	foreach($key in $flintstones.keys) {
-	    write-output ('{0} Flintstone is {1:D} years old' -f $key, $flintstones[$key])
-	}
-	
-	$flintstones.keys                          # Fred, Wilma, Pebbles, Dino
-	$flintstones.values                        # 30, 25, 1, 5 
-	
-	if ($flintstones.ContainsKey('fred')) {}   # true 
-	if ($flintstones.ContainsKey('barney')) {} # false
+You can recall and repeat commands::
 
-	
-	$flintstones.remove('Dino')                # Dino ran away
-	$flintstones.clear()                       # family deceased
-
-Excellent review:
-* `Hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
-
-Functions
----------
-Write something
-
-Function Arguments
-------------------
-PowerShell allows mixed named and positional arguments which is not always clear.
-Safest way of passing function arguments, is to use ``splatting`` 
-
-::
-  
-	$arguments = @{
-		Name        = 'TestNetwork'
-		StartRange  = '10.0.0.2'
-		EndRange    = '10.0.0.254'
-		SubnetMask  = '255.255.255.0'
-		Description = 'Network for testlab A'
-		LeaseDuration = (New-TimeSpan -Days 8)
-		Type = "Both"
-	}
-	Add-DhcpServerv4Scope @arguments   
-
-Powershell Arrays
------------------
-Arrays are a fixed size, can have mixed values, and be multi-dimensional.
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-	$A = (1, 2, 3, 4)                 # 1, 2, 3, 4
-	$A = 1..4                         # 1, 2, 3, 4
-	$B = ('F', 'W', 'P', 'D')         # 'F', 'W', 'P', 'D'
-	$C = (5.6, 4.5, 3.3, 13.2)        # 5.6, 4.5, 3.3, 13.2
-	$D = ('Apple', 3.3, 13.2, $B)     # 'Apple', 3.3, 13.2, 'F', 'W', 'P', 'D'
-	
-	[char[]]$E = ('F', 'W', 'P', 'D') # only [char] values
-
-
-* `Arrays TutorialsPoint <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
-
-PowerShell ArrayList and Generic List
--------------------------------------
-
-* `ArrayList PowerS<https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_
-* `ArrayList Microsoft <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8>`_
-* `Collections in General <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_ 
-
-PowerShell Objects
-------------------
-
-    https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/
-
-     
-
-    Powershell ArrayList
-
-    https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist.remove?view=netframework-4.8
-
-    https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/
-
-     
-
-    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error?view=powershell-3.0
-
-     
-
-    String Splitting
-
-    ================
-
-    The string.split() method does not support regex, but -Split() operator does; confusing!
-
-     
-
-    PS Y:\> "A B     CD".split('\s+')
-
-    A B     CD
-
-     
-
-    PS Y:\> "A B     CD" -Split('\s+')
-
-    A
-
-    B
-
-    CD
-
-     
-
-    PowerShell Intro
-
-    ================
-
-    https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell
-
-    https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0
-
-    https://www.tutorialspoint.com/powershell/index.htm
-
-    http://powershelltutorial.net/
-
-     
-
-    Commands
-
-    --------
-
-    PS Y:\> get-command [<pattern>]           # what commands are available
-
-    PS Y:\> get-command get-help -syntax      # syntax of get-help
-
-    PS Y:\> get-command -CommandType Alias    # list all Aliases
-
-    PS Y:\> get-command -CommandType Alias gc # 'gc' maps to what, throws exception if missing
-
-    PS Y:\> get-command -CommandType <type>   # Alias|Function|Script
-
-     
-
-    Variables
-
-    ---------
-
- 
-     
-
+   $ get-history
+   $ invoke-history 1
+   $ get-history | select-string -pattern 'ping'
+   $ get-history | format-list -property *
+   $ get-history -count 100 # get 100 lines (default is 32)
+   $ clear-history
+   
     Pipelines
 
     ---------
@@ -365,59 +333,9 @@ PowerShell Objects
 
      
 
-    # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object?view=powershell-3.0
-
-    # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/sort-object?view=powershell-3.0
-
-    # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-3.0
-
      
 
-    PS Y:\> get-process | get-member                                                     # show returned object
 
-    PS Y:\> get-process | select-object -first 10                                        # first 10 processes
-
-    PS Y:\> get-process | select-object -last 10                                         # last 10 processes
-
-    PS Y:\> get-process | sort-object -property WS | select-object -last 10              # last 10 sorted
-
-    PS Y:\> get-process | sort-object -property WS | select-object -first 10             # first 10 sorted
-
-    PS Y:\> get-process | sort-object -property WS -descending | select-object -first 10 # reverse sort first 10
-
-    PS Y:\> Get-Process | Where-Object {$_.ProcessName -Match "^p.*"}                    # find all processes that start with "p"
-
-    PS Y:\> get-content <file> | select-object -last 20                                  # get last 20 lines
-
-    PS Y:\> get-content <file> -wait                                                     # tailing a log-file
-
-    PS Y:\> get-process | select-object -property Name,Id,WS | out-host -paging
-
-     
-
-    PS Y:\> get-content <file> | select-object -first 10                                 # first 10 lines
-
-    PS Y:\> get-content <file> | select-object -last 10                                  # last 10 lines
-
-    PS Y:\> select-string <regex> <file> | select-object -first 10                       # first 10 occurences of <regex>
-
-    PS Y:\> select-string <regex> <file> | select-object -last 10                        # last 10 occurences of <regex>
-
-     
-
-    Compter Info
-
-    ------------
-
-    PS Y:\> get-ciminstance -classname Win32_BIOS                # bios version
-
-    PS Y:\> get-ciminstance -classname Win32_Processor           # processor information
-
-    PS Y:\> get-ciminstance -classname Win32_ComputerSystem      # computer name, model etc.
-
-    PS Y:\> get-ciminstance -classname Win32_QuickFixEngineering # hotfixes installed
-
-    PS Y:\> get-ciminstance -classname Win32_QuickFixEngineering -property HotFixID | select-object -property hotfixid
 
      
 
@@ -457,33 +375,6 @@ PowerShell Objects
 
      
 
-    Event Log Parsing
-
-    -----------------
-
-    http://colleenmorrow.com/2012/09/20/parsing-windows-event-logs-with-powershell/
-
-     
-
-    PS> get-eventlog -logname application -source MSSQLSERVER | out-host -paging
-
-    PS> get-eventlog -logname application -source MSSQLSERVER -after 18/6/2019 | out-host -paging
-
-    PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | out-host -paging
-
-    PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | where-object {$_.Message -like '*error*'} | out-host -paging
-
-    PS> get-winevent -filterhashtable @{logname='application'} | get-member
-
-    PS> get-winevent -filterhashtable @{logname='application'} | get-member
-
-    PS> (Get-WinEvent -ListLog Application).ProviderNames | select-string "^MG"
-
-     
-
-    PS> (Get-WinEvent -ListLog Application).ProviderNames
-
-    https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Diagnostics/Get-WinEvent?view=powershell-3.0
 
      
 
