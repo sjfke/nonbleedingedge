@@ -4,52 +4,276 @@
 PowerShell Scripting Cheatsheet
 *******************************
 
-According to Microsoft
-----------------------
+This is the companion to ``PowerShell Cheatsheet``, which focuses on writing scripts using PowerShell
 
-PowerShell is a task automation and configuration management framework, with a command-line shell and 
-associated scripting language. It is a modern replacement for the familiar ``DOS`` propmpt. Tasks are performed by ``cmdlets`` 
-(pronounced *command-lets*), which are specialized ``.NET`` classes implementing a particular operation which can be connected 
-a UNIX like way.
+``PowerShell`` is a cross-platform task automation and configuration management framework, consisting of a 
+command-line shell and scripting language. Unlike most shells, which accept and return text, ``PowerShell`` is built on 
+top of the ``.NET Common Language Runtime`` (CLR), and accepts and returns ``.NET objects``. This fundamental 
+change brings entirely new tools and methods for automation, and news levels of frustration and confusion.
 
-In Practice
------------
+Unlike traditional command-line interfaces, PowerShell cmdlets are designed to deal with objects. An object is 
+structured information that is more than just the string of characters appearing on the screen, it carries extra information 
+that you can use if you need it.
 
-While there are similarties to a DOS, and UNIX Shell, ``PowerShell`` uses ``.Net`` objects, so you pipe ``objects`` not ``strings`` 
-which is considered more powerful, but initially you may find confusing, especially if you are from a UNIX Shell background.  
-
-Useful Links
-------------
-
-There are many online documents and tutorials about ``PowerShell`` but these use short-cuts, aliases, tricks, imported modules or don't 
-specify which version etc. The ones listed are general introductions I found useful and topic related links are given where appropriate.
-Unfortunately I cannot check the examples on every PowerShell version, so assume I am referring to the latest on Windows 10, to check your version.
-::
-
-	PS> $PSVersionTable
-	PS> get-host | select Version
-
-
-* `PowerShell Explained <https://powershellexplained.com/>`_ *Excellent Reference*
-* `MicroSoft PowerShell examples <https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0>`_
-* `PowerShell GitHub <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
-* `Powershell Linux Equivalents <https://mathieubuisson.github.io/powershell-linux-bash/>`_
 
 Introduction
 ============
 
-``PowerShell`` has a consistent naming convention for ease of learning, which is cumbersome, especially for the command line, 
-and so introduces an alias mechanism, which is extensible... to make things more **obvious**  (but less consistent). 
-For example ``ls`` is probably more intuitive than ``get-childitem``, likewise ``where``, ``sort``, ``tee``,
-``select`` and easier on the eye than the ``*-object`` full-name form, but using short forms like ``gc``, ``gci`` or ``sls`` 
-definitely can be confusing.
+``PowerShell`` is very powerful and is often abused by **would-be** hackers, so by default most modern versions 
+of Windows will not execute ``PowerShell scripts`` although individual ``cmdlets`` can be executed.
 
-Streams of objects can be redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion, streams of text may not work, be careful with 
-``write-output``, ``write-host``, and ``select-string`` in particular.
+Whether a ``PowerShell`` script can be executed is governed by the execution policy.
+The ``get-executionpolicy`` displays the execution policy for the current ``PowerShell``, add the ``-List`` parameter and it
+shows all the policies in highest to lowest priority (scope) order. 
 
-Like other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses, *getters*, *setters*, *modules* etc.
-Passing function arguments can be confusing, because both ``named`` and ``positional`` arguments are supported, in most cases I 
-prefer to use ``splatting`` rather than individual name or positional parameters.
+In the example only the ``LocalMachine`` policy is defined, and is set to ``restricted`` so PowerShell scripts cannot be run. 
+
+:: 
+
+   PS> Get-ExecutionPolicy -List
+   
+           Scope ExecutionPolicy
+           ----- ---------------
+   MachinePolicy       Undefined  # highest priority
+      UserPolicy       Undefined
+         Process       Undefined
+     CurrentUser       Undefined
+    LocalMachine      Restricted  # lowest priority
+    
+   PS> Get-ExecutionPolicy
+   Restricted
+
+To better under the above, see: `About Execution Policies <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_
+
+PowerShell's execution policies:
+
+* ``Restricted`` does not permit any scripts to run (*.ps1xml, .psm1, .ps1*);
+* ``AllSigned``, ``RemoteSigned`` prevents running scripts that do not have a digital signature;
+* ``Unrestricted`` allows running of scripts without a digital signature, warning about non-local intranet zone scripts;
+* ``Bypass`` allows running of scripts without a digital signature, without any warnings;
+* ``Undefined`` no execution policy is defined;
+
+PowerShell's execution policy scope:
+
+* ``MachinePolicy`` set by a Group Policy for all users of the computer;
+* ``UserPolicy`` set by a Group Policy for the current user of the computer;
+* ``Process`` current PowerShell session, environment variable $env:PSExecutionPolicyPreference;
+* ``CurrentUser`` affects only the current user, *HKEY_CURRENT_USER* registry subkey;
+* ``LocalMachine`` all users on the current computer, *HKEY_LOCAL_MACHINE* registry subkey;
+
+By default on a Windows Server the execution policy is, ``LocalMachine RemoteSigned``, but for your Windows Laptop or Desktop it will be ``LocalMachine Restricted``.
+To change the execution policy, you must start a PowerShell as Administrator and use ``Set-ExecutionPolicy`` as shown, you will be prompted to confirm this action.
+
+In a commercial or industrial environment ask your Windows Adminstrator, but company policy may be *AllSigned*.
+
+::
+
+   # Stops running of downloaded scripts
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned # sets: LocalMachine RemoteSigned
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Restricted   # sets: LocalMachine Restricted
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Undefined    # sets: LocalMachine Undefined
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # just me
+   
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate code-signing   
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
+   
+   
+How to sign scripts for your own use.
+=====================================
+
+To add a digital signature to a script you must sign it with a code signing certificate:
+
+* Purchased from a certification authority, which allows executing your script on other computers;
+* A free self-signed certificate which will only work on your computer;
+
+Typically, a *self-signed certificate* is only used to sign your own scripts and to sign scripts that you get 
+from other sources that you have verified to be safe, and should be used in an industrial or commercial enviroment.
+
+
+Microsoft's official guide:
+
+* `About Signing <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_signing>`_
+* `How to Create a Self-Signed Certificate with PowerShell <https://www.cloudsavvyit.com/3274/how-to-create-a-self-signed-certificate-with-powershell/>`_
+* `Add an Authenticode signature to a PowerShell script or other file. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-authenticodesignature>`_
+* `New-SelfSignedCertificate <https://docs.microsoft.com/en-us/powershell/module/pkiclient/new-selfsignedcertificate>`_
+* `Generating self-signed certificates on Windows <https://medium.com/the-new-control-plane/generating-self-signed-certificates-on-windows-7812a600c2d8>`_
+* `Generate and export certificates for Point-to-Site using PowerShell <https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site>`_
+
+How to get around signed scripts
+================================
+
+Some proposals to avoid signing PowerShell scripts.
+
+* `Provide A Batch File To Run Your PowerShell Script From <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
+* `Set Up Powershell Script For Automatic Execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
+
+Some internet posts recommend disabling the execution policy, but I would advise against.
+
+::
+
+   ### DO NOT DO THE FOLLOWING, UNLESS YOU KNOW WHAT YOU ARE DOING  ###
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+
+
+PowerShell Language
+===================
+
+The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is based on is built on 
+top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us/dotnet/standard/clr>`_ , and 
+manipulates `.NET objects <https://docs.microsoft.com/en-us/dotnet/api/system.object>`_.
+
+
+Like other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
+Function support both ``named`` and ``positional`` arguments are supported, and allows them to be mixed, which can be confusing, so in 
+most cases it is clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather than individual name or positional parameters.
+
+Variables
+=========
+
+Powershell variables are loosely-type, and can be *integers*, *strings*, *arrays*, and *hash-tables*, but also ``.Net`` objects that represent 
+*processes*, *services*, *event-logs*, and even *computers*.
+
+Common forms::
+
+   PS> $age = 5                       # System.Int32
+   PS> [int]$age = "5"                # System.Int32, cast System.String + System.Int32
+   PS> $name = "Dino"                 # System.String
+   PS> $name + $age                   # Fails; System.String + System.Int32
+   PS> $name + [string]$age           # Dino5; System.String + System.String
+
+   PS> $a = (5, 30, 25, 1)            # array of System.Int32
+   PS> $a = (5, "Dino")               # array of (System.Int32, System.String)
+
+   PS> $h = @{ Fred = 30; Wilma  = 25; Pebbles = 1; Dino = 5 } # hash table
+   
+   PS> $d = Get-ChildItem C:\Windows  # directory listing, FileInfo and DirectoryInfo types, 
+   PS> $d | get-member                # FileInfo, DirectoryInfo Properties and Methods
+   
+   PS> $p = Get-Process               # System.Diagnostics.Process type
+
+Less common forms::
+ 
+   PS> set-variable -name age 5         # same as PS>age = 5
+   PS> set-variable -name name Dino     # same as PS>name = "Dino"
+ 
+   PS> clear-variable -name age         # clear $age; $name = $null
+   PS> clear-variable -name name        # clear $name; $name = $null
+   
+   PS> remove-variable -name age        # delete variable $age
+   PS> remove-item -path variable:\name # delete variable $name
+   
+   PS> set-variable -name pi -option Constant 3.14159 # constant variable
+   PS> $pi = 42                                       # Fails $pi is a constant
+
+
+Array Variables
+===============
+
+Array variables are a fixed size, can have mixed values and can be multi-dimensional.
+
+::
+  
+   PS> $a = 1, 2, 3                    # array of integers
+   PS> $a = (1, 2, 3)                  # array of integers (my personal preference)
+   PS> $a = ('a','b','c')
+   PS> $a = (1, 2, 3, 'x')             # array of System.Int32's, System.String
+   PS> [int[]]$a = (1, 2, 3, 'x')      # will fail 'x', array of System.Int32 only
+   
+   PS> $a = ('fred','wilma','pebbles')
+   PS> $a[0]             # fred
+   PS> $[2]              # pebbles
+   PS> $a.length         # 3
+   PS> $a[0] = 'freddie' # fred becomes freddie
+   PS> $a[4] = 'dino'    # Error: Index was outside the bounds of the array.
+   PS> $a = ($a, 'dino') # correct way to add 'dino'
+   
+   PS> $b = ('barbey', 'betty', 'bamm-bamm')
+   PS> $a = ($a, $b)    # [0]:fred [1]:wilma [2]:pebbles [3]:barney [4]:betty [5]:bamm-bamm 
+   PS> $a.length        # 6
+   PS> $a = ($a, ($b))  # [0]:fred [1]:wilma [2]:pebbles [3][0]:barney [3][1]:betty [3][2]:bamm-bamm 
+   PS> $a.length        # 4
+   
+   PS> $ages = (30, 25, 1, 5)                      # flintstones ages
+   PS> $names = ('fred','wilma','pebbles', 'dino') # flintstones names
+   PS> $a = ($names),($ages))                      # multi-dimensional array example
+   PS> $a.length                                   # 4
+   PS> $a[0]                                       # fred wilma pebbles dino
+   PS> $a[1]                                       # 30 25 1 5
+   PS> $a[0][0]                                    # fred
+   PS> $a[0][1]                                    # 30
+   
+   
+HashTables
+==========
+
+Unordered collection of key:value pairs, later versions of ``PowersShell`` support ``PS>hash = [ordered]@{}``
+
+::
+
+   PS> $h = @{}              # empty hash
+   PS> $key = 'Fred'         # set key name
+   PS> $value = 30           # set key value
+   PS> $h.add($key, $value)  # add key:value to the hash-table
+   
+   PS> $h.add('Wilma', 25 )  # add Wilma
+   PS> $h['Pebbles'] = 1     # add Pebbles
+   PS> $h.Dino = 5           # add Dino
+   
+   PS> $h                    # actual hash-table, printed if on command-line
+   PS> $h['Fred']            # how old is Fred? 30
+   PS> $h[$key]              # how old is Fred? 30
+   PS> $h.fred               # how old is Fred? 30
+   
+   # creating a populated hash
+   PS> $h = @{
+       Fred = 30
+       Wilma  = 25
+       Pebbles = 1
+       Dino = 5
+   }
+   
+   # creating a populated hash, one-liner
+   PS> $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+   
+   PS> $h.keys            # unordered: Dino, Pebbles, Fred, Wilma
+   PS> $h.values          # unordered: 5, 1, 30, 25 (but same as $h.keys order)
+   
+   # key order is random
+   PS> foreach($key in $h.keys) {
+       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
+   }
+   
+   # ascending alphabetic order (Dino, Fred, Pebbles, Wilma)
+   PS> foreach($key in $h.keys | sort) {
+       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
+   }
+   
+   # descending alphabetic order (Wilma, Pebbles, Fred, Dino)
+   PS> foreach($key in $h.keys | sort -descending) {
+       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
+   }
+   
+   # specfific order (Fred, Wilma, Pebbles, Dino)
+   PS> $keys = ('fred', 'wilma', 'pebbles', 'dino')
+   for ($i = 0; $i -lt $keys.length; $i++) {
+      write-output ('{0} Flintstone is {1:D} years old' -f $keys[$i], $h[$keys[$i]])
+   }
+   
+   PS> if ($h.ContainsKey('fred')) { ... }   # true 
+   PS> if ($h.ContainsKey('barney')) { ... } # false
+   
+   PS> $h.remove('Dino')                # remove Dino, because he ran away
+   PS> $h.clear()                       # family deceased
+
+Excellent review of PowerShell HashTables:
+
+* `Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
+
+
+Cruft that needs to be cleaned up
+=================================
 
 The command-line has colour-highlighting and ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
 through the alternatives. Cmdlets are **case-insensitive** but hyphens are important, I try to avoid Camel-Case and try use a consistent 
@@ -64,7 +288,7 @@ be careful if writing for older Windows releases, writing scripts with ``#Requir
  
 
 Commonly used cmdlets when starting are ``get-help`` and ``get-member``
-::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 	PS> get-help get-childitem         # Help on GetChildItem
 	PS> get-help get-childiten -online # Online Web based documentation from Microsoft
@@ -108,7 +332,8 @@ The execution-policy, controls this and you should probably look at the followin
 
 If you start ``PowerShell`` as administrator, then some of these settings can be changed. 
 The execution policy to change is 'CurrentUser', *your* rights, see Get-ExecutionPolicy link.
-A default install will most likely look as shown. 
+A default install will most likely look as shown.
+
 ::
 
 	PS> Get-ExecutionPolicy -list
@@ -127,7 +352,7 @@ Choosing **Unrestricted** means that any PowerShell script, even ones inadverten
 downloaded from the Internet will run as you, and with your privileges, so **be careful**
 
 When developing the following avoids having certificates installed and updating the signature each time.
-::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
   PS> powershell.exe -noprofile -executionpolicy bypass -file .\script.ps1 
   
@@ -135,9 +360,6 @@ Generating and Installing Certificates
 ======================================
 
 To come shortly. 
-
-PowerShell Notes
-================
 
 Variables
 ---------
@@ -165,18 +387,6 @@ Variables
     PS> $psversiontable                        # PowerShell version information.
     PS> get-host                               # PowerShell version information.
 
-Command Line History
---------------------
-
-You can recall and repeat commands::
-
-	PS> get-history
-	PS> invoke-history 1
-	PS> get-history | select-string -pattern 'ping'
-	PS> get-history | format-list -property *
-	PS> get-history -count 100 # get 100 lines (default is 32)
-	PS> clear-history
-	
 	
 Formatting Output
 -----------------
@@ -269,7 +479,7 @@ Functions
 Write something
 
 Function Arguments
---------------------------
+------------------
 PowerShell allows mixed named and positional arguments which is not always clear.
 Safest way of passing function arguments, is to use ``splatting`` 
 
@@ -289,7 +499,7 @@ Safest way of passing function arguments, is to use ``splatting``
 Powershell Arrays
 -----------------
 Arrays are a fixed size, can have mixed values, and be multi-dimensional.
-::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 	$A = (1, 2, 3, 4)                 # 1, 2, 3, 4
 	$A = 1..4                         # 1, 2, 3, 4

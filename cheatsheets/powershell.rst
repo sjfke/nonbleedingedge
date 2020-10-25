@@ -4,23 +4,26 @@
 PowerShell Cheatsheet
 *********************
 
+This is the companion to ``PowerShell Scripts Cheatsheet``, which focuses on on the command line usage.
+
 ``PowerShell`` is a modern replacement for the familiar ``DOS`` prompt, which is similar to a UNIX Shell, but
 is built on ``.Net`` objects, where tasks are performed by ``cmdlets`` (pronounced *command-lets*).
 
-Almost all ``cmdlets`` produce streams of objects which can be redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion, but some
-such as, ``select-string`` produce streams of text which may not be redirectable.
+Unlike most shells, which accept and return text, ``PowerShell`` is built on top of the ``.NET Common Language Runtime`` (CLR), 
+and accepts and returns ``.NET objects``. The ``.Net objects`` produce by ``cmdlets`` can be chained together and redirected in 
+a *UNIX-like* ``>`` ``<``, ``|`` fashion.
 
 For ease of learning ``PowerShell`` uses a consistent ``cmdlet`` naming convention, which is cumbersome for the command line, 
 and so provides an extensible alias mechanism... to make things more **obvious**  (but less *consistent*). 
 For example ``ls`` is probably more intuitive than ``get-childitem``, likewise ``cat`` or ``type`` is more intuitive than ``get-content``.
-However aliases like ``gc``, ``gci`` or ``sls`` can be confusing. 
+However some aliases like ``gc``, ``gci`` or ``sls`` can be confusing when starting. 
 
 The command-line has color-highlighting and has ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
 through the alternatives. Cmdlets are **case-insensitive** but hyphens are significant, but in some cases optional like ``where-object`` 
 can be written as ``where``, which in my opinion is clearer. Other ``*-object`` examples include ``select``, ``sort``, ``tee``,  and ``measure``.
 
-Variable names are also **case-insensitive**, can include ``_``, and camelCase can be used to make variable names more human readable, but is 
-irrelevent to ``PowerShell``.
+Variable names are also **case-insensitive**, can include ``_``, and camelCase can be used to make variable names more human readable, but camelCase is 
+irrelevent to ``PowerShell``, so ``dogCat``, ``dogcat`` and ``dOgcAt`` are the same variable.
 
 My personal preference:
 
@@ -31,7 +34,7 @@ A `Windows Powershell ISE <https://docs.microsoft.com/en-us/powershell/scripting
 is provided if you need more interactive assistance.
 
 There are a lot of online documents and tutorials about ``PowerShell`` but unfortunately, as always, this means what you are searching far is 
-either a complex subject matter or not well understood by the author or both... be careful about blindly doing a *copy-paste* of examples.
+either a complex subject matter or not well understood by the author(s) or both... be careful about blindly doing a *copy-and-paste* of examples.
 
 While learning I found the following helpful:
 
@@ -41,41 +44,61 @@ While learning I found the following helpful:
 
 Getting Started
 ===============
+Like any shell PowerShell allows interaction with files, folders, processes, the computer and network interfaces etc, but as objects, for example:
+
+* An ``Item`` object, which can be a *file*, *directory*, *link*, *registry-key* etc;
+* A ``ChildItem`` object, child objects for the current folder (location);
+* A ``Location`` object, where you are in the file system;
+* A ``Process`` object, details of running processes;
+* An ``MSFT_NetAdapter`` object, for network interfaces;
+* A ``ComputerInfo`` object, providing details of the computer, operating system etc;
+
+::
+
+   PS> get-childitem                      # directory listing
+   PS> get-computerinfo                   # computer information
+   PS> get-netadapter                     # network interfaces
+   PS> get-process                        # running processes
+   PS> get-command                        # powershell commands
 
 You should become familiar with ``get-help`` and ``get-member`` cmdlets::
 
-   PS> get-help get-childitem         # Help on Get-ChildItem
-   PS> get-help get-childiten -online # Online Web based documentation from Microsoft
-   PS> get-childitem | get-member     # What is the object type, its methods and properties
-   PS> get-help get-content           # notice its aliases 'gc', 'cat', 'type'
-   PS> get-help select-string         # regular-expression based string search (UNIX grep)
-   
-   PS> get-help get-location          # alias 'gl' and 'pwd'.
-   PS> get-help get-command           # what commands are available
-   PS> get-help select-object         # 'select' or set object properties
-   PS> get-help where-object          # 'where' filter on object property
-   PS> get-help tee-object            # 'tee' like the UNIX command
-   PS> get-help sort-object           # object property based sorting, (UNIX 'sort')
-   PS> get-help measure-object        # count lines, characters (UNIX 'wc')
-   PS> get-help out-host              # Similar to UNIX 'more' and 'less'
+   PS> get-help get-childitem             # Help on Get-ChildItem
+   PS> get-help get-childiten -online     # Online Web based documentation from Microsoft
+   PS> get-help get-childitem -showwindow # Help in a separate window
+   PS> get-childitem | get-member         # What is the object type, its methods and properties
+
+    
+   PS> get-help get-content               # notice its aliases 'gc', 'cat', 'type'
+   PS> get-help select-string             # regular-expression based string search (UNIX grep)
+   PS> get-help get-location              # alias 'gl' and 'pwd'.
+   PS> get-help get-command               # what commands are available
+   PS> get-help select-object             # 'select' or set object properties
+   PS> get-help where-object              # 'where' filter on object property
+   PS> get-help tee-object                # 'tee' like the UNIX command
+   PS> get-help sort-object               # object property based sorting, (UNIX 'sort')
+   PS> get-help measure-object            # count lines, characters (UNIX 'wc')
+   PS> get-help out-host                  # Similar to UNIX 'more' and 'less'
 
 Quick Introduction
 ==================
 
+Examples of common commands.
+
 ::
 
    PS> set-location dir                            # change directory, ('sl', 'cd', 'chdir')
-   PS> cd dir                                      # using an alias to change directory
+   PS> cd dir                                      # using the 'cd' alias to change directory
    PS> get-childitem                               # directory listing, ('gci','ls','dir')
-   PS> ls                                          # using an alias to get directory listing
+   PS> ls                                          # using the 'ls' alias to get directory listing
    PS> new-item -ItemType Directory dir1           # create directory dir1 ('ni')
    PS> mkdir dir1, dir2                            # *convenience function* make two directories ('md')
    PS> remove-item dir2                            # delete a directory
-   PS> rmdir dir2                                  # using an alias to delete a directory
+   PS> rmdir dir2                                  # using the 'rmdir' alias to delete a directory
    
    PS> new-item fred.txt, wilma.txt                # create two empty files ('ni')
    PS> remove-item fred.txt                        # delete file ('ri','rm','rmdir','del','erase','rd')
-   PS> rm fred.txt                                 # using an alias to delete a file
+   PS> rm fred.txt                                 # using the 'rm' alias to delete a file
    
    PS> write-output "" > fred.txt                  # create an empty file ('write','echo')
    PS> echo "" > fred.txt                          # using alias to create an empty file
@@ -86,10 +109,12 @@ Quick Introduction
    PS> write-output "write some text" > fred.txt   # redirect stdout to a Unicode file
    PS> write-output "append some text" >> fred.txt # append stdout to a Unicode file
    
+   PS> get-item <file> | select -property Name,Length,Mode,CreationTime
+   
    PS> get-content fred.txt                        # display contents, ('gc','cat','type')
-   PS> cat fred.txt                                # using an alias to display contents
+   PS> cat fred.txt                                # using the 'cat' alias to display contents
    PS> remove-item fred.txt                        # delete a file, ('ri','rm','rmdir', 'del','erase','rd')
-   PS> rm fred.txt                                 # using an alias to delete file
+   PS> rm fred.txt                                 # using the 'rm' alias to delete a file
    
    # Starting applications, start-process ('saps','start')
    #   Note: quotes, pathnames and file extensions are optional
@@ -97,152 +122,35 @@ Quick Introduction
    PS> start-process 'https://nonbleedingedge.com' # open URL with browser (Microsoft-Edge)
    PS> start-process 'explorer'                    # start explorer.exe (can use explorer.exe)
    PS> start-process explorer C:\Windows\          # start explorer.exe in C:\Windows\
-   PS> start-process explorer PS>PWD                 # start explorer.exe in current directory
+   PS> start-process explorer $PWD                 # start explorer.exe in current directory
    PS> start-process chrome                        # start google chrome (if installed)
    PS> start-process notepad++                     # start Notepad++ (if installed)
-
-
-Variables
-=========
-
-Powershell variables are loosely-type, and can be *integers*, *strings*, *arrays*, and *hash-tables*, but also ``.Net`` objects that represent 
-*processes*, *services*, *event-logs*, and even *computers*.
-
-Common forms::
-
-   PS> $age = 5                       # System.Int32
-   PS> [int]$age = "5"                # System.Int32, cast System.String + System.Int32
-   PS> $name = "Dino"                 # System.String
-   PS> $name + $age                   # Fails; System.String + System.Int32
-   PS> $name + [string]$age           # Dino5; System.String + System.String
-
-   PS> $a = (5, 30, 25, 1)            # array of System.Int32
-   PS> $a = (5, "Dino")               # array of (System.Int32, System.String)
-
-   PS> $h = @{ Fred = 30; Wilma  = 25; Pebbles = 1; Dino = 5 } # hash table
    
-   PS> $d = Get-ChildItem C:\Windows  # directory listing, FileInfo and DirectoryInfo types, 
-   PS> $d | get-member                # FileInfo, DirectoryInfo Properties and Methods
-   
-   PS> $p = Get-Process               # System.Diagnostics.Process type
+   PS> get-service | out-host -paging              # paged listing of the services
+   PS> get-process | out-host -paging              # paged listing of the processes
 
-Less common forms::
- 
-   PS> set-variable -name age 5       # same as PS>age = 5
-   PS> set-variable -name name Dino   # same as PS>name = "Dino"
- 
-   PS> clear-variable -name age       # clear PS>age; PS>name = PS>null
-   PS> clear-variable -name p         # clear PS>p; PS>p = PS>null
-   
-   PS> remove-variable -name age      # delete variable PS>age
-   PS> remove-item -path variable:\p  # delete variable PS>p
-   
-   PS> set-variable -name pi -option Constant 3.14159 # constant variable
-   PS> $pi = 42                                       # Fails PS>pi is a constant
+   PS> get-computerinfo                            # computer information
+   PS> get-disk                                    # disk serial number, state etc.
+   PS> get-volume                                  # volumes on your disk.
 
 
-Array Variables
-===============
+* `PowerShell for Experienced Bash users <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#map-book-for-experienced-bash-users>`_
+* `10 basic PowerShell commands that every Windows 10 user should know <https://www.thewindowsclub.com/basic-powershell-commands-windows>`_
+* `10 PowerShell commands every Windows admin should know <https://www.techrepublic.com/blog/10-things/10-powershell-commands-every-windows-admin-should-know/>`_
 
-Array variables are a fixed size, can have mixed values and can be multi-dimensional.
-
-::
-  
-   PS> $a = 1, 2, 3                    # array of integers
-   PS> $a = (1, 2, 3)                  # array of integers (my personal preference)
-   PS> $a = ('a','b','c')
-   PS> $a = (1, 2, 3, 'x')             # array of System.Int32's, System.String
-   PS> [int[]]$a = (1, 2, 3, 'x')      # will fail 'x', array of System.Int32 only
-   
-   PS> $a = ('fred','wilma','pebbles')
-   PS> $a[0]             # fred
-   PS> $[2]              # pebbles
-   PS> $a.length         # 3
-   PS> $a[0] = 'freddie' # fred becomes freddie
-   PS> $a[4] = 'dino'    # Error: Index was outside the bounds of the array.
-   PS> $a = ($a, 'dino') # correct way to add 'dino'
-   
-   PS> $b = ('barbey', 'betty', 'bamm-bamm')
-   PS> $a = ($a, $b)    # [0]:fred [1]:wilma [2]:pebbles [3]:barney [4]:betty [5]:bamm-bamm 
-   PS> $a.length        # 6
-   PS> $a = ($a, ($b))  # [0]:fred [1]:wilma [2]:pebbles [3][0]:barney [3][1]:betty [3][2]:bamm-bamm 
-   PS> $a.length        # 4
-   
-   PS> $ages = (30, 25, 1, 5)                      # flintstones ages
-   PS> $names = ('fred','wilma','pebbles', 'dino') # flintstones names
-   PS> $a = ($names),($ages))                      # multi-dimensional array example
-   PS> $a.length                                   # 4
-   PS> $a[0]                                       # fred wilma pebbles dino
-   PS> $a[1]                                       # 30 25 1 5
-   PS> $a[0][0]                                    # fred
-   PS> $a[0][1]                                    # 30
-   
-   
-HashTables
-==========
-
-Unordered collection of key:value pairs, later versions of ``PowersShell`` support ``PS>hash = [ordered]@{}``
+Services
+========
 
 ::
 
-   PS> $h = @{}              # empty hash
-   PS> $key = 'Fred'         # set key name
-   PS> $value = 30           # set key value
-   PS> $h.add(PS>key, PS>value)  # add key:value to the hash-table
-   
-   PS> $h.add('Wilma', 25 )  # add Wilma
-   PS> $h['Pebbles'] = 1     # add Pebbles
-   PS> $h.Dino = 5           # add Dino
-   
-   PS> $h                    # actual hash-table, printed if on command-line
-   PS> $h['Fred']            # how old is Fred? 30
-   PS> $h[$key]              # how old is Fred? 30
-   PS> $h.fred               # how old is Fred? 30
-   
-   # creating a populated hash
-   PS> $h = @{
-       Fred = 30
-       Wilma  = 25
-       Pebbles = 1
-       Dino = 5
-   }
-   
-   # creating a populated hash, one-liner
-   PS> $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
-   
-   PS> $h.keys            # unordered: Dino, Pebbles, Fred, Wilma
-   PS> $h.values          # unordered: 5, 1, 30, 25 (but same as $h.keys order)
-   
-   # key order is random
-   PS> foreach($key in $h.keys) {
-       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
-   }
-   
-   # ascending alphabetic order (Dino, Fred, Pebbles, Wilma)
-   PS> foreach($key in $h.keys | sort) {
-       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
-   }
-   
-   # descending alphabetic order (Wilma, Pebbles, Fred, Dino)
-   PS> foreach($key in $h.keys | sort -descending) {
-       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
-   }
-   
-   # specfific order (Fred, Wilma, Pebbles, Dino)
-   PS> $keys = ('fred', 'wilma', 'pebbles', 'dino')
-   for ($i = 0; $i -lt $keys.length; $i++) {
-      write-output ('{0} Flintstone is {1:D} years old' -f $keys[$i], $h[$keys[$i]])
-   }
-   
-   PS> if ($h.ContainsKey('fred')) { ... }   # true 
-   PS> if ($h.ContainsKey('barney')) { ... } # false
-   
-   PS> $h.remove('Dino')                # remove Dino, because he ran away
-   PS> $h.clear()                       # family deceased
+   PS> get-service | out-host -Paging                     # paged listing of the services
+   PS> get-service | where -property Status -eq 'running' # all running services
+   PS> start-service <service name>
+   PS> stop-service <service name>
+   PS> suspend-service <service name>
+   PS> resume-service <service name>
+   PS> restart-service <service name>
 
-Excellent review of PowerShell HashTables:
-
-* `Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
 
 PowerShell Environment
 ======================
@@ -274,7 +182,7 @@ Processes
    PS> get-process | sort -property ws | select -last 10              # last 10 sorted
    PS> get-process | sort -property ws | select -first 10             # first 10 sorted
    PS> get-process | sort -property ws -descending | select -first 10 # reverse sort first 10
-   PS> get-process | where {PS>_.processname -match "^p.*"}             # all processes starting with "p"
+   PS> get-process | where {$_.processname -match "^p.*"}             # all processes starting with "p"
    PS> get-process | select -property Name,Id,WS | out-host -paging   # paged (more/less) output
    PS> get-process | out-gridview                                     # interactive static table view
 
