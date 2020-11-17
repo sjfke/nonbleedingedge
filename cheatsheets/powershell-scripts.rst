@@ -7,9 +7,8 @@ PowerShell Scripting Cheatsheet
 This is the companion to ``PowerShell Cheatsheet``, which focuses on writing scripts using PowerShell
 
 ``PowerShell`` is a cross-platform task automation and configuration management framework, consisting of a 
-command-line shell and scripting language. Unlike most shells, which accept and return text, ``PowerShell`` is built on 
-top of the ``.NET Common Language Runtime`` (CLR), and accepts and returns ``.NET objects``. This fundamental 
-change brings entirely new tools and methods for automation, and news levels of frustration and confusion.
+command-line shell and scripting language. It is built on top of the ``.NET Common Language Runtime`` (CLR), accepts and 
+returns ``.NET objects``. This brings entirely new tools and methods for automation, and news levels of frustration and confusion. :-)
 
 Unlike traditional command-line interfaces, PowerShell cmdlets are designed to deal with objects. An object is 
 structured information that is more than just the string of characters appearing on the screen, it carries extra information 
@@ -19,12 +18,12 @@ that you can use if you need it.
 Introduction
 ============
 
-``PowerShell`` is very powerful and is often abused by **would-be** hackers, so by default most modern versions 
-of Windows will not execute ``PowerShell scripts`` although individual ``cmdlets`` can be executed.
+``PowerShell`` is very powerful scripting language and is often abused by **would-be** hackers, so by default laptop versions 
+of Windows will not execute ``PowerShell scripts`` although individual ``cmdlets`` can be executed, but Windows servers will 
+usually allow ``RemoteSigned`` scripts to be run.
 
-Whether a ``PowerShell`` script can be executed is governed by the execution policy.
-The ``get-executionpolicy`` displays the execution policy for the current ``PowerShell``, add the ``-List`` parameter and it
-shows all the policies in highest to lowest priority (scope) order. 
+Whether a ``PowerShell`` script can be executed is governed by the execution policy, ``get-executionpolicy`` displays this for 
+the current ``PowerShell``, add the ``-List`` parameter and it shows all the policies in highest to lowest priority (scope) order. 
 
 In the example only the ``LocalMachine`` policy is defined, and is set to ``restricted`` so PowerShell scripts cannot be run. 
 
@@ -43,23 +42,24 @@ In the example only the ``LocalMachine`` policy is defined, and is set to ``rest
    PS> Get-ExecutionPolicy
    Restricted
 
-To better under the above, see: `About Execution Policies <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_
+See: `About Execution Policies <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_ for more details.
 
 PowerShell's execution policies:
 
 * ``Restricted`` does not permit any scripts to run (*.ps1xml, .psm1, .ps1*);
-* ``AllSigned``, ``RemoteSigned`` prevents running scripts that do not have a digital signature;
-* ``Unrestricted`` allows running of scripts without a digital signature, warning about non-local intranet zone scripts;
-* ``Bypass`` allows running of scripts without a digital signature, without any warnings;
+* ``AllSigned``, prevents running scripts that do not have a digital signature;
+* ``RemoteSigned`` prevents running downloaded scripts that do not have a digital signature;
+* ``Unrestricted`` runs scripts without a digital signature, warning about non-local intranet zone scripts;
+* ``Bypass`` allows running of scripts without any digital signature, and without any warnings;
 * ``Undefined`` no execution policy is defined;
 
 PowerShell's execution policy scope:
 
 * ``MachinePolicy`` set by a Group Policy for all users of the computer;
 * ``UserPolicy`` set by a Group Policy for the current user of the computer;
-* ``Process`` current PowerShell session, environment variable $env:PSExecutionPolicyPreference;
-* ``CurrentUser`` affects only the current user, *HKEY_CURRENT_USER* registry subkey;
-* ``LocalMachine`` all users on the current computer, *HKEY_LOCAL_MACHINE* registry subkey;
+* ``Process`` current PowerShell session, environment variable ``$env:PSExecutionPolicyPreference``;
+* ``CurrentUser`` affects only the current user, ``HKEY_CURRENT_USER`` registry subkey;
+* ``LocalMachine`` all users on the current computer, ``HKEY_LOCAL_MACHINE`` registry subkey;
 
 By default on a Windows Server the execution policy is, ``LocalMachine RemoteSigned``, but for your Windows Laptop or Desktop it will be ``LocalMachine Restricted``.
 To change the execution policy, you must start a PowerShell as Administrator and use ``Set-ExecutionPolicy`` as shown, you will be prompted to confirm this action.

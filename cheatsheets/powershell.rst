@@ -4,26 +4,26 @@
 PowerShell Cheatsheet
 *********************
 
-This is the companion to ``PowerShell Scripts Cheatsheet``, which focuses on on the command line usage.
+This is the companion to ``PowerShell Scripts Cheatsheet``, which focuses on command line usage.
 
 ``PowerShell`` is a modern replacement for the familiar ``DOS`` prompt, which is similar to a UNIX Shell, but
 is built on ``.Net`` objects, where tasks are performed by ``cmdlets`` (pronounced *command-lets*).
 
 Unlike most shells, which accept and return text, ``PowerShell`` is built on top of the ``.NET Common Language Runtime`` (CLR), 
-and accepts and returns ``.NET objects``. The ``.Net objects`` produce by ``cmdlets`` can be chained together and redirected in 
-a *UNIX-like* ``>`` ``<``, ``|`` fashion.
+and accepts and returns ``.NET objects``. The ``.Net objects`` produce by ``cmdlets`` can be chained together, assigned to 
+variables and redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion.
 
-For ease of learning ``PowerShell`` uses a consistent ``cmdlet`` naming convention, which is cumbersome for the command line, 
-and so provides an extensible alias mechanism... to make things more **obvious**  (but less *consistent*). 
-For example ``ls`` is probably more intuitive than ``get-childitem``, likewise ``cat`` or ``type`` is more intuitive than ``get-content``.
-However some aliases like ``gc``, ``gci`` or ``sls`` can be confusing when starting. 
+For ease of learning ``PowerShell`` uses a consistent ``cmdlet`` naming convention, which is cumbersome for a command line, 
+and so provides an extensible alias mechanism... which make things *easier*  (but less *consistent*). 
+For example ``ls`` is probably more intuitive than ``get-childitem``, likewise ``cat`` or ``type`` are more intuitive than ``get-content``.
+Aliases like ``gc``, ``gci`` or ``sls`` can be confusing when starting. 
 
-The command-line has color-highlighting and has ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
-through the alternatives. Cmdlets are **case-insensitive** but hyphens are significant, but in some cases optional like ``where-object`` 
+The command-line has color-highlighting and has ``TAB`` completion for commands and arguments, try ``import <tab>``, or ``get-help -<tab>`` and cycle 
+through the alternatives. Cmdlets are **case-insensitive** but hyphens are significant, but for many ending in ``-object`` can be shortened, so ``where-object`` 
 can be written as ``where``, which in my opinion is clearer. Other ``*-object`` examples include ``select``, ``sort``, ``tee``,  and ``measure``.
 
-Variable names are also **case-insensitive**, can include ``_``, and camelCase can be used to make variable names more human readable, but camelCase is 
-irrelevent to ``PowerShell``, so ``dogCat``, ``dogcat`` and ``dOgcAt`` are the same variable.
+Variable names are also **case-insensitive**, can include ``_``, and **camelCase** can be used to make variable names more human readable, but *camelCase* is 
+irrelevent to ``PowerShell``, so ``dogCat``, ``dogcat`` and ``DogCat`` are the same variable.
 
 My personal preference:
 
@@ -31,12 +31,12 @@ My personal preference:
 * camelCase for variable names, so ``dateString`` , rather than ``date_string``;
 
 A `Windows Powershell ISE <https://docs.microsoft.com/en-us/powershell/scripting/components/ise/introducing-the-windows-powershell-ise?view=powershell-7>`_  
-is provided if you need more interactive assistance.
+is provided if you need more interactive assistance and is very useful when learning.
 
-There are a lot of online documents and tutorials about ``PowerShell`` but unfortunately, as always, this means what you are searching far is 
-either a complex subject matter or not well understood by the author(s) or both... be careful about blindly doing a *copy-and-paste* of examples.
+There are a lot of online documents and tutorials about ``PowerShell`` but unfortunately, as is often the case, this means what you are searching for is 
+either not easy to explain or not well understood by the author(s) or both... so be careful about blindly doing a *copy-and-paste* of examples.
 
-While learning I found the following helpful:
+While learning I found the following helpful when starting:
 
 * `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
 * `PowerShell equivalents for common Linux/bash commands <https://mathieubuisson.github.io/powershell-linux-bash/>`_
@@ -44,12 +44,14 @@ While learning I found the following helpful:
 
 Getting Started
 ===============
-Like any shell PowerShell allows interaction with files, folders, processes, the computer and network interfaces etc, but as objects, for example:
+
+Like any shell PowerShell provides an environment which allows interaction with files, folders, processes, the computer and network interfaces etc, but as 
+objects, for example:
 
 * An ``Item`` object, which can be a *file*, *directory*, *link*, *registry-key* etc;
-* A ``ChildItem`` object, child objects for the current folder (location);
+* A ``ChildItem`` object, children of the current folder (location);
 * A ``Location`` object, where you are in the file system;
-* A ``Process`` object, details of running processes;
+* A ``Process`` object, details of running process(es);
 * An ``MSFT_NetAdapter`` object, for network interfaces;
 * A ``ComputerInfo`` object, providing details of the computer, operating system etc;
 
@@ -109,6 +111,8 @@ Examples of common commands.
    PS> write-output "write some text" > fred.txt   # redirect stdout to a Unicode file
    PS> write-output "append some text" >> fred.txt # append stdout to a Unicode file
    
+   PS> write-output "ascii text" | add-content -encoding ASCII fred.txt # 7-bit ASCII file
+   
    PS> get-item <file> | select -property Name,Length,Mode,CreationTime
    
    PS> get-content fred.txt                        # display contents, ('gc','cat','type')
@@ -117,7 +121,7 @@ Examples of common commands.
    PS> rm fred.txt                                 # using the 'rm' alias to delete a file
    
    # Starting applications, start-process ('saps','start')
-   #   Note: quotes, pathnames and file extensions are optional
+   #   Note: quotes, pathnames and file extensions are typically optional
    PS> start-process 'notepad'                     # open notepad.exe (can use notepad.exe)
    PS> start-process 'https://nonbleedingedge.com' # open URL with browser (Microsoft-Edge)
    PS> start-process 'explorer'                    # start explorer.exe (can use explorer.exe)
@@ -133,6 +137,7 @@ Examples of common commands.
    PS> get-disk                                    # disk serial number, state etc.
    PS> get-volume                                  # volumes on your disk.
 
+Some references which may help at the beginning.
 
 * `PowerShell for Experienced Bash users <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#map-book-for-experienced-bash-users>`_
 * `10 basic PowerShell commands that every Windows 10 user should know <https://www.thewindowsclub.com/basic-powershell-commands-windows>`_
@@ -190,7 +195,6 @@ Viewing Files
 =============
 ::
 
-   PS> get-content <file> | select -last 20             # get last 20 lines
    PS> get-content <file> -wait                         # tailing a log-file
    PS> get-content <file> | select -first 10            # first 10 lines
    PS> get-content <file> | select -last 10             # last 10 lines
@@ -202,7 +206,6 @@ Viewing Files
    PS> select-string -NotMatch 'str1' <file>            # all lines *not* containing 'str1'
    PS> select-string ('str1','str2') <file>             # all lines containing 'str1' or 'str2'
    PS> select-string -NotMatch ('str1','str2') <file>   # all lines *not* containing 'str1' or 'str2'
-   PS> select-string <regex> <file> | select -last 10   # last 10 lines containing <regex>
    
    PS> select-string <regex> <file> | select -first 10  # first 10 lines containing <regex>
    PS> select-string <regex> <file> | select -last 10   # last 10 lines containing of <regex>
@@ -258,7 +261,7 @@ HotFixes
    PS> get-hotfix                    # list all installed hot fixes 
    PS> get-hotfix -Id KB4516115      # when was hotfix installed
    
-   # To get hotfix details (random choice, happens to be an Adobe Flash update)
+   # To get hotfix details (example is a random choice, happens to be an Adobe Flash update)
    PS> start-process "https://www.catalog.update.microsoft.com/Search.aspx?q=KB4516115" 
 
 
@@ -300,6 +303,166 @@ The ``out-gridview`` renders the output the data in an interactive table.
    PS> for ($i =0; $i -lt $f.length; $i++) { 
            write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age) 
        }
+
+JSON files
+==========
+
+PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are installed.
+
+::
+
+   PS> get-content file2.json
+   {
+           "family":"flintstone",
+           "members":
+                   [
+                           {"Name":"Fred", "Age":"30"},
+                           {"Name":"Wilma", "Age":"25"},
+                           {"Name":"Pebbles", "Age":"1"},
+                           {"Name":"Dino", "Age":"5"}
+                   ]
+   }
+
+   PS> get-content file2.json | ConvertFrom-Json
+   family     members
+   ------     -------
+   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
+
+
+   PS> $obj = get-content file2.json | convertfrom-json
+   PS> $obj
+   family     members
+   ------     -------
+   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
+   
+   PS> $obj.family                                      # returns flintstone
+   PS> $obj.members[0].name                             # returns Fred
+   PS> $obj.members[0].age                              # returns 30
+   PS> $obj.members[0].age = 35                         # set Fred's age to 35
+   PS> $obj.members[0].age                              # now returns 35
+   PS> $obj | convertto-json | add-content newfile.json # save as JSON
+   
+   PS> $obj.members.name                                # returns: Fred Wilma Pebbles Dino
+   PS> $obj.members.age                                 # returns: 35 25 1 5
+   PS> $obj.members.age[0]                              # returns  35
+   PS> $obj.members.age[0] = 37                         # immutable, silently fails, no error
+   PS> $obj.members.age[0]                              # returns 35
+   
+   PS> remove-variable -name obj                        # cleanup
+   
+   PS> get-content newfile.json
+   {
+       "family":  "flintstone",
+       "members":  [
+                       {
+                           "Name":  "Fred",
+                           "Age":  35
+                       },
+                       {
+                           "Name":  "Wilma",
+                           "Age":  "25"
+                       },
+                       {
+                           "Name":  "Pebbles",
+                           "Age":  "1"
+                       },
+                       {
+                           "Name":  "Dino",
+                           "Age":  "5"
+                       }
+                   ]
+   }
+   
+* `ConvertTo-Json converts an object to a JSON-formatted string. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json>`_
+* `ConvertFrom-Json converts a JSON-formatted string to a custom object or a hash table. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json>`_
+* `Introduction to JSON courtesy of W3Schools <https://www.w3schools.com/js/js_json_intro.asp>`_
+
+XML files
+=========
+
+``Powershell`` supports full manipulation of the XML DOM, read the *Introduction to XML* and *.NET XmlDocument Class* for more information.
+The example shown is very redimentary, and shows only a few of the manipulations you can perform to XML objects.
+
+The Common Language Infrastructure (CLI) cmdlets ``Export-Clixml`` and ``Import-Clixml`` provide a simplified way to save and reload 
+your objects for use with ``PowerShell``
+
+::
+
+   PS> get-content .\file2.xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <family surname = "Flintstone">
+           <member>
+                   <name>Fred</name>
+                   <age>30</age>
+           </member>
+           <member>
+                   <name>Wilma</name>
+                   <age>25</age>
+           </member>
+           <member>
+                   <name>Pebbles</name>
+                   <age>1</age>
+           </member>
+           <member>
+                   <name>Dino</name>
+                   <age>5</age>
+           </member>
+   </family>
+   
+   PS> $obj = [XML] (get-content .\file2.xml) # returns a System.Xml.XmlDocument object
+   
+   PS> $obj.childnodes                        # returns all the child nodes
+   PS> $obj.xml                               # returns version="1.0" encoding="UTF-8"
+   PS> $obj.childnodes.surname                # Flintstone
+   PS> $obj.childnodes.member.name            # returns Fred Wilma Pebbles Dino
+   PS> $obj.childnodes.member.age             # returns 30 25 1 5
+   
+   PS> $obj.ChildNodes[0].NextSibling
+   surname    member
+   -------    ------
+   Flintstone {Fred, Wilma, Pebbles, Dino}
+
+   PS> $obj.GetElementsByTagName("member");
+   name    age
+   ----    ---
+   Fred    30
+   Wilma   25
+   Pebbles 1
+   Dino    5
+
+   PS> $obj.GetElementsByTagName("member")[0].name       # returns Fred
+   PS> $obj.GetElementsByTagName("member")[0].age        # returns 30
+   PS> $obj.GetElementsByTagName("member")[0].age = 35   # Errors, only strings can be used.
+   PS> $obj.GetElementsByTagName("member")[0].age = "35" # Fred is now older
+   PS> $obj.GetElementsByTagName("member")[0].age        # returns 35
+   PS> $obj.Save("$PWD\newfile.xml")                     # needs a full pathname
+
+   PS> get-content newfile.xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <family surname="Flintstone">
+     <member>
+       <name>Fred</name>
+       <age>35</age>
+     </member>
+     <member>
+       <name>Wilma</name>
+       <age>25</age>
+     </member>
+     <member>
+       <name>Pebbles</name>
+       <age>1</age>
+     </member>
+     <member>
+       <name>Dino</name>
+       <age>5</age>
+     </member>
+   </family>
+
+
+* `Introduction to XML courtesy of W3Schools <https://www.w3schools.com/XML/xml_whatis.asp>`_
+* `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_
+* `Exports Powershells object to a CLIXML file <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_
+* `Imports a CLIXML file and creates corresponding objects in PowerShell. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_
 
 Formatting Output
 =================
