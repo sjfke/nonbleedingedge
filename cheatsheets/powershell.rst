@@ -184,9 +184,9 @@ Processes
    PS> get-process | get-member                                       # show returned object
    PS> get-process | select -first 10                                 # first 10 processes
    PS> get-process | select -last 10                                  # last 10 processes
-   PS> get-process | sort -property ws | select -last 10              # last 10 sorted
-   PS> get-process | sort -property ws | select -first 10             # first 10 sorted
-   PS> get-process | sort -property ws -descending | select -first 10 # reverse sort first 10
+   PS> get-process | sort -property workingset | select -last 10      # last 10 sorted
+   PS> get-process | sort -property workingset | select -first 10     # first 10 sorted
+   PS> get-process | sort -property ws -descending | select -first 10 # reversed first 10 (ws=workingset)
    PS> get-process | where {$_.processname -match "^p.*"}             # all processes starting with "p"
    PS> get-process | select -property Name,Id,WS | out-host -paging   # paged (more/less) output
    PS> get-process | out-gridview                                     # interactive static table view
@@ -217,38 +217,41 @@ Computer Information
 
    # Classnames: Win32_BIOS, Win32_Processor, Win32_ComputerSystem, Win32_LocalTime, 
    #             Win32_LogicalDisk, Win32_LogonSession, Win32_QuickFixEngineering, Win32_Service
+   PS> get-cimclass | out-host -paging                      # lists all available classes
 
    PS> get-ciminstance -classname Win32_BIOS                # bios version
    PS> get-ciminstance -classname Win32_Processor           # processor information
    PS> get-ciminstance -classname Win32_ComputerSystem      # computer name, model etc.
    PS> get-ciminstance -classname Win32_QuickFixEngineering # hotfixes installed on which date
    PS> get-ciminstance -classname Win32_QuickFixEngineering -property HotFixID | select -property hotfixid
+   
+ * `Get-CimInstance <https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance>`_
 
 Windows EventLog
 ================
 
 ::
 
-   PS> get-eventlog -list                                                    # list a summary of the events
+   PS> get-eventlog -list                                                    # list a summary count of the events
    PS> get-eventlog -logname system -newest 5                                # last 5 system events
    PS> get-eventlog -logname system -entrytype error | out-host -paging      # system error events
-   
-   PS> get-eventlog -logname application | out-host -paging                  # application events 
+
+   PS> get-eventlog -logname application | out-host -paging                  # lists application events (with index number)
    PS> get-eventlog -logname application -Index 14338 | select -Property *   # details of application event 14338
 
-   PS> PS>events = get-eventlog -logname system -newest 1000                   # capture last 1000 system events
-   PS> PS>events | group -property source -noelement | sort -property count -descending # categorize them
+   PS> $events = get-eventlog -logname system -newest 1000                   # capture last 1000 system events
+   PS> $events | group -property source -noelement | sort -property count -descending # categorize them
    
    PS> get-eventlog -logname application -source MSSQLSERVER | out-host -paging
-   PS> get-eventlog -logname application -source MSSQLSERVER -after 18/6/2019 | out-host -paging
+   PS> get-eventlog -logname application -source MSSQLSERVER -after '11/18/2020' | out-host -paging
    
    # Gets events from event logs and event tracing log files (less useful)
-   PS> (Get-WinEvent -ListLog Application).ProviderNames | out-host -paging # who is writing Application logs
+   PS> (Get-WinEvent -ListLog Application).ProviderNames | out-host -paging  # who is writing Application logs
    
    PS> get-winevent -filterhashtable @{logname='application'} | get-member
    
    PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | out-host -paging
-   PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | where {PS>_.Message -like '*error*'} | out-host -paging
+   PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | where {$_.Message -like '*error*'} | out-host -paging
 
 * `Event Log Parsing <http://colleenmorrow.com/2012/09/20/parsing-windows-event-logs-with-powershell/>`_
 * `Get-WinEvent <https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Diagnostics/Get-WinEvent>`_
@@ -258,7 +261,7 @@ HotFixes
 
 ::
 
-   PS> get-hotfix                    # list all installed hot fixes 
+   PS> get-hotfix                    # list all installed hot fixes and their ID
    PS> get-hotfix -Id KB4516115      # when was hotfix installed
    
    # To get hotfix details (example is a random choice, happens to be an Adobe Flash update)
@@ -271,10 +274,11 @@ Command Line History
 You can recall and repeat commands::
 
    PS> get-history
-   PS> invoke-history 1
-   PS> get-history | select-string -pattern 'ping'
-   PS> get-history | where {PS>_.CommandLine -like "*ping*"} 
-   PS> get-history | format-list -property *               # execution time and status             
+   PS> invoke-history 10                                   # execute 10 in your history (aliases 'r' and 'ihy')
+   PS> r 10                                                # same using the alias
+   PS> get-history | select-string -pattern 'get'          # all the get-commands in your command history
+   PS> get-history | where {$_.CommandLine -like "*get*"}  # all the get-commands in your command history
+   PS> get-history | format-list -property *               # execution Start/EndExecutiontimes and status             
    PS> get-history -count 100                              # get 100 lines
    PS> clear-history
    
@@ -303,6 +307,9 @@ The ``out-gridview`` renders the output the data in an interactive table.
    PS> for ($i =0; $i -lt $f.length; $i++) { 
            write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age) 
        }
+
+   PS> import-csv -delimiter ';' file.csv | out-gridview
+
 
 JSON files
 ==========
@@ -380,8 +387,9 @@ PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are
 XML files
 =========
 
-``Powershell`` supports full manipulation of the XML DOM, read the *Introduction to XML* and *.NET XmlDocument Class* for more information.
-The example shown is very redimentary, and shows only a few of the manipulations you can perform to XML objects.
+``Powershell`` supports full manipulation of the XML DOM, read the `Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ 
+and `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more information. The examples shown 
+are very redimentary, and only show a few of the manipulations you can perform on XML objects.
 
 The Common Language Infrastructure (CLI) cmdlets ``Export-Clixml`` and ``Import-Clixml`` provide a simplified way to save and reload 
 your objects for use with ``PowerShell``
