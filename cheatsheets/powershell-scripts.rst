@@ -18,7 +18,7 @@ that you can use if you need it.
 Introduction
 ============
 
-``PowerShell`` is very powerful scripting language and is often abused by **would-be** hackers, so by default laptop versions 
+``PowerShell`` is very powerful scripting language and is often the target of  **would-be** hackers, so by default laptop versions 
 of Windows will not execute ``PowerShell scripts`` although individual ``cmdlets`` can be executed, but Windows servers will 
 usually allow ``RemoteSigned`` scripts to be run.
 
