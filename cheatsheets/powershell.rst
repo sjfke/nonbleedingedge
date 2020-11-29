@@ -384,15 +384,16 @@ PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are
 * `ConvertFrom-Json converts a JSON-formatted string to a custom object or a hash table. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json>`_
 * `Introduction to JSON courtesy of W3Schools <https://www.w3schools.com/js/js_json_intro.asp>`_
 
-XML files
-=========
+Reading XML files
+=================
 
 ``Powershell`` supports full manipulation of the XML DOM, read the `Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ 
 and `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more information. The examples shown 
 are very redimentary, and only show a few of the manipulations you can perform on XML objects.
 
-The Common Language Infrastructure (CLI) cmdlets ``Export-Clixml`` and ``Import-Clixml`` provide a simplified way to save and reload 
-your objects for use with ``PowerShell``
+Note, the Common Language Infrastructure (CLI) cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
+and reload your ``PowerShell`` objects.
 
 ::
 
@@ -467,10 +468,86 @@ your objects for use with ``PowerShell``
    </family>
 
 
-* `Introduction to XML courtesy of W3Schools <https://www.w3schools.com/XML/xml_whatis.asp>`_
-* `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_
-* `Exports Powershells object to a CLIXML file <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_
-* `Imports a CLIXML file and creates corresponding objects in PowerShell. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_
+Writing XML files
+=================
+
+To generate an XML file, instantiate the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
+
+Note, the Common Language Infrastructure (CLI) cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
+and reload your ``PowerShell`` objects.
+
+::
+
+   $settings = New-Object System.Xml.XmlWriterSettings  # to update XmlWriterSettings
+   $settings.Indent = $true                             # indented XML
+   $settings.IndentChars = "`t"                         # <TAB> indents
+   $settings.Encoding = [System.Text.Encoding]::UTF8    # force the default UTF8 encoding; others ASCII, Unicode...
+   
+   $obj = [System.XML.XmlWriter]::Create("C:\users\geoff\bedrock.xml", $settings) # note full-pathname
+   
+   # Simpler approach but no encoding is specified in XML header and again note full-pathname
+   # $obj = New-Object System.XMl.XmlTextWriter('C:\users\geoff\bedrock.xml', $null)
+   # $obj.Formatting = 'Indented'
+   # $obj.Indentation = 1
+   # $obj.IndentChar = "`t"
+   
+   $obj.WriteStartDocument()                          # start xml document, <?xml version="1.0"?>
+   $obj.WriteComment('Bedrock Families')              # add a comment, <!-- Bedrock Families -->
+   $obj.WriteStartElement('family')                   # start element <family>
+   $obj.WriteAttributeString('surname', 'Flintstone') # add surname attribute
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Fred')             # add <name>Fred</name>
+   $obj.WriteElementString('age','30')                # add <age>30</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Wilma')            # add <name>Wilma</name>
+   $obj.WriteElementString('age','25')                # add <age>25</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Pebbles')          # add <name>Pebbles</name>
+   $obj.WriteElementString('age','1')                 # add <age>1</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Dino')             # add <name>Dino</name>
+   $obj.WriteElementString('age','5')                 # add <age>5</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteEndElement()                             # end element <family>
+   
+   $obj.WriteEndDocument()                            # end document
+   $obj.Flush()                                       # flush
+   $obj.Close()                                       # close, writes the file
+   
+   PS> get-content C:\users\geoff\bedrock.xml
+   <?xml version="1.0" encoding="utf-8"?>
+   <!--Bedrock Families-->
+   <family surname="Flintstone">
+           <member>
+                   <name>Fred</name>
+                   <age>30</age>
+           </member>
+           <member>
+                   <name>Wilma</name>
+                   <age>25</age>
+           </member>
+           <member>
+                   <name>Pebbles</name>
+                   <age>1</age>
+           </member>
+           <member>
+                   <name>Dino</name>
+                   <age>5</age>
+           </member>
+   </family>
+   
+   PS> remove-variable -name settings
+   PS> remove-variable -name obj
+   PS> remove-item C:\users\geoff\bedrock.xml
 
 Formatting Output
 =================
