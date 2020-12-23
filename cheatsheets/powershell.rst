@@ -31,10 +31,12 @@ My personal preference:
 * camelCase for variable names, so ``dateString`` , rather than ``date_string``;
 
 A `Windows Powershell ISE <https://docs.microsoft.com/en-us/powershell/scripting/components/ise/introducing-the-windows-powershell-ise?view=powershell-7>`_  
-is provided if you need more interactive assistance and is very useful when learning.
+is provided if you need more interactive assistance and is very useful when learning. You might also want to consider `Windows Terminal <https://github.com/microsoft/terminal>`_ which supports various command-line tools and shells like 
+Command Prompt, PowerShell, WSL, and includes multiple tabs, panes, Unicode and UTF-8 character support, a GPU accelerated text rendering engine, and 
+custom themes, styles, and configurations.
 
 There are a lot of online documents and tutorials about ``PowerShell`` but unfortunately, as is often the case, this means what you are searching for is 
-either not easy to explain or not well understood by the author(s) or both... so be careful about blindly doing a *copy-and-paste* of examples.
+either not simple to explain or not well understood by the author(s) or both... so be careful about blindly doing a *copy-and-paste* of examples.
 
 While learning I found the following helpful when starting:
 
@@ -45,7 +47,7 @@ While learning I found the following helpful when starting:
 Getting Started
 ===============
 
-Like any shell PowerShell provides an environment which allows interaction with files, folders, processes, the computer and network interfaces etc, but as 
+Like any shell, PowerShell provides an environment which allows interaction with files, folders, processes, the computer and network interfaces etc, but as 
 objects, for example:
 
 * An ``Item`` object, which can be a *file*, *directory*, *link*, *registry-key* etc;
@@ -67,19 +69,19 @@ You should become familiar with ``get-help`` and ``get-member`` cmdlets::
 
    PS> get-help get-childitem             # Help on Get-ChildItem
    PS> get-help get-childiten -online     # Online Web based documentation from Microsoft
-   PS> get-help get-childitem -showwindow # Help in a separate window
+   PS> get-help get-childitem -showWindow # Help in a separate window
    PS> get-childitem | get-member         # What is the object type, its methods and properties
 
     
    PS> get-help get-content               # notice its aliases 'gc', 'cat', 'type'
-   PS> get-help select-string             # regular-expression based string search (UNIX grep)
+   PS> get-help select-string             # regular-expression based string search (like UNIX grep)
    PS> get-help get-location              # alias 'gl' and 'pwd'.
    PS> get-help get-command               # what commands are available
    PS> get-help select-object             # 'select' or set object properties
    PS> get-help where-object              # 'where' filter on object property
    PS> get-help tee-object                # 'tee' like the UNIX command
-   PS> get-help sort-object               # object property based sorting, (UNIX 'sort')
-   PS> get-help measure-object            # count lines, characters (UNIX 'wc')
+   PS> get-help sort-object               # object property based sorting, (like UNIX 'sort')
+   PS> get-help measure-object            # count lines, characters (like UNIX 'wc')
    PS> get-help out-host                  # Similar to UNIX 'more' and 'less'
 
 Quick Introduction
@@ -112,6 +114,7 @@ Examples of common commands.
    PS> write-output "append some text" >> fred.txt # append stdout to a Unicode file
    
    PS> write-output "ascii text" | add-content -encoding ASCII fred.txt # 7-bit ASCII file
+   PS> write-error "stack trace like message"
    
    PS> get-item <file> | select -property Name,Length,Mode,CreationTime
    
@@ -393,7 +396,7 @@ are very redimentary, and only show a few of the manipulations you can perform o
 
 Note, the Common Language Infrastructure (CLI) cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
 `Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
-and reload your ``PowerShell`` objects.
+and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
 
 ::
 
@@ -471,7 +474,7 @@ and reload your ``PowerShell`` objects.
 Writing XML files
 =================
 
-To generate an XML file, instantiate the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
+To generate an XML file, use the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
 
 Note, the Common Language Infrastructure (CLI) cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
 `Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
@@ -589,6 +592,8 @@ Specified as ``{<index>, <alignment><width>:<format_spec>}``
    PS> get-date -Format 'yyyy-MM-dd:HH:mm:ss'      # 2020-04-27T19:19:05
    PS> get-date -UFormat "%A %m/%d/%Y %R %Z"       # Monday 04/27/2020 19:19 +02
 
-More examples:
-* `Formatting Output <http://powershellprimer.com/html/0013.html>`_
-* `Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
+
+More detailed examples:
+
+* `PowershellPrimer.com: Formatting Output <https://powershellprimer.com/html/0013.html>`_
+* `Microsoft documentation: Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
