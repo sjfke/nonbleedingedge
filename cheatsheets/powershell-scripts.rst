@@ -4,30 +4,43 @@
 PowerShell Scripting Cheatsheet
 *******************************
 
-This is the companion to ``PowerShell Cheatsheet``, which focuses on writing scripts using PowerShell
+This is the companion to ``PowerShell Cheatsheet``, which focuses on writing PowerShell scripts.
 
-``PowerShell`` is a cross-platform task automation and configuration management framework, consisting of a 
-command-line shell and scripting language. It is built on top of the ``.NET Common Language Runtime`` (CLR), accepts and 
-returns ``.NET objects``. This brings entirely new tools and methods for automation, and news levels of frustration and confusion. :-)
+.. topic:: According to Microsoft ``PowerShell``
 
-Unlike traditional command-line interfaces, PowerShell cmdlets are designed to deal with objects. An object is 
-structured information that is more than just the string of characters appearing on the screen, it carries extra information 
-that you can use if you need it.
+   Is a cross-platform task automation and configuration management framework, consisting of a *command-line shell* and 
+   *scripting language* that is built on top of the ``.NET Common Language Runtime`` (CLR), accepts and returns ``.NET objects``.
+   This brings entirely new tools and methods for automation.
+   
+   
+*In my opion these new tools and methods also bring new levels of frustration and confusion as you have to think differently. :-)*
+
+My personal usage of PowerShell, are as standalone utilities deployed in a single file to automate specific tasks. I dislike
+deploying and manitaining multiple files which perform a single task, so I tend to *copy-and-paste* frequently used 
+functions, such as *dumpArrayList*, *dumpHashTable* because like many modern languages there is no mechanism to textually 
+including your favourite functions into the source when writing and testing. 
 
 
 Introduction
 ============
 
-``PowerShell`` is very powerful scripting language and is often the target of  **would-be** hackers, so by default laptop versions 
-of Windows will not execute ``PowerShell scripts`` although individual ``cmdlets`` can be executed, but Windows servers will 
-usually allow ``RemoteSigned`` scripts to be run.
+Unfortunately ``PowerShell`` is very powerful scripting language, it is often used to automate regular tasks, and hence is an ideal
+target for **would-be** hackers. To mitigate this, while individual ``cmdlets`` will always work, Microsoft limits if/when PowerShell 
+scripts can be executed. 
 
-Whether a ``PowerShell`` script can be executed is governed by the execution policy, ``get-executionpolicy`` displays this for 
-the current ``PowerShell``, add the ``-List`` parameter and it shows all the policies in highest to lowest priority (scope) order. 
+* *Windows Pro/Home* usually disallows ``PowerShell scripts`` but permits ``cmdlets`` to be executed;
+* *Windows Server* usually allows ``RemoteSigned`` scripts to be run on the ``LocalMachine``;
 
-In the example only the ``LocalMachine`` policy is defined, and is set to ``restricted`` so PowerShell scripts cannot be run. 
+The execution policy governs whether a ``PowerShell`` script can be executed, ``get-executionpolicy`` displays this for 
+the current ``PowerShell``, the ``-List`` argument shows all the policies in highest to lowest priority (scope) order. 
+
+Below only the ``LocalMachine`` policy is defined, and is set to ``restricted`` so ``PowerShell scripts`` cannot be executed, but 
+indiviual commands, ``cmdlets`` can be executed.
 
 :: 
+
+   PS> Get-ExecutionPolicy
+   Restricted
 
    PS> Get-ExecutionPolicy -List
    
@@ -38,96 +51,41 @@ In the example only the ``LocalMachine`` policy is defined, and is set to ``rest
          Process       Undefined
      CurrentUser       Undefined
     LocalMachine      Restricted  # lowest priority
-    
-   PS> Get-ExecutionPolicy
-   Restricted
 
-See: `About Execution Policies <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_ for more details.
 
-PowerShell's execution policies:
-
-* ``Restricted`` does not permit any scripts to run (*.ps1xml, .psm1, .ps1*);
-* ``AllSigned``, prevents running scripts that do not have a digital signature;
-* ``RemoteSigned`` prevents running downloaded scripts that do not have a digital signature;
-* ``Unrestricted`` runs scripts without a digital signature, warning about non-local intranet zone scripts;
-* ``Bypass`` allows running of scripts without any digital signature, and without any warnings;
-* ``Undefined`` no execution policy is defined;
-
-PowerShell's execution policy scope:
-
-* ``MachinePolicy`` set by a Group Policy for all users of the computer;
-* ``UserPolicy`` set by a Group Policy for the current user of the computer;
-* ``Process`` current PowerShell session, environment variable ``$env:PSExecutionPolicyPreference``;
-* ``CurrentUser`` affects only the current user, ``HKEY_CURRENT_USER`` registry subkey;
-* ``LocalMachine`` all users on the current computer, ``HKEY_LOCAL_MACHINE`` registry subkey;
-
-By default on a Windows Server the execution policy is, ``LocalMachine RemoteSigned``, but for your Windows Laptop or Desktop it will be ``LocalMachine Restricted``.
-To change the execution policy, you must start a PowerShell as Administrator and use ``Set-ExecutionPolicy`` as shown, you will be prompted to confirm this action.
-
-In a commercial or industrial environment ask your Windows Adminstrator, but company policy may be *AllSigned*.
+If your *ExecutionPolicy* is as above, a quick fix is to start a *PowerShell as Administrator* and reset it as shown below, but you 
+should read the `PowerShell ExectionPolicies`_ section, especially if you cannot change this setting.
 
 ::
 
-   # Stops running of downloaded scripts
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned # sets: LocalMachine RemoteSigned
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Restricted   # sets: LocalMachine Restricted
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Undefined    # sets: LocalMachine Undefined
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # just me
+   # Set *ONE* of these ExecutionPolicies: 'LocalMachine RemoteSigned' or 'CurrentUser RemoteSigned'
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
    
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate code-signing   
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
-   
-   
-How to sign scripts for your own use.
-=====================================
-
-To add a digital signature to a script you must sign it with a code signing certificate:
-
-* Purchased from a certification authority, which allows executing your script on other computers;
-* A free self-signed certificate which will only work on your computer;
-
-Typically, a *self-signed certificate* is only used to sign your own scripts and to sign scripts that you get 
-from other sources that you have verified to be safe, and should be used in an industrial or commercial enviroment.
-
-
-Microsoft's official guide:
-
-* `About Signing <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_signing>`_
-* `How to Create a Self-Signed Certificate with PowerShell <https://www.cloudsavvyit.com/3274/how-to-create-a-self-signed-certificate-with-powershell/>`_
-* `Add an Authenticode signature to a PowerShell script or other file. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-authenticodesignature>`_
-* `New-SelfSignedCertificate <https://docs.microsoft.com/en-us/powershell/module/pkiclient/new-selfsignedcertificate>`_
-* `Generating self-signed certificates on Windows <https://medium.com/the-new-control-plane/generating-self-signed-certificates-on-windows-7812a600c2d8>`_
-* `Generate and export certificates for Point-to-Site using PowerShell <https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site>`_
-
-How to get around signed scripts
-================================
-
-Some proposals to avoid signing PowerShell scripts.
-
-* `Provide A Batch File To Run Your PowerShell Script From <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
-* `Set Up Powershell Script For Automatic Execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
-
-Some internet posts recommend disabling the execution policy, but I would advise against.
-
-::
-
-   ### DO NOT DO THE FOLLOWING, UNLESS YOU KNOW WHAT YOU ARE DOING  ###
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted
-
+           Scope ExecutionPolicy
+           ----- ---------------
+   MachinePolicy       Undefined  # highest priority
+      UserPolicy       Undefined
+         Process       Undefined
+     CurrentUser       Undefined
+    LocalMachine    RemoteSigned  # lowest priority
+ 
 
 PowerShell Language
 ===================
 
-The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is based on is built on 
+The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is built on 
 top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us/dotnet/standard/clr>`_ , and 
-manipulates `.NET objects <https://docs.microsoft.com/en-us/dotnet/api/system.object>`_.
+manipulates `.NET objects <https://docs.microsoft.com/en-us/dotnet/api/system.object>`_. If the language itself 
+does not provide what you need, there may be a `module <https://social.technet.microsoft.com/wiki/contents/articles/4308.popular-powershell-modules.aspx>`_
+you can download or you can access the *.Net_Framework* utiltities directly, a good example being *ArrayLists*.
 
 
 Like other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
-Function support both ``named`` and ``positional`` arguments are supported, and allows them to be mixed, which can be confusing, so in 
-most cases it is clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather than individual name or positional parameters.
+Functions support both ``named`` and ``positional`` arguments, and allows them to be mixed, which can be confusing, so in 
+most cases it is clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather 
+than individual name or positional parameters.
 
 Variables
 =========
@@ -155,8 +113,8 @@ Common forms::
 
 Less common forms::
  
-   PS> set-variable -name age 5         # same as PS>age = 5
-   PS> set-variable -name name Dino     # same as PS>name = "Dino"
+   PS> set-variable -name age 5         # same as $age = 5
+   PS> set-variable -name name Dino     # same as $name = "Dino" (variable's name is *name*)
  
    PS> clear-variable -name age         # clear $age; $name = $null
    PS> clear-variable -name name        # clear $name; $name = $null
@@ -204,11 +162,19 @@ Array variables are a fixed size, can have mixed values and can be multi-dimensi
    PS> $a[0][0]                                    # fred
    PS> $a[0][1]                                    # 30
    
-   
+For more details on arrays, see `Arrays TutorialsPoint <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
+
+If you need dynamic sized arrays, see *PowerShell ArrayList* and *Generic List*
+
+* `ArrayList PowerShellExplained <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_, and `ArrayList Microsoft <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8>`_
+* `Collections in General <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_
+
+
 HashTables
 ==========
 
-Unordered collection of key:value pairs, later versions of ``PowersShell`` support ``PS>hash = [ordered]@{}``
+Unordered collection of key:value pairs, but later versions of ``PowersShell`` support ``$hash = [ordered]@{}`` where the hash 
+elements have a known/fixed order.
 
 ::
 
@@ -236,11 +202,15 @@ Unordered collection of key:value pairs, later versions of ``PowersShell`` suppo
    
    # creating a populated hash, one-liner
    PS> $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
-   
    PS> $h.keys            # unordered: Dino, Pebbles, Fred, Wilma
    PS> $h.values          # unordered: 5, 1, 30, 25 (but same as $h.keys order)
    
-   # key order is random
+   # later PowerShell versions allow the order to be fixed.
+   PS> $h = [ordered]@{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+   PS> $h.keys            # ordered: Fred, Wilma, Pebbles, Dino
+   PS> $h.values          # ordered: 30, 25, 1, 5 
+   
+   # key order is random, unless [ordered] was used in the declaration
    PS> foreach($key in $h.keys) {
        write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
    }
@@ -271,6 +241,83 @@ Excellent review of PowerShell HashTables:
 
 * `Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
 
+PowerShell Script Structure
+===========================
+
+Gist template
+-------------
+
+Functions
+---------
+Write something
+
+Function Arguments
+------------------
+PowerShell allows mixed named and positional arguments which is not always clear.
+Safest way of passing function arguments, is to use ``splatting`` 
+
+::
+  
+   $arguments = @{
+      Name        = 'TestNetwork'
+      StartRange  = '10.0.0.2'
+      EndRange    = '10.0.0.254'
+      SubnetMask  = '255.255.255.0'
+      Description = 'Network for testlab A'
+      LeaseDuration = (New-TimeSpan -Days 8)
+      Type = "Both"
+   }
+   Add-DhcpServerv4Scope @arguments
+   
+Running PowerShell scripts
+==========================
+
+PowerShell is an often abused hackers attack vector, so modern versions of Windows prevent PowerShell scripts from
+being executed *out-of-the-box*, although the command line will work. 
+
+Many articles suggest the disabling this security feature... **DO NOT DO THIS** 
+
+Furthermore most companies harden their Windows laptop and server installations, so disabling may not work anyway.
+
+Ways to work with this restriction, are not intuitive... it took me some time to figure it out, and I am 
+still be no means an expert, hopefully this will get you started, and you can inform me once you have mastered ``PowerShell``.
+
+The execution-policy, controls this and you should probably look at the following:
+
+* `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
+* `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
+* `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
+
+If you start ``PowerShell`` as administrator, then some of these settings can be changed. 
+The execution policy to change is 'CurrentUser', *your* rights, see Get-ExecutionPolicy link.
+A default install will most likely look as shown.
+
+::
+
+   PS> Get-ExecutionPolicy -list
+   MachinePolicy    Undefined
+      UserPolicy    Undefined
+         Process    Undefined
+     CurrentUser    Restricted
+    LocalMachine    Restricted
+    
+   # Permit yourself to run PowerShell scripts
+   PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
+   PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
+   PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
+
+Choosing **Unrestricted** means that any PowerShell script, even ones inadvertently or unknowingly 
+downloaded from the Internet will run as you, and with your privileges, so **be careful**
+
+When developing the following avoids having certificates installed and updating the signature each time.
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  PS> powershell.exe -noprofile -executionpolicy bypass -file .\script.ps1 
+  
+Generating and Installing Certificates
+======================================
+
+To come shortly. 
 
 Cruft that needs to be cleaned up
 =================================
@@ -311,55 +358,6 @@ There are many online guides and tutorials, which usually means the subject matt
 * `TutorialsPoint PowerShell <https://www.tutorialspoint.com/powershell/index.htm>`_
 * `PowerShell Tutorial <http://powershelltutorial.net/>`_
 
-Running PowerShell scripts
-==========================
-
-PowerShell is an often abused hackers attack vector, so modern versions of Windows prevent PowerShell scripts from
-being executed *out-of-the-box*, although the command line will work. 
-
-Many articles suggest the disabling this security feature... **DO NOT DO THIS** 
-
-Furthermore most companies harden their Windows laptop and server installations, so disabling may not work anyway.
-
-Ways to work with this restriction, are not intuitive... it took me some time to figure it out, and I am 
-still be no means an expert, hopefully this will get you started, and you can inform me once you have mastered ``PowerShell``.
-
-The execution-policy, controls this and you should probably look at the following:
-
-* `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
-* `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
-* `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
-
-If you start ``PowerShell`` as administrator, then some of these settings can be changed. 
-The execution policy to change is 'CurrentUser', *your* rights, see Get-ExecutionPolicy link.
-A default install will most likely look as shown.
-
-::
-
-	PS> Get-ExecutionPolicy -list
-	MachinePolicy    Undefined
-	   UserPolicy    Undefined
-	      Process    Undefined
-	  CurrentUser    Restricted
-	 LocalMachine    Restricted
-	 
-	# Permit yourself to run PowerShell scripts
-	PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
-	PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
-	PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
-
-Choosing **Unrestricted** means that any PowerShell script, even ones inadvertently or unknowingly 
-downloaded from the Internet will run as you, and with your privileges, so **be careful**
-
-When developing the following avoids having certificates installed and updating the signature each time.
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-  PS> powershell.exe -noprofile -executionpolicy bypass -file .\script.ps1 
-  
-Generating and Installing Certificates
-======================================
-
-To come shortly. 
 
 Variables
 ---------
@@ -474,30 +472,11 @@ Powershell Hashes
 Excellent review:
 * `Hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
 
-Functions
----------
-Write something
 
-Function Arguments
-------------------
-PowerShell allows mixed named and positional arguments which is not always clear.
-Safest way of passing function arguments, is to use ``splatting`` 
-
-::
-  
-	$arguments = @{
-		Name        = 'TestNetwork'
-		StartRange  = '10.0.0.2'
-		EndRange    = '10.0.0.254'
-		SubnetMask  = '255.255.255.0'
-		Description = 'Network for testlab A'
-		LeaseDuration = (New-TimeSpan -Days 8)
-		Type = "Both"
-	}
-	Add-DhcpServerv4Scope @arguments   
 
 Powershell Arrays
------------------
+=================
+
 Arrays are a fixed size, can have mixed values, and be multi-dimensional.
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -510,14 +489,7 @@ Arrays are a fixed size, can have mixed values, and be multi-dimensional.
 	[char[]]$E = ('F', 'W', 'P', 'D') # only [char] values
 
 
-* `Arrays TutorialsPoint <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
 
-PowerShell ArrayList and Generic List
--------------------------------------
-
-* `ArrayList PowerS<https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_
-* `ArrayList Microsoft <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8>`_
-* `Collections in General <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_ 
 
 PowerShell Objects
 ------------------
@@ -537,6 +509,87 @@ PowerShell Objects
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error?view=powershell-3.0
 
      
+PowerShell ExectionPolicies
+=========================== 
+
+See: `About Execution Policies <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_ for more details.
+
+PowerShell's execution policies:
+
+* ``Restricted`` does not permit any scripts to run (*.ps1xml, .psm1, .ps1*);
+* ``AllSigned``, prevents running scripts that do not have a digital signature;
+* ``RemoteSigned`` prevents running downloaded scripts that do not have a digital signature;
+* ``Unrestricted`` runs scripts without a digital signature, warning about non-local intranet zone scripts;
+* ``Bypass`` allows running of scripts without any digital signature, and without any warnings;
+* ``Undefined`` no execution policy is defined;
+
+PowerShell's execution policy scope:
+
+* ``MachinePolicy`` set by a Group Policy for all users of the computer;
+* ``UserPolicy`` set by a Group Policy for the current user of the computer;
+* ``Process`` current PowerShell session, environment variable ``$env:PSExecutionPolicyPreference``;
+* ``CurrentUser`` affects only the current user, ``HKEY_CURRENT_USER`` registry subkey;
+* ``LocalMachine`` all users on the current computer, ``HKEY_LOCAL_MACHINE`` registry subkey;
+
+By default on a Windows Server the execution policy is, ``LocalMachine RemoteSigned``, but for your Windows Laptop or Desktop it will be ``LocalMachine Restricted``.
+To change the execution policy, you must start a PowerShell as Administrator and use ``Set-ExecutionPolicy`` as shown, you will be prompted to confirm this action.
+
+In a commercial or industrial environment ask your Windows Adminstrator, but company policy may be *AllSigned*.
+
+::
+
+   # Stops running of downloaded scripts
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned # sets: LocalMachine RemoteSigned
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Restricted   # sets: LocalMachine Restricted
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Undefined    # sets: LocalMachine Undefined
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # just me
+   
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate code-signing   
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
+   
+   
+How to sign scripts for your own use.
+=====================================
+
+To add a digital signature to a script you must sign it with a code signing certificate:
+
+* Purchased from a certification authority, which allows executing your script on other computers;
+* A free self-signed certificate which will only work on your computer;
+
+Typically, a *self-signed certificate* is only used to sign your own scripts and to sign scripts that you get 
+from other sources that you have verified to be safe, and should be used in an industrial or commercial enviroment.
+
+
+Microsoft's official guide:
+
+* `About Signing <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_signing>`_
+* `How to Create a Self-Signed Certificate with PowerShell <https://www.cloudsavvyit.com/3274/how-to-create-a-self-signed-certificate-with-powershell/>`_
+* `Add an Authenticode signature to a PowerShell script or other file. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-authenticodesignature>`_
+* `New-SelfSignedCertificate <https://docs.microsoft.com/en-us/powershell/module/pkiclient/new-selfsignedcertificate>`_
+* `Generating self-signed certificates on Windows <https://medium.com/the-new-control-plane/generating-self-signed-certificates-on-windows-7812a600c2d8>`_
+* `Generate and export certificates for Point-to-Site using PowerShell <https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site>`_
+
+How to get around signed scripts
+--------------------------------
+
+Some proposals to avoid signing PowerShell scripts.
+
+* `Provide A Batch File To Run Your PowerShell Script From <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
+* `Set Up Powershell Script For Automatic Execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
+
+Some internet posts recommend disabling the execution policy, but I would advise against.
+
+::
+
+   ### DO NOT DO THE FOLLOWING, UNLESS YOU KNOW WHAT YOU ARE DOING  ###
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+
+
+Cruft to Clean UP
+=================
+::
 
     String Splitting
 
