@@ -24,7 +24,7 @@ including your favourite functions into the source when writing and testing.
 Introduction
 ============
 
-Unfortunately ``PowerShell`` is very powerful scripting language, it is often used to automate regular tasks, and hence is an ideal
+Unfortunately ``PowerShell`` is very powerful scripting language, often used to automate regular tasks, and hence is an ideal
 target for **would-be** hackers. To mitigate this, while individual ``cmdlets`` will always work, Microsoft limits if/when PowerShell 
 scripts can be executed. 
 
@@ -32,9 +32,9 @@ scripts can be executed.
 * *Windows Server* usually allows ``RemoteSigned`` scripts to be run on the ``LocalMachine``;
 
 The execution policy governs whether a ``PowerShell`` script can be executed, ``get-executionpolicy`` displays this for 
-the current ``PowerShell``, the ``-List`` argument shows all the policies in highest to lowest priority (scope) order. 
+the current ``PowerShell``, and ``get-executionpolicy -list`` shows all the policies in highest to lowest priority (scope) order. 
 
-Below only the ``LocalMachine`` policy is defined, and is set to ``restricted`` so ``PowerShell scripts`` cannot be executed, but 
+In the example below only the ``LocalMachine`` policy is defined, and is set to ``restricted`` so ``PowerShell`` scripts cannot be executed, but 
 indiviual commands, ``cmdlets`` can be executed.
 
 :: 
@@ -54,11 +54,11 @@ indiviual commands, ``cmdlets`` can be executed.
 
 
 If your *ExecutionPolicy* is as above, a quick fix is to start a *PowerShell as Administrator* and reset it as shown below, but you 
-should read the `PowerShell ExectionPolicies`_ section, especially if you cannot change this setting.
+should read the `PowerShell ExectionPolicies`_ section.
 
 ::
 
-   # Set *ONE* of these ExecutionPolicies: 'LocalMachine RemoteSigned' or 'CurrentUser RemoteSigned'
+   # Set *ONE* of: 'LocalMachine RemoteSigned' or 'CurrentUser RemoteSigned'
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
    PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
@@ -78,19 +78,166 @@ PowerShell Language
 The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is built on 
 top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us/dotnet/standard/clr>`_ , and 
 manipulates `.NET objects <https://docs.microsoft.com/en-us/dotnet/api/system.object>`_. If the language itself 
-does not provide what you need, there may be a `module <https://social.technet.microsoft.com/wiki/contents/articles/4308.popular-powershell-modules.aspx>`_
-you can download or you can access the *.Net_Framework* utiltities directly, a good example being *ArrayLists*.
+does not provide what you need, there may be a `PowerShell Module <https://social.technet.microsoft.com/wiki/contents/articles/4308.popular-powershell-modules.aspx>`_
+you can download or you can access the `.Net APIs <https://docs.microsoft.com/en-us/dotnet/api>`_ directly, a good example being `ArrayLists <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_ which 
+are dynamic in size unlike an *PowerShell Array*.
 
 
 Like other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
-Functions support both ``named`` and ``positional`` arguments, and allows them to be mixed, which can be confusing, so in 
+Functions support both ``named`` and ``positional`` arguments, which can be mixed, this can be confusing, so in 
 most cases it is clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather 
 than individual name or positional parameters.
+
+Useful starting points when learning about the language:
+
+* `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_;
+* `Windows PowerShell Portal <https://social.technet.microsoft.com/wiki/contents/articles/24187.windows-powershell-portal.aspx>`_;
+
+Unlike most texts on prgramming languages I start with a simple but realistic PowerShell example.
+Many of the language details are covered in subsequent sections.
+
+Example PowerShell Script
+=========================
+
+This is a contrived but realistic PowerShell script to illustrate several important points.
+It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which I found extremely useful, but has one or two additons to force 
+the syntax version and to be more strict on the use of uninitialized variables.
+
+::
+
+   #requires -version 2
+   <#
+   .SYNOPSIS
+   
+      9to5IT Template for PowerShell scripts.
+      
+   .DESCRIPTION
+   
+      Displays the names and ages of the flintstones.
+      
+   .PARAMETER names
+   
+      List the names only
+   
+   .PARAMETER ages
+   
+      List the ages only
+   
+   .PARAMETER person <name>
+   
+      List person's age
+   
+   .INPUTS
+   
+      None
+   
+   .OUTPUTS
+   
+      The Requested text.
+   
+   .NOTES
+   
+      Version:        1.0
+   
+      Author:         sjfke
+   
+      Creation Date:  2021.01.03
+   
+      Purpose/Change: Initial script development  
+   
+   .EXAMPLE
+   
+      families.ps1 -names
+   
+   .EXAMPLE
+   
+      families.ps1 -person fred
+      
+   #>
+   param(
+      [switch]$names = $false,
+      [switch]$ages = $false,
+      [string]$person = $null,
+      [switch]$stackTrace = $false
+   )
+   Set-StrictMode -Version 2
+   
+   #---------------------------------------------------------[Initialisations]--------------------------------------------------------
+   
+   # Set Error Action to Silently Continue
+   # $ErrorActionPreference = "SilentlyContinue"
+   
+   # Dot Source required Function Libraries
+   # . "C:\Scripts\Functions\Logging_Functions.ps1"
+   
+   #----------------------------------------------------------[Declarations]----------------------------------------------------------
+   $scriptName = "flintstones.ps1"
+   $scriptVersion = "1.0"
+   
+   #Log File Info
+   # $sLogPath = "C:\Windows\Temp"
+   # $sLogName = "<script_name>.log"
+   # $sLogFile = Join-Path -Path $sLogPath -ChildPath $sLogName
+   
+   $hash = $null
+   
+   #-----------------------------------------------------------[Functions]------------------------------------------------------------
+   
+   function initializeHash {
+      return @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+   }
+   
+   function getNames {
+      return $hash.keys
+   }
+   
+   function getAges {
+      return $hash.values
+   }
+   
+   function getPerson {
+      param(
+         [string]$name = ''
+      )
+      return $hash[$name]
+   }
+   
+   #-----------------------------------------------------------[Execution]------------------------------------------------------------
+   $hash = initializeHash
+   
+   if ($names) {
+      getNames
+   }
+   elseif ($ages) {
+      getAges
+   }
+   elseif (($person -ne '') -and ($person -ne $null)) {
+      $arguments = @{
+         name = $person
+      }
+      getPerson @arguments
+   }
+   else {
+      if ($stackTrace) {
+         write-error("invalid or missing argument") # stack-trace like error message
+      }
+      else {
+         write-warning("{0} v{1}: invalid or missing argument" -f $scriptName, $scriptVersion)
+         exit(1)     
+      }
+   }
+
+Things to note:
+
+* The `#requires -version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires>`_ forces PowerShell version 2 syntax;
+* Initial comment block ``.SYNOPSIS...`` provides the ``get-help`` text, note line-spacing is important;
+* The `param() <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_ block must be the first *non-comment line* for command-line arguments;
+* The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of unintialized variables;
 
 Variables
 =========
 
-Powershell variables are loosely-type, and can be *integers*, *strings*, *arrays*, and *hash-tables*, but also ``.Net`` objects that represent 
+Powershell variables are loosely-typed, can be *integers*, *characters*, *strings*, *arrays*, and *hash-tables*, but also ``.Net`` objects that represent such things as
 *processes*, *services*, *event-logs*, and even *computers*.
 
 Common forms::
@@ -116,7 +263,7 @@ Less common forms::
    PS> set-variable -name age 5         # same as $age = 5
    PS> set-variable -name name Dino     # same as $name = "Dino" (variable's name is *name*)
  
-   PS> clear-variable -name age         # clear $age; $name = $null
+   PS> clear-variable -name age         # clear $age; $age = $null
    PS> clear-variable -name name        # clear $name; $name = $null
    
    PS> remove-variable -name age        # delete variable $age
@@ -145,7 +292,7 @@ Array variables are a fixed size, can have mixed values and can be multi-dimensi
    PS> $a.length         # 3
    PS> $a[0] = 'freddie' # fred becomes freddie
    PS> $a[4] = 'dino'    # Error: Index was outside the bounds of the array.
-   PS> $a = ($a, 'dino') # correct way to add 'dino'
+   PS> $a = ($a, 'dino') # correct way to add 'dino' (note does an array copy)
    
    PS> $b = ('barbey', 'betty', 'bamm-bamm')
    PS> $a = ($a, $b)    # [0]:fred [1]:wilma [2]:pebbles [3]:barney [4]:betty [5]:bamm-bamm 
@@ -162,37 +309,37 @@ Array variables are a fixed size, can have mixed values and can be multi-dimensi
    PS> $a[0][0]                                    # fred
    PS> $a[0][1]                                    # 30
    
-For more details on arrays, see `Arrays TutorialsPoint <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
+For more details on arrays, see `Powershell Array <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_ on TutorialsPoint.
 
-If you need dynamic sized arrays, see *PowerShell ArrayList* and *Generic List*
-
-* `ArrayList PowerShellExplained <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_, and `ArrayList Microsoft <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8>`_
-* `Collections in General <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_
+If you need dynamically resizable arrays, see `ArrayList <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_ on PowerShellExplained, 
+`ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8>`_ on Microsoft Docs, or 
+Kevin Blumenfeld's `Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_ on Kevin Blumenfeld's GitHub Gist.
 
 
 HashTables
 ==========
 
-Unordered collection of key:value pairs, but later versions of ``PowersShell`` support ``$hash = [ordered]@{}`` where the hash 
-elements have a known/fixed order.
+A HashTable is an unordered collection of key:value pairs, synonymous with an object and its properties.
+
+Later versions of ``PowersShell`` support ``$hash = [ordered]@{}`` where the hash elements have a known/fixed order.
 
 ::
 
    PS> $h = @{}              # empty hash
    PS> $key = 'Fred'         # set key name
    PS> $value = 30           # set key value
-   PS> $h.add($key, $value)  # add key:value to the hash-table
+   PS> $h.add($key, $value)  # add key:value ('fred':30) to the hash-table
    
-   PS> $h.add('Wilma', 25 )  # add Wilma
-   PS> $h['Pebbles'] = 1     # add Pebbles
-   PS> $h.Dino = 5           # add Dino
+   PS> $h.add('Wilma', 25 )  # add 'Wilma':25
+   PS> $h['Pebbles'] = 1     # add 'Pebbles':1
+   PS> $h.Dino = 5           # add 'Dino':5
    
    PS> $h                    # actual hash-table, printed if on command-line
    PS> $h['Fred']            # how old is Fred? 30
    PS> $h[$key]              # how old is Fred? 30
    PS> $h.fred               # how old is Fred? 30
    
-   # creating a populated hash
+   # creating a populated hash, multi-line.
    PS> $h = @{
        Fred = 30
        Wilma  = 25
@@ -200,8 +347,9 @@ elements have a known/fixed order.
        Dino = 5
    }
    
-   # creating a populated hash, one-liner
+   # creating the same populated hash, on single-line
    PS> $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+   
    PS> $h.keys            # unordered: Dino, Pebbles, Fred, Wilma
    PS> $h.values          # unordered: 5, 1, 30, 25 (but same as $h.keys order)
    
@@ -234,41 +382,112 @@ elements have a known/fixed order.
    PS> if ($h.ContainsKey('fred')) { ... }   # true 
    PS> if ($h.ContainsKey('barney')) { ... } # false
    
-   PS> $h.remove('Dino')                # remove Dino, because he ran away
-   PS> $h.clear()                       # family deceased
+   PS> $h.remove('Dino')                # remove Dino, because he ran away :-)
+   PS> $h.clear()                       # flintstone family deceased
 
-Excellent review of PowerShell HashTables:
+For more details read the excellent review, 
+`Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
+on PowerShellExplained.
 
-* `Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
+PowerShell Objects
+==================
 
-PowerShell Script Structure
-===========================
-
-Gist template
--------------
+* `Objects <https://social.technet.microsoft.com/wiki/contents/articles/7804.powershell-creating-custom-objects.aspx>`_
+* `PSObject <https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/>`_
 
 Functions
----------
-Write something
+=========
 
-Function Arguments
-------------------
-PowerShell allows mixed named and positional arguments which is not always clear.
-Safest way of passing function arguments, is to use ``splatting`` 
+Function arguments and responses are passed by reference, so while it is bad practice, an arugment can be changed inside the function but is 
+unchanged outside the function scope. Reponses are also returned by reference, making it is possible to return an object, such as a hashtable in the example.
+Each function call returns a reference to a new (different) object, but to avoid aliasing issues be very careful about the scope of the variable 
+that is being updated. 
+
+PowerShell allows mixed named and positional arguments which is not always clear, safest way is to
+use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_. 
+The following contrived script illustrates the basics but the ``param ( ... )`` section has many options not shown here, 
+read `Chapter 9 - Functions <https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions>`_ 
+and `About Functions Advanced Parameters <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_
+both on Microsoft Docs.
 
 ::
   
-   $arguments = @{
-      Name        = 'TestNetwork'
-      StartRange  = '10.0.0.2'
-      EndRange    = '10.0.0.254'
-      SubnetMask  = '255.255.255.0'
-      Description = 'Network for testlab A'
-      LeaseDuration = (New-TimeSpan -Days 8)
-      Type = "Both"
-   }
-   Add-DhcpServerv4Scope @arguments
+   #requires -version 2
+   Set-StrictMode -Version 2
    
+   function createPerson {
+      param (
+         [string]$name = '',
+         [int]$age = 0,
+         [switch]$verbose = $false,
+         [switch]$debug = $false
+      )
+      
+      if (($name -eq $null) -or ($name.length -eq 0)) {
+         if ($verbose) {
+            write-warning("createPerson - name is missing")
+            return $null
+         }
+         elseif ($debug) {
+            write-error("createPerson - name is missing")
+            exit(1)
+         }
+         else {
+            return $null
+         }
+      }
+      
+      if (($age -le 0) -or ($age -gt 130)) {
+         if ($verbose) {
+         write-warning("createPerson - age, {0:D}, is incorrect" -f $age)
+            return $null
+         }
+         elseif ($debug) {
+            write-error("createPerson - age, {0:D}, is incorrect" -f $age)
+            exit(1)
+         }
+         else {
+            return $null
+         }
+      }
+      
+      $hash = @{}
+      $hash[$name] = $age 
+      
+      return $hash
+   
+   }
+   
+   createPerson 'fred' 30 -verbose            # positional arguments
+   createPerson 30 'fred' -verbose            # positional arguments, breaks name=30
+   createPerson -name 'fred' -age 30 -verbose # named arguments
+   createPerson -age 30 'fred' -verbose       # mixed arguments, be careful, no-named taken param order
+   
+   $arguments = @{                            # splatting
+      name = 'fred'
+      age = 30
+      verbose = $true
+   }
+   createPerson @arguments
+   
+   $arguments = @{name = 'wilma'; age = 25; verbose = $true} # splatting one-line
+   createPerson @arguments
+   
+   $arguments = @{
+      name = 'fred'
+      verbose = $true
+      debug = $false
+   }
+   createPerson @arguments                   # fails missing and invalid age
+   
+   $arguments = @{
+      age = 21
+      verbose = $true
+      debug = $false
+   }
+   createPerson @arguments                   # fails missing name
+
+
 Running PowerShell scripts
 ==========================
 
