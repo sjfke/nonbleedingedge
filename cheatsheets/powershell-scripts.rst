@@ -11,20 +11,19 @@ This is the companion to ``PowerShell Cheatsheet``, which focuses on writing Pow
    Is a cross-platform task automation and configuration management framework, consisting of a *command-line shell* and 
    *scripting language* that is built on top of the ``.NET Common Language Runtime`` (CLR), accepts and returns ``.NET objects``.
    This brings entirely new tools and methods for automation.
-   
-   
-*In my opion these new tools and methods also bring new levels of frustration and confusion as you have to think differently. :-)*
+      
+This means learning new skills and thinking differently which can be frustrating while learning. 
 
-My personal usage of PowerShell, are as standalone utilities deployed in a single file to automate specific tasks. I dislike
-deploying and manitaining multiple files which perform a single task, so I tend to *copy-and-paste* frequently used 
-functions, such as *dumpArrayList*, *dumpHashTable* because like many modern languages there is no mechanism to textually 
-including your favourite functions into the source when writing and testing. 
+To simplify maintenance I write PowerShell scripts as standalone utilities deployed in a single file, this means I have to *copy-and-paste* 
+my favourite frequently used functions, such as *dumpArrayList*, *dumpHashTable* because there is no mechanism to textually include 
+your favourite functions into the source when writing and testing. 
 
+It is possible to split your script into multiple files, create libraries of your favoutite utilities etc. but I do not cover this topic. 
 
 Introduction
 ============
 
-Unfortunately ``PowerShell`` is very powerful scripting language, often used to automate regular tasks, and hence is an ideal
+Unfortunately ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, and hence is an ideal
 target for **would-be** hackers. To mitigate this, while individual ``cmdlets`` will always work, Microsoft limits if/when PowerShell 
 scripts can be executed. 
 
@@ -34,8 +33,8 @@ scripts can be executed.
 The execution policy governs whether a ``PowerShell`` script can be executed, ``get-executionpolicy`` displays this for 
 the current ``PowerShell``, and ``get-executionpolicy -list`` shows all the policies in highest to lowest priority (scope) order. 
 
-In the example below only the ``LocalMachine`` policy is defined, and is set to ``restricted`` so ``PowerShell`` scripts cannot be executed, but 
-indiviual commands, ``cmdlets`` can be executed.
+In the example below only the ``LocalMachine`` policy is defined, and this is set to ``restricted`` so ``PowerShell`` scripts cannot be executed, but 
+indiviual commands, ``cmdlets`` can.
 
 :: 
 
@@ -58,7 +57,7 @@ should read the `PowerShell ExectionPolicies`_ section.
 
 ::
 
-   # Set *ONE* of: 'LocalMachine RemoteSigned' or 'CurrentUser RemoteSigned'
+   # Set *ONE* of: 'LocalMachine RemoteSigned' or 'CurrentUser RemoteSigned' not both
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
    PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
@@ -78,12 +77,12 @@ PowerShell Language
 The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is built on 
 top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us/dotnet/standard/clr>`_ , and 
 manipulates `.NET objects <https://docs.microsoft.com/en-us/dotnet/api/system.object>`_. If the language itself 
-does not provide what you need, there may be a `PowerShell Module <https://social.technet.microsoft.com/wiki/contents/articles/4308.popular-powershell-modules.aspx>`_
+does not provide what you need, there may be a `Popular PowerShell Module <https://social.technet.microsoft.com/wiki/contents/articles/4308.popular-powershell-modules.aspx>`_
 you can download or you can access the `.Net APIs <https://docs.microsoft.com/en-us/dotnet/api>`_ directly, a good example being `ArrayLists <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_ which 
 are dynamic in size unlike an *PowerShell Array*.
 
 
-Like other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
+In common with other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
 Functions support both ``named`` and ``positional`` arguments, which can be mixed, this can be confusing, so in 
 most cases it is clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather 
 than individual name or positional parameters.
@@ -319,9 +318,8 @@ Kevin Blumenfeld's `Collection Type Guidence <https://gist.github.com/kevinblume
 HashTables
 ==========
 
-A HashTable is an unordered collection of key:value pairs, synonymous with an object and its properties.
-
-Later versions of ``PowersShell`` support ``$hash = [ordered]@{}`` where the hash elements have a known/fixed order.
+A HashTable is an unordered collection of key:value pairs, synonymous with an object and its properties. However, later
+versions of ``PowersShell`` support ``$hash = [ordered]@{}`` where the hash elements have a known/fixed order.
 
 ::
 
@@ -381,6 +379,8 @@ Later versions of ``PowersShell`` support ``$hash = [ordered]@{}`` where the has
    
    PS> if ($h.ContainsKey('fred')) { ... }   # true 
    PS> if ($h.ContainsKey('barney')) { ... } # false
+   PS> if ($h.fred) { ... }                  # avoid, works most of the time.
+   PS> if ($h['barney']) { ... }             # avoid, works most of the time.
    
    PS> $h.remove('Dino')                # remove Dino, because he ran away :-)
    PS> $h.clear()                       # flintstone family deceased
@@ -392,23 +392,27 @@ on PowerShellExplained.
 PowerShell Objects
 ==================
 
-* `Objects <https://social.technet.microsoft.com/wiki/contents/articles/7804.powershell-creating-custom-objects.aspx>`_
-* `PSObject <https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/>`_
+If you cannot create what you need from *Arrays, HashTables, ArrayLists, Queues, Stacks etc.*, 
+(`Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_), then 
+it is possible to create custom objects in ``PowerShell``, but I have never had to do this.
+
+* `Microsoft TechNet: Creating Custom Objects <https://social.technet.microsoft.com/wiki/contents/articles/7804.powershell-creating-custom-objects.aspx>`_
+* `Keven Marquette: Everything you wanted to know about PSCustomObject <https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/>`_
 
 Functions
 =========
 
-Function arguments and responses are passed by reference, so while it is bad practice, an arugment can be changed inside the function but is 
-unchanged outside the function scope. Reponses are also returned by reference, making it is possible to return an object, such as a hashtable in the example.
-Each function call returns a reference to a new (different) object, but to avoid aliasing issues be very careful about the scope of the variable 
+Function arguments and responses are passed by reference, so an arugment can be changed inside the function and remains 
+unchanged outside the function scope, but I recommend you avoid this. Reponses being references, makes it is possible to return objects, such 
+as the hashtable in the `Example PowerShell Script`_.
+Each function call returns a reference to a new (different) object, but to avoid aliasing issues be very careful about the scope of the variable name 
 that is being updated. 
 
-PowerShell allows mixed named and positional arguments which is not always clear, safest way is to
+PowerShell allows mixing named and positional arguments which is not always clear, better approach is to
 use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_. 
 The following contrived script illustrates the basics but the ``param ( ... )`` section has many options not shown here, 
-read `Chapter 9 - Functions <https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions>`_ 
-and `About Functions Advanced Parameters <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_
-both on Microsoft Docs.
+read the following articles on Microsoft Docs for more details, `Chapter 9 - Functions <https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions>`_ 
+and `About Functions Advanced Parameters <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_.
 
 ::
   
@@ -487,6 +491,24 @@ both on Microsoft Docs.
    }
    createPerson @arguments                   # fails missing name
 
+Conditions and Loops
+====================
+
+https://www.tutorialspoint.com/powershell/powershell_conditions.htm
+https://www.tutorialspoint.com/explain-try-catch-finally-block-in-powershell
+
+Operators
+=========
+
+https://www.tutorialspoint.com/powershell/powershell_operators.htm
+
+Formatting Output
+=================
+
+
+Regular Expressions
+===================
+https://www.tutorialspoint.com/powershell/powershell_regex.htm
 
 Running PowerShell scripts
 ==========================
