@@ -491,11 +491,66 @@ and `About Functions Advanced Parameters <https://docs.microsoft.com/en-us/power
    }
    createPerson @arguments                   # fails missing name
 
-Conditions and Loops
+Powershell ArrayList
 ====================
 
+* `.Net ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
+* `Powershell: Everything you wanted to know about arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_    
+
+PowerShell Conditional Tests
+============================
+
+The conditions that can be tested in an ``if`` and ``switch`` statements are very extensive, see 
+`PowerShell Explained: If and Switch <https://powershellexplained.com/2019-08-11-Powershell-if-then-else-equals-operator/>`_ for more examples.
+
+::
+
+   #requires -version 2
+   Set-StrictMode -Version 2
+   
+   $apple = 10
+   $pear = 20
+   if ( $apple -gt $pear ) {
+      write-host('apple is higher than pear')
+   }
+   elseif ( $apple -lt $pear ) {
+      write-host('apple is lower than pear')
+   }
+   else {
+      write-host('apple and pear are equal')
+   }
+   
+   $path = 'file.txt'
+   $alternatePath = 'folder1'
+   if ( Test-Path -Path $path -PathType Leaf ) {
+      Move-Item -Path $path -Destination $alternatePath
+   }
+   elseif ( Test-Path -Path $path ) {
+      Write-Warning "A file is required but a folder was given."
+   }
+   else {
+      Write-Warning "$path could not be found."
+   }
+   
+   $fruit = 10
+   switch ( $fruit ) {
+      10  {
+         write-host('fruit is an apple')
+      }
+      20 {
+         write-host('fruit is an apple')
+      }
+      Default {
+         write-host('unknown fruit')
+      }
+   }
+   
 https://www.tutorialspoint.com/powershell/powershell_conditions.htm
 https://www.tutorialspoint.com/explain-try-catch-finally-block-in-powershell
+
+PowerShell Loops
+================
+
 
 Operators
 =========
@@ -505,6 +560,55 @@ https://www.tutorialspoint.com/powershell/powershell_operators.htm
 Formatting Output
 =================
 
+Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assigment.
+Specified as ``{<index>, <alignment><width>:<format_spec>}``
+
+::
+
+   PS> $shortText = "Align me"
+   PS> $longerText = "Please Align me, but I am very wide"
+   
+   PS> write-host("{0,-20}" -f $shortText)         # Left-align; no overflow.
+   PS> write-host("{0,20}"  -f $shortText)         # Right-align; no overflow.
+   PS> write-host("{0,-20}" -f $longerText)        # Left-align; data overflows width.
+   
+   PS> write-host("Room: {0:D}" -f 232)            # Room: 232
+   PS> write-host("Invoice No.: {0:D8}" -f 17)     # Invoice No.: 00000017
+   PS> $invoice = "{0}-{1}" -f 00017, 007          # (integers) so invoice = 17-7  
+   PS> $invoice = "{0}-{1}" -f '00017', '007'      # (strings) so invoice = 00017-007  
+   
+   PS> write-host("Temp: {0:F}°C" -f 18.456)       # Temp: 18.46°C
+   PS> write-host("Grade: {0:p}" -f 0.875)         # Grade: 87.50%
+   PS> write-host('Grade: {0:p0}' -f 0.875)        # Grade: 88%  
+   PS> write-host('{1}: {0:p0}' -f 0.875, 'Maths') # Maths: 88%
+   
+   # Custom formats
+   PS> write-output('{1:00000}' -f 'x', 1234)      # 01234
+   PS> write-output('{0:0.000}' -f [Math]::Pi)     # 3.142
+   PS> write-output('{0:00.0000}' -f 1.23)         # 01.2300
+   PS> write-host('{0:####}' -f 1234.567)          # 1235
+   PS> write-host('{0:####.##}' -f 1234.567)       # 1234.57
+   PS> write-host('{0:#,#}' -f 1234567)            # 1,234,567
+   PS> write-host('{0:#,#.##}' -f 1234567.891)     # 1,234,567.89
+   
+   PS> write-host('{0:000}:{1}' -f 7, 'Bond')      # 007:Bond
+   
+   PS> get-date -Format 'yyyy-MM-dd:hh:mm:ss'      # 2020-04-27T07:19:05
+   PS> get-date -Format 'yyyy-MM-dd:HH:mm:ss'      # 2020-04-27T19:19:05
+   PS> get-date -UFormat "%A %m/%d/%Y %R %Z"       # Monday 04/27/2020 19:19 +02
+
+
+More detailed formatting examples:
+
+* `PowershellPrimer.com: Formatting Output <https://powershellprimer.com/html/0013.html>`_
+* `Microsoft documentation: Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date>`_
+
+Ouput methods:
+
+* `Microsoft Docs: Write Output <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-output>`_
+* `Microsoft Docs: Write Warning <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-warning>`_
+* `Microsoft Docs: Write Host <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host>`_
+* `Microsoft Docs: Write Error <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error>`_
 
 Regular Expressions
 ===================
@@ -600,152 +704,12 @@ There are many online guides and tutorials, which usually means the subject matt
 * `PowerShell Tutorial <http://powershelltutorial.net/>`_
 
 
-Variables
----------
-::
-
-	PS> $loc = get-location                    # assign 'get-location' output object to $loc
-    PS> $loc | get-member -membertype property # shows $loc is a PathInfo object
-     
-    
-    PS> get-command -noun variable             # What commands work with variables
-    > clear-variable, get-variable, new-variable, remove-variable, set-variable
-     
-    PS> clear-variable loc                     # clears '$loc', NOTE the missing '$'
-    PS> remove-variable loc                    # removes '$loc', NOTE the missing '$'
-
-    PS> get-childitem variable:                # list PowerShell environment variables, 'PSHome', 'PWD' etc.
-    PS> $pshome                                # which PowerShell and version
-    PS> $pwd
-
-    PS> get-childitem env:                     # get 'cmd.exe' enviroment variables, UCASE by convention
-    PS> $env:SystemRoot                        # C:\Windows
-    PS> $env:COMPUTERNAME                      # MYLAPTOP001
-    PS> $env:LIB_PATH='/usr/local/lib'         # setting LIB_PATH     
-
-    PS> $psversiontable                        # PowerShell version information.
-    PS> get-host                               # PowerShell version information.
-
-	
-Formatting Output
------------------
-Very similar to Python ``-f`` operator, examples use ``write-host`` but can be other output commands.
-Specified as ``{<index>, <alignment><width>:<format_spec>}``
-
-::
-
-	$shortText = "Align me"
-	$longerText = "Please Align me, but I am very wide"
-	PS> write-host("{0,-20}" -f $shortText)		# Left-align; no overflow.
-	PS> write-host("{0,20}"  -f $shortText)		# Right-align; no overflow.
-	PS> write-host("{0,-20}" -f $longerText)	# Left-align; data overflows width.
-	
-	PS> write-host("Room: {0:D}" -f 232)		# Room: 232
-	PS> write-host("Invoice No.: {0:D8}" -f 17)	# Invoice No.: 00000017
-	
-	PS> write-host("Temp: {0:F}°C" -f 18.456)	# Temp: 18.46°C
-	PS> write-host("Grade: {0:p}" -f 0.875)		# Grade: 87.50%
-	PS> write-host('Grade: {0:p0}' -f 0.875)	# Grade: 88%
-	
-	PS> write-host('{1}: {0:p0}' -f 0.875, 'Maths')	# Maths: 88%
-	
-	# Custom formats
-	PS> write-output('{1:00000}' -f 'x', 1234)	# 01234
-	PS> write-output('{0:0.000}' -f [Math]::Pi)	# 3.142
-	PS> write-output('{0:00.0000}' -f 1.23)		# 01.2300
-	PS> write-host({0:####}' -f 1234.567)		# 1235
-	PS> write-host('{0:####.##}' -f 1234.567)	# 1234.57
-	PS> write-host('{0:#,#}' -f 1234567)		# 1,234,567
-	PS> write-host('{0:#,#.##}' -f 1234567.891)	# 1,234,567.89
-	
-	PS> get-date -Format 'yyyy-MM-dd:hh:mm:ss'  # 2020-04-27T07:19:05
-	PS> get-date -Format 'yyyy-MM-dd:HH:mm:ss'  # 2020-04-27T19:19:05
-	PS> get-date -UFormat "%A %m/%d/%Y %R %Z"   # Monday 04/27/2020 19:19 +02
-
-More examples:
-* `Formatting Output <http://powershellprimer.com/html/0013.html>`_
-* `Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
-
-Powershell Hashes
------------------
-::
-
-	$flintstones = @{}              # empty hash
-	$key = 'Fred'
-	$value = 30
-	$flintstones.add($key, $value)
-	
-	$flintstones.add('Wilma', 25 )
-	$flintstones['Pebbles'] = 1
-	$flintstones.Dino = 5
-	
-	$flinstones                  # actual hash, printed if on command-line
-	$flintstones['Fred']         # 30
-	$flintstones[$key]           # 30
-	$flintstones.fred            # 30
-	
-	# creating a populated hash
-	$flintstones = @{
-	    Fred = 30
-	    Wilma  = 25
-	    Pebbles = 1
-	    Dino = 5
-	}
-	# creating a populated hash, one-liner
-	$flintstones = @{ Fred = 30; Wilma  = 25; Pebbles = 1; Dino = 5 }
-	
-	# Order not guaranteed in the folloiwng, use sort or $hash = [ordered]@{}, if supported
-	
-	foreach($key in $flintstones.keys) {
-	    write-output ('{0} Flintstone is {1:D} years old' -f $key, $flintstones[$key])
-	}
-	
-	$flintstones.keys                          # Fred, Wilma, Pebbles, Dino
-	$flintstones.values                        # 30, 25, 1, 5 
-	
-	if ($flintstones.ContainsKey('fred')) {}   # true 
-	if ($flintstones.ContainsKey('barney')) {} # false
-
-	
-	$flintstones.remove('Dino')                # Dino ran away
-	$flintstones.clear()                       # family deceased
-
-Excellent review:
-* `Hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
-
-
-
-Powershell Arrays
-=================
-
-Arrays are a fixed size, can have mixed values, and be multi-dimensional.
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-	$A = (1, 2, 3, 4)                 # 1, 2, 3, 4
-	$A = 1..4                         # 1, 2, 3, 4
-	$B = ('F', 'W', 'P', 'D')         # 'F', 'W', 'P', 'D'
-	$C = (5.6, 4.5, 3.3, 13.2)        # 5.6, 4.5, 3.3, 13.2
-	$D = ('Apple', 3.3, 13.2, $B)     # 'Apple', 3.3, 13.2, 'F', 'W', 'P', 'D'
-	
-	[char[]]$E = ('F', 'W', 'P', 'D') # only [char] values
-
-
-
-
-PowerShell Objects
 ------------------
 
     https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/
 
      
 
-    Powershell ArrayList
-
-    https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist.remove?view=netframework-4.8
-
-    https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/
-
-     
 
     https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error?view=powershell-3.0
 
