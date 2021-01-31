@@ -23,9 +23,9 @@ It is possible to split your script into multiple files, create libraries of you
 Introduction
 ============
 
-Unfortunately ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, and hence is an ideal
-target for **would-be** hackers. To mitigate this, while individual ``cmdlets`` will always work, Microsoft limits if/when PowerShell 
-scripts can be executed. 
+Unfortunately because ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, makes it an ideal
+target for **would-be** hackers. To mitigate this Microsoft limits if/when PowerShell scripts can be executed, although 
+individual ``cmdlets`` can always be executed. 
 
 * *Windows Pro/Home* usually disallows ``PowerShell scripts`` but permits ``cmdlets`` to be executed;
 * *Windows Server* usually allows ``RemoteSigned`` scripts to be run on the ``LocalMachine``;
@@ -497,11 +497,25 @@ Powershell ArrayList
 * `.Net ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
 * `Powershell: Everything you wanted to know about arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_    
 
-PowerShell Conditional Tests
-============================
+PowerShell IF/Switch commands
+=============================
 
-The conditions that can be tested in an ``if`` and ``switch`` statements are very extensive, see 
-`PowerShell Explained: If and Switch <https://powershellexplained.com/2019-08-11-Powershell-if-then-else-equals-operator/>`_ for more examples.
+The conditions that can be tested in an ``if`` statement are very extensive:
+
+* Equality/inequality: ``-eq|-ieq|-ceq / -ne|-ine|-cne``;
+* Greater/less than: ``-gt|-igt|-cgt|-ge|-ige / -lt|-ilt|-clt|-le|-ile|-cle``;
+* Wildcard: ``-like|-ilike|-clike|-notlike|-inotlike|-cnotlike``;
+* Regular Expressions: ``-match|-imatch|-cmatch|-notmatch|-inotmatch|-cnotmatch``;
+* Object type check: ``-is|-isnot``;
+* Array <op> value: ``-contains|-icontains|-ccontains|-notcontains|-inotcontains|-cnotcontains``;
+* Value <op> array: ``-in|-iin|-cin|-notin|-inotin|-cnotin``
+* Logical operators: ``-not|!|-and|-or|-xor``
+* Bitwise operators: ``-band|-bor|-bxor|-bnot|-shl|-shr``;
+* PowerShell expressions: ``Test-Path|Get-Process``;
+* PowerShell pipeline: ``(Get-Process | Where Name -eq Notepad)``;
+* Null checking: ``($null -eq $value)``;
+
+There is also a ``switch`` statement for comparing against multiple values.
 
 ::
 
@@ -545,8 +559,57 @@ The conditions that can be tested in an ``if`` and ``switch`` statements are ver
       }
    }
    
-https://www.tutorialspoint.com/powershell/powershell_conditions.htm
-https://www.tutorialspoint.com/explain-try-catch-finally-block-in-powershell
+See `PowerShell Explained: If and Switch <https://powershellexplained.com/2019-08-11-Powershell-if-then-else-equals-operator/>`_ for more details 
+on PowerShell ``if`` and ``switch``.
+
+
+Try/Catch
+=========
+
+Exception handling uses *Try/Catch*, but  the *Catch block* is only invoked on *terminating errors*.
+
+::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+   
+   $error.clear()
+   # $Error is an array of recent errors, index 0 being the latest
+   # $Error[0] | get-member                 # what does an error return
+   # $Error[0].tostring()                   # error text message
+   # $Error[0].Exception | get-member       # method, properties of the exception
+   # $Error[0].Exception.GetType().FullName # how to catch-it :-)
+   
+   $cwd =  get-childitem variable:pwd
+   $filename = 'cannot-readme.txt'
+   $path = Join-Path -path $cwd.value -childpath $filename
+   try {
+      $content = get-content -path $path -ErrorAction Stop
+   }
+   catch [System.Management.Automation.ItemNotFoundException] {
+      write-warning $Error[0].ToString()
+      exit(1) 
+   }
+   catch {
+      write-warning $Error[0].ToString()
+      write-warning $Error[0].Exception.GetType().FullName # exception message type
+      exit(1) 
+   }
+   finally {
+      write-warning("Resetting the Error Array")
+      $error.clear()
+   }
+   write-host("Fetched the content of {0}" -f $path)
+   exit(0)   
+
+Note the following two points in the example:
+
+* Addition of ``-ErrorAction Stop`` to ``get-content`` to make it a terminating error;
+* The ``finally`` block is **always executed**, whether an exception is being handled or not!
+
+See `Tutotials Point: Explain Try/Catch/Finally block in PowerShell <https://www.tutorialspoint.com/explain-try-catch-finally-block-in-powershell>`_ for more details 
+on PowerShell exception handling.
+
 
 PowerShell Loops
 ================
