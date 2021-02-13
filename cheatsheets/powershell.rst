@@ -193,6 +193,22 @@ Processes
    PS> get-process | where {$_.processname -match "^p.*"}             # all processes starting with "p"
    PS> get-process | select -property Name,Id,WS | out-host -paging   # paged (more/less) output
    PS> get-process | out-gridview                                     # interactive static table view
+   
+   PS> start-process notepad                # start notepad
+   PS> $p = get-process -name notepad       # finds all notepad processes!
+   PS> stop-process -name notepad           # terminate all notepad processes!
+   PS> stop-process -name notepad -whatif   # what would happen if run :-)
+   PS> stop-process -id $p.id               # terminate by id, (confirmation prompt if not yours)
+   PS> stop-process -id $p.id -force        # terminate by id, (no confirmation prompt if not yours)
+   
+   PS> $p = start-process notepad -passthru # start notepad, -passthru to return the process object
+   PS> $p | get-member                      # methods and properties, (only 3 examples shown)
+   PS> $p.cpu                               # how much CPU has notepad used
+   PS> $p.Modules                           # which .dll's are being used
+   PS> $p.kill()                            # terminate
+   PS> stop-process -id $p.id               # terminate by id
+   PS> remove-variable -name p              # $p is not $null after process termination
+   
 
 Viewing Files
 =============
