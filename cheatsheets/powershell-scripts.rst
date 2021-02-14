@@ -79,7 +79,7 @@ top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us
 manipulates `.NET objects <https://docs.microsoft.com/en-us/dotnet/api/system.object>`_. If the language itself 
 does not provide what you need, there may be a `Popular PowerShell Module <https://social.technet.microsoft.com/wiki/contents/articles/4308.popular-powershell-modules.aspx>`_
 you can download or you can access the `.Net APIs <https://docs.microsoft.com/en-us/dotnet/api>`_ directly, a good example being `ArrayLists <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_ which 
-are dynamic in size unlike an *PowerShell Array*.
+are dynamic in size unlike a *PowerShell Array*.
 
 
 In common with other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
@@ -92,7 +92,7 @@ Useful starting points when learning about the language:
 * `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_;
 * `Windows PowerShell Portal <https://social.technet.microsoft.com/wiki/contents/articles/24187.windows-powershell-portal.aspx>`_;
 
-Unlike most texts on prgramming languages I start with a simple but realistic PowerShell example.
+Unlike most texts on programming languages I start with a simple but realistic PowerShell example.
 Many of the language details are covered in subsequent sections.
 
 Example PowerShell Script
@@ -228,7 +228,7 @@ the syntax version and to be more strict on the use of uninitialized variables.
 
 Things to note:
 
-* The `#requires -version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires>`_ forces PowerShell version 2 syntax;
+* The `#requires -version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires>`_ forces PowerShell version 2 syntax, (use version 4, unless windows is very old);
 * Initial comment block ``.SYNOPSIS...`` provides the ``get-help`` text, note line-spacing is important;
 * The `param() <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_ block must be the first *non-comment line* for command-line arguments;
 * The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of unintialized variables;
@@ -308,18 +308,19 @@ Array variables are a fixed size, can have mixed values and can be multi-dimensi
    PS> $a[0][0]                                    # fred
    PS> $a[0][1]                                    # 30
    
-For more details on arrays, see `Powershell Array <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_ on TutorialsPoint.
+Useful references:
 
-If you need dynamically resizable arrays, see `ArrayList <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_ on PowerShellExplained, 
-`ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8>`_ on Microsoft Docs, or 
-Kevin Blumenfeld's `Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_ on Kevin Blumenfeld's GitHub Gist.
+* `TutorialsPoint Powershell Array for more detailed explanation <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
+* `PowerShellExplained ArrayList for dynamically resizable arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_
+* `Microsoft Docs ArrayList Class for dynamically resizable arrays <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
+* `Kevin Blumenfeld's GitHub Gist Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_
 
 
 HashTables
 ==========
 
-A HashTable is an unordered collection of key:value pairs, synonymous with an object and its properties. However, later
-versions of ``PowersShell`` support ``$hash = [ordered]@{}`` where the hash elements have a known/fixed order.
+A HashTable is an unordered collection of key:value pairs, synonymous with an object and its properties. Later
+versions support the hash elements have a known/fixed order, ``$hash = [ordered]@{}``.
 
 ::
 
@@ -357,17 +358,17 @@ versions of ``PowersShell`` support ``$hash = [ordered]@{}`` where the hash elem
    PS> $h.values          # ordered: 30, 25, 1, 5 
    
    # key order is random, unless [ordered] was used in the declaration
-   PS> foreach($key in $h.keys) {
+   PS> foreach ($key in $h.keys) {
        write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
    }
    
    # ascending alphabetic order (Dino, Fred, Pebbles, Wilma)
-   PS> foreach($key in $h.keys | sort) {
+   PS> foreach ($key in $h.keys | sort) {
        write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
    }
    
    # descending alphabetic order (Wilma, Pebbles, Fred, Dino)
-   PS> foreach($key in $h.keys | sort -descending) {
+   PS> foreach ($key in $h.keys | sort -descending) {
        write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
    }
    
@@ -385,38 +386,42 @@ versions of ``PowersShell`` support ``$hash = [ordered]@{}`` where the hash elem
    PS> $h.remove('Dino')                # remove Dino, because he ran away :-)
    PS> $h.clear()                       # flintstone family deceased
 
-For more details read the excellent review, 
-`Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
-on PowerShellExplained.
+For more details read the excellent review by Kevin Marquette:
+ 
+`Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_.
 
 PowerShell Objects
 ==================
 
-If you cannot create what you need from *Arrays, HashTables, ArrayLists, Queues, Stacks etc.*, 
-(`Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_), then 
-it is possible to create custom objects in ``PowerShell``, but I have never had to do this.
+If you cannot create what you need from *Arrays, HashTables, ArrayLists, Queues, Stacks etc.*, then 
+it is possible to create custom PowerShell objects`, but to date I have never needed to do this.
+For more details, read:
 
-* `Microsoft TechNet: Creating Custom Objects <https://social.technet.microsoft.com/wiki/contents/articles/7804.powershell-creating-custom-objects.aspx>`_
-* `Keven Marquette: Everything you wanted to know about PSCustomObject <https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/>`_
+* `David Bluemenfeld: Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_;
+* `Microsoft TechNet: Creating Custom Objects <https://social.technet.microsoft.com/wiki/contents/articles/7804.powershell-creating-custom-objects.aspx>`_;
+* `Kevin Marquette: Everything you wanted to know about PSCustomObject <https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/>`_;
 
 Functions
 =========
 
 Function arguments and responses are passed by reference, so an arugment can be changed inside the function and remains 
-unchanged outside the function scope, but I recommend you avoid this. Reponses being references, makes it is possible to return objects, such 
-as the hashtable in the `Example PowerShell Script`_.
-Each function call returns a reference to a new (different) object, but to avoid aliasing issues be very careful about the scope of the variable name 
-that is being updated. 
+unchanged outside the function scope, like many other folks, I recommend you avoid this. Functions can return references to return objects, 
+as illustrated in the `Example PowerShell Script`_.
+While each function call returns a new reference to a new (different) object, be careful about the scope of the variable name you assign this too.
+It is easy to create multiple references to the same object.
 
-PowerShell allows mixing named and positional arguments which is not always clear, better approach is to
-use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_. 
-The following contrived script illustrates the basics but the ``param ( ... )`` section has many options not shown here, 
-read the following articles on Microsoft Docs for more details, `Chapter 9 - Functions <https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions>`_ 
-and `About Functions Advanced Parameters <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_.
+While mixing named (order indepedent) and positional arguments (order dependent) is permitted it can cause strange errors, a better approach is to
+use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_, unless you are supplying one or two arguments.
+The following contrived example illustrates the basics but the ``param ( ... )`` section has many options not shown here. 
+
+I suggest you read the following articles:
+
+* Microsoft Docs, `Chapter 9 - Functions <https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions>`_ 
+* Microsoft Docs, `About Functions Advanced Parameters <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_.
 
 ::
   
-   #requires -version 2
+   #requires -version 4
    Set-StrictMode -Version 2
    
    function createPerson {
@@ -613,6 +618,42 @@ on PowerShell exception handling.
 
 PowerShell Loops
 ================
+::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+   
+   $names = ('Fred', 'Wilma', 'Pebbles', 'Dino')
+   $hash = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+   
+   for ($index = 0; $index -lt $names.length; $index++) {
+      write-host ('{0} Flintstone' -f $names[$index])
+   }
+   
+   # Often abbreviated as follows, Fortran conventions never die :-)   
+   $names = ('fred', 'wilma', 'pebbles', 'dino')
+   $hash = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+   
+   for ($index = 0; $index -lt $names.length; $index++) {
+      write-host ('{0} Flintstone' -f $names[$index])
+   }
+   
+   
+   foreach ($key in $hash.keys) {
+      write-host ('{0} Flintstone is {1:D} years old' -f $key, $hash[$key])
+   }
+   
+   $index = 0;
+   while ($index -lt $names.length){
+      write-host ('{0} Flintstone' -f $names[$index])
+      $index += 1
+   }
+   
+   $index = 0;
+   do {
+      write-host ('{0} Flintstone' -f $names[$index])
+      $index += 1
+   } while($index -lt $names.length)
 
 
 Operators

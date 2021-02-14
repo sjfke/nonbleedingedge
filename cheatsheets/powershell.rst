@@ -195,16 +195,18 @@ Processes
    PS> get-process | out-gridview                                     # interactive static table view
    
    PS> start-process notepad                # start notepad
-   PS> $p = get-process -name notepad       # finds all notepad processes!
+   PS> $p = get-process -name notepad       # finds all notepad processes! (Array like)
    PS> stop-process -name notepad           # terminate all notepad processes!
    PS> stop-process -name notepad -whatif   # what would happen if run :-)
    PS> stop-process -id $p.id               # terminate by id, (confirmation prompt if not yours)
+   PS> stop-process -id $p[0].id            # terminate by id, (confirmation prompt if not yours)
    PS> stop-process -id $p.id -force        # terminate by id, (no confirmation prompt if not yours)
    
    PS> $p = start-process notepad -passthru # start notepad, -passthru to return the process object
-   PS> $p | get-member                      # methods and properties, (only 3 examples shown)
+   PS> $p | get-member                      # methods and properties, (only 4 examples shown)
    PS> $p.cpu                               # how much CPU has notepad used
    PS> $p.Modules                           # which .dll's are being used
+   PS> $p.Threads.Count                     # how many threads
    PS> $p.kill()                            # terminate
    PS> stop-process -id $p.id               # terminate by id
    PS> remove-variable -name p              # $p is not $null after process termination
