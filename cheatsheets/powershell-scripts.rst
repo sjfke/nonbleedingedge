@@ -624,25 +624,25 @@ PowerShell Loops
    Set-StrictMode -Version 2
    
    $names = ('Fred', 'Wilma', 'Pebbles', 'Dino')
-   $hash = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
    
    for ($index = 0; $index -lt $names.length; $index++) {
       write-host ('{0} Flintstone' -f $names[$index])
    }
    
-   # Often abbreviated as follows, Fortran conventions never die :-)   
-   $names = ('fred', 'wilma', 'pebbles', 'dino')
-   $hash = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
-   
-   for ($index = 0; $index -lt $names.length; $index++) {
-      write-host ('{0} Flintstone' -f $names[$index])
+   # Index often written as $i, $j, $k    
+   for ($i = 0; $i -lt $names.length; $i++) {
+      write-host ('{0} Flintstone' -f $names[$i])
    }
    
-   
+   foreach ($name in $names) {
+      write-host ('{0} Flintstone' -f $name)
+   }
+
+   $hash = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }   
    foreach ($key in $hash.keys) {
       write-host ('{0} Flintstone is {1:D} years old' -f $key, $hash[$key])
    }
-   
+
    $index = 0;
    while ($index -lt $names.length){
       write-host ('{0} Flintstone' -f $names[$index])
@@ -656,10 +656,184 @@ PowerShell Loops
    } while($index -lt $names.length)
 
 
+
 Operators
 =========
 
-https://www.tutorialspoint.com/powershell/powershell_operators.htm
+Standard operators with parenthesis to alter operator precedence.
+
+::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+   
+   $a = 20
+   $b = 10
+   $c = 2
+   
+   # Arithmetic
+   $a + $b + $c    # addition = 32
+   $a - $b - $c    # subtraction = 8
+   $a - $b + $c    # subtraction, addition = 12
+   $a + $b - $c    # addition, subtraction = 28
+   
+   $a * $b * $c    # multiplication = 400
+   $a + $b * $c    # addition, multiplication = 40
+   $a * $b + $c    # multiplication, addition = 202
+   $a * ($b + $c)  # multiplication, addition = 240
+   
+   $a / $b / $c    # division = 1
+   $a + $b / $c    # addition, division = 15
+   $a / $b + $c    # division, addition = 4
+   $a / ($b + $c)  # division, addition = 1.66666666666667
+   
+   $a % $b         # modulus = 0
+   $b % $a         # modulus = 10
+   $c % $b         # modulus = 2
+   
+   # Comparison
+   $a -eq $b       # equals = False
+   $a -ne $b       # not equals = True
+   $a -gt $b       # greater than = True
+   $a -ge $a       # greater than or equal = True
+   $a -lt $b       # less than = False
+   $a -le $a       # less than or equal = True
+   
+   # Assignment
+   $d = $a + $b    # assignment = 30
+   $d += $c        # addition, assignment = 32
+   $d -= $c        # subtraction, assiginment = 30
+   
+   $a = $true
+   $b = $false
+   
+   # Logical
+   $a -and $b      # and = False
+   $a -or $b       # or = True
+   -not $a         # not = False
+   -not $a -and $b # not, and = False
+   $a -and -not $b # and, not  = True
+
+
+Backtick Operator
+=================
+
+* Word-wrap operator `````
+* Newline ```n``
+* Tab ```t``
+
+Regular Expressions
+===================
+
+PowerShell supports *regular expressions* in much the same was as ``Perl`` or ``Python```.
+
+Taken from `TutorialsPoint.com - Regular Expression <https://www.tutorialspoint.com/powershell/powershell_regex.htm>`_
+
+This table lists all the supported regular expression metacharacter.
+
++-----------+----------------------------------------------------------------------------------------+
+| Subquery  | Match description                                                                      |
++===========+========================================================================================+
+| ^         | The beginning of the line.                                                             |
++-----------+----------------------------------------------------------------------------------------+
+| $         | The end of the line.                                                                   |
++-----------+----------------------------------------------------------------------------------------+
+| .         | Any single character except newline. Using m option it to matches the newline as well. |
++-----------+----------------------------------------------------------------------------------------+
+| [...]     | Any single character in brackets.                                                      |
++-----------+----------------------------------------------------------------------------------------+
+| [^...]    | Any single character not in brackets.                                                  |
++-----------+----------------------------------------------------------------------------------------+
+| \\A       | Beginning of the entire string.                                                        |
++-----------+----------------------------------------------------------------------------------------+
+| \\z       | End of the entire string.                                                              |
++-----------+----------------------------------------------------------------------------------------+
+| \\Z       | End of the entire string except allowable final line terminator.                       |
++-----------+----------------------------------------------------------------------------------------+
+| re*       | 0 or more occurrences of the preceding expression.                                     |
++-----------+----------------------------------------------------------------------------------------+
+| re+       | 1 or more of the previous thing.                                                       |
++-----------+----------------------------------------------------------------------------------------+
+| re?       | 0 or 1 occurrence of the preceding expression.                                         |
++-----------+----------------------------------------------------------------------------------------+
+| re{ n}    | Exactly n number of occurrences of the preceding expression.                           |
++-----------+----------------------------------------------------------------------------------------+
+| re{ n,}   | n or more occurrences of the preceding expression.                                     |
++-----------+----------------------------------------------------------------------------------------+
+| re{ n, m} | At least n and at most m occurrences of the preceding expression.                      |
++-----------+----------------------------------------------------------------------------------------+
+| a¦b       | Either a or b.                                                                         |
++-----------+----------------------------------------------------------------------------------------+
+| (re)      | Groups regular expressions and remembers the matched text.                             |
++-----------+----------------------------------------------------------------------------------------+
+| (?: re)   | Groups regular expressions without remembering the matched text.                       |
++-----------+----------------------------------------------------------------------------------------+
+| (?> re)   | Matches the independent pattern without backtracking.                                  |
++-----------+----------------------------------------------------------------------------------------+
+| \\w       | The word characters.                                                                   |
++-----------+----------------------------------------------------------------------------------------+
+| \\W       | The nonword characters.                                                                |
++-----------+----------------------------------------------------------------------------------------+
+| \\s       | The whitespace. Equivalent to [\t\n\r\f].                                              |
++-----------+----------------------------------------------------------------------------------------+
+| \\S       | The nonwhitespace.                                                                     |
++-----------+----------------------------------------------------------------------------------------+
+| \\d       | The digits. Equivalent to [0-9].                                                       |
++-----------+----------------------------------------------------------------------------------------+
+| \\D       | The nondigits.                                                                         |
++-----------+----------------------------------------------------------------------------------------+
+| \\A       | The beginning of the string.                                                           |
++-----------+----------------------------------------------------------------------------------------+
+| \\Z       | The end of the string. If a newline exists, it matches just before newline.            |
++-----------+----------------------------------------------------------------------------------------+
+| \\z       | The end of the string.                                                                 |
++-----------+----------------------------------------------------------------------------------------+
+| \\G       | The point where the last match finished.                                               |
++-----------+----------------------------------------------------------------------------------------+
+| \\n       | Back-reference to capture group number "n".                                            |
++-----------+----------------------------------------------------------------------------------------+
+| \\b       | The word boundaries. Matches the backspace (0x08) when inside the brackets.            |
++-----------+----------------------------------------------------------------------------------------+
+| \\B       | The nonword boundaries.                                                                |
++-----------+----------------------------------------------------------------------------------------+
+| \\n, \\t  | Newlines, carriage returns, tabs, etc.                                                 |
++-----------+----------------------------------------------------------------------------------------+
+| \\Q       | Escape (quote) all characters up to \E.                                                |
++-----------+----------------------------------------------------------------------------------------+
+| \\E       | Ends quoting begun with \Q.                                                            |
++-----------+----------------------------------------------------------------------------------------+
+
+Examples::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+
+   "book" -match "oo"           # True
+   "copy" -match "c..y"         # True
+   "big" -match "b[iou]g"       # True
+   "and" -match "[a-e]nd"       # True
+   "and" -match "[^brt]nd"      # True
+   "book" -match "^bo"          # True
+   "book" -match "ok$"          # True
+   "baggy" -match "g*"          # True
+   "baggy" -match "g?"          # True
+
+   "abcd defg" -match "\p{Ll}+" # True
+   1234 -match "\P{Ll}+"        # True
+   "abcd defg" -match "\w+"     # (this matches abcd) True
+   "abcd defg" -match "\W+"     # (this matches the space) True
+   "abcd defg" -match "\s+"     # True
+   "abcd defg" -match "\S+"     # True
+   12345 -match "\d+"           # True
+   "abcd" -match "\D+"          # True
+
+   "abc" -match "\w*"           # True
+   "xyxyxy" -match "xy+"        # True
+   "abc" -match "\w?"           # True
+   "abc" -match "\w{2}"         # True
+   "abc" -match "\w{2,}"        # True
+   "abc" -match "\w{2,3}"       # True
+
 
 Formatting Output
 =================
