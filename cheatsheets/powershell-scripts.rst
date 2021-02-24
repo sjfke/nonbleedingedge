@@ -53,7 +53,7 @@ indiviual commands, ``cmdlets`` can.
 
 
 If your *ExecutionPolicy* is as above, a quick fix is to start a *PowerShell as Administrator* and reset it as shown below, but you 
-should read the `PowerShell ExectionPolicies`_ section.
+should read the `PowerShell Exection Policies`_ section.
 
 ::
 
@@ -104,7 +104,7 @@ the syntax version and to be more strict on the use of uninitialized variables.
 
 ::
 
-   #requires -version 2
+   #requires -version 4
    <#
    .SYNOPSIS
    
@@ -228,7 +228,7 @@ the syntax version and to be more strict on the use of uninitialized variables.
 
 Things to note:
 
-* The `#requires -version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires>`_ forces PowerShell version 2 syntax, (use version 4, unless windows is very old);
+* The `#requires -version 4 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires>`_ PowerShell version 4 syntax, (use version 2, if windows is very old);
 * Initial comment block ``.SYNOPSIS...`` provides the ``get-help`` text, note line-spacing is important;
 * The `param() <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_ block must be the first *non-comment line* for command-line arguments;
 * The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of unintialized variables;
@@ -727,112 +727,137 @@ Regular Expressions
 
 PowerShell supports *regular expressions* in much the same was as ``Perl`` or ``Python```.
 
-Taken from `TutorialsPoint.com - Regular Expression <https://www.tutorialspoint.com/powershell/powershell_regex.htm>`_
 
-This table lists all the supported regular expression metacharacter.
+Table taken from `TutorialsPoint.com - Regular Expression <https://www.tutorialspoint.com/powershell/powershell_regex.htm>`_
 
-+-----------+----------------------------------------------------------------------------------------+
-| Subquery  | Match description                                                                      |
-+===========+========================================================================================+
-| ^         | The beginning of the line.                                                             |
-+-----------+----------------------------------------------------------------------------------------+
-| $         | The end of the line.                                                                   |
-+-----------+----------------------------------------------------------------------------------------+
-| .         | Any single character except newline. Using m option it to matches the newline as well. |
-+-----------+----------------------------------------------------------------------------------------+
-| [...]     | Any single character in brackets.                                                      |
-+-----------+----------------------------------------------------------------------------------------+
-| [^...]    | Any single character not in brackets.                                                  |
-+-----------+----------------------------------------------------------------------------------------+
-| \\A       | Beginning of the entire string.                                                        |
-+-----------+----------------------------------------------------------------------------------------+
-| \\z       | End of the entire string.                                                              |
-+-----------+----------------------------------------------------------------------------------------+
-| \\Z       | End of the entire string except allowable final line terminator.                       |
-+-----------+----------------------------------------------------------------------------------------+
-| re*       | 0 or more occurrences of the preceding expression.                                     |
-+-----------+----------------------------------------------------------------------------------------+
-| re+       | 1 or more of the previous thing.                                                       |
-+-----------+----------------------------------------------------------------------------------------+
-| re?       | 0 or 1 occurrence of the preceding expression.                                         |
-+-----------+----------------------------------------------------------------------------------------+
-| re{ n}    | Exactly n number of occurrences of the preceding expression.                           |
-+-----------+----------------------------------------------------------------------------------------+
-| re{ n,}   | n or more occurrences of the preceding expression.                                     |
-+-----------+----------------------------------------------------------------------------------------+
-| re{ n, m} | At least n and at most m occurrences of the preceding expression.                      |
-+-----------+----------------------------------------------------------------------------------------+
-| a¦b       | Either a or b.                                                                         |
-+-----------+----------------------------------------------------------------------------------------+
-| (re)      | Groups regular expressions and remembers the matched text.                             |
-+-----------+----------------------------------------------------------------------------------------+
-| (?: re)   | Groups regular expressions without remembering the matched text.                       |
-+-----------+----------------------------------------------------------------------------------------+
-| (?> re)   | Matches the independent pattern without backtracking.                                  |
-+-----------+----------------------------------------------------------------------------------------+
-| \\w       | The word characters.                                                                   |
-+-----------+----------------------------------------------------------------------------------------+
-| \\W       | The nonword characters.                                                                |
-+-----------+----------------------------------------------------------------------------------------+
-| \\s       | The whitespace. Equivalent to [\t\n\r\f].                                              |
-+-----------+----------------------------------------------------------------------------------------+
-| \\S       | The nonwhitespace.                                                                     |
-+-----------+----------------------------------------------------------------------------------------+
-| \\d       | The digits. Equivalent to [0-9].                                                       |
-+-----------+----------------------------------------------------------------------------------------+
-| \\D       | The nondigits.                                                                         |
-+-----------+----------------------------------------------------------------------------------------+
-| \\A       | The beginning of the string.                                                           |
-+-----------+----------------------------------------------------------------------------------------+
-| \\Z       | The end of the string. If a newline exists, it matches just before newline.            |
-+-----------+----------------------------------------------------------------------------------------+
-| \\z       | The end of the string.                                                                 |
-+-----------+----------------------------------------------------------------------------------------+
-| \\G       | The point where the last match finished.                                               |
-+-----------+----------------------------------------------------------------------------------------+
-| \\n       | Back-reference to capture group number "n".                                            |
-+-----------+----------------------------------------------------------------------------------------+
-| \\b       | The word boundaries. Matches the backspace (0x08) when inside the brackets.            |
-+-----------+----------------------------------------------------------------------------------------+
-| \\B       | The nonword boundaries.                                                                |
-+-----------+----------------------------------------------------------------------------------------+
-| \\n, \\t  | Newlines, carriage returns, tabs, etc.                                                 |
-+-----------+----------------------------------------------------------------------------------------+
-| \\Q       | Escape (quote) all characters up to \E.                                                |
-+-----------+----------------------------------------------------------------------------------------+
-| \\E       | Ends quoting begun with \Q.                                                            |
-+-----------+----------------------------------------------------------------------------------------+
++-------------+----------------------------------------------------------------------------------------+
+| Subquery    | Match description                                                                      |
++=============+========================================================================================+
+| ^           | The beginning of the line.                                                             |
++-------------+----------------------------------------------------------------------------------------+
+| $           | The end of the line.                                                                   |
++-------------+----------------------------------------------------------------------------------------+
+| .           | Any single character except newline. Using m option it to matches the newline as well. |
++-------------+----------------------------------------------------------------------------------------+
+| [...]       | Any single character in brackets.                                                      |
++-------------+----------------------------------------------------------------------------------------+
+| [^...]      | Any single character not in brackets.                                                  |
++-------------+----------------------------------------------------------------------------------------+
+| \\A         | Beginning of the entire string.                                                        |
++-------------+----------------------------------------------------------------------------------------+
+| \\z         | End of the entire string.                                                              |
++-------------+----------------------------------------------------------------------------------------+
+| \\Z         | End of the entire string except allowable final line terminator.                       |
++-------------+----------------------------------------------------------------------------------------+
+| re*         | 0 or more occurrences of the preceding expression.                                     |
++-------------+----------------------------------------------------------------------------------------+
+| re+         | 1 or more of the previous thing.                                                       |
++-------------+----------------------------------------------------------------------------------------+
+| re?         | 0 or 1 occurrence of the preceding expression.                                         |
++-------------+----------------------------------------------------------------------------------------+
+| re{ n}      | Exactly n number of occurrences of the preceding expression.                           |
++-------------+----------------------------------------------------------------------------------------+
+| re{ n,}     | n or more occurrences of the preceding expression.                                     |
++-------------+----------------------------------------------------------------------------------------+
+| re{ n, m}   | At least n and at most m occurrences of the preceding expression.                      |
++-------------+----------------------------------------------------------------------------------------+
+| a¦b         | Either a or b.                                                                         |
++-------------+----------------------------------------------------------------------------------------+
+| (re)        | Groups regular expressions and remembers the matched text.                             |
++-------------+----------------------------------------------------------------------------------------+
+| (?: re)     | Groups regular expressions without remembering the matched text.                       |
++-------------+----------------------------------------------------------------------------------------+
+| (?> re)     | Matches the independent pattern without backtracking.                                  |
++-------------+----------------------------------------------------------------------------------------+
+| \\w         | The word characters.                                                                   |
++-------------+----------------------------------------------------------------------------------------+
+| \\W         | The nonword characters.                                                                |
++-------------+----------------------------------------------------------------------------------------+
+| \\s         | The whitespace. Equivalent to [\t\n\r\f].                                              |
++-------------+----------------------------------------------------------------------------------------+
+| \\S         | The nonwhitespace.                                                                     |
++-------------+----------------------------------------------------------------------------------------+
+| \\d         | The digits. Equivalent to [0-9].                                                       |
++-------------+----------------------------------------------------------------------------------------+
+| \\D         | The nondigits.                                                                         |
++-------------+----------------------------------------------------------------------------------------+
+| \\A         | The beginning of the string.                                                           |
++-------------+----------------------------------------------------------------------------------------+
+| \\Z         | The end of the string. If a newline exists, it matches just before newline.            |
++-------------+----------------------------------------------------------------------------------------+
+| \\z         | The end of the string.                                                                 |
++-------------+----------------------------------------------------------------------------------------+
+| \\G         | The point where the last match finished.                                               |
++-------------+----------------------------------------------------------------------------------------+
+| \\n         | Back-reference to capture group number "n".                                            |
++-------------+----------------------------------------------------------------------------------------+
+| \\b         | The word boundaries. Matches the backspace (0x08) when inside the brackets.            |
++-------------+----------------------------------------------------------------------------------------+
+| \\B         | The nonword boundaries.                                                                |
++-------------+----------------------------------------------------------------------------------------+
+| \\n,\\t,\\r | Newlines, carriage returns, tabs, etc.                                                 |
++-------------+----------------------------------------------------------------------------------------+
+| \\Q         | Escape (quote) all characters up to \E.                                                |
++-------------+----------------------------------------------------------------------------------------+
+| \\E         | Ends quoting begun with \Q.                                                            |
++-------------+----------------------------------------------------------------------------------------+
 
 Examples::
 
    #requires -version 4
    Set-StrictMode -Version 2
 
-   "book" -match "oo"           # True
-   "copy" -match "c..y"         # True
-   "big" -match "b[iou]g"       # True
-   "and" -match "[a-e]nd"       # True
-   "and" -match "[^brt]nd"      # True
-   "book" -match "^bo"          # True
-   "book" -match "ok$"          # True
-   "baggy" -match "g*"          # True
-   "baggy" -match "g?"          # True
+   "fred" -match "f..d"           # True (same as imatch)
+   "fred" -imatch "F..d"          # True
+   "fred" -cmatch "F..d"          # False
+   "fred" -notmatch "W..ma"       # True
+   "fred" -match "re"             # (match 're') True
+   
+   "dog" -match "d[iou]g"         # (dig, dug) True
+   "ant" -match "[a-e]nt"         # (bnt, cnt, dnt, ent) True
+   "ant" -match "[^brt]nt"        # True
+   "fred" -match "^fr"            # (starts with 'fr') True
+   "fred" -match "ed$"            # (ends with 'ed') True
+   "doggy" -match "g*"            # True
+   "doggy" -match "g?"            # True
 
-   "abcd defg" -match "\p{Ll}+" # True
-   1234 -match "\P{Ll}+"        # True
-   "abcd defg" -match "\w+"     # (this matches abcd) True
-   "abcd defg" -match "\W+"     # (this matches the space) True
-   "abcd defg" -match "\s+"     # True
-   "abcd defg" -match "\S+"     # True
-   12345 -match "\d+"           # True
-   "abcd" -match "\D+"          # True
+   "Fred Flintstone" -match "\w+" # (matches word Fred) True
+   "FredFlintstone" -match "\w+"  # (matches word Fred) True
+   "Fred Flintstone" -match "\W+" # (matches >= 1 non-word) True
+   "FredFlintstone" -match "\W+"  # (matches >= 1 non-word) False
+   
+   "Fred Flintstone" -match "\s+" # (matches >= 1 white-space) True
+   "FredFlintstone" -match "\s+"  # (matches >= 1 white-space) False
+   "Fred Flintstone" -match "\S+" # (matches >= 1 non white-space) True
+   "FredFlintstone" -match "\S+"  # (matches >= 1 non white-space) True
+   
+   "Fred Flintstone" -match "\d+" # (matches >= 1 digit 0..9) False
+   "Fred is 30" -match "\d+"      # (matches >= 1 digit 0..9) True
+   "Fred Flintstone" -match "\D+" # (matches >= 1 non-digit 0..9) True
+   "Fred is 30" -match "\D+"      # (matches >= 1 non-digit 0..9) True
 
-   "abc" -match "\w*"           # True
-   "xyxyxy" -match "xy+"        # True
-   "abc" -match "\w?"           # True
-   "abc" -match "\w{2}"         # True
-   "abc" -match "\w{2,}"        # True
-   "abc" -match "\w{2,3}"       # True
+   "Fred Flintstone" -match "\w?"     # (match >= 0 preceding pattern) True
+   "Fred Flintstone" -match "\w{2}"   # (match 2 preceding pattern) True
+   "Fred Flintstone" -match "\W{2}"   # (match 2 preceding pattern) False
+   "Fred Flintstone" -match "\w{2,}"  # (match >2 preceding pattern) True
+   "Fred Flintstone" -match "\W{2,}"  # (match >2 preceding pattern) False
+   "Fred Flintstone" -match "\w{2,3}" # (match >2 <=3 preceding pattern) True
+   "Fred Flintstone" -match "\W{2,3}" # (match >2 <=3 preceding pattern) False
+   
+   'Fred Flinstone' -replace '(\w+) (\w+)', 'Wilma $2' # Wilma Flinstone
+   'fred Flinstone' -ireplace 'Fred (\w+)', 'Wilma $1' # Wilma Flinstone
+   'fred Flinstone' -replace 'Fred (\w+)', 'Wilma $1'  # Wilma Flinstone
+   'fred Flinstone' -creplace 'Fred (\w+)', 'Wilma $1' # fred Flinstone
+
+
+Entire Technical Books are dedicated Regular Expression, the above treatment is very brief, a few helpful links.
+
+* `Jeffrey Friedl: Mastering Regular Expressions <https://www.oreilly.com/library/view/mastering-regular-expressions/0596528124/>`_
+* `Microsoft Docs: About Regular Expressions <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_regular_expressions>`_
+* `Powershell: The many ways to use regex <https://powershellexplained.com/2017-07-31-Powershell-regex-regular-expression/>`_
+* `Test and Debug: Regular Expression 101 <https://regex101.com/>`_
+* `Test and Debug: RegEx <https://www.regextester.com/>`_
+* `Test and Debug: Regular Expression Tester <https://www.freeformatter.com/regex-tester.html>`_
 
 
 Formatting Output
@@ -888,10 +913,6 @@ Ouput methods:
 * `Microsoft Docs: Write Host <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host>`_
 * `Microsoft Docs: Write Error <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error>`_
 
-Regular Expressions
-===================
-https://www.tutorialspoint.com/powershell/powershell_regex.htm
-
 Running PowerShell scripts
 ==========================
 
@@ -929,71 +950,26 @@ A default install will most likely look as shown.
    PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
    PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
 
+
 Choosing **Unrestricted** means that any PowerShell script, even ones inadvertently or unknowingly 
 downloaded from the Internet will run as you, and with your privileges, so **be careful**
 
 When developing the following avoids having certificates installed and updating the signature each time.
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::
 
   PS> powershell.exe -noprofile -executionpolicy bypass -file .\script.ps1 
   
 Generating and Installing Certificates
 ======================================
 
-To come shortly. 
+::
 
-Cruft that needs to be cleaned up
-=================================
-
-The command-line has colour-highlighting and ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
-through the alternatives. Cmdlets are **case-insensitive** but hyphens are important, I try to avoid Camel-Case and try use a consistent 
-lower-case format ``get-help`` and not ``Get-Help``. Variable names are also **case-insensitive** but I often use CamelCase 
-to make them more readable ``dateString`` , rather than underscore ``date_string``.
-
-A `Windows Powershell ISE <https://docs.microsoft.com/en-us/powershell/scripting/components/ise/introducing-the-windows-powershell-ise?view=powershell-7>`_  
-is provided if you need more interactive assistance, which is also useful for checking your scripts are consistent with Mircosoft's conventions.
-
-There have been many `Powershell versions <https://en.wikipedia.org/wiki/PowerShell>`_ which are mainly backwards compatible, 
-be careful if writing for older Windows releases, writing scripts with ``#Requires -version X`` as the very first line is a good habit.
- 
-
-Commonly used cmdlets when starting are ``get-help`` and ``get-member``
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-	PS> get-help get-childitem         # Help on GetChildItem
-	PS> get-help get-childiten -online # Online Web based documentation from Microsoft
-	PS> get-childitem | get-member     # What is object type, its methods and properties
-	PS> get-help get-content           # notice its aliases 'gc', 'cat', 'type'
-	PS> get-help select-string         # regular expressions based string searching (grep like)
+   To come shortly.
 
 
-	PS> get-help get-location          # alias 'gl' and 'pwd'.
-	PS> get-help get-command           # what commands are available
-	PS> get-help select-object         # 'select' or set object properties
-	PS> get-help where-object          # 'where' filter on object property
-	PS> get-help tee-object            # 'tee' like the UNIX command
-	PS> get-help out-host              # Similar to UNIX 'more' and 'less'
-
-There are many online guides and tutorials, which usually means the subject matter is complex or misunderstood, the ones I found most useful.
-
-* `Learning PowerShell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
-* `PowerShell 3.0 <https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0>`_
-* `TutorialsPoint PowerShell <https://www.tutorialspoint.com/powershell/index.htm>`_
-* `PowerShell Tutorial <http://powershelltutorial.net/>`_
-
-
-------------------
-
-    https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/
-
-     
-
-
-    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error?view=powershell-3.0
-
-     
-PowerShell ExectionPolicies
-=========================== 
+PowerShell Exection Policies
+============================ 
 
 See: `About Execution Policies <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_ for more details.
 
@@ -1068,286 +1044,3 @@ Some internet posts recommend disabling the execution policy, but I would advise
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted
-
-
-Cruft to Clean UP
-=================
-::
-
-    String Splitting
-
-    ================
-
-    The string.split() method does not support regex, but -Split() operator does; confusing!
-
-     
-
-    PS Y:\> "A B     CD".split('\s+')
-
-    A B     CD
-
-     
-
-    PS Y:\> "A B     CD" -Split('\s+')
-
-    A
-
-    B
-
-    CD
-
-     
-
-    PowerShell Intro
-
-    ================
-
-    https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell
-
-    https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0
-
-    https://www.tutorialspoint.com/powershell/index.htm
-
-    http://powershelltutorial.net/
-
-     
-
-    Commands
-
-    --------
-
-    PS Y:\> get-command [<pattern>]           # what commands are available
-
-    PS Y:\> get-command get-help -syntax      # syntax of get-help
-
-    PS Y:\> get-command -CommandType Alias    # list all Aliases
-
-    PS Y:\> get-command -CommandType Alias gc # 'gc' maps to what, throws exception if missing
-
-    PS Y:\> get-command -CommandType <type>   # Alias|Function|Script
-
-     
-
-    Variables
-
-    ---------
-
- 
-     
-
-    Pipelines
-
-    ---------
-
-    PS Y:\> get-childitem -path c:\windows\system32 | out-host -paging # UNIX more command
-
-    
-
-
-     
-
-    # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object?view=powershell-3.0
-
-    # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/sort-object?view=powershell-3.0
-
-    # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-3.0
-
-     
-
-    PS Y:\> get-process | get-member                                                     # show returned object
-
-    PS Y:\> get-process | select-object -first 10                                        # first 10 processes
-
-    PS Y:\> get-process | select-object -last 10                                         # last 10 processes
-
-    PS Y:\> get-process | sort-object -property WS | select-object -last 10              # last 10 sorted
-
-    PS Y:\> get-process | sort-object -property WS | select-object -first 10             # first 10 sorted
-
-    PS Y:\> get-process | sort-object -property WS -descending | select-object -first 10 # reverse sort first 10
-
-    PS Y:\> Get-Process | Where-Object {$_.ProcessName -Match "^p.*"}                    # find all processes that start with "p"
-
-    PS Y:\> get-content <file> | select-object -last 20                                  # get last 20 lines
-
-    PS Y:\> get-content <file> -wait                                                     # tailing a log-file
-
-    PS Y:\> get-process | select-object -property Name,Id,WS | out-host -paging
-
-     
-
-    PS Y:\> get-content <file> | select-object -first 10                                 # first 10 lines
-
-    PS Y:\> get-content <file> | select-object -last 10                                  # last 10 lines
-
-    PS Y:\> select-string <regex> <file> | select-object -first 10                       # first 10 occurences of <regex>
-
-    PS Y:\> select-string <regex> <file> | select-object -last 10                        # last 10 occurences of <regex>
-
-     
-
-    Compter Info
-
-    ------------
-
-    PS Y:\> get-ciminstance -classname Win32_BIOS                # bios version
-
-    PS Y:\> get-ciminstance -classname Win32_Processor           # processor information
-
-    PS Y:\> get-ciminstance -classname Win32_ComputerSystem      # computer name, model etc.
-
-    PS Y:\> get-ciminstance -classname Win32_QuickFixEngineering # hotfixes installed
-
-    PS Y:\> get-ciminstance -classname Win32_QuickFixEngineering -property HotFixID | select-object -property hotfixid
-
-     
-
-    Classnames: Win32_BIOS, Win32_Processor, Win32_ComputerSystem, Win32_LocalTime, Win32_LogicalDisk, Win32_LogonSession, Win32_QuickFixEngineering, Win32_Service
-
-     
-
-    Out-* cmd-lets
-
-    --------------
-
-    PS Y:\> get-service| format-list | out-host -paging                    # formatted process list
-
-    PS Y:\> get-command | out-null                                         # stdout to /dev/null
-
-    PS Y:\> get-command | out-printer -name "printer-name"                 # send to printer
-
-     
-
-    # Wraps to screen width, add -Width w (1 <= w <= 2147483647)
-
-    PS Y:\> Get-Process | Out-File -FilePath C:\temp\ps.txt                # write unicode text to 'ps.txt'
-
-    PS Y:\> Get-Process | Out-File -FilePath C:\temp\ps.txt -Encoding ASII # write ASCII text output to 'ps.txt'
-
-     
-
-    *** CHK ***
-
-    PS> dir *.ps1 |Select-String function.*NIC$ -Context 1 # 1 line  before/after
-
-    PS> dir *.ps1 |Select-String function.*NIC$ -Context 3 # 3 lines before/after
-
-    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/compare-object?view=powershell-3.0
-
-    *** KHC ***
-
-     
-
-    Event Log Parsing
-
-    -----------------
-
-    http://colleenmorrow.com/2012/09/20/parsing-windows-event-logs-with-powershell/
-
-     
-
-    PS> get-eventlog -logname application -source MSSQLSERVER | out-host -paging
-
-    PS> get-eventlog -logname application -source MSSQLSERVER -after 18/6/2019 | out-host -paging
-
-    PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | out-host -paging
-
-    PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | where-object {$_.Message -like '*error*'} | out-host -paging
-
-    PS> get-winevent -filterhashtable @{logname='application'} | get-member
-
-    PS> get-winevent -filterhashtable @{logname='application'} | get-member
-
-    PS> (Get-WinEvent -ListLog Application).ProviderNames | select-string "^MG"
-
-     
-
-    PS> (Get-WinEvent -ListLog Application).ProviderNames
-
-    https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Diagnostics/Get-WinEvent?view=powershell-3.0
-
-     
-
-    For MG ProviderName={MGENGINE|MGVPlusIF|ASMSSender|MGBINFO|AppMngSvc.exe}
-
-    Others ProviderName={McAfee Endpoint Security|AVLogEvent|Microsoft-Windows-Security-SPP|SceCli|TPPrn|
-
-                         Desktop Window Manager|Microsoft-Windows-CertificateServices|MSSQLSERVER|
-
-                         Microsoft-Windows-Winlogon|VSS|vmStatsProvider|DSM|SQLSEVERAGENT|MSQLServerOLAPService|VMUpgradeHelper|
-
-                         NetBackup Client Service|NetBackup Legacy Network Service}
-
-     
-
-    PowerShell Quick Intro
-
-    ======================
-
-     
-
-    C:\Users\fred> sl <dir>; cd <dir>                             # set-location, alias 'cd'
-
-    C:\Users\fred> gci                                            # equivalent of 'ls' or 'dir'
-
-    C:\Users\fred> mkdir dir, dir1, dir2                          # make >=1 directories
-
-    C:\Users\fred> sl dir
-
-    C:\Users\fred\dir> ni example.txt, example1.txt, example2.txt # create >=1 empty files.
-
-    C:\Users\fred\dir> write "" > fred.txt                        # create non-empty file
-
-    C:\Users\fred\dir> write "some text to the screen"            # alias 'echo' or 'cat'
-
-    C:\Users\fred\dir> write "some text to the file" > fred.txt   # redirect stdout to a file
-
-    C:\Users\fred\dir> write "add some more text" >> fred.txt     # append stdout to a file
-
-    C:\Users\fred\dir> gc *.txt                                   # 'cat' all '.txt' files (muddled output)
-
-     
-
-    C:\Users\fred\dir> gc fred.txt -totalcount 10                 # head -10 fred.txt ('-head 10' also works)
-
-    C:\Users\fred\dir> gc fred.txt -tail 10                       # tail -10 fred.txt
-
-    C:\Users\fred\dir> gc *.txt -exclude bigben.txt > bigben.txt  # cat all files using wild-card
-
-     
-
-    C:\Users\fred\dir> sls "yet" .\fred.txt                       # Select-String
-
-    fred.txt:3:yet more text
-
-    measuree
-
-    C:\Users\fred> Get-Help gc                                    # man page
-
-    C:\Users\fred> Get-Help gc -online                            # web page help
-
-     
-
-    C:\Users\fred> gc .\fred.txt | measure -l -w -c               # 'wc' of file, Measure-Object
-
-    Lines Words Characters Property
-
-    ----- ----- ---------- --------
-
-        3    19        116
-
-     
-
-    C:\Users\fred> gc .\fred.txt | measure
-
-    Count    : 3
-
-    Average  :
-
-    Sum      :
-
-    Maximum  :
-
-    Minimum  :
-
-    Property :
