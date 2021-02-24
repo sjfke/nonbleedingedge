@@ -388,7 +388,7 @@ versions support the hash elements have a known/fixed order, ``$hash = [ordered]
 
 For more details read the excellent review by Kevin Marquette:
  
-`Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_.
+* `Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
 
 PowerShell Objects
 ==================
