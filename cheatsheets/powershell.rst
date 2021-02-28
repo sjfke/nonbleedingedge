@@ -173,7 +173,7 @@ PowerShell Environment
    PS> $env:SystemRoot                # variable containing C:\Windows
    PS> $env:COMPUTERNAME              # variable containing MYLAPTOP001
    PS> $env:USERNAME                  # variable containing username
-   PS> $env:TMP, $env:TEMP            # variable containingtemp directory
+   PS> $env:TMP, $env:TEMP            # variable containing temp directory
    PS> $env:LIB_PATH='/usr/local/lib' # setting LIB_PATH variable 
    
    PS> $psversiontable                # variable containing PowerShell version information.
@@ -187,8 +187,8 @@ Processes
    PS> get-process | get-member                                       # show returned object
    PS> get-process | select -first 10                                 # first 10 processes
    PS> get-process | select -last 10                                  # last 10 processes
-   PS> get-process | sort -property workingset | select -last 10      # last 10 sorted
-   PS> get-process | sort -property workingset | select -first 10     # first 10 sorted
+   PS> get-process | sort -property workingset | select -last 10      # last 10 sorted on workingset
+   PS> get-process | sort -property workingset | select -first 10     # first 10 sorted on workingset
    PS> get-process | sort -property ws -descending | select -first 10 # reversed first 10 (ws=workingset)
    PS> get-process | where {$_.processname -match "^p.*"}             # all processes starting with "p"
    PS> get-process | select -property Name,Id,WS | out-host -paging   # paged (more/less) output
@@ -245,14 +245,26 @@ Computer Information
    PS> get-ciminstance -classname Win32_ComputerSystem      # computer name, model etc.
    PS> get-ciminstance -classname Win32_QuickFixEngineering # hotfixes installed on which date
    PS> get-ciminstance -classname Win32_QuickFixEngineering -property HotFixID | select -property hotfixid
-   
- * `Get-CimInstance <https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance>`_
+
+Further reading:
+
+* `Introduction to CIM Cmdlets <https://devblogs.microsoft.com/powershell/introduction-to-cim-cmdlets/>`_
+* `Microsoft Docs: Get-CimInstance <https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance>`_
 
 Windows EventLog
 ================
 
 ::
 
+   # Gets events from event logs and event tracing log files
+   PS> (Get-WinEvent -ListLog Application).ProviderNames | out-host -paging  # who is writing Application logs
+   
+   PS> get-winevent -filterhashtable @{logname='application'} | get-member # slow ... be patient :-)
+   
+   PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | out-host -paging
+   PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | where {$_.Message -like '*error*'} | out-host -paging
+
+   # Uses deprecated Win32 API, last reference PowerShell 5 docs, but still works on Windows 10 Home
    PS> get-eventlog -list                                                    # list a summary count of the events
    PS> get-eventlog -logname system -newest 5                                # last 5 system events
    PS> get-eventlog -logname system -entrytype error | out-host -paging      # system error events
@@ -266,16 +278,11 @@ Windows EventLog
    PS> get-eventlog -logname application -source MSSQLSERVER | out-host -paging
    PS> get-eventlog -logname application -source MSSQLSERVER -after '11/18/2020' | out-host -paging
    
-   # Gets events from event logs and event tracing log files (less useful)
-   PS> (Get-WinEvent -ListLog Application).ProviderNames | out-host -paging  # who is writing Application logs
-   
-   PS> get-winevent -filterhashtable @{logname='application'} | get-member
-   
-   PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | out-host -paging
-   PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | where {$_.Message -like '*error*'} | out-host -paging
+Further reading:
 
-* `Event Log Parsing <http://colleenmorrow.com/2012/09/20/parsing-windows-event-logs-with-powershell/>`_
-* `Get-WinEvent <https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Diagnostics/Get-WinEvent>`_
+* `Collen M. Morrow: Parsing Windows event logs with PowerShell <https://colleenmorrow.com/2012/09/20/parsing-windows-event-logs-with-powershell/>`_
+* `Microsoft Docs: Get-WinEvent <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent>`_
+* `Microsoft Docs: Get-EventLog <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-eventlog>`_
 
 HotFixes
 ========
@@ -400,19 +407,21 @@ PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are
                        }
                    ]
    }
+
+Further reading:
    
 * `ConvertTo-Json converts an object to a JSON-formatted string. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json>`_
 * `ConvertFrom-Json converts a JSON-formatted string to a custom object or a hash table. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json>`_
-* `Introduction to JSON courtesy of W3Schools <https://www.w3schools.com/js/js_json_intro.asp>`_
+* `W3Schools: Introduction to JSON <https://www.w3schools.com/js/js_json_intro.asp>`_
 
 Reading XML files
 =================
 
 ``Powershell`` supports full manipulation of the XML DOM, read the `Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ 
-and `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more information. The examples shown 
+and `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more detailed information. The examples shown 
 are very redimentary, and only show a few of the manipulations you can perform on XML objects.
 
-Note, the Common Language Infrastructure (CLI) cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
 `Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
 and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
 
@@ -494,9 +503,9 @@ Writing XML files
 
 To generate an XML file, use the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
 
-Note, the Common Language Infrastructure (CLI) cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
 `Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
-and reload your ``PowerShell`` objects.
+and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
 
 ::
 

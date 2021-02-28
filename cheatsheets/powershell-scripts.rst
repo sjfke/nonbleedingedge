@@ -99,7 +99,7 @@ Example PowerShell Script
 =========================
 
 This is a contrived but realistic PowerShell script to illustrate several important points.
-It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which I found extremely useful, but has one or two additons to force 
+It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which I found extremely useful, but has additons to force 
 the syntax version and to be more strict on the use of uninitialized variables.
 
 ::
@@ -228,8 +228,8 @@ the syntax version and to be more strict on the use of uninitialized variables.
 
 Things to note:
 
-* The `#requires -version 4 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires>`_ PowerShell version 4 syntax, (use version 2, if windows is very old);
-* Initial comment block ``.SYNOPSIS...`` provides the ``get-help`` text, note line-spacing is important;
+* The `#requires -version 4 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires>`_ PowerShell version 4 syntax, (use *version 2*, if windows is very old);
+* Initial comment block ``.SYNOPSIS...`` provides the ``get-help`` text, **note** line-spacing is important;
 * The `param() <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_ block must be the first *non-comment line* for command-line arguments;
 * The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of unintialized variables;
 
@@ -319,8 +319,8 @@ Useful references:
 HashTables
 ==========
 
-A HashTable is an unordered collection of key:value pairs, synonymous with an object and its properties. Later
-versions support the hash elements have a known/fixed order, ``$hash = [ordered]@{}``.
+A HashTable is an unordered collection of key:value pairs, synonymous with an object and its properties. 
+Later versions support the hash elements in a known/fixed order, ``$hash = [ordered]@{}``.
 
 ::
 
@@ -405,19 +405,15 @@ Functions
 =========
 
 Function arguments and responses are passed by reference, so an arugment can be changed inside the function and remains 
-unchanged outside the function scope, like many other folks, I recommend you avoid this. Functions can return references to return objects, 
-as illustrated in the `Example PowerShell Script`_.
-While each function call returns a new reference to a new (different) object, be careful about the scope of the variable name you assign this too.
+unchanged outside the function scope, **but** it is considered *"bad programming practice"*, so avoid this. 
+Functions return references to objects, as illustrated in the `Example PowerShell Script`_ where references to *HashTable* and *Array* objects are returned.
+
+While each function call returns a reference to a new (different) object, be careful about the scope of the variable name you assign this too.
 It is easy to create multiple references to the same object.
 
-While mixing named (order indepedent) and positional arguments (order dependent) is permitted it can cause strange errors, a better approach is to
+While mixing named (order indepedent) and positional (order dependent) arguments is permitted it can cause strange errors, a better approach is to
 use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_, unless you are supplying one or two arguments.
 The following contrived example illustrates the basics but the ``param ( ... )`` section has many options not shown here. 
-
-I suggest you read the following articles:
-
-* Microsoft Docs, `Chapter 9 - Functions <https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions>`_ 
-* Microsoft Docs, `About Functions Advanced Parameters <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_.
 
 ::
   
@@ -496,8 +492,19 @@ I suggest you read the following articles:
    }
    createPerson @arguments                   # fails missing name
 
+Further reading:
+
+* Microsoft Docs, `Chapter 9 - Functions <https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions>`_ 
+* Microsoft Docs, `About Functions Advanced Parameters <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_.
+
 Powershell ArrayList
 ====================
+
+::
+
+   To come missing examples.
+
+Further reading:
 
 * `.Net ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
 * `Powershell: Everything you wanted to know about arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_    
@@ -564,8 +571,9 @@ There is also a ``switch`` statement for comparing against multiple values.
       }
    }
    
-See `PowerShell Explained: If and Switch <https://powershellexplained.com/2019-08-11-Powershell-if-then-else-equals-operator/>`_ for more details 
-on PowerShell ``if`` and ``switch``.
+Further reading:
+
+   `PowerShell Explained: If and Switch <https://powershellexplained.com/2019-08-11-Powershell-if-then-else-equals-operator/>`_
 
 
 Try/Catch
@@ -612,12 +620,15 @@ Note the following two points in the example:
 * Addition of ``-ErrorAction Stop`` to ``get-content`` to make it a terminating error;
 * The ``finally`` block is **always executed**, whether an exception is being handled or not!
 
-See `Tutotials Point: Explain Try/Catch/Finally block in PowerShell <https://www.tutorialspoint.com/explain-try-catch-finally-block-in-powershell>`_ for more details 
-on PowerShell exception handling.
+Further reading:
 
+* `Tutotials Point: Explain Try/Catch/Finally block in PowerShell <https://www.tutorialspoint.com/explain-try-catch-finally-block-in-powershell>`_
 
 PowerShell Loops
 ================
+
+There are several loop constructirs ``for``, ``foreach``, ``while`` and ``do .. while``.
+
 ::
 
    #requires -version 4
@@ -660,7 +671,7 @@ PowerShell Loops
 Operators
 =========
 
-Standard operators with parenthesis to alter operator precedence.
+``PowerShell`` supports the almost all the common programming language operators, with parenthesis to alter operator precedence.
 
 ::
 
@@ -717,6 +728,8 @@ Standard operators with parenthesis to alter operator precedence.
 
 Backtick Operator
 =================
+
+The ````` is used for line continuation and to identify a *"tab"* and *"new line"* character.
 
 * Word-wrap operator `````
 * Newline ```n``
