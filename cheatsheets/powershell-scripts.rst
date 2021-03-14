@@ -18,7 +18,9 @@ To simplify maintenance I write PowerShell scripts as standalone utilities deplo
 my favourite frequently used functions, such as *dumpArrayList*, *dumpHashTable* because there is no mechanism to textually include 
 your favourite functions into the source when writing and testing. 
 
-It is possible to split your script into multiple files, create libraries of your favoutite utilities etc. but I do not cover this topic. 
+It is possible to split your script into multiple files, create libraries of your favoutite utilities etc. 
+I do not cover this topic, the example script shows where/how to ``source`` you library files, and if you wish to create your 
+own modules, see `How to Write a PowerShell Script Module <https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module>`_.
 
 Introduction
 ============
@@ -71,8 +73,8 @@ should read the `PowerShell Exection Policies`_ section.
     LocalMachine    RemoteSigned  # lowest priority
  
 
-PowerShell Language
-===================
+Language
+========
 
 The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is built on 
 top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us/dotnet/standard/clr>`_ , and 
@@ -95,8 +97,8 @@ Useful starting points when learning about the language:
 Unlike most texts on programming languages I start with a simple but realistic PowerShell example.
 Many of the language details are covered in subsequent sections.
 
-Example PowerShell Script
-=========================
+Example Script
+==============
 
 This is a contrived but realistic PowerShell script to illustrate several important points.
 It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which I found extremely useful, but has additons to force 
@@ -231,12 +233,12 @@ Things to note:
 * The `#requires -version 4 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires>`_ PowerShell version 4 syntax, (use *version 2*, if windows is very old);
 * Initial comment block ``.SYNOPSIS...`` provides the ``get-help`` text, **note** line-spacing is important;
 * The `param() <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_ block must be the first *non-comment line* for command-line arguments;
-* The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of unintialized variables;
+* The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of uninitialized variables;
 
 Variables
 =========
 
-Powershell variables are loosely-typed, can be *integers*, *characters*, *strings*, *arrays*, and *hash-tables*, but also ``.Net`` objects that represent such things as
+Powershell variables can be any of the `Basic DataTypes`_ such as *integers*, *characters*, *strings*, *arrays*, and *hash-tables*, but also ``.Net`` objects that represent such things as
 *processes*, *services*, *event-logs*, and even *computers*.
 
 Common forms::
@@ -272,6 +274,38 @@ Less common forms::
    PS> $pi = 42                                       # Fails $pi is a constant
 
 
+Basic DataTypes
+===============
+
++-----------+------------------------------------------------------------------------------+
+| Data Type | Definition                                                                   |
++===========+==============================================================================+
+| Boolean   | True or False Condition                                                      |
++-----------+------------------------------------------------------------------------------+
+| Byte      | An 8-bit unsigned whole number from 0 to 255                                 |
++-----------+------------------------------------------------------------------------------+
+| Char      | A 16-bit unsigned whole number from 0 to 65,535                              |
++-----------+------------------------------------------------------------------------------+
+| Date      | A calendar date                                                              |
++-----------+------------------------------------------------------------------------------+
+| Decimal   | A 128-bit decimal value, such as 3.14159                                     |
++-----------+------------------------------------------------------------------------------+
+| Double    | A double-precision 64-bit floating point number, narrower range than Decimal |
++-----------+------------------------------------------------------------------------------+
+| Integer   | A 32-bit signed whole number from -2,147,483,648 to 2,147,483,647            |
++-----------+------------------------------------------------------------------------------+
+| Long      | A 64-bit signed whole number, very big integer, 9,233,372,036,854,775,807    |
++-----------+------------------------------------------------------------------------------+
+| Object    |                                                                              |
++-----------+------------------------------------------------------------------------------+
+| Short     | A 16-bit unsigned whole number, -32,768 to 32,767                            |
++-----------+------------------------------------------------------------------------------+
+| Single    | A single-precision 32-bit floating point number                              |
++-----------+------------------------------------------------------------------------------+
+| String    | Text, a character string                                                     |
++-----------+------------------------------------------------------------------------------+
+
+
 Array Variables
 ===============
 
@@ -290,8 +324,12 @@ Array variables are a fixed size, can have mixed values and can be multi-dimensi
    PS> $[2]              # pebbles
    PS> $a.length         # 3
    PS> $a[0] = 'freddie' # fred becomes freddie
-   PS> $a[4] = 'dino'    # Error: Index was outside the bounds of the array.
-   PS> $a = ($a, 'dino') # correct way to add 'dino' (note does an array copy)
+   PS> $a[3] = 'dino'    # Error: Index was outside the bounds of the array.
+   PS> $a += 'dino'      # correct way to add 'dino' (note does an array copy)
+   PS> $a[1,3,2]         # wilma, dino, pebbles
+   PS> $a[1..3]          # wilma, pebbles, dino
+   PS> $a = $a[0..2]     # dino ran away (note does an array copy)
+   
    
    PS> $b = ('barbey', 'betty', 'bamm-bamm')
    PS> $a = ($a, $b)    # [0]:fred [1]:wilma [2]:pebbles [3]:barney [4]:betty [5]:bamm-bamm 
@@ -308,6 +346,7 @@ Array variables are a fixed size, can have mixed values and can be multi-dimensi
    PS> $a[0][0]                                    # fred
    PS> $a[0][1]                                    # 30
    
+ 
 Useful references:
 
 * `TutorialsPoint Powershell Array for more detailed explanation <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
@@ -390,8 +429,8 @@ For more details read the excellent review by Kevin Marquette:
  
 * `Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
 
-PowerShell Objects
-==================
+Objects
+=======
 
 If you cannot create what you need from *Arrays, HashTables, ArrayLists, Queues, Stacks etc.*, then 
 it is possible to create custom PowerShell objects`, but to date I have never needed to do this.
@@ -405,13 +444,13 @@ Functions
 =========
 
 Function arguments and responses are passed by reference, so an arugment can be changed inside the function and remains 
-unchanged outside the function scope, **but** it is considered *"bad programming practice"*, so avoid this. 
-Functions return references to objects, as illustrated in the `Example PowerShell Script`_ where references to *HashTable* and *Array* objects are returned.
+unchanged outside the function scope, **but** this is considered *"bad programming practice"*, so better to avoid doing this. 
+Functions return references to objects, as illustrated in the `Example Script`_ where references to *HashTable* and *Array* objects are returned.
 
 While each function call returns a reference to a new (different) object, be careful about the scope of the variable name you assign this too.
 It is easy to create multiple references to the same object.
 
-While mixing named (order indepedent) and positional (order dependent) arguments is permitted it can cause strange errors, a better approach is to
+While mixing named (*order indepedent*) and positional (*order dependent*) arguments is permitted it can cause strange errors, a better approach is to
 use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_, unless you are supplying one or two arguments.
 The following contrived example illustrates the basics but the ``param ( ... )`` section has many options not shown here. 
 
@@ -483,34 +522,70 @@ The following contrived example illustrates the basics but the ``param ( ... )``
       verbose = $true
       debug = $false
    }
-   createPerson @arguments                   # fails missing and invalid age
+   createPerson @arguments                   # fails, age default is 0
    
    $arguments = @{
       age = 21
       verbose = $true
       debug = $false
    }
-   createPerson @arguments                   # fails missing name
+   createPerson @arguments                   # fails, name default is an empty string
 
 Further reading:
 
 * Microsoft Docs, `Chapter 9 - Functions <https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions>`_ 
 * Microsoft Docs, `About Functions Advanced Parameters <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_.
 
-Powershell ArrayList
-====================
+ArrayList
+=========
 
 ::
 
-   To come missing examples.
+   PS> $names = New-Object -TypeName System.Collections.ArrayList
+   PS> $names = [System.Collections.ArrayList]::new()
+   PS> $names.gettype()              # ArrayList
+   
+   PS> $index = $names.Add('fred')   # returns array-list index: i.e. 0
+   PS> [void]$names.Add('wilma')     # discard array-list index
+   PS> [void]$names.Add('pebbles')
+   PS> [void]$names.Add('dino')
+   
+   # one-line creation, empty or populated
+   PS> [System.Collections.ArrayList]$names = @()
+   PS> [System.Collections.ArrayList]$names = @('fred','wilma','pebbles', 'dino')
+   
+   PS> $names.Count                  # returns 4
+   PS> $names[1]                     # wilma
+   PS> $names.remove(3)              # dino ran away or did he?
+   PS> $names.Count                  # 4, no dino is still there
+   PS> $names.[3]                    # dino
+   PS> $names.RemoveAt(3)            # dino, has really gone this time
+   PS> [void]$names.Add('dino')      # dino found 
+   PS> $names.Remove('dino')         # dino, escaped again
+   PS> [void]$names.Add('dino')      # dino found ... again
+   
+   PS> [void]$names.Insert(3,'fido')
+   PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:fido, 4:dino
+   PS> $names.remove('fido')
+   PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:dino
+   
+   # Generic List are ArrayList's of a fixed type
+   PS> [System.Collections.Generic.List[string]]$names = @()
+   PS> [System.Collections.Generic.List[string]]$names = @('fred','wilma','pebbles', 'dino')
+   
+   PS> [System.Collections.Generic.List[int]]$ages = @()
+   PS> [System.Collections.Generic.List[int]]$ages = (30, 25, 1, 5)
+   
+   $names.add(30)                    # 0:fred, 1:wilma, 2:pebbles, 3:dino, 4:30
+   $ages.add('fred')                 # fails, throws conversion exception
 
 Further reading:
 
 * `.Net ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
 * `Powershell: Everything you wanted to know about arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_    
 
-PowerShell IF/Switch commands
-=============================
+IF/Switch commands
+==================
 
 The conditions that can be tested in an ``if`` statement are very extensive:
 
@@ -624,8 +699,8 @@ Further reading:
 
 * `Tutotials Point: Explain Try/Catch/Finally block in PowerShell <https://www.tutorialspoint.com/explain-try-catch-finally-block-in-powershell>`_
 
-PowerShell Loops
-================
+Loops
+=====
 
 There are several loop constructirs ``for``, ``foreach``, ``while`` and ``do .. while``.
 
@@ -738,7 +813,7 @@ The ````` is used for line continuation and to identify a *"tab"* and *"new line
 Regular Expressions
 ===================
 
-PowerShell supports *regular expressions* in much the same was as ``Perl`` or ``Python```.
+PowerShell supports *regular expressions* in much the same was as ``Perl`` or ``Python``.
 
 
 Table taken from `TutorialsPoint.com - Regular Expression <https://www.tutorialspoint.com/powershell/powershell_regex.htm>`_
@@ -930,23 +1005,23 @@ Running PowerShell scripts
 ==========================
 
 PowerShell is an often abused hackers attack vector, so modern versions of Windows prevent PowerShell scripts from
-being executed *out-of-the-box*, although the command line will work. 
+being executed *out-of-the-box*, although the ``cmd-lets`` can be run. 
 
 Many articles suggest the disabling this security feature... **DO NOT DO THIS** 
 
 Furthermore most companies harden their Windows laptop and server installations, so disabling may not work anyway.
 
 Ways to work with this restriction, are not intuitive... it took me some time to figure it out, and I am 
-still be no means an expert, hopefully this will get you started, and you can inform me once you have mastered ``PowerShell``.
+still be no means an expert, hopefully this will get you started, and you are always welcome to contact me to improve this section.
 
-The execution-policy, controls this and you should probably look at the following:
+The execution-policy, controls the execution of PowerShell scripts, good references to read are:
 
 * `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
 * `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
 * `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
 
-If you start ``PowerShell`` as administrator, then some of these settings can be changed. 
-The execution policy to change is 'CurrentUser', *your* rights, see Get-ExecutionPolicy link.
+If you start ``PowerShell`` as administrator, then you can change the *'execution-policy'*, and you should  
+change the *'CurrentUser'*, which is *your* execution-policy rights, see Get-ExecutionPolicy link.
 A default install will most likely look as shown.
 
 ::
@@ -965,21 +1040,16 @@ A default install will most likely look as shown.
 
 
 Choosing **Unrestricted** means that any PowerShell script, even ones inadvertently or unknowingly 
-downloaded from the Internet will run as you, and with your privileges, so **be careful**
+downloaded from the Internet will run as you, and with your privileges, so *Avoid Doing This*.
 
-When developing the following avoids having certificates installed and updating the signature each time.
+When developing your scripts you can try using the following to avoid having certificates installed and updating the signature each time you change the script.
 
 ::
 
   PS> powershell.exe -noprofile -executionpolicy bypass -file .\script.ps1 
+
+This may not be permitted on Corporate laptops which usually have additional security restrictions.
   
-Generating and Installing Certificates
-======================================
-
-::
-
-   To come shortly.
-
 
 PowerShell Exection Policies
 ============================ 
@@ -1019,9 +1089,23 @@ In a commercial or industrial environment ask your Windows Adminstrator, but com
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate code-signing   
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
    
+
+Generating and Installing Certificates
+======================================
+
+This section will show how to use ``openssl`` and ``WLS2`` to generate self-signed certificates
+
+::
+
+   To come shortly.
    
 How to sign scripts for your own use.
 =====================================
+
+::
+
+   Draft and not completely finished.
+
 
 To add a digital signature to a script you must sign it with a code signing certificate:
 
@@ -1057,3 +1141,5 @@ Some internet posts recommend disabling the execution policy, but I would advise
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+
+   
