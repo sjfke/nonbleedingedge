@@ -4,604 +4,1142 @@
 PowerShell Scripting Cheatsheet
 *******************************
 
-According to Microsoft
-----------------------
+This is the companion to ``PowerShell Cheatsheet``, which focuses on writing PowerShell scripts.
 
-PowerShell is a task automation and configuration management framework, with a command-line shell and 
-associated scripting language. It is a modern replacement for the familiar ``DOS`` propmpt. Tasks are performed by ``cmdlets`` 
-(pronounced *command-lets*), which are specialized ``.NET`` classes implementing a particular operation which can be connected 
-a UNIX like way.
+.. topic:: According to Microsoft ``PowerShell``
 
-In Practice
------------
+   Is a cross-platform task automation and configuration management framework, consisting of a *command-line shell* and 
+   *scripting language* that is built on top of the ``.NET Common Language Runtime`` (CLR), accepts and returns ``.NET objects``.
+   This brings entirely new tools and methods for automation.
+      
+This means learning new skills and thinking differently which can be frustrating while learning. 
 
-While there are similarties to a DOS, and UNIX Shell, ``PowerShell`` uses ``.Net`` objects, so you pipe ``objects`` not ``strings`` 
-which is considered more powerful, but initially you may find confusing, especially if you are from a UNIX Shell background.  
+To simplify maintenance I write PowerShell scripts as standalone utilities deployed in a single file, this means I have to *copy-and-paste* 
+my favourite frequently used functions, such as *dumpArrayList*, *dumpHashTable* because there is no mechanism to textually include 
+your favourite functions into the source when writing and testing. 
 
-Useful Links
-------------
-
-There are many online documents and tutorials about ``PowerShell`` but these use short-cuts, aliases, tricks, imported modules or don't 
-specify which version etc. The ones listed are general introductions I found useful and topic related links are given where appropriate.
-Unfortunately I cannot check the examples on every PowerShell version, so assume I am referring to the latest on Windows 10, to check your version.
-::
-
-	PS> $PSVersionTable
-	PS> get-host | select Version
-
-
-* `PowerShell Explained <https://powershellexplained.com/>`_ *Excellent Reference*
-* `MicroSoft PowerShell examples <https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0>`_
-* `PowerShell GitHub <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
-* `Powershell Linux Equivalents <https://mathieubuisson.github.io/powershell-linux-bash/>`_
+It is possible to split your script into multiple files, create libraries of your favoutite utilities etc. 
+I do not cover this topic, the example script shows where/how to ``source`` you library files, and if you wish to create your 
+own modules, see `How to Write a PowerShell Script Module <https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module>`_.
 
 Introduction
 ============
 
-``PowerShell`` has a consistent naming convention for ease of learning, which is cumbersome, especially for the command line, 
-and so introduces an alias mechanism, which is extensible... to make things more **obvious**  (but less consistent). 
-For example ``ls`` is probably more intuitive than ``get-childitem``, likewise ``where``, ``sort``, ``tee``,
-``select`` and easier on the eye than the ``*-object`` full-name form, but using short forms like ``gc``, ``gci`` or ``sls`` 
-definitely can be confusing.
+Unfortunately because ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, makes it an ideal
+target for **would-be** hackers. To mitigate this Microsoft limits if/when PowerShell scripts can be executed, although 
+individual ``cmdlets`` can always be executed. 
 
-Streams of objects can be redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion, streams of text may not work, be careful with 
-``write-output``, ``write-host``, and ``select-string`` in particular.
+* *Windows Pro/Home* usually disallows ``PowerShell scripts`` but permits ``cmdlets`` to be executed;
+* *Windows Server* usually allows ``RemoteSigned`` scripts to be run on the ``LocalMachine``;
 
-Like other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses, *getters*, *setters*, *modules* etc.
-Passing function arguments can be confusing, because both ``named`` and ``positional`` arguments are supported, in most cases I 
-prefer to use ``splatting`` rather than individual name or positional parameters.
+The execution policy governs whether a ``PowerShell`` script can be executed, ``get-executionpolicy`` displays this for 
+the current ``PowerShell``, and ``get-executionpolicy -list`` shows all the policies in highest to lowest priority (scope) order. 
 
-The command-line has colour-highlighting and ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
-through the alternatives. Cmdlets are **case-insensitive** but hyphens are important, I try to avoid Camel-Case and try use a consistent 
-lower-case format ``get-help`` and not ``Get-Help``. Variable names are also **case-insensitive** but I often use CamelCase 
-to make them more readable ``dateString`` , rather than underscore ``date_string``.
+In the example below only the ``LocalMachine`` policy is defined, and this is set to ``restricted`` so ``PowerShell`` scripts cannot be executed, but 
+indiviual commands, ``cmdlets`` can.
 
-A `Windows Powershell ISE <https://docs.microsoft.com/en-us/powershell/scripting/components/ise/introducing-the-windows-powershell-ise?view=powershell-7>`_  
-is provided if you need more interactive assistance, which is also useful for checking your scripts are consistent with Mircosoft's conventions.
+:: 
 
-There have been many `Powershell versions <https://en.wikipedia.org/wiki/PowerShell>`_ which are mainly backwards compatible, 
-be careful if writing for older Windows releases, writing scripts with ``#Requires -version X`` as the very first line is a good habit.
- 
+   PS> Get-ExecutionPolicy
+   Restricted
 
-Commonly used cmdlets when starting are ``get-help`` and ``get-member``
+   PS> Get-ExecutionPolicy -List
+   
+           Scope ExecutionPolicy
+           ----- ---------------
+   MachinePolicy       Undefined  # highest priority
+      UserPolicy       Undefined
+         Process       Undefined
+     CurrentUser       Undefined
+    LocalMachine      Restricted  # lowest priority
+
+
+If your *ExecutionPolicy* is as above, a quick fix is to start a *PowerShell as Administrator* and reset it as shown below, but you 
+should read the `PowerShell Exection Policies`_ section.
+
 ::
 
-	PS> get-help get-childitem         # Help on GetChildItem
-	PS> get-help get-childiten -online # Online Web based documentation from Microsoft
-	PS> get-childitem | get-member     # What is object type, its methods and properties
-	PS> get-help get-content           # notice its aliases 'gc', 'cat', 'type'
-	PS> get-help select-string         # regular expressions based string searching (grep like)
+   # Set *ONE* of: 'LocalMachine RemoteSigned' or 'CurrentUser RemoteSigned' not both
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
+   
+           Scope ExecutionPolicy
+           ----- ---------------
+   MachinePolicy       Undefined  # highest priority
+      UserPolicy       Undefined
+         Process       Undefined
+     CurrentUser       Undefined
+    LocalMachine    RemoteSigned  # lowest priority
+ 
+
+Language
+========
+
+The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is built on 
+top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us/dotnet/standard/clr>`_ , and 
+manipulates `.NET objects <https://docs.microsoft.com/en-us/dotnet/api/system.object>`_. If the language itself 
+does not provide what you need, there may be a `Popular PowerShell Module <https://social.technet.microsoft.com/wiki/contents/articles/4308.popular-powershell-modules.aspx>`_
+you can download or you can access the `.Net APIs <https://docs.microsoft.com/en-us/dotnet/api>`_ directly, a good example being `ArrayLists <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_ which 
+are dynamic in size unlike a *PowerShell Array*.
 
 
-	PS> get-help get-location          # alias 'gl' and 'pwd'.
-	PS> get-help get-command           # what commands are available
-	PS> get-help select-object         # 'select' or set object properties
-	PS> get-help where-object          # 'where' filter on object property
-	PS> get-help tee-object            # 'tee' like the UNIX command
-	PS> get-help out-host              # Similar to UNIX 'more' and 'less'
+In common with other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
+Functions support both ``named`` and ``positional`` arguments, which can be mixed, this can be confusing, so in 
+most cases it is clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather 
+than individual name or positional parameters.
 
-There are many online guides and tutorials, which usually means the subject matter is complex or misunderstood, the ones I found most useful.
+Useful starting points when learning about the language:
 
-* `Learning PowerShell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
-* `PowerShell 3.0 <https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0>`_
-* `TutorialsPoint PowerShell <https://www.tutorialspoint.com/powershell/index.htm>`_
-* `PowerShell Tutorial <http://powershelltutorial.net/>`_
+* `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_;
+* `Windows PowerShell Portal <https://social.technet.microsoft.com/wiki/contents/articles/24187.windows-powershell-portal.aspx>`_;
+
+Unlike most texts on programming languages I start with a simple but realistic PowerShell example.
+Many of the language details are covered in subsequent sections.
+
+Example Script
+==============
+
+This is a contrived but realistic PowerShell script to illustrate several important points.
+It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which I found extremely useful, but has additons to force 
+the syntax version and to be more strict on the use of uninitialized variables.
+
+::
+
+   #requires -version 4
+   <#
+   .SYNOPSIS
+   
+      9to5IT Template for PowerShell scripts.
+      
+   .DESCRIPTION
+   
+      Displays the names and ages of the flintstones.
+      
+   .PARAMETER names
+   
+      List the names only
+   
+   .PARAMETER ages
+   
+      List the ages only
+   
+   .PARAMETER person <name>
+   
+      List person's age
+   
+   .INPUTS
+   
+      None
+   
+   .OUTPUTS
+   
+      The Requested text.
+   
+   .NOTES
+   
+      Version:        1.0
+   
+      Author:         sjfke
+   
+      Creation Date:  2021.01.03
+   
+      Purpose/Change: Initial script development  
+   
+   .EXAMPLE
+   
+      families.ps1 -names
+   
+   .EXAMPLE
+   
+      families.ps1 -person fred
+      
+   #>
+   param(
+      [switch]$names = $false,
+      [switch]$ages = $false,
+      [string]$person = $null,
+      [switch]$stackTrace = $false
+   )
+   Set-StrictMode -Version 2
+   
+   #---------------------------------------------------------[Initialisations]--------------------------------------------------------
+   
+   # Set Error Action to Silently Continue
+   # $ErrorActionPreference = "SilentlyContinue"
+   
+   # Dot Source required Function Libraries
+   # . "C:\Scripts\Functions\Logging_Functions.ps1"
+   
+   #----------------------------------------------------------[Declarations]----------------------------------------------------------
+   $scriptName = "flintstones.ps1"
+   $scriptVersion = "1.0"
+   
+   #Log File Info
+   # $sLogPath = "C:\Windows\Temp"
+   # $sLogName = "<script_name>.log"
+   # $sLogFile = Join-Path -Path $sLogPath -ChildPath $sLogName
+   
+   $hash = $null
+   
+   #-----------------------------------------------------------[Functions]------------------------------------------------------------
+   
+   function initializeHash {
+      return @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+   }
+   
+   function getNames {
+      return $hash.keys
+   }
+   
+   function getAges {
+      return $hash.values
+   }
+   
+   function getPerson {
+      param(
+         [string]$name = ''
+      )
+      return $hash[$name]
+   }
+   
+   #-----------------------------------------------------------[Execution]------------------------------------------------------------
+   $hash = initializeHash
+   
+   if ($names) {
+      getNames
+   }
+   elseif ($ages) {
+      getAges
+   }
+   elseif (($person -ne '') -and ($person -ne $null)) {
+      $arguments = @{
+         name = $person
+      }
+      getPerson @arguments
+   }
+   else {
+      if ($stackTrace) {
+         write-error("invalid or missing argument") # stack-trace like error message
+      }
+      else {
+         write-warning("{0} v{1}: invalid or missing argument" -f $scriptName, $scriptVersion)
+         exit(1)     
+      }
+   }
+
+Things to note:
+
+* The `#requires -version 4 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires>`_ PowerShell version 4 syntax, (use *version 2*, if windows is very old);
+* Initial comment block ``.SYNOPSIS...`` provides the ``get-help`` text, **note** line-spacing is important;
+* The `param() <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_ block must be the first *non-comment line* for command-line arguments;
+* The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of uninitialized variables;
+
+Variables
+=========
+
+Powershell variables can be any of the `Basic DataTypes`_ such as *integers*, *characters*, *strings*, *arrays*, and *hash-tables*, but also ``.Net`` objects that represent such things as
+*processes*, *services*, *event-logs*, and even *computers*.
+
+Common forms::
+
+   PS> $age = 5                       # System.Int32
+   PS> [int]$age = "5"                # System.Int32, cast System.String + System.Int32
+   PS> $name = "Dino"                 # System.String
+   PS> $name + $age                   # Fails; System.String + System.Int32
+   PS> $name + [string]$age           # Dino5; System.String + System.String
+
+   PS> $a = (5, 30, 25, 1)            # array of System.Int32
+   PS> $a = (5, "Dino")               # array of (System.Int32, System.String)
+
+   PS> $h = @{ Fred = 30; Wilma  = 25; Pebbles = 1; Dino = 5 } # hash table
+   
+   PS> $d = Get-ChildItem C:\Windows  # directory listing, FileInfo and DirectoryInfo types, 
+   PS> $d | get-member                # FileInfo, DirectoryInfo Properties and Methods
+   
+   PS> $p = Get-Process               # System.Diagnostics.Process type
+
+Less common forms::
+ 
+   PS> set-variable -name age 5         # same as $age = 5
+   PS> set-variable -name name Dino     # same as $name = "Dino" (variable's name is *name*)
+ 
+   PS> clear-variable -name age         # clear $age; $age = $null
+   PS> clear-variable -name name        # clear $name; $name = $null
+   
+   PS> remove-variable -name age        # delete variable $age
+   PS> remove-item -path variable:\name # delete variable $name
+   
+   PS> set-variable -name pi -option Constant 3.14159 # constant variable
+   PS> $pi = 42                                       # Fails $pi is a constant
+
+
+Basic DataTypes
+===============
+
++-----------+------------------------------------------------------------------------------+
+| Data Type | Definition                                                                   |
++===========+==============================================================================+
+| Boolean   | True or False Condition                                                      |
++-----------+------------------------------------------------------------------------------+
+| Byte      | An 8-bit unsigned whole number from 0 to 255                                 |
++-----------+------------------------------------------------------------------------------+
+| Char      | A 16-bit unsigned whole number from 0 to 65,535                              |
++-----------+------------------------------------------------------------------------------+
+| Date      | A calendar date                                                              |
++-----------+------------------------------------------------------------------------------+
+| Decimal   | A 128-bit decimal value, such as 3.14159                                     |
++-----------+------------------------------------------------------------------------------+
+| Double    | A double-precision 64-bit floating point number, narrower range than Decimal |
++-----------+------------------------------------------------------------------------------+
+| Integer   | A 32-bit signed whole number from -2,147,483,648 to 2,147,483,647            |
++-----------+------------------------------------------------------------------------------+
+| Long      | A 64-bit signed whole number, very big integer, 9,233,372,036,854,775,807    |
++-----------+------------------------------------------------------------------------------+
+| Object    |                                                                              |
++-----------+------------------------------------------------------------------------------+
+| Short     | A 16-bit unsigned whole number, -32,768 to 32,767                            |
++-----------+------------------------------------------------------------------------------+
+| Single    | A single-precision 32-bit floating point number                              |
++-----------+------------------------------------------------------------------------------+
+| String    | Text, a character string                                                     |
++-----------+------------------------------------------------------------------------------+
+
+
+Array Variables
+===============
+
+Array variables are a fixed size, can have mixed values and can be multi-dimensional.
+
+::
+  
+   PS> $a = 1, 2, 3                    # array of integers
+   PS> $a = (1, 2, 3)                  # array of integers (my personal preference)
+   PS> $a = ('a','b','c')
+   PS> $a = (1, 2, 3, 'x')             # array of System.Int32's, System.String
+   PS> [int[]]$a = (1, 2, 3, 'x')      # will fail 'x', array of System.Int32 only
+   
+   PS> $a = ('fred','wilma','pebbles')
+   PS> $a[0]             # fred
+   PS> $[2]              # pebbles
+   PS> $a.length         # 3
+   PS> $a[0] = 'freddie' # fred becomes freddie
+   PS> $a[3] = 'dino'    # Error: Index was outside the bounds of the array.
+   PS> $a += 'dino'      # correct way to add 'dino' (note does an array copy)
+   PS> $a[1,3,2]         # wilma, dino, pebbles
+   PS> $a[1..3]          # wilma, pebbles, dino
+   PS> $a = $a[0..2]     # dino ran away (note does an array copy)
+   
+   
+   PS> $b = ('barbey', 'betty', 'bamm-bamm')
+   PS> $a = ($a, $b)    # [0]:fred [1]:wilma [2]:pebbles [3]:barney [4]:betty [5]:bamm-bamm 
+   PS> $a.length        # 6
+   PS> $a = ($a, ($b))  # [0]:fred [1]:wilma [2]:pebbles [3][0]:barney [3][1]:betty [3][2]:bamm-bamm 
+   PS> $a.length        # 4
+   
+   PS> $ages = (30, 25, 1, 5)                      # flintstones ages
+   PS> $names = ('fred','wilma','pebbles', 'dino') # flintstones names
+   PS> $a = ($names),($ages))                      # multi-dimensional array example
+   PS> $a.length                                   # 4
+   PS> $a[0]                                       # fred wilma pebbles dino
+   PS> $a[1]                                       # 30 25 1 5
+   PS> $a[0][0]                                    # fred
+   PS> $a[0][1]                                    # 30
+   
+ 
+Useful references:
+
+* `TutorialsPoint Powershell Array for more detailed explanation <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
+* `PowerShellExplained ArrayList for dynamically resizable arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_
+* `Microsoft Docs ArrayList Class for dynamically resizable arrays <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
+* `Kevin Blumenfeld's GitHub Gist Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_
+
+
+HashTables
+==========
+
+A HashTable is an unordered collection of key:value pairs, synonymous with an object and its properties. 
+Later versions support the hash elements in a known/fixed order, ``$hash = [ordered]@{}``.
+
+::
+
+   PS> $h = @{}              # empty hash
+   PS> $key = 'Fred'         # set key name
+   PS> $value = 30           # set key value
+   PS> $h.add($key, $value)  # add key:value ('fred':30) to the hash-table
+   
+   PS> $h.add('Wilma', 25 )  # add 'Wilma':25
+   PS> $h['Pebbles'] = 1     # add 'Pebbles':1
+   PS> $h.Dino = 5           # add 'Dino':5
+   
+   PS> $h                    # actual hash-table, printed if on command-line
+   PS> $h['Fred']            # how old is Fred? 30
+   PS> $h[$key]              # how old is Fred? 30
+   PS> $h.fred               # how old is Fred? 30
+   
+   # creating a populated hash, multi-line.
+   PS> $h = @{
+       Fred = 30
+       Wilma  = 25
+       Pebbles = 1
+       Dino = 5
+   }
+   
+   # creating the same populated hash, on single-line
+   PS> $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+   
+   PS> $h.keys            # unordered: Dino, Pebbles, Fred, Wilma
+   PS> $h.values          # unordered: 5, 1, 30, 25 (but same as $h.keys order)
+   
+   # later PowerShell versions allow the order to be fixed.
+   PS> $h = [ordered]@{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+   PS> $h.keys            # ordered: Fred, Wilma, Pebbles, Dino
+   PS> $h.values          # ordered: 30, 25, 1, 5 
+   
+   # key order is random, unless [ordered] was used in the declaration
+   PS> foreach ($key in $h.keys) {
+       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
+   }
+   
+   # ascending alphabetic order (Dino, Fred, Pebbles, Wilma)
+   PS> foreach ($key in $h.keys | sort) {
+       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
+   }
+   
+   # descending alphabetic order (Wilma, Pebbles, Fred, Dino)
+   PS> foreach ($key in $h.keys | sort -descending) {
+       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
+   }
+   
+   # specfific order (Fred, Wilma, Pebbles, Dino)
+   PS> $keys = ('fred', 'wilma', 'pebbles', 'dino')
+   for ($i = 0; $i -lt $keys.length; $i++) {
+      write-output ('{0} Flintstone is {1:D} years old' -f $keys[$i], $h[$keys[$i]])
+   }
+   
+   PS> if ($h.ContainsKey('fred')) { ... }   # true 
+   PS> if ($h.ContainsKey('barney')) { ... } # false
+   PS> if ($h.fred) { ... }                  # avoid, works most of the time.
+   PS> if ($h['barney']) { ... }             # avoid, works most of the time.
+   
+   PS> $h.remove('Dino')                # remove Dino, because he ran away :-)
+   PS> $h.clear()                       # flintstone family deceased
+
+For more details read the excellent review by Kevin Marquette:
+ 
+* `Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
+
+Objects
+=======
+
+If you cannot create what you need from *Arrays, HashTables, ArrayLists, Queues, Stacks etc.*, then 
+it is possible to create custom PowerShell objects`, but to date I have never needed to do this.
+For more details, read:
+
+* `David Bluemenfeld: Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_;
+* `Microsoft TechNet: Creating Custom Objects <https://social.technet.microsoft.com/wiki/contents/articles/7804.powershell-creating-custom-objects.aspx>`_;
+* `Kevin Marquette: Everything you wanted to know about PSCustomObject <https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/>`_;
+
+Functions
+=========
+
+Function arguments and responses are passed by reference, so an arugment can be changed inside the function and remains 
+unchanged outside the function scope, **but** this is considered *"bad programming practice"*, so better to avoid doing this. 
+Functions return references to objects, as illustrated in the `Example Script`_ where references to *HashTable* and *Array* objects are returned.
+
+While each function call returns a reference to a new (different) object, be careful about the scope of the variable name you assign this too.
+It is easy to create multiple references to the same object.
+
+While mixing named (*order indepedent*) and positional (*order dependent*) arguments is permitted it can cause strange errors, a better approach is to
+use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_, unless you are supplying one or two arguments.
+The following contrived example illustrates the basics but the ``param ( ... )`` section has many options not shown here. 
+
+::
+  
+   #requires -version 4
+   Set-StrictMode -Version 2
+   
+   function createPerson {
+      param (
+         [string]$name = '',
+         [int]$age = 0,
+         [switch]$verbose = $false,
+         [switch]$debug = $false
+      )
+      
+      if (($name -eq $null) -or ($name.length -eq 0)) {
+         if ($verbose) {
+            write-warning("createPerson - name is missing")
+            return $null
+         }
+         elseif ($debug) {
+            write-error("createPerson - name is missing")
+            exit(1)
+         }
+         else {
+            return $null
+         }
+      }
+      
+      if (($age -le 0) -or ($age -gt 130)) {
+         if ($verbose) {
+         write-warning("createPerson - age, {0:D}, is incorrect" -f $age)
+            return $null
+         }
+         elseif ($debug) {
+            write-error("createPerson - age, {0:D}, is incorrect" -f $age)
+            exit(1)
+         }
+         else {
+            return $null
+         }
+      }
+      
+      $hash = @{}
+      $hash[$name] = $age 
+      
+      return $hash
+   
+   }
+   
+   createPerson 'fred' 30 -verbose            # positional arguments
+   createPerson 30 'fred' -verbose            # positional arguments, breaks name=30
+   createPerson -name 'fred' -age 30 -verbose # named arguments
+   createPerson -age 30 'fred' -verbose       # mixed arguments, be careful, no-named taken param order
+   
+   $arguments = @{                            # splatting
+      name = 'fred'
+      age = 30
+      verbose = $true
+   }
+   createPerson @arguments
+   
+   $arguments = @{name = 'wilma'; age = 25; verbose = $true} # splatting one-line
+   createPerson @arguments
+   
+   $arguments = @{
+      name = 'fred'
+      verbose = $true
+      debug = $false
+   }
+   createPerson @arguments                   # fails, age default is 0
+   
+   $arguments = @{
+      age = 21
+      verbose = $true
+      debug = $false
+   }
+   createPerson @arguments                   # fails, name default is an empty string
+
+Further reading:
+
+* Microsoft Docs, `Chapter 9 - Functions <https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions>`_ 
+* Microsoft Docs, `About Functions Advanced Parameters <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_.
+
+ArrayList
+=========
+
+::
+
+   PS> $names = New-Object -TypeName System.Collections.ArrayList
+   PS> $names = [System.Collections.ArrayList]::new()
+   PS> $names.gettype()              # ArrayList
+   
+   PS> $index = $names.Add('fred')   # returns array-list index: i.e. 0
+   PS> [void]$names.Add('wilma')     # discard array-list index
+   PS> [void]$names.Add('pebbles')
+   PS> [void]$names.Add('dino')
+   
+   # one-line creation, empty or populated
+   PS> [System.Collections.ArrayList]$names = @()
+   PS> [System.Collections.ArrayList]$names = @('fred','wilma','pebbles', 'dino')
+   
+   PS> $names.Count                  # returns 4
+   PS> $names[1]                     # wilma
+   PS> $names.remove(3)              # dino ran away or did he?
+   PS> $names.Count                  # 4, no dino is still there
+   PS> $names.[3]                    # dino
+   PS> $names.RemoveAt(3)            # dino, has really gone this time
+   PS> [void]$names.Add('dino')      # dino found 
+   PS> $names.Remove('dino')         # dino, escaped again
+   PS> [void]$names.Add('dino')      # dino found ... again
+   
+   PS> [void]$names.Insert(3,'fido')
+   PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:fido, 4:dino
+   PS> $names.remove('fido')
+   PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:dino
+   
+   # Generic List are ArrayList's of a fixed type
+   PS> [System.Collections.Generic.List[string]]$names = @()
+   PS> [System.Collections.Generic.List[string]]$names = @('fred','wilma','pebbles', 'dino')
+   
+   PS> [System.Collections.Generic.List[int]]$ages = @()
+   PS> [System.Collections.Generic.List[int]]$ages = (30, 25, 1, 5)
+   
+   $names.add(30)                    # 0:fred, 1:wilma, 2:pebbles, 3:dino, 4:30
+   $ages.add('fred')                 # fails, throws conversion exception
+
+Further reading:
+
+* `.Net ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
+* `Powershell: Everything you wanted to know about arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_    
+
+IF/Switch commands
+==================
+
+The conditions that can be tested in an ``if`` statement are very extensive:
+
+* Equality/inequality: ``-eq|-ieq|-ceq / -ne|-ine|-cne``;
+* Greater/less than: ``-gt|-igt|-cgt|-ge|-ige / -lt|-ilt|-clt|-le|-ile|-cle``;
+* Wildcard: ``-like|-ilike|-clike|-notlike|-inotlike|-cnotlike``;
+* Regular Expressions: ``-match|-imatch|-cmatch|-notmatch|-inotmatch|-cnotmatch``;
+* Object type check: ``-is|-isnot``;
+* Array <op> value: ``-contains|-icontains|-ccontains|-notcontains|-inotcontains|-cnotcontains``;
+* Value <op> array: ``-in|-iin|-cin|-notin|-inotin|-cnotin``
+* Logical operators: ``-not|!|-and|-or|-xor``
+* Bitwise operators: ``-band|-bor|-bxor|-bnot|-shl|-shr``;
+* PowerShell expressions: ``Test-Path|Get-Process``;
+* PowerShell pipeline: ``(Get-Process | Where Name -eq Notepad)``;
+* Null checking: ``($null -eq $value)``;
+
+There is also a ``switch`` statement for comparing against multiple values.
+
+::
+
+   #requires -version 2
+   Set-StrictMode -Version 2
+   
+   $apple = 10
+   $pear = 20
+   if ( $apple -gt $pear ) {
+      write-host('apple is higher than pear')
+   }
+   elseif ( $apple -lt $pear ) {
+      write-host('apple is lower than pear')
+   }
+   else {
+      write-host('apple and pear are equal')
+   }
+   
+   $path = 'file.txt'
+   $alternatePath = 'folder1'
+   if ( Test-Path -Path $path -PathType Leaf ) {
+      Move-Item -Path $path -Destination $alternatePath
+   }
+   elseif ( Test-Path -Path $path ) {
+      Write-Warning "A file is required but a folder was given."
+   }
+   else {
+      Write-Warning "$path could not be found."
+   }
+   
+   $fruit = 10
+   switch ( $fruit ) {
+      10  {
+         write-host('fruit is an apple')
+      }
+      20 {
+         write-host('fruit is an apple')
+      }
+      Default {
+         write-host('unknown fruit')
+      }
+   }
+   
+Further reading:
+
+   `PowerShell Explained: If and Switch <https://powershellexplained.com/2019-08-11-Powershell-if-then-else-equals-operator/>`_
+
+
+Try/Catch
+=========
+
+Exception handling uses *Try/Catch*, but  the *Catch block* is only invoked on *terminating errors*.
+
+::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+   
+   $error.clear()
+   # $Error is an array of recent errors, index 0 being the latest
+   # $Error[0] | get-member                 # what does an error return
+   # $Error[0].tostring()                   # error text message
+   # $Error[0].Exception | get-member       # method, properties of the exception
+   # $Error[0].Exception.GetType().FullName # how to catch-it :-)
+   
+   $cwd =  get-childitem variable:pwd
+   $filename = 'cannot-readme.txt'
+   $path = Join-Path -path $cwd.value -childpath $filename
+   try {
+      $content = get-content -path $path -ErrorAction Stop
+   }
+   catch [System.Management.Automation.ItemNotFoundException] {
+      write-warning $Error[0].ToString()
+      exit(1) 
+   }
+   catch {
+      write-warning $Error[0].ToString()
+      write-warning $Error[0].Exception.GetType().FullName # exception message type
+      exit(1) 
+   }
+   finally {
+      write-warning("Resetting the Error Array")
+      $error.clear()
+   }
+   write-host("Fetched the content of {0}" -f $path)
+   exit(0)   
+
+Note the following two points in the example:
+
+* Addition of ``-ErrorAction Stop`` to ``get-content`` to make it a terminating error;
+* The ``finally`` block is **always executed**, whether an exception is being handled or not!
+
+Further reading:
+
+* `Tutotials Point: Explain Try/Catch/Finally block in PowerShell <https://www.tutorialspoint.com/explain-try-catch-finally-block-in-powershell>`_
+
+Loops
+=====
+
+There are several loop constructirs ``for``, ``foreach``, ``while`` and ``do .. while``.
+
+::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+   
+   $names = ('Fred', 'Wilma', 'Pebbles', 'Dino')
+   
+   for ($index = 0; $index -lt $names.length; $index++) {
+      write-host ('{0} Flintstone' -f $names[$index])
+   }
+   
+   # Index often written as $i, $j, $k    
+   for ($i = 0; $i -lt $names.length; $i++) {
+      write-host ('{0} Flintstone' -f $names[$i])
+   }
+   
+   foreach ($name in $names) {
+      write-host ('{0} Flintstone' -f $name)
+   }
+
+   $hash = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }   
+   foreach ($key in $hash.keys) {
+      write-host ('{0} Flintstone is {1:D} years old' -f $key, $hash[$key])
+   }
+
+   $index = 0;
+   while ($index -lt $names.length){
+      write-host ('{0} Flintstone' -f $names[$index])
+      $index += 1
+   }
+   
+   $index = 0;
+   do {
+      write-host ('{0} Flintstone' -f $names[$index])
+      $index += 1
+   } while($index -lt $names.length)
+
+
+
+Operators
+=========
+
+``PowerShell`` supports the almost all the common programming language operators, with parenthesis to alter operator precedence.
+
+::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+   
+   $a = 20
+   $b = 10
+   $c = 2
+   
+   # Arithmetic
+   $a + $b + $c    # addition = 32
+   $a - $b - $c    # subtraction = 8
+   $a - $b + $c    # subtraction, addition = 12
+   $a + $b - $c    # addition, subtraction = 28
+   
+   $a * $b * $c    # multiplication = 400
+   $a + $b * $c    # addition, multiplication = 40
+   $a * $b + $c    # multiplication, addition = 202
+   $a * ($b + $c)  # multiplication, addition = 240
+   
+   $a / $b / $c    # division = 1
+   $a + $b / $c    # addition, division = 15
+   $a / $b + $c    # division, addition = 4
+   $a / ($b + $c)  # division, addition = 1.66666666666667
+   
+   $a % $b         # modulus = 0
+   $b % $a         # modulus = 10
+   $c % $b         # modulus = 2
+   
+   # Comparison
+   $a -eq $b       # equals = False
+   $a -ne $b       # not equals = True
+   $a -gt $b       # greater than = True
+   $a -ge $a       # greater than or equal = True
+   $a -lt $b       # less than = False
+   $a -le $a       # less than or equal = True
+   
+   # Assignment
+   $d = $a + $b    # assignment = 30
+   $d += $c        # addition, assignment = 32
+   $d -= $c        # subtraction, assiginment = 30
+   
+   $a = $true
+   $b = $false
+   
+   # Logical
+   $a -and $b      # and = False
+   $a -or $b       # or = True
+   -not $a         # not = False
+   -not $a -and $b # not, and = False
+   $a -and -not $b # and, not  = True
+
+
+Backtick Operator
+=================
+
+The ````` is used for line continuation and to identify a *"tab"* and *"new line"* character.
+
+* Word-wrap operator `````
+* Newline ```n``
+* Tab ```t``
+
+Regular Expressions
+===================
+
+PowerShell supports *regular expressions* in much the same was as ``Perl`` or ``Python``.
+
+
+Table taken from `TutorialsPoint.com - Regular Expression <https://www.tutorialspoint.com/powershell/powershell_regex.htm>`_
+
++-------------+----------------------------------------------------------------------------------------+
+| Subquery    | Match description                                                                      |
++=============+========================================================================================+
+| ^           | The beginning of the line.                                                             |
++-------------+----------------------------------------------------------------------------------------+
+| $           | The end of the line.                                                                   |
++-------------+----------------------------------------------------------------------------------------+
+| .           | Any single character except newline. Using m option it to matches the newline as well. |
++-------------+----------------------------------------------------------------------------------------+
+| [...]       | Any single character in brackets.                                                      |
++-------------+----------------------------------------------------------------------------------------+
+| [^...]      | Any single character not in brackets.                                                  |
++-------------+----------------------------------------------------------------------------------------+
+| \\A         | Beginning of the entire string.                                                        |
++-------------+----------------------------------------------------------------------------------------+
+| \\z         | End of the entire string.                                                              |
++-------------+----------------------------------------------------------------------------------------+
+| \\Z         | End of the entire string except allowable final line terminator.                       |
++-------------+----------------------------------------------------------------------------------------+
+| re*         | 0 or more occurrences of the preceding expression.                                     |
++-------------+----------------------------------------------------------------------------------------+
+| re+         | 1 or more of the previous thing.                                                       |
++-------------+----------------------------------------------------------------------------------------+
+| re?         | 0 or 1 occurrence of the preceding expression.                                         |
++-------------+----------------------------------------------------------------------------------------+
+| re{ n}      | Exactly n number of occurrences of the preceding expression.                           |
++-------------+----------------------------------------------------------------------------------------+
+| re{ n,}     | n or more occurrences of the preceding expression.                                     |
++-------------+----------------------------------------------------------------------------------------+
+| re{ n, m}   | At least n and at most m occurrences of the preceding expression.                      |
++-------------+----------------------------------------------------------------------------------------+
+| a¦b         | Either a or b.                                                                         |
++-------------+----------------------------------------------------------------------------------------+
+| (re)        | Groups regular expressions and remembers the matched text.                             |
++-------------+----------------------------------------------------------------------------------------+
+| (?: re)     | Groups regular expressions without remembering the matched text.                       |
++-------------+----------------------------------------------------------------------------------------+
+| (?> re)     | Matches the independent pattern without backtracking.                                  |
++-------------+----------------------------------------------------------------------------------------+
+| \\w         | The word characters.                                                                   |
++-------------+----------------------------------------------------------------------------------------+
+| \\W         | The nonword characters.                                                                |
++-------------+----------------------------------------------------------------------------------------+
+| \\s         | The whitespace. Equivalent to [\t\n\r\f].                                              |
++-------------+----------------------------------------------------------------------------------------+
+| \\S         | The nonwhitespace.                                                                     |
++-------------+----------------------------------------------------------------------------------------+
+| \\d         | The digits. Equivalent to [0-9].                                                       |
++-------------+----------------------------------------------------------------------------------------+
+| \\D         | The nondigits.                                                                         |
++-------------+----------------------------------------------------------------------------------------+
+| \\A         | The beginning of the string.                                                           |
++-------------+----------------------------------------------------------------------------------------+
+| \\Z         | The end of the string. If a newline exists, it matches just before newline.            |
++-------------+----------------------------------------------------------------------------------------+
+| \\z         | The end of the string.                                                                 |
++-------------+----------------------------------------------------------------------------------------+
+| \\G         | The point where the last match finished.                                               |
++-------------+----------------------------------------------------------------------------------------+
+| \\n         | Back-reference to capture group number "n".                                            |
++-------------+----------------------------------------------------------------------------------------+
+| \\b         | The word boundaries. Matches the backspace (0x08) when inside the brackets.            |
++-------------+----------------------------------------------------------------------------------------+
+| \\B         | The nonword boundaries.                                                                |
++-------------+----------------------------------------------------------------------------------------+
+| \\n,\\t,\\r | Newlines, carriage returns, tabs, etc.                                                 |
++-------------+----------------------------------------------------------------------------------------+
+| \\Q         | Escape (quote) all characters up to \E.                                                |
++-------------+----------------------------------------------------------------------------------------+
+| \\E         | Ends quoting begun with \Q.                                                            |
++-------------+----------------------------------------------------------------------------------------+
+
+Examples::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+
+   "fred" -match "f..d"           # True (same as imatch)
+   "fred" -imatch "F..d"          # True
+   "fred" -cmatch "F..d"          # False
+   "fred" -notmatch "W..ma"       # True
+   "fred" -match "re"             # (match 're') True
+   
+   "dog" -match "d[iou]g"         # (dig, dug) True
+   "ant" -match "[a-e]nt"         # (bnt, cnt, dnt, ent) True
+   "ant" -match "[^brt]nt"        # True
+   "fred" -match "^fr"            # (starts with 'fr') True
+   "fred" -match "ed$"            # (ends with 'ed') True
+   "doggy" -match "g*"            # True
+   "doggy" -match "g?"            # True
+
+   "Fred Flintstone" -match "\w+" # (matches word Fred) True
+   "FredFlintstone" -match "\w+"  # (matches word Fred) True
+   "Fred Flintstone" -match "\W+" # (matches >= 1 non-word) True
+   "FredFlintstone" -match "\W+"  # (matches >= 1 non-word) False
+   
+   "Fred Flintstone" -match "\s+" # (matches >= 1 white-space) True
+   "FredFlintstone" -match "\s+"  # (matches >= 1 white-space) False
+   "Fred Flintstone" -match "\S+" # (matches >= 1 non white-space) True
+   "FredFlintstone" -match "\S+"  # (matches >= 1 non white-space) True
+   
+   "Fred Flintstone" -match "\d+" # (matches >= 1 digit 0..9) False
+   "Fred is 30" -match "\d+"      # (matches >= 1 digit 0..9) True
+   "Fred Flintstone" -match "\D+" # (matches >= 1 non-digit 0..9) True
+   "Fred is 30" -match "\D+"      # (matches >= 1 non-digit 0..9) True
+
+   "Fred Flintstone" -match "\w?"     # (match >= 0 preceding pattern) True
+   "Fred Flintstone" -match "\w{2}"   # (match 2 preceding pattern) True
+   "Fred Flintstone" -match "\W{2}"   # (match 2 preceding pattern) False
+   "Fred Flintstone" -match "\w{2,}"  # (match >2 preceding pattern) True
+   "Fred Flintstone" -match "\W{2,}"  # (match >2 preceding pattern) False
+   "Fred Flintstone" -match "\w{2,3}" # (match >2 <=3 preceding pattern) True
+   "Fred Flintstone" -match "\W{2,3}" # (match >2 <=3 preceding pattern) False
+   
+   'Fred Flinstone' -replace '(\w+) (\w+)', 'Wilma $2' # Wilma Flinstone
+   'fred Flinstone' -ireplace 'Fred (\w+)', 'Wilma $1' # Wilma Flinstone
+   'fred Flinstone' -replace 'Fred (\w+)', 'Wilma $1'  # Wilma Flinstone
+   'fred Flinstone' -creplace 'Fred (\w+)', 'Wilma $1' # fred Flinstone
+
+
+Entire Technical Books are dedicated Regular Expression, the above treatment is very brief, a few helpful links.
+
+* `Jeffrey Friedl: Mastering Regular Expressions <https://www.oreilly.com/library/view/mastering-regular-expressions/0596528124/>`_
+* `Microsoft Docs: About Regular Expressions <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_regular_expressions>`_
+* `Powershell: The many ways to use regex <https://powershellexplained.com/2017-07-31-Powershell-regex-regular-expression/>`_
+* `Test and Debug: Regular Expression 101 <https://regex101.com/>`_
+* `Test and Debug: RegEx <https://www.regextester.com/>`_
+* `Test and Debug: Regular Expression Tester <https://www.freeformatter.com/regex-tester.html>`_
+
+
+Formatting Output
+=================
+
+Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assigment.
+Specified as ``{<index>, <alignment><width>:<format_spec>}``
+
+::
+
+   PS> $shortText = "Align me"
+   PS> $longerText = "Please Align me, but I am very wide"
+   
+   PS> write-host("{0,-20}" -f $shortText)         # Left-align; no overflow.
+   PS> write-host("{0,20}"  -f $shortText)         # Right-align; no overflow.
+   PS> write-host("{0,-20}" -f $longerText)        # Left-align; data overflows width.
+   
+   PS> write-host("Room: {0:D}" -f 232)            # Room: 232
+   PS> write-host("Invoice No.: {0:D8}" -f 17)     # Invoice No.: 00000017
+   PS> $invoice = "{0}-{1}" -f 00017, 007          # (integers) so invoice = 17-7  
+   PS> $invoice = "{0}-{1}" -f '00017', '007'      # (strings) so invoice = 00017-007  
+   
+   PS> write-host("Temp: {0:F}°C" -f 18.456)       # Temp: 18.46°C
+   PS> write-host("Grade: {0:p}" -f 0.875)         # Grade: 87.50%
+   PS> write-host('Grade: {0:p0}' -f 0.875)        # Grade: 88%  
+   PS> write-host('{1}: {0:p0}' -f 0.875, 'Maths') # Maths: 88%
+   
+   # Custom formats
+   PS> write-output('{1:00000}' -f 'x', 1234)      # 01234
+   PS> write-output('{0:0.000}' -f [Math]::Pi)     # 3.142
+   PS> write-output('{0:00.0000}' -f 1.23)         # 01.2300
+   PS> write-host('{0:####}' -f 1234.567)          # 1235
+   PS> write-host('{0:####.##}' -f 1234.567)       # 1234.57
+   PS> write-host('{0:#,#}' -f 1234567)            # 1,234,567
+   PS> write-host('{0:#,#.##}' -f 1234567.891)     # 1,234,567.89
+   
+   PS> write-host('{0:000}:{1}' -f 7, 'Bond')      # 007:Bond
+   
+   PS> get-date -Format 'yyyy-MM-dd:hh:mm:ss'      # 2020-04-27T07:19:05
+   PS> get-date -Format 'yyyy-MM-dd:HH:mm:ss'      # 2020-04-27T19:19:05
+   PS> get-date -UFormat "%A %m/%d/%Y %R %Z"       # Monday 04/27/2020 19:19 +02
+
+
+More detailed formatting examples:
+
+* `PowershellPrimer.com: Formatting Output <https://powershellprimer.com/html/0013.html>`_
+* `Microsoft documentation: Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date>`_
+
+Ouput methods:
+
+* `Microsoft Docs: Write Output <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-output>`_
+* `Microsoft Docs: Write Warning <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-warning>`_
+* `Microsoft Docs: Write Host <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host>`_
+* `Microsoft Docs: Write Error <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error>`_
 
 Running PowerShell scripts
 ==========================
 
 PowerShell is an often abused hackers attack vector, so modern versions of Windows prevent PowerShell scripts from
-being executed *out-of-the-box*, although the command line will work. 
+being executed *out-of-the-box*, although the ``cmd-lets`` can be run. 
 
 Many articles suggest the disabling this security feature... **DO NOT DO THIS** 
 
 Furthermore most companies harden their Windows laptop and server installations, so disabling may not work anyway.
 
 Ways to work with this restriction, are not intuitive... it took me some time to figure it out, and I am 
-still be no means an expert, hopefully this will get you started, and you can inform me once you have mastered ``PowerShell``.
+still be no means an expert, hopefully this will get you started, and you are always welcome to contact me to improve this section.
 
-The execution-policy, controls this and you should probably look at the following:
+The execution-policy, controls the execution of PowerShell scripts, good references to read are:
 
 * `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
 * `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
 * `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
 
-If you start ``PowerShell`` as administrator, then some of these settings can be changed. 
-The execution policy to change is 'CurrentUser', *your* rights, see Get-ExecutionPolicy link.
-A default install will most likely look as shown. 
+If you start ``PowerShell`` as administrator, then you can change the *'execution-policy'*, and you should  
+change the *'CurrentUser'*, which is *your* execution-policy rights, see Get-ExecutionPolicy link.
+A default install will most likely look as shown.
+
 ::
 
-	PS> Get-ExecutionPolicy -list
-	MachinePolicy    Undefined
-	   UserPolicy    Undefined
-	      Process    Undefined
-	  CurrentUser    Restricted
-	 LocalMachine    Restricted
-	 
-	# Permit yourself to run PowerShell scripts
-	PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
-	PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
-	PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
+   PS> Get-ExecutionPolicy -list
+   MachinePolicy    Undefined
+      UserPolicy    Undefined
+         Process    Undefined
+     CurrentUser    Restricted
+    LocalMachine    Restricted
+    
+   # Permit yourself to run PowerShell scripts
+   PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
+   PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
+   PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
+
 
 Choosing **Unrestricted** means that any PowerShell script, even ones inadvertently or unknowingly 
-downloaded from the Internet will run as you, and with your privileges, so **be careful**
+downloaded from the Internet will run as you, and with your privileges, so *Avoid Doing This*.
 
-When developing the following avoids having certificates installed and updating the signature each time.
+When developing your scripts you can try using the following to avoid having certificates installed and updating the signature each time you change the script.
+
 ::
 
   PS> powershell.exe -noprofile -executionpolicy bypass -file .\script.ps1 
+
+This may not be permitted on Corporate laptops which usually have additional security restrictions.
   
+
+PowerShell Exection Policies
+============================ 
+
+See: `About Execution Policies <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_ for more details.
+
+PowerShell's execution policies:
+
+* ``Restricted`` does not permit any scripts to run (*.ps1xml, .psm1, .ps1*);
+* ``AllSigned``, prevents running scripts that do not have a digital signature;
+* ``RemoteSigned`` prevents running downloaded scripts that do not have a digital signature;
+* ``Unrestricted`` runs scripts without a digital signature, warning about non-local intranet zone scripts;
+* ``Bypass`` allows running of scripts without any digital signature, and without any warnings;
+* ``Undefined`` no execution policy is defined;
+
+PowerShell's execution policy scope:
+
+* ``MachinePolicy`` set by a Group Policy for all users of the computer;
+* ``UserPolicy`` set by a Group Policy for the current user of the computer;
+* ``Process`` current PowerShell session, environment variable ``$env:PSExecutionPolicyPreference``;
+* ``CurrentUser`` affects only the current user, ``HKEY_CURRENT_USER`` registry subkey;
+* ``LocalMachine`` all users on the current computer, ``HKEY_LOCAL_MACHINE`` registry subkey;
+
+By default on a Windows Server the execution policy is, ``LocalMachine RemoteSigned``, but for your Windows Laptop or Desktop it will be ``LocalMachine Restricted``.
+To change the execution policy, you must start a PowerShell as Administrator and use ``Set-ExecutionPolicy`` as shown, you will be prompted to confirm this action.
+
+In a commercial or industrial environment ask your Windows Adminstrator, but company policy may be *AllSigned*.
+
+::
+
+   # Stops running of downloaded scripts
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned # sets: LocalMachine RemoteSigned
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Restricted   # sets: LocalMachine Restricted
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Undefined    # sets: LocalMachine Undefined
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # just me
+   
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate code-signing   
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
+   
+
 Generating and Installing Certificates
 ======================================
 
-To come shortly. 
-
-PowerShell Notes
-================
-
-Variables
----------
-::
-
-	PS> $loc = get-location                    # assign 'get-location' output object to $loc
-    PS> $loc | get-member -membertype property # shows $loc is a PathInfo object
-     
-    
-    PS> get-command -noun variable             # What commands work with variables
-    > clear-variable, get-variable, new-variable, remove-variable, set-variable
-     
-    PS> clear-variable loc                     # clears '$loc', NOTE the missing '$'
-    PS> remove-variable loc                    # removes '$loc', NOTE the missing '$'
-
-    PS> get-childitem variable:                # list PowerShell environment variables, 'PSHome', 'PWD' etc.
-    PS> $pshome                                # which PowerShell and version
-    PS> $pwd
-
-    PS> get-childitem env:                     # get 'cmd.exe' enviroment variables, UCASE by convention
-    PS> $env:SystemRoot                        # C:\Windows
-    PS> $env:COMPUTERNAME                      # MYLAPTOP001
-    PS> $env:LIB_PATH='/usr/local/lib'         # setting LIB_PATH     
-
-    PS> $psversiontable                        # PowerShell version information.
-    PS> get-host                               # PowerShell version information.
-
-Command Line History
---------------------
-
-You can recall and repeat commands::
-
-	PS> get-history
-	PS> invoke-history 1
-	PS> get-history | select-string -pattern 'ping'
-	PS> get-history | format-list -property *
-	PS> get-history -count 100 # get 100 lines (default is 32)
-	PS> clear-history
-	
-	
-Formatting Output
------------------
-Very similar to Python ``-f`` operator, examples use ``write-host`` but can be other output commands.
-Specified as ``{<index>, <alignment><width>:<format_spec>}``
+This section will show how to use ``openssl`` and ``WLS2`` to generate self-signed certificates
 
 ::
 
-	$shortText = "Align me"
-	$longerText = "Please Align me, but I am very wide"
-	PS> write-host("{0,-20}" -f $shortText)		# Left-align; no overflow.
-	PS> write-host("{0,20}"  -f $shortText)		# Right-align; no overflow.
-	PS> write-host("{0,-20}" -f $longerText)	# Left-align; data overflows width.
-	
-	PS> write-host("Room: {0:D}" -f 232)		# Room: 232
-	PS> write-host("Invoice No.: {0:D8}" -f 17)	# Invoice No.: 00000017
-	
-	PS> write-host("Temp: {0:F}°C" -f 18.456)	# Temp: 18.46°C
-	PS> write-host("Grade: {0:p}" -f 0.875)		# Grade: 87.50%
-	PS> write-host('Grade: {0:p0}' -f 0.875)	# Grade: 88%
-	
-	PS> write-host('{1}: {0:p0}' -f 0.875, 'Maths')	# Maths: 88%
-	
-	# Custom formats
-	PS> write-output('{1:00000}' -f 'x', 1234)	# 01234
-	PS> write-output('{0:0.000}' -f [Math]::Pi)	# 3.142
-	PS> write-output('{0:00.0000}' -f 1.23)		# 01.2300
-	PS> write-host({0:####}' -f 1234.567)		# 1235
-	PS> write-host('{0:####.##}' -f 1234.567)	# 1234.57
-	PS> write-host('{0:#,#}' -f 1234567)		# 1,234,567
-	PS> write-host('{0:#,#.##}' -f 1234567.891)	# 1,234,567.89
-	
-	PS> get-date -Format 'yyyy-MM-dd:hh:mm:ss'  # 2020-04-27T07:19:05
-	PS> get-date -Format 'yyyy-MM-dd:HH:mm:ss'  # 2020-04-27T19:19:05
-	PS> get-date -UFormat "%A %m/%d/%Y %R %Z"   # Monday 04/27/2020 19:19 +02
-
-More examples:
-* `Formatting Output <http://powershellprimer.com/html/0013.html>`_
-* `Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
-
-Powershell Hashes
------------------
-::
-
-	$flintstones = @{}              # empty hash
-	$key = 'Fred'
-	$value = 30
-	$flintstones.add($key, $value)
-	
-	$flintstones.add('Wilma', 25 )
-	$flintstones['Pebbles'] = 1
-	$flintstones.Dino = 5
-	
-	$flinstones                  # actual hash, printed if on command-line
-	$flintstones['Fred']         # 30
-	$flintstones[$key]           # 30
-	$flintstones.fred            # 30
-	
-	# creating a populated hash
-	$flintstones = @{
-	    Fred = 30
-	    Wilma  = 25
-	    Pebbles = 1
-	    Dino = 5
-	}
-	# creating a populated hash, one-liner
-	$flintstones = @{ Fred = 30; Wilma  = 25; Pebbles = 1; Dino = 5 }
-	
-	# Order not guaranteed in the folloiwng, use sort or $hash = [ordered]@{}, if supported
-	
-	foreach($key in $flintstones.keys) {
-	    write-output ('{0} Flintstone is {1:D} years old' -f $key, $flintstones[$key])
-	}
-	
-	$flintstones.keys                          # Fred, Wilma, Pebbles, Dino
-	$flintstones.values                        # 30, 25, 1, 5 
-	
-	if ($flintstones.ContainsKey('fred')) {}   # true 
-	if ($flintstones.ContainsKey('barney')) {} # false
-
-	
-	$flintstones.remove('Dino')                # Dino ran away
-	$flintstones.clear()                       # family deceased
-
-Excellent review:
-* `Hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
-
-Functions
----------
-Write something
-
-Function Arguments
---------------------------
-PowerShell allows mixed named and positional arguments which is not always clear.
-Safest way of passing function arguments, is to use ``splatting`` 
+   To come shortly.
+   
+How to sign scripts for your own use.
+=====================================
 
 ::
-  
-	$arguments = @{
-		Name        = 'TestNetwork'
-		StartRange  = '10.0.0.2'
-		EndRange    = '10.0.0.254'
-		SubnetMask  = '255.255.255.0'
-		Description = 'Network for testlab A'
-		LeaseDuration = (New-TimeSpan -Days 8)
-		Type = "Both"
-	}
-	Add-DhcpServerv4Scope @arguments   
 
-Powershell Arrays
------------------
-Arrays are a fixed size, can have mixed values, and be multi-dimensional.
+   Draft and not completely finished.
+
+
+To add a digital signature to a script you must sign it with a code signing certificate:
+
+* Purchased from a certification authority, which allows executing your script on other computers;
+* A free self-signed certificate which will only work on your computer;
+
+Typically, a *self-signed certificate* is only used to sign your own scripts and to sign scripts that you get 
+from other sources that you have verified to be safe, and should be used in an industrial or commercial enviroment.
+
+
+Microsoft's official guide:
+
+* `About Signing <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_signing>`_
+* `How to Create a Self-Signed Certificate with PowerShell <https://www.cloudsavvyit.com/3274/how-to-create-a-self-signed-certificate-with-powershell/>`_
+* `Add an Authenticode signature to a PowerShell script or other file. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-authenticodesignature>`_
+* `New-SelfSignedCertificate <https://docs.microsoft.com/en-us/powershell/module/pkiclient/new-selfsignedcertificate>`_
+* `Generating self-signed certificates on Windows <https://medium.com/the-new-control-plane/generating-self-signed-certificates-on-windows-7812a600c2d8>`_
+* `Generate and export certificates for Point-to-Site using PowerShell <https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-certificates-point-to-site>`_
+
+How to get around signed scripts
+--------------------------------
+
+Some proposals to avoid signing PowerShell scripts.
+
+* `Provide A Batch File To Run Your PowerShell Script From <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
+* `Set Up Powershell Script For Automatic Execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
+
+Some internet posts recommend disabling the execution policy, but I would advise against.
+
 ::
 
-	$A = (1, 2, 3, 4)                 # 1, 2, 3, 4
-	$A = 1..4                         # 1, 2, 3, 4
-	$B = ('F', 'W', 'P', 'D')         # 'F', 'W', 'P', 'D'
-	$C = (5.6, 4.5, 3.3, 13.2)        # 5.6, 4.5, 3.3, 13.2
-	$D = ('Apple', 3.3, 13.2, $B)     # 'Apple', 3.3, 13.2, 'F', 'W', 'P', 'D'
-	
-	[char[]]$E = ('F', 'W', 'P', 'D') # only [char] values
-
-
-* `Arrays TutorialsPoint <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
-
-PowerShell ArrayList and Generic List
--------------------------------------
-
-* `ArrayList PowerS<https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_
-* `ArrayList Microsoft <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist?view=netframework-4.8>`_
-* `Collections in General <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_ 
-
-PowerShell Objects
-------------------
-
-    https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/
-
-     
-
-    Powershell ArrayList
-
-    https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist.remove?view=netframework-4.8
-
-    https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/
-
-     
-
-    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error?view=powershell-3.0
-
-     
-
-    String Splitting
-
-    ================
-
-    The string.split() method does not support regex, but -Split() operator does; confusing!
-
-     
-
-    PS Y:\> "A B     CD".split('\s+')
-
-    A B     CD
-
-     
-
-    PS Y:\> "A B     CD" -Split('\s+')
-
-    A
-
-    B
-
-    CD
-
-     
-
-    PowerShell Intro
-
-    ================
-
-    https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell
-
-    https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-3.0
-
-    https://www.tutorialspoint.com/powershell/index.htm
-
-    http://powershelltutorial.net/
-
-     
-
-    Commands
-
-    --------
-
-    PS Y:\> get-command [<pattern>]           # what commands are available
-
-    PS Y:\> get-command get-help -syntax      # syntax of get-help
-
-    PS Y:\> get-command -CommandType Alias    # list all Aliases
-
-    PS Y:\> get-command -CommandType Alias gc # 'gc' maps to what, throws exception if missing
-
-    PS Y:\> get-command -CommandType <type>   # Alias|Function|Script
-
-     
-
-    Variables
-
-    ---------
-
- 
-     
-
-    Pipelines
-
-    ---------
-
-    PS Y:\> get-childitem -path c:\windows\system32 | out-host -paging # UNIX more command
-
-    
-
-
-     
-
-    # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/select-object?view=powershell-3.0
-
-    # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/sort-object?view=powershell-3.0
-
-    # https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/where-object?view=powershell-3.0
-
-     
-
-    PS Y:\> get-process | get-member                                                     # show returned object
-
-    PS Y:\> get-process | select-object -first 10                                        # first 10 processes
-
-    PS Y:\> get-process | select-object -last 10                                         # last 10 processes
-
-    PS Y:\> get-process | sort-object -property WS | select-object -last 10              # last 10 sorted
-
-    PS Y:\> get-process | sort-object -property WS | select-object -first 10             # first 10 sorted
-
-    PS Y:\> get-process | sort-object -property WS -descending | select-object -first 10 # reverse sort first 10
-
-    PS Y:\> Get-Process | Where-Object {$_.ProcessName -Match "^p.*"}                    # find all processes that start with "p"
-
-    PS Y:\> get-content <file> | select-object -last 20                                  # get last 20 lines
-
-    PS Y:\> get-content <file> -wait                                                     # tailing a log-file
-
-    PS Y:\> get-process | select-object -property Name,Id,WS | out-host -paging
-
-     
-
-    PS Y:\> get-content <file> | select-object -first 10                                 # first 10 lines
-
-    PS Y:\> get-content <file> | select-object -last 10                                  # last 10 lines
-
-    PS Y:\> select-string <regex> <file> | select-object -first 10                       # first 10 occurences of <regex>
-
-    PS Y:\> select-string <regex> <file> | select-object -last 10                        # last 10 occurences of <regex>
-
-     
-
-    Compter Info
-
-    ------------
-
-    PS Y:\> get-ciminstance -classname Win32_BIOS                # bios version
-
-    PS Y:\> get-ciminstance -classname Win32_Processor           # processor information
-
-    PS Y:\> get-ciminstance -classname Win32_ComputerSystem      # computer name, model etc.
-
-    PS Y:\> get-ciminstance -classname Win32_QuickFixEngineering # hotfixes installed
-
-    PS Y:\> get-ciminstance -classname Win32_QuickFixEngineering -property HotFixID | select-object -property hotfixid
-
-     
-
-    Classnames: Win32_BIOS, Win32_Processor, Win32_ComputerSystem, Win32_LocalTime, Win32_LogicalDisk, Win32_LogonSession, Win32_QuickFixEngineering, Win32_Service
-
-     
-
-    Out-* cmd-lets
-
-    --------------
-
-    PS Y:\> get-service| format-list | out-host -paging                    # formatted process list
-
-    PS Y:\> get-command | out-null                                         # stdout to /dev/null
-
-    PS Y:\> get-command | out-printer -name "printer-name"                 # send to printer
-
-     
-
-    # Wraps to screen width, add -Width w (1 <= w <= 2147483647)
-
-    PS Y:\> Get-Process | Out-File -FilePath C:\temp\ps.txt                # write unicode text to 'ps.txt'
-
-    PS Y:\> Get-Process | Out-File -FilePath C:\temp\ps.txt -Encoding ASII # write ASCII text output to 'ps.txt'
-
-     
-
-    *** CHK ***
-
-    PS> dir *.ps1 |Select-String function.*NIC$ -Context 1 # 1 line  before/after
-
-    PS> dir *.ps1 |Select-String function.*NIC$ -Context 3 # 3 lines before/after
-
-    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/compare-object?view=powershell-3.0
-
-    *** KHC ***
-
-     
-
-    Event Log Parsing
-
-    -----------------
-
-    http://colleenmorrow.com/2012/09/20/parsing-windows-event-logs-with-powershell/
-
-     
-
-    PS> get-eventlog -logname application -source MSSQLSERVER | out-host -paging
-
-    PS> get-eventlog -logname application -source MSSQLSERVER -after 18/6/2019 | out-host -paging
-
-    PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | out-host -paging
-
-    PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | where-object {$_.Message -like '*error*'} | out-host -paging
-
-    PS> get-winevent -filterhashtable @{logname='application'} | get-member
-
-    PS> get-winevent -filterhashtable @{logname='application'} | get-member
-
-    PS> (Get-WinEvent -ListLog Application).ProviderNames | select-string "^MG"
-
-     
-
-    PS> (Get-WinEvent -ListLog Application).ProviderNames
-
-    https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Diagnostics/Get-WinEvent?view=powershell-3.0
-
-     
-
-    For MG ProviderName={MGENGINE|MGVPlusIF|ASMSSender|MGBINFO|AppMngSvc.exe}
-
-    Others ProviderName={McAfee Endpoint Security|AVLogEvent|Microsoft-Windows-Security-SPP|SceCli|TPPrn|
-
-                         Desktop Window Manager|Microsoft-Windows-CertificateServices|MSSQLSERVER|
-
-                         Microsoft-Windows-Winlogon|VSS|vmStatsProvider|DSM|SQLSEVERAGENT|MSQLServerOLAPService|VMUpgradeHelper|
-
-                         NetBackup Client Service|NetBackup Legacy Network Service}
-
-     
-
-    PowerShell Quick Intro
-
-    ======================
-
-     
-
-    C:\Users\fred> sl <dir>; cd <dir>                             # set-location, alias 'cd'
-
-    C:\Users\fred> gci                                            # equivalent of 'ls' or 'dir'
-
-    C:\Users\fred> mkdir dir, dir1, dir2                          # make >=1 directories
-
-    C:\Users\fred> sl dir
-
-    C:\Users\fred\dir> ni example.txt, example1.txt, example2.txt # create >=1 empty files.
-
-    C:\Users\fred\dir> write "" > fred.txt                        # create non-empty file
-
-    C:\Users\fred\dir> write "some text to the screen"            # alias 'echo' or 'cat'
-
-    C:\Users\fred\dir> write "some text to the file" > fred.txt   # redirect stdout to a file
-
-    C:\Users\fred\dir> write "add some more text" >> fred.txt     # append stdout to a file
-
-    C:\Users\fred\dir> gc *.txt                                   # 'cat' all '.txt' files (muddled output)
-
-     
-
-    C:\Users\fred\dir> gc fred.txt -totalcount 10                 # head -10 fred.txt ('-head 10' also works)
-
-    C:\Users\fred\dir> gc fred.txt -tail 10                       # tail -10 fred.txt
-
-    C:\Users\fred\dir> gc *.txt -exclude bigben.txt > bigben.txt  # cat all files using wild-card
-
-     
-
-    C:\Users\fred\dir> sls "yet" .\fred.txt                       # Select-String
-
-    fred.txt:3:yet more text
-
-    measuree
-
-    C:\Users\fred> Get-Help gc                                    # man page
-
-    C:\Users\fred> Get-Help gc -online                            # web page help
-
-     
-
-    C:\Users\fred> gc .\fred.txt | measure -l -w -c               # 'wc' of file, Measure-Object
-
-    Lines Words Characters Property
-
-    ----- ----- ---------- --------
-
-        3    19        116
-
-     
-
-    C:\Users\fred> gc .\fred.txt | measure
-
-    Count    : 3
-
-    Average  :
-
-    Sum      :
-
-    Maximum  :
-
-    Minimum  :
-
-    Property :
+   ### DO NOT DO THE FOLLOWING, UNLESS YOU KNOW WHAT YOU ARE DOING  ###
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+
+   

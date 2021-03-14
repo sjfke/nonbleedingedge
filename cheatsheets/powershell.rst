@@ -4,23 +4,26 @@
 PowerShell Cheatsheet
 *********************
 
+This is the companion to ``PowerShell Scripts Cheatsheet``, which focuses on command line usage.
+
 ``PowerShell`` is a modern replacement for the familiar ``DOS`` prompt, which is similar to a UNIX Shell, but
 is built on ``.Net`` objects, where tasks are performed by ``cmdlets`` (pronounced *command-lets*).
 
-Almost all ``cmdlets`` produce streams of objects which can be redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion, but some
-such as, ``select-string`` produce streams of text which may not be redirectable.
+Unlike most shells, which accept and return text, ``PowerShell`` is built on top of the ``.NET Common Language Runtime`` (CLR), 
+and accepts and returns ``.NET objects``. The ``.Net objects`` produce by ``cmdlets`` can be chained together, assigned to 
+variables and redirected in a *UNIX-like* ``>`` ``<``, ``|`` fashion.
 
-For ease of learning ``PowerShell`` uses a consistent ``cmdlet`` naming convention, which is cumbersome for the command line, 
-and so provides an extensible alias mechanism... to make things more **obvious**  (but less *consistent*). 
-For example ``ls`` is probably more intuitive than ``get-childitem``, likewise ``cat`` or ``type`` is more intuitive than ``get-content``.
-However aliases like ``gc``, ``gci`` or ``sls`` can be confusing. 
+For ease of learning ``PowerShell`` uses a consistent ``cmdlet`` naming convention, which is cumbersome for a command line, 
+and so provides an extensible alias mechanism... which make things *easier*  (but less *consistent*). 
+For example ``ls`` is probably more intuitive than ``get-childitem``, likewise ``cat`` or ``type`` are more intuitive than ``get-content``.
+Aliases like ``gc``, ``gci`` or ``sls`` can be confusing when starting. 
 
-The command-line has color-highlighting and has ``TAB`` completion for commands and arguments. Try ``import <tab>``, and cycle 
-through the alternatives. Cmdlets are **case-insensitive** but hyphens are significant, but in some cases optional like ``where-object`` 
+The command-line has color-highlighting and has ``TAB`` completion for commands and arguments, try ``import <tab>``, or ``get-help -<tab>`` and cycle 
+through the alternatives. Cmdlets are **case-insensitive** but hyphens are significant, but for many ending in ``-object`` can be shortened, so ``where-object`` 
 can be written as ``where``, which in my opinion is clearer. Other ``*-object`` examples include ``select``, ``sort``, ``tee``,  and ``measure``.
 
-Variable names are also **case-insensitive**, can include ``_``, and camelCase can be used to make variable names more human readable, but is 
-irrelevent to ``PowerShell``.
+Variable names are also **case-insensitive**, can include ``_``, and **camelCase** can be used to make variable names more human readable, but *camelCase* is 
+irrelevent to ``PowerShell``, so ``dogCat``, ``dogcat`` and ``DogCat`` are the same variable.
 
 My personal preference:
 
@@ -28,12 +31,14 @@ My personal preference:
 * camelCase for variable names, so ``dateString`` , rather than ``date_string``;
 
 A `Windows Powershell ISE <https://docs.microsoft.com/en-us/powershell/scripting/components/ise/introducing-the-windows-powershell-ise?view=powershell-7>`_  
-is provided if you need more interactive assistance.
+is provided if you need more interactive assistance and is very useful when learning. You might also want to consider `Windows Terminal <https://github.com/microsoft/terminal>`_ which supports various command-line tools and shells like 
+Command Prompt, PowerShell, WSL, and includes multiple tabs, panes, Unicode and UTF-8 character support, a GPU accelerated text rendering engine, and 
+custom themes, styles, and configurations.
 
-There are a lot of online documents and tutorials about ``PowerShell`` but unfortunately, as always, this means what you are searching far is 
-either a complex subject matter or not well understood by the author or both... be careful about blindly doing a *copy-paste* of examples.
+There are a lot of online documents and tutorials about ``PowerShell`` but unfortunately, as is often the case, this means what you are searching for is 
+either not simple to explain or not well understood by the author(s) or both... so be careful about blindly doing a *copy-and-paste* of examples.
 
-While learning I found the following helpful:
+While learning I found the following helpful when starting:
 
 * `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
 * `PowerShell equivalents for common Linux/bash commands <https://mathieubuisson.github.io/powershell-linux-bash/>`_
@@ -42,40 +47,62 @@ While learning I found the following helpful:
 Getting Started
 ===============
 
+Like any shell, PowerShell provides an environment which allows interaction with files, folders, processes, the computer and network interfaces etc, but as 
+objects, for example:
+
+* An ``Item`` object, which can be a *file*, *directory*, *link*, *registry-key* etc;
+* A ``ChildItem`` object, children of the current folder (location);
+* A ``Location`` object, where you are in the file system;
+* A ``Process`` object, details of running process(es);
+* An ``MSFT_NetAdapter`` object, for network interfaces;
+* A ``ComputerInfo`` object, providing details of the computer, operating system etc;
+
+::
+
+   PS> get-childitem                      # directory listing
+   PS> get-computerinfo                   # computer information
+   PS> get-netadapter                     # network interfaces
+   PS> get-process                        # running processes
+   PS> get-command                        # powershell commands
+
 You should become familiar with ``get-help`` and ``get-member`` cmdlets::
 
-   PS> get-help get-childitem         # Help on Get-ChildItem
-   PS> get-help get-childiten -online # Online Web based documentation from Microsoft
-   PS> get-childitem | get-member     # What is the object type, its methods and properties
-   PS> get-help get-content           # notice its aliases 'gc', 'cat', 'type'
-   PS> get-help select-string         # regular-expression based string search (UNIX grep)
-   
-   PS> get-help get-location          # alias 'gl' and 'pwd'.
-   PS> get-help get-command           # what commands are available
-   PS> get-help select-object         # 'select' or set object properties
-   PS> get-help where-object          # 'where' filter on object property
-   PS> get-help tee-object            # 'tee' like the UNIX command
-   PS> get-help sort-object           # object property based sorting, (UNIX 'sort')
-   PS> get-help measure-object        # count lines, characters (UNIX 'wc')
-   PS> get-help out-host              # Similar to UNIX 'more' and 'less'
+   PS> get-help get-childitem             # Help on Get-ChildItem
+   PS> get-help get-childiten -online     # Online Web based documentation from Microsoft
+   PS> get-help get-childitem -showWindow # Help in a separate window
+   PS> get-childitem | get-member         # What is the object type, its methods and properties
+
+    
+   PS> get-help get-content               # notice its aliases 'gc', 'cat', 'type'
+   PS> get-help select-string             # regular-expression based string search (like UNIX grep)
+   PS> get-help get-location              # alias 'gl' and 'pwd'.
+   PS> get-help get-command               # what commands are available
+   PS> get-help select-object             # 'select' or set object properties
+   PS> get-help where-object              # 'where' filter on object property
+   PS> get-help tee-object                # 'tee' like the UNIX command
+   PS> get-help sort-object               # object property based sorting, (like UNIX 'sort')
+   PS> get-help measure-object            # count lines, characters (like UNIX 'wc')
+   PS> get-help out-host                  # Similar to UNIX 'more' and 'less'
 
 Quick Introduction
 ==================
 
+Examples of common commands.
+
 ::
 
    PS> set-location dir                            # change directory, ('sl', 'cd', 'chdir')
-   PS> cd dir                                      # using an alias to change directory
+   PS> cd dir                                      # using the 'cd' alias to change directory
    PS> get-childitem                               # directory listing, ('gci','ls','dir')
-   PS> ls                                          # using an alias to get directory listing
+   PS> ls                                          # using the 'ls' alias to get directory listing
    PS> new-item -ItemType Directory dir1           # create directory dir1 ('ni')
    PS> mkdir dir1, dir2                            # *convenience function* make two directories ('md')
    PS> remove-item dir2                            # delete a directory
-   PS> rmdir dir2                                  # using an alias to delete a directory
+   PS> rmdir dir2                                  # using the 'rmdir' alias to delete a directory
    
    PS> new-item fred.txt, wilma.txt                # create two empty files ('ni')
    PS> remove-item fred.txt                        # delete file ('ri','rm','rmdir','del','erase','rd')
-   PS> rm fred.txt                                 # using an alias to delete a file
+   PS> rm fred.txt                                 # using the 'rm' alias to delete a file
    
    PS> write-output "" > fred.txt                  # create an empty file ('write','echo')
    PS> echo "" > fred.txt                          # using alias to create an empty file
@@ -86,163 +113,52 @@ Quick Introduction
    PS> write-output "write some text" > fred.txt   # redirect stdout to a Unicode file
    PS> write-output "append some text" >> fred.txt # append stdout to a Unicode file
    
+   PS> write-output "ascii text" | add-content -encoding ASCII fred.txt # 7-bit ASCII file
+   PS> write-error "stack trace like message"
+   
+   PS> get-item <file> | select -property Name,Length,Mode,CreationTime
+   
    PS> get-content fred.txt                        # display contents, ('gc','cat','type')
-   PS> cat fred.txt                                # using an alias to display contents
+   PS> cat fred.txt                                # using the 'cat' alias to display contents
    PS> remove-item fred.txt                        # delete a file, ('ri','rm','rmdir', 'del','erase','rd')
-   PS> rm fred.txt                                 # using an alias to delete file
+   PS> rm fred.txt                                 # using the 'rm' alias to delete a file
    
    # Starting applications, start-process ('saps','start')
-   #   Note: quotes, pathnames and file extensions are optional
+   #   Note: quotes, pathnames and file extensions are typically optional
    PS> start-process 'notepad'                     # open notepad.exe (can use notepad.exe)
    PS> start-process 'https://nonbleedingedge.com' # open URL with browser (Microsoft-Edge)
    PS> start-process 'explorer'                    # start explorer.exe (can use explorer.exe)
    PS> start-process explorer C:\Windows\          # start explorer.exe in C:\Windows\
-   PS> start-process explorer PS>PWD                 # start explorer.exe in current directory
+   PS> start-process explorer $PWD                 # start explorer.exe in current directory
    PS> start-process chrome                        # start google chrome (if installed)
    PS> start-process notepad++                     # start Notepad++ (if installed)
-
-
-Variables
-=========
-
-Powershell variables are loosely-type, and can be *integers*, *strings*, *arrays*, and *hash-tables*, but also ``.Net`` objects that represent 
-*processes*, *services*, *event-logs*, and even *computers*.
-
-Common forms::
-
-   PS> $age = 5                       # System.Int32
-   PS> [int]$age = "5"                # System.Int32, cast System.String + System.Int32
-   PS> $name = "Dino"                 # System.String
-   PS> $name + $age                   # Fails; System.String + System.Int32
-   PS> $name + [string]$age           # Dino5; System.String + System.String
-
-   PS> $a = (5, 30, 25, 1)            # array of System.Int32
-   PS> $a = (5, "Dino")               # array of (System.Int32, System.String)
-
-   PS> $h = @{ Fred = 30; Wilma  = 25; Pebbles = 1; Dino = 5 } # hash table
    
-   PS> $d = Get-ChildItem C:\Windows  # directory listing, FileInfo and DirectoryInfo types, 
-   PS> $d | get-member                # FileInfo, DirectoryInfo Properties and Methods
-   
-   PS> $p = Get-Process               # System.Diagnostics.Process type
+   PS> get-service | out-host -paging              # paged listing of the services
+   PS> get-process | out-host -paging              # paged listing of the processes
 
-Less common forms::
- 
-   PS> set-variable -name age 5       # same as PS>age = 5
-   PS> set-variable -name name Dino   # same as PS>name = "Dino"
- 
-   PS> clear-variable -name age       # clear PS>age; PS>name = PS>null
-   PS> clear-variable -name p         # clear PS>p; PS>p = PS>null
-   
-   PS> remove-variable -name age      # delete variable PS>age
-   PS> remove-item -path variable:\p  # delete variable PS>p
-   
-   PS> set-variable -name pi -option Constant 3.14159 # constant variable
-   PS> $pi = 42                                       # Fails PS>pi is a constant
+   PS> get-computerinfo                            # computer information
+   PS> get-disk                                    # disk serial number, state etc.
+   PS> get-volume                                  # volumes on your disk.
 
+Some references which may help at the beginning.
 
-Array Variables
-===============
+* `PowerShell for Experienced Bash users <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#map-book-for-experienced-bash-users>`_
+* `10 basic PowerShell commands that every Windows 10 user should know <https://www.thewindowsclub.com/basic-powershell-commands-windows>`_
+* `10 PowerShell commands every Windows admin should know <https://www.techrepublic.com/blog/10-things/10-powershell-commands-every-windows-admin-should-know/>`_
 
-Array variables are a fixed size, can have mixed values and can be multi-dimensional.
-
-::
-  
-   PS> $a = 1, 2, 3                    # array of integers
-   PS> $a = (1, 2, 3)                  # array of integers (my personal preference)
-   PS> $a = ('a','b','c')
-   PS> $a = (1, 2, 3, 'x')             # array of System.Int32's, System.String
-   PS> [int[]]$a = (1, 2, 3, 'x')      # will fail 'x', array of System.Int32 only
-   
-   PS> $a = ('fred','wilma','pebbles')
-   PS> $a[0]             # fred
-   PS> $[2]              # pebbles
-   PS> $a.length         # 3
-   PS> $a[0] = 'freddie' # fred becomes freddie
-   PS> $a[4] = 'dino'    # Error: Index was outside the bounds of the array.
-   PS> $a = ($a, 'dino') # correct way to add 'dino'
-   
-   PS> $b = ('barbey', 'betty', 'bamm-bamm')
-   PS> $a = ($a, $b)    # [0]:fred [1]:wilma [2]:pebbles [3]:barney [4]:betty [5]:bamm-bamm 
-   PS> $a.length        # 6
-   PS> $a = ($a, ($b))  # [0]:fred [1]:wilma [2]:pebbles [3][0]:barney [3][1]:betty [3][2]:bamm-bamm 
-   PS> $a.length        # 4
-   
-   PS> $ages = (30, 25, 1, 5)                      # flintstones ages
-   PS> $names = ('fred','wilma','pebbles', 'dino') # flintstones names
-   PS> $a = ($names),($ages))                      # multi-dimensional array example
-   PS> $a.length                                   # 4
-   PS> $a[0]                                       # fred wilma pebbles dino
-   PS> $a[1]                                       # 30 25 1 5
-   PS> $a[0][0]                                    # fred
-   PS> $a[0][1]                                    # 30
-   
-   
-HashTables
-==========
-
-Unordered collection of key:value pairs, later versions of ``PowersShell`` support ``PS>hash = [ordered]@{}``
+Services
+========
 
 ::
 
-   PS> $h = @{}              # empty hash
-   PS> $key = 'Fred'         # set key name
-   PS> $value = 30           # set key value
-   PS> $h.add(PS>key, PS>value)  # add key:value to the hash-table
-   
-   PS> $h.add('Wilma', 25 )  # add Wilma
-   PS> $h['Pebbles'] = 1     # add Pebbles
-   PS> $h.Dino = 5           # add Dino
-   
-   PS> $h                    # actual hash-table, printed if on command-line
-   PS> $h['Fred']            # how old is Fred? 30
-   PS> $h[$key]              # how old is Fred? 30
-   PS> $h.fred               # how old is Fred? 30
-   
-   # creating a populated hash
-   PS> $h = @{
-       Fred = 30
-       Wilma  = 25
-       Pebbles = 1
-       Dino = 5
-   }
-   
-   # creating a populated hash, one-liner
-   PS> $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
-   
-   PS> $h.keys            # unordered: Dino, Pebbles, Fred, Wilma
-   PS> $h.values          # unordered: 5, 1, 30, 25 (but same as $h.keys order)
-   
-   # key order is random
-   PS> foreach($key in $h.keys) {
-       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
-   }
-   
-   # ascending alphabetic order (Dino, Fred, Pebbles, Wilma)
-   PS> foreach($key in $h.keys | sort) {
-       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
-   }
-   
-   # descending alphabetic order (Wilma, Pebbles, Fred, Dino)
-   PS> foreach($key in $h.keys | sort -descending) {
-       write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
-   }
-   
-   # specfific order (Fred, Wilma, Pebbles, Dino)
-   PS> $keys = ('fred', 'wilma', 'pebbles', 'dino')
-   for ($i = 0; $i -lt $keys.length; $i++) {
-      write-output ('{0} Flintstone is {1:D} years old' -f $keys[$i], $h[$keys[$i]])
-   }
-   
-   PS> if ($h.ContainsKey('fred')) { ... }   # true 
-   PS> if ($h.ContainsKey('barney')) { ... } # false
-   
-   PS> $h.remove('Dino')                # remove Dino, because he ran away
-   PS> $h.clear()                       # family deceased
+   PS> get-service | out-host -Paging                     # paged listing of the services
+   PS> get-service | where -property Status -eq 'running' # all running services
+   PS> start-service <service name>
+   PS> stop-service <service name>
+   PS> suspend-service <service name>
+   PS> resume-service <service name>
+   PS> restart-service <service name>
 
-Excellent review of PowerShell HashTables:
-
-* `Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
 
 PowerShell Environment
 ======================
@@ -257,7 +173,7 @@ PowerShell Environment
    PS> $env:SystemRoot                # variable containing C:\Windows
    PS> $env:COMPUTERNAME              # variable containing MYLAPTOP001
    PS> $env:USERNAME                  # variable containing username
-   PS> $env:TMP, $env:TEMP            # variable containingtemp directory
+   PS> $env:TMP, $env:TEMP            # variable containing temp directory
    PS> $env:LIB_PATH='/usr/local/lib' # setting LIB_PATH variable 
    
    PS> $psversiontable                # variable containing PowerShell version information.
@@ -271,18 +187,35 @@ Processes
    PS> get-process | get-member                                       # show returned object
    PS> get-process | select -first 10                                 # first 10 processes
    PS> get-process | select -last 10                                  # last 10 processes
-   PS> get-process | sort -property ws | select -last 10              # last 10 sorted
-   PS> get-process | sort -property ws | select -first 10             # first 10 sorted
-   PS> get-process | sort -property ws -descending | select -first 10 # reverse sort first 10
-   PS> get-process | where {PS>_.processname -match "^p.*"}             # all processes starting with "p"
+   PS> get-process | sort -property workingset | select -last 10      # last 10 sorted on workingset
+   PS> get-process | sort -property workingset | select -first 10     # first 10 sorted on workingset
+   PS> get-process | sort -property ws -descending | select -first 10 # reversed first 10 (ws=workingset)
+   PS> get-process | where {$_.processname -match "^p.*"}             # all processes starting with "p"
    PS> get-process | select -property Name,Id,WS | out-host -paging   # paged (more/less) output
    PS> get-process | out-gridview                                     # interactive static table view
+   
+   PS> start-process notepad                # start notepad
+   PS> $p = get-process -name notepad       # finds all notepad processes! (Array like)
+   PS> stop-process -name notepad           # terminate all notepad processes!
+   PS> stop-process -name notepad -whatif   # what would happen if run :-)
+   PS> stop-process -id $p.id               # terminate by id, (confirmation prompt if not yours)
+   PS> stop-process -id $p[0].id            # terminate by id, (confirmation prompt if not yours)
+   PS> stop-process -id $p.id -force        # terminate by id, (no confirmation prompt if not yours)
+   
+   PS> $p = start-process notepad -passthru # start notepad, -passthru to return the process object
+   PS> $p | get-member                      # methods and properties, (only 4 examples shown)
+   PS> $p.cpu                               # how much CPU has notepad used
+   PS> $p.Modules                           # which .dll's are being used
+   PS> $p.Threads.Count                     # how many threads
+   PS> $p.kill()                            # terminate
+   PS> stop-process -id $p.id               # terminate by id
+   PS> remove-variable -name p              # $p is not $null after process termination
+   
 
 Viewing Files
 =============
 ::
 
-   PS> get-content <file> | select -last 20             # get last 20 lines
    PS> get-content <file> -wait                         # tailing a log-file
    PS> get-content <file> | select -first 10            # first 10 lines
    PS> get-content <file> | select -last 10             # last 10 lines
@@ -294,7 +227,6 @@ Viewing Files
    PS> select-string -NotMatch 'str1' <file>            # all lines *not* containing 'str1'
    PS> select-string ('str1','str2') <file>             # all lines containing 'str1' or 'str2'
    PS> select-string -NotMatch ('str1','str2') <file>   # all lines *not* containing 'str1' or 'str2'
-   PS> select-string <regex> <file> | select -last 10   # last 10 lines containing <regex>
    
    PS> select-string <regex> <file> | select -first 10  # first 10 lines containing <regex>
    PS> select-string <regex> <file> | select -last 10   # last 10 lines containing of <regex>
@@ -306,6 +238,7 @@ Computer Information
 
    # Classnames: Win32_BIOS, Win32_Processor, Win32_ComputerSystem, Win32_LocalTime, 
    #             Win32_LogicalDisk, Win32_LogonSession, Win32_QuickFixEngineering, Win32_Service
+   PS> get-cimclass | out-host -paging                      # lists all available classes
 
    PS> get-ciminstance -classname Win32_BIOS                # bios version
    PS> get-ciminstance -classname Win32_Processor           # processor information
@@ -313,44 +246,53 @@ Computer Information
    PS> get-ciminstance -classname Win32_QuickFixEngineering # hotfixes installed on which date
    PS> get-ciminstance -classname Win32_QuickFixEngineering -property HotFixID | select -property hotfixid
 
+Further reading:
+
+* `Introduction to CIM Cmdlets <https://devblogs.microsoft.com/powershell/introduction-to-cim-cmdlets/>`_
+* `Microsoft Docs: Get-CimInstance <https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance>`_
+
 Windows EventLog
 ================
 
 ::
 
-   PS> get-eventlog -list                                                    # list a summary of the events
-   PS> get-eventlog -logname system -newest 5                                # last 5 system events
-   PS> get-eventlog -logname system -entrytype error | out-host -paging      # system error events
+   # Gets events from event logs and event tracing log files
+   PS> (Get-WinEvent -ListLog Application).ProviderNames | out-host -paging  # who is writing Application logs
    
-   PS> get-eventlog -logname application | out-host -paging                  # application events 
-   PS> get-eventlog -logname application -Index 14338 | select -Property *   # details of application event 14338
-
-   PS> PS>events = get-eventlog -logname system -newest 1000                   # capture last 1000 system events
-   PS> PS>events | group -property source -noelement | sort -property count -descending # categorize them
-   
-   PS> get-eventlog -logname application -source MSSQLSERVER | out-host -paging
-   PS> get-eventlog -logname application -source MSSQLSERVER -after 18/6/2019 | out-host -paging
-   
-   # Gets events from event logs and event tracing log files (less useful)
-   PS> (Get-WinEvent -ListLog Application).ProviderNames | out-host -paging # who is writing Application logs
-   
-   PS> get-winevent -filterhashtable @{logname='application'} | get-member
+   PS> get-winevent -filterhashtable @{logname='application'} | get-member # slow ... be patient :-)
    
    PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | out-host -paging
-   PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | where {PS>_.Message -like '*error*'} | out-host -paging
+   PS> get-winevent -filterhashtable @{logname='application'; providername='MSSQLSERVER'} | where {$_.Message -like '*error*'} | out-host -paging
 
-* `Event Log Parsing <http://colleenmorrow.com/2012/09/20/parsing-windows-event-logs-with-powershell/>`_
-* `Get-WinEvent <https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Diagnostics/Get-WinEvent>`_
+   # Uses deprecated Win32 API, last reference PowerShell 5 docs, but still works on Windows 10 Home
+   PS> get-eventlog -list                                                    # list a summary count of the events
+   PS> get-eventlog -logname system -newest 5                                # last 5 system events
+   PS> get-eventlog -logname system -entrytype error | out-host -paging      # system error events
+
+   PS> get-eventlog -logname application | out-host -paging                  # lists application events (with index number)
+   PS> get-eventlog -logname application -Index 14338 | select -Property *   # details of application event 14338
+
+   PS> $events = get-eventlog -logname system -newest 1000                   # capture last 1000 system events
+   PS> $events | group -property source -noelement | sort -property count -descending # categorize them
+   
+   PS> get-eventlog -logname application -source MSSQLSERVER | out-host -paging
+   PS> get-eventlog -logname application -source MSSQLSERVER -after '11/18/2020' | out-host -paging
+   
+Further reading:
+
+* `Collen M. Morrow: Parsing Windows event logs with PowerShell <https://colleenmorrow.com/2012/09/20/parsing-windows-event-logs-with-powershell/>`_
+* `Microsoft Docs: Get-WinEvent <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent>`_
+* `Microsoft Docs: Get-EventLog <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-eventlog>`_
 
 HotFixes
 ========
 
 ::
 
-   PS> get-hotfix                    # list all installed hot fixes 
+   PS> get-hotfix                    # list all installed hot fixes and their ID
    PS> get-hotfix -Id KB4516115      # when was hotfix installed
    
-   # To get hotfix details (random choice, happens to be an Adobe Flash update)
+   # To get hotfix details (example is a random choice, happens to be an Adobe Flash update)
    PS> start-process "https://www.catalog.update.microsoft.com/Search.aspx?q=KB4516115" 
 
 
@@ -360,10 +302,11 @@ Command Line History
 You can recall and repeat commands::
 
    PS> get-history
-   PS> invoke-history 1
-   PS> get-history | select-string -pattern 'ping'
-   PS> get-history | where {PS>_.CommandLine -like "*ping*"} 
-   PS> get-history | format-list -property *               # execution time and status             
+   PS> invoke-history 10                                   # execute 10 in your history (aliases 'r' and 'ihy')
+   PS> r 10                                                # same using the alias
+   PS> get-history | select-string -pattern 'get'          # all the get-commands in your command history
+   PS> get-history | where {$_.CommandLine -like "*get*"}  # all the get-commands in your command history
+   PS> get-history | format-list -property *               # execution Start/EndExecutiontimes and status             
    PS> get-history -count 100                              # get 100 lines
    PS> clear-history
    
@@ -392,6 +335,249 @@ The ``out-gridview`` renders the output the data in an interactive table.
    PS> for ($i =0; $i -lt $f.length; $i++) { 
            write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age) 
        }
+
+   PS> import-csv -delimiter ';' file.csv | out-gridview
+
+
+JSON files
+==========
+
+PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are installed.
+
+::
+
+   PS> get-content file2.json
+   {
+           "family":"flintstone",
+           "members":
+                   [
+                           {"Name":"Fred", "Age":"30"},
+                           {"Name":"Wilma", "Age":"25"},
+                           {"Name":"Pebbles", "Age":"1"},
+                           {"Name":"Dino", "Age":"5"}
+                   ]
+   }
+
+   PS> get-content file2.json | ConvertFrom-Json
+   family     members
+   ------     -------
+   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
+
+
+   PS> $obj = get-content file2.json | convertfrom-json
+   PS> $obj
+   family     members
+   ------     -------
+   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
+   
+   PS> $obj.family                                      # returns flintstone
+   PS> $obj.members[0].name                             # returns Fred
+   PS> $obj.members[0].age                              # returns 30
+   PS> $obj.members[0].age = 35                         # set Fred's age to 35
+   PS> $obj.members[0].age                              # now returns 35
+   PS> $obj | convertto-json | add-content newfile.json # save as JSON
+   
+   PS> $obj.members.name                                # returns: Fred Wilma Pebbles Dino
+   PS> $obj.members.age                                 # returns: 35 25 1 5
+   PS> $obj.members.age[0]                              # returns  35
+   PS> $obj.members.age[0] = 37                         # immutable, silently fails, no error
+   PS> $obj.members.age[0]                              # returns 35
+   
+   PS> remove-variable -name obj                        # cleanup
+   
+   PS> get-content newfile.json
+   {
+       "family":  "flintstone",
+       "members":  [
+                       {
+                           "Name":  "Fred",
+                           "Age":  35
+                       },
+                       {
+                           "Name":  "Wilma",
+                           "Age":  "25"
+                       },
+                       {
+                           "Name":  "Pebbles",
+                           "Age":  "1"
+                       },
+                       {
+                           "Name":  "Dino",
+                           "Age":  "5"
+                       }
+                   ]
+   }
+
+Further reading:
+   
+* `ConvertTo-Json converts an object to a JSON-formatted string. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json>`_
+* `ConvertFrom-Json converts a JSON-formatted string to a custom object or a hash table. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json>`_
+* `W3Schools: Introduction to JSON <https://www.w3schools.com/js/js_json_intro.asp>`_
+
+Reading XML files
+=================
+
+``Powershell`` supports full manipulation of the XML DOM, read the `Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ 
+and `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more detailed information. The examples shown 
+are very redimentary, and only show a few of the manipulations you can perform on XML objects.
+
+**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
+and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
+
+::
+
+   PS> get-content .\file2.xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <family surname = "Flintstone">
+           <member>
+                   <name>Fred</name>
+                   <age>30</age>
+           </member>
+           <member>
+                   <name>Wilma</name>
+                   <age>25</age>
+           </member>
+           <member>
+                   <name>Pebbles</name>
+                   <age>1</age>
+           </member>
+           <member>
+                   <name>Dino</name>
+                   <age>5</age>
+           </member>
+   </family>
+   
+   PS> $obj = [XML] (get-content .\file2.xml) # returns a System.Xml.XmlDocument object
+   
+   PS> $obj.childnodes                        # returns all the child nodes
+   PS> $obj.xml                               # returns version="1.0" encoding="UTF-8"
+   PS> $obj.childnodes.surname                # Flintstone
+   PS> $obj.childnodes.member.name            # returns Fred Wilma Pebbles Dino
+   PS> $obj.childnodes.member.age             # returns 30 25 1 5
+   
+   PS> $obj.ChildNodes[0].NextSibling
+   surname    member
+   -------    ------
+   Flintstone {Fred, Wilma, Pebbles, Dino}
+
+   PS> $obj.GetElementsByTagName("member");
+   name    age
+   ----    ---
+   Fred    30
+   Wilma   25
+   Pebbles 1
+   Dino    5
+
+   PS> $obj.GetElementsByTagName("member")[0].name       # returns Fred
+   PS> $obj.GetElementsByTagName("member")[0].age        # returns 30
+   PS> $obj.GetElementsByTagName("member")[0].age = 35   # Errors, only strings can be used.
+   PS> $obj.GetElementsByTagName("member")[0].age = "35" # Fred is now older
+   PS> $obj.GetElementsByTagName("member")[0].age        # returns 35
+   PS> $obj.Save("$PWD\newfile.xml")                     # needs a full pathname
+
+   PS> get-content newfile.xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <family surname="Flintstone">
+     <member>
+       <name>Fred</name>
+       <age>35</age>
+     </member>
+     <member>
+       <name>Wilma</name>
+       <age>25</age>
+     </member>
+     <member>
+       <name>Pebbles</name>
+       <age>1</age>
+     </member>
+     <member>
+       <name>Dino</name>
+       <age>5</age>
+     </member>
+   </family>
+
+
+Writing XML files
+=================
+
+To generate an XML file, use the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
+
+**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
+and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
+
+::
+
+   $settings = New-Object System.Xml.XmlWriterSettings  # to update XmlWriterSettings
+   $settings.Indent = $true                             # indented XML
+   $settings.IndentChars = "`t"                         # <TAB> indents
+   $settings.Encoding = [System.Text.Encoding]::UTF8    # force the default UTF8 encoding; others ASCII, Unicode...
+   
+   $obj = [System.XML.XmlWriter]::Create("C:\users\geoff\bedrock.xml", $settings) # note full-pathname
+   
+   # Simpler approach but no encoding is specified in XML header and again note full-pathname
+   # $obj = New-Object System.XMl.XmlTextWriter('C:\users\geoff\bedrock.xml', $null)
+   # $obj.Formatting = 'Indented'
+   # $obj.Indentation = 1
+   # $obj.IndentChar = "`t"
+   
+   $obj.WriteStartDocument()                          # start xml document, <?xml version="1.0"?>
+   $obj.WriteComment('Bedrock Families')              # add a comment, <!-- Bedrock Families -->
+   $obj.WriteStartElement('family')                   # start element <family>
+   $obj.WriteAttributeString('surname', 'Flintstone') # add surname attribute
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Fred')             # add <name>Fred</name>
+   $obj.WriteElementString('age','30')                # add <age>30</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Wilma')            # add <name>Wilma</name>
+   $obj.WriteElementString('age','25')                # add <age>25</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Pebbles')          # add <name>Pebbles</name>
+   $obj.WriteElementString('age','1')                 # add <age>1</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Dino')             # add <name>Dino</name>
+   $obj.WriteElementString('age','5')                 # add <age>5</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteEndElement()                             # end element <family>
+   
+   $obj.WriteEndDocument()                            # end document
+   $obj.Flush()                                       # flush
+   $obj.Close()                                       # close, writes the file
+   
+   PS> get-content C:\users\geoff\bedrock.xml
+   <?xml version="1.0" encoding="utf-8"?>
+   <!--Bedrock Families-->
+   <family surname="Flintstone">
+           <member>
+                   <name>Fred</name>
+                   <age>30</age>
+           </member>
+           <member>
+                   <name>Wilma</name>
+                   <age>25</age>
+           </member>
+           <member>
+                   <name>Pebbles</name>
+                   <age>1</age>
+           </member>
+           <member>
+                   <name>Dino</name>
+                   <age>5</age>
+           </member>
+   </family>
+   
+   PS> remove-variable -name settings
+   PS> remove-variable -name obj
+   PS> remove-item C:\users\geoff\bedrock.xml
 
 Formatting Output
 =================
@@ -433,6 +619,8 @@ Specified as ``{<index>, <alignment><width>:<format_spec>}``
    PS> get-date -Format 'yyyy-MM-dd:HH:mm:ss'      # 2020-04-27T19:19:05
    PS> get-date -UFormat "%A %m/%d/%Y %R %Z"       # Monday 04/27/2020 19:19 +02
 
-More examples:
-* `Formatting Output <http://powershellprimer.com/html/0013.html>`_
-* `Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
+
+More detailed examples:
+
+* `PowershellPrimer.com: Formatting Output <https://powershellprimer.com/html/0013.html>`_
+* `Microsoft documentation: Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
