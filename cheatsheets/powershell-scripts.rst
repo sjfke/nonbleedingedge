@@ -947,9 +947,327 @@ Entire Technical Books are dedicated Regular Expression, the above treatment is 
 * `Test and Debug: RegEx <https://www.regextester.com/>`_
 * `Test and Debug: Regular Expression Tester <https://www.freeformatter.com/regex-tester.html>`_
 
+Reading Files
+=============
 
-Formatting Output
+::
+
+   https://powershellexplained.com/2017-03-18-Powershell-reading-and-saving-data-to-files/
+
+Writing Files
+=============
+
+Simplest approach is to use `set-content <https://docs.microsoft.com/powershell/module/microsoft.powershell.management/set-content>`_, 
+`add-content <https://docs.microsoft.com/powershell/module/microsoft.powershell.management/add-content>`_ and 
+`clear-content <https://docs.microsoft.com/powershell/module/microsoft.powershell.management/clear-content>`_ *cmd-lets*, 
+which have many options not covered here.
+
+::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+      
+   $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+   
+   set-content -path "file.obj" -value $h    # writes hash-table object 
+   
+   $path = "file.txt"
+   set-content -path $path -value $null # creates and closes an empty file
+   foreach ($key in $h.keys) {
+       add-content -path $path -value ("{0}:{1:D}" -f $key, $h[$key]) # adds content and closes
+       # ("{0}:{1:D}" -f $key, $h[$key]) | add-content -path $path    # same, less intuative
+   }
+   
+   clear-content -path $path # clear the file contents
+   $text = "Fred:30`
+   Wilma:25`
+   Pebbles:1`
+   Dino:5"
+   $text | set-content -path $path
+   
+   clear-content -path $path # clear the file contents
+   $text = "Fred:30`nWilma:25`nPebbles:1`nDino:5"
+   $text | set-content -path $path
+
+   clear-content -path $path # clear the file contents
+   $text | Out-File -FilePath $path
+
+See also:
+
+* `Microsoft docs: out-file <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-file>`_
+* `Microsoft docs: new-temporaryfile <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/new-temporaryfile>`_
+
+CSV Files
+=========
+
+Powershell provides ``cmdlets`` for handling these which avoid importing into ``Excel`` and ``MS Access``.
+The ``out-gridview`` renders the output the data in an interactive table. 
+
+::
+
+   PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # load and display a <TAB> separated file.
+   PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # load and display a ';' separated file.
+   
+   PS> get-content file.csv
+       Name;Age
+       Fred;30
+       Wilma;25
+       Pebbles;1
+       Dino;5
+   PS> $f = import-csv -delimiter ';' file.csv
+   PS> $f.Name    # Fred Wilma Pebbles Dino
+   PS> $f[1].Name # Wilma
+   PS> $f.Age     # 30 25 1 5
+   PS> $f[3].Age  # 5
+   PS> for ($i =0; $i -lt $f.length; $i++) { 
+           write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age) 
+       }
+
+   PS> import-csv -delimiter ';' file.csv | out-gridview
+
+
+JSON files
+==========
+
+PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are installed.
+
+::
+
+   PS> get-content file2.json
+   {
+           "family":"flintstone",
+           "members":
+                   [
+                           {"Name":"Fred", "Age":"30"},
+                           {"Name":"Wilma", "Age":"25"},
+                           {"Name":"Pebbles", "Age":"1"},
+                           {"Name":"Dino", "Age":"5"}
+                   ]
+   }
+
+   PS> get-content file2.json | ConvertFrom-Json
+   family     members
+   ------     -------
+   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
+
+
+   PS> $obj = get-content file2.json | convertfrom-json
+   PS> $obj
+   family     members
+   ------     -------
+   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
+   
+   PS> $obj.family                                      # returns flintstone
+   PS> $obj.members[0].name                             # returns Fred
+   PS> $obj.members[0].age                              # returns 30
+   PS> $obj.members[0].age = 35                         # set Fred's age to 35
+   PS> $obj.members[0].age                              # now returns 35
+   PS> $obj | convertto-json | add-content newfile.json # save as JSON
+   
+   PS> $obj.members.name                                # returns: Fred Wilma Pebbles Dino
+   PS> $obj.members.age                                 # returns: 35 25 1 5
+   PS> $obj.members.age[0]                              # returns  35
+   PS> $obj.members.age[0] = 37                         # immutable, silently fails, no error
+   PS> $obj.members.age[0]                              # returns 35
+   
+   PS> remove-variable -name obj                        # cleanup
+   
+   PS> get-content newfile.json
+   {
+       "family":  "flintstone",
+       "members":  [
+                       {
+                           "Name":  "Fred",
+                           "Age":  35
+                       },
+                       {
+                           "Name":  "Wilma",
+                           "Age":  "25"
+                       },
+                       {
+                           "Name":  "Pebbles",
+                           "Age":  "1"
+                       },
+                       {
+                           "Name":  "Dino",
+                           "Age":  "5"
+                       }
+                   ]
+   }
+
+Further reading:
+   
+* `ConvertTo-Json converts an object to a JSON-formatted string. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json>`_
+* `ConvertFrom-Json converts a JSON-formatted string to a custom object or a hash table. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json>`_
+* `W3Schools: Introduction to JSON <https://www.w3schools.com/js/js_json_intro.asp>`_
+
+Reading XML files
 =================
+
+``Powershell`` supports full manipulation of the XML DOM, read the `Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ 
+and `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more detailed information. The examples shown 
+are very redimentary, and only show a few of the manipulations you can perform on XML objects.
+
+**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
+and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
+
+::
+
+   PS> get-content .\file2.xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <family surname = "Flintstone">
+           <member>
+                   <name>Fred</name>
+                   <age>30</age>
+           </member>
+           <member>
+                   <name>Wilma</name>
+                   <age>25</age>
+           </member>
+           <member>
+                   <name>Pebbles</name>
+                   <age>1</age>
+           </member>
+           <member>
+                   <name>Dino</name>
+                   <age>5</age>
+           </member>
+   </family>
+   
+   PS> $obj = [XML] (get-content .\file2.xml) # returns a System.Xml.XmlDocument object
+   
+   PS> $obj.childnodes                        # returns all the child nodes
+   PS> $obj.xml                               # returns version="1.0" encoding="UTF-8"
+   PS> $obj.childnodes.surname                # Flintstone
+   PS> $obj.childnodes.member.name            # returns Fred Wilma Pebbles Dino
+   PS> $obj.childnodes.member.age             # returns 30 25 1 5
+   
+   PS> $obj.ChildNodes[0].NextSibling
+   surname    member
+   -------    ------
+   Flintstone {Fred, Wilma, Pebbles, Dino}
+
+   PS> $obj.GetElementsByTagName("member");
+   name    age
+   ----    ---
+   Fred    30
+   Wilma   25
+   Pebbles 1
+   Dino    5
+
+   PS> $obj.GetElementsByTagName("member")[0].name       # returns Fred
+   PS> $obj.GetElementsByTagName("member")[0].age        # returns 30
+   PS> $obj.GetElementsByTagName("member")[0].age = 35   # Errors, only strings can be used.
+   PS> $obj.GetElementsByTagName("member")[0].age = "35" # Fred is now older
+   PS> $obj.GetElementsByTagName("member")[0].age        # returns 35
+   PS> $obj.Save("$PWD\newfile.xml")                     # needs a full pathname
+
+   PS> get-content newfile.xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <family surname="Flintstone">
+     <member>
+       <name>Fred</name>
+       <age>35</age>
+     </member>
+     <member>
+       <name>Wilma</name>
+       <age>25</age>
+     </member>
+     <member>
+       <name>Pebbles</name>
+       <age>1</age>
+     </member>
+     <member>
+       <name>Dino</name>
+       <age>5</age>
+     </member>
+   </family>
+
+
+Writing XML files
+=================
+
+To generate an XML file, use the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
+
+**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
+and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
+
+::
+
+   $settings = New-Object System.Xml.XmlWriterSettings  # to update XmlWriterSettings
+   $settings.Indent = $true                             # indented XML
+   $settings.IndentChars = "`t"                         # <TAB> indents
+   $settings.Encoding = [System.Text.Encoding]::UTF8    # force the default UTF8 encoding; others ASCII, Unicode...
+   
+   $obj = [System.XML.XmlWriter]::Create("C:\users\geoff\bedrock.xml", $settings) # note full-pathname
+   
+   # Simpler approach but no encoding is specified in XML header and again note full-pathname
+   # $obj = New-Object System.XMl.XmlTextWriter('C:\users\geoff\bedrock.xml', $null)
+   # $obj.Formatting = 'Indented'
+   # $obj.Indentation = 1
+   # $obj.IndentChar = "`t"
+   
+   $obj.WriteStartDocument()                          # start xml document, <?xml version="1.0"?>
+   $obj.WriteComment('Bedrock Families')              # add a comment, <!-- Bedrock Families -->
+   $obj.WriteStartElement('family')                   # start element <family>
+   $obj.WriteAttributeString('surname', 'Flintstone') # add surname attribute
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Fred')             # add <name>Fred</name>
+   $obj.WriteElementString('age','30')                # add <age>30</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Wilma')            # add <name>Wilma</name>
+   $obj.WriteElementString('age','25')                # add <age>25</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Pebbles')          # add <name>Pebbles</name>
+   $obj.WriteElementString('age','1')                 # add <age>1</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Dino')             # add <name>Dino</name>
+   $obj.WriteElementString('age','5')                 # add <age>5</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteEndElement()                             # end element <family>
+   
+   $obj.WriteEndDocument()                            # end document
+   $obj.Flush()                                       # flush
+   $obj.Close()                                       # close, writes the file
+   
+   PS> get-content C:\users\geoff\bedrock.xml
+   <?xml version="1.0" encoding="utf-8"?>
+   <!--Bedrock Families-->
+   <family surname="Flintstone">
+           <member>
+                   <name>Fred</name>
+                   <age>30</age>
+           </member>
+           <member>
+                   <name>Wilma</name>
+                   <age>25</age>
+           </member>
+           <member>
+                   <name>Pebbles</name>
+                   <age>1</age>
+           </member>
+           <member>
+                   <name>Dino</name>
+                   <age>5</age>
+           </member>
+   </family>
+   
+   PS> remove-variable -name settings
+   PS> remove-variable -name obj
+   PS> remove-item C:\users\geoff\bedrock.xml
+
+Formatting Variables
+====================
 
 Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assigment.
 Specified as ``{<index>, <alignment><width>:<format_spec>}``
