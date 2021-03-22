@@ -952,7 +952,46 @@ Reading Files
 
 ::
 
-   https://powershellexplained.com/2017-03-18-Powershell-reading-and-saving-data-to-files/
+   #requires -version 4
+   Set-StrictMode -Version 2
+   
+   $filename = 'file.txt'
+   $addCWD = $false
+   $path = $filename 
+   if ($addCWD) {
+      $path = Join-Path -path $cwd.value -childpath $filename
+   }
+   
+   write-host("if...then...else")
+   if (-not (Test-Path -path $path -pathtype leaf) ) {
+      write-warning("Filename, {0}, does not exist" -f $path)
+      exit(1)
+   }
+   else {
+      $count = 1
+      foreach ($line in get-content $path) {
+         write-host("{0:D3}:{1}" -f $count, $line)
+         $count += 1
+      }
+      $fh = get-childitem $path # get file attributes
+   }
+   
+   write-host("try...catch")
+   try {
+      $count = 1
+      foreach ($line in get-content $path -ErrorAction Stop) {
+         write-host("{0:D3}:{1}" -f $count, $line)
+         $count += 1
+      }
+      $fh = get-childitem $path # get file attributes
+   }
+   catch {
+      write-warning $Error[0].ToString()
+      write-warning $Error[0].Exception.GetType().FullName # exception message type
+      exit(1)
+   }
+   
+   exit(0) 
 
 Writing Files
 =============
@@ -1265,6 +1304,21 @@ and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
    PS> remove-variable -name settings
    PS> remove-variable -name obj
    PS> remove-item C:\users\geoff\bedrock.xml
+
+Log files
+=========
+
+::
+
+   # tailing a log file
+   PS> get-content -wait -last 10 "application.log"
+   PS> get-content -wait "application.log" | out-host -paging
+   
+   # writing a time-stamped log message
+   PS> $LogFile = "application.log"
+   PS> $DateTime = "[{0:MM/dd/yy} {0:HH:mm:ss}]" -f (Get-Date) # [03/22/21 21:07:06]
+   PS> $LogMessage = "$Datetime: $LogString"
+   PS> add-content $LogFile -value $LogMessage
 
 Formatting Variables
 ====================
