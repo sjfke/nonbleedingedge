@@ -33,7 +33,7 @@ individual ``cmdlets`` can always be executed.
 * *Windows Server* usually allows ``RemoteSigned`` scripts to be run on the ``LocalMachine``;
 
 The execution policy governs whether a ``PowerShell`` script can be executed, ``get-executionpolicy`` displays this for 
-the current ``PowerShell``, and ``get-executionpolicy -list`` shows all the policies in highest to lowest priority (scope) order. 
+the current ``PowerShell``, and ``get-executionpolicy -list`` shows all the policies in highest to lowest priority (*scope*) order. 
 
 In the example below only the ``LocalMachine`` policy is defined, and this is set to ``restricted`` so ``PowerShell`` scripts cannot be executed, but 
 indiviual commands, ``cmdlets`` can.
@@ -54,8 +54,8 @@ indiviual commands, ``cmdlets`` can.
     LocalMachine      Restricted  # lowest priority
 
 
-If your *ExecutionPolicy* is as above, a quick fix is to start a *PowerShell as Administrator* and reset it as shown below, but you 
-should read the `PowerShell Exection Policies`_ section.
+If your *ExecutionPolicy* is as above, a quick fix is to start a *PowerShell as Administrator* and set it to *RemoteSigned* as shown, but you 
+should still read the `PowerShell Exection Policies`_ section.
 
 ::
 
@@ -91,17 +91,17 @@ than individual name or positional parameters.
 
 Useful starting points when learning about the language:
 
-* `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_;
-* `Windows PowerShell Portal <https://social.technet.microsoft.com/wiki/contents/articles/24187.windows-powershell-portal.aspx>`_;
+* `PowerShell GitHub - Recommended Training and Reading <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#recommended-training-and-reading>`_
+* `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
+* `Windows PowerShell Portal <https://social.technet.microsoft.com/wiki/contents/articles/24187.windows-powershell-portal.aspx>`_
 
-Unlike most texts on programming languages I start with a simple but realistic PowerShell example.
-Many of the language details are covered in subsequent sections.
+Unlike most texts on programming languages this starts with a simple but realistic PowerShell example, with many of the language details being covered in subsequent sections.
 
 Example Script
 ==============
 
 This is a contrived but realistic PowerShell script to illustrate several important points.
-It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which I found extremely useful, but has additons to force 
+It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which is extremely useful, but is augmented to force 
 the syntax version and to be more strict on the use of uninitialized variables.
 
 ::
@@ -241,7 +241,7 @@ Variables
 Powershell variables can be any of the `Basic DataTypes`_ such as *integers*, *characters*, *strings*, *arrays*, and *hash-tables*, but also ``.Net`` objects that represent such things as
 *processes*, *services*, *event-logs*, and even *computers*.
 
-Common forms::
+::
 
    PS> $age = 5                       # System.Int32
    PS> [int]$age = "5"                # System.Int32, cast System.String + System.Int32
@@ -259,8 +259,6 @@ Common forms::
    
    PS> $p = Get-Process               # System.Diagnostics.Process type
 
-Less common forms::
- 
    PS> set-variable -name age 5         # same as $age = 5
    PS> set-variable -name name Dino     # same as $name = "Dino" (variable's name is *name*)
  
@@ -359,7 +357,7 @@ HashTables
 ==========
 
 A HashTable is an unordered collection of key:value pairs, synonymous with an object and its properties. 
-Later versions support the hash elements in a known/fixed order, ``$hash = [ordered]@{}``.
+Later versions support known/fixed order hash elements, ``$hash = [ordered]@{}``.
 
 ::
 
@@ -433,7 +431,7 @@ Objects
 =======
 
 If you cannot create what you need from *Arrays, HashTables, ArrayLists, Queues, Stacks etc.*, then 
-it is possible to create custom PowerShell objects`, but to date I have never needed to do this.
+it is possible to create custom PowerShell objects, but to date I have never needed to do this.
 For more details, read:
 
 * `David Bluemenfeld: Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_;
@@ -444,14 +442,14 @@ Functions
 =========
 
 Function arguments and responses are passed by reference, so an arugment can be changed inside the function and remains 
-unchanged outside the function scope, **but** this is considered *"bad programming practice"*, so better to avoid doing this. 
+unchanged outside the function, **but** this is considered *"bad programming practice"*, so better to avoid doing this. 
 Functions return references to objects, as illustrated in the `Example Script`_ where references to *HashTable* and *Array* objects are returned.
 
-While each function call returns a reference to a new (different) object, be careful about the scope of the variable name you assign this too.
-It is easy to create multiple references to the same object.
+While each function call returns a reference to a new (*different*) object, be careful about the scope of the variable you assign this reference too, 
+it is easy to create multiple references to the same object.
 
-While mixing named (*order indepedent*) and positional (*order dependent*) arguments is permitted it can cause strange errors, a better approach is to
-use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_, unless you are supplying one or two arguments.
+While mixing named (*order indepedent*) and positional (*order dependent*) arguments is permitted it can cause strange errors, so unless you are only 
+supplying one or two arguments, a better approach is to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_.
 The following contrived example illustrates the basics but the ``param ( ... )`` section has many options not shown here. 
 
 ::
@@ -581,7 +579,7 @@ ArrayList
 
 Further reading:
 
-* `.Net ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
+* `The .Net ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
 * `Powershell: Everything you wanted to know about arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_    
 
 IF/Switch commands
@@ -648,7 +646,7 @@ There is also a ``switch`` statement for comparing against multiple values.
    
 Further reading:
 
-   `PowerShell Explained: If and Switch <https://powershellexplained.com/2019-08-11-Powershell-if-then-else-equals-operator/>`_
+   `PowerShell Explained: If .. then .. else .. equals operator <https://powershellexplained.com/2019-08-11-Powershell-if-then-else-equals-operator/>`_
 
 
 Try/Catch
@@ -693,7 +691,7 @@ Exception handling uses *Try/Catch*, but  the *Catch block* is only invoked on *
 Note the following two points in the example:
 
 * Addition of ``-ErrorAction Stop`` to ``get-content`` to make it a terminating error;
-* The ``finally`` block is **always executed**, whether an exception is being handled or not!
+* The ``finally`` block is **always executed**, whether an exception is thrown or not!
 
 Further reading:
 
@@ -938,7 +936,8 @@ Examples::
    'fred Flinstone' -creplace 'Fred (\w+)', 'Wilma $1' # fred Flinstone
 
 
-Entire Technical Books are dedicated Regular Expression, the above treatment is very brief, a few helpful links.
+Entire technical books are dedicated to Regular Expressions, the above is very brief.
+For more details see:
 
 * `Jeffrey Friedl: Mastering Regular Expressions <https://www.oreilly.com/library/view/mastering-regular-expressions/0596528124/>`_
 * `Microsoft Docs: About Regular Expressions <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_regular_expressions>`_
@@ -1011,6 +1010,8 @@ which have many options not covered here.
    set-content -path "file.obj" -value $h    # writes hash-table object 
    
    $path = "file.txt"
+   
+   # add one line at a time, note no need to close the file
    set-content -path $path -value $null # creates and closes an empty file
    foreach ($key in $h.keys) {
        add-content -path $path -value ("{0}:{1:D}" -f $key, $h[$key]) # adds content and closes
@@ -1018,6 +1019,8 @@ which have many options not covered here.
    }
    
    clear-content -path $path # clear the file contents
+
+   # string with line continuation characters.
    $text = "Fred:30`
    Wilma:25`
    Pebbles:1`
@@ -1025,14 +1028,20 @@ which have many options not covered here.
    $text | set-content -path $path
    
    clear-content -path $path # clear the file contents
+
+   # string containing new-line characters.
    $text = "Fred:30`nWilma:25`nPebbles:1`nDino:5"
    $text | set-content -path $path
 
    clear-content -path $path # clear the file contents
+   
+   # string containing new-line characters using out-file
    $text | Out-File -FilePath $path
 
 See also:
 
+* `Microsoft docs: set-content <https://docs.microsoft.com//powershell/module/microsoft.powershell.management/set-content>`_
+* `Microsoft docs: add-content <https://docs.microsoft.com//powershell/module/microsoft.powershell.management/add-content>`_
 * `Microsoft docs: out-file <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-file>`_
 * `Microsoft docs: new-temporaryfile <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/new-temporaryfile>`_
 
@@ -1064,6 +1073,8 @@ The ``out-gridview`` renders the output the data in an interactive table.
 
    PS> import-csv -delimiter ';' file.csv | out-gridview
 
+* `Microsoft docs: Import-CSV <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/import-csv>`_
+* `Microsoft docs: Out-GridView <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-gridview>`_
 
 JSON files
 ==========

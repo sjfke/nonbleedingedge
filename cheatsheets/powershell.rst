@@ -40,6 +40,7 @@ either not simple to explain or not well understood by the author(s) or both... 
 
 While learning I found the following helpful when starting:
 
+* `PowerShell GitHub - Recommended Training and Reading <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#recommended-training-and-reading>`_ **a very good place to start**
 * `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
 * `PowerShell equivalents for common Linux/bash commands <https://mathieubuisson.github.io/powershell-linux-bash/>`_
 * `10 PowerShell cmdlets you can use instead of CMD commands <https://www.techrepublic.com/article/pro-tip-migrate-to-powershell-from-cmd-with-these-common-cmdlets/>`_
@@ -313,7 +314,7 @@ You can recall and repeat commands::
 Formatting Output
 =================
 
-By default Powershell appears to render *cmd-let* output, using ``format-table``.
+By default Powershell appears to render *cmdlet* output, using ``format-table``.
 
 Others such as ``format-list``, ``out-gridview`` are available as illustrated here.
 
@@ -360,26 +361,28 @@ Others such as ``format-list``, ``out-gridview`` are available as illustrated he
    PS> Get-Service | where -Property Status -eq 'Running' | Format-List # All running services
    PS> Get-Service | where -Property Status -ne 'Running' | Format-List # All services not running
 
-The cmd-let ``out-gridview`` produces an graphical table than can be ordered and filtered. 
-
-The ``Get-Service | out-gridview`` is filtered to show only running services and is in alphabetic *DisplayName* order.
+The *cmdlet* ``out-gridview`` produces a graphical table than can be ordered and filtered, as shown 
+in the example which is shows only running services in alphabetic *DisplayName* order.
 
 .. image:: ../images/running-services.png
     :width: 500px
     :align: center
     :height: 350px
 
-The ``out-gridview`` in combination with ``import-csv`` cmd-lets can quickly render CSV files, avoiding importing into ``Excel`` or ``MS Access``.
+The ``out-gridview`` in combination with ``import-csv`` *cmdlets* can quickly render CSV files, 
+and avoids having to use ``Microsoft Excel`` or ``Microsoft Access``.
 
 ::
 
    PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # <TAB> separated file.
    PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # ';' separated file.
+   PS> import-csv -Path file.csv -Delimeter "," | out-gridview  # ',' separated file.
+   
    
 .. image:: ../images/file-csv-gridview.png
-    :width: 350px
+    :width: 300px
     :align: center
-    :height: 175px
+    :height: 160px
 
 Formatting Variables
 ====================
