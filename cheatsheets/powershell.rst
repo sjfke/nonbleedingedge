@@ -40,6 +40,7 @@ either not simple to explain or not well understood by the author(s) or both... 
 
 While learning I found the following helpful when starting:
 
+* `PowerShell GitHub - Recommended Training and Reading <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#recommended-training-and-reading>`_ **a very good place to start**
 * `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
 * `PowerShell equivalents for common Linux/bash commands <https://mathieubuisson.github.io/powershell-linux-bash/>`_
 * `10 PowerShell cmdlets you can use instead of CMD commands <https://www.techrepublic.com/article/pro-tip-migrate-to-powershell-from-cmd-with-these-common-cmdlets/>`_
@@ -310,277 +311,81 @@ You can recall and repeat commands::
    PS> get-history -count 100                              # get 100 lines
    PS> clear-history
    
-CSV Files
-=========
-
-Powershell provides ``cmdlets`` for handling these which avoid importing into ``Excel`` and ``MS Access``.
-The ``out-gridview`` renders the output the data in an interactive table. 
-
-::
-
-   PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # load and display a <TAB> separated file.
-   PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # load and display a ';' separated file.
-   
-   PS> get-content file.csv
-       Name;Age
-       Fred;30
-       Wilma;25
-       Pebbles;1
-       Dino;5
-   PS> $f = import-csv -delimiter ';' file.csv
-   PS> $f.Name    # Fred Wilma Pebbles Dino
-   PS> $f[1].Name # Wilma
-   PS> $f.Age     # 30 25 1 5
-   PS> $f[3].Age  # 5
-   PS> for ($i =0; $i -lt $f.length; $i++) { 
-           write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age) 
-       }
-
-   PS> import-csv -delimiter ';' file.csv | out-gridview
-
-
-JSON files
-==========
-
-PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are installed.
-
-::
-
-   PS> get-content file2.json
-   {
-           "family":"flintstone",
-           "members":
-                   [
-                           {"Name":"Fred", "Age":"30"},
-                           {"Name":"Wilma", "Age":"25"},
-                           {"Name":"Pebbles", "Age":"1"},
-                           {"Name":"Dino", "Age":"5"}
-                   ]
-   }
-
-   PS> get-content file2.json | ConvertFrom-Json
-   family     members
-   ------     -------
-   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
-
-
-   PS> $obj = get-content file2.json | convertfrom-json
-   PS> $obj
-   family     members
-   ------     -------
-   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
-   
-   PS> $obj.family                                      # returns flintstone
-   PS> $obj.members[0].name                             # returns Fred
-   PS> $obj.members[0].age                              # returns 30
-   PS> $obj.members[0].age = 35                         # set Fred's age to 35
-   PS> $obj.members[0].age                              # now returns 35
-   PS> $obj | convertto-json | add-content newfile.json # save as JSON
-   
-   PS> $obj.members.name                                # returns: Fred Wilma Pebbles Dino
-   PS> $obj.members.age                                 # returns: 35 25 1 5
-   PS> $obj.members.age[0]                              # returns  35
-   PS> $obj.members.age[0] = 37                         # immutable, silently fails, no error
-   PS> $obj.members.age[0]                              # returns 35
-   
-   PS> remove-variable -name obj                        # cleanup
-   
-   PS> get-content newfile.json
-   {
-       "family":  "flintstone",
-       "members":  [
-                       {
-                           "Name":  "Fred",
-                           "Age":  35
-                       },
-                       {
-                           "Name":  "Wilma",
-                           "Age":  "25"
-                       },
-                       {
-                           "Name":  "Pebbles",
-                           "Age":  "1"
-                       },
-                       {
-                           "Name":  "Dino",
-                           "Age":  "5"
-                       }
-                   ]
-   }
-
-Further reading:
-   
-* `ConvertTo-Json converts an object to a JSON-formatted string. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json>`_
-* `ConvertFrom-Json converts a JSON-formatted string to a custom object or a hash table. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json>`_
-* `W3Schools: Introduction to JSON <https://www.w3schools.com/js/js_json_intro.asp>`_
-
-Reading XML files
-=================
-
-``Powershell`` supports full manipulation of the XML DOM, read the `Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ 
-and `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more detailed information. The examples shown 
-are very redimentary, and only show a few of the manipulations you can perform on XML objects.
-
-**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
-`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
-and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
-
-::
-
-   PS> get-content .\file2.xml
-   <?xml version="1.0" encoding="UTF-8"?>
-   <family surname = "Flintstone">
-           <member>
-                   <name>Fred</name>
-                   <age>30</age>
-           </member>
-           <member>
-                   <name>Wilma</name>
-                   <age>25</age>
-           </member>
-           <member>
-                   <name>Pebbles</name>
-                   <age>1</age>
-           </member>
-           <member>
-                   <name>Dino</name>
-                   <age>5</age>
-           </member>
-   </family>
-   
-   PS> $obj = [XML] (get-content .\file2.xml) # returns a System.Xml.XmlDocument object
-   
-   PS> $obj.childnodes                        # returns all the child nodes
-   PS> $obj.xml                               # returns version="1.0" encoding="UTF-8"
-   PS> $obj.childnodes.surname                # Flintstone
-   PS> $obj.childnodes.member.name            # returns Fred Wilma Pebbles Dino
-   PS> $obj.childnodes.member.age             # returns 30 25 1 5
-   
-   PS> $obj.ChildNodes[0].NextSibling
-   surname    member
-   -------    ------
-   Flintstone {Fred, Wilma, Pebbles, Dino}
-
-   PS> $obj.GetElementsByTagName("member");
-   name    age
-   ----    ---
-   Fred    30
-   Wilma   25
-   Pebbles 1
-   Dino    5
-
-   PS> $obj.GetElementsByTagName("member")[0].name       # returns Fred
-   PS> $obj.GetElementsByTagName("member")[0].age        # returns 30
-   PS> $obj.GetElementsByTagName("member")[0].age = 35   # Errors, only strings can be used.
-   PS> $obj.GetElementsByTagName("member")[0].age = "35" # Fred is now older
-   PS> $obj.GetElementsByTagName("member")[0].age        # returns 35
-   PS> $obj.Save("$PWD\newfile.xml")                     # needs a full pathname
-
-   PS> get-content newfile.xml
-   <?xml version="1.0" encoding="UTF-8"?>
-   <family surname="Flintstone">
-     <member>
-       <name>Fred</name>
-       <age>35</age>
-     </member>
-     <member>
-       <name>Wilma</name>
-       <age>25</age>
-     </member>
-     <member>
-       <name>Pebbles</name>
-       <age>1</age>
-     </member>
-     <member>
-       <name>Dino</name>
-       <age>5</age>
-     </member>
-   </family>
-
-
-Writing XML files
-=================
-
-To generate an XML file, use the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
-
-**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
-`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
-and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
-
-::
-
-   $settings = New-Object System.Xml.XmlWriterSettings  # to update XmlWriterSettings
-   $settings.Indent = $true                             # indented XML
-   $settings.IndentChars = "`t"                         # <TAB> indents
-   $settings.Encoding = [System.Text.Encoding]::UTF8    # force the default UTF8 encoding; others ASCII, Unicode...
-   
-   $obj = [System.XML.XmlWriter]::Create("C:\users\geoff\bedrock.xml", $settings) # note full-pathname
-   
-   # Simpler approach but no encoding is specified in XML header and again note full-pathname
-   # $obj = New-Object System.XMl.XmlTextWriter('C:\users\geoff\bedrock.xml', $null)
-   # $obj.Formatting = 'Indented'
-   # $obj.Indentation = 1
-   # $obj.IndentChar = "`t"
-   
-   $obj.WriteStartDocument()                          # start xml document, <?xml version="1.0"?>
-   $obj.WriteComment('Bedrock Families')              # add a comment, <!-- Bedrock Families -->
-   $obj.WriteStartElement('family')                   # start element <family>
-   $obj.WriteAttributeString('surname', 'Flintstone') # add surname attribute
-   
-   $obj.WriteStartElement('member')                   # start element <member>
-   $obj.WriteElementString('name','Fred')             # add <name>Fred</name>
-   $obj.WriteElementString('age','30')                # add <age>30</age>
-   $obj.WriteEndElement()                             # end element </member>
-   
-   $obj.WriteStartElement('member')                   # start element <member>
-   $obj.WriteElementString('name','Wilma')            # add <name>Wilma</name>
-   $obj.WriteElementString('age','25')                # add <age>25</age>
-   $obj.WriteEndElement()                             # end element </member>
-   
-   $obj.WriteStartElement('member')                   # start element <member>
-   $obj.WriteElementString('name','Pebbles')          # add <name>Pebbles</name>
-   $obj.WriteElementString('age','1')                 # add <age>1</age>
-   $obj.WriteEndElement()                             # end element </member>
-   
-   $obj.WriteStartElement('member')                   # start element <member>
-   $obj.WriteElementString('name','Dino')             # add <name>Dino</name>
-   $obj.WriteElementString('age','5')                 # add <age>5</age>
-   $obj.WriteEndElement()                             # end element </member>
-   
-   $obj.WriteEndElement()                             # end element <family>
-   
-   $obj.WriteEndDocument()                            # end document
-   $obj.Flush()                                       # flush
-   $obj.Close()                                       # close, writes the file
-   
-   PS> get-content C:\users\geoff\bedrock.xml
-   <?xml version="1.0" encoding="utf-8"?>
-   <!--Bedrock Families-->
-   <family surname="Flintstone">
-           <member>
-                   <name>Fred</name>
-                   <age>30</age>
-           </member>
-           <member>
-                   <name>Wilma</name>
-                   <age>25</age>
-           </member>
-           <member>
-                   <name>Pebbles</name>
-                   <age>1</age>
-           </member>
-           <member>
-                   <name>Dino</name>
-                   <age>5</age>
-           </member>
-   </family>
-   
-   PS> remove-variable -name settings
-   PS> remove-variable -name obj
-   PS> remove-item C:\users\geoff\bedrock.xml
-
 Formatting Output
 =================
+
+By default Powershell appears to render *cmdlet* output, using ``format-table``.
+
+Others such as ``format-list``, ``out-gridview`` are available as illustrated here.
+
+::
+
+   PS> Get-Service | Format-List | out-host -paging
+   Name                : AarSvc_191cbe5f
+   DisplayName         : Agent Activation Runtime_191cbe5f
+   Status              : Running
+   DependentServices   : {}
+   ServicesDependedOn  : {}
+   CanPauseAndContinue : False
+   CanShutdown         : False
+   CanStop             : True
+   ServiceType         : 240
+   
+   Name                : ACCSvc
+   DisplayName         : ACC Service
+   Status              : Running
+   DependentServices   : {}
+   ServicesDependedOn  : {}
+   CanPauseAndContinue : False
+   CanShutdown         : True
+   CanStop             : True
+   ServiceType         : Win32OwnProcess
+
+   PS> Get-Service | select -property Name,Status | Format-List 
+   Name   : AarSvc_191cbe5f
+   Status : Running
+   
+   Name   : ACCSvc
+   Status : Running
+
+   PS> Get-Service | Format-table | select -first 10 # this produces the same output
+   PS> Get-Service | select -first 10                # this produces the same output
+   Status   Name               DisplayName
+   ------   ----               -----------
+   Running  AarSvc_191cbe5f    Agent Activation Runtime_191cbe5f
+   Running  ACCSvc             ACC Service
+   Stopped  AJRouter           AllJoyn Router Service
+   Stopped  ALG                Application Layer Gateway Service
+   Stopped  AppIDSvc           Application Identity
+   
+   PS> Get-Service | where -Property Status -eq 'Running' | Format-List # All running services
+   PS> Get-Service | where -Property Status -ne 'Running' | Format-List # All services not running
+
+The *cmdlet* ``out-gridview`` produces a graphical table than can be ordered and filtered, as shown 
+in the example which is shows only running services in alphabetic *DisplayName* order.
+
+.. image:: ../images/running-services.png
+    :width: 500px
+    :align: center
+    :height: 350px
+
+The ``out-gridview`` in combination with ``import-csv`` *cmdlets* can quickly render CSV files, 
+and avoids having to use ``Microsoft Excel`` or ``Microsoft Access``.
+
+::
+
+   PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # <TAB> separated file.
+   PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # ';' separated file.
+   PS> import-csv -Path file.csv -Delimeter "," | out-gridview  # ',' separated file.
+   
+   
+.. image:: ../images/file-csv-gridview.png
+    :width: 300px
+    :align: center
+    :height: 160px
+
+Formatting Variables
+====================
 
 Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assigment.
 Specified as ``{<index>, <alignment><width>:<format_spec>}``
@@ -623,4 +428,38 @@ Specified as ``{<index>, <alignment><width>:<format_spec>}``
 More detailed examples:
 
 * `PowershellPrimer.com: Formatting Output <https://powershellprimer.com/html/0013.html>`_
-* `Microsoft documentation: Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
+* `Microsoft Docs: Get-Date <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
+
+
+Web-Pages and REST API's
+========================
+
+::
+
+   # web-pages
+   PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com/missing.html").statuscode       # error: (404) Not Found.
+   PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com").statuscode                    # 200
+   PS> Invoke-WebRequest -uri "https://www.nonbleedingedge.com/index.html" -outfile "index.htm" # index.htm
+   
+   # rest api
+   PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/
+   PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/ | Format-Table -Property Title, pubDate
+   
+   title                                                             pubDate
+   -----                                                             -------
+   SecretStore Release Candidate 3                                   Mon, 15 Mar 2021 22:12:04 +0000
+   Updating help for the PSReadLine module in Windows PowerShell 5.1 Thu, 11 Mar 2021 15:29:00 +0000
+   Announcing PSReadLine 2.2-beta.2 with Dynamic help                Fri, 05 Mar 2021 20:09:10 +0000
+   SecretManagement and SecretStore Release Candidate 2              Wed, 03 Mar 2021 18:55:58 +0000
+   PowerShell Team 2021 Investments                                  Tue, 02 Mar 2021 14:19:46 +0000
+   PowerShell for Visual Studio Code Updates – February 2021         Thu, 25 Feb 2021 20:52:17 +0000
+   Announcing PowerShell Community Blog                              Thu, 18 Feb 2021 17:28:05 +0000
+   SecretManagement and SecretStore Release Candidates               Thu, 07 Jan 2021 18:19:44 +0000
+   PowerShell 7.2 Preview 2 release                                  Wed, 16 Dec 2020 00:08:04 +0000
+   Announcing PowerShell Crescendo Preview.1                         Tue, 08 Dec 2020 17:20:18 +0000
+
+More detailed examples:
+
+* `Microsoft Docs: Get content from a web page <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-WebRequest>`_
+* `Microsoft Docs: Send an HTTP or HTTPS request to a RESTful web service <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-RestMethod>`_
+* `Adam-The-Automator: Invoke-WebRequest - PowerShell’s Web Swiss Army Knife <https://adamtheautomator.com/invoke-webrequest/>`_

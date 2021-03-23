@@ -33,7 +33,7 @@ individual ``cmdlets`` can always be executed.
 * *Windows Server* usually allows ``RemoteSigned`` scripts to be run on the ``LocalMachine``;
 
 The execution policy governs whether a ``PowerShell`` script can be executed, ``get-executionpolicy`` displays this for 
-the current ``PowerShell``, and ``get-executionpolicy -list`` shows all the policies in highest to lowest priority (scope) order. 
+the current ``PowerShell``, and ``get-executionpolicy -list`` shows all the policies in highest to lowest priority (*scope*) order. 
 
 In the example below only the ``LocalMachine`` policy is defined, and this is set to ``restricted`` so ``PowerShell`` scripts cannot be executed, but 
 indiviual commands, ``cmdlets`` can.
@@ -54,8 +54,8 @@ indiviual commands, ``cmdlets`` can.
     LocalMachine      Restricted  # lowest priority
 
 
-If your *ExecutionPolicy* is as above, a quick fix is to start a *PowerShell as Administrator* and reset it as shown below, but you 
-should read the `PowerShell Exection Policies`_ section.
+If your *ExecutionPolicy* is as above, a quick fix is to start a *PowerShell as Administrator* and set it to *RemoteSigned* as shown, but you 
+should still read the `PowerShell Exection Policies`_ section.
 
 ::
 
@@ -91,17 +91,17 @@ than individual name or positional parameters.
 
 Useful starting points when learning about the language:
 
-* `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_;
-* `Windows PowerShell Portal <https://social.technet.microsoft.com/wiki/contents/articles/24187.windows-powershell-portal.aspx>`_;
+* `PowerShell GitHub - Recommended Training and Reading <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#recommended-training-and-reading>`_
+* `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
+* `Windows PowerShell Portal <https://social.technet.microsoft.com/wiki/contents/articles/24187.windows-powershell-portal.aspx>`_
 
-Unlike most texts on programming languages I start with a simple but realistic PowerShell example.
-Many of the language details are covered in subsequent sections.
+Unlike most texts on programming languages this starts with a simple but realistic PowerShell example, with many of the language details being covered in subsequent sections.
 
 Example Script
 ==============
 
 This is a contrived but realistic PowerShell script to illustrate several important points.
-It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which I found extremely useful, but has additons to force 
+It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which is extremely useful, but is augmented to force 
 the syntax version and to be more strict on the use of uninitialized variables.
 
 ::
@@ -241,7 +241,7 @@ Variables
 Powershell variables can be any of the `Basic DataTypes`_ such as *integers*, *characters*, *strings*, *arrays*, and *hash-tables*, but also ``.Net`` objects that represent such things as
 *processes*, *services*, *event-logs*, and even *computers*.
 
-Common forms::
+::
 
    PS> $age = 5                       # System.Int32
    PS> [int]$age = "5"                # System.Int32, cast System.String + System.Int32
@@ -259,8 +259,6 @@ Common forms::
    
    PS> $p = Get-Process               # System.Diagnostics.Process type
 
-Less common forms::
- 
    PS> set-variable -name age 5         # same as $age = 5
    PS> set-variable -name name Dino     # same as $name = "Dino" (variable's name is *name*)
  
@@ -359,7 +357,7 @@ HashTables
 ==========
 
 A HashTable is an unordered collection of key:value pairs, synonymous with an object and its properties. 
-Later versions support the hash elements in a known/fixed order, ``$hash = [ordered]@{}``.
+Later versions support known/fixed order hash elements, ``$hash = [ordered]@{}``.
 
 ::
 
@@ -433,7 +431,7 @@ Objects
 =======
 
 If you cannot create what you need from *Arrays, HashTables, ArrayLists, Queues, Stacks etc.*, then 
-it is possible to create custom PowerShell objects`, but to date I have never needed to do this.
+it is possible to create custom PowerShell objects, but to date I have never needed to do this.
 For more details, read:
 
 * `David Bluemenfeld: Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_;
@@ -444,14 +442,14 @@ Functions
 =========
 
 Function arguments and responses are passed by reference, so an arugment can be changed inside the function and remains 
-unchanged outside the function scope, **but** this is considered *"bad programming practice"*, so better to avoid doing this. 
+unchanged outside the function, **but** this is considered *"bad programming practice"*, so better to avoid doing this. 
 Functions return references to objects, as illustrated in the `Example Script`_ where references to *HashTable* and *Array* objects are returned.
 
-While each function call returns a reference to a new (different) object, be careful about the scope of the variable name you assign this too.
-It is easy to create multiple references to the same object.
+While each function call returns a reference to a new (*different*) object, be careful about the scope of the variable you assign this reference too, 
+it is easy to create multiple references to the same object.
 
-While mixing named (*order indepedent*) and positional (*order dependent*) arguments is permitted it can cause strange errors, a better approach is to
-use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_, unless you are supplying one or two arguments.
+While mixing named (*order indepedent*) and positional (*order dependent*) arguments is permitted it can cause strange errors, so unless you are only 
+supplying one or two arguments, a better approach is to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_.
 The following contrived example illustrates the basics but the ``param ( ... )`` section has many options not shown here. 
 
 ::
@@ -581,7 +579,7 @@ ArrayList
 
 Further reading:
 
-* `.Net ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
+* `The .Net ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
 * `Powershell: Everything you wanted to know about arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_    
 
 IF/Switch commands
@@ -648,7 +646,7 @@ There is also a ``switch`` statement for comparing against multiple values.
    
 Further reading:
 
-   `PowerShell Explained: If and Switch <https://powershellexplained.com/2019-08-11-Powershell-if-then-else-equals-operator/>`_
+   `PowerShell Explained: If .. then .. else .. equals operator <https://powershellexplained.com/2019-08-11-Powershell-if-then-else-equals-operator/>`_
 
 
 Try/Catch
@@ -693,7 +691,7 @@ Exception handling uses *Try/Catch*, but  the *Catch block* is only invoked on *
 Note the following two points in the example:
 
 * Addition of ``-ErrorAction Stop`` to ``get-content`` to make it a terminating error;
-* The ``finally`` block is **always executed**, whether an exception is being handled or not!
+* The ``finally`` block is **always executed**, whether an exception is thrown or not!
 
 Further reading:
 
@@ -938,7 +936,8 @@ Examples::
    'fred Flinstone' -creplace 'Fred (\w+)', 'Wilma $1' # fred Flinstone
 
 
-Entire Technical Books are dedicated Regular Expression, the above treatment is very brief, a few helpful links.
+Entire technical books are dedicated to Regular Expressions, the above is very brief.
+For more details see:
 
 * `Jeffrey Friedl: Mastering Regular Expressions <https://www.oreilly.com/library/view/mastering-regular-expressions/0596528124/>`_
 * `Microsoft Docs: About Regular Expressions <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_regular_expressions>`_
@@ -947,9 +946,393 @@ Entire Technical Books are dedicated Regular Expression, the above treatment is 
 * `Test and Debug: RegEx <https://www.regextester.com/>`_
 * `Test and Debug: Regular Expression Tester <https://www.freeformatter.com/regex-tester.html>`_
 
+Reading Files
+=============
 
-Formatting Output
+::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+   
+   $filename = 'file.txt'
+   $addCWD = $false
+   $path = $filename 
+   if ($addCWD) {
+      $path = Join-Path -path $cwd.value -childpath $filename
+   }
+   
+   write-host("if...then...else")
+   if (-not (Test-Path -path $path -pathtype leaf) ) {
+      write-warning("Filename, {0}, does not exist" -f $path)
+      exit(1)
+   }
+   else {
+      $count = 1
+      foreach ($line in get-content $path) {
+         write-host("{0:D3}:{1}" -f $count, $line)
+         $count += 1
+      }
+      $fh = get-childitem $path # get file attributes
+   }
+   
+   write-host("try...catch")
+   try {
+      $count = 1
+      foreach ($line in get-content $path -ErrorAction Stop) {
+         write-host("{0:D3}:{1}" -f $count, $line)
+         $count += 1
+      }
+      $fh = get-childitem $path # get file attributes
+   }
+   catch {
+      write-warning $Error[0].ToString()
+      write-warning $Error[0].Exception.GetType().FullName # exception message type
+      exit(1)
+   }
+   
+   exit(0) 
+
+Writing Files
+=============
+
+Simplest approach is to use `set-content <https://docs.microsoft.com/powershell/module/microsoft.powershell.management/set-content>`_, 
+`add-content <https://docs.microsoft.com/powershell/module/microsoft.powershell.management/add-content>`_ and 
+`clear-content <https://docs.microsoft.com/powershell/module/microsoft.powershell.management/clear-content>`_ *cmd-lets*, 
+which have many options not covered here.
+
+::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+      
+   $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+   
+   set-content -path "file.obj" -value $h    # writes hash-table object 
+   
+   $path = "file.txt"
+   
+   # add one line at a time, note no need to close the file
+   set-content -path $path -value $null # creates and closes an empty file
+   foreach ($key in $h.keys) {
+       add-content -path $path -value ("{0}:{1:D}" -f $key, $h[$key]) # adds content and closes
+       # ("{0}:{1:D}" -f $key, $h[$key]) | add-content -path $path    # same, less intuative
+   }
+   
+   clear-content -path $path # clear the file contents
+
+   # string with line continuation characters.
+   $text = "Fred:30`
+   Wilma:25`
+   Pebbles:1`
+   Dino:5"
+   $text | set-content -path $path
+   
+   clear-content -path $path # clear the file contents
+
+   # string containing new-line characters.
+   $text = "Fred:30`nWilma:25`nPebbles:1`nDino:5"
+   $text | set-content -path $path
+
+   clear-content -path $path # clear the file contents
+   
+   # string containing new-line characters using out-file
+   $text | Out-File -FilePath $path
+
+See also:
+
+* `Microsoft docs: set-content <https://docs.microsoft.com//powershell/module/microsoft.powershell.management/set-content>`_
+* `Microsoft docs: add-content <https://docs.microsoft.com//powershell/module/microsoft.powershell.management/add-content>`_
+* `Microsoft docs: out-file <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-file>`_
+* `Microsoft docs: new-temporaryfile <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/new-temporaryfile>`_
+
+CSV Files
+=========
+
+Powershell provides ``cmdlets`` for handling these which avoid importing into ``Excel`` and ``MS Access``.
+The ``out-gridview`` renders the output the data in an interactive table. 
+
+::
+
+   PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # load and display a <TAB> separated file.
+   PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # load and display a ';' separated file.
+   
+   PS> get-content file.csv
+       Name;Age
+       Fred;30
+       Wilma;25
+       Pebbles;1
+       Dino;5
+   PS> $f = import-csv -delimiter ';' file.csv
+   PS> $f.Name    # Fred Wilma Pebbles Dino
+   PS> $f[1].Name # Wilma
+   PS> $f.Age     # 30 25 1 5
+   PS> $f[3].Age  # 5
+   PS> for ($i =0; $i -lt $f.length; $i++) { 
+           write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age) 
+       }
+
+   PS> import-csv -delimiter ';' file.csv | out-gridview
+
+* `Microsoft docs: Import-CSV <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/import-csv>`_
+* `Microsoft docs: Out-GridView <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-gridview>`_
+
+JSON files
+==========
+
+PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are installed.
+
+::
+
+   PS> get-content file2.json
+   {
+           "family":"flintstone",
+           "members":
+                   [
+                           {"Name":"Fred", "Age":"30"},
+                           {"Name":"Wilma", "Age":"25"},
+                           {"Name":"Pebbles", "Age":"1"},
+                           {"Name":"Dino", "Age":"5"}
+                   ]
+   }
+
+   PS> get-content file2.json | ConvertFrom-Json
+   family     members
+   ------     -------
+   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
+
+
+   PS> $obj = get-content file2.json | convertfrom-json
+   PS> $obj
+   family     members
+   ------     -------
+   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
+   
+   PS> $obj.family                                      # returns flintstone
+   PS> $obj.members[0].name                             # returns Fred
+   PS> $obj.members[0].age                              # returns 30
+   PS> $obj.members[0].age = 35                         # set Fred's age to 35
+   PS> $obj.members[0].age                              # now returns 35
+   PS> $obj | convertto-json | add-content newfile.json # save as JSON
+   
+   PS> $obj.members.name                                # returns: Fred Wilma Pebbles Dino
+   PS> $obj.members.age                                 # returns: 35 25 1 5
+   PS> $obj.members.age[0]                              # returns  35
+   PS> $obj.members.age[0] = 37                         # immutable, silently fails, no error
+   PS> $obj.members.age[0]                              # returns 35
+   
+   PS> remove-variable -name obj                        # cleanup
+   
+   PS> get-content newfile.json
+   {
+       "family":  "flintstone",
+       "members":  [
+                       {
+                           "Name":  "Fred",
+                           "Age":  35
+                       },
+                       {
+                           "Name":  "Wilma",
+                           "Age":  "25"
+                       },
+                       {
+                           "Name":  "Pebbles",
+                           "Age":  "1"
+                       },
+                       {
+                           "Name":  "Dino",
+                           "Age":  "5"
+                       }
+                   ]
+   }
+
+Further reading:
+   
+* `ConvertTo-Json converts an object to a JSON-formatted string. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json>`_
+* `ConvertFrom-Json converts a JSON-formatted string to a custom object or a hash table. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json>`_
+* `W3Schools: Introduction to JSON <https://www.w3schools.com/js/js_json_intro.asp>`_
+
+Reading XML files
 =================
+
+``Powershell`` supports full manipulation of the XML DOM, read the `Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ 
+and `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more detailed information. The examples shown 
+are very redimentary, and only show a few of the manipulations you can perform on XML objects.
+
+**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
+and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
+
+::
+
+   PS> get-content .\file2.xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <family surname = "Flintstone">
+           <member>
+                   <name>Fred</name>
+                   <age>30</age>
+           </member>
+           <member>
+                   <name>Wilma</name>
+                   <age>25</age>
+           </member>
+           <member>
+                   <name>Pebbles</name>
+                   <age>1</age>
+           </member>
+           <member>
+                   <name>Dino</name>
+                   <age>5</age>
+           </member>
+   </family>
+   
+   PS> $obj = [XML] (get-content .\file2.xml) # returns a System.Xml.XmlDocument object
+   
+   PS> $obj.childnodes                        # returns all the child nodes
+   PS> $obj.xml                               # returns version="1.0" encoding="UTF-8"
+   PS> $obj.childnodes.surname                # Flintstone
+   PS> $obj.childnodes.member.name            # returns Fred Wilma Pebbles Dino
+   PS> $obj.childnodes.member.age             # returns 30 25 1 5
+   
+   PS> $obj.ChildNodes[0].NextSibling
+   surname    member
+   -------    ------
+   Flintstone {Fred, Wilma, Pebbles, Dino}
+
+   PS> $obj.GetElementsByTagName("member");
+   name    age
+   ----    ---
+   Fred    30
+   Wilma   25
+   Pebbles 1
+   Dino    5
+
+   PS> $obj.GetElementsByTagName("member")[0].name       # returns Fred
+   PS> $obj.GetElementsByTagName("member")[0].age        # returns 30
+   PS> $obj.GetElementsByTagName("member")[0].age = 35   # Errors, only strings can be used.
+   PS> $obj.GetElementsByTagName("member")[0].age = "35" # Fred is now older
+   PS> $obj.GetElementsByTagName("member")[0].age        # returns 35
+   PS> $obj.Save("$PWD\newfile.xml")                     # needs a full pathname
+
+   PS> get-content newfile.xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <family surname="Flintstone">
+     <member>
+       <name>Fred</name>
+       <age>35</age>
+     </member>
+     <member>
+       <name>Wilma</name>
+       <age>25</age>
+     </member>
+     <member>
+       <name>Pebbles</name>
+       <age>1</age>
+     </member>
+     <member>
+       <name>Dino</name>
+       <age>5</age>
+     </member>
+   </family>
+
+
+Writing XML files
+=================
+
+To generate an XML file, use the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
+
+**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
+and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
+
+::
+
+   $settings = New-Object System.Xml.XmlWriterSettings  # to update XmlWriterSettings
+   $settings.Indent = $true                             # indented XML
+   $settings.IndentChars = "`t"                         # <TAB> indents
+   $settings.Encoding = [System.Text.Encoding]::UTF8    # force the default UTF8 encoding; others ASCII, Unicode...
+   
+   $obj = [System.XML.XmlWriter]::Create("C:\users\geoff\bedrock.xml", $settings) # note full-pathname
+   
+   # Simpler approach but no encoding is specified in XML header and again note full-pathname
+   # $obj = New-Object System.XMl.XmlTextWriter('C:\users\geoff\bedrock.xml', $null)
+   # $obj.Formatting = 'Indented'
+   # $obj.Indentation = 1
+   # $obj.IndentChar = "`t"
+   
+   $obj.WriteStartDocument()                          # start xml document, <?xml version="1.0"?>
+   $obj.WriteComment('Bedrock Families')              # add a comment, <!-- Bedrock Families -->
+   $obj.WriteStartElement('family')                   # start element <family>
+   $obj.WriteAttributeString('surname', 'Flintstone') # add surname attribute
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Fred')             # add <name>Fred</name>
+   $obj.WriteElementString('age','30')                # add <age>30</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Wilma')            # add <name>Wilma</name>
+   $obj.WriteElementString('age','25')                # add <age>25</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Pebbles')          # add <name>Pebbles</name>
+   $obj.WriteElementString('age','1')                 # add <age>1</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteStartElement('member')                   # start element <member>
+   $obj.WriteElementString('name','Dino')             # add <name>Dino</name>
+   $obj.WriteElementString('age','5')                 # add <age>5</age>
+   $obj.WriteEndElement()                             # end element </member>
+   
+   $obj.WriteEndElement()                             # end element <family>
+   
+   $obj.WriteEndDocument()                            # end document
+   $obj.Flush()                                       # flush
+   $obj.Close()                                       # close, writes the file
+   
+   PS> get-content C:\users\geoff\bedrock.xml
+   <?xml version="1.0" encoding="utf-8"?>
+   <!--Bedrock Families-->
+   <family surname="Flintstone">
+           <member>
+                   <name>Fred</name>
+                   <age>30</age>
+           </member>
+           <member>
+                   <name>Wilma</name>
+                   <age>25</age>
+           </member>
+           <member>
+                   <name>Pebbles</name>
+                   <age>1</age>
+           </member>
+           <member>
+                   <name>Dino</name>
+                   <age>5</age>
+           </member>
+   </family>
+   
+   PS> remove-variable -name settings
+   PS> remove-variable -name obj
+   PS> remove-item C:\users\geoff\bedrock.xml
+
+Log files
+=========
+
+::
+
+   # tailing a log file
+   PS> get-content -wait -last 10 "application.log"
+   PS> get-content -wait "application.log" | out-host -paging
+   
+   # writing a time-stamped log message
+   PS> $LogFile = "application.log"
+   PS> $DateTime = "[{0:MM/dd/yy} {0:HH:mm:ss}]" -f (Get-Date) # [03/22/21 21:07:06]
+   PS> $LogMessage = "$Datetime: $LogString"
+   PS> add-content $LogFile -value $LogMessage
+
+Formatting Variables
+====================
 
 Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assigment.
 Specified as ``{<index>, <alignment><width>:<format_spec>}``
