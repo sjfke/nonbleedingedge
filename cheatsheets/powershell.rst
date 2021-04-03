@@ -296,6 +296,59 @@ HotFixes
    # To get hotfix details (example is a random choice, happens to be an Adobe Flash update)
    PS> start-process "https://www.catalog.update.microsoft.com/Search.aspx?q=KB4516115" 
 
+Network TCPIP
+=============
+
+::
+
+   PS> test-netconnection                                  # ping internetbeacon.msedge.net
+   PS> test-netconnection -computername localhost          # ping oneself
+   PS> test-netconnection -computername localhost -port 80 # ping local web-server
+   PS> test-netconnection -computername "www.google.com" -informationlevel "detailed" -port 80
+   PS> test-netconnection -computername "www.google.com" -informationlevel "detailed" -port 443
+   PS> test-netconnection -traceroute -computername "www.google.com"
+
+   PS> resolve-dnsname -name www.google.com                # IP address of google.com
+   PS> resolve-dnsname -name 192.168.1.125                 # reverse IP lookup
+
+   PS> get-netipaddress | format-table                     # configured IP addresses
+   PS> get-netipaddress -suffixorigin dhcp                 # DHCP IP address
+   PS> get-netipaddress -suffixorigin manual               # Manual IP address
+   
+
+
+Web-Pages and REST API's
+========================
+
+::
+
+   # web-pages
+   PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com/missing.html").statuscode       # error: (404) Not Found.
+   PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com").statuscode                    # 200
+   PS> Invoke-WebRequest -uri "https://www.nonbleedingedge.com/index.html" -outfile "index.htm" # index.htm
+   
+   # rest api
+   PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/
+   PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/ | Format-Table -Property Title, pubDate
+   
+   title                                                             pubDate
+   -----                                                             -------
+   SecretStore Release Candidate 3                                   Mon, 15 Mar 2021 22:12:04 +0000
+   Updating help for the PSReadLine module in Windows PowerShell 5.1 Thu, 11 Mar 2021 15:29:00 +0000
+   Announcing PSReadLine 2.2-beta.2 with Dynamic help                Fri, 05 Mar 2021 20:09:10 +0000
+   SecretManagement and SecretStore Release Candidate 2              Wed, 03 Mar 2021 18:55:58 +0000
+   PowerShell Team 2021 Investments                                  Tue, 02 Mar 2021 14:19:46 +0000
+   PowerShell for Visual Studio Code Updates – February 2021         Thu, 25 Feb 2021 20:52:17 +0000
+   Announcing PowerShell Community Blog                              Thu, 18 Feb 2021 17:28:05 +0000
+   SecretManagement and SecretStore Release Candidates               Thu, 07 Jan 2021 18:19:44 +0000
+   PowerShell 7.2 Preview 2 release                                  Wed, 16 Dec 2020 00:08:04 +0000
+   Announcing PowerShell Crescendo Preview.1                         Tue, 08 Dec 2020 17:20:18 +0000
+
+More detailed examples:
+
+* `Microsoft Docs: Get content from a web page <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-WebRequest>`_
+* `Microsoft Docs: Send an HTTP or HTTPS request to a RESTful web service <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-RestMethod>`_
+* `Adam-The-Automator: Invoke-WebRequest - PowerShell’s Web Swiss Army Knife <https://adamtheautomator.com/invoke-webrequest/>`_
 
 Command Line History
 ====================
@@ -431,35 +484,3 @@ More detailed examples:
 * `Microsoft Docs: Get-Date <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
 
 
-Web-Pages and REST API's
-========================
-
-::
-
-   # web-pages
-   PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com/missing.html").statuscode       # error: (404) Not Found.
-   PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com").statuscode                    # 200
-   PS> Invoke-WebRequest -uri "https://www.nonbleedingedge.com/index.html" -outfile "index.htm" # index.htm
-   
-   # rest api
-   PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/
-   PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/ | Format-Table -Property Title, pubDate
-   
-   title                                                             pubDate
-   -----                                                             -------
-   SecretStore Release Candidate 3                                   Mon, 15 Mar 2021 22:12:04 +0000
-   Updating help for the PSReadLine module in Windows PowerShell 5.1 Thu, 11 Mar 2021 15:29:00 +0000
-   Announcing PSReadLine 2.2-beta.2 with Dynamic help                Fri, 05 Mar 2021 20:09:10 +0000
-   SecretManagement and SecretStore Release Candidate 2              Wed, 03 Mar 2021 18:55:58 +0000
-   PowerShell Team 2021 Investments                                  Tue, 02 Mar 2021 14:19:46 +0000
-   PowerShell for Visual Studio Code Updates – February 2021         Thu, 25 Feb 2021 20:52:17 +0000
-   Announcing PowerShell Community Blog                              Thu, 18 Feb 2021 17:28:05 +0000
-   SecretManagement and SecretStore Release Candidates               Thu, 07 Jan 2021 18:19:44 +0000
-   PowerShell 7.2 Preview 2 release                                  Wed, 16 Dec 2020 00:08:04 +0000
-   Announcing PowerShell Crescendo Preview.1                         Tue, 08 Dec 2020 17:20:18 +0000
-
-More detailed examples:
-
-* `Microsoft Docs: Get content from a web page <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-WebRequest>`_
-* `Microsoft Docs: Send an HTTP or HTTPS request to a RESTful web service <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-RestMethod>`_
-* `Adam-The-Automator: Invoke-WebRequest - PowerShell’s Web Swiss Army Knife <https://adamtheautomator.com/invoke-webrequest/>`_
