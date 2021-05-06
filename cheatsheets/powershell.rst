@@ -147,22 +147,8 @@ Some references which may help at the beginning.
 * `10 basic PowerShell commands that every Windows 10 user should know <https://www.thewindowsclub.com/basic-powershell-commands-windows>`_
 * `10 PowerShell commands every Windows admin should know <https://www.techrepublic.com/blog/10-things/10-powershell-commands-every-windows-admin-should-know/>`_
 
-Services
-========
-
-::
-
-   PS> get-service | out-host -Paging                     # paged listing of the services
-   PS> get-service | where -property Status -eq 'running' # all running services
-   PS> start-service <service name>
-   PS> stop-service <service name>
-   PS> suspend-service <service name>
-   PS> resume-service <service name>
-   PS> restart-service <service name>
-
-
-PowerShell Environment
-======================
+Environment
+===========
 
 ::
 
@@ -213,9 +199,36 @@ Processes
    PS> remove-variable -name p              # $p is not $null after process termination
    
 
-Viewing Files
-=============
+Files and Folders
+=================
 ::
+
+   PS> new-item fred.txt, wilma.txt                     # create two empty files ('ni')
+   PS> remove-item fred.txt                             # delete file ('ri','rm','rmdir','del','erase','rd')
+   PS> rm fred.txt                                      # using the 'rm' alias to delete a file
+   
+   PS> new-item -ItemType Directory dir1                # create directory dir1 ('ni')
+   PS> mkdir dir1, dir2                                 # *convenience function* make two directories ('md')
+   PS> remove-item dir2                                 # delete a directory
+   PS> rmdir dir2                                       # using the 'rmdir' alias to delete a directory
+
+   PS> get-childitem -path 'C:\Program Files\'          # list folder contents (gci,ls)          
+   PS> ls 'C:\Program Files\'                           # list folder contents A => Z
+   PS> get-childitem -path 'C:\Program Files\' -recurse # recursively list folder contents
+   
+   PS> get-childitem -path 'C:\Program Files\' | sort -Descending   # sorted Z => A
+   PS> get-childitem -path 'C:\Program Files\' | select -property * # every childitem property
+   
+   PS> write-output 'fred' > fred.txt                   # create file and add content (UTF8 encoded)
+   
+   PS> set-content -value "Fred" fred.txt               # create file and add content (see -encoding)
+   PS> add-content -value "Freddie" fred.txt            # append content
+   PS> write-output "Freddy" | add-content fred.txt     # append content
+   PS> get-content fred.txt                             
+   Fred
+   Freddie
+   Freddy
+   PS> set-content -value $null fred.txt                # empty content
 
    PS> get-content <file> -wait                         # tailing a log-file
    PS> get-content <file> | select -first 10            # first 10 lines
@@ -232,6 +245,19 @@ Viewing Files
    PS> select-string <regex> <file> | select -first 10  # first 10 lines containing <regex>
    PS> select-string <regex> <file> | select -last 10   # last 10 lines containing of <regex>
 
+Command Line History
+====================
+
+You can recall and repeat commands::
+
+   PS> get-history
+   PS> invoke-history 10                                   # execute 10 in your history (aliases 'r' and 'ihy')
+   PS> r 10                                                # same using the alias
+   PS> get-history | select-string -pattern 'get'          # all the get-commands in your command history
+   PS> get-history | where {$_.CommandLine -like "*get*"}  # all the get-commands in your command history
+   PS> get-history | format-list -property *               # execution Start/EndExecutiontimes and status             
+   PS> get-history -count 100                              # get 100 lines
+   PS> clear-history
 
 Computer Information
 ====================
@@ -251,6 +277,20 @@ Further reading:
 
 * `Introduction to CIM Cmdlets <https://devblogs.microsoft.com/powershell/introduction-to-cim-cmdlets/>`_
 * `Microsoft Docs: Get-CimInstance <https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance>`_
+
+Services
+========
+
+::
+
+   PS> get-service | out-host -Paging                     # paged listing of the services
+   PS> get-service | where -property Status -eq 'running' # all running services
+   PS> start-service <service name>
+   PS> stop-service <service name>
+   PS> suspend-service <service name>
+   PS> resume-service <service name>
+   PS> restart-service <service name>
+
 
 Windows EventLog
 ================
@@ -308,13 +348,39 @@ Network TCPIP
    PS> test-netconnection -computername "www.google.com" -informationlevel "detailed" -port 443
    PS> test-netconnection -traceroute -computername "www.google.com"
 
-   PS> resolve-dnsname -name www.google.com                # IP address of google.com
-   PS> resolve-dnsname -name 192.168.1.125                 # reverse IP lookup
 
    PS> get-netipaddress | format-table                     # configured IP addresses
    PS> get-netipaddress -suffixorigin dhcp                 # DHCP IP address
    PS> get-netipaddress -suffixorigin manual               # Manual IP address
    
+DNS Resolver
+============
+
+::
+
+   PS> resolve-dnsname -name www.google.com               # IP address of google.com
+   PS> resolve-dnsname -name 172.217.168.4                # reverse IP of www.google.com
+   PS> resolve-dnsname -name 2a00:1450:400a:801::2004     # reverse IP of www.google.com
+
+   PS> resolve-dnsname -Name www.gmail.com                # Address records
+   PS> resolve-dnsname -Name www.gmail.com -Type MX       # Mail Exchange records
+   
+   PS> resolve-dnsname www.google.com -Server 192.168.1.1 # Specific name server
+   
+   PS> $dnsServer = @('8.8.8.8','8.8.4.4')                # Google Public DNS Server IPs
+   PS> resolve-dnsname www.google.com -server $dnsServer  # Specific name servers
+   
+   PS> ipconfig /all                                      # DNS servers DOS command
+   PS> get-dnsclientserveraddress                         # DNS servers 
+
+The examples are very simple, much more is possible, but remember an object is returned not text.
+
+More detailed examples:
+
+
+* `AdamTheAutomator: Resolving DNS Records with PowerShell <https://adamtheautomator.com/resolve-dnsname/>`_
+* `Microsoft Docs: Resolve-DnsName <https://docs.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname>`_
+* `Microsoft Docs: DnsClient Module <https://docs.microsoft.com/en-us/powershell/module/dnsclient/>`_
 
 
 Web-Pages and REST API's
@@ -350,20 +416,6 @@ More detailed examples:
 * `Microsoft Docs: Send an HTTP or HTTPS request to a RESTful web service <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-RestMethod>`_
 * `Adam-The-Automator: Invoke-WebRequest - PowerShell’s Web Swiss Army Knife <https://adamtheautomator.com/invoke-webrequest/>`_
 
-Command Line History
-====================
-
-You can recall and repeat commands::
-
-   PS> get-history
-   PS> invoke-history 10                                   # execute 10 in your history (aliases 'r' and 'ihy')
-   PS> r 10                                                # same using the alias
-   PS> get-history | select-string -pattern 'get'          # all the get-commands in your command history
-   PS> get-history | where {$_.CommandLine -like "*get*"}  # all the get-commands in your command history
-   PS> get-history | format-list -property *               # execution Start/EndExecutiontimes and status             
-   PS> get-history -count 100                              # get 100 lines
-   PS> clear-history
-   
 Formatting Output
 =================
 
