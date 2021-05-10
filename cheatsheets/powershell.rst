@@ -393,7 +393,7 @@ Web-Pages and REST API's
    PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com").statuscode                    # 200
    PS> Invoke-WebRequest -uri "https://www.nonbleedingedge.com/index.html" -outfile "index.htm" # index.htm
    
-   # rest api
+   # rest-api
    PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/
    PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/ | Format-Table -Property Title, pubDate
    
