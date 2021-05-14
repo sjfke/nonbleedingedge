@@ -263,6 +263,10 @@ Computer Information
 ====================
 ::
 
+   PS> systeminfo | more                                          # summary of the computer and more 
+   PS> systeminfo | select-string 'System Boot Time'              # boot time
+   PS> systeminfo | select-string @('System Model', 'OS Version') # model, os and bios
+   
    # Classnames: Win32_BIOS, Win32_Processor, Win32_ComputerSystem, Win32_LocalTime, 
    #             Win32_LogicalDisk, Win32_LogonSession, Win32_QuickFixEngineering, Win32_Service
    PS> get-cimclass | out-host -paging                      # lists all available classes
@@ -277,6 +281,22 @@ Further reading:
 
 * `Introduction to CIM Cmdlets <https://devblogs.microsoft.com/powershell/introduction-to-cim-cmdlets/>`_
 * `Microsoft Docs: Get-CimInstance <https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance>`_
+
+Network Information
+===================
+
+A lot more information is available than shown here, see further reading.
+
+::
+
+   PS> Get-NetAdapter -physical                  # Physical interfaces: Name, Status, Mac Address, Speed
+   PS> Get-NetAdapter                            # All interfaces: Name, Status, Mac Address, Speed
+   PS> Get-NetAdapterAdvancedProperty -Name Wifi # Properties of Wifi interface
+   PS> Get-NetIPAddress | Format-Table           # IP address per interface, for ifIndex, see Get-NetAdapter
+
+Further reading:
+
+* `Microsoft Docs: NetTCPIP <https://docs.microsoft.com/en-us/powershell/module/nettcpip>`_
 
 Services
 ========
@@ -415,6 +435,22 @@ More detailed examples:
 * `Microsoft Docs: Get content from a web page <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-WebRequest>`_
 * `Microsoft Docs: Send an HTTP or HTTPS request to a RESTful web service <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-RestMethod>`_
 * `Adam-The-Automator: Invoke-WebRequest - PowerShell’s Web Swiss Army Knife <https://adamtheautomator.com/invoke-webrequest/>`_
+
+Active Directory
+================
+
+Unable to disclose any AD information, examples are stolen from further reading reference.
+
+:: 
+
+   PS> Get-ADDomain                      # Basic Domain Information
+   PS> Get-ADUser username -Properties * # Get User and List All Properties
+   PS> Search-ADAccount -LockedOut       # Find All Locked User Accounts
+   PS> Search-ADAccount -AccountDisabled # List all Disabled User Accounts
+
+Further reading:
+
+* `Huge List Of PowerShell Commands for Active Directory, Office 365 and more <https://activedirectorypro.com/powershell-commands/>`_
 
 Formatting Output
 =================
