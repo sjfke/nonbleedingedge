@@ -263,6 +263,10 @@ Computer Information
 ====================
 ::
 
+   PS> systeminfo | more                                          # summary of the computer and more 
+   PS> systeminfo | select-string 'System Boot Time'              # boot time
+   PS> systeminfo | select-string @('System Model', 'OS Version') # model, os and bios
+   
    # Classnames: Win32_BIOS, Win32_Processor, Win32_ComputerSystem, Win32_LocalTime, 
    #             Win32_LogicalDisk, Win32_LogonSession, Win32_QuickFixEngineering, Win32_Service
    PS> get-cimclass | out-host -paging                      # lists all available classes
@@ -277,6 +281,22 @@ Further reading:
 
 * `Introduction to CIM Cmdlets <https://devblogs.microsoft.com/powershell/introduction-to-cim-cmdlets/>`_
 * `Microsoft Docs: Get-CimInstance <https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance>`_
+
+Network Information
+===================
+
+A lot more information is available than shown here, see further reading.
+
+::
+
+   PS> Get-NetAdapter -physical                  # Physical interfaces: Name, Status, Mac Address, Speed
+   PS> Get-NetAdapter                            # All interfaces: Name, Status, Mac Address, Speed
+   PS> Get-NetAdapterAdvancedProperty -Name Wifi # Properties of Wifi interface
+   PS> Get-NetIPAddress | Format-Table           # IP address per interface, for ifIndex, see Get-NetAdapter
+
+Further reading:
+
+* `Microsoft Docs: NetTCPIP <https://docs.microsoft.com/en-us/powershell/module/nettcpip>`_
 
 Services
 ========
@@ -370,6 +390,9 @@ DNS Resolver
    PS> $dnsServer = @('8.8.8.8','8.8.4.4')                # Google Public DNS Server IPs
    PS> resolve-dnsname www.google.com -server $dnsServer  # Specific name servers
    
+   PS> get-dnsclientcache                                 # list your DNS cache
+   PS> clear-dnsclientcache                               # empty you DNS cache
+   
    PS> ipconfig /all                                      # DNS servers DOS command
    PS> get-dnsclientserveraddress                         # DNS servers 
 
@@ -393,7 +416,7 @@ Web-Pages and REST API's
    PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com").statuscode                    # 200
    PS> Invoke-WebRequest -uri "https://www.nonbleedingedge.com/index.html" -outfile "index.htm" # index.htm
    
-   # rest api
+   # rest-api
    PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/
    PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/ | Format-Table -Property Title, pubDate
    
@@ -410,11 +433,61 @@ Web-Pages and REST API's
    PowerShell 7.2 Preview 2 release                                  Wed, 16 Dec 2020 00:08:04 +0000
    Announcing PowerShell Crescendo Preview.1                         Tue, 08 Dec 2020 17:20:18 +0000
 
+::
+   
+   PS> [system.web.httputility]::urlencode("https://test.com/q?name=fred flinstone&age=35")
+   https%3a%2f%2ftest.com%2fsearch%3fname%3dfred+flinstone%26age%3d35
+
+   PS> [system.web.httputility]::urldecode("https%3a%2f%2ftest.com%2fsearch%3fname%3dfred+flinstone%26age%3d35")
+   https://test.com/search?name=fred flinstone&age=35
+
+   PS> [system.web.httputility]::htmlencode("https://test.com/search?name=fred flinstone&age=35")
+   https://test.com/search?name=fred flinstone&amp;age=35   
+
+   PS> [system.web.httputility]::htmldecode("https://test.com/search?name=fred flinstone&amp;age=35")
+   https://test.com/search?name=fred flinstone&age=35
+   
+   PS> [uri]::escapedatastring("https://test.com/search?name=fred flinstone&age=35")
+   https%3A%2F%2Ftest.com%2Fsearch%3Fname%3Dfred%20flinstone%26age%3D35
+
+   PS> [uri]::unescapedatastring("https%3A%2F%2Ftest.com%2Fsearch%3Fname%3Dfred%20flinstone%26age%3D35")
+   https://test.com/search?name=fred flinstone&age=35
+
+   PS> [uri]::escapeuristring("https://test.com/search?name=fred flinstone&age=35")
+   https://test.com/search?name=fred%20flinstone&age=35
+
+ 
 More detailed examples:
 
 * `Microsoft Docs: Get content from a web page <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-WebRequest>`_
 * `Microsoft Docs: Send an HTTP or HTTPS request to a RESTful web service <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-RestMethod>`_
-* `Adam-The-Automator: Invoke-WebRequest - PowerShell’s Web Swiss Army Knife <https://adamtheautomator.com/invoke-webrequest/>`_
+* `AdamTheAutomator: Invoke-WebRequest - PowerShell’s Web Swiss Army Knife <https://adamtheautomator.com/invoke-webrequest/>`_
+* `Microsoft Docs: HttpUtility Class <hhttps://docs.microsoft.com/en-us/dotnet/api/system.web.httputility>`_
+
+Active Directory
+================
+
+Generic examples are stolen from further reading reference.
+
+:: 
+
+   PS> Get-ADDomain                      # Basic Domain Information
+   PS> Get-ADUser username -Properties * # Get User and List All Properties
+   PS> Search-ADAccount -LockedOut       # Find All Locked User Accounts
+   PS> Search-ADAccount -AccountDisabled # List all Disabled User Accounts
+   
+   PS> get-wmiobject win32_useraccount                   # List SID (Security Identifier)
+   PS> get-wmiobject win32_useraccount | Select name,sid # List name, SID only
+   
+   PS> new-guid                          # 7bf86414-c4a6-4e05-aedd-e792f5df63d2
+   PS> [guid]::NewGuid().ToString()      # 067ca88d-f94d-47a0-ac73-14f8f62b55e8 (full-syntax)
+   
+
+Further reading:
+
+* `Microsoft Docs: ActiveDirectory Module <https://docs.microsoft.com/en-us/powershell/module/activedirectory>`_
+* `AdamTheAutomator: Active Directory Scripts Galore: Come and Get It! <https://adamtheautomator.com/active-directory-scripts/>`_
+* `Huge List Of PowerShell Commands for Active Directory, Office 365 and more <https://activedirectorypro.com/powershell-commands/>`_
 
 Formatting Output
 =================
