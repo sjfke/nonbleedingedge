@@ -561,7 +561,12 @@ ArrayList
    PS> [void]$names.Add('dino')      # dino found 
    PS> $names.Remove('dino')         # dino, escaped again
    PS> [void]$names.Add('dino')      # dino found ... again
-   
+  
+   PS> 'fred' -in $names             # True  (not supported in PowerShell 2)
+   PS> 'barney' -in $names           # False (not supported in PowerShell 2)
+   PS> $names -contains 'fred'       # True
+   PS> $names -contains 'barney'     # False
+    
    PS> [void]$names.Insert(3,'fido')
    PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:fido, 4:dino
    PS> $names.remove('fido')
@@ -949,6 +954,8 @@ For more details see:
 Reading Files
 =============
 
+Simple example, with the filename specified in the script.
+
 ::
 
    #requires -version 4
@@ -991,6 +998,75 @@ Reading Files
    }
    
    exit(0) 
+
+If the filename(s) are supplied on the command line, then ``globbing`` (file pattern matching) will treat several files as one file.
+This following accepts a single file name argument and expands the ``glob`` before processing so the name can be displayed.
+
+::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+   
+   $pattern = $Args[0]  # 'file*'
+   if ($Args[0] -eq $null) {
+      write-warning("Missing file pattern argument")
+      exit(1)
+   }
+   $filenames = get-childitem -Name $pattern
+   
+   write-host("Simple file pattern")
+   foreach ($filename in $filenames) {
+      $addCWD = $false
+      $path = $filename
+      if ($addCWD) {
+         $path = Join-Path -path $cwd.value -childpath $filename
+      }
+      
+      if (-not (Test-Path -path $path -pathtype leaf) ) {
+         write-warning("Filename, {0}, does not exist" -f $path)
+         exit(1)
+      }
+      else {
+         $count = 1
+         write-host("filename: {0}" -f $filename)
+         foreach ($line in get-content $path) {
+           write-host("  {0:D3}:{1}" -f $count, $line)
+           $count += 1
+         }
+         $fh = get-childitem $path # get file attributes
+      }
+   }
+
+This example accepts all commandline arguments as file names and does not consider any ``globbing`` (file pattern matching).
+
+::
+
+   #requires -version 4
+   Set-StrictMode -Version 2
+   
+   write-host("All file arguments")
+   foreach ($filename in $Args) {
+      $addCWD = $false
+      $path = $filename
+      if ($addCWD) {
+         $path = Join-Path -path $cwd.value -childpath $filename
+      }
+      
+      if (-not (Test-Path -path $path -pathtype leaf) ) {
+         write-warning("Filename, {0}, does not exist" -f $path)
+         exit(1)
+      }
+      else {
+         $count = 1
+         write-host("filename: {0}" -f $filename)
+         foreach ($line in get-content $path) {
+           write-host("  {0:D3}:{1}" -f $count, $line)
+           $count += 1
+         }
+         $fh = get-childitem $path # get file attributes
+      }
+   }
+
 
 Writing Files
 =============
