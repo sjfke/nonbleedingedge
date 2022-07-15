@@ -198,6 +198,45 @@ Processes
    PS> stop-process -id $p.id               # terminate by id
    PS> remove-variable -name p              # $p is not $null after process termination
    
+Executables
+===========
+
+::
+
+   PS> get-command notepad
+   
+   CommandType     Name                                               Version    Source
+   -----------     ----                                               -------    ------
+   Application     notepad.exe                                        10.0.19... C:\WINDOWS\system32\notepad.exe
+   
+   
+   PS> get-command notepad -All
+   
+   CommandType     Name                                               Version    Source
+   -----------     ----                                               -------    ------
+   Application     notepad.exe                                        10.0.19... C:\WINDOWS\system32\notepad.exe
+   Application     notepad.exe                                        10.0.19... C:\WINDOWS\notepad.exe
+   
+   PS> get-command notepad | format-list
+   
+   Name            : notepad.exe
+   CommandType     : Application
+   Definition      : C:\WINDOWS\system32\notepad.exe
+   Extension       : .exe
+   Path            : C:\WINDOWS\system32\notepad.exe
+   FileVersionInfo : File:             C:\WINDOWS\system32\notepad.exe
+                     InternalName:     Notepad
+                     OriginalFilename: NOTEPAD.EXE.MUI
+                     FileVersion:      10.0.19041.1766 (WinBuild.160101.0800)
+                     FileDescription:  Notepad
+                     Product:          Microsoft® Windows® Operating System
+                     ProductVersion:   10.0.19041.1766
+                     Debug:            False
+                     Patched:          False
+                     PreRelease:       False
+                     PrivateBuild:     False
+                     SpecialBuild:     False
+                     Language:         English (United Kingdom)
 
 Files and Folders
 =================
