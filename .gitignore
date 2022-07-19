@@ -54,3 +54,6 @@ Thumbs.db
 ##############################
 .venv
 Pipfile.lock
+
+# Miscellaneous files #
+notes/flintstones.txt
