@@ -240,6 +240,7 @@ Executables
 
 Files and Folders
 =================
+
 ::
 
    PS> new-item fred.txt, wilma.txt                     # create two empty files ('ni')
