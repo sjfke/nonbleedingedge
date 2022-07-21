@@ -1,0 +1,42 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/iptables.rst:5
+msgid "Iptables CheatSheet"
+msgstr ""
+
+#: ../../cheatsheets/iptables.rst:8
+msgid "Basic Commands"
+msgstr ""
+
+#: ../../cheatsheets/iptables.rst:30
+msgid "Useful Links"
+msgstr ""
+
+#: ../../cheatsheets/iptables.rst:32
+msgid "`Examples <https://www.cyberciti.biz/tips/linux-iptables-examples.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/iptables.rst:33
+msgid ""
+"`Configuration Tutorial <https://www.cyberciti.biz/faq/rhel-fedorta-"
+"linux-iptables-firewall-configuration-tutorial/>`_"
+msgstr ""
+

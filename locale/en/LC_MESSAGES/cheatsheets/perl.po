@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/perl.rst:5
+msgid "Perl Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:8
+msgid "Useful Links"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:10
+msgid "`Perl <https://www.perl.org/docs.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:11
+msgid "`Perldoc Documentation <http://perldoc.perl.org/>`_"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:12
+msgid "`Perl meta::cpan <https://metacpan.org/>`_"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:13
+msgid ""
+"`Perl Tutorialspoint "
+"<https://www.tutorialspoint.com/perl/perl_introduction.htm>`_"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:14
+msgid "`Perl Online books <https://www.perl.org/books/library.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:15
+msgid "`Perl DateTime <https://metacpan.org/pod/DateTime>`_"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:19
+msgid "Perl Reference Tutorial"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:21
+msgid "`perlreftut <http://perldoc.perl.org/perlreftut.html>`_ tutorial"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:22
+msgid "`perlref <http://perldoc.perl.org/perlref.html>`_ manual"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:25
+msgid "Make Rule 1"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:32
+msgid "Once the reference is stored in a variable like $aref or $href, you can::"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:39
+msgid "Make Rule 2"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:41
+msgid "Anonymous"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:43
+msgid "[ ITEMS ] creates an anonymous array, and returns a ref"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:44
+msgid "{ ITEMS } creates an anonymous hash, and returns a ref"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:56
+msgid "Use Rule 1"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:58
+msgid "Deferencing an array reference::"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:73
+msgid "Dereferencing a hash reference::"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:88
+msgid "Use Rule 2"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:90
+msgid "\"Use Rule 1\" cumbersome, more elegant syntax"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:103
+msgid "Warning::"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:109
+msgid "Building a hash from an array"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:111
+msgid "`Perl Arrays <http://www.tutorialspoint.com/perl/perl_arrays.htm>`_"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:132
+msgid "Perl Excel Spreadsheet"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:134
+msgid ""
+"Writing Excel: ``Excel::Writer::XLSX (plugin-replacement for "
+"Spreadsheet::WriteExcel)``"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:136
+msgid "`Excel::Writer::XLSX <https://metacpan.org/pod/Excel::Writer::XLSX>`_"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:138
+msgid "Reading Excel: ``Spreadsheet::ParseExcel``"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:140
+msgid ""
+"`Spreadsheet-ParseExcel "
+"<https://metacpan.org/pod/Spreadsheet::WriteExcel>`_"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:144
+msgid "Perl DBI"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:146
+msgid "`Perl DBI <https://dbi.perl.org/>`_"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:147
+msgid "`Perldoc DBI <https://metacpan.org/pod/DBI>`_"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:149
+msgid "Perl DBI DB connection::"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:154
+msgid "Perl DBI Select Examples::"
+msgstr ""
+
+#: ../../cheatsheets/perl.rst:174
+msgid "Perl DBI Insert Examples::"
+msgstr ""
+

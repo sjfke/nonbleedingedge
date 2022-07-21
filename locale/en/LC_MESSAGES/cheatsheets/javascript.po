@@ -1,0 +1,72 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/javascript.rst:5
+msgid "JavaScript Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:8
+msgid "Comments"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:19
+msgid "String Methods:"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:21
+msgid "Useful Links:"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:23
+msgid "`String Methods <http://www.w3schools.com/js/js_string_methods.asp>`_"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:24
+msgid "`String Objects <http://www.w3schools.com/jsref/jsref_obj_string.asp>`_"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:59
+msgid "Split / Join strings::"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:70
+msgid "Indexing strings (accessing string as an array is unsafe!)::"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:76
+msgid "Searching strings::"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:88
+msgid "Objects - Nested"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:102
+msgid "Comment Block"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:112
+msgid "Ternary operator"
+msgstr ""
+
+#: ../../cheatsheets/javascript.rst:118
+msgid "querySelectorAll: finding all elements on a page"
+msgstr ""
+

@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../notes/catalina-upgrade.rst:5
+msgid "Catalina upgrade issues"
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:7
+msgid "This upgrade went smoothly (unlike Mojave), so fairly uneventful.."
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:9
+msgid ""
+"Biggest issue is the switch to Zsh as the default shell, while you are "
+"not forced away from Bash, better to switch."
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:12
+msgid "Zsh versus Bash"
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:14
+msgid "MacOS catalina default shell has changed ``zsh`` from ``bash``"
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:16
+msgid ""
+"`Practical differences between Zsh and Bash  "
+"<https://apple.stackexchange.com/questions/361870/what-are-the-practical-"
+"differences-between-bash-and-zsh>`_"
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:17
+msgid "`Zsh vs Bash (Sunlight Media) <https://sunlightmedia.org/bash-vs-zsh/>`_"
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:18
+msgid "`Zsh vs Bash (educba) <https://www.educba.com/zsh-vs-bash/>`_"
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:19
+msgid "`Zsh vs Bash (StackABuse) <https://stackabuse.com/zsh-vs-bash/>`_"
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:21
+msgid ""
+"Decided to use `Oh My Zsh <https://ohmyz.sh/>`_ as this provides a lot of"
+" plugins, themes etc."
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:24
+msgid "Installing ``Oh My ZSH``"
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:25
+msgid "To install ``Oh My ZSH``, simply run"
+msgstr ""
+
+#: ../../notes/catalina-upgrade.rst:34
+msgid "This will install a reasonable ``.zshrc``, but I made a few modifications."
+msgstr ""
+

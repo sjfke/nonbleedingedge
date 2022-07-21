@@ -1,0 +1,104 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/systemctl-service.rst:5
+msgid "Systemctl vs Service Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:8
+msgid "Useful Links"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:10
+msgid "`Blog <http://0pointer.de/blog/>`_"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:11
+msgid "`Sytsemd Docs <http://0pointer.de/blog/projects/systemd-docs.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:12
+msgid "`Freedesktop Systemd <http://www.freedesktop.org/wiki/Software/systemd/>`_"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:13
+msgid "`Fedora Systemd <http://fedoraproject.org/wiki/Features/systemd>`_"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:17
+msgid "Basic Command Comparison"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:73
+msgid "Systemctl Commands"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:75
+msgid "Wants and Needs"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:77
+msgid ""
+"These three targets take care of the system's basic configuration, "
+"including mounting filesystems and starting udev."
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:90
+msgid "Alternative form of the above (using the symlinks)"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:121
+msgid "Which Service started which Processes"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:163
+msgid "Boot-up Problems"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:165
+msgid "start the kernel with the following parameters"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:166
+msgid "systemd.log_target=kmsg systemd.log_level=debug"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:167
+msgid ""
+"provides extensive troubleshooting information on the console and records"
+" it to kernel notification buffer created by dmesg."
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:169
+msgid "Looking for Answers::"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:174
+msgid "Runlevels/targets"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:188
+msgid "Changing runlevels"
+msgstr ""
+
+#: ../../cheatsheets/systemctl-service.rst:196
+msgid "Setting the default runlevel"
+msgstr ""
+

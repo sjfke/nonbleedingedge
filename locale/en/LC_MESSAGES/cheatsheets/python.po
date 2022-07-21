@@ -1,0 +1,208 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/python.rst:5
+msgid "Python Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:8
+msgid "Useful Links"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:10 ../../cheatsheets/python.rst:475
+msgid ""
+"`Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-"
+"projects-with-pipenv>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:11
+msgid "`Tutorialspoint <https://www.tutorialspoint.com/python/>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:12
+msgid ""
+"`Learn Python - the hard way "
+"<https://learnpythonthehardway.org/python3/>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:13
+msgid ""
+"`Execute Python-3 Online (Python v3.6.2) "
+"<https://www.tutorialspoint.com/execute_python3_online.php>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:14
+msgid ""
+"`Python IDE Online (Python v2.7.13) "
+"<https://www.tutorialspoint.com/online_python_ide.php>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:17
+msgid "Lists"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:19 ../../cheatsheets/python.rst:62
+msgid "mutable"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:20 ../../cheatsheets/python.rst:99
+msgid "ordered collections of abitrary objects, accessed by offset"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:21 ../../cheatsheets/python.rst:64
+#: ../../cheatsheets/python.rst:100
+msgid "variable length, hetrogeneous, aribtrarily nestable"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:60
+msgid "Dictionaries"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:63
+msgid "unordered collections of abitrary objects, accessed by key"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:97
+msgid "Tuples"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:101
+msgid "can be used as dictionary keys"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:129
+msgid "Files"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:131
+msgid "`Input and Output <https://docs.python.org/3/tutorial/inputoutput.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:132
+msgid ""
+"`Wrting files using Python <https://stackabuse.com/writing-files-using-"
+"python/>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:133
+msgid ""
+"`Python 101: Redirecting stdout "
+"<https://www.blog.pythonlibrary.org/2016/06/16/python-101-redirecting-"
+"stdout/>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:136
+msgid "Sequential access::"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:162
+msgid "Random access::"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:189
+msgid "Comparisons, Equality, and Truth"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:209
+msgid "Object Checking"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:211
+msgid "List of classinfo types::"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:234
+msgid "Object is::"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:258
+msgid "IF statements"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:274
+msgid "While Loops"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:287
+msgid "For Loops"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:320
+msgid "Objects"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:322
+msgid "Simple **Person** object in file named *Person.py* ::"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:382
+msgid ""
+"The **Person** object supports Python attribute style and also Java-like "
+"getters/setters style  ::"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:404
+msgid "Try/Except"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:440
+msgid "Heapq"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:442
+msgid ""
+"`builtin heap implementation "
+"<https://docs.python.org/3.0/library/heapq.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:473
+msgid "Pipenv"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:476
+msgid "`Basic Usage <https://pipenv.readthedocs.io/en/latest/>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:477
+msgid ""
+"`Advanced Usage <https://pipenv.readthedocs.io/en/latest/advanced"
+"/#configuration-with-environment-variables>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:478
+msgid "`Which VirtualEnv <https://github.com/pypa/pipenv/issues/796>`_"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:480
+msgid "Using pipenv with Eclipse PyDev ::"
+msgstr ""
+
+#: ../../cheatsheets/python.rst:494
+msgid ""
+"Setup a new Python interpretor in Eclipse, and change the project to use "
+"it."
+msgstr ""
+
+#: ../../cheatsheets/python.rst:496
+msgid ""
+"`PyDev and virtualenv <https://www.michaelpollmeier.com/eclipse-pydev-"
+"and-virtualenv>`_"
+msgstr ""
+

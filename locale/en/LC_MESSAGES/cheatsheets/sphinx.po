@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/sphinx.rst:5
+msgid "Sphinx Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:8
+msgid "Useful Links"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:10
+msgid ""
+"`Thomas Cokelaer <https://thomas-"
+"cokelaer.info/tutorials/sphinx/rest_syntax.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:11
+msgid ""
+"`Openalea Sphinx "
+"<http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:12
+msgid ""
+"`Example pypi project "
+"<https://pythonhosted.org/an_example_pypi_project/sphinx.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:13
+msgid ""
+"`reStructuredText Directives "
+"<http://docutils.sourceforge.net/docs/ref/rst/directives.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:14
+msgid ""
+"`reStructuredText Markup Specification "
+"<http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:15
+msgid ""
+"`Online reStructure Editor (reStructure) "
+"<https://www.tutorialspoint.com/online_restructure_editor.php>`_"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:16
+msgid ""
+"`Sphinx Domains <http://www.sphinx-"
+"doc.org/en/stable/usage/restructuredtext/domains.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:17
+msgid "`Sphinx HomePage <http://www.sphinx-doc.org/en/stable/index.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:18
+msgid ""
+"`Sphinx Extensions <http://www.sphinx-"
+"doc.org/en/stable/usage/extensions/index.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:19
+msgid ""
+"`Read the Docs theme <https://sphinx-rtd-"
+"theme.readthedocs.io/en/latest/index.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/sphinx.rst:22
+msgid "Miscellaneous"
+msgstr ""
+

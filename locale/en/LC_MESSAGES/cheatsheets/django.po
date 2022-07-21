@@ -1,0 +1,206 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/django.rst:5
+msgid "Python Django Tutorial"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:8
+msgid "Installing ``pipenv``"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:10
+msgid "Setup pipenv::"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:26 ../../cheatsheets/django.rst:116
+msgid "Useful Links"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:28
+msgid ""
+"`Installing Python 3 on Linux <http://docs.python-"
+"guide.org/en/latest/starting/install3/linux/>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:29
+msgid ""
+"`Pipenv & Virtual Environments <http://docs.python-"
+"guide.org/en/latest/dev/virtualenvs/#virtualenvironments-ref>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:30
+msgid ""
+"`Basic Usage of Pipenv <https://docs.pipenv.org/basics/#general-"
+"recommendations-version-control>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:31
+msgid "`Pipenv: Python Dev Workflow for Humans <https://docs.pipenv.org/>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:35
+msgid "Setting up Django project"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:37
+msgid "Create project directory and install Django::"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:46
+msgid "Create the Django project::"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:59
+msgid "Note on Fedora may need to open the port on the firewall::"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:65
+msgid "Create the Django App (A Django project can have many apps)::"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:98
+msgid "REST API"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:100
+msgid ""
+"`Django REST framework <http://www.django-rest-"
+"framework.org/tutorial/quickstart/>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:102
+msgid "Project setup::"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:109
+msgid "Sync database for first time (password123)::"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:118
+msgid ""
+"`Fedora 26: Firewall with Firewalld "
+"<https://www.hiroom2.com/2017/07/12/fedora-26-firewalld-en/>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:119
+msgid ""
+"`Introduction to Sphinx "
+"<http://www.writethedocs.org/guide/tools/sphinx/>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:120
+msgid ""
+"`reStructuredText Basics <http://www.sphinx-"
+"doc.org/en/master/usage/restructuredtext/basics.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:121
+msgid ""
+"`Quick reStructuredText "
+"<http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:122
+msgid ""
+"`A ReStructuredText Primer "
+"<http://docutils.sourceforge.net/docs/user/rst/quickstart.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:123
+msgid "`HTML theming support <http://www.sphinx-doc.org/en/master/theming.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:126
+msgid "Tutorial Links"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:128
+msgid ""
+"`Writing your first Django app "
+"<https://docs.djangoproject.com/en/2.0/intro>`_"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:129
+msgid ""
+"`Django 2.0 intro tutorial01 "
+"<https://docs.djangoproject.com/en/2.0/intro/tutorial01/>`_ *Done*"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:130
+msgid ""
+"`Django 2.0 intro tutorial03 "
+"<https://docs.djangoproject.com/en/2.0/intro/tutorial03/>`_ *Done*"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:131
+msgid ""
+"`Django 2.0 intro tutorial04 "
+"<https://docs.djangoproject.com/en/2.0/intro/tutorial04/>`_ *Done*"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:132
+msgid ""
+"`Django 2.0 intro tutorial05 "
+"<https://docs.djangoproject.com/en/2.0/intro/tutorial05/>`_ *Done*"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:133
+msgid ""
+"`Django 2.0 intro tutorial06 "
+"<https://docs.djangoproject.com/en/2.0/intro/tutorial06/>`_ *Done*"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:134
+msgid ""
+"`Django 2.0 intro tutorial07 "
+"<https://docs.djangoproject.com/en/2.0/intro/tutorial07/>`_ *Done*"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:135
+msgid ""
+"`Advanced tutorial: How to write reusable apps "
+"<https://docs.djangoproject.com/en/2.0/intro/reusable-apps/>`_ *ToDo*"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:136
+msgid ""
+"`What to read next "
+"<https://docs.djangoproject.com/en/2.0/intro/whatsnext/>`_ *ToDo*"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:137
+msgid ""
+"`Writing your first patch for Django "
+"<https://docs.djangoproject.com/en/2.0/intro/contributing/>`_ *ToDo*"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:141
+msgid "Installing Databases"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:143
+msgid "Installing sqlite::"
+msgstr ""
+
+#: ../../cheatsheets/django.rst:151
+msgid "Installing MariaDB::"
+msgstr ""
+

@@ -1,0 +1,212 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/git.rst:5
+msgid "Git Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:8
+msgid "Git Hub Fork"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:22
+msgid "Git Hub Fork - fetching upstream"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:32
+msgid "Git Branching and Merging"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:46
+msgid "Git Starting"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:56
+msgid "These update \".gitconfig\", which is in $HOME or \"C:\\Users\\user1\"."
+msgstr ""
+
+#: ../../cheatsheets/git.rst:59
+msgid "Commits - 50 / 72 rule"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:66
+msgid "Git Basics"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:68
+msgid "Editing an existing file::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:75
+msgid "Adding a new file::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:82
+msgid "Renaming or Removing a file::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:90
+msgid "Darn did not mean to do last commit LUCKILY HAVE NOT YET PUSHED"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:91
+msgid "IFF you have not pushed and only broke the current branch.::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:103
+msgid "Comparing files on different branches"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:111
+msgid "Merging a single file between branches"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:113
+msgid ""
+"Need to merge just file f of branch B into file f of branch A, when all "
+"changes are committed in both branches A and B:"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:115
+msgid "Switch to branch A, then patch file f with f of HEAD of B."
+msgstr ""
+
+#: ../../cheatsheets/git.rst:116
+msgid "Instead of B you can specify any commit here, it does not have to be HEAD."
+msgstr ""
+
+#: ../../cheatsheets/git.rst:125
+msgid "Useful Commands"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:127
+msgid "`Getting started <http://git-scm.com/book/en/Getting-Started>`_"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:128
+msgid ""
+"`Git Basics <http://git-scm.com/book/en/Git-Basics-Viewing-the-Commit-"
+"History>`_"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:130
+msgid "Working with hash::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:139
+msgid "Commit and uncommit::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:146
+msgid "Log Files::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:156
+msgid "Pulling from local master"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:157
+msgid "On branch master::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:165
+msgid "Tags"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:175
+msgid "Branches"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:183
+msgid "Daily Workflow"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:203
+msgid "General Notes"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:205
+msgid "Fixing single file::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:211
+msgid "Diff options::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:224
+msgid "Log|Shortlog Options::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:235
+msgid "Git Remotes"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:236
+msgid "First clone the repository::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:240
+msgid "What are the remotes::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:246
+msgid "Adding a remote repo::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:255
+msgid "Getting updates from remote repo::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:260
+msgid "Sending your updates to the master::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:265
+msgid "Inspecting remote::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:269
+msgid "Renaming a remote::"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:277
+msgid "How does myfork differ from the remote master?"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:283
+msgid "How does my local copy differ from the remote master?"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:289
+msgid "Creating an upstream branch"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:299
+msgid "Example command output"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:434
+msgid "Am I up to date with remote?"
+msgstr ""
+
+#: ../../cheatsheets/git.rst:465
+msgid "Finding something that was removed/changed."
+msgstr ""
+

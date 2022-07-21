@@ -1,0 +1,230 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../howtos/eclipse-remote-dev.rst:5
+msgid "Eclipse Remote Development"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:8
+msgid "Introduction"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:10
+msgid ""
+"This HOWTO explains how to setup Eclipse for development and debugging on"
+" remote servers or virtual machines."
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:13
+msgid ""
+"This functionality exists with `PyCharm professional "
+"<https://www.jetbrains.com/pycharm/>`_, I was looking for ability to use "
+"a virtual machine for Python development with Eclipse, rather than force "
+"everything through muiltple virtualenv's on my Macbook and Linux desktop."
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:17
+msgid ""
+"Although well hidden one of the prebuilt Eclipse packages provides the "
+"functionality to do this, but only for C/C++, so after installing the "
+"required package, you will have to add the Eclipse plugin(s) to handle "
+"your desired language and SCM."
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:21
+msgid ""
+"Eclipse recently renamed the PDT package so you should use (1) rather "
+"than (2), I am currently using (2)."
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:23
+msgid ""
+"`Eclipse IDE for Scientific Computing "
+"<http://www.eclipse.org/downloads/packages/release/2018-09/r/eclipse-ide-"
+"scientific-computing>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:24
+msgid ""
+"`Eclipse for Parallel Application Developers "
+"<http://www.eclipse.org/downloads/packages/release/oxygen/3/eclipse-"
+"parallel-application-developers>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:26
+msgid ""
+"I suggest you search with Eclipse Marketplace for your plugin, only "
+"download and manually install if all else fails."
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:31
+msgid "Color Themes"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:33
+msgid ""
+"Eclipse, default color theme *kinda* sucks unless want to stare at a "
+"large white screen all day long! :-D I would strong suggest you install "
+"either of:"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:36
+msgid "`DevStyle <https://www.genuitec.com/products/devstyle/>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:37
+msgid "`Eclipse Color Themes <http://www.eclipsecolorthemes.org/>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:39
+msgid ""
+"If you recently switched to macOS Mojave and are using Dark mode, use "
+"*DevStyle*, otherwise choose a color theme that works best for you, but "
+"note some eclipse plugins don't work well with certain color themes and "
+"the color theme only applies to the editor tabs (unlike DevStyle)."
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:44
+msgid "Language Plugin"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:46
+msgid ""
+"Now unless you are fortunate and plan to use ``C/C++`` you'll need to "
+"install your desired language and SCM plugins."
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:48
+msgid ""
+"`PyDev - Python IDE for Eclipse <https://marketplace.eclipse.org/content"
+"/pydev-python-ide-eclipse>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:49
+msgid ""
+"`EPIC Eclipse Perl Integration <https://marketplace.eclipse.org/content"
+"/epic-eclipse-perl-integration>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:50
+msgid ""
+"`PHP Development Tools <https://marketplace.eclipse.org/content/php-"
+"development-tools>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:51
+msgid "`Ruby DLTK <https://marketplace.eclipse.org/content/ruby-dltk>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:52
+msgid "`Node.JS Nodeclipse <https://marketplace.eclipse.org/content/nodeclipse>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:53
+msgid ""
+"`Eclipse Java Development Tools <https://marketplace.eclipse.org/content"
+"/eclipse-java-development-tools-0>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:54
+msgid ""
+"`EGit - Git Integration for Eclipse "
+"<https://marketplace.eclipse.org/content/egit-git-integration-eclipse>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:55
+msgid ""
+"`Subversive - SVN Team Provider <https://marketplace.eclipse.org/content"
+"/subversive-svn-team-provider>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:56
+msgid ""
+"`SSH Agent Integration for Eclipse "
+"<https://marketplace.eclipse.org/content/ssh-agent-integration-eclipse>`_"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:59
+msgid "Synchronized projects"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:61
+msgid ""
+"After installing ``Eclipse`` and your required plugins, now let's create "
+"and setup your synchonized project."
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:64
+msgid "Create your synchronized project"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:66
+msgid "Assuming your project already exists on ``github`` ::"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:79
+msgid "Now we need to convert this to a *synchronized project*, so"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst
+msgid "Eclipse"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:81
+msgid "*File -> New -> Other -> Synchronized Project*"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:88
+msgid "*Enter project and select new or existing connection name*"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:95
+msgid "*Enter connection (brief) details*"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:102
+msgid "*Enter connection (full) details*"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:110
+msgid "Manage your synchronized project"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:112
+msgid "*<project> - right mouse click*"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:119
+msgid "*Manage connections dialogue*"
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:126
+msgid ""
+"Now updates in ``Eclipse`` should be automatically synchronized to the "
+"remote server in the specified top level directory."
+msgstr ""
+
+#: ../../howtos/eclipse-remote-dev.rst:129
+msgid ""
+"I prefer to work in a remote terminal outside of Eclipse, but it should "
+"be able to configure the Eclispe run-time to execute everything on the "
+"remote host, but that is *left as an exercise for the reader*"
+msgstr ""
+

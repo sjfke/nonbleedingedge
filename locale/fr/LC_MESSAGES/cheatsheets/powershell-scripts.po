@@ -1,0 +1,1505 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/powershell-scripts.rst:5
+msgid "PowerShell Scripting Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:7
+msgid ""
+"This is the companion to ``PowerShell Cheatsheet``, which focuses on "
+"writing PowerShell scripts."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:-1
+msgid "According to Microsoft ``PowerShell``"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:11
+msgid ""
+"Is a cross-platform task automation and configuration management "
+"framework, consisting of a *command-line shell* and *scripting language* "
+"that is built on top of the ``.NET Common Language Runtime`` (CLR), "
+"accepts and returns ``.NET objects``. This brings entirely new tools and "
+"methods for automation."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:15
+msgid ""
+"This means learning new skills and thinking differently which can be "
+"frustrating while learning."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:17
+msgid ""
+"To simplify maintenance I write PowerShell scripts as standalone "
+"utilities deployed in a single file, this means I have to *copy-and-"
+"paste* my favourite frequently used functions, such as *dumpArrayList*, "
+"*dumpHashTable* because there is no mechanism to textually include your "
+"favourite functions into the source when writing and testing."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:21
+msgid ""
+"It is possible to split your script into multiple files, create libraries"
+" of your favoutite utilities etc. I do not cover this topic, the example "
+"script shows where/how to ``source`` you library files, and if you wish "
+"to create your own modules, see `How to Write a PowerShell Script Module "
+"<https://docs.microsoft.com/en-us/powershell/scripting/developer/module"
+"/how-to-write-a-powershell-script-module>`_."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:26
+msgid "Introduction"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:28
+msgid ""
+"Unfortunately because ``PowerShell`` is very powerful scripting language,"
+" often used to automate routine tasks, makes it an ideal target for "
+"**would-be** hackers. To mitigate this Microsoft limits if/when "
+"PowerShell scripts can be executed, although individual ``cmdlets`` can "
+"always be executed."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:32
+msgid ""
+"*Windows Pro/Home* usually disallows ``PowerShell scripts`` but permits "
+"``cmdlets`` to be executed;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:33
+msgid ""
+"*Windows Server* usually allows ``RemoteSigned`` scripts to be run on the"
+" ``LocalMachine``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:35
+msgid ""
+"The execution policy governs whether a ``PowerShell`` script can be "
+"executed, ``get-executionpolicy`` displays this for the current "
+"``PowerShell``, and ``get-executionpolicy -list`` shows all the policies "
+"in highest to lowest priority (*scope*) order."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:38
+msgid ""
+"In the example below only the ``LocalMachine`` policy is defined, and "
+"this is set to ``restricted`` so ``PowerShell`` scripts cannot be "
+"executed, but indiviual commands, ``cmdlets`` can."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:57
+msgid ""
+"If your *ExecutionPolicy* is as above, a quick fix is to start a "
+"*PowerShell as Administrator* and set it to *RemoteSigned* as shown, but "
+"you should still read the `PowerShell Exection Policies`_ section."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:77
+msgid "Language"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:79
+msgid ""
+"The language makes use of `.Net Framework "
+"<https://en.wikipedia.org/wiki/.NET_Framework>`_ and is built on top of "
+"the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-"
+"us/dotnet/standard/clr>`_ , and manipulates `.NET objects "
+"<https://docs.microsoft.com/en-us/dotnet/api/system.object>`_. If the "
+"language itself does not provide what you need, there may be a `Popular "
+"PowerShell Module "
+"<https://social.technet.microsoft.com/wiki/contents/articles/4308"
+".popular-powershell-modules.aspx>`_ you can download or you can access "
+"the `.Net APIs <https://docs.microsoft.com/en-us/dotnet/api>`_ directly, "
+"a good example being `ArrayLists <https://docs.microsoft.com/en-"
+"us/dotnet/api/system.collections.arraylist>`_ which are dynamic in size "
+"unlike a *PowerShell Array*."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:87
+msgid ""
+"In common with other object oriented languages, ``PowerShell`` has "
+"features such *inheritance*, *subclasses*, *getters*, *setters*, "
+"*modules* etc. Functions support both ``named`` and ``positional`` "
+"arguments, which can be mixed, this can be confusing, so in most cases it"
+" is clearer to use `splatting <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ "
+"rather than individual name or positional parameters."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:92
+msgid "Useful starting points when learning about the language:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:94
+msgid ""
+"`PowerShell GitHub - Recommended Training and Reading "
+"<https://github.com/PowerShell/PowerShell/tree/master/docs/learning-"
+"powershell#recommended-training-and-reading>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:95
+msgid ""
+"`PowerShell GitHub - Learning Powershell "
+"<https://github.com/PowerShell/PowerShell/tree/master/docs/learning-"
+"powershell>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:96
+msgid ""
+"`Windows PowerShell Portal "
+"<https://social.technet.microsoft.com/wiki/contents/articles/24187"
+".windows-powershell-portal.aspx>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:98
+msgid ""
+"Unlike most texts on programming languages this starts with a simple but "
+"realistic PowerShell example, with many of the language details being "
+"covered in subsequent sections."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:101
+msgid "Example Script"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:103
+msgid ""
+"This is a contrived but realistic PowerShell script to illustrate several"
+" important points. It is based on a `gist template from 9to5IT "
+"<https://gist.github.com/9to5IT/9620683>`_, which is extremely useful, "
+"but is augmented to force the syntax version and to be more strict on the"
+" use of uninitialized variables."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:231
+msgid "Things to note:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:233
+msgid ""
+"The `#requires -version 4 <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.core/about/about_requires>`_ "
+"PowerShell version 4 syntax, (use *version 2*, if windows is very old);"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:234
+msgid ""
+"Initial comment block ``.SYNOPSIS...`` provides the ``get-help`` text, "
+"**note** line-spacing is important;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:235
+msgid ""
+"The `param() <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_"
+" block must be the first *non-comment line* for command-line arguments;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:236
+msgid ""
+"The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks "
+"the usage of uninitialized variables;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:239
+msgid "Variables"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:241
+msgid ""
+"Powershell variables can be any of the `Basic DataTypes`_ such as "
+"*integers*, *characters*, *strings*, *arrays*, and *hash-tables*, but "
+"also ``.Net`` objects that represent such things as *processes*, "
+"*services*, *event-logs*, and even *computers*."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:276
+msgid "Basic DataTypes"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:279
+msgid "Data Type"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:279
+msgid "Definition"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:281
+msgid "Boolean"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:281
+msgid "True or False Condition"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:283
+msgid "Byte"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:283
+msgid "An 8-bit unsigned whole number from 0 to 255"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:285
+msgid "Char"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:285
+msgid "A 16-bit unsigned whole number from 0 to 65,535"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:287
+msgid "Date"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:287
+msgid "A calendar date"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:289
+msgid "Decimal"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:289
+msgid "A 128-bit decimal value, such as 3.14159"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:291
+msgid "Double"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:291
+msgid ""
+"A double-precision 64-bit floating point number, narrower range than "
+"Decimal"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:293
+msgid "Integer"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:293
+msgid "A 32-bit signed whole number from -2,147,483,648 to 2,147,483,647"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:295
+msgid "Long"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:295
+msgid "A 64-bit signed whole number, very big integer, 9,233,372,036,854,775,807"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:297
+msgid "Object"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:299
+msgid "Short"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:299
+msgid "A 16-bit unsigned whole number, -32,768 to 32,767"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:301
+msgid "Single"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:301
+msgid "A single-precision 32-bit floating point number"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:303
+msgid "String"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:303
+msgid "Text, a character string"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:308
+msgid "Array Variables"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:310
+msgid ""
+"Array variables are a fixed size, can have mixed values and can be multi-"
+"dimensional."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:348
+msgid "Useful references:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:350
+msgid ""
+"`TutorialsPoint Powershell Array for more detailed explanation "
+"<https://www.tutorialspoint.com/powershell/powershell_array.htm>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:351
+msgid ""
+"`PowerShellExplained ArrayList for dynamically resizable arrays "
+"<https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-"
+"you-wanted-to-know/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:352
+msgid ""
+"`Microsoft Docs ArrayList Class for dynamically resizable arrays "
+"<https://docs.microsoft.com/en-"
+"us/dotnet/api/system.collections.arraylist>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:353
+msgid ""
+"`Kevin Blumenfeld's GitHub Gist Collection Type Guidence "
+"<https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:357
+msgid "HashTables"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:359
+msgid ""
+"A HashTable is an unordered collection of key:value pairs, synonymous "
+"with an object and its properties. Later versions support known/fixed "
+"order hash elements, ``$hash = [ordered]@{}``."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:426
+msgid "For more details read the excellent review by Kevin Marquette:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:428
+msgid ""
+"`Powershell: Everything you wanted to know about hashtables "
+"<https://powershellexplained.com/2016-11-06-powershell-hashtable-"
+"everything-you-wanted-to-know-about/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:431
+msgid "Objects"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:433
+msgid ""
+"If you cannot create what you need from *Arrays, HashTables, ArrayLists, "
+"Queues, Stacks etc.*, then it is possible to create custom PowerShell "
+"objects, but to date I have never needed to do this. For more details, "
+"read:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:437
+msgid ""
+"`David Bluemenfeld: Collection Type Guidence "
+"<https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:438
+msgid ""
+"`Microsoft TechNet: Creating Custom Objects "
+"<https://social.technet.microsoft.com/wiki/contents/articles/7804"
+".powershell-creating-custom-objects.aspx>`_;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:439
+msgid ""
+"`Kevin Marquette: Everything you wanted to know about PSCustomObject "
+"<https://powershellexplained.com/2016-10-28-powershell-everything-you-"
+"wanted-to-know-about-pscustomobject/>`_;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:442
+msgid "Functions"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:444
+msgid ""
+"Function arguments and responses are passed by reference, so an arugment "
+"can be changed inside the function and remains unchanged outside the "
+"function, **but** this is considered *\"bad programming practice\"*, so "
+"better to avoid doing this. Functions return references to objects, as "
+"illustrated in the `Example Script`_ where references to *HashTable* and "
+"*Array* objects are returned."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:448
+msgid ""
+"While each function call returns a reference to a new (*different*) "
+"object, be careful about the scope of the variable you assign this "
+"reference too, it is easy to create multiple references to the same "
+"object."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:451
+msgid ""
+"While mixing named (*order indepedent*) and positional (*order "
+"dependent*) arguments is permitted it can cause strange errors, so unless"
+" you are only supplying one or two arguments, a better approach is to use"
+" `splatting <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.core/about/about_splatting>`_. "
+"The following contrived example illustrates the basics but the ``param ( "
+"... )`` section has many options not shown here."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:532
+#: ../../cheatsheets/powershell-scripts.rst:585
+#: ../../cheatsheets/powershell-scripts.rst:652
+#: ../../cheatsheets/powershell-scripts.rst:701
+#: ../../cheatsheets/powershell-scripts.rst:1224
+msgid "Further reading:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:534
+msgid ""
+"Microsoft Docs, `Chapter 9 - Functions <https://docs.microsoft.com/en-"
+"us/powershell/scripting/learn/ps101/09-functions>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:535
+msgid ""
+"Microsoft Docs, `About Functions Advanced Parameters "
+"<https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:538
+msgid "ArrayList"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:587
+msgid ""
+"`The .Net ArrayList Class <https://docs.microsoft.com/en-"
+"us/dotnet/api/system.collections.arraylist>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:588
+msgid ""
+"`Powershell: Everything you wanted to know about arrays "
+"<https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-"
+"you-wanted-to-know/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:591
+msgid "IF/Switch commands"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:593
+msgid ""
+"The conditions that can be tested in an ``if`` statement are very "
+"extensive:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:595
+msgid "Equality/inequality: ``-eq|-ieq|-ceq / -ne|-ine|-cne``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:596
+msgid ""
+"Greater/less than: ``-gt|-igt|-cgt|-ge|-ige / "
+"-lt|-ilt|-clt|-le|-ile|-cle``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:597
+msgid "Wildcard: ``-like|-ilike|-clike|-notlike|-inotlike|-cnotlike``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:598
+msgid ""
+"Regular Expressions: "
+"``-match|-imatch|-cmatch|-notmatch|-inotmatch|-cnotmatch``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:599
+msgid "Object type check: ``-is|-isnot``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:600
+msgid ""
+"Array <op> value: "
+"``-contains|-icontains|-ccontains|-notcontains|-inotcontains|-cnotcontains``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:601
+msgid "Value <op> array: ``-in|-iin|-cin|-notin|-inotin|-cnotin``"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:602
+msgid "Logical operators: ``-not|!|-and|-or|-xor``"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:603
+msgid "Bitwise operators: ``-band|-bor|-bxor|-bnot|-shl|-shr``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:604
+msgid "PowerShell expressions: ``Test-Path|Get-Process``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:605
+msgid "PowerShell pipeline: ``(Get-Process | Where Name -eq Notepad)``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:606
+msgid "Null checking: ``($null -eq $value)``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:608
+msgid ""
+"There is also a ``switch`` statement for comparing against multiple "
+"values."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:654
+msgid ""
+"`PowerShell Explained: If .. then .. else .. equals operator "
+"<https://powershellexplained.com/2019-08-11-Powershell-if-then-else-"
+"equals-operator/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:658
+msgid "Try/Catch"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:660
+msgid ""
+"Exception handling uses *Try/Catch*, but  the *Catch block* is only "
+"invoked on *terminating errors*."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:696
+msgid "Note the following two points in the example:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:698
+msgid ""
+"Addition of ``-ErrorAction Stop`` to ``get-content`` to make it a "
+"terminating error;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:699
+msgid ""
+"The ``finally`` block is **always executed**, whether an exception is "
+"thrown or not!"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:703
+msgid ""
+"`Tutotials Point: Explain Try/Catch/Finally block in PowerShell "
+"<https://www.tutorialspoint.com/explain-try-catch-finally-block-in-"
+"powershell>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:706
+msgid "Loops"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:708
+msgid ""
+"There are several loop constructirs ``for``, ``foreach``, ``while`` and "
+"``do .. while``."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:750
+msgid "Operators"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:752
+msgid ""
+"``PowerShell`` supports the almost all the common programming language "
+"operators, with parenthesis to alter operator precedence."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:808
+msgid "Backtick Operator"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:810
+msgid ""
+"The ````` is used for line continuation and to identify a *\"tab\"* and "
+"*\"new line\"* character."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:812
+msgid "Word-wrap operator `````"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:813
+msgid "Newline ```n``"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:814
+msgid "Tab ```t``"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:817
+msgid "Regular Expressions"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:819
+msgid ""
+"PowerShell supports *regular expressions* in much the same was as "
+"``Perl`` or ``Python``."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:822
+msgid ""
+"Table taken from `TutorialsPoint.com - Regular Expression "
+"<https://www.tutorialspoint.com/powershell/powershell_regex.htm>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:825
+msgid "Subquery"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:825
+msgid "Match description"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:827
+msgid "^"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:827
+msgid "The beginning of the line."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:829
+msgid "$"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:829
+msgid "The end of the line."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:831
+msgid "."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:831
+msgid ""
+"Any single character except newline. Using m option it to matches the "
+"newline as well."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:833
+msgid "[...]"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:833
+msgid "Any single character in brackets."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:835
+msgid "[^...]"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:835
+msgid "Any single character not in brackets."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:837
+#: ../../cheatsheets/powershell-scripts.rst:875
+msgid "\\\\A"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:837
+msgid "Beginning of the entire string."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:839
+#: ../../cheatsheets/powershell-scripts.rst:879
+msgid "\\\\z"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:839
+msgid "End of the entire string."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:841
+#: ../../cheatsheets/powershell-scripts.rst:877
+msgid "\\\\Z"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:841
+msgid "End of the entire string except allowable final line terminator."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:843
+msgid "re*"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:843
+msgid "0 or more occurrences of the preceding expression."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:845
+msgid "re+"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:845
+msgid "1 or more of the previous thing."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:847
+msgid "re?"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:847
+msgid "0 or 1 occurrence of the preceding expression."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:849
+msgid "re{ n}"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:849
+msgid "Exactly n number of occurrences of the preceding expression."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:851
+msgid "re{ n,}"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:851
+msgid "n or more occurrences of the preceding expression."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:853
+msgid "re{ n, m}"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:853
+msgid "At least n and at most m occurrences of the preceding expression."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:855
+msgid "a¦b"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:855
+msgid "Either a or b."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:857
+msgid "(re)"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:857
+msgid "Groups regular expressions and remembers the matched text."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:859
+msgid "(?: re)"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:859
+msgid "Groups regular expressions without remembering the matched text."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:861
+msgid "(?> re)"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:861
+msgid "Matches the independent pattern without backtracking."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:863
+msgid "\\\\w"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:863
+msgid "The word characters."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:865
+msgid "\\\\W"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:865
+msgid "The nonword characters."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:867
+msgid "\\\\s"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:867
+msgid "The whitespace. Equivalent to [\\t\\n\\r\\f]."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:869
+msgid "\\\\S"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:869
+msgid "The nonwhitespace."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:871
+msgid "\\\\d"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:871
+msgid "The digits. Equivalent to [0-9]."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:873
+msgid "\\\\D"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:873
+msgid "The nondigits."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:875
+msgid "The beginning of the string."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:877
+msgid ""
+"The end of the string. If a newline exists, it matches just before "
+"newline."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:879
+msgid "The end of the string."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:881
+msgid "\\\\G"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:881
+msgid "The point where the last match finished."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:883
+msgid "\\\\n"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:883
+msgid "Back-reference to capture group number \"n\"."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:885
+msgid "\\\\b"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:885
+msgid ""
+"The word boundaries. Matches the backspace (0x08) when inside the "
+"brackets."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:887
+msgid "\\\\B"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:887
+msgid "The nonword boundaries."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:889
+msgid "\\\\n,\\\\t,\\\\r"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:889
+msgid "Newlines, carriage returns, tabs, etc."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:891
+msgid "\\\\Q"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:891
+msgid "Escape (quote) all characters up to \\E."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:893
+msgid "\\\\E"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:893
+msgid "Ends quoting begun with \\Q."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:896
+msgid "Examples::"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:944
+msgid ""
+"Entire technical books are dedicated to Regular Expressions, the above is"
+" very brief. For more details see:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:947
+msgid ""
+"`Jeffrey Friedl: Mastering Regular Expressions "
+"<https://www.oreilly.com/library/view/mastering-regular-"
+"expressions/0596528124/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:948
+msgid ""
+"`Microsoft Docs: About Regular Expressions <https://docs.microsoft.com"
+"/en-"
+"us/powershell/module/microsoft.powershell.core/about/about_regular_expressions>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:949
+msgid ""
+"`Powershell: The many ways to use regex "
+"<https://powershellexplained.com/2017-07-31-Powershell-regex-regular-"
+"expression/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:950
+msgid "`Test and Debug: Regular Expression 101 <https://regex101.com/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:951
+msgid "`Test and Debug: RegEx <https://www.regextester.com/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:952
+msgid ""
+"`Test and Debug: Regular Expression Tester <https://www.freeformatter.com"
+"/regex-tester.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:955
+msgid "Reading Files"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:957
+msgid "Simple example, with the filename specified in the script."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1002
+msgid ""
+"If the filename(s) are supplied on the command line, then ``globbing`` "
+"(file pattern matching) will treat several files as one file. This "
+"following accepts a single file name argument and expands the ``glob`` "
+"before processing so the name can be displayed."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1040
+msgid ""
+"This example accepts all commandline arguments as file names and does not"
+" consider any ``globbing`` (file pattern matching)."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1072
+msgid "Writing Files"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1074
+msgid ""
+"Simplest approach is to use `set-content "
+"<https://docs.microsoft.com/powershell/module/microsoft.powershell.management"
+"/set-content>`_, `add-content "
+"<https://docs.microsoft.com/powershell/module/microsoft.powershell.management"
+"/add-content>`_ and `clear-content "
+"<https://docs.microsoft.com/powershell/module/microsoft.powershell.management"
+"/clear-content>`_ *cmd-lets*, which have many options not covered here."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1117
+msgid "See also:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1119
+msgid ""
+"`Microsoft docs: set-content "
+"<https://docs.microsoft.com//powershell/module/microsoft.powershell.management"
+"/set-content>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1120
+msgid ""
+"`Microsoft docs: add-content "
+"<https://docs.microsoft.com//powershell/module/microsoft.powershell.management"
+"/add-content>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1121
+msgid ""
+"`Microsoft docs: out-file "
+"<https://docs.microsoft.com/powershell/module/microsoft.powershell.utility"
+"/out-file>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1122
+msgid ""
+"`Microsoft docs: new-temporaryfile "
+"<https://docs.microsoft.com/powershell/module/microsoft.powershell.utility"
+"/new-temporaryfile>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1125
+msgid "CSV Files"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1127
+msgid ""
+"Powershell provides ``cmdlets`` for handling these which avoid importing "
+"into ``Excel`` and ``MS Access``. The ``out-gridview`` renders the output"
+" the data in an interactive table."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1152
+msgid ""
+"`Microsoft docs: Import-CSV "
+"<https://docs.microsoft.com/powershell/module/microsoft.powershell.utility"
+"/import-csv>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1153
+msgid ""
+"`Microsoft docs: Out-GridView "
+"<https://docs.microsoft.com/powershell/module/microsoft.powershell.utility"
+"/out-gridview>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1156
+msgid "JSON files"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1158
+msgid ""
+"PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` "
+"modules are installed."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1226
+msgid ""
+"`ConvertTo-Json converts an object to a JSON-formatted string. "
+"<https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.utility/convertto-json>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1227
+msgid ""
+"`ConvertFrom-Json converts a JSON-formatted string to a custom object or "
+"a hash table. <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.utility/convertfrom-json>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1228
+msgid ""
+"`W3Schools: Introduction to JSON "
+"<https://www.w3schools.com/js/js_json_intro.asp>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1231
+msgid "Reading XML files"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1233
+msgid ""
+"``Powershell`` supports full manipulation of the XML DOM, read the "
+"`Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ and"
+" `.NET XmlDocument Class <https://docs.microsoft.com/en-"
+"us/dotnet/api/system.xml.xmldocument>`_ for more detailed information. "
+"The examples shown are very redimentary, and only show a few of the "
+"manipulations you can perform on XML objects."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1237
+#: ../../cheatsheets/powershell-scripts.rst:1319
+msgid ""
+"**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and "
+"`Import-Clixml <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.utility/import-clixml>`_ "
+"provide a simplified way to save and reload your ``PowerShell`` objects "
+"and are ``Microsoft`` specific."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1315
+msgid "Writing XML files"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1317
+msgid ""
+"To generate an XML file, use the `XmlTextWriter Class "
+"<https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1396
+msgid "Log files"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1411
+msgid "Formatting Variables"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1413
+msgid ""
+"Very similar to Python ``-f`` operator, examples use ``write-host`` but "
+"can be used with other cmdlets, such as assigment. Specified as "
+"``{<index>, <alignment><width>:<format_spec>}``"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1451
+msgid "More detailed formatting examples:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1453
+msgid ""
+"`PowershellPrimer.com: Formatting Output "
+"<https://powershellprimer.com/html/0013.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1454
+msgid ""
+"`Microsoft documentation: Get-Date <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.utility/get-date>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1456
+msgid "Ouput methods:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1458
+msgid ""
+"`Microsoft Docs: Write Output <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.utility/write-output>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1459
+msgid ""
+"`Microsoft Docs: Write Warning <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.utility/write-warning>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1460
+msgid ""
+"`Microsoft Docs: Write Host <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.utility/write-host>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1461
+msgid ""
+"`Microsoft Docs: Write Error <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.utility/write-error>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1464
+msgid "Running PowerShell scripts"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1466
+msgid ""
+"PowerShell is an often abused hackers attack vector, so modern versions "
+"of Windows prevent PowerShell scripts from being executed *out-of-the-"
+"box*, although the ``cmd-lets`` can be run."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1469
+msgid ""
+"Many articles suggest the disabling this security feature... **DO NOT DO "
+"THIS**"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1471
+msgid ""
+"Furthermore most companies harden their Windows laptop and server "
+"installations, so disabling may not work anyway."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1473
+msgid ""
+"Ways to work with this restriction, are not intuitive... it took me some "
+"time to figure it out, and I am still be no means an expert, hopefully "
+"this will get you started, and you are always welcome to contact me to "
+"improve this section."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1476
+msgid ""
+"The execution-policy, controls the execution of PowerShell scripts, good "
+"references to read are:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1478
+msgid ""
+"`Allow other to run your PowerShell scripts... "
+"<https://blog.danskingdom.com/allow-others-to-run-your-powershell-"
+"scripts-from-a-batch-file-they-will-love-you-for-it/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1479
+msgid ""
+"`Setup Powershell scripts for automatic execution "
+"<https://stackoverflow.com/questions/29645/set-up-powershell-script-for-"
+"automatic-execution/8597794#8597794>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1480
+msgid ""
+"`Get-ExecutionPolicy <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.security/get-"
+"executionpolicy?view=powershell-7>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1482
+msgid ""
+"If you start ``PowerShell`` as administrator, then you can change the "
+"*'execution-policy'*, and you should change the *'CurrentUser'*, which is"
+" *your* execution-policy rights, see Get-ExecutionPolicy link. A default "
+"install will most likely look as shown."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1501
+msgid ""
+"Choosing **Unrestricted** means that any PowerShell script, even ones "
+"inadvertently or unknowingly downloaded from the Internet will run as "
+"you, and with your privileges, so *Avoid Doing This*."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1504
+msgid ""
+"When developing your scripts you can try using the following to avoid "
+"having certificates installed and updating the signature each time you "
+"change the script."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1510
+msgid ""
+"This may not be permitted on Corporate laptops which usually have "
+"additional security restrictions."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1514
+msgid "PowerShell Exection Policies"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1516
+msgid ""
+"See: `About Execution Policies <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_"
+" for more details."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1518
+msgid "PowerShell's execution policies:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1520
+msgid ""
+"``Restricted`` does not permit any scripts to run (*.ps1xml, .psm1, "
+".ps1*);"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1521
+msgid ""
+"``AllSigned``, prevents running scripts that do not have a digital "
+"signature;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1522
+msgid ""
+"``RemoteSigned`` prevents running downloaded scripts that do not have a "
+"digital signature;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1523
+msgid ""
+"``Unrestricted`` runs scripts without a digital signature, warning about "
+"non-local intranet zone scripts;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1524
+msgid ""
+"``Bypass`` allows running of scripts without any digital signature, and "
+"without any warnings;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1525
+msgid "``Undefined`` no execution policy is defined;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1527
+msgid "PowerShell's execution policy scope:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1529
+msgid "``MachinePolicy`` set by a Group Policy for all users of the computer;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1530
+msgid "``UserPolicy`` set by a Group Policy for the current user of the computer;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1531
+msgid ""
+"``Process`` current PowerShell session, environment variable "
+"``$env:PSExecutionPolicyPreference``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1532
+msgid ""
+"``CurrentUser`` affects only the current user, ``HKEY_CURRENT_USER`` "
+"registry subkey;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1533
+msgid ""
+"``LocalMachine`` all users on the current computer, "
+"``HKEY_LOCAL_MACHINE`` registry subkey;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1535
+msgid ""
+"By default on a Windows Server the execution policy is, ``LocalMachine "
+"RemoteSigned``, but for your Windows Laptop or Desktop it will be "
+"``LocalMachine Restricted``. To change the execution policy, you must "
+"start a PowerShell as Administrator and use ``Set-ExecutionPolicy`` as "
+"shown, you will be prompted to confirm this action."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1538
+msgid ""
+"In a commercial or industrial environment ask your Windows Adminstrator, "
+"but company policy may be *AllSigned*."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1553
+msgid "Generating and Installing Certificates"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1555
+msgid ""
+"This section will show how to use ``openssl`` and ``WLS2`` to generate "
+"self-signed certificates"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1562
+msgid "How to sign scripts for your own use."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1569
+msgid ""
+"To add a digital signature to a script you must sign it with a code "
+"signing certificate:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1571
+msgid ""
+"Purchased from a certification authority, which allows executing your "
+"script on other computers;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1572
+msgid "A free self-signed certificate which will only work on your computer;"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1574
+msgid ""
+"Typically, a *self-signed certificate* is only used to sign your own "
+"scripts and to sign scripts that you get from other sources that you have"
+" verified to be safe, and should be used in an industrial or commercial "
+"enviroment."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1578
+msgid "Microsoft's official guide:"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1580
+msgid ""
+"`About Signing <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.core/about/about_signing>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1581
+msgid ""
+"`How to Create a Self-Signed Certificate with PowerShell "
+"<https://www.cloudsavvyit.com/3274/how-to-create-a-self-signed-"
+"certificate-with-powershell/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1582
+msgid ""
+"`Add an Authenticode signature to a PowerShell script or other file. "
+"<https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.security/set-"
+"authenticodesignature>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1583
+msgid ""
+"`New-SelfSignedCertificate <https://docs.microsoft.com/en-"
+"us/powershell/module/pkiclient/new-selfsignedcertificate>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1584
+msgid ""
+"`Generating self-signed certificates on Windows <https://medium.com/the-"
+"new-control-plane/generating-self-signed-certificates-on-windows-"
+"7812a600c2d8>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1585
+msgid ""
+"`Generate and export certificates for Point-to-Site using PowerShell "
+"<https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-"
+"certificates-point-to-site>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1588
+msgid "How to get around signed scripts"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1590
+msgid "Some proposals to avoid signing PowerShell scripts."
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1592
+msgid ""
+"`Provide A Batch File To Run Your PowerShell Script From "
+"<https://blog.danskingdom.com/allow-others-to-run-your-powershell-"
+"scripts-from-a-batch-file-they-will-love-you-for-it/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1593
+msgid ""
+"`Set Up Powershell Script For Automatic Execution "
+"<https://stackoverflow.com/questions/29645/set-up-powershell-script-for-"
+"automatic-execution/8597794#8597794>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell-scripts.rst:1595
+msgid ""
+"Some internet posts recommend disabling the execution policy, but I would"
+" advise against."
+msgstr ""
+

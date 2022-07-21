@@ -1,0 +1,244 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/mysql.rst:5
+msgid "MySQL Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:8
+msgid "Useful Links"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:10
+msgid "`Developer Zone MySQL <https://dev.mysql.com/>`_"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:11
+msgid "`MySQL Documentation <https://dev.mysql.com/doc/>`_"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:12
+msgid "`MySQL 5.7 Reference manual <https://dev.mysql.com/doc/refman/5.7/en/>`_"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:13
+msgid "`MariaDB an OpenSource alternative <https://mariadb.org/about/>`_"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:17
+msgid "Useful Commands"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:20
+msgid "Common table manipulation commands"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:22
+msgid "Copy a table::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:28
+msgid "Add, create or delete an index::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:35
+msgid "Add, delete or modify a column::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:44
+msgid "Creating a TSV, mysqld must be able to write, i.e use \"/tmp\"::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:49
+msgid ""
+"`Loading data from a TSV file <https://dev.mysql.com/doc/refman/5.7/en"
+"/load-data.html>`_::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:67
+msgid "Exporting a Table in CSV format::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:73
+msgid "Common User commands"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:75
+msgid "Show users::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:79
+msgid "Show User Grants::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:83
+msgid "Show User Grants on Databases::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:87
+msgid "Change User password::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:92
+msgid "Show Userr grants::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:98
+msgid "Which Users have access to which database::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:113
+msgid "Changing Password::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:119
+msgid "Display Table details"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:121
+msgid "Table structure::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:128
+msgid "Deleting data from a table"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:130
+msgid "Deleting rows which match::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:134
+msgid "Deleting the entire contents of a table::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:141
+msgid "MySQL Select examples"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:143
+msgid "**Note** to cancel a query ``\\c``"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:145
+msgid "Calculated column in where clause::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:149
+msgid "Data in t1 and NOT in t2::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:153
+msgid ""
+"Non-ASCII data `manual <https://dev.mysql.com/doc/refman/5.7/en/binary-"
+"varbinary.html>`_::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:157
+msgid "Using aggregates in filters::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:164
+msgid "Inner Join example::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:168
+msgid "``SELECT DISTINCT`` like on first part of string, e.g. john-to-paul::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:173
+msgid "Confirming week numbers::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:178
+msgid "Testing arithmetic functions"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:186
+msgid "Miscellaneous MySQL information"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:188
+msgid "Schema information::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:192
+msgid "MySQL status::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:196
+msgid "Flushing Replication::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:202
+msgid "BLOB sizing"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:205
+msgid "Data Type"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:205
+msgid "Size in CHARS"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:207
+msgid "TINYBLOB"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:207
+msgid "255 (2^8 -1) CHARS"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:208
+msgid "BLOB"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:208
+msgid "65535 (2^16 -1) CHARS"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:209
+msgid "MEDIUMBLOB"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:209
+msgid "16777215 (2^24 -1) CHARS"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:210
+msgid "LONGBLOB"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:210
+msgid "4294967295 (2^32 -1) CHARS"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:215
+msgid "Handling Databases forced to read-only mode"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:217
+msgid "Full Read-Write access to the database::"
+msgstr ""
+
+#: ../../cheatsheets/mysql.rst:243
+msgid "Read-Only access to the database::"
+msgstr ""
+

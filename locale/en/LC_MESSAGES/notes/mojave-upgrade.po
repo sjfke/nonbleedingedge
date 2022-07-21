@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../notes/mojave-upgrade.rst:5
+msgid "Mojave upgrade issues"
+msgstr ""
+
+#: ../../notes/mojave-upgrade.rst:8
+msgid "DELL P2715Q Issues"
+msgstr ""
+
+#: ../../notes/mojave-upgrade.rst:10
+msgid "Firefox/Yahoo mail screen went largely white, had to refresh page."
+msgstr ""
+
+#: ../../notes/mojave-upgrade.rst:11
+msgid ""
+"Screen locked broken unreadable display, open close macbook to refresh "
+"screen."
+msgstr ""
+
+#: ../../notes/mojave-upgrade.rst:14
+msgid "Xcode CLI broken"
+msgstr ""
+
+#: ../../notes/mojave-upgrade.rst:27
+msgid "Python3 upgraded"
+msgstr ""
+
+#: ../../notes/mojave-upgrade.rst:55
+msgid "Update Brew (just in case)"
+msgstr ""
+
+#: ../../notes/mojave-upgrade.rst:334
+msgid "Check brew"
+msgstr ""
+
+#: ../../notes/mojave-upgrade.rst:379
+msgid "Upgrade brew cask"
+msgstr ""
+

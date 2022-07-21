@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/pymysql.rst:5
+msgid "PyMySQL CheatSheet"
+msgstr ""
+
+#: ../../cheatsheets/pymysql.rst:8
+msgid "Example"
+msgstr ""
+
+#: ../../cheatsheets/pymysql.rst:10
+msgid "Create a simple table::"
+msgstr ""
+
+#: ../../cheatsheets/pymysql.rst:20
+msgid "Now try inserting and selecting::"
+msgstr ""
+
+#: ../../cheatsheets/pymysql.rst:51
+msgid "Which will print::"
+msgstr ""
+
+#: ../../cheatsheets/pymysql.rst:57
+msgid "Simple Example (row[0] etc)"
+msgstr ""
+
+#: ../../cheatsheets/pymysql.rst:82
+msgid "Simple Example (row[‘id’] etc)"
+msgstr ""
+
+#: ../../cheatsheets/pymysql.rst:118
+msgid "PlaceHolders"
+msgstr ""
+
+#: ../../cheatsheets/pymysql.rst:120
+#, python-format
+msgid "use ‘%s’ (not ‘?’ like Perl DBI and other API’s)"
+msgstr ""
+

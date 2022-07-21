@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../index.rst:38
+msgid "HowTo's"
+msgstr ""
+
+#: ../../index.rst:46
+msgid "Cheatsheets:"
+msgstr ""
+
+#: ../../index.rst:71
+msgid "Notes"
+msgstr ""
+
+#: ../../index.rst:9
+msgid "Welcome to NonBleedingEdge!"
+msgstr ""
+
+#: ../../index.rst:11
+msgid "This site is an online collection of my cheatsheets and howtos."
+msgstr ""
+
+#: ../../index.rst:13
+msgid ""
+"I admit the name *\"NonBleedingEdge\"* is kind of strange, but resulted "
+"from a discussion with another *\"aging techie\"* who also found himself "
+"forced into semi-retirement..."
+msgstr ""
+
+#: ../../index.rst
+msgid "Question"
+msgstr ""
+
+#: ../../index.rst:16
+msgid ""
+"How can an *\"aging techie\"* be of any use in the ever changing I.T. "
+"industry?"
+msgstr ""
+
+#: ../../index.rst
+msgid "Afterall"
+msgstr ""
+
+#: ../../index.rst:18
+msgid "Your brain stops functioning at 50... right?"
+msgstr ""
+
+#: ../../index.rst
+msgid "Answer"
+msgstr ""
+
+#: ../../index.rst:20
+msgid "*\"Experience\"* which should never be under-valued."
+msgstr ""
+
+#: ../../index.rst:22
+msgid ""
+"So this site is not *\"Bleeding Edge\"* (urgh) but attempts to condense "
+"some of my work experience into quick reference guides. The style is "
+"deliberately terse, for us *\"seniors\"* it's more like an engineering "
+"logbook."
+msgstr ""
+
+#: ../../index.rst:26
+msgid "Suggestions, comments, corrections or contributions are always welcomed."
+msgstr ""
+
+#: ../../index.rst:28
+msgid ""
+"Hope you find it useful, and keep coming back because the site will be "
+"updated frequently."
+msgstr ""
+
+#: ../../index.rst:32
+msgid "`gcollis <https://www.linkedin.com/in/gcollis/>`_"
+msgstr ""
+
+#: ../../index.rst:36
+msgid "gcollis@ymail.com"
+msgstr ""
+
