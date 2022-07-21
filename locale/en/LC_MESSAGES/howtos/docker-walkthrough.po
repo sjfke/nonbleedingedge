@@ -1,0 +1,361 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../howtos/docker-walkthrough.rst:5
+msgid "Docker Tutorial Walkthrough"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:8
+msgid "Introduction"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:10
+msgid ""
+"This is a `walkthrough` of `Docker for Beginners` tutorial using a "
+"`Fedora 28` system."
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:12
+msgid ""
+"Generally everything works as anticipated, but the `docker` commands need"
+" to be run as root on `Fedora 28`."
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:15
+msgid "Tutorial Links"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:17
+msgid ""
+"`Docker for Beginners by Prakhar Srivastav <https://docker-"
+"curriculum.com/>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:18
+msgid "`Docker Getting Started <https://docs.docker.com/get-started/>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:21
+msgid "Useful Links"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:23
+msgid ""
+"`Docker Hub (Dev-test pipeline automation, 100,000+ free apps, public and"
+" private registries) <https://hub.docker.com/>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:24
+msgid ""
+"`BusyBox: The Swiss Army Knife of Embedded Linux "
+"<https://busybox.net/about.html>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:25
+msgid "`Homebrew: The missing package manager for macOS <https://brew.sh/>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:26
+msgid ""
+"`Homebrew installation <https://www.howtogeek.com/211541/homebrew-for-"
+"os-x-easily-installs-desktop-apps-and-terminal-utilities/>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:27
+msgid "`AWS CloudFormation <https://aws.amazon.com/cloudformation/>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:30
+msgid "Installation"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:32
+msgid ""
+"First create your `free` **DockerID** `DockerHub registration "
+"<https://docs.docker.com/docker-id/>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:34
+msgid "Fedora provides a Group Installation::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:63
+msgid "On MacOS use `brew cask`: ::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:69
+msgid ""
+"Once installed, *double-click* the `Docker` icon to open it, enter your "
+"Docker ID details."
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:71
+msgid ""
+"When this article was written, 2018.10.18, I encountered issues "
+"*removing* and *reinstalling* `docker`; the following was required to get"
+" it working. ::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:84
+msgid "Checking Your installation"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:86
+msgid "Run some simple tests::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:136
+msgid "Which docker containers have we run or are still running?::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:157
+msgid "What docker images have been `pulled`?::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:165
+msgid "Removing a docker image::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:186
+msgid "WebApps with Docker"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:237
+msgid "Build Your Own"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:239
+msgid ""
+"By default `dockerd "
+"<https://docs.docker.com/engine/reference/commandline/dockerd/>`_ will "
+"attempt to do 5 `pushes` in parallel, which will not work on a *modest* "
+"ADSL connection. Try adjusting `\"--max-concurrent-uploads\"` officially "
+"this is in `\"/etc/docker/daemon.json\"` but this is not true on Fedora "
+"or MacOS. ::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:255
+msgid ""
+"So having stopped `\"docker push\"` from hanging your ADSL connection, "
+"you can continue. ::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:277
+msgid "AWS Elastic Beanstalk (EB)"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:279
+msgid "`AWS EB <https://aws.amazon.com/elasticbeanstalk/>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:281
+msgid ""
+"Much of this is interacting with Web graphical interfaces, so `follow the"
+" tutorial instructions <https://docker-curriculum.com/#docker-on-aws>`_."
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:285
+msgid "Multi-Container Environments"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:315
+msgid "So cool we have `ElasticSearch` running in its own container `es`."
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:317
+msgid ""
+"Now build the `flask` application, but because we need to customize it by"
+" running commands, we will use an ubuntu container as can be seen in the "
+"`Dockerfile`::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:348
+msgid "So now lets try to run it::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:361
+msgid ""
+"This fails be the `foodtrucks-web` container cannot connect to `es` "
+"container on 0.0.0.0:9200 To understand why need to understand docker "
+"networks."
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:365
+msgid "Docker networks"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:367
+msgid "Our Elasticsearch is running, but on 0.0.0.0:9200 ::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:422
+msgid ""
+"So the `es` container is bond to 172.17.0.2:9200 but this is the default "
+"docker network, let's isolate our app to anothe rbridged network.::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:506
+msgid ""
+"Thanks to *automatic service discovery* the communication works and it "
+"resolves the container names!::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:517
+msgid ""
+"The application is git repo is distributed with `setup-docker.sh` bash "
+"script::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:533
+msgid "So to download and run the application all that is needed::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:552
+#: ../../howtos/docker-walkthrough.rst:564
+msgid "Docker Compose"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:554
+msgid "Various tools exists for running multiple docker containers:"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:556
+msgid ""
+"`Docker Machine <https://docs.docker.com/machine/overview/>`_ Create "
+"Docker hosts on your computer, on cloud providers, or own data center"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:557
+msgid ""
+"`Docker Compose <https://docs.docker.com/compose/overview/>`_ A tool for "
+"defining and running multi-container Docker applications."
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:558
+msgid ""
+"`Docker Swarm <https://docs.docker.com/swarm/overview/>`_ A native "
+"clustering solution for Docker."
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:559
+msgid ""
+"`Kubernetes <https://kubernetes.io/>`_ Production-Grade Container "
+"Orchestration."
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:561
+msgid "Will focus on `Docker Compose`."
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:601
+msgid "Online manuals:"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:603
+msgid ""
+"`Docker Compose V3 <https://docs.docker.com/compose/compose-file/compose-"
+"file-v3/>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:604
+msgid ""
+"`Docker Compose V2 <https://docs.docker.com/compose/compose-file/compose-"
+"file-v2/>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:605
+msgid ""
+"`Docker Compose V1 <https://docs.docker.com/compose/compose-file/compose-"
+"file-v1/>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:707
+msgid "So basic create, deletion works, let's dig a little deeper. ::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:774
+msgid "Development Workflow"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:797
+msgid "Now let's add `hello` so `flask-app/app.py`::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:808
+msgid ""
+"But if we try again, it will still fail, because we are still using "
+"`image: prakhar1989/foodtrucks-web`::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:819
+msgid ""
+"So rather than run the 'web' container, let's use the local one and use "
+"`debug` as well::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:848
+msgid ""
+"When specifying `environment` in teh `web` section the application does "
+"not work when started as a daemon?::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:867
+msgid "Staring in the foreground `sudo docker-compose up` works."
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:869
+msgid "Removing `enviroment` section, as show, then the applications works.::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:918
+msgid "AWS Elastic Container Service"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:920
+msgid ""
+"`Installing the Amazon ECS CLI "
+"<https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html>`_"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:922
+msgid "Download and install ECS CLI::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:928
+msgid "Setup GPG keys::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:950
+msgid "Make the binary executable::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:961
+msgid ""
+"Using the `EC2 Console <https://console.aws.amazon.com/ec2/v2/home?region"
+"=us-east-1#KeyPairs:sort=keyName>`_ create a key-pair. ::"
+msgstr ""
+
+#: ../../howtos/docker-walkthrough.rst:981
+msgid ""
+"Added `AWS Elastic Container Service - instructions do not work?  "
+"<https://github.com/prakhar1989/docker-curriculum/issues/163>`_ to the "
+"GutHub issues."
+msgstr ""
+

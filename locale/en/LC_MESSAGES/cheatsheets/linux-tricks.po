@@ -1,0 +1,131 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/linux-tricks.rst:5
+msgid "Linux Tricks Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:8
+msgid "Password Generators"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:10
+msgid ""
+"`OSTechNix passwords <https://www.ostechnix.com/4-easy-ways-to-generate-a"
+"-strong-password-in-linux/>`_"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:11
+msgid ""
+"`MUO passwords <https://www.makeuseof.com/tag/5-ways-generate-secure-"
+"passwords-linux/>`_"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:34
+msgid "``tree`` Directory Viewer"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:36
+msgid ""
+"`nixCraft tree <https://www.cyberciti.biz/faq/linux-show-directory-"
+"structure-command-line/>`_"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:37
+msgid ""
+"`OSTechNix tree <https://www.ostechnix.com/view-directory-tree-structure-"
+"linux/>`_"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:38
+msgid ""
+"`GeeksForGeeks tree <https://www.geeksforgeeks.org/tree-command-"
+"unixlinux/>`_"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:51
+msgid "``dnf`` Useful Commands"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:53
+msgid ""
+"Fedora package installer `DNF <https://www.rootusers.com/25-useful-dnf-"
+"command-examples-for-package-management-in-linux/>`_"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:77
+msgid "Terminal Pagers"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:79
+msgid ""
+"Stolen from the `Fedora Magazine: 5 cool terminal pages "
+"<https://fedoramagazine.org/5-cool-terminal-pagers-in-"
+"fedora/#more-29502>`_ post."
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:107
+msgid "Managing ``.rc`` files"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:109
+msgid ""
+"`Managing dotfiles with rcm on Fedora <https://fedoramagazine.org"
+"/managing-dotfiles-rcm/>`_"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:111
+msgid ""
+"By default, rcm uses ``~/.dotfiles`` for storing all the dotfiles it "
+"manages."
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:113
+msgid ""
+"A managed dotfile is actually stored inside ``~/.dotfiles``, and a "
+"symlinked."
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:115
+msgid ""
+"For example, if ``~/.bashrc`` is tracked by ``rcm``, a long listing would"
+" look like this."
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:123
+msgid "``rcm`` consists of 4 commands:"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:125
+msgid "``mkrc`` – convert a file into a dotfile managed by rcm"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:126
+msgid "``lsrc`` – list files managed by rcm"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:127
+msgid "``rcup`` – synchronize dotfiles managed by rcm"
+msgstr ""
+
+#: ../../cheatsheets/linux-tricks.rst:128
+msgid "``rcdn`` – remove all the symlinks managed by rcm"
+msgstr ""
+

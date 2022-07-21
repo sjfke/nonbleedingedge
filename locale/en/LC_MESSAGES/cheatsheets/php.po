@@ -1,0 +1,126 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/php.rst:5
+msgid "PHP CheatSheet"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:8
+msgid "General Notes"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:10
+msgid "Perl split type functions::"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:15
+msgid "Equiv on Linux seq::"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:19
+msgid ""
+"`Null, Empty isset() <https://www.virendrachandak.com/techtalk/php-isset-"
+"vs-empty-vs-is_null/>`_ ::"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:30
+msgid "End of line::"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:34
+msgid "Ternary operator::"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:39
+msgid "String operations"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:56
+msgid "Numeric operations"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:65
+msgid "Date/Time formatting"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:72
+msgid "Currency formatting"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:79
+msgid "HTML operations"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:94
+msgid "Arrays crash course"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:119
+msgid "Relative array index"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:128
+msgid "Looping over an array"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:140
+msgid "Skipping to next foreach iteration"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:146
+msgid "Perl-like split/join operators"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:156
+msgid "Week numbers"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:165
+msgid "Random Notes"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:175
+msgid "Variables"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:194
+msgid "Defined Constants"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:204
+msgid "Expressions - collective term for code statements"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:215
+msgid "If...Then...Else..."
+msgstr ""
+
+#: ../../cheatsheets/php.rst:255
+msgid "Switch...Case"
+msgstr ""
+
+#: ../../cheatsheets/php.rst:302
+msgid "While..."
+msgstr ""
+
+#: ../../cheatsheets/php.rst:320
+msgid "For..."
+msgstr ""
+

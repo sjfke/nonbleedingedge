@@ -1,0 +1,459 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/powershell.rst:5
+msgid "PowerShell Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:7
+msgid ""
+"This is the companion to ``PowerShell Scripts Cheatsheet``, which focuses"
+" on command line usage."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:9
+msgid ""
+"``PowerShell`` is a modern replacement for the familiar ``DOS`` prompt, "
+"which is similar to a UNIX Shell, but is built on ``.Net`` objects, where"
+" tasks are performed by ``cmdlets`` (pronounced *command-lets*)."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:12
+msgid ""
+"Unlike most shells, which accept and return text, ``PowerShell`` is built"
+" on top of the ``.NET Common Language Runtime`` (CLR), and accepts and "
+"returns ``.NET objects``. The ``.Net objects`` produce by ``cmdlets`` can"
+" be chained together, assigned to variables and redirected in a *UNIX-"
+"like* ``>`` ``<``, ``|`` fashion."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:16
+msgid ""
+"For ease of learning ``PowerShell`` uses a consistent ``cmdlet`` naming "
+"convention, which is cumbersome for a command line, and so provides an "
+"extensible alias mechanism... which make things *easier*  (but less "
+"*consistent*). For example ``ls`` is probably more intuitive than ``get-"
+"childitem``, likewise ``cat`` or ``type`` are more intuitive than ``get-"
+"content``. Aliases like ``gc``, ``gci`` or ``sls`` can be confusing when "
+"starting."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:21
+msgid ""
+"The command-line has color-highlighting and has ``TAB`` completion for "
+"commands and arguments, try ``import <tab>``, or ``get-help -<tab>`` and "
+"cycle through the alternatives. Cmdlets are **case-insensitive** but "
+"hyphens are significant, but for many ending in ``-object`` can be "
+"shortened, so ``where-object`` can be written as ``where``, which in my "
+"opinion is clearer. Other ``*-object`` examples include ``select``, "
+"``sort``, ``tee``,  and ``measure``."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:25
+msgid ""
+"Variable names are also **case-insensitive**, can include ``_``, and "
+"**camelCase** can be used to make variable names more human readable, but"
+" *camelCase* is irrelevent to ``PowerShell``, so ``dogCat``, ``dogcat`` "
+"and ``DogCat`` are the same variable."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:28
+msgid "My personal preference:"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:30
+msgid ""
+"lower-case format for ``cmdlets``, so ``get-help`` rather than ``Get-"
+"Help``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:31
+msgid ""
+"camelCase for variable names, so ``dateString`` , rather than "
+"``date_string``;"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:33
+msgid ""
+"A `Windows Powershell ISE <https://docs.microsoft.com/en-"
+"us/powershell/scripting/components/ise/introducing-the-windows-"
+"powershell-ise?view=powershell-7>`_ is provided if you need more "
+"interactive assistance and is very useful when learning. You might also "
+"want to consider `Windows Terminal "
+"<https://github.com/microsoft/terminal>`_ which supports various command-"
+"line tools and shells like Command Prompt, PowerShell, WSL, and includes "
+"multiple tabs, panes, Unicode and UTF-8 character support, a GPU "
+"accelerated text rendering engine, and custom themes, styles, and "
+"configurations."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:38
+msgid ""
+"There are a lot of online documents and tutorials about ``PowerShell`` "
+"but unfortunately, as is often the case, this means what you are "
+"searching for is either not simple to explain or not well understood by "
+"the author(s) or both... so be careful about blindly doing a *copy-and-"
+"paste* of examples."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:41
+msgid "While learning I found the following helpful when starting:"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:43
+msgid ""
+"`PowerShell GitHub - Recommended Training and Reading "
+"<https://github.com/PowerShell/PowerShell/tree/master/docs/learning-"
+"powershell#recommended-training-and-reading>`_ **a very good place to "
+"start**"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:44
+msgid ""
+"`PowerShell GitHub - Learning Powershell "
+"<https://github.com/PowerShell/PowerShell/tree/master/docs/learning-"
+"powershell>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:45
+msgid ""
+"`PowerShell equivalents for common Linux/bash commands "
+"<https://mathieubuisson.github.io/powershell-linux-bash/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:46
+msgid ""
+"`10 PowerShell cmdlets you can use instead of CMD commands "
+"<https://www.techrepublic.com/article/pro-tip-migrate-to-powershell-from-"
+"cmd-with-these-common-cmdlets/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:49
+msgid "Getting Started"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:51
+msgid ""
+"Like any shell, PowerShell provides an environment which allows "
+"interaction with files, folders, processes, the computer and network "
+"interfaces etc, but as objects, for example:"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:54
+msgid ""
+"An ``Item`` object, which can be a *file*, *directory*, *link*, "
+"*registry-key* etc;"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:55
+msgid "A ``ChildItem`` object, children of the current folder (location);"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:56
+msgid "A ``Location`` object, where you are in the file system;"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:57
+msgid "A ``Process`` object, details of running process(es);"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:58
+msgid "An ``MSFT_NetAdapter`` object, for network interfaces;"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:59
+msgid ""
+"A ``ComputerInfo`` object, providing details of the computer, operating "
+"system etc;"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:69
+msgid "You should become familiar with ``get-help`` and ``get-member`` cmdlets::"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:89
+msgid "Quick Introduction"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:91
+msgid "Examples of common commands."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:144
+msgid "Some references which may help at the beginning."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:146
+msgid ""
+"`PowerShell for Experienced Bash users "
+"<https://github.com/PowerShell/PowerShell/tree/master/docs/learning-"
+"powershell#map-book-for-experienced-bash-users>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:147
+msgid ""
+"`10 basic PowerShell commands that every Windows 10 user should know "
+"<https://www.thewindowsclub.com/basic-powershell-commands-windows>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:148
+msgid ""
+"`10 PowerShell commands every Windows admin should know "
+"<https://www.techrepublic.com/blog/10-things/10-powershell-commands-"
+"every-windows-admin-should-know/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:151
+msgid "Environment"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:170
+msgid "Processes"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:202
+msgid "Executables"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:242
+msgid "Files and Folders"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:289
+msgid "Command Line History"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:291
+msgid "You can recall and repeat commands::"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:303
+msgid "Computer Information"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:320 ../../cheatsheets/powershell.rst:337
+#: ../../cheatsheets/powershell.rst:382 ../../cheatsheets/powershell.rst:526
+msgid "Further reading:"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:322
+msgid ""
+"`Introduction to CIM Cmdlets <https://devblogs.microsoft.com/powershell"
+"/introduction-to-cim-cmdlets/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:323
+msgid ""
+"`Microsoft Docs: Get-CimInstance <https://docs.microsoft.com/en-"
+"us/powershell/module/cimcmdlets/get-ciminstance>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:326
+msgid "Network Information"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:328
+msgid "A lot more information is available than shown here, see further reading."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:339
+msgid ""
+"`Microsoft Docs: NetTCPIP <https://docs.microsoft.com/en-"
+"us/powershell/module/nettcpip>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:342
+msgid "Services"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:356
+msgid "Windows EventLog"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:384
+msgid ""
+"`Collen M. Morrow: Parsing Windows event logs with PowerShell "
+"<https://colleenmorrow.com/2012/09/20/parsing-windows-event-logs-with-"
+"powershell/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:385
+msgid ""
+"`Microsoft Docs: Get-WinEvent <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.diagnostics/get-winevent>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:386
+msgid ""
+"`Microsoft Docs: Get-EventLog <https://docs.microsoft.com/en-"
+"us/powershell/module/microsoft.powershell.management/get-eventlog>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:389
+msgid "HotFixes"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:400
+msgid "Network TCPIP"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:417
+msgid "DNS Resolver"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:439
+msgid ""
+"The examples are very simple, much more is possible, but remember an "
+"object is returned not text."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:441 ../../cheatsheets/powershell.rst:500
+#: ../../cheatsheets/powershell.rst:646
+msgid "More detailed examples:"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:444
+msgid ""
+"`AdamTheAutomator: Resolving DNS Records with PowerShell "
+"<https://adamtheautomator.com/resolve-dnsname/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:445
+msgid ""
+"`Microsoft Docs: Resolve-DnsName <https://docs.microsoft.com/en-"
+"us/powershell/module/dnsclient/resolve-dnsname>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:446
+msgid ""
+"`Microsoft Docs: DnsClient Module <https://docs.microsoft.com/en-"
+"us/powershell/module/dnsclient/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:450
+msgid "Web-Pages and REST API's"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:502
+msgid ""
+"`Microsoft Docs: Get content from a web page "
+"<https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility"
+"/Invoke-WebRequest>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:503
+msgid ""
+"`Microsoft Docs: Send an HTTP or HTTPS request to a RESTful web service "
+"<https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility"
+"/Invoke-RestMethod>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:504
+msgid ""
+"`AdamTheAutomator: Invoke-WebRequest - PowerShell’s Web Swiss Army Knife "
+"<https://adamtheautomator.com/invoke-webrequest/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:505
+msgid ""
+"`Microsoft Docs: HttpUtility Class <hhttps://docs.microsoft.com/en-"
+"us/dotnet/api/system.web.httputility>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:508
+msgid "Active Directory"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:510
+msgid "Generic examples are stolen from further reading reference."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:528
+msgid ""
+"`Microsoft Docs: ActiveDirectory Module <https://docs.microsoft.com/en-"
+"us/powershell/module/activedirectory>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:529
+msgid ""
+"`AdamTheAutomator: Active Directory Scripts Galore: Come and Get It! "
+"<https://adamtheautomator.com/active-directory-scripts/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:530
+msgid ""
+"`Huge List Of PowerShell Commands for Active Directory, Office 365 and "
+"more <https://activedirectorypro.com/powershell-commands/>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:533
+msgid "Formatting Output"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:535
+msgid ""
+"By default Powershell appears to render *cmdlet* output, using ``format-"
+"table``."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:537
+msgid ""
+"Others such as ``format-list``, ``out-gridview`` are available as "
+"illustrated here."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:582
+msgid ""
+"The *cmdlet* ``out-gridview`` produces a graphical table than can be "
+"ordered and filtered, as shown in the example which is shows only running"
+" services in alphabetic *DisplayName* order."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:590
+msgid ""
+"The ``out-gridview`` in combination with ``import-csv`` *cmdlets* can "
+"quickly render CSV files, and avoids having to use ``Microsoft Excel`` or"
+" ``Microsoft Access``."
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:606
+msgid "Formatting Variables"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:608
+msgid ""
+"Very similar to Python ``-f`` operator, examples use ``write-host`` but "
+"can be used with other cmdlets, such as assigment. Specified as "
+"``{<index>, <alignment><width>:<format_spec>}``"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:648
+msgid ""
+"`PowershellPrimer.com: Formatting Output "
+"<https://powershellprimer.com/html/0013.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/powershell.rst:649
+msgid ""
+"`Microsoft Docs: Get-Date "
+"<https://docs.microsoft.com/powershell/module/microsoft.powershell.utility"
+"/get-date?view=powershell-6>`_"
+msgstr ""
+

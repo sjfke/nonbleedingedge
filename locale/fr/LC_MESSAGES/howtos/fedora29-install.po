@@ -1,0 +1,232 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../howtos/fedora29-install.rst:5
+msgid "Fedora 29 Live Media Install"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:8
+msgid "Introduction"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:10
+msgid "This HOWTO explains how to install `fedora29` from the `live DVD media`."
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:12
+msgid ""
+"**FIRST** backup everthing you want to reinstall afterwords, usually "
+"`/home/<user>` selective directories."
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:15
+msgid "Tutorial Links"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:17
+msgid ""
+"`Fedora Installation Guide <https://docs.fedoraproject.org/en-"
+"US/fedora/f29/install-guide/>`_"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:18
+msgid ""
+"`Enable Fastestmirror <http://www.theironsamurai.com/dnf-slow-on-fedora-"
+"add-fastestmirror-to-your-dnf-conf/>`_"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:19
+msgid ""
+"`25 Useful DNF Command Examples <https://www.rootusers.com/25-useful-dnf-"
+"command-examples-for-package-management-in-linux/>`_"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:22
+msgid "Upgrade rather than Fresh Installation"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:24
+msgid "Simpler, safer, but you should still backup your data and then follow:"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:26
+msgid "`DNF system upgrade <https://fedoraproject.org/wiki/DNF_system_upgrade>`_"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:29
+msgid "Fresh Installation"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:31
+msgid "Boot the system with the live media in the DVD."
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:32
+msgid "Delete all LV's **erasing ALL your user data**"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:33
+msgid "Reboot the system."
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:36
+msgid "Post Installation"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:38
+msgid "Disable `selinux`::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:44
+msgid "Set the hostname if you forgot::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:49
+msgid "Setup Fastestmirror::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:58
+msgid "Update Packages::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:64
+msgid "Install RMP Fusion repos"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:66
+msgid "`RPM Fusion <https://rpmfusion.org/Configuration>`_"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:68
+msgid "Click on the appropriate links and use install (default) action."
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:70
+msgid "Suggest `RPM Fusion free` and `RPM Fusion nonfree`."
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:72
+msgid "Via the command-line::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:79
+msgid "Additional Updates"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:81
+msgid ""
+"If you want to `ssh` from another host to finish updating your new "
+"system::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:88
+msgid "Despite all attempts to kill `Adobe Flash`, some sites still use it::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:93
+msgid "Install Chromium (not Google Chrome)::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:97
+msgid ""
+"**Note**: `chromuim` caused installation problems later, see `Multimedia "
+"post-install`_"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:100
+msgid "Stolen from mjmwired.net, but still seems relevant"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:102
+msgid ""
+"`Fedora 19 Installation Guide <https://www.mjmwired.net/resources/mjm-"
+"fedora-f19.html>`_"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:104
+msgid ""
+"There should be a better way to do this... so try skipping this section "
+"and see what doesn't work."
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:106
+msgid "XMMS: simple, older GUI, minimalistic features (but still popular)::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:110
+msgid ""
+"Rhythmbox/Gstreamer - A simple audio application similar to iTunes "
+"layout::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:114
+msgid "**Note**: `rhythmbox` should already be installed, so ignore the warning."
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:116
+msgid "MPlayer - MPlayer comes in a command line only interface or skinable GUI::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:120
+msgid "Xine - Xine is similar to MPlayer::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:126
+msgid "Install Additional groups"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:137
+msgid "Install AppStream metadata"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:144
+msgid "Multimedia post-install"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:151
+msgid ""
+"At the time of writing 2018.11.26 the `dnf groupupdate Multimedia`, "
+"produces the following error::"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:160
+msgid ""
+"So `chromium` seems to break `Rhythmbox "
+"<https://ask.fedoraproject.org/en/question/91677/rhythmbox-does-not-see-"
+"music-files-there-are-tons-of-them/>`_ because you cannot groupupdate "
+"`Multimedia`."
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:163
+msgid ""
+"Remove `chromium` and try `easily install Chrome & Steam on Fedora "
+"<https://fedoramagazine.org/third-party-repositories-fedora/>`_"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:178
+msgid ""
+"**Note**: also check `Workstation/Third Party Software Repositories "
+"<https://fedoraproject.org/wiki/Workstation/Third_Party_Software_Repositories>`_"
+msgstr ""
+
+#: ../../howtos/fedora29-install.rst:181
+msgid "Other Groups to Consider"
+msgstr ""
+

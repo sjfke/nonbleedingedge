@@ -1,0 +1,120 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/brew.rst:1
+msgid ""
+"git:github_url: "
+"https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/brew.rst"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:6
+msgid "Brew / Brew Cask Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:10
+msgid "Useful Links"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:12
+msgid ""
+"`HomeBrew - The missing package manager for macOS (or Linux) "
+"<https://brew.sh/>`_"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:13
+msgid ""
+"`HomeBrew Installation <http://0pointer.de/blog/projects/systemd-"
+"docs.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:17
+msgid "Basic Command Comparison"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:46
+msgid "Brew Update vs Upgrade"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:48
+msgid ""
+"The **\"update\"** updates Homebrew itself, where as **\"upgrade\"** "
+"updates the installed packages."
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:59
+msgid "HomeBrew Casks"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:61
+msgid ""
+"Homebrew-Cask is an extension built on top of `HomeBrew "
+"<https://brew.sh/>`_ which speeds up the installation process of large "
+"binary files with the use of the Terminal App. Applications such as "
+"Google Chrome, Firefox, Alfred, and Docker can be easily installed "
+"without having to download the .dmg file."
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:70
+msgid ""
+"`Listing of all casks available via the Homebrew package manager "
+"<https://formulae.brew.sh/cask/>`_"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:74
+msgid "Fixing the pesky 'depends_on macos' value: \":lion\""
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:76
+msgid ""
+"`Fixing casks with **depends_on** that reference pre-Mavericks "
+"<https://github.com/Homebrew/homebrew-cask/issues/58046>`_"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:79
+msgid "Catlina Upgrade"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:81
+msgid ""
+"Unsurprisingly ``brew`` is broken by the upgrade and the effects of "
+"trying to force ``zsh`` as the default shell need to be seen."
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:83
+msgid ""
+"`Use zsh as the default shell on your Mac <https://support.apple.com/en-"
+"us/HT208050>`_"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:84
+msgid "`MacOS Cataline <https://www.apple.com/macos/catalina/>`_"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:85
+msgid ""
+"`Why macOS Catalina is breaking so many apps, and what to do about it "
+"<https://www.theverge.com/2019/10/12/20908567/apple-macos-catalina-"
+"breaking-apps-32-bit-support-how-to-prepare-avoid-update>`_"
+msgstr ""
+
+#: ../../cheatsheets/brew.rst:87
+msgid "Steps taken post Catlina upgrade"
+msgstr ""
+

@@ -1,0 +1,220 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Geoffrey Collis
+# This file is distributed under the same license as the NonBleedingEdge
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NonBleedingEdge \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-21 17:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: ../../cheatsheets/svn.rst:5
+msgid "Subversion Cheatsheet"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:8
+msgid "Useful Links"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:10
+msgid "`Apache Subversion <https://subversion.apache.org/>`_"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:11
+msgid "`Version Control with Subversion <http://svnbook.red-bean.com/>`_"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:12
+msgid "`Subversion 1.6 <http://svnbook.red-bean.com/en/1.6/index.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:13
+msgid "`Subversion 1.7 <http://svnbook.red-bean.com/en/1.7/index.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:14
+msgid ""
+"`Subversion Nightly build 1.8 <http://svnbook.red-"
+"bean.com/nightly/en/index.html>`_"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:15
+msgid "`TortoiseSVN (Subversion for Windows) <https://tortoisesvn.net/>`_"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:19
+msgid "Which version is installed?"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:27
+msgid "SVN Help"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:35
+msgid "Recommended Repository Layout"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:37
+msgid ""
+"You can have multiple ``release directories`` in a repository, each "
+"should have the following:"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:48
+msgid "Basic Work Cycle"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:81
+msgid "Undo ``svn add`` without reverting local edits"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:83
+msgid ""
+"`Undo svn add without reverting local edits "
+"<https://stackoverflow.com/questions/5083242/undo-svn-add-without-"
+"reverting-local-edits>`_"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:91
+msgid "Reversing a committed change"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:101
+msgid "Subversion version versus Unicode"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:103
+msgid ""
+"`Subversion and Unicode <https://rhubbarb.wordpress.com/2012/04/28/svn-"
+"unicode/>`_"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:105
+msgid ""
+"By default, Subversion tends to regard UTF-16 files as binary. It assigns"
+" them a MIME type of application/octet-stream. As a result, when an "
+"attempt is made to merge a change from a branched version of the file, "
+"there is always a conflict that must be hand-edited."
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:107
+msgid ""
+"However, there is a solution. By giving the UTF-16 files a correct MIME "
+"type, SVN is able to perform merges just like a basic text file."
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:109
+msgid "The required MIME type is one of::"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:114
+msgid ""
+"depending upon whether the encoding is LittleEndian or BigEndian "
+"respectively."
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:116
+msgid "To set the property, use a command along the lines of::"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:120
+msgid ""
+"This works with the (command-line) SVN version 1.6+ clients on both Linux"
+" and Windows."
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:123
+msgid ""
+"`Get encoding of a file in Windows "
+"<https://stackoverflow.com/questions/3710374/get-encoding-of-a-file-in-"
+"windows>`_"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:130
+msgid "Subversion Keywords"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:132
+msgid "To aid with page layout there are 2 forms:"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:153
+msgid "Repository Creation"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:165
+msgid "Repository Access Methods"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:180
+msgid "Status prefixes; ``snv status``"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:193
+msgid "History Commands"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:210
+msgid "Ignoring files and directories"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:225
+msgid "Revision Keywords / Dates"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:241
+msgid "Creating a Subversion release"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:243
+msgid ""
+"`SVN: How to release software properly <https://www.devroom.io/2006/11/21"
+"/svn-how-to-release-software-properly/>`_"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:265
+msgid "Subversion Properties"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:278
+msgid "Subversion Unversioned Properties"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:288
+msgid "Automatic Property Setting"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:296
+msgid "Common Useful Properties"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:316
+msgid "Creating lock entries"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:336
+msgid "Change-lists"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:347
+msgid "The ``svnserve`` startup script"
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:349
+msgid "For earlier Fedora versions that do not have ``systemd``."
+msgstr ""
+
+#: ../../cheatsheets/svn.rst:481
+msgid "The ``svnserve`` Configuration file"
+msgstr ""
+
