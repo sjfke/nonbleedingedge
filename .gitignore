@@ -76,6 +76,10 @@ Thumbs.db
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
 
+# Local run configurations:
+.run/
+
+# Local PyCharm folder
 .idea/
 
 # Zsh configuration files #
