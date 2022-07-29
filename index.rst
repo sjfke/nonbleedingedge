@@ -72,5 +72,4 @@ Hope you find it useful, and keep coming back because the site will be updated f
 	:caption: Notes
 	:maxdepth: 1
 	
-	notes/mojave-upgrade
 	notes/catalina-upgrade
