@@ -1548,8 +1548,125 @@ In a commercial or industrial environment ask your Windows Administrator, but co
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
    
 
-Generating and Installing Certificates
-======================================
+Generating, Installing and Using a Self-Signed Certificate
+==========================================================
+
+This section summaries using PowerShell ``New-SelfSignedCertificate`` stolen from `Adam the Automator <https://adamtheautomator.com>`_
+articles:
+
+* `New-SelfSignedCertificate: Creating Certificates with PowerShell <https://adamtheautomator.com/new-selfsignedcertificate/>`_
+* `How to Sign PowerShell Script (And Effectively Run It) <https://adamtheautomator.com/how-to-sign-powershell-script/>`_
+
+The cmd-let only supports using: store (cert:\CurrentUser\My) or store (cert:\LocalMachine\My).
+
+Self-Signed Certificates Setup
+------------------------------
+
+Requires creating the following certificates using a PowerShell in Administrative mode.
+
+* LocalMachine\My Personal for signing;
+* LocalMachine\Root certificate for authentication;
+* LocalMachine\TrustedPublisher for authentication;
+
+::
+
+    # Certificate Manager tools
+    C:\Windows\System32>certmgr # Current User
+    C:\Windows\System32>certlm  # Local Machine
+
+    ADM-PS> $authenticode = New-SelfSignedCertificate -Subject "ATA Authenticode" -CertStoreLocation Cert:\LocalMachine\My -Type CodeSigningCert
+
+    # Add the self-signed Authenticode certificate   ## LocalMachine\Root certificate store
+    ADM-PS> $rootStore = [System.Security.Cryptography.X509Certificates.X509Store]::new("Root","LocalMachine")
+    ADM-PS> $rootStore.Open("ReadWrite")             ## Open LocalMachine\Root certificate store for read/write
+    ADM-PS> $rootStore.Add($authenticode)            ## Add the certificate stored in the $authenticode variable.
+    ADM-PS> $rootStore.Close()                       ## Close the root certificate store.
+
+    # Add the self-signed Authenticode certificate   ## LocalMachine\TrustedPublisher certificate store.
+    ADM-PS> $publisherStore = [System.Security.Cryptography.X509Certificates.X509Store]::new("TrustedPublisher","LocalMachine")
+    ADM-PS> $publisherStore.Open("ReadWrite")        ## Open LocalMachine\TrustedPublisher certificate store for read/write
+    ADM-PS> $publisherStore.Add($authenticode)       ## Add the certificate stored in the $authenticode variable.
+    ADM-PS> $publisherStore.Close()                  ## Close the TrustedPublisher certificate store.
+
+    # Verify all certificates are created and the Thumbprint same
+    ADM-PS> Get-ChildItem Cert:\LocalMachine\My | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
+       PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\My
+    Thumbprint                                Subject
+    ----------                                -------
+    DBA0B68D1382393AB4CDCAA166D8E61B7FF80671  CN=ATA Authenticode
+
+    ADM-PS> Get-ChildItem Cert:\LocalMachine\Root | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
+       PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\Root
+    Thumbprint                                Subject
+    ----------                                -------
+    DBA0B68D1382393AB4CDCAA166D8E61B7FF80671  CN=ATA Authenticode
+
+    ADM-PS> Get-ChildItem Cert:\LocalMachine\TrustedPublisher | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
+       PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\TrustedPublisher
+    Thumbprint                                Subject
+    ----------                                -------
+    DBA0B68D1382393AB4CDCAA166D8E61B7FF80671  CN=ATA Authenticode
+
+Using the Authenticode, Signing and Running
+-----------------------------------------------
+
+This only works for the Administration PowerShell not that of the CurrentUser, needs investigating.
+Suspect missing certificate or incorrect ExecutionPolicy.
+
+::
+
+    # Enforce AllSigned
+    ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
+    ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+    ADM-PS> PS C:\Users\geoff> Get-ExecutionPolicy -list
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser       AllSigned
+     LocalMachine       AllSigned
+
+    # Get the *ATA Authenticode*
+    ADM-PS> $codeCertificate = Get-ChildItem Cert:\LocalMachine\My | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
+
+    PS C:\> Get-Content C:\Users\sjfke\hello-world.ps1
+    #requires -version 4
+    Set-StrictMode -Version 2
+    write-host 'hello world on host'
+    write-output 'hello world on output'
+
+    ADM-PS> Set-AuthenticodeSignature -FilePath C:\Users\sjfke\hello-world.ps1  -Certificate $codeCertificate
+    # This adds a signature to end of file.
+    # It makes the script becomes immutable, change it and you need to add the authenticode again.
+
+    PS C:\> Get-Content C:\Users\sjfke\hello-world.ps1
+    #requires -version 4
+    Set-StrictMode -Version 2
+    write-host 'hello world on host'
+    write-output 'hello world on output'
+
+    # SIG # Begin signature block
+    <-- snip -->
+    # SIG # End signature block
+
+
+Note: adding a TimeStampServer ensures that your code will not expire when the signing certificate expires.
+
+::
+
+    ADM-PS> Set-AuthenticodeSignature -FilePath C:\Users\sjfke\hello-world.ps1  -Certificate $codeCertificate -TimeStampServer http://timestamp.digicert.com
+    # Freely available TimeStampServers
+    - http://timestamp.digicert.com
+    - http://timestamp.comodoca.com
+    - http://timestamp.globalsign.com
+    - http://tsa.starfieldtech.com
+    - http://timestamp.entrust.net/TSS/RFC3161sha2TS
+    - http://sha256timestamp.ws.symantec.com/sha256/timestamp
+    - http://tsa.swisssign.net
+
+Generating and Installing an OpenSSL Self-Signed Certificate
+============================================================
 
 This section will show how to use ``openssl`` and ``WLS2`` to generate self-signed certificates
 
