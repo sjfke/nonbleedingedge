@@ -55,7 +55,7 @@ indiviual commands, ``cmdlets`` can.
 
 
 If your *ExecutionPolicy* is as above, a quick fix is to start a *PowerShell as Administrator* and set it to *RemoteSigned* as shown, but you 
-should still read the `PowerShell Exection Policies`_ section.
+should still read the `PowerShell Execution Policies`_ section.
 
 ::
 
@@ -1453,7 +1453,7 @@ More detailed formatting examples:
 * `PowershellPrimer.com: Formatting Output <https://powershellprimer.com/html/0013.html>`_
 * `Microsoft documentation: Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date>`_
 
-Ouput methods:
+Output methods:
 
 * `Microsoft Docs: Write Output <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-output>`_
 * `Microsoft Docs: Write Warning <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-warning>`_
@@ -1466,61 +1466,63 @@ Running PowerShell scripts
 PowerShell is an often abused hackers attack vector, so modern versions of Windows prevent PowerShell scripts from
 being executed *out-of-the-box*, although the ``cmd-lets`` can be run. 
 
-Many articles suggest the disabling this security feature... **DO NOT DO THIS** 
+Many articles suggest the disabling this security feature... **DO NOT DO THIS**, besides most companies harden their
+Windows laptop and server installations, so disabling may not be possible.
 
-Furthermore most companies harden their Windows laptop and server installations, so disabling may not work anyway.
+In Windows 10 Home edition, in there is a set of developer section in ``Settings``, one of which is for PowerShell to
+allow local scripts to be executed and require signing for remote scripts, choose this option, or run an Administrator
+PowerShell and use:
 
-Ways to work with this restriction, are not intuitive... it took me some time to figure it out, and I am 
-still be no means an expert, hopefully this will get you started, and you are always welcome to contact me to improve this section.
+::
 
-The execution-policy, controls the execution of PowerShell scripts, good references to read are:
+    PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+A working setup for your personal laptop:
+
+::
+
+    PS> Get-ExecutionPolicy -list
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser    RemoteSigned
+     LocalMachine       AllSigned
+
+   # Controlling your permission to run PowerShell scripts
+   PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
+   PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
+   PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
+
+A working setup for a typical windows server installation:
+::
+
+    PS> Get-ExecutionPolicy -list
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser       AllSigned
+     LocalMachine       AllSigned
+
+Some useful references are:
 
 * `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
 * `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
 * `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
 
-If you start ``PowerShell`` as administrator, then you can change the *'execution-policy'*, and you should  
-change the *'CurrentUser'*, which is *your* execution-policy rights, see Get-ExecutionPolicy link.
-A default install will most likely look as shown.
+PowerShell Execution Policies
+=============================
 
-::
-
-   PS> Get-ExecutionPolicy -list
-   MachinePolicy    Undefined
-      UserPolicy    Undefined
-         Process    Undefined
-     CurrentUser    Restricted
-    LocalMachine    Restricted
-    
-   # Permit yourself to run PowerShell scripts
-   PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
-   PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
-   PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
-
-
-Choosing **Unrestricted** means that any PowerShell script, even ones inadvertently or unknowingly 
-downloaded from the Internet will run as you, and with your privileges, so *Avoid Doing This*.
-
-When developing your scripts you can try using the following to avoid having certificates installed and updating the signature each time you change the script.
-
-::
-
-  PS> powershell.exe -noprofile -executionpolicy bypass -file .\script.ps1 
-
-This may not be permitted on Corporate laptops which usually have additional security restrictions.
-  
-
-PowerShell Exection Policies
-============================ 
-
-See: `About Execution Policies <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_ for more details.
-
-PowerShell's execution policies:
+PowerShell's `execution policies
+<https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_ :
 
 * ``Restricted`` does not permit any scripts to run (*.ps1xml, .psm1, .ps1*);
 * ``AllSigned``, prevents running scripts that do not have a digital signature;
 * ``RemoteSigned`` prevents running downloaded scripts that do not have a digital signature;
-* ``Unrestricted`` runs scripts without a digital signature, warning about non-local intranet zone scripts;
+* ``Unrestricted`` runs without a digital signature, warns about non-local intranet zone scripts;
 * ``Bypass`` allows running of scripts without any digital signature, and without any warnings;
 * ``Undefined`` no execution policy is defined;
 
@@ -1532,10 +1534,7 @@ PowerShell's execution policy scope:
 * ``CurrentUser`` affects only the current user, ``HKEY_CURRENT_USER`` registry subkey;
 * ``LocalMachine`` all users on the current computer, ``HKEY_LOCAL_MACHINE`` registry subkey;
 
-By default on a Windows Server the execution policy is, ``LocalMachine RemoteSigned``, but for your Windows Laptop or Desktop it will be ``LocalMachine Restricted``.
-To change the execution policy, you must start a PowerShell as Administrator and use ``Set-ExecutionPolicy`` as shown, you will be prompted to confirm this action.
-
-In a commercial or industrial environment ask your Windows Adminstrator, but company policy may be *AllSigned*.
+In a commercial or industrial environment ask your Windows Administrator, but company policy may be *AllSigned*.
 
 ::
 
