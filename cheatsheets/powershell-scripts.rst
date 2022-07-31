@@ -18,7 +18,7 @@ To simplify maintenance I write PowerShell scripts as standalone utilities deplo
 my favourite frequently used functions, such as *dumpArrayList*, *dumpHashTable* because there is no mechanism to textually include 
 your favourite functions into the source when writing and testing. 
 
-It is possible to split your script into multiple files, create libraries of your favoutite utilities etc. 
+It is possible to split your script into multiple files, create libraries of your favourite utilities etc.
 I do not cover this topic, the example script shows where/how to ``source`` you library files, and if you wish to create your 
 own modules, see `How to Write a PowerShell Script Module <https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module>`_.
 
@@ -53,24 +53,33 @@ indiviual commands, ``cmdlets`` can.
      CurrentUser       Undefined
     LocalMachine      Restricted  # lowest priority
 
-
-If your *ExecutionPolicy* is as above, a quick fix is to start a *PowerShell as Administrator* and set it to *RemoteSigned* as shown, but you 
-should still read the `PowerShell Execution Policies`_ section.
+In Windows 10 Home edition there is a set of developer section in ``Settings``, one of which is for PowerShell to
+allow local scripts to be executed by requiring ``RemoteSigned`` for ``CurrentUser``, choose this option, or run a
+*PowerShell as Administrator* set the following but you should still read the `PowerShell Execution Policies`_ section.
 
 ::
 
-   # Set *ONE* of: 'LocalMachine RemoteSigned' or 'CurrentUser RemoteSigned' not both
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+   # Suggested Laptop settings
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
    PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
-   
            Scope ExecutionPolicy
            ----- ---------------
    MachinePolicy       Undefined  # highest priority
       UserPolicy       Undefined
          Process       Undefined
-     CurrentUser       Undefined
-    LocalMachine    RemoteSigned  # lowest priority
+     CurrentUser    RemoteSigned
+    LocalMachine       Undefined  # lowest priority
+
+   # Suggested Server settings
+   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
+   PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
+           Scope ExecutionPolicy
+           ----- ---------------
+   MachinePolicy       Undefined  # highest priority
+      UserPolicy       Undefined
+         Process       Undefined
+     CurrentUser       AllSigned
+    LocalMachine       Undefined  # lowest priority
  
 
 Language
@@ -1551,38 +1560,46 @@ In a commercial or industrial environment ask your Windows Administrator, but co
 Generating, Installing and Using a Self-Signed Certificate
 ==========================================================
 
-This section summaries using PowerShell ``New-SelfSignedCertificate`` stolen from `Adam the Automator <https://adamtheautomator.com>`_
-articles:
+This section stolen from `Adam the Automator <https://adamtheautomator.com>`_ articles below, demonstrates
+using PowerShell ``New-SelfSignedCertificate``, which supports stores **cert:\CurrentUser\My** or **cert:\LocalMachine\My**.
 
 * `New-SelfSignedCertificate: Creating Certificates with PowerShell <https://adamtheautomator.com/new-selfsignedcertificate/>`_
 * `How to Sign PowerShell Script (And Effectively Run It) <https://adamtheautomator.com/how-to-sign-powershell-script/>`_
-
-The cmd-let only supports using: store (cert:\CurrentUser\My) or store (cert:\LocalMachine\My).
 
 Self-Signed Certificates Setup
 ------------------------------
 
 Requires creating the following certificates using a PowerShell in Administrative mode.
 
-* LocalMachine\My Personal for signing;
-* LocalMachine\Root certificate for authentication;
-* LocalMachine\TrustedPublisher for authentication;
+* **LocalMachine\\My Personal** - public/private key and certificate for signing;
+* **LocalMachine\\Root** - certificate for authentication;
+* **LocalMachine\\TrustedPublisher** - certificate for authentication;
 
 ::
 
     # Certificate Manager tools
-    C:\Windows\System32>certmgr # Current User
-    C:\Windows\System32>certlm  # Local Machine
+    C:\Windows\system32\certmgr.msc # Current User
+    C:\Windows\system32\certlm.msc  # Local Machine
+    C:\Windows\system32\mmc.exe     # MMC tool
+
+    ADM-PS> Get-ExecutionPolicy -List
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser    RemoteSigned
+     LocalMachine       Undefined
 
     ADM-PS> $authenticode = New-SelfSignedCertificate -Subject "ATA Authenticode" -CertStoreLocation Cert:\LocalMachine\My -Type CodeSigningCert
 
-    # Add the self-signed Authenticode certificate   ## LocalMachine\Root certificate store
+    # Add the self-signed Authenticode to LocalMachine\Root certificate store
     ADM-PS> $rootStore = [System.Security.Cryptography.X509Certificates.X509Store]::new("Root","LocalMachine")
     ADM-PS> $rootStore.Open("ReadWrite")             ## Open LocalMachine\Root certificate store for read/write
     ADM-PS> $rootStore.Add($authenticode)            ## Add the certificate stored in the $authenticode variable.
     ADM-PS> $rootStore.Close()                       ## Close the root certificate store.
 
-    # Add the self-signed Authenticode certificate   ## LocalMachine\TrustedPublisher certificate store.
+    # Add the self-signed Authenticode to LocalMachine\TrustedPublisher certificate store.
     ADM-PS> $publisherStore = [System.Security.Cryptography.X509Certificates.X509Store]::new("TrustedPublisher","LocalMachine")
     ADM-PS> $publisherStore.Open("ReadWrite")        ## Open LocalMachine\TrustedPublisher certificate store for read/write
     ADM-PS> $publisherStore.Add($authenticode)       ## Add the certificate stored in the $authenticode variable.
@@ -1593,32 +1610,31 @@ Requires creating the following certificates using a PowerShell in Administrativ
        PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\My
     Thumbprint                                Subject
     ----------                                -------
-    DBA0B68D1382393AB4CDCAA166D8E61B7FF80671  CN=ATA Authenticode
+    F71A096EFCDC99DFAC109A228565B427B66DF49F  CN=ATA Authenticode
 
     ADM-PS> Get-ChildItem Cert:\LocalMachine\Root | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
        PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\Root
     Thumbprint                                Subject
     ----------                                -------
-    DBA0B68D1382393AB4CDCAA166D8E61B7FF80671  CN=ATA Authenticode
+    F71A096EFCDC99DFAC109A228565B427B66DF49F  CN=ATA Authenticode
 
     ADM-PS> Get-ChildItem Cert:\LocalMachine\TrustedPublisher | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
        PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\TrustedPublisher
     Thumbprint                                Subject
     ----------                                -------
-    DBA0B68D1382393AB4CDCAA166D8E61B7FF80671  CN=ATA Authenticode
+    F71A096EFCDC99DFAC109A228565B427B66DF49F  CN=ATA Authenticode
+
 
 Using the Authenticode, Signing and Running
 -----------------------------------------------
 
-This only works for the Administration PowerShell not that of the CurrentUser, needs investigating.
-Suspect missing certificate or incorrect ExecutionPolicy.
-
 ::
 
-    # Enforce AllSigned
+    # Enforce AllSigned, select '[A] Yes to All' option
     ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
     ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
-    ADM-PS> PS C:\Users\geoff> Get-ExecutionPolicy -list
+
+    ADM-PS> PS C:\Users\geoff> Get-ExecutionPolicy -List
             Scope ExecutionPolicy
             ----- ---------------
     MachinePolicy       Undefined
@@ -1633,25 +1649,31 @@ Suspect missing certificate or incorrect ExecutionPolicy.
     PS C:\> Get-Content C:\Users\sjfke\hello-world.ps1
     #requires -version 4
     Set-StrictMode -Version 2
-    write-host 'hello world on host'
-    write-output 'hello world on output'
+    write-host 'host: hello world!'
+    write-output 'output: hello world!'
+    exit(0)
 
     ADM-PS> Set-AuthenticodeSignature -FilePath C:\Users\sjfke\hello-world.ps1  -Certificate $codeCertificate
-    # This adds a signature to end of file.
-    # It makes the script becomes immutable, change it and you need to add the authenticode again.
-
+    # Appends a signature, makes it immutable, any changes require Set-AuthenticodeSignature again.
     PS C:\> Get-Content C:\Users\sjfke\hello-world.ps1
     #requires -version 4
     Set-StrictMode -Version 2
-    write-host 'hello world on host'
-    write-output 'hello world on output'
-
+    write-host 'host: hello world!'
+    write-output 'output: hello world!'
+    exit(0)
     # SIG # Begin signature block
-    <-- snip -->
+    <-- text-removed -->
     # SIG # End signature block
 
+    ADM-PS> C:\Users\sjfke\hello-world.ps1
+    host: hello world!
+    output: hello world!
 
-Note: adding a TimeStampServer ensures that your code will not expire when the signing certificate expires.
+    PS> C:\Users\sjfke\hello-world.ps1
+    host: hello world!
+    output: hello world!
+
+Suggestion: adding a TimeStampServer ensures that your code will not expire when the signing certificate expires.
 
 ::
 
@@ -1688,7 +1710,7 @@ To add a digital signature to a script you must sign it with a code signing cert
 * A free self-signed certificate which will only work on your computer;
 
 Typically, a *self-signed certificate* is only used to sign your own scripts and to sign scripts that you get 
-from other sources that you have verified to be safe, and should be used in an industrial or commercial enviroment.
+from other sources that you have verified to be safe, and should be used in an industrial or commercial environment.
 
 
 Microsoft's official guide:
