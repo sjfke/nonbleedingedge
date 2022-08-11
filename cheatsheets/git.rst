@@ -198,6 +198,34 @@ Daily Workflow
 	$ git push                # move my changes to git-hub
 	$ git branch -d bug1234   # remove workspace (local repo)
 
+Configuration Files
+===================
+
+Linux Git
+---------
+
+======= ======================== =========== ===============================
+Scope    Location                Filename    Description
+======= ======================== =========== ===============================
+System   $(prefix)/etc           gitconfig   $(prefix) is system root path
+Global   $HOME/<username>        .gitconfig
+Local    Git Repo's .git folder  config
+======= ======================== =========== ===============================
+
+Git For Windows
+---------------
+
+======== ========================= ===============
+Scope    Location                  Filename
+======== ========================= ===============
+System   mingw32/etc or ming64/etc gitconfig
+Global   C:/Users/<username>       .gitconfig
+Local    Git Repo's .git folder    config
+Worktree Git Repo's .git folder    config.worktree
+Portable C:/ProgramData/Git        worktree
+======== ========================= ===============
+
+**NOTE:** Path separator character should be '\\' (not rendering, bug in Sphinx tables?)
 
 General Notes
 =============
