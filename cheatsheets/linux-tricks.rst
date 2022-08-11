@@ -101,7 +101,17 @@ Stolen from the `Fedora Magazine: 5 cool terminal pages <https://fedoramagazine.
 	mysql> pager pspg;              # replace less or more as pager	
 	$ export PAGER=pspg; mycli ...  # MySQL CLI example
 	$ export PAGER=pspg; pgcli ...  # PostygreSQL CLI example	
-	
+
+Cat Tricks
+==========
+
+::
+
+    $ cat -n <filename>                      # adds line number prefix
+    $ cat -e <filename>                      # shows crlf ending (Unix, DOS, MacOS)
+    $ cat -n <filename> | head -5            # (beginning) first 5 lines
+    $ cat -n <filename> | tail -5            # (ending) last 5 lines
+    $ cat -n <filename> | tail -10 | head -5 # (middle) first 5 of last 10 lines
 
 Managing ``.rc`` files
 ======================
