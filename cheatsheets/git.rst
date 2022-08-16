@@ -198,6 +198,86 @@ Daily Workflow
 	$ git push                # move my changes to git-hub
 	$ git branch -d bug1234   # remove workspace (local repo)
 
+Code-Signing Commits and Tags
+=============================
+
+* `Git Tools - Signing Your Work <https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work>`_
+
+::
+
+    $ gpg --list-keys
+    /Users/schacon/.gnupg/pubring.gpg
+    ---------------------------------
+    pub   2048R/0A46826A 2014-06-04
+    uid                  Scott Chacon (Git signing key) <schacon@gmail.com>
+    sub   2048R/874529A9 2014-06-04
+
+    $ gpg --gen-key # to generate a new one
+    $ git config --global user.signingkey 0A46826A # need 'pub'-key
+
+    $ git commit -a -S -m 'Signed commit'    # NB: added '-S'
+    $ git tag -s v1.5 -m 'my signed 1.5 tag' # NB: '-s' not '-a'
+
+It is also possible to configure this to be the default by using a ``key-id`` in the git ``Global`` and ``Local``
+configuration files.
+
+Example shown is for a Windows system, using ``GPG For Windows``, ``Git Bash`` and ``Kleopatra`` where
+Kleopatra was used to create the key and it was exported/imported into GPG.
+
+::
+
+    $ gpg --show-keys --keyid-format long <your-public-key-file>.gpg # NB: keyid-format option
+    pub   ed25519/09D708FAED728E4C 2022-07-27 [SC] [expires: 2024-07-27]
+          F816636B59A06DA4CBB03AB909D708FAED728E4C
+    uid                            Geoffrey Collis <geoffreycollis@hotmail.com>
+    sub   cv25519/0A1B6FC7898CE6C8 2022-07-27 [E] [expires: 2024-07-27]
+
+    # add to C:\User\<username>\.gitconfig # Global file: key-id is from pub line above
+    [user]
+        name = Geoff Collis
+        email = gcollis@ymail.com
+        signingkey = 09D708FAED728E4C
+    [gpg]
+        program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
+    [commit]
+        gpgsign = true
+
+    # add to <git-project>\.git\config # Local file: key-id is from pub line above
+    [commit]
+        gpgSign = true
+    [user]
+        signingkey = 09D708FAED728E4C
+
+With this configuration all ``git commit`` and ``git tag`` require signing.
+
+Configuration Files
+===================
+
+Linux Git
+---------
+
+======= ======================== =========== ===============================
+Scope    Location                Filename    Description
+======= ======================== =========== ===============================
+System   $(prefix)/etc           gitconfig   $(prefix) is system root path
+Global   $HOME/<username>        .gitconfig
+Local    Git Repo's .git folder  config
+======= ======================== =========== ===============================
+
+Git For Windows
+---------------
+
+======== ========================= ===============
+Scope    Location                  Filename
+======== ========================= ===============
+System   mingw32/etc or ming64/etc gitconfig
+Global   C:/Users/<username>       .gitconfig
+Local    Git Repo's .git folder    config
+Worktree Git Repo's .git folder    config.worktree
+Portable C:/ProgramData/Git        worktree
+======== ========================= ===============
+
+**NOTE:** Path separator character should be '\\' (not rendering, bug in Sphinx tables?)
 
 General Notes
 =============
