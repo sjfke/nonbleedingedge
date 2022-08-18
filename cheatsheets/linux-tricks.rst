@@ -137,3 +137,17 @@ For example, if ``~/.bashrc`` is tracked by ``rcm``, a long listing would look l
 * ``rcup`` – synchronize dotfiles managed by rcm
 * ``rcdn`` – remove all the symlinks managed by rcm
 
+Brendan Gregg's Homepage
+========================
+
+*G'Day. I use this site to share and bookmark various things, mostly my work with computers.
+While I currently work on large scale cloud computing performance at Intel (previously Netflix), this site
+reflects my own opinions and work from over the years. I have a personal blog, and I'm also on twitter.*
+
+*This page lists everything: Documentation, Videos, Software, Misc.
+For a short selection of most popular content, see my Overview page.*
+
+* `Overview <https://www.brendangregg.com/overview.html>`_
+* `Linux Performance <https://www.brendangregg.com/linuxperf.html>`_
+* `Blog Posts <https://www.brendangregg.com/blog/index.html>`_
+
