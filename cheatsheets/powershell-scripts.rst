@@ -1841,6 +1841,109 @@ To add a digital signature to a script you must sign it with a code signing cert
 Typically, a *self-signed certificate* is only used to sign your own scripts and to sign scripts that you get 
 from other sources that you have verified to be safe, and should be used in an industrial or commercial environment.
 
+OpenSSL file: authenticode-selfsign-openssl.cnf
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+::
+
+    ####################################################################
+    # CA Definition
+    [ ca ]
+    default_ca      = CA_default            # The default ca section
+
+    [ CA_default ]
+
+    dir             = .                      # Where everything is kept
+    certs           = $dir/certsdb           # Where the issued certs are kept
+    new_certs_dir   = $certs                 # default place for new certs.
+    database        = $dir/index.txt         # database index file.
+    certificate     = $dir/cacert.pem        # The CA certificate
+    private_key     = $dir/private/cakey.pem # The private key
+    serial          = $dir/serial            # The current serial number
+    RANDFILE        = $dir/private/.rand     # private random number file
+    default_days    = 365                    # how long to certify for
+    default_md      = sha256                 # which md to use.
+    preserve        = no                     # keep passed DN ordering
+    email_in_dn  = no
+    policy          = policy_match
+    crldir          = $dir/crl
+    crlnumber       = $dir/crlnumber         # the current crl number
+    crl             = $crldir/crl.pem        # The current CRL
+    #crl_extensions        = crl_ext
+    default_crl_days= 30                    # how long before next CRL
+
+    ####################################################################
+    # The default policy for the CA when signing requests
+    [ policy_match ]
+    countryName             = match         # Must be the same as the CA
+    stateOrProvinceName     = match         # Must be the same as the CA
+    organizationName        = match         # Must be the same as the CA
+    organizationalUnitName  = optional      # not required
+    commonName              = supplied      # must be there, whatever it is
+    emailAddress            = optional      # not required
+
+    ####################################################################
+    # This is where we define how to generate CSRs
+    [ req ]
+    default_bits            = 2048
+    default_keyfile         = privkey.pem
+    default_md              = sha256                 # which md to use.
+    # prompt = no
+    distinguished_name      = req_distinguished_name # where to get DN for reqs
+    attributes              = req_attributes         # req attributes
+    string_mask             = nombstr
+    # string_mask             = utf8only
+    req_extensions          = v3_req        # The extensions to add to req's
+    x509_extensions         = v3_ca         # The extentions to add to self signed certs
+
+    [ req_distinguished_name ]
+    countryName                     = Country Name (2 letter code)
+    countryName_default             = CH
+    countryName_min                 = 2
+    countryName_max                 = 2
+    stateOrProvinceName             = State or Province Name (full name)
+    stateOrProvinceName_default     = Zurich
+    localityName                    = Locality Name (eg, city)
+    localityName_default            = Zurich
+    0.organizationName              = Organization Name (eg, company)
+    0.organizationName_default      = Highly Dubious Inc
+    organizationalUnitName          = Organizational Unit Name (eg, section)
+    1.commonName                    = Common Name (eg, YOUR name)
+    1.commonName_default            = HighlyDubious
+    1.commonName_max                = 64
+    emailAddress                    = Email Address
+    emailAddress_max                = 64
+
+    ####################################################################
+    # We don't want these, but the section must exist
+    [ req_attributes ]
+    #challengePassword              = A challenge password
+    #challengePassword_min          = 4
+    #challengePassword_max          = 20
+    #unstructuredName               = An optional company name
+
+    ####################################################################
+    # Extension for requests
+    [ v3_req ]
+    basicConstraints=critical,CA:FALSE
+    subjectKeyIdentifier = hash
+    #subjectAltName      = @alternate_names
+    # * ATA Authenticate - Code Signing (1.3.6.1.5.5.7.3.3)
+    # * extendedKeyUsage=critical,codeSigning,1.3.6.1.5.5.7.3.3
+    extendedKeyUsage=critical,codeSigning,msCodeInd
+
+    ####################################################################
+    # Convert a certificate request into a self signed certificate using extensions for a CA:
+    # https://www.openssl.org/docs/man1.1.1/man1/x509.html
+    [ v3_ca ]
+    #subjectAltName        = @alternate_names
+    # * ATA Authenticate - Code Signing (1.3.6.1.5.5.7.3.3)
+    # * extendedKeyUsage=critical,codeSigning,1.3.6.1.5.5.7.3.3
+    extendedKeyUsage=critical,codeSigning,msCodeInd
+    subjectKeyIdentifier   = hash
+    authorityKeyIdentifier = keyid:always,issuer
+
+    #[alternate_names]
+
 Stuff to Clean Up or Remove
 ===========================
 
