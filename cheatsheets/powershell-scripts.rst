@@ -968,6 +968,10 @@ For more details see:
 * `Test and Debug: RegEx <https://www.regextester.com/>`_
 * `Test and Debug: Regular Expression Tester <https://www.freeformatter.com/regex-tester.html>`_
 
+**********************
+Typical Usage Examples
+**********************
+
 Reading Files
 =============
 
@@ -1138,8 +1142,8 @@ See also:
 * `Microsoft docs: out-file <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-file>`_
 * `Microsoft docs: new-temporaryfile <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/new-temporaryfile>`_
 
-CSV Files
-=========
+Displaying CSV Files
+====================
 
 Powershell provides ``cmdlets`` for handling these which avoid importing into ``Excel`` and ``MS Access``.
 The ``out-gridview`` renders the output the data in an interactive table. 
@@ -1169,8 +1173,8 @@ The ``out-gridview`` renders the output the data in an interactive table.
 * `Microsoft docs: Import-CSV <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/import-csv>`_
 * `Microsoft docs: Out-GridView <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-gridview>`_
 
-JSON files
-==========
+Reading JSON files
+==================
 
 PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are installed.
 
@@ -1409,8 +1413,8 @@ and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
    PS> remove-variable -name obj
    PS> remove-item C:\users\geoff\bedrock.xml
 
-Log files
-=========
+Log files: tail, write time-stamped message
+===========================================
 
 ::
 
@@ -1476,6 +1480,10 @@ Output methods:
 * `Microsoft Docs: Write Warning <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-warning>`_
 * `Microsoft Docs: Write Host <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host>`_
 * `Microsoft Docs: Write Error <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error>`_
+
+***********************
+Security Considerations
+***********************
 
 Running PowerShell scripts
 ==========================
