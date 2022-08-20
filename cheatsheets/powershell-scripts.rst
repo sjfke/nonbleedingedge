@@ -1572,6 +1572,8 @@ In a commercial or industrial environment ask your Windows Administrator, but co
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate code-signing   
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
    
+Self-Signed Authenticode Certificates
+=====================================
 
 Generating, Installing and Using a Self-Signed Certificate
 ----------------------------------------------------------
@@ -1847,7 +1849,16 @@ and a normal ``PowerShell``, prompt ``PS1>`` for the rest.
     # SIG # End signature block
 
 OpenSSL file: authenticode-selfsign-openssl.cnf
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------------
+
+This is the result of many iterations and consulting many references, most relevant being:
+
+* `OpenSSL Cookbook - 3rd Edition by Ivan Ristic <https://www.feistyduck.com/library/openssl-cookbook/online/>`_
+* `openssl-req, req - PKCS#10 certificate request and certificate generating utility <https://www.openssl.org/docs/man1.1.1/man1/req.html>`_
+* `openssl-x509 - Certificate display and signing command <https://www.openssl.org/docs/manmaster/man1/openssl-x509.html>`_
+* `x509v3_config - X509 V3 certificate extension configuration format <https://www.openssl.org/docs/manmaster/man5/x509v3_config.htm>`_ v3_req, v3_ca
+* `openssl-pkcs12 - PKCS#12 file command <https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html>`_
+
 ::
 
     ####################################################################
