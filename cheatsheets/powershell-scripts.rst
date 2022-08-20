@@ -1692,22 +1692,88 @@ Suggestion: adding a TimeStampServer ensures that your code will not expire when
 OpenSSL Generating, Installing and Using a Self-Signed Certificate
 ------------------------------------------------------------------
 
-In the Powershell approach: `Generating, Installing and Using a Self-Signed Certificate`_ the sequence is:
+In `Generating, Installing and Using a Self-Signed Certificate`_ the sequence is:
 
-1. Generate ata-authenticode directly into **\\LocalMachine\\My** with certificate and private key
-  ``New-SelfSignedCertificate -Subject "ATA Authenticode" -CertStoreLocation Cert:\LocalMachine\My -Type CodeSigningCert``
-2. Copy ata-authenticode into \\LocalMachine\\Root for certificate for authentication;
-3. Import ata-authenticode into \\LocalMachine\\TrustedPublisher for certificate for authentication;
+1. Generate *ata-authenticode* (certificate, private key) in certificate store,  *LocalMachine\\My*
+2. Import *ata-authenticode* into certificate store *LocalMachine\\Root* for authentication;
+#. Import *ata-authenticode* into certificate store *LocalMachine\\TrustedPublisher* for authentication;
+
+The following was done using `Git Bash shell from <https://gitforwindows.org/>`_ but the of *atb-authenticode* could
+be done on any system with OpenSSL because all that is needed is the ``authenticode.pfx`` file.
+
+An explicit OpenSSL configuration file, ``authenticode-selfsign-openssl.cnf`` is used to avoid issues resulting from
+differences in the default configuration in the OpenSSL installation.
 
 OpenSSL Self-Signed Certificates Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+::
+
+    Step 1a - generate atb-authenticode.key and atb-authenticode.csr
+    $ openssl req -new -newkey rsa:2048 -nodes -keyout authenticode.key -out authenticode.csr -config authenticode-selfsign-openssl.cnf
+    Generating a RSA private key
+    ......................................................+++++
+    .....................................................+++++
+    writing new private key to 'authenticode.key'
+    -----
+    You are about to be asked to enter information that will be incorporated
+    into your certificate request.
+    What you are about to enter is what is called a Distinguished Name or a DN.
+    There are quite a few fields but you can leave some blank
+    For some fields there will be a default value,
+    If you enter '.', the field will be left blank.
+    -----
+    Country Name (2 letter code) [CH]:.
+    State or Province Name (full name) [Zurich]:.
+    Locality Name (eg, city) [Zurich]:.
+    Organization Name (eg, company) [Highly Dubious Inc]:.
+    Organizational Unit Name (eg, section) []:.
+    Common Name (eg, YOUR name) [HighlyDubious]:ATB Authenticode
+    Email Address []:.
 
 ::
 
-   To come shortly.
+    Step 1b - generate self-signed atb-authenticode.crt
+    # Note options: -extensions v3_req -extfile authenticode-selfsign-openssl.cnf
+    $ openssl x509 -req -extensions v3_req -extfile authenticode-selfsign-openssl.cnf -days 366 -in authenticode.csr -signkey authenticode.key -out authenticode.crt
+    Signature ok                                                                                                                                               .
+    subject=CN = ATB Authenticode
+    Getting Private key
+
+    # Check the certificate for the following section
+    $ openssl x509 -noout -text -in authenticode.crt | less
+        X509v3 extensions:
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier:
+                39:04:14:30:74:B8:00:51:2F:30:11:E6:D3:D5:FF:A9:3B:2A:21:53
+            X509v3 Extended Key Usage: critical
+                Code Signing, Microsoft Individual Code Signing
+
+::
+
+    Step 1c - merge atb-authenticode.crt and authenticode.key -into- authenticode.pfx
+    Note: an empty password can be used
+    $ openssl pkcs12 -export -out authenticode.pfx -inkey authenticode.key -in authenticode.crt
+    Enter Export Password:
+    Verifying - Enter Export Password:
+
+The next few steps involve importing the ``authenticode.pfx`` into the Windows certificate store, unlike
+`Generating, Installing and Using a Self-Signed Certificate`_ it uses *CurrentUser\\My*, *CurrentUser\\Root* and
+*CurrentUser\\TrustedPublisher*.
+
+::
+
+    # Certificate Manager tools
+    PS1> C:\Windows\system32\certmgr.msc # Current User
+    PS1> or C:\Windows\system32\mmc.exe  # MMC tool
+
+    Step 1d - import authenticode.pfx -into- CurrentUser\My
+    Step 2  - import authenticode.pfx -into- CurrentUser\Root - certificate trust/authentication;
+    Step 3  - import authenticode.pfx -into- CurrentUser\TrustedPublisher - certificate for trust/authentication;
+
 
 OpenSSL Using the Authenticode, Signing and Running
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
