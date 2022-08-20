@@ -28,60 +28,78 @@ Introduction
 
 Unfortunately because ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, makes it an ideal
 target for **would-be** hackers. To mitigate this Microsoft limits if/when PowerShell scripts can be executed, although 
-individual ``cmdlets`` can always be executed. 
+individual ``cmdlets`` can always be executed.
 
-* *Windows Pro/Home* usually disallows ``PowerShell scripts`` but permits ``cmdlets`` to be executed;
-* *Windows Server* usually allows ``RemoteSigned`` scripts to be run on the ``LocalMachine``;
-
-The execution policy governs whether a ``PowerShell`` script can be executed, ``get-executionpolicy`` displays this for 
-the current ``PowerShell``, and ``get-executionpolicy -list`` shows all the policies in highest to lowest priority (*scope*) order. 
-
-In the example below only the ``LocalMachine`` policy is defined, and this is set to ``restricted`` so ``PowerShell`` scripts cannot be executed, but 
-individual commands, ``cmdlets`` can.
-
-:: 
+If your ``Get-ExecutionPolicy`` is like this
+::
 
    PS> Get-ExecutionPolicy
    Restricted
 
    PS> Get-ExecutionPolicy -List
-   
+
            Scope ExecutionPolicy
            ----- ---------------
    MachinePolicy       Undefined  # highest priority
       UserPolicy       Undefined
          Process       Undefined
      CurrentUser       Undefined
-    LocalMachine      Restricted  # lowest priority
+    LocalMachine       Restricted  # lowest priority
+
+The `PowerShell` script will not execute!
+::
+
+    .\hello-world.ps1
+    .\hello-world.ps1 : File C:\Users\sjfke\hello-world.ps1 cannot be loaded because running scripts is disabled on this
+    system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
+    At line:1 char:1
+    + .\hello-world.ps1
+    + ~~~~~~~~~~~~~~~~~
+        + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+        + FullyQualifiedErrorId : UnauthorizedAccess
+
 
 In Windows 10 Home edition there is a set of developer section in ``Settings``, one of which is for PowerShell to
-allow local scripts to be executed by requiring ``RemoteSigned`` for ``CurrentUser``, choose this option, or run a
-*PowerShell as Administrator* set the following but you should still read the `PowerShell Execution Policies`_ section.
+allow local scripts to be executed by requiring ``RemoteSigned`` for ``CurrentUser``, choose this option.
+
+Alternatively run a ``PowerShell`` as ``Administrator`` set the following, choosing the ``[A]`` option.
+::
+
+    set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+    Execution Policy Change
+    The execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose you to the security risks
+    described in the about_Execution_Policies help topic at https:/go.microsoft.com/fwlink/?LinkID=135170. Do you want to change the execution policy?
+    [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): A
 
 ::
 
-   # Suggested Laptop settings
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-   PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
-           Scope ExecutionPolicy
-           ----- ---------------
-   MachinePolicy       Undefined  # highest priority
-      UserPolicy       Undefined
-         Process       Undefined
-     CurrentUser    RemoteSigned
-    LocalMachine       Undefined  # lowest priority
+    # Suggested Laptop settings
+    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser    RemoteSigned
+     LocalMachine       Undefined
 
-   # Suggested Server settings
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
-   PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
-           Scope ExecutionPolicy
-           ----- ---------------
-   MachinePolicy       Undefined  # highest priority
-      UserPolicy       Undefined
-         Process       Undefined
-     CurrentUser       AllSigned
-    LocalMachine       Undefined  # lowest priority
+    # Suggested Server settings
+    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
+    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+    PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser       AllSigned
+     LocalMachine       AllSigned
  
+There are a lot of references on the internet on how to disable the ``ExecutionPolicy``, or bypass it when
+running scripts do this at your own **PERIL!** see `Security Considerations`_.
+
 *****************
 Language Overview
 *****************
