@@ -28,60 +28,78 @@ Introduction
 
 Unfortunately because ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, makes it an ideal
 target for **would-be** hackers. To mitigate this Microsoft limits if/when PowerShell scripts can be executed, although 
-individual ``cmdlets`` can always be executed. 
+individual ``cmdlets`` can always be executed.
 
-* *Windows Pro/Home* usually disallows ``PowerShell scripts`` but permits ``cmdlets`` to be executed;
-* *Windows Server* usually allows ``RemoteSigned`` scripts to be run on the ``LocalMachine``;
-
-The execution policy governs whether a ``PowerShell`` script can be executed, ``get-executionpolicy`` displays this for 
-the current ``PowerShell``, and ``get-executionpolicy -list`` shows all the policies in highest to lowest priority (*scope*) order. 
-
-In the example below only the ``LocalMachine`` policy is defined, and this is set to ``restricted`` so ``PowerShell`` scripts cannot be executed, but 
-individual commands, ``cmdlets`` can.
-
-:: 
+If your ``Get-ExecutionPolicy`` is like this
+::
 
    PS> Get-ExecutionPolicy
    Restricted
 
    PS> Get-ExecutionPolicy -List
-   
+
            Scope ExecutionPolicy
            ----- ---------------
    MachinePolicy       Undefined  # highest priority
       UserPolicy       Undefined
          Process       Undefined
      CurrentUser       Undefined
-    LocalMachine      Restricted  # lowest priority
+    LocalMachine       Restricted  # lowest priority
+
+The `PowerShell` script will not execute!
+::
+
+    .\hello-world.ps1
+    .\hello-world.ps1 : File C:\Users\sjfke\hello-world.ps1 cannot be loaded because running scripts is disabled on this
+    system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
+    At line:1 char:1
+    + .\hello-world.ps1
+    + ~~~~~~~~~~~~~~~~~
+        + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+        + FullyQualifiedErrorId : UnauthorizedAccess
+
 
 In Windows 10 Home edition there is a set of developer section in ``Settings``, one of which is for PowerShell to
-allow local scripts to be executed by requiring ``RemoteSigned`` for ``CurrentUser``, choose this option, or run a
-*PowerShell as Administrator* set the following but you should still read the `PowerShell Execution Policies`_ section.
+allow local scripts to be executed by requiring ``RemoteSigned`` for ``CurrentUser``, choose this option.
+
+Alternatively run a ``PowerShell`` as ``Administrator`` set the following, choosing the ``[A]`` option.
+::
+
+    set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+    Execution Policy Change
+    The execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose you to the security risks
+    described in the about_Execution_Policies help topic at https:/go.microsoft.com/fwlink/?LinkID=135170. Do you want to change the execution policy?
+    [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): A
 
 ::
 
-   # Suggested Laptop settings
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-   PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
-           Scope ExecutionPolicy
-           ----- ---------------
-   MachinePolicy       Undefined  # highest priority
-      UserPolicy       Undefined
-         Process       Undefined
-     CurrentUser    RemoteSigned
-    LocalMachine       Undefined  # lowest priority
+    # Suggested Laptop settings
+    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser    RemoteSigned
+     LocalMachine       Undefined
 
-   # Suggested Server settings
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
-   PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
-           Scope ExecutionPolicy
-           ----- ---------------
-   MachinePolicy       Undefined  # highest priority
-      UserPolicy       Undefined
-         Process       Undefined
-     CurrentUser       AllSigned
-    LocalMachine       Undefined  # lowest priority
+    # Suggested Server settings
+    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
+    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+    PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser       AllSigned
+     LocalMachine       AllSigned
  
+There are a lot of references on the internet on how to disable the ``ExecutionPolicy``, or bypass it when
+running scripts do this at your own **PERIL!** see `Security Considerations`_.
+
 *****************
 Language Overview
 *****************
@@ -1572,9 +1590,11 @@ In a commercial or industrial environment ask your Windows Administrator, but co
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate code-signing   
    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
    
+Self-Signed Authenticode Certificates
+=====================================
 
-Generating, Installing and Using a Self-Signed Certificate
-----------------------------------------------------------
+PowerShell Generating, Installing and Using a Self-Signed Certificate
+---------------------------------------------------------------------
 
 This section stolen from `Adam the Automator <https://adamtheautomator.com>`_ articles below, demonstrates
 using PowerShell ``New-SelfSignedCertificate``, which supports stores **cert:\CurrentUser\My** or **cert:\LocalMachine\My**.
@@ -1706,14 +1726,14 @@ Suggestion: adding a TimeStampServer ensures that your code will not expire when
 OpenSSL Generating, Installing and Using a Self-Signed Certificate
 ------------------------------------------------------------------
 
-In `Generating, Installing and Using a Self-Signed Certificate`_ the sequence is:
+In `PowerShell Generating, Installing and Using a Self-Signed Certificate`_ the sequence is:
 
 1. Generate *ata-authenticode* (certificate, private key) in certificate store,  *LocalMachine\\My*
 2. Import *ata-authenticode* into certificate store *LocalMachine\\Root* for authentication;
 #. Import *ata-authenticode* into certificate store *LocalMachine\\TrustedPublisher* for authentication;
 
-The following was done using `Git Bash shell from <https://gitforwindows.org/>`_ but the of *atb-authenticode* could
-be done on any system with OpenSSL because all that is needed is the ``authenticode.pfx`` file.
+The following was done using `Git Bash shell <https://gitforwindows.org/>`_ but the of *atb-authenticode* could
+be built on any system with OpenSSL because all that is needed is the ``authenticode.pfx`` file.
 
 An explicit OpenSSL configuration file, ``authenticode-selfsign-openssl.cnf`` is used to avoid issues resulting from
 differences in the default configuration in the OpenSSL installation.
@@ -1772,7 +1792,7 @@ OpenSSL Self-Signed Certificates Setup
     Verifying - Enter Export Password:
 
 The next few steps involve importing the ``authenticode.pfx`` into the Windows certificate store, unlike
-`Generating, Installing and Using a Self-Signed Certificate`_ it uses *CurrentUser\\My*, *CurrentUser\\Root* and
+`PowerShell Generating, Installing and Using a Self-Signed Certificate`_ it uses *CurrentUser\\My*, *CurrentUser\\Root* and
 *CurrentUser\\TrustedPublisher*.
 
 ::
@@ -1847,7 +1867,16 @@ and a normal ``PowerShell``, prompt ``PS1>`` for the rest.
     # SIG # End signature block
 
 OpenSSL file: authenticode-selfsign-openssl.cnf
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------------
+
+This is the result of many iterations and consulting many references, most relevant being:
+
+* `OpenSSL Cookbook - 3rd Edition by Ivan Ristic <https://www.feistyduck.com/library/openssl-cookbook/online/>`_
+* `openssl-req, req - PKCS#10 certificate request and certificate generating utility <https://www.openssl.org/docs/man1.1.1/man1/req.html>`_
+* `openssl-x509 - Certificate display and signing command <https://www.openssl.org/docs/manmaster/man1/openssl-x509.html>`_
+* `x509v3_config - X509 V3 certificate extension configuration format <https://www.openssl.org/docs/manmaster/man5/x509v3_config.htm>`_ v3_req, v3_ca
+* `openssl-pkcs12 - PKCS#12 file command <https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html>`_
+
 ::
 
     ####################################################################
