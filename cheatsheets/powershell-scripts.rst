@@ -1575,8 +1575,8 @@ In a commercial or industrial environment ask your Windows Administrator, but co
 Self-Signed Authenticode Certificates
 =====================================
 
-Generating, Installing and Using a Self-Signed Certificate
-----------------------------------------------------------
+PowerShell Generating, Installing and Using a Self-Signed Certificate
+---------------------------------------------------------------------
 
 This section stolen from `Adam the Automator <https://adamtheautomator.com>`_ articles below, demonstrates
 using PowerShell ``New-SelfSignedCertificate``, which supports stores **cert:\CurrentUser\My** or **cert:\LocalMachine\My**.
@@ -1708,14 +1708,14 @@ Suggestion: adding a TimeStampServer ensures that your code will not expire when
 OpenSSL Generating, Installing and Using a Self-Signed Certificate
 ------------------------------------------------------------------
 
-In `Generating, Installing and Using a Self-Signed Certificate`_ the sequence is:
+In `PowerShell Generating, Installing and Using a Self-Signed Certificate`_ the sequence is:
 
 1. Generate *ata-authenticode* (certificate, private key) in certificate store,  *LocalMachine\\My*
 2. Import *ata-authenticode* into certificate store *LocalMachine\\Root* for authentication;
 #. Import *ata-authenticode* into certificate store *LocalMachine\\TrustedPublisher* for authentication;
 
-The following was done using `Git Bash shell from <https://gitforwindows.org/>`_ but the of *atb-authenticode* could
-be done on any system with OpenSSL because all that is needed is the ``authenticode.pfx`` file.
+The following was done using `Git Bash shell <https://gitforwindows.org/>`_ but the of *atb-authenticode* could
+be built on any system with OpenSSL because all that is needed is the ``authenticode.pfx`` file.
 
 An explicit OpenSSL configuration file, ``authenticode-selfsign-openssl.cnf`` is used to avoid issues resulting from
 differences in the default configuration in the OpenSSL installation.
@@ -1774,7 +1774,7 @@ OpenSSL Self-Signed Certificates Setup
     Verifying - Enter Export Password:
 
 The next few steps involve importing the ``authenticode.pfx`` into the Windows certificate store, unlike
-`Generating, Installing and Using a Self-Signed Certificate`_ it uses *CurrentUser\\My*, *CurrentUser\\Root* and
+`PowerShell Generating, Installing and Using a Self-Signed Certificate`_ it uses *CurrentUser\\My*, *CurrentUser\\Root* and
 *CurrentUser\\TrustedPublisher*.
 
 ::
