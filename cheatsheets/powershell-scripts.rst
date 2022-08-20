@@ -1775,9 +1775,62 @@ The next few steps involve importing the ``authenticode.pfx`` into the Windows c
 OpenSSL Using the Authenticode, Signing and Running
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Requires using a ``PowerShell`` in *Administrative mode* to execute ``set-ExecutionPolicy`` commands, prompt ``ADM-PS1>``
+and a normal ``PowerShell``, prompt ``PS1>`` for the rest.
+
 ::
 
-   Draft and not completely finished.
+    # Enforce AllSigned, select '[A] Yes to All' option
+    ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
+    ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+
+    ADM-PS> PS C:\Users\sjfke> Get-ExecutionPolicy -List
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser       AllSigned
+     LocalMachine       AllSigned
+
+::
+
+    PS1> Get-Content -Path C:\Users\sjfke\hello-world.ps1
+    #requires -version 4
+    Set-StrictMode -Version 2
+    write-host 'host: hello world!'
+    write-output 'output: hello world!'
+    exit(0)
+
+    PS1> Get-ChildItem Cert:\CurrentUser\My | Where-Object {$_.Subject -eq "CN=ATB Authenticode"}
+    PSParentPath: Microsoft.PowerShell.Security\Certificate::CurrentUser\My
+    Thumbprint                                Subject
+    ----------                                -------
+    A6567CF9C6D5B0DCE4B7823B3DAF4CC4058DB396  CN=ATB Authenticode
+
+    PS1> $codeCertificate = Get-ChildItem Cert:\CurrentUser\My | Where-Object {$_.Subject -eq "CN=ATB Authenticode"}
+    PS1> Set-AuthenticodeSignature -FilePath C:\Users\sjfke\hello-world.ps1 -Certificate $codeCertificate
+    Directory: C:\Users\geoff
+    SignerCertificate                         Status                                                                    Path
+    -----------------                         ------                                                                    ----
+    A6567CF9C6D5B0DCE4B7823B3DAF4CC4058DB396  Valid                                                                     hello-world.ps1
+
+    PS1> C:\Users\sjfke\hello-world.ps1
+    host: hello world!
+    output: hello world!
+
+    PS1> Get-Content -Path C:\Users\sjfke\hello-world.ps1
+    #requires -version 4
+    Set-StrictMode -Version 2
+    write-host 'host: hello world!'
+    write-output 'output: hello world!'
+    exit(0)
+
+    # SIG # Begin signature block
+    # MIIFhQYJKoZIhvcNAQcCoIIFdjCCBXICAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
+    <-- text-removed -->
+    # dtUw8zNoZUTIq1eKdNJW+kxdDRPL56l3qQ==
+    # SIG # End signature block
 
 
 To add a digital signature to a script you must sign it with a code signing certificate:
@@ -1788,6 +1841,8 @@ To add a digital signature to a script you must sign it with a code signing cert
 Typically, a *self-signed certificate* is only used to sign your own scripts and to sign scripts that you get 
 from other sources that you have verified to be safe, and should be used in an industrial or commercial environment.
 
+Stuff to Clean Up or Remove
+===========================
 
 Microsoft's official guide:
 
