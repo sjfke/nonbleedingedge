@@ -1832,15 +1832,6 @@ and a normal ``PowerShell``, prompt ``PS1>`` for the rest.
     # dtUw8zNoZUTIq1eKdNJW+kxdDRPL56l3qQ==
     # SIG # End signature block
 
-
-To add a digital signature to a script you must sign it with a code signing certificate:
-
-* Purchased from a certification authority, which allows executing your script on other computers;
-* A free self-signed certificate which will only work on your computer;
-
-Typically, a *self-signed certificate* is only used to sign your own scripts and to sign scripts that you get 
-from other sources that you have verified to be safe, and should be used in an industrial or commercial environment.
-
 OpenSSL file: authenticode-selfsign-openssl.cnf
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ::
@@ -1946,6 +1937,14 @@ OpenSSL file: authenticode-selfsign-openssl.cnf
 
 Stuff to Clean Up or Remove
 ===========================
+
+To add a digital signature to a script you must sign it with a code signing certificate:
+
+* Purchased from a certification authority, which allows executing your script on other computers;
+* A free self-signed certificate which will only work on your computer;
+
+Typically, a *self-signed certificate* is only used to sign your own scripts and to sign scripts that you get
+from other sources that you have verified to be safe, and should be used in an industrial or commercial environment.
 
 Microsoft's official guide:
 
