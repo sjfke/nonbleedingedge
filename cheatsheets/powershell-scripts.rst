@@ -1,8 +1,8 @@
 :github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/powershell-scripts.rst
 
-*******************************
+===============================
 PowerShell Scripting Cheatsheet
-*******************************
+===============================
 
 This is the companion to ``PowerShell Cheatsheet``, which focuses on writing PowerShell scripts.
 
@@ -22,8 +22,9 @@ It is possible to split your script into multiple files, create libraries of you
 I do not cover this topic, the example script shows where/how to ``source`` you library files, and if you wish to create your 
 own modules, see `How to Write a PowerShell Script Module <https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module>`_.
 
+************
 Introduction
-============
+************
 
 Unfortunately because ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, makes it an ideal
 target for **would-be** hackers. To mitigate this Microsoft limits if/when PowerShell scripts can be executed, although 
@@ -36,7 +37,7 @@ The execution policy governs whether a ``PowerShell`` script can be executed, ``
 the current ``PowerShell``, and ``get-executionpolicy -list`` shows all the policies in highest to lowest priority (*scope*) order. 
 
 In the example below only the ``LocalMachine`` policy is defined, and this is set to ``restricted`` so ``PowerShell`` scripts cannot be executed, but 
-indiviual commands, ``cmdlets`` can.
+individual commands, ``cmdlets`` can.
 
 :: 
 
@@ -81,9 +82,9 @@ allow local scripts to be executed by requiring ``RemoteSigned`` for ``CurrentUs
      CurrentUser       AllSigned
     LocalMachine       Undefined  # lowest priority
  
-
-Language
-========
+*****************
+Language Overview
+*****************
 
 The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is built on 
 top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us/dotnet/standard/clr>`_ , and 
@@ -106,11 +107,12 @@ Useful starting points when learning about the language:
 
 Unlike most texts on programming languages this starts with a simple but realistic PowerShell example, with many of the language details being covered in subsequent sections.
 
+**************
 Example Script
-==============
+**************
 
 This is a contrived but realistic PowerShell script to illustrate several important points.
-It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which is extremely useful, but is augmented to force 
+It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which is extremely useful, but is augmented to force
 the syntax version and to be more strict on the use of uninitialized variables.
 
 ::
@@ -118,51 +120,51 @@ the syntax version and to be more strict on the use of uninitialized variables.
    #requires -version 4
    <#
    .SYNOPSIS
-   
+
       9to5IT Template for PowerShell scripts.
-      
+
    .DESCRIPTION
-   
+
       Displays the names and ages of the flintstones.
-      
+
    .PARAMETER names
-   
+
       List the names only
-   
+
    .PARAMETER ages
-   
+
       List the ages only
-   
+
    .PARAMETER person <name>
-   
+
       List person's age
-   
+
    .INPUTS
-   
+
       None
-   
+
    .OUTPUTS
-   
+
       The Requested text.
-   
+
    .NOTES
-   
+
       Version:        1.0
-   
+
       Author:         sjfke
-   
+
       Creation Date:  2021.01.03
-   
-      Purpose/Change: Initial script development  
-   
+
+      Purpose/Change: Initial script development
+
    .EXAMPLE
-   
+
       families.ps1 -names
-   
+
    .EXAMPLE
-   
+
       families.ps1 -person fred
-      
+
    #>
    param(
       [switch]$names = $false,
@@ -171,50 +173,50 @@ the syntax version and to be more strict on the use of uninitialized variables.
       [switch]$stackTrace = $false
    )
    Set-StrictMode -Version 2
-   
+
    #---------------------------------------------------------[Initialisations]--------------------------------------------------------
-   
+
    # Set Error Action to Silently Continue
    # $ErrorActionPreference = "SilentlyContinue"
-   
+
    # Dot Source required Function Libraries
    # . "C:\Scripts\Functions\Logging_Functions.ps1"
-   
+
    #----------------------------------------------------------[Declarations]----------------------------------------------------------
    $scriptName = "flintstones.ps1"
    $scriptVersion = "1.0"
-   
+
    #Log File Info
    # $sLogPath = "C:\Windows\Temp"
    # $sLogName = "<script_name>.log"
    # $sLogFile = Join-Path -Path $sLogPath -ChildPath $sLogName
-   
+
    $hash = $null
-   
+
    #-----------------------------------------------------------[Functions]------------------------------------------------------------
-   
+
    function initializeHash {
       return @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
    }
-   
+
    function getNames {
       return $hash.keys
    }
-   
+
    function getAges {
       return $hash.values
    }
-   
+
    function getPerson {
       param(
          [string]$name = ''
       )
       return $hash[$name]
    }
-   
+
    #-----------------------------------------------------------[Execution]------------------------------------------------------------
    $hash = initializeHash
-   
+
    if ($names) {
       getNames
    }
@@ -233,7 +235,7 @@ the syntax version and to be more strict on the use of uninitialized variables.
       }
       else {
          write-warning("{0} v{1}: invalid or missing argument" -f $scriptName, $scriptVersion)
-         exit(1)     
+         exit(1)
       }
    }
 
@@ -243,6 +245,11 @@ Things to note:
 * Initial comment block ``.SYNOPSIS...`` provides the ``get-help`` text, **note** line-spacing is important;
 * The `param() <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_ block must be the first *non-comment line* for command-line arguments;
 * The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of uninitialized variables;
+
+
+******************
+Language Keypoints
+******************
 
 Variables
 =========
@@ -902,52 +909,53 @@ Table taken from `TutorialsPoint.com - Regular Expression <https://www.tutorials
 | \\E         | Ends quoting begun with \Q.                                                            |
 +-------------+----------------------------------------------------------------------------------------+
 
-Examples::
+Examples
+::
 
-   #requires -version 4
-   Set-StrictMode -Version 2
+    #requires -version 4
+    Set-StrictMode -Version 2
 
-   "fred" -match "f..d"           # True (same as imatch)
-   "fred" -imatch "F..d"          # True
-   "fred" -cmatch "F..d"          # False
-   "fred" -notmatch "W..ma"       # True
-   "fred" -match "re"             # (match 're') True
-   
-   "dog" -match "d[iou]g"         # (dig, dug) True
-   "ant" -match "[a-e]nt"         # (bnt, cnt, dnt, ent) True
-   "ant" -match "[^brt]nt"        # True
-   "fred" -match "^fr"            # (starts with 'fr') True
-   "fred" -match "ed$"            # (ends with 'ed') True
-   "doggy" -match "g*"            # True
-   "doggy" -match "g?"            # True
+    "fred" -match "f..d"           # True (same as imatch)
+    "fred" -imatch "F..d"          # True
+    "fred" -cmatch "F..d"          # False
+    "fred" -notmatch "W..ma"       # True
+    "fred" -match "re"             # (match 're') True
 
-   "Fred Flintstone" -match "\w+" # (matches word Fred) True
-   "FredFlintstone" -match "\w+"  # (matches word Fred) True
-   "Fred Flintstone" -match "\W+" # (matches >= 1 non-word) True
-   "FredFlintstone" -match "\W+"  # (matches >= 1 non-word) False
-   
-   "Fred Flintstone" -match "\s+" # (matches >= 1 white-space) True
-   "FredFlintstone" -match "\s+"  # (matches >= 1 white-space) False
-   "Fred Flintstone" -match "\S+" # (matches >= 1 non white-space) True
-   "FredFlintstone" -match "\S+"  # (matches >= 1 non white-space) True
-   
-   "Fred Flintstone" -match "\d+" # (matches >= 1 digit 0..9) False
-   "Fred is 30" -match "\d+"      # (matches >= 1 digit 0..9) True
-   "Fred Flintstone" -match "\D+" # (matches >= 1 non-digit 0..9) True
-   "Fred is 30" -match "\D+"      # (matches >= 1 non-digit 0..9) True
+    "dog" -match "d[iou]g"         # (dig, dug) True
+    "ant" -match "[a-e]nt"         # (bnt, cnt, dnt, ent) True
+    "ant" -match "[^brt]nt"        # True
+    "fred" -match "^fr"            # (starts with 'fr') True
+    "fred" -match "ed$"            # (ends with 'ed') True
+    "doggy" -match "g*"            # True
+    "doggy" -match "g?"            # True
 
-   "Fred Flintstone" -match "\w?"     # (match >= 0 preceding pattern) True
-   "Fred Flintstone" -match "\w{2}"   # (match 2 preceding pattern) True
-   "Fred Flintstone" -match "\W{2}"   # (match 2 preceding pattern) False
-   "Fred Flintstone" -match "\w{2,}"  # (match >2 preceding pattern) True
-   "Fred Flintstone" -match "\W{2,}"  # (match >2 preceding pattern) False
-   "Fred Flintstone" -match "\w{2,3}" # (match >2 <=3 preceding pattern) True
-   "Fred Flintstone" -match "\W{2,3}" # (match >2 <=3 preceding pattern) False
-   
-   'Fred Flinstone' -replace '(\w+) (\w+)', 'Wilma $2' # Wilma Flinstone
-   'fred Flinstone' -ireplace 'Fred (\w+)', 'Wilma $1' # Wilma Flinstone
-   'fred Flinstone' -replace 'Fred (\w+)', 'Wilma $1'  # Wilma Flinstone
-   'fred Flinstone' -creplace 'Fred (\w+)', 'Wilma $1' # fred Flinstone
+    "Fred Flintstone" -match "\w+" # (matches word Fred) True
+    "FredFlintstone" -match "\w+"  # (matches word Fred) True
+    "Fred Flintstone" -match "\W+" # (matches >= 1 non-word) True
+    "FredFlintstone" -match "\W+"  # (matches >= 1 non-word) False
+
+    "Fred Flintstone" -match "\s+" # (matches >= 1 white-space) True
+    "FredFlintstone" -match "\s+"  # (matches >= 1 white-space) False
+    "Fred Flintstone" -match "\S+" # (matches >= 1 non white-space) True
+    "FredFlintstone" -match "\S+"  # (matches >= 1 non white-space) True
+
+    "Fred Flintstone" -match "\d+" # (matches >= 1 digit 0..9) False
+    "Fred is 30" -match "\d+"      # (matches >= 1 digit 0..9) True
+    "Fred Flintstone" -match "\D+" # (matches >= 1 non-digit 0..9) True
+    "Fred is 30" -match "\D+"      # (matches >= 1 non-digit 0..9) True
+
+    "Fred Flintstone" -match "\w?"     # (match >= 0 preceding pattern) True
+    "Fred Flintstone" -match "\w{2}"   # (match 2 preceding pattern) True
+    "Fred Flintstone" -match "\W{2}"   # (match 2 preceding pattern) False
+    "Fred Flintstone" -match "\w{2,}"  # (match >2 preceding pattern) True
+    "Fred Flintstone" -match "\W{2,}"  # (match >2 preceding pattern) False
+    "Fred Flintstone" -match "\w{2,3}" # (match >2 <=3 preceding pattern) True
+    "Fred Flintstone" -match "\W{2,3}" # (match >2 <=3 preceding pattern) False
+
+    'Fred Flinstone' -replace '(\w+) (\w+)', 'Wilma $2' # Wilma Flinstone
+    'fred Flinstone' -ireplace 'Fred (\w+)', 'Wilma $1' # Wilma Flinstone
+    'fred Flinstone' -replace 'Fred (\w+)', 'Wilma $1'  # Wilma Flinstone
+    'fred Flinstone' -creplace 'Fred (\w+)', 'Wilma $1' # fred Flinstone
 
 
 Entire technical books are dedicated to Regular Expressions, the above is very brief.
@@ -959,6 +967,10 @@ For more details see:
 * `Test and Debug: Regular Expression 101 <https://regex101.com/>`_
 * `Test and Debug: RegEx <https://www.regextester.com/>`_
 * `Test and Debug: Regular Expression Tester <https://www.freeformatter.com/regex-tester.html>`_
+
+**********************
+Typical Usage Examples
+**********************
 
 Reading Files
 =============
@@ -1130,39 +1142,39 @@ See also:
 * `Microsoft docs: out-file <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-file>`_
 * `Microsoft docs: new-temporaryfile <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/new-temporaryfile>`_
 
-CSV Files
-=========
+Displaying CSV Files
+====================
 
 Powershell provides ``cmdlets`` for handling these which avoid importing into ``Excel`` and ``MS Access``.
 The ``out-gridview`` renders the output the data in an interactive table. 
 
 ::
 
-   PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # load and display a <TAB> separated file.
-   PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # load and display a ';' separated file.
-   
-   PS> get-content file.csv
+    PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # load and display a <TAB> separated file.
+    PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # load and display a ';' separated file.
+
+    PS> get-content file.csv
        Name;Age
        Fred;30
        Wilma;25
        Pebbles;1
        Dino;5
-   PS> $f = import-csv -delimiter ';' file.csv
-   PS> $f.Name    # Fred Wilma Pebbles Dino
-   PS> $f[1].Name # Wilma
-   PS> $f.Age     # 30 25 1 5
-   PS> $f[3].Age  # 5
-   PS> for ($i =0; $i -lt $f.length; $i++) { 
-           write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age) 
+    PS> $f = import-csv -delimiter ';' file.csv
+    PS> $f.Name    # Fred Wilma Pebbles Dino
+    PS> $f[1].Name # Wilma
+    PS> $f.Age     # 30 25 1 5
+    PS> $f[3].Age  # 5
+    PS> for ($i =0; $i -lt $f.length; $i++) {
+           write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age)
        }
 
-   PS> import-csv -delimiter ';' file.csv | out-gridview
+    PS> import-csv -delimiter ';' file.csv | out-gridview
 
 * `Microsoft docs: Import-CSV <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/import-csv>`_
 * `Microsoft docs: Out-GridView <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-gridview>`_
 
-JSON files
-==========
+Reading JSON files
+==================
 
 PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are installed.
 
@@ -1401,8 +1413,8 @@ and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
    PS> remove-variable -name obj
    PS> remove-item C:\users\geoff\bedrock.xml
 
-Log files
-=========
+Log files: tail, write time-stamped message
+===========================================
 
 ::
 
@@ -1468,6 +1480,10 @@ Output methods:
 * `Microsoft Docs: Write Warning <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-warning>`_
 * `Microsoft Docs: Write Host <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host>`_
 * `Microsoft Docs: Write Error <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error>`_
+
+***********************
+Security Considerations
+***********************
 
 Running PowerShell scripts
 ==========================
@@ -1558,7 +1574,7 @@ In a commercial or industrial environment ask your Windows Administrator, but co
    
 
 Generating, Installing and Using a Self-Signed Certificate
-==========================================================
+----------------------------------------------------------
 
 This section stolen from `Adam the Automator <https://adamtheautomator.com>`_ articles below, demonstrates
 using PowerShell ``New-SelfSignedCertificate``, which supports stores **cert:\CurrentUser\My** or **cert:\LocalMachine\My**.
@@ -1567,9 +1583,9 @@ using PowerShell ``New-SelfSignedCertificate``, which supports stores **cert:\Cu
 * `How to Sign PowerShell Script (And Effectively Run It) <https://adamtheautomator.com/how-to-sign-powershell-script/>`_
 
 Self-Signed Certificates Setup
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Requires creating the following certificates using a PowerShell in Administrative mode.
+Requires creating the following certificates using a ``PowerShell`` in *Administrative mode*.
 
 * **LocalMachine\\My Personal** - public/private key and certificate for signing;
 * **LocalMachine\\Root** - certificate for authentication;
@@ -1626,7 +1642,7 @@ Requires creating the following certificates using a PowerShell in Administrativ
 
 
 Using the Authenticode, Signing and Running
------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
@@ -1687,31 +1703,262 @@ Suggestion: adding a TimeStampServer ensures that your code will not expire when
     - http://sha256timestamp.ws.symantec.com/sha256/timestamp
     - http://tsa.swisssign.net
 
-Generating and Installing an OpenSSL Self-Signed Certificate
-============================================================
+OpenSSL Generating, Installing and Using a Self-Signed Certificate
+------------------------------------------------------------------
 
-This section will show how to use ``openssl`` and ``WLS2`` to generate self-signed certificates
+In `Generating, Installing and Using a Self-Signed Certificate`_ the sequence is:
+
+1. Generate *ata-authenticode* (certificate, private key) in certificate store,  *LocalMachine\\My*
+2. Import *ata-authenticode* into certificate store *LocalMachine\\Root* for authentication;
+#. Import *ata-authenticode* into certificate store *LocalMachine\\TrustedPublisher* for authentication;
+
+The following was done using `Git Bash shell from <https://gitforwindows.org/>`_ but the of *atb-authenticode* could
+be done on any system with OpenSSL because all that is needed is the ``authenticode.pfx`` file.
+
+An explicit OpenSSL configuration file, ``authenticode-selfsign-openssl.cnf`` is used to avoid issues resulting from
+differences in the default configuration in the OpenSSL installation.
+
+OpenSSL Self-Signed Certificates Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+::
+
+    Step 1a - generate atb-authenticode.key and atb-authenticode.csr
+    $ openssl req -new -newkey rsa:2048 -nodes -keyout authenticode.key -out authenticode.csr -config authenticode-selfsign-openssl.cnf
+    Generating a RSA private key
+    ......................................................+++++
+    .....................................................+++++
+    writing new private key to 'authenticode.key'
+    -----
+    You are about to be asked to enter information that will be incorporated
+    into your certificate request.
+    What you are about to enter is what is called a Distinguished Name or a DN.
+    There are quite a few fields but you can leave some blank
+    For some fields there will be a default value,
+    If you enter '.', the field will be left blank.
+    -----
+    Country Name (2 letter code) [CH]:.
+    State or Province Name (full name) [Zurich]:.
+    Locality Name (eg, city) [Zurich]:.
+    Organization Name (eg, company) [Highly Dubious Inc]:.
+    Organizational Unit Name (eg, section) []:.
+    Common Name (eg, YOUR name) [HighlyDubious]:ATB Authenticode
+    Email Address []:.
 
 ::
 
-   To come shortly.
-   
-How to sign scripts for your own use.
-=====================================
+    Step 1b - generate self-signed atb-authenticode.crt
+    # Note options: -extensions v3_req -extfile authenticode-selfsign-openssl.cnf
+    $ openssl x509 -req -extensions v3_req -extfile authenticode-selfsign-openssl.cnf -days 366 -in authenticode.csr -signkey authenticode.key -out authenticode.crt
+    Signature ok                                                                                                                                               .
+    subject=CN = ATB Authenticode
+    Getting Private key
+
+    # Check the certificate for the following section
+    $ openssl x509 -noout -text -in authenticode.crt | less
+        X509v3 extensions:
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier:
+                39:04:14:30:74:B8:00:51:2F:30:11:E6:D3:D5:FF:A9:3B:2A:21:53
+            X509v3 Extended Key Usage: critical
+                Code Signing, Microsoft Individual Code Signing
 
 ::
 
-   Draft and not completely finished.
+    Step 1c - merge atb-authenticode.crt and authenticode.key -into- authenticode.pfx
+    Note: an empty password can be used
+    $ openssl pkcs12 -export -out authenticode.pfx -inkey authenticode.key -in authenticode.crt
+    Enter Export Password:
+    Verifying - Enter Export Password:
 
+The next few steps involve importing the ``authenticode.pfx`` into the Windows certificate store, unlike
+`Generating, Installing and Using a Self-Signed Certificate`_ it uses *CurrentUser\\My*, *CurrentUser\\Root* and
+*CurrentUser\\TrustedPublisher*.
+
+::
+
+    # Certificate Manager tools
+    PS1> C:\Windows\system32\certmgr.msc # Current User
+    PS1> or C:\Windows\system32\mmc.exe  # MMC tool
+
+    Step 1d - import authenticode.pfx -into- CurrentUser\My
+    Step 2  - import authenticode.pfx -into- CurrentUser\Root - certificate trust/authentication;
+    Step 3  - import authenticode.pfx -into- CurrentUser\TrustedPublisher - certificate for trust/authentication;
+
+
+OpenSSL Using the Authenticode, Signing and Running
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Requires using a ``PowerShell`` in *Administrative mode* to execute ``set-ExecutionPolicy`` commands, prompt ``ADM-PS1>``
+and a normal ``PowerShell``, prompt ``PS1>`` for the rest.
+
+::
+
+    # Enforce AllSigned, select '[A] Yes to All' option
+    ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
+    ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+
+    ADM-PS> PS C:\Users\sjfke> Get-ExecutionPolicy -List
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser       AllSigned
+     LocalMachine       AllSigned
+
+::
+
+    PS1> Get-Content -Path C:\Users\sjfke\hello-world.ps1
+    #requires -version 4
+    Set-StrictMode -Version 2
+    write-host 'host: hello world!'
+    write-output 'output: hello world!'
+    exit(0)
+
+    PS1> Get-ChildItem Cert:\CurrentUser\My | Where-Object {$_.Subject -eq "CN=ATB Authenticode"}
+    PSParentPath: Microsoft.PowerShell.Security\Certificate::CurrentUser\My
+    Thumbprint                                Subject
+    ----------                                -------
+    A6567CF9C6D5B0DCE4B7823B3DAF4CC4058DB396  CN=ATB Authenticode
+
+    PS1> $codeCertificate = Get-ChildItem Cert:\CurrentUser\My | Where-Object {$_.Subject -eq "CN=ATB Authenticode"}
+    PS1> Set-AuthenticodeSignature -FilePath C:\Users\sjfke\hello-world.ps1 -Certificate $codeCertificate
+    Directory: C:\Users\geoff
+    SignerCertificate                         Status                                                                    Path
+    -----------------                         ------                                                                    ----
+    A6567CF9C6D5B0DCE4B7823B3DAF4CC4058DB396  Valid                                                                     hello-world.ps1
+
+    PS1> C:\Users\sjfke\hello-world.ps1
+    host: hello world!
+    output: hello world!
+
+    PS1> Get-Content -Path C:\Users\sjfke\hello-world.ps1
+    #requires -version 4
+    Set-StrictMode -Version 2
+    write-host 'host: hello world!'
+    write-output 'output: hello world!'
+    exit(0)
+
+    # SIG # Begin signature block
+    # MIIFhQYJKoZIhvcNAQcCoIIFdjCCBXICAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
+    <-- text-removed -->
+    # dtUw8zNoZUTIq1eKdNJW+kxdDRPL56l3qQ==
+    # SIG # End signature block
+
+OpenSSL file: authenticode-selfsign-openssl.cnf
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+::
+
+    ####################################################################
+    # CA Definition
+    [ ca ]
+    default_ca      = CA_default            # The default ca section
+
+    [ CA_default ]
+
+    dir             = .                      # Where everything is kept
+    certs           = $dir/certsdb           # Where the issued certs are kept
+    new_certs_dir   = $certs                 # default place for new certs.
+    database        = $dir/index.txt         # database index file.
+    certificate     = $dir/cacert.pem        # The CA certificate
+    private_key     = $dir/private/cakey.pem # The private key
+    serial          = $dir/serial            # The current serial number
+    RANDFILE        = $dir/private/.rand     # private random number file
+    default_days    = 365                    # how long to certify for
+    default_md      = sha256                 # which md to use.
+    preserve        = no                     # keep passed DN ordering
+    email_in_dn  = no
+    policy          = policy_match
+    crldir          = $dir/crl
+    crlnumber       = $dir/crlnumber         # the current crl number
+    crl             = $crldir/crl.pem        # The current CRL
+    #crl_extensions        = crl_ext
+    default_crl_days= 30                    # how long before next CRL
+
+    ####################################################################
+    # The default policy for the CA when signing requests
+    [ policy_match ]
+    countryName             = match         # Must be the same as the CA
+    stateOrProvinceName     = match         # Must be the same as the CA
+    organizationName        = match         # Must be the same as the CA
+    organizationalUnitName  = optional      # not required
+    commonName              = supplied      # must be there, whatever it is
+    emailAddress            = optional      # not required
+
+    ####################################################################
+    # This is where we define how to generate CSRs
+    [ req ]
+    default_bits            = 2048
+    default_keyfile         = privkey.pem
+    default_md              = sha256                 # which md to use.
+    # prompt = no
+    distinguished_name      = req_distinguished_name # where to get DN for reqs
+    attributes              = req_attributes         # req attributes
+    string_mask             = nombstr
+    # string_mask             = utf8only
+    req_extensions          = v3_req        # The extensions to add to req's
+    x509_extensions         = v3_ca         # The extentions to add to self signed certs
+
+    [ req_distinguished_name ]
+    countryName                     = Country Name (2 letter code)
+    countryName_default             = CH
+    countryName_min                 = 2
+    countryName_max                 = 2
+    stateOrProvinceName             = State or Province Name (full name)
+    stateOrProvinceName_default     = Zurich
+    localityName                    = Locality Name (eg, city)
+    localityName_default            = Zurich
+    0.organizationName              = Organization Name (eg, company)
+    0.organizationName_default      = Highly Dubious Inc
+    organizationalUnitName          = Organizational Unit Name (eg, section)
+    1.commonName                    = Common Name (eg, YOUR name)
+    1.commonName_default            = HighlyDubious
+    1.commonName_max                = 64
+    emailAddress                    = Email Address
+    emailAddress_max                = 64
+
+    ####################################################################
+    # We don't want these, but the section must exist
+    [ req_attributes ]
+    #challengePassword              = A challenge password
+    #challengePassword_min          = 4
+    #challengePassword_max          = 20
+    #unstructuredName               = An optional company name
+
+    ####################################################################
+    # Extension for requests
+    [ v3_req ]
+    basicConstraints=critical,CA:FALSE
+    subjectKeyIdentifier = hash
+    #subjectAltName      = @alternate_names
+    # * ATA Authenticate - Code Signing (1.3.6.1.5.5.7.3.3)
+    # * extendedKeyUsage=critical,codeSigning,1.3.6.1.5.5.7.3.3
+    extendedKeyUsage=critical,codeSigning,msCodeInd
+
+    ####################################################################
+    # Convert a certificate request into a self signed certificate using extensions for a CA:
+    # https://www.openssl.org/docs/man1.1.1/man1/x509.html
+    [ v3_ca ]
+    #subjectAltName        = @alternate_names
+    # * ATA Authenticate - Code Signing (1.3.6.1.5.5.7.3.3)
+    # * extendedKeyUsage=critical,codeSigning,1.3.6.1.5.5.7.3.3
+    extendedKeyUsage=critical,codeSigning,msCodeInd
+    subjectKeyIdentifier   = hash
+    authorityKeyIdentifier = keyid:always,issuer
+
+    #[alternate_names]
+
+Stuff to Clean Up or Remove
+===========================
 
 To add a digital signature to a script you must sign it with a code signing certificate:
 
 * Purchased from a certification authority, which allows executing your script on other computers;
 * A free self-signed certificate which will only work on your computer;
 
-Typically, a *self-signed certificate* is only used to sign your own scripts and to sign scripts that you get 
+Typically, a *self-signed certificate* is only used to sign your own scripts and to sign scripts that you get
 from other sources that you have verified to be safe, and should be used in an industrial or commercial environment.
-
 
 Microsoft's official guide:
 
