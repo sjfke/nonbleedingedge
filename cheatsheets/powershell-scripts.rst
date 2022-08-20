@@ -82,9 +82,9 @@ allow local scripts to be executed by requiring ``RemoteSigned`` for ``CurrentUs
      CurrentUser       AllSigned
     LocalMachine       Undefined  # lowest priority
  
-********
-Language
-********
+*****************
+Language Overview
+*****************
 
 The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is built on 
 top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us/dotnet/standard/clr>`_ , and 
@@ -107,11 +107,12 @@ Useful starting points when learning about the language:
 
 Unlike most texts on programming languages this starts with a simple but realistic PowerShell example, with many of the language details being covered in subsequent sections.
 
+**************
 Example Script
-==============
+**************
 
 This is a contrived but realistic PowerShell script to illustrate several important points.
-It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which is extremely useful, but is augmented to force 
+It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which is extremely useful, but is augmented to force
 the syntax version and to be more strict on the use of uninitialized variables.
 
 ::
@@ -119,51 +120,51 @@ the syntax version and to be more strict on the use of uninitialized variables.
    #requires -version 4
    <#
    .SYNOPSIS
-   
+
       9to5IT Template for PowerShell scripts.
-      
+
    .DESCRIPTION
-   
+
       Displays the names and ages of the flintstones.
-      
+
    .PARAMETER names
-   
+
       List the names only
-   
+
    .PARAMETER ages
-   
+
       List the ages only
-   
+
    .PARAMETER person <name>
-   
+
       List person's age
-   
+
    .INPUTS
-   
+
       None
-   
+
    .OUTPUTS
-   
+
       The Requested text.
-   
+
    .NOTES
-   
+
       Version:        1.0
-   
+
       Author:         sjfke
-   
+
       Creation Date:  2021.01.03
-   
-      Purpose/Change: Initial script development  
-   
+
+      Purpose/Change: Initial script development
+
    .EXAMPLE
-   
+
       families.ps1 -names
-   
+
    .EXAMPLE
-   
+
       families.ps1 -person fred
-      
+
    #>
    param(
       [switch]$names = $false,
@@ -172,50 +173,50 @@ the syntax version and to be more strict on the use of uninitialized variables.
       [switch]$stackTrace = $false
    )
    Set-StrictMode -Version 2
-   
+
    #---------------------------------------------------------[Initialisations]--------------------------------------------------------
-   
+
    # Set Error Action to Silently Continue
    # $ErrorActionPreference = "SilentlyContinue"
-   
+
    # Dot Source required Function Libraries
    # . "C:\Scripts\Functions\Logging_Functions.ps1"
-   
+
    #----------------------------------------------------------[Declarations]----------------------------------------------------------
    $scriptName = "flintstones.ps1"
    $scriptVersion = "1.0"
-   
+
    #Log File Info
    # $sLogPath = "C:\Windows\Temp"
    # $sLogName = "<script_name>.log"
    # $sLogFile = Join-Path -Path $sLogPath -ChildPath $sLogName
-   
+
    $hash = $null
-   
+
    #-----------------------------------------------------------[Functions]------------------------------------------------------------
-   
+
    function initializeHash {
       return @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
    }
-   
+
    function getNames {
       return $hash.keys
    }
-   
+
    function getAges {
       return $hash.values
    }
-   
+
    function getPerson {
       param(
          [string]$name = ''
       )
       return $hash[$name]
    }
-   
+
    #-----------------------------------------------------------[Execution]------------------------------------------------------------
    $hash = initializeHash
-   
+
    if ($names) {
       getNames
    }
@@ -234,7 +235,7 @@ the syntax version and to be more strict on the use of uninitialized variables.
       }
       else {
          write-warning("{0} v{1}: invalid or missing argument" -f $scriptName, $scriptVersion)
-         exit(1)     
+         exit(1)
       }
    }
 
@@ -244,6 +245,11 @@ Things to note:
 * Initial comment block ``.SYNOPSIS...`` provides the ``get-help`` text, **note** line-spacing is important;
 * The `param() <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_ block must be the first *non-comment line* for command-line arguments;
 * The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of uninitialized variables;
+
+
+******************
+Language Keypoints
+******************
 
 Variables
 =========
