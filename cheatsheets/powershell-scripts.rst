@@ -1,8 +1,8 @@
 :github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/powershell-scripts.rst
 
-*******************************
+===============================
 PowerShell Scripting Cheatsheet
-*******************************
+===============================
 
 This is the companion to ``PowerShell Cheatsheet``, which focuses on writing PowerShell scripts.
 
@@ -22,8 +22,9 @@ It is possible to split your script into multiple files, create libraries of you
 I do not cover this topic, the example script shows where/how to ``source`` you library files, and if you wish to create your 
 own modules, see `How to Write a PowerShell Script Module <https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module>`_.
 
+************
 Introduction
-============
+************
 
 Unfortunately because ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, makes it an ideal
 target for **would-be** hackers. To mitigate this Microsoft limits if/when PowerShell scripts can be executed, although 
@@ -36,7 +37,7 @@ The execution policy governs whether a ``PowerShell`` script can be executed, ``
 the current ``PowerShell``, and ``get-executionpolicy -list`` shows all the policies in highest to lowest priority (*scope*) order. 
 
 In the example below only the ``LocalMachine`` policy is defined, and this is set to ``restricted`` so ``PowerShell`` scripts cannot be executed, but 
-indiviual commands, ``cmdlets`` can.
+individual commands, ``cmdlets`` can.
 
 :: 
 
@@ -81,9 +82,9 @@ allow local scripts to be executed by requiring ``RemoteSigned`` for ``CurrentUs
      CurrentUser       AllSigned
     LocalMachine       Undefined  # lowest priority
  
-
+********
 Language
-========
+********
 
 The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is built on 
 top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us/dotnet/standard/clr>`_ , and 
@@ -902,52 +903,53 @@ Table taken from `TutorialsPoint.com - Regular Expression <https://www.tutorials
 | \\E         | Ends quoting begun with \Q.                                                            |
 +-------------+----------------------------------------------------------------------------------------+
 
-Examples::
+Examples
+::
 
-   #requires -version 4
-   Set-StrictMode -Version 2
+    #requires -version 4
+    Set-StrictMode -Version 2
 
-   "fred" -match "f..d"           # True (same as imatch)
-   "fred" -imatch "F..d"          # True
-   "fred" -cmatch "F..d"          # False
-   "fred" -notmatch "W..ma"       # True
-   "fred" -match "re"             # (match 're') True
-   
-   "dog" -match "d[iou]g"         # (dig, dug) True
-   "ant" -match "[a-e]nt"         # (bnt, cnt, dnt, ent) True
-   "ant" -match "[^brt]nt"        # True
-   "fred" -match "^fr"            # (starts with 'fr') True
-   "fred" -match "ed$"            # (ends with 'ed') True
-   "doggy" -match "g*"            # True
-   "doggy" -match "g?"            # True
+    "fred" -match "f..d"           # True (same as imatch)
+    "fred" -imatch "F..d"          # True
+    "fred" -cmatch "F..d"          # False
+    "fred" -notmatch "W..ma"       # True
+    "fred" -match "re"             # (match 're') True
 
-   "Fred Flintstone" -match "\w+" # (matches word Fred) True
-   "FredFlintstone" -match "\w+"  # (matches word Fred) True
-   "Fred Flintstone" -match "\W+" # (matches >= 1 non-word) True
-   "FredFlintstone" -match "\W+"  # (matches >= 1 non-word) False
-   
-   "Fred Flintstone" -match "\s+" # (matches >= 1 white-space) True
-   "FredFlintstone" -match "\s+"  # (matches >= 1 white-space) False
-   "Fred Flintstone" -match "\S+" # (matches >= 1 non white-space) True
-   "FredFlintstone" -match "\S+"  # (matches >= 1 non white-space) True
-   
-   "Fred Flintstone" -match "\d+" # (matches >= 1 digit 0..9) False
-   "Fred is 30" -match "\d+"      # (matches >= 1 digit 0..9) True
-   "Fred Flintstone" -match "\D+" # (matches >= 1 non-digit 0..9) True
-   "Fred is 30" -match "\D+"      # (matches >= 1 non-digit 0..9) True
+    "dog" -match "d[iou]g"         # (dig, dug) True
+    "ant" -match "[a-e]nt"         # (bnt, cnt, dnt, ent) True
+    "ant" -match "[^brt]nt"        # True
+    "fred" -match "^fr"            # (starts with 'fr') True
+    "fred" -match "ed$"            # (ends with 'ed') True
+    "doggy" -match "g*"            # True
+    "doggy" -match "g?"            # True
 
-   "Fred Flintstone" -match "\w?"     # (match >= 0 preceding pattern) True
-   "Fred Flintstone" -match "\w{2}"   # (match 2 preceding pattern) True
-   "Fred Flintstone" -match "\W{2}"   # (match 2 preceding pattern) False
-   "Fred Flintstone" -match "\w{2,}"  # (match >2 preceding pattern) True
-   "Fred Flintstone" -match "\W{2,}"  # (match >2 preceding pattern) False
-   "Fred Flintstone" -match "\w{2,3}" # (match >2 <=3 preceding pattern) True
-   "Fred Flintstone" -match "\W{2,3}" # (match >2 <=3 preceding pattern) False
-   
-   'Fred Flinstone' -replace '(\w+) (\w+)', 'Wilma $2' # Wilma Flinstone
-   'fred Flinstone' -ireplace 'Fred (\w+)', 'Wilma $1' # Wilma Flinstone
-   'fred Flinstone' -replace 'Fred (\w+)', 'Wilma $1'  # Wilma Flinstone
-   'fred Flinstone' -creplace 'Fred (\w+)', 'Wilma $1' # fred Flinstone
+    "Fred Flintstone" -match "\w+" # (matches word Fred) True
+    "FredFlintstone" -match "\w+"  # (matches word Fred) True
+    "Fred Flintstone" -match "\W+" # (matches >= 1 non-word) True
+    "FredFlintstone" -match "\W+"  # (matches >= 1 non-word) False
+
+    "Fred Flintstone" -match "\s+" # (matches >= 1 white-space) True
+    "FredFlintstone" -match "\s+"  # (matches >= 1 white-space) False
+    "Fred Flintstone" -match "\S+" # (matches >= 1 non white-space) True
+    "FredFlintstone" -match "\S+"  # (matches >= 1 non white-space) True
+
+    "Fred Flintstone" -match "\d+" # (matches >= 1 digit 0..9) False
+    "Fred is 30" -match "\d+"      # (matches >= 1 digit 0..9) True
+    "Fred Flintstone" -match "\D+" # (matches >= 1 non-digit 0..9) True
+    "Fred is 30" -match "\D+"      # (matches >= 1 non-digit 0..9) True
+
+    "Fred Flintstone" -match "\w?"     # (match >= 0 preceding pattern) True
+    "Fred Flintstone" -match "\w{2}"   # (match 2 preceding pattern) True
+    "Fred Flintstone" -match "\W{2}"   # (match 2 preceding pattern) False
+    "Fred Flintstone" -match "\w{2,}"  # (match >2 preceding pattern) True
+    "Fred Flintstone" -match "\W{2,}"  # (match >2 preceding pattern) False
+    "Fred Flintstone" -match "\w{2,3}" # (match >2 <=3 preceding pattern) True
+    "Fred Flintstone" -match "\W{2,3}" # (match >2 <=3 preceding pattern) False
+
+    'Fred Flinstone' -replace '(\w+) (\w+)', 'Wilma $2' # Wilma Flinstone
+    'fred Flinstone' -ireplace 'Fred (\w+)', 'Wilma $1' # Wilma Flinstone
+    'fred Flinstone' -replace 'Fred (\w+)', 'Wilma $1'  # Wilma Flinstone
+    'fred Flinstone' -creplace 'Fred (\w+)', 'Wilma $1' # fred Flinstone
 
 
 Entire technical books are dedicated to Regular Expressions, the above is very brief.
@@ -1138,25 +1140,25 @@ The ``out-gridview`` renders the output the data in an interactive table.
 
 ::
 
-   PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # load and display a <TAB> separated file.
-   PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # load and display a ';' separated file.
-   
-   PS> get-content file.csv
+    PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # load and display a <TAB> separated file.
+    PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # load and display a ';' separated file.
+
+    PS> get-content file.csv
        Name;Age
        Fred;30
        Wilma;25
        Pebbles;1
        Dino;5
-   PS> $f = import-csv -delimiter ';' file.csv
-   PS> $f.Name    # Fred Wilma Pebbles Dino
-   PS> $f[1].Name # Wilma
-   PS> $f.Age     # 30 25 1 5
-   PS> $f[3].Age  # 5
-   PS> for ($i =0; $i -lt $f.length; $i++) { 
-           write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age) 
+    PS> $f = import-csv -delimiter ';' file.csv
+    PS> $f.Name    # Fred Wilma Pebbles Dino
+    PS> $f[1].Name # Wilma
+    PS> $f.Age     # 30 25 1 5
+    PS> $f[3].Age  # 5
+    PS> for ($i =0; $i -lt $f.length; $i++) {
+           write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age)
        }
 
-   PS> import-csv -delimiter ';' file.csv | out-gridview
+    PS> import-csv -delimiter ';' file.csv | out-gridview
 
 * `Microsoft docs: Import-CSV <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/import-csv>`_
 * `Microsoft docs: Out-GridView <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-gridview>`_
@@ -1558,7 +1560,7 @@ In a commercial or industrial environment ask your Windows Administrator, but co
    
 
 Generating, Installing and Using a Self-Signed Certificate
-==========================================================
+----------------------------------------------------------
 
 This section stolen from `Adam the Automator <https://adamtheautomator.com>`_ articles below, demonstrates
 using PowerShell ``New-SelfSignedCertificate``, which supports stores **cert:\CurrentUser\My** or **cert:\LocalMachine\My**.
@@ -1567,9 +1569,9 @@ using PowerShell ``New-SelfSignedCertificate``, which supports stores **cert:\Cu
 * `How to Sign PowerShell Script (And Effectively Run It) <https://adamtheautomator.com/how-to-sign-powershell-script/>`_
 
 Self-Signed Certificates Setup
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Requires creating the following certificates using a PowerShell in Administrative mode.
+Requires creating the following certificates using a ``PowerShell`` in *Administrative mode*.
 
 * **LocalMachine\\My Personal** - public/private key and certificate for signing;
 * **LocalMachine\\Root** - certificate for authentication;
@@ -1626,7 +1628,7 @@ Requires creating the following certificates using a PowerShell in Administrativ
 
 
 Using the Authenticode, Signing and Running
------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
@@ -1687,17 +1689,25 @@ Suggestion: adding a TimeStampServer ensures that your code will not expire when
     - http://sha256timestamp.ws.symantec.com/sha256/timestamp
     - http://tsa.swisssign.net
 
-Generating and Installing an OpenSSL Self-Signed Certificate
-============================================================
+OpenSSL Generating, Installing and Using a Self-Signed Certificate
+------------------------------------------------------------------
 
-This section will show how to use ``openssl`` and ``WLS2`` to generate self-signed certificates
+In the Powershell approach: `Generating, Installing and Using a Self-Signed Certificate`_ the sequence is:
+
+1. Generate ata-authenticode directly into **\\LocalMachine\\My** with certificate and private key
+  ``New-SelfSignedCertificate -Subject "ATA Authenticode" -CertStoreLocation Cert:\LocalMachine\My -Type CodeSigningCert``
+2. Copy ata-authenticode into \\LocalMachine\\Root for certificate for authentication;
+3. Import ata-authenticode into \\LocalMachine\\TrustedPublisher for certificate for authentication;
+
+OpenSSL Self-Signed Certificates Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
    To come shortly.
-   
-How to sign scripts for your own use.
-=====================================
+
+OpenSSL Using the Authenticode, Signing and Running
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
