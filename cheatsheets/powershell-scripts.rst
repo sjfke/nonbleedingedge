@@ -113,8 +113,8 @@ are dynamic in size unlike a *PowerShell Array*.
 
 
 In common with other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
-Functions support both ``named`` and ``positional`` arguments, which can be mixed, this can be confusing, so in 
-most cases it is clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather 
+Functions support both ``named`` and ``positional`` arguments, which can be mixed, often make the intention more confusing.
+It is often clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather
 than individual name or positional parameters.
 
 Useful starting points when learning about the language:
@@ -123,7 +123,8 @@ Useful starting points when learning about the language:
 * `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
 * `Windows PowerShell Portal <https://social.technet.microsoft.com/wiki/contents/articles/24187.windows-powershell-portal.aspx>`_
 
-Unlike most texts on programming languages this starts with a simple but realistic PowerShell example, with many of the language details being covered in subsequent sections.
+Unlike most texts on programming languages, let us starts with a simple but realistic PowerShell example, with many of
+the language details being covered in subsequent sections.
 
 **************
 Example Script
@@ -384,7 +385,7 @@ Useful references:
 * `TutorialsPoint Powershell Array for more detailed explanation <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
 * `PowerShellExplained ArrayList for dynamically resizable arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_
 * `Microsoft Docs ArrayList Class for dynamically resizable arrays <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
-* `Kevin Blumenfeld's GitHub Gist Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_
+* `Kevin Blumenfeld's GitHub Gist Collection Type Guidance <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_
 
 
 HashTables
@@ -468,21 +469,21 @@ If you cannot create what you need from *Arrays, HashTables, ArrayLists, Queues,
 it is possible to create custom PowerShell objects, but to date I have never needed to do this.
 For more details, read:
 
-* `David Bluemenfeld: Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_;
+* `David Bluemenfeld: Collection Type Guidance <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_;
 * `Microsoft TechNet: Creating Custom Objects <https://social.technet.microsoft.com/wiki/contents/articles/7804.powershell-creating-custom-objects.aspx>`_;
 * `Kevin Marquette: Everything you wanted to know about PSCustomObject <https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/>`_;
 
 Functions
 =========
 
-Function arguments and responses are passed by reference, so an arugment can be changed inside the function and remains 
+Function arguments and responses are passed by reference, so an argument can be changed inside the function and remains
 unchanged outside the function, **but** this is considered *"bad programming practice"*, so better to avoid doing this. 
 Functions return references to objects, as illustrated in the `Example Script`_ where references to *HashTable* and *Array* objects are returned.
 
 While each function call returns a reference to a new (*different*) object, be careful about the scope of the variable you assign this reference too, 
 it is easy to create multiple references to the same object.
 
-While mixing named (*order indepedent*) and positional (*order dependent*) arguments is permitted it can cause strange errors, so unless you are only 
+While mixing named (*order independent*) and positional (*order dependent*) arguments is permitted it can cause strange errors, so unless you are only
 supplying one or two arguments, a better approach is to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_.
 The following contrived example illustrates the basics but the ``param ( ... )`` section has many options not shown here. 
 
@@ -1355,7 +1356,7 @@ Writing XML files
 
 To generate an XML file, use the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
 
-**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+**Note**: cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and
 `Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
 and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
 
@@ -1506,21 +1507,27 @@ Security Considerations
 Running PowerShell scripts
 ==========================
 
-PowerShell is an often abused hackers attack vector, so modern versions of Windows prevent PowerShell scripts from
-being executed *out-of-the-box*, although the ``cmd-lets`` can be run. 
+``PowerShell`` is an often abused hackers attack vector, so most modern Windows versions allow the individual ``cmd-lets``
+to be run but prevent ``PowerShell scripts`` from being executed *out-of-the-box*.
 
-Many articles suggest the disabling this security feature... **DO NOT DO THIS**, besides most companies harden their
-Windows laptop and server installations, so disabling may not be possible.
+Many articles on the internet suggest the disabling or trying to work around this security feature... **DO NOT DO THIS**!
 
-In Windows 10 Home edition, in there is a set of developer section in ``Settings``, one of which is for PowerShell to
-allow local scripts to be executed and require signing for remote scripts, choose this option, or run an Administrator
-PowerShell and use:
+Your Windows distributions may provide *Developer* section in ``Settings``, which allows local ``PowerShell``  scripts to be
+executed by the ``CurrentUser`` by setting the ``ExecutionPolicy`` to ``RemoteSigned``.
+
+Alternatively this can also be done manually by running ``PowerShell`` as ``Administrator``:
 
 ::
 
-    PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    ADM-PS1> set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
-A working setup for your personal laptop:
+    Execution Policy Change
+    The execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose you to the security risks
+    described in the about_Execution_Policies help topic at https:/go.microsoft.com/fwlink/?LinkID=135170. Do you want to change the execution policy?
+    [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): A
+
+
+A sensible working setup for your personal laptop:
 
 ::
 
@@ -1534,11 +1541,11 @@ A working setup for your personal laptop:
      LocalMachine       AllSigned
 
    # Controlling your permission to run PowerShell scripts
-   PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
-   PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
-   PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
 
-A working setup for a typical windows server installation:
+A sensible working setup for a typical windows server installation:
 ::
 
     PS> Get-ExecutionPolicy -list
@@ -1550,11 +1557,7 @@ A working setup for a typical windows server installation:
       CurrentUser       AllSigned
      LocalMachine       AllSigned
 
-Some useful references are:
 
-* `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
-* `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
-* `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
 
 PowerShell Execution Policies
 =============================
@@ -1980,6 +1983,12 @@ This is the result of many iterations and consulting many references, most relev
 
 Stuff to Clean Up or Remove
 ===========================
+
+Some useful references are:
+
+* `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
+* `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
+* `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
 
 To add a digital signature to a script you must sign it with a code signing certificate:
 
