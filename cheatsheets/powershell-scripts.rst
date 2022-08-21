@@ -1510,9 +1510,6 @@ Security Considerations
 Running PowerShell scripts
 ==========================
 
-``PowerShell`` is an often abused hackers attack vector, so most modern Windows versions allow the individual ``cmd-lets``
-to be run but prevent ``PowerShell scripts`` from being executed *out-of-the-box*.
-
 ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, which makes it an ideal target
 for *would-be hackers*. To mitigate this Microsoft limits PowerShell scripts can be executed, even though the
 individual cmdlets can always be executed.
@@ -1598,7 +1595,37 @@ Some example ``Set-ExecutionPolicy`` commands, these need to be executed in ``Po
    ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
    ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate AllSigned for LocalMachine
    ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
-   
+
+PowerShell Code Signing
+=======================
+
+Microsoft uses a proprietary technique called ``Authenticode`` for code signing ``PowerShell``
+
+* `Authenticode (I): Understanding Windows Authenticode <https://reversea.me/index.php/authenticode-i-understanding-windows-authenticode/>`_
+* `Authenticode (II): Verifying Authenticode with OpenSSL <https://reversea.me/index.php/authenticode-ii-verifying-authenticode-with-openssl/>`_
+* `Verifying Windows binaries, without Windows <https://blog.trailofbits.com/2020/05/27/verifying-windows-binaries-without-windows/>`_
+
+Apart from the proprietary nature, which impacts its generation, it is still an asymmetric keypair, signed using a
+PKI certificate installed in the Windows PKI certificate.
+
+This involves creating a code signing request (CSR) with an associated key and having it signed by an approved
+Certificate Authority.
+
+How this needs to handled depends on where and how the ``PowerShell script`` is going to be used.
+
+Internal to a commercial organization there is probably an existing process that needs to be followed using an
+internally approved Certificate Authority.
+
+An externally available application or product should probably use an external commercially available service,
+the following guides may be useful.
+
+* `SSLshopper:  Microsoft Authenticode Certificates <https://www.sslshopper.com/microsoft-authenticode-certificates.html>`_
+* `SSLstore: Sign Code with Microsoft Authenticode <https://www.thesslstore.com/knowledgebase/code-signing-sign-code/sign-code-microsoft-authenticode/>`_
+* `SSL.com: Microsoft Authenticode Code Signing in Linux with Jsign <https://www.ssl.com/how-to/microsoft-authenticode-code-signing-in-linux-with-jsign/>`_
+
+For an internal development then *Self-Signed Authenticode Certificates* can be used, the generation of which is
+covered in the following section.
+
 Self-Signed Authenticode Certificates
 =====================================
 
@@ -1987,8 +2014,9 @@ This is the result of many iterations and consulting many references, most relev
 
     #[alternate_names]
 
+***************************
 Stuff to Clean Up or Remove
-===========================
+***************************
 
 Some useful references are:
 
