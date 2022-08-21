@@ -26,8 +26,8 @@ own modules, see `How to Write a PowerShell Script Module <https://docs.microsof
 Introduction
 ************
 
-Unfortunately because ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, makes it an ideal
-target for **would-be** hackers. To mitigate this Microsoft limits if/when PowerShell scripts can be executed, although 
+``PowerShell`` is very powerful scripting language, often used to automate routine tasks, which makes it an ideal
+target for *would-be hackers*. To mitigate this Microsoft limits PowerShell scripts can be executed, even though the
 individual ``cmdlets`` can always be executed.
 
 If your ``Get-ExecutionPolicy`` is like this
@@ -46,7 +46,8 @@ If your ``Get-ExecutionPolicy`` is like this
      CurrentUser       Undefined
     LocalMachine       Restricted  # lowest priority
 
-The `PowerShell` script will not execute!
+The ``PowerShell`` script will not execute!
+
 ::
 
     .\hello-world.ps1
@@ -58,14 +59,16 @@ The `PowerShell` script will not execute!
         + CategoryInfo          : SecurityError: (:) [], PSSecurityException
         + FullyQualifiedErrorId : UnauthorizedAccess
 
+Many articles on the internet suggest the disabling or trying to work around this security feature... **PLEASE AVOID DOING THIS**!
 
-In Windows 10 Home edition there is a set of developer section in ``Settings``, one of which is for PowerShell to
-allow local scripts to be executed by requiring ``RemoteSigned`` for ``CurrentUser``, choose this option.
+Many Windows distributions may provide *Developer* section in ``Settings``, which allows local ``PowerShell``  scripts to be
+executed by the ``CurrentUser`` by setting the ``ExecutionPolicy`` to ``RemoteSigned``.
 
 Alternatively run a ``PowerShell`` as ``Administrator`` set the following, choosing the ``[A]`` option.
+
 ::
 
-    set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    ADM-PS1> set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
     Execution Policy Change
     The execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose you to the security risks
@@ -98,7 +101,7 @@ Alternatively run a ``PowerShell`` as ``Administrator`` set the following, choos
      LocalMachine       AllSigned
  
 There are a lot of references on the internet on how to disable the ``ExecutionPolicy``, or bypass it when
-running scripts do this at your own **PERIL!** see `Security Considerations`_.
+running scripts do this at your own **PLEASE DO NO DO THIS!** see `Security Considerations`_.
 
 *****************
 Language Overview
@@ -113,8 +116,8 @@ are dynamic in size unlike a *PowerShell Array*.
 
 
 In common with other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
-Functions support both ``named`` and ``positional`` arguments, which can be mixed, this can be confusing, so in 
-most cases it is clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather 
+Functions support both ``named`` and ``positional`` arguments, which can be mixed, often make the intention more confusing.
+It is often clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather
 than individual name or positional parameters.
 
 Useful starting points when learning about the language:
@@ -123,7 +126,8 @@ Useful starting points when learning about the language:
 * `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
 * `Windows PowerShell Portal <https://social.technet.microsoft.com/wiki/contents/articles/24187.windows-powershell-portal.aspx>`_
 
-Unlike most texts on programming languages this starts with a simple but realistic PowerShell example, with many of the language details being covered in subsequent sections.
+Unlike most texts on programming languages, let us starts with a simple but realistic PowerShell example, with many of
+the language details being covered in subsequent sections.
 
 **************
 Example Script
@@ -384,7 +388,7 @@ Useful references:
 * `TutorialsPoint Powershell Array for more detailed explanation <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
 * `PowerShellExplained ArrayList for dynamically resizable arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_
 * `Microsoft Docs ArrayList Class for dynamically resizable arrays <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
-* `Kevin Blumenfeld's GitHub Gist Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_
+* `Kevin Blumenfeld's GitHub Gist Collection Type Guidance <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_
 
 
 HashTables
@@ -468,21 +472,21 @@ If you cannot create what you need from *Arrays, HashTables, ArrayLists, Queues,
 it is possible to create custom PowerShell objects, but to date I have never needed to do this.
 For more details, read:
 
-* `David Bluemenfeld: Collection Type Guidence <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_;
+* `David Bluemenfeld: Collection Type Guidance <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_;
 * `Microsoft TechNet: Creating Custom Objects <https://social.technet.microsoft.com/wiki/contents/articles/7804.powershell-creating-custom-objects.aspx>`_;
 * `Kevin Marquette: Everything you wanted to know about PSCustomObject <https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/>`_;
 
 Functions
 =========
 
-Function arguments and responses are passed by reference, so an arugment can be changed inside the function and remains 
+Function arguments and responses are passed by reference, so an argument can be changed inside the function and remains
 unchanged outside the function, **but** this is considered *"bad programming practice"*, so better to avoid doing this. 
 Functions return references to objects, as illustrated in the `Example Script`_ where references to *HashTable* and *Array* objects are returned.
 
 While each function call returns a reference to a new (*different*) object, be careful about the scope of the variable you assign this reference too, 
 it is easy to create multiple references to the same object.
 
-While mixing named (*order indepedent*) and positional (*order dependent*) arguments is permitted it can cause strange errors, so unless you are only 
+While mixing named (*order independent*) and positional (*order dependent*) arguments is permitted it can cause strange errors, so unless you are only
 supplying one or two arguments, a better approach is to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_.
 The following contrived example illustrates the basics but the ``param ( ... )`` section has many options not shown here. 
 
@@ -1271,7 +1275,7 @@ Reading XML files
 
 ``Powershell`` supports full manipulation of the XML DOM, read the `Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ 
 and `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more detailed information. The examples shown 
-are very redimentary, and only show a few of the manipulations you can perform on XML objects.
+are very rudimentary, and only show a few of the manipulations you can perform on XML objects.
 
 **Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
 `Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
@@ -1355,7 +1359,7 @@ Writing XML files
 
 To generate an XML file, use the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
 
-**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
+**Note**: cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and
 `Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
 and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
 
@@ -1449,7 +1453,7 @@ Log files: tail, write time-stamped message
 Formatting Variables
 ====================
 
-Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assigment.
+Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assignment.
 Specified as ``{<index>, <alignment><width>:<format_spec>}``
 
 ::
@@ -1506,21 +1510,28 @@ Security Considerations
 Running PowerShell scripts
 ==========================
 
-PowerShell is an often abused hackers attack vector, so modern versions of Windows prevent PowerShell scripts from
-being executed *out-of-the-box*, although the ``cmd-lets`` can be run. 
+``PowerShell`` is very powerful scripting language, often used to automate routine tasks, which makes it an ideal target
+for *would-be hackers*. To mitigate this Microsoft limits PowerShell scripts can be executed, even though the
+individual cmdlets can always be executed.
 
-Many articles suggest the disabling this security feature... **DO NOT DO THIS**, besides most companies harden their
-Windows laptop and server installations, so disabling may not be possible.
+Many articles on the internet suggest the disabling or trying to work around this security feature... **PLEASE AVOID DOING THIS**!
 
-In Windows 10 Home edition, in there is a set of developer section in ``Settings``, one of which is for PowerShell to
-allow local scripts to be executed and require signing for remote scripts, choose this option, or run an Administrator
-PowerShell and use:
+Your Windows distributions may provide *Developer* section in ``Settings``, which allows local ``PowerShell``  scripts to be
+executed by the ``CurrentUser`` by setting the ``ExecutionPolicy`` to ``RemoteSigned``.
+
+Alternatively this can also be done manually by running ``PowerShell`` as ``Administrator``
 
 ::
 
-    PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    ADM-PS1> set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
-A working setup for your personal laptop:
+    Execution Policy Change
+    The execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose you to the security risks
+    described in the about_Execution_Policies help topic at https:/go.microsoft.com/fwlink/?LinkID=135170. Do you want to change the execution policy?
+    [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): A
+
+
+A sensible working setup for your personal laptop
 
 ::
 
@@ -1531,14 +1542,9 @@ A working setup for your personal laptop:
        UserPolicy       Undefined
           Process       Undefined
       CurrentUser    RemoteSigned
-     LocalMachine       AllSigned
+     LocalMachine       Undefined
 
-   # Controlling your permission to run PowerShell scripts
-   PS> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
-   PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
-   PS> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
-
-A working setup for a typical windows server installation:
+A sensible working setup for a typical windows server installation
 ::
 
     PS> Get-ExecutionPolicy -list
@@ -1550,46 +1556,76 @@ A working setup for a typical windows server installation:
       CurrentUser       AllSigned
      LocalMachine       AllSigned
 
-Some useful references are:
-
-* `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
-* `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
-* `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
 
 PowerShell Execution Policies
 =============================
 
-PowerShell's `execution policies
-<https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_ :
+`Execution policies <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_
+are a safety feature to control the conditions under which ``PowerShell`` loads configuration
+files and runs scripts, with the intention to prevent the execution of malicious scripts. This is augmented with the notion
+of a ``Execution Policy Scope``, conditions under which the ``Execution Policy`` is applied
 
-* ``Restricted`` does not permit any scripts to run (*.ps1xml, .psm1, .ps1*);
-* ``AllSigned``, prevents running scripts that do not have a digital signature;
-* ``RemoteSigned`` prevents running downloaded scripts that do not have a digital signature;
-* ``Unrestricted`` runs without a digital signature, warns about non-local intranet zone scripts;
-* ``Bypass`` allows running of scripts without any digital signature, and without any warnings;
-* ``Undefined`` no execution policy is defined;
+Execution policies (highest to lowest):
 
-PowerShell's execution policy scope:
+* ``Restricted`` does not permit any scripts to run (*.ps1xml, .psm1, .ps1*)
+* ``AllSigned`` prevents running scripts that do not have a digital signature
+* ``RemoteSigned`` prevents running downloaded scripts that do not have a digital signature
+* ``Unrestricted`` runs without a digital signature, warns about non-local intranet zone scripts
+* ``Bypass`` allows running of scripts without any digital signature, and without any warnings
+* ``Undefined`` no execution policy is defined
 
-* ``MachinePolicy`` set by a Group Policy for all users of the computer;
-* ``UserPolicy`` set by a Group Policy for the current user of the computer;
-* ``Process`` current PowerShell session, environment variable ``$env:PSExecutionPolicyPreference``;
-* ``CurrentUser`` affects only the current user, ``HKEY_CURRENT_USER`` registry subkey;
-* ``LocalMachine`` all users on the current computer, ``HKEY_LOCAL_MACHINE`` registry subkey;
+Execution Policy Scope (highest to lowest):
 
-In a commercial or industrial environment ask your Windows Administrator, but company policy may be *AllSigned*.
+* ``MachinePolicy`` set by a Group Policy for all users of the computer
+* ``UserPolicy`` set by a Group Policy for the current user of the computer
+* ``Process`` current PowerShell session, environment variable ``$env:PSExecutionPolicyPreference``
+* ``CurrentUser`` affects only the current user, ``HKEY_CURRENT_USER`` registry subkey
+* ``LocalMachine`` all users on the current computer, ``HKEY_LOCAL_MACHINE`` registry subkey
 
+In a commercial or industrial environment this is usually managed by your local Windows Administrators, hence
+``MachinePolicy`` and ``UserPolicy`` in ``Execution Policy Scope`` and you maybe prevented from changing anything.
+
+Some example ``Set-ExecutionPolicy`` commands, these need to be executed in ``PowerShell`` running as ``Administrator``
 ::
 
-   # Stops running of downloaded scripts
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned # sets: LocalMachine RemoteSigned
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Restricted   # sets: LocalMachine Restricted
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Undefined    # sets: LocalMachine Undefined
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # just me
-   
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate code-signing   
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
-   
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned # sets: LocalMachine RemoteSigned
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Restricted   # sets: LocalMachine Restricted
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Undefined    # sets: LocalMachine Undefined
+
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate AllSigned for LocalMachine
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
+
+PowerShell Code Signing
+=======================
+
+Microsoft uses a proprietary technique called ``Authenticode`` for code signing ``PowerShell``
+
+* `Authenticode (I): Understanding Windows Authenticode <https://reversea.me/index.php/authenticode-i-understanding-windows-authenticode/>`_
+* `Authenticode (II): Verifying Authenticode with OpenSSL <https://reversea.me/index.php/authenticode-ii-verifying-authenticode-with-openssl/>`_
+* `Verifying Windows binaries, without Windows <https://blog.trailofbits.com/2020/05/27/verifying-windows-binaries-without-windows/>`_
+
+Apart from the proprietary nature, which impacts its generation, it is still an asymmetric keypair, signed using a
+PKI certificate installed in the Windows PKI certificate.
+
+This involves creating a code signing request (CSR) with an associated key and having it signed by an approved
+Certificate Authority.
+
+How this needs to handled depends on where and how the ``PowerShell script`` is going to be used.
+
+Internal to a commercial organization there is probably an existing process that needs to be followed using an
+internally approved Certificate Authority.
+
+An externally available application or product should probably use an external commercially available service,
+the following guides may be useful.
+
+* `SSLshopper:  Microsoft Authenticode Certificates <https://www.sslshopper.com/microsoft-authenticode-certificates.html>`_
+* `SSLstore: Sign Code with Microsoft Authenticode <https://www.thesslstore.com/knowledgebase/code-signing-sign-code/sign-code-microsoft-authenticode/>`_
+* `SSL.com: Microsoft Authenticode Code Signing in Linux with Jsign <https://www.ssl.com/how-to/microsoft-authenticode-code-signing-in-linux-with-jsign/>`_
+
+For an internal development then *Self-Signed Authenticode Certificates* can be used, the generation of which is
+covered in the following section.
+
 Self-Signed Authenticode Certificates
 =====================================
 
@@ -1978,8 +2014,15 @@ This is the result of many iterations and consulting many references, most relev
 
     #[alternate_names]
 
+***************************
 Stuff to Clean Up or Remove
-===========================
+***************************
+
+Some useful references are:
+
+* `Allow other to run your PowerShell scripts... <https://blog.danskingdom.com/allow-others-to-run-your-powershell-scripts-from-a-batch-file-they-will-love-you-for-it/>`_
+* `Setup Powershell scripts for automatic execution <https://stackoverflow.com/questions/29645/set-up-powershell-script-for-automatic-execution/8597794#8597794>`_
+* `Get-ExecutionPolicy <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy?view=powershell-7>`_
 
 To add a digital signature to a script you must sign it with a code signing certificate:
 
