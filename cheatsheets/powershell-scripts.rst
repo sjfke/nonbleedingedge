@@ -26,8 +26,8 @@ own modules, see `How to Write a PowerShell Script Module <https://docs.microsof
 Introduction
 ************
 
-Unfortunately because ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, makes it an ideal
-target for **would-be** hackers. To mitigate this Microsoft limits if/when PowerShell scripts can be executed, although 
+``PowerShell`` is very powerful scripting language, often used to automate routine tasks, which makes it an ideal
+target for *would-be hackers*. To mitigate this Microsoft limits PowerShell scripts can be executed, even though the
 individual ``cmdlets`` can always be executed.
 
 If your ``Get-ExecutionPolicy`` is like this
@@ -46,7 +46,8 @@ If your ``Get-ExecutionPolicy`` is like this
      CurrentUser       Undefined
     LocalMachine       Restricted  # lowest priority
 
-The `PowerShell` script will not execute!
+The ``PowerShell`` script will not execute!
+
 ::
 
     .\hello-world.ps1
@@ -58,14 +59,16 @@ The `PowerShell` script will not execute!
         + CategoryInfo          : SecurityError: (:) [], PSSecurityException
         + FullyQualifiedErrorId : UnauthorizedAccess
 
+Many articles on the internet suggest the disabling or trying to work around this security feature... **PLEASE AVOID DOING THIS**!
 
-In Windows 10 Home edition there is a set of developer section in ``Settings``, one of which is for PowerShell to
-allow local scripts to be executed by requiring ``RemoteSigned`` for ``CurrentUser``, choose this option.
+Many Windows distributions may provide *Developer* section in ``Settings``, which allows local ``PowerShell``  scripts to be
+executed by the ``CurrentUser`` by setting the ``ExecutionPolicy`` to ``RemoteSigned``.
 
 Alternatively run a ``PowerShell`` as ``Administrator`` set the following, choosing the ``[A]`` option.
+
 ::
 
-    set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    ADM-PS1> set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
     Execution Policy Change
     The execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose you to the security risks
@@ -98,7 +101,7 @@ Alternatively run a ``PowerShell`` as ``Administrator`` set the following, choos
      LocalMachine       AllSigned
  
 There are a lot of references on the internet on how to disable the ``ExecutionPolicy``, or bypass it when
-running scripts do this at your own **PERIL!** see `Security Considerations`_.
+running scripts do this at your own **PLEASE DO NO DO THIS!** see `Security Considerations`_.
 
 *****************
 Language Overview
@@ -1272,7 +1275,7 @@ Reading XML files
 
 ``Powershell`` supports full manipulation of the XML DOM, read the `Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ 
 and `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more detailed information. The examples shown 
-are very redimentary, and only show a few of the manipulations you can perform on XML objects.
+are very rudimentary, and only show a few of the manipulations you can perform on XML objects.
 
 **Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
 `Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
@@ -1450,7 +1453,7 @@ Log files: tail, write time-stamped message
 Formatting Variables
 ====================
 
-Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assigment.
+Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assignment.
 Specified as ``{<index>, <alignment><width>:<format_spec>}``
 
 ::
@@ -1510,12 +1513,16 @@ Running PowerShell scripts
 ``PowerShell`` is an often abused hackers attack vector, so most modern Windows versions allow the individual ``cmd-lets``
 to be run but prevent ``PowerShell scripts`` from being executed *out-of-the-box*.
 
-Many articles on the internet suggest the disabling or trying to work around this security feature... **DO NOT DO THIS**!
+``PowerShell`` is very powerful scripting language, often used to automate routine tasks, which makes it an ideal target
+for *would-be hackers*. To mitigate this Microsoft limits PowerShell scripts can be executed, even though the
+individual cmdlets can always be executed.
+
+Many articles on the internet suggest the disabling or trying to work around this security feature... **PLEASE AVOID DOING THIS**!
 
 Your Windows distributions may provide *Developer* section in ``Settings``, which allows local ``PowerShell``  scripts to be
 executed by the ``CurrentUser`` by setting the ``ExecutionPolicy`` to ``RemoteSigned``.
 
-Alternatively this can also be done manually by running ``PowerShell`` as ``Administrator``:
+Alternatively this can also be done manually by running ``PowerShell`` as ``Administrator``
 
 ::
 
@@ -1527,7 +1534,7 @@ Alternatively this can also be done manually by running ``PowerShell`` as ``Admi
     [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): A
 
 
-A sensible working setup for your personal laptop:
+A sensible working setup for your personal laptop
 
 ::
 
@@ -1538,14 +1545,9 @@ A sensible working setup for your personal laptop:
        UserPolicy       Undefined
           Process       Undefined
       CurrentUser    RemoteSigned
-     LocalMachine       AllSigned
+     LocalMachine       Undefined
 
-   # Controlling your permission to run PowerShell scripts
-   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser    # Must be Signed
-   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # Must be RemotelySigned
-   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser # Disable
-
-A sensible working setup for a typical windows server installation:
+A sensible working setup for a typical windows server installation
 ::
 
     PS> Get-ExecutionPolicy -list
@@ -1558,40 +1560,44 @@ A sensible working setup for a typical windows server installation:
      LocalMachine       AllSigned
 
 
-
 PowerShell Execution Policies
 =============================
 
-PowerShell's `execution policies
-<https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_ :
+`Execution policies <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_
+are a safety feature to control the conditions under which ``PowerShell`` loads configuration
+files and runs scripts, with the intention to prevent the execution of malicious scripts. This is augmented with the notion
+of a ``Execution Policy Scope``, conditions under which the ``Execution Policy`` is applied
 
-* ``Restricted`` does not permit any scripts to run (*.ps1xml, .psm1, .ps1*);
-* ``AllSigned``, prevents running scripts that do not have a digital signature;
-* ``RemoteSigned`` prevents running downloaded scripts that do not have a digital signature;
-* ``Unrestricted`` runs without a digital signature, warns about non-local intranet zone scripts;
-* ``Bypass`` allows running of scripts without any digital signature, and without any warnings;
-* ``Undefined`` no execution policy is defined;
+Execution policies (highest to lowest):
 
-PowerShell's execution policy scope:
+* ``Restricted`` does not permit any scripts to run (*.ps1xml, .psm1, .ps1*)
+* ``AllSigned`` prevents running scripts that do not have a digital signature
+* ``RemoteSigned`` prevents running downloaded scripts that do not have a digital signature
+* ``Unrestricted`` runs without a digital signature, warns about non-local intranet zone scripts
+* ``Bypass`` allows running of scripts without any digital signature, and without any warnings
+* ``Undefined`` no execution policy is defined
 
-* ``MachinePolicy`` set by a Group Policy for all users of the computer;
-* ``UserPolicy`` set by a Group Policy for the current user of the computer;
-* ``Process`` current PowerShell session, environment variable ``$env:PSExecutionPolicyPreference``;
-* ``CurrentUser`` affects only the current user, ``HKEY_CURRENT_USER`` registry subkey;
-* ``LocalMachine`` all users on the current computer, ``HKEY_LOCAL_MACHINE`` registry subkey;
+Execution Policy Scope (highest to lowest):
 
-In a commercial or industrial environment ask your Windows Administrator, but company policy may be *AllSigned*.
+* ``MachinePolicy`` set by a Group Policy for all users of the computer
+* ``UserPolicy`` set by a Group Policy for the current user of the computer
+* ``Process`` current PowerShell session, environment variable ``$env:PSExecutionPolicyPreference``
+* ``CurrentUser`` affects only the current user, ``HKEY_CURRENT_USER`` registry subkey
+* ``LocalMachine`` all users on the current computer, ``HKEY_LOCAL_MACHINE`` registry subkey
 
+In a commercial or industrial environment this is usually managed by your local Windows Administrators, hence
+``MachinePolicy`` and ``UserPolicy`` in ``Execution Policy Scope`` and you maybe prevented from changing anything.
+
+Some example ``Set-ExecutionPolicy`` commands, these need to be executed in ``PowerShell`` running as ``Administrator``
 ::
 
-   # Stops running of downloaded scripts
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned # sets: LocalMachine RemoteSigned
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Restricted   # sets: LocalMachine Restricted
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Undefined    # sets: LocalMachine Undefined
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser # just me
-   
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate code-signing   
-   PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned # sets: LocalMachine RemoteSigned
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Restricted   # sets: LocalMachine Restricted
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Undefined    # sets: LocalMachine Undefined
+
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate AllSigned for LocalMachine
+   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
    
 Self-Signed Authenticode Certificates
 =====================================
