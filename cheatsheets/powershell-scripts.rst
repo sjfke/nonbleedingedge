@@ -27,8 +27,8 @@ Introduction
 ************
 
 ``PowerShell`` is very powerful scripting language, often used to automate routine tasks, which makes it an ideal
-target for *would-be hackers*. To mitigate this Microsoft limits PowerShell scripts can be executed, even though the
-individual ``cmdlets`` can always be executed.
+target for *would-be hackers*. To mitigate this Microsoft limits PowerShell execution, even though the
+individual ``cmdlets`` can always be run.
 
 If your ``Get-ExecutionPolicy`` is like this
 ::
@@ -40,17 +40,17 @@ If your ``Get-ExecutionPolicy`` is like this
 
            Scope ExecutionPolicy
            ----- ---------------
-   MachinePolicy       Undefined  # highest priority
+   MachinePolicy       Undefined
       UserPolicy       Undefined
          Process       Undefined
      CurrentUser       Undefined
-    LocalMachine       Restricted  # lowest priority
+    LocalMachine       Restricted
 
 The ``PowerShell`` script will not execute!
 
 ::
 
-    .\hello-world.ps1
+    PS1> .\hello-world.ps1
     .\hello-world.ps1 : File C:\Users\sjfke\hello-world.ps1 cannot be loaded because running scripts is disabled on this
     system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
     At line:1 char:1
@@ -61,7 +61,7 @@ The ``PowerShell`` script will not execute!
 
 Many articles on the internet suggest the disabling or trying to work around this security feature... **PLEASE AVOID DOING THIS**!
 
-Many Windows distributions may provide *Developer* section in ``Settings``, which allows local ``PowerShell``  scripts to be
+Many Windows distributions provide *Developer* section in ``Settings``, which allows local ``PowerShell``  scripts to be
 executed by the ``CurrentUser`` by setting the ``ExecutionPolicy`` to ``RemoteSigned``.
 
 Alternatively run a ``PowerShell`` as ``Administrator`` set the following, choosing the ``[A]`` option.
@@ -98,7 +98,7 @@ Locally developed ``PowerShell scripts`` will be executed but those from any oth
 Suggested Server settings
 =========================
 
-Requires all ``PowerShell scripts`` to be signed, if *too restrictive* for your environment use
+All ``PowerShell scripts`` should be signed, if *too restrictive* for your environment use
 `Suggested Laptop settings`_
 
 ::
@@ -116,9 +116,6 @@ Requires all ``PowerShell scripts`` to be signed, if *too restrictive* for your 
     PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
 
 
-There are a lot of references on the internet on how to disable the ``ExecutionPolicy``, or bypass it when
-running scripts, **PLEASE DO NO DO THIS!** see `Security Considerations`_.
-
 *****************
 Language Overview
 *****************
@@ -130,10 +127,9 @@ does not provide what you need, there may be a `Popular PowerShell Module <https
 you can download or you can access the `.Net APIs <https://docs.microsoft.com/en-us/dotnet/api>`_ directly, a good example being `ArrayLists <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_ which 
 are dynamic in size unlike a *PowerShell Array*.
 
-
 In common with other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
-Functions support both ``named`` and ``positional`` arguments, which can be mixed, often make the intention more confusing.
-It is often clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather
+Functions and methods support both ``named`` and ``positional`` arguments, that can be mixed liberally, but done inappropriately can make the intention
+more confusing. Often it is clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather
 than individual name or positional parameters.
 
 Useful starting points when learning about the language:
@@ -150,7 +146,7 @@ Example Script
 **************
 
 This is a contrived but realistic PowerShell script to illustrate several important points.
-It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which is extremely useful, but is augmented to force
+It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which is augmented to force
 the syntax version and to be more strict on the use of uninitialized variables.
 
 ::
@@ -1526,13 +1522,13 @@ Security Considerations
 Running PowerShell scripts
 ==========================
 
-``PowerShell`` is very powerful scripting language, often used to automate routine tasks, which makes it an ideal target
-for *would-be hackers*. To mitigate this Microsoft limits PowerShell scripts can be executed, even though the
-individual cmdlets can always be executed.
+``PowerShell`` is very powerful scripting language, often used to automate routine tasks, which makes it an ideal
+target for *would-be hackers*. To mitigate this Microsoft limits PowerShell execution, even though the
+individual ``cmdlets`` can always be run.
 
 Many articles on the internet suggest the disabling or trying to work around this security feature... **PLEASE AVOID DOING THIS**!
 
-Your Windows distributions may provide *Developer* section in ``Settings``, which allows local ``PowerShell``  scripts to be
+Many Windows distributions provide *Developer* section in ``Settings``, which allows local ``PowerShell``  scripts to be
 executed by the ``CurrentUser`` by setting the ``ExecutionPolicy`` to ``RemoteSigned``.
 
 Alternatively this can also be done manually by running ``PowerShell`` as ``Administrator``
@@ -1601,7 +1597,7 @@ Execution Policy Scope (highest to lowest):
 In a commercial or industrial environment this is usually managed by your local Windows Administrators, hence
 ``MachinePolicy`` and ``UserPolicy`` in ``Execution Policy Scope`` and you maybe prevented from changing anything.
 
-Some example ``Set-ExecutionPolicy`` commands, these need to be executed in ``PowerShell`` running as ``Administrator``
+Example ``Set-ExecutionPolicy`` commands, these need to be executed in ``PowerShell`` running as ``Administrator``
 ::
 
    ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned # sets: LocalMachine RemoteSigned
@@ -1623,19 +1619,19 @@ Microsoft uses a proprietary technique called ``Authenticode`` for code signing 
 
 Apart from the proprietary nature, which impacts its generation, it is an asymmetric keypair, signed by
 an approved Certificate Authority (CA), installed in the Windows certificate stores, and so involves creating a
-code signing request (CSR) with an associated key and having it signed by an approved Certificate Authority.
+code signing request (CSR) with an associated keypair and having it signed by an approved Certificate Authority.
 
-Internal to a commercial organization there is probably an existing process that needs to be followed using an
-internally approved Certificate Authority.
+Within a commercial organization there is probably an existing process that needs to be followed to generate the CSR
+and have it approved by the internally Certificate Authority.
 
-An externally available application or product should probably use an external commercially available service,
+Externally available applications or product should probably use an external commercially available service,
 the following guides may be useful.
 
 * `SSLshopper:  Microsoft Authenticode Certificates <https://www.sslshopper.com/microsoft-authenticode-certificates.html>`_
 * `SSLstore: Sign Code with Microsoft Authenticode <https://www.thesslstore.com/knowledgebase/code-signing-sign-code/sign-code-microsoft-authenticode/>`_
 * `SSL.com: Microsoft Authenticode Code Signing in Linux with Jsign <https://www.ssl.com/how-to/microsoft-authenticode-code-signing-in-linux-with-jsign/>`_
 
-For an internal development then *Self-Signed Authenticode Certificates* can be used, the generation of which is
+For an internal development it is possible to use *Self-Signed Authenticode Certificates*, the generation of which is
 covered in the following section.
 
 Self-Signed Authenticode Certificates
@@ -1757,7 +1753,7 @@ Using the Authenticode, Signing and Running
     host: hello world!
     output: hello world!
 
-Suggestion: adding a TimeStampServer ensures that your code will not expire when the signing certificate expires.
+Adding a TimeStampServer should ensure that your code will not expire when the signing certificate expires.
 
 ::
 
@@ -1771,14 +1767,24 @@ Suggestion: adding a TimeStampServer ensures that your code will not expire when
     - http://sha256timestamp.ws.symantec.com/sha256/timestamp
     - http://tsa.swisssign.net
 
-OpenSSL Generating, Installing and Using a Self-Signed Certificate
-------------------------------------------------------------------
+OpenSSL: Generating, Installing and Using a Self-Signed Certificate
+-------------------------------------------------------------------
 
 In `PowerShell Generating, Installing and Using a Self-Signed Certificate`_ the sequence is:
 
-1. Generate *ata-authenticode* (certificate, private key) in certificate store,  *LocalMachine\\My*
-2. Import *ata-authenticode* into certificate store *LocalMachine\\Root* for authentication;
-#. Import *ata-authenticode* into certificate store *LocalMachine\\TrustedPublisher* for authentication;
+1. Generate *ata-authenticode* (certificate, private key) in certificate store,  **LocalMachine\\My**
+2. Import *ata-authenticode* into certificate store **LocalMachine\\Root** for authentication;
+#. Import *ata-authenticode* into certificate store **LocalMachine\\TrustedPublisher** for authentication;
+
+OpenSSL uses the *CurrentUser Execution Policy Scope*, with the same sequence and requires a few more steps
+
+1. Generate *atb-authenticode* (certificate, private key) in certificate store,  **CurrentUser\\My**
+    a. Generate *atb-authenticode.key* and *atb-authenticode.csr*
+    b. Generate self-signed *atb-authenticode.crt*
+    #. Merge *atb-authenticode.crt* *and authenticode.key* into *authenticode.pfx*
+    #. Import *authenticode.pfx* into certificate store **CurrentUser\\My**
+2.  Import *authenticode.pfx* into certificate store **CurrentUser\\Root** for authentication;
+#.  Import *authenticode.pfx* into certificate store **CurrentUser\\TrustedPublisher** for authentication;
 
 The following was done using `Git Bash shell <https://gitforwindows.org/>`_ but the of *atb-authenticode* could
 be built on any system with OpenSSL because all that is needed is the ``authenticode.pfx`` file.
@@ -1786,8 +1792,8 @@ be built on any system with OpenSSL because all that is needed is the ``authenti
 An explicit OpenSSL configuration file, ``authenticode-selfsign-openssl.cnf`` is used to avoid issues resulting from
 differences in the default configuration in the OpenSSL installation.
 
-OpenSSL Self-Signed Certificates Setup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OpenSSL: Self-Signed Certificates Setup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ::
 
     Step 1a - generate atb-authenticode.key and atb-authenticode.csr
@@ -1854,8 +1860,8 @@ The next few steps involve importing the ``authenticode.pfx`` into the Windows c
     Step 3  - import authenticode.pfx -into- CurrentUser\TrustedPublisher - certificate for trust/authentication;
 
 
-OpenSSL Using the Authenticode, Signing and Running
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OpenSSL: Using the Authenticode, Signing and Running
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Requires using a ``PowerShell`` in *Administrative mode* to execute ``set-ExecutionPolicy`` commands, prompt ``ADM-PS1>``
 and a normal ``PowerShell``, prompt ``PS1>`` for the rest.
