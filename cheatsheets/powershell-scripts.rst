@@ -75,10 +75,14 @@ Alternatively run a ``PowerShell`` as ``Administrator`` set the following, choos
     described in the about_Execution_Policies help topic at https:/go.microsoft.com/fwlink/?LinkID=135170. Do you want to change the execution policy?
     [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): A
 
+
+Suggested Laptop settings
+=========================
+
+Locally developed ``PowerShell scripts`` will be executed but those from any other source will need to be signed.
+
 ::
 
-    # Suggested Laptop settings
-    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
     PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
             Scope ExecutionPolicy
             ----- ---------------
@@ -88,9 +92,17 @@ Alternatively run a ``PowerShell`` as ``Administrator`` set the following, choos
       CurrentUser    RemoteSigned
      LocalMachine       Undefined
 
-    # Suggested Server settings
-    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
-    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+
+Suggested Server settings
+=========================
+
+Requires all ``PowerShell scripts`` to be signed, if *too restrictive* for your environment use
+`Suggested Laptop settings`_
+
+::
+
     PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
             Scope ExecutionPolicy
             ----- ---------------
@@ -99,9 +111,13 @@ Alternatively run a ``PowerShell`` as ``Administrator`` set the following, choos
           Process       Undefined
       CurrentUser       AllSigned
      LocalMachine       AllSigned
- 
+
+    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
+    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+
+
 There are a lot of references on the internet on how to disable the ``ExecutionPolicy``, or bypass it when
-running scripts do this at your own **PLEASE DO NO DO THIS!** see `Security Considerations`_.
+running scripts, **PLEASE DO NO DO THIS!** see `Security Considerations`_.
 
 *****************
 Language Overview
@@ -1605,13 +1621,9 @@ Microsoft uses a proprietary technique called ``Authenticode`` for code signing 
 * `Authenticode (II): Verifying Authenticode with OpenSSL <https://reversea.me/index.php/authenticode-ii-verifying-authenticode-with-openssl/>`_
 * `Verifying Windows binaries, without Windows <https://blog.trailofbits.com/2020/05/27/verifying-windows-binaries-without-windows/>`_
 
-Apart from the proprietary nature, which impacts its generation, it is still an asymmetric keypair, signed using a
-PKI certificate installed in the Windows PKI certificate.
-
-This involves creating a code signing request (CSR) with an associated key and having it signed by an approved
-Certificate Authority.
-
-How this needs to handled depends on where and how the ``PowerShell script`` is going to be used.
+Apart from the proprietary nature, which impacts its generation, it is an asymmetric keypair, signed by
+an approved Certificate Authority (CA), installed in the Windows certificate stores, and so involves creating a
+code signing request (CSR) with an associated key and having it signed by an approved Certificate Authority.
 
 Internal to a commercial organization there is probably an existing process that needs to be followed using an
 internally approved Certificate Authority.
