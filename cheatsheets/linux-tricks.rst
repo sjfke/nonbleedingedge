@@ -174,6 +174,32 @@ JSON File Tricks
 * `jq, xq and yq - Handy tools for the command line <https://blog.lazy-evaluation.net/posts/linux/jq-xq-yq.html>`_
 * `TOML [Tom's Obvious Minimal Language] (.INI like) <https://toml.io/en/>`_
 
+Gnome Desktop Custom Launcher
+=============================
+
+For example, download the `PyCharm Community Edition <https://www.jetbrains.com/pycharm/download/#section=linux>`_ and unzip into
+``$HOME/Applications/pycharm-community``, create the ``.desktop`` file and copy to ``$HOME/.local/share/applications``.
+
+::
+
+    $ cat com.jetbrains.pycharm.community.desktop
+    [Desktop Entry]
+    Encoding=UTF-8
+    Name=PyCharm
+    Exec=/home/<user>/Applications//bin/pycharm.sh
+    Icon=/home/<user>/Applications/pycharm-community/bin/pycharm.png
+    Type=Application
+    Version=2022.2.2
+    Terminal=false
+    Categories=Development;
+
+    $ cp ./com.jetbrains.pycharm.community.desktop $HOME/.local/share/applications
+
+* `Adding a Custom Launcher to Gnome Shell <https://hackeradam.com/post/custom-launcher-gnome-shell/>`_
+* `Guide to Desktop Entry Files in Linux <https://www.baeldung.com/linux/desktop-entry-files>`_
+* `KDE and GNOME desktop environments have adopted a similar format <https://specifications.freedesktop.org/desktop-entry-spec/latest/index.html#introduction>`_
+* `DBUS Specification Message Protocol Names <https://dbus.freedesktop.org/doc/dbus-specification.html#message-protocol-names>`_
+
 Brendan Gregg's Homepage
 ========================
 
