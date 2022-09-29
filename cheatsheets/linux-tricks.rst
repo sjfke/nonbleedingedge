@@ -174,6 +174,89 @@ JSON File Tricks
 * `jq, xq and yq - Handy tools for the command line <https://blog.lazy-evaluation.net/posts/linux/jq-xq-yq.html>`_
 * `TOML [Tom's Obvious Minimal Language] (.INI like) <https://toml.io/en/>`_
 
+Grep Tricks
+===========
+
+::
+
+    $ cat flintstones.yaml
+    ---
+    family: flintstones
+    members:
+      - Name: Fred
+        Age: 35
+        Gender: male
+      - Name: Wilma
+        Age: 25
+        Gender: female
+      - Name: Pebbles
+        Age: 1
+        Gender: female
+      - Name: Dino
+        Age: 5
+        Gender: male
+
+    $ grep Fred flintstones.yaml
+      - Name: Fred
+
+    $ grep Name flintstones.yaml
+      - Name: Fred
+      - Name: Wilma
+      - Name: Pebbles
+      - Name: Dino
+
+    $ grep "Name|Age" flintstones.yaml    # no output
+    $ grep -E "Name|Age" flintstones.yaml # Extended (a.k.a egrep)
+      - Name: Fred
+        Age: 35
+      - Name: Wilma
+        Age: 25
+      - Name: Pebbles
+        Age: 1
+      - Name: Dino
+        Age: 5
+
+    $ grep Age flintstones.yaml -A 1     # one line After match
+        Age: 35
+        Gender: male
+    --
+        Age: 25
+        Gender: female
+    --
+        Age: 1
+        Gender: female
+    --
+        Age: 5
+        Gender: male
+
+    $ grep Age flintstones.yaml -B 1     # one line Before match
+      - Name: Fred
+        Age: 35
+    --
+      - Name: Wilma
+        Age: 25
+    --
+      - Name: Pebbles
+        Age: 1
+    --
+      - Name: Dino
+        Age: 5
+
+    $ grep Age flintstones.yaml -C 1     # one line Context (before/after) match
+      - Name: Fred
+        Age: 35
+        Gender: male
+      - Name: Wilma
+        Age: 25
+        Gender: female
+      - Name: Pebbles
+        Age: 1
+        Gender: female
+      - Name: Dino
+        Age: 5
+        Gender: male
+
+
 Gnome Desktop Custom Launcher
 =============================
 
