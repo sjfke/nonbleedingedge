@@ -322,3 +322,25 @@ For example, if ``~/.bashrc`` is tracked by ``rcm``, a long listing would look l
 * ``rcup`` – synchronize dotfiles managed by rcm
 * ``rcdn`` – remove all the symlinks managed by rcm
 
+Fedora 36 Live CD install
+=========================
+
+Of course backup everything you want to keep as you are going to reformat use HDD or SSD!
+
+The *live* installation is very robust so simply follow:
+
+* `Download Fedora 36 Workstation <https://getfedora.org/en/workstation/download/>`_
+* `Creating and using a live installation image <https://docs.fedoraproject.org/en-US/quick-docs/creating-and-using-a-live-installation-image/index.html>`_
+
+Post install consult `Fedora Quick Docs <https://docs.fedoraproject.org/en-US/quick-docs/>`_ especially the *Adding and managing software* section.
+
+Some of the perennial issues with *audio* and *video* playback are still there, so follow these instructions.
+
+* `Installing plugins for playing movies and music <https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/>`_
+
+::
+
+    $ sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+    $ sudo dnf install lame\* --exclude=lame-devel
+    $ sudo dnf group upgrade --with-optional Multimedia
+
