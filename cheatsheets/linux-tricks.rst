@@ -113,69 +113,8 @@ Cat File Tricks
     $ cat -n <filename> | tail -5            # (ending) last 5 lines
     $ cat -n <filename> | tail -10 | head -5 # (middle) first 5 of last 10 lines
 
-JSON File Tricks
+Grep File Tricks
 ================
-
-* ``jq`` is a lightweight command-line JSON processor, similar to ``sed``.
-* ``yq`` is a Python command-line (``jq`` wrapper) YAML/XML/TOML processor.
-
-::
-
-    $ sudo dnf install jq # Fedora
-    $ brew install jq     # MacOS
-    $ pip install yq      # Python
-
-    # Command Line examples
-    $ echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' | jq '.' # pretty-print
-    $ curl http://api.open-notify.org/iss-now.json | jq '.' # pretty-print HTTP response
-
-    # Simple JSON file example
-    $ jq '.' fruit.json
-    {
-        "fruit": {
-        "name": "apple",
-        "color": "green",
-        "price": 1.2
-        }
-    }
-    $ jq '.' fruit.json                         # pretty-print file
-    $ jq '.fruit.color' fruit.json              # extract colors
-    $ jq '.fruit.color,.fruit.price' fruit.json # extract colors and price
-    $ jq '.fruit | keys' fruit.json             # keys
-
-    # JSON array example
-    $ jq '.' fruits.json
-    [
-      {
-        "name": "apple",
-        "color": "green",
-        "price": 1.2
-      },
-      {
-        "name": "banana",
-        "color": "yellow",
-        "price": 0.5
-      },
-      {
-        "name": "kiwi",
-        "color": "green",
-        "price": 1.25
-      }
-    ]
-
-    $ jq '.' fruits.json           # pretty-print
-    $ jq '.[] | .name' fruits.json # list all fruits in the array
-    $ jq '.[].name' fruits.json    # list all fruits in the array
-    $ jq '.[1]' fruits.json        # array element 1
-
-* `Guide to Linux jq Command for JSON Processing <https://www.baeldung.com/linux/jq-command-json>`_
-* `Querying JSON and XML with jq and xq <https://www.ashbyhq.com/blog/engineering/jq-and-yq>`_
-* `yq: Command-line YAML/XML/TOML processor - jq wrapper for YAML, XML, TOML documents <https://github.com/kislyuk/yq>`_
-* `jq, xq and yq - Handy tools for the command line <https://blog.lazy-evaluation.net/posts/linux/jq-xq-yq.html>`_
-* `TOML [Tom's Obvious Minimal Language] (.INI like) <https://toml.io/en/>`_
-
-Grep Tricks
-===========
 
 ::
 
@@ -256,12 +195,77 @@ Grep Tricks
         Age: 5
         Gender: male
 
+JSON File Tricks
+================
+
+* ``jq`` is a lightweight command-line JSON processor, similar to ``sed``.
+* ``yq`` is a Python command-line (``jq`` wrapper) YAML/XML/TOML processor.
+
+::
+
+    $ sudo dnf install jq # Fedora
+    $ brew install jq     # MacOS
+    $ pip install yq      # Python
+
+    # Command Line examples
+    $ echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' | jq '.' # pretty-print
+    $ curl http://api.open-notify.org/iss-now.json | jq '.' # pretty-print HTTP response
+
+    # Simple JSON file example
+    $ jq '.' fruit.json
+    {
+        "fruit": {
+        "name": "apple",
+        "color": "green",
+        "price": 1.2
+        }
+    }
+    $ jq '.' fruit.json                         # pretty-print file
+    $ jq '.fruit.color' fruit.json              # extract colors
+    $ jq '.fruit.color,.fruit.price' fruit.json # extract colors and price
+    $ jq '.fruit | keys' fruit.json             # keys
+
+    # JSON array example
+    $ jq '.' fruits.json
+    [
+      {
+        "name": "apple",
+        "color": "green",
+        "price": 1.2
+      },
+      {
+        "name": "banana",
+        "color": "yellow",
+        "price": 0.5
+      },
+      {
+        "name": "kiwi",
+        "color": "green",
+        "price": 1.25
+      }
+    ]
+
+    $ jq '.' fruits.json           # pretty-print
+    $ jq '.[] | .name' fruits.json # list all fruits in the array
+    $ jq '.[].name' fruits.json    # list all fruits in the array
+    $ jq '.[1]' fruits.json        # array element 1
+
+* `Guide to Linux jq Command for JSON Processing <https://www.baeldung.com/linux/jq-command-json>`_
+* `Querying JSON and XML with jq and xq <https://www.ashbyhq.com/blog/engineering/jq-and-yq>`_
+* `yq: Command-line YAML/XML/TOML processor - jq wrapper for YAML, XML, TOML documents <https://github.com/kislyuk/yq>`_
+* `jq, xq and yq - Handy tools for the command line <https://blog.lazy-evaluation.net/posts/linux/jq-xq-yq.html>`_
+* `TOML [Tom's Obvious Minimal Language] (.INI like) <https://toml.io/en/>`_
+
 
 Gnome Desktop Custom Launcher
 =============================
 
-For example, download the `PyCharm Community Edition <https://www.jetbrains.com/pycharm/download/#section=linux>`_ and unzip into
-``$HOME/Applications/pycharm-community``, create the ``.desktop`` file and copy to ``$HOME/.local/share/applications``.
+Using `PyCharm Community Edition <https://www.jetbrains.com/pycharm/>`_ as an example,
+`download the PyCharm Community Edition <https://www.jetbrains.com/pycharm/download/#section=linux>`_ and unpack the
+``tar.gz`` file into ``$HOME/Applications``
+
+Create the ``com.jetbrains.pycharm.community.desktop`` file, modify it as necessary, and then copy it to
+``$HOME/.local/share/applications``
 
 ::
 
@@ -325,16 +329,19 @@ For example, if ``~/.bashrc`` is tracked by ``rcm``, a long listing would look l
 Fedora 36 Live CD install
 =========================
 
-Of course backup everything you want to keep as you are going to reformat use HDD or SSD!
+Of course backup everything you want to keep because you are going to reformat the HDD or SSD!
 
-The *live* installation is very robust so simply follow:
+The *live* installation is process is well documented and robust so simply follow:
 
 * `Download Fedora 36 Workstation <https://getfedora.org/en/workstation/download/>`_
 * `Creating and using a live installation image <https://docs.fedoraproject.org/en-US/quick-docs/creating-and-using-a-live-installation-image/index.html>`_
 
-Post install consult `Fedora Quick Docs <https://docs.fedoraproject.org/en-US/quick-docs/>`_ especially the *Adding and managing software* section.
+Next add the `RPM Fusion <https://rpmfusion.org/RPM%20Fusion>`_ repositories, by installing and configuring them as
+described in `RPMFusion Configuration <https://rpmfusion.org/Configuration>`_
 
-Some of the perennial issues with *audio* and *video* playback are still there, so follow these instructions.
+Finally consult `Fedora Quick Docs <https://docs.fedoraproject.org/en-US/quick-docs/>`_ especially the *Adding and managing software* section.
+
+Some of the perennial *audio* and *video* playback issues are still there, so follow these instructions.
 
 * `Installing plugins for playing movies and music <https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/>`_
 
@@ -343,4 +350,3 @@ Some of the perennial issues with *audio* and *video* playback are still there, 
     $ sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
     $ sudo dnf install lame\* --exclude=lame-devel
     $ sudo dnf group upgrade --with-optional Multimedia
-
