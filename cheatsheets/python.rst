@@ -435,7 +435,77 @@ Try/Except
 	with open("myfile.txt") as f:
 	    for line in f:
 	        print(line, end="")
-	        
+
+Decorators
+==========
+
+A decorator is a function that takes another function and extends the behavior of the latter function without
+explicitly modifying it, a kind of *wrapper*.
+
+* `Primer on Python Decorators <https://realpython.com/primer-on-python-decorators/>`_
+* `Decorators in Python <https://www.geeksforgeeks.org/decorators-in-python/>`_
+* `Python Decorators Tutorial <https://www.datacamp.com/tutorial/decorators-python>`_
+* `PEP 318 – Decorators for Functions and Methods <https://peps.python.org/pep-0318/>`_
+
+Basic example
+-------------
+
+::
+
+    >>> def add_one(number):
+    ...     return number + 1
+    ...
+    >>> add_one(42) # 43
+
+Functions as arguments (say_hello, say_hi)
+------------------------------------------
+
+::
+
+    >>> def say_hello(name):
+    ...     return f"Hello {name}"
+    ...
+    >>> def say_hi(name):
+    ...     return f"Hi {name}"
+    ...
+
+    >>> say_hello("Fred") # 'Hello Fred'
+    >>> say_hi("Fred")    # 'Hi Fred'
+    >>> say_hello         # <function say_hello at 0x000001C8E4F6E9D0>
+    >>> say_hi            # <function say_hi at 0x000001C8E4F6EB80>
+
+    #
+    >>> def greet_fred(greeting):
+    ...     return greeting("Fred")
+    ...
+
+    >>> greet_fred(say_hello) # 'Hello Fred'
+    >>> greet_fred(say_hi)    # 'Hi Fred'
+
+Functions and Methods
+---------------------
+
+::
+
+    >>> def my_decorator(func):
+    ...     def wrapper(*args,**kwargs):
+    ...             print("before execution")
+    ...             ans = func(*args,**kwargs)
+    ...             print("after execution")
+    ...             return ans
+    ...     return wrapper
+
+    >>> @my_decorator
+    ... def add_numbers(a, b):
+    ...     print("inside the function")
+    ...     return a + b
+    ...
+    >>> print(add_numbers(4,5))
+    before execution
+    inside the function
+    after execution
+    9
+
 Heapq
 =====
 
