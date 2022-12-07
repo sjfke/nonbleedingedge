@@ -150,21 +150,49 @@ Some references which may help at the beginning.
 Environment
 ===========
 
+Environment variables are
+* Machine (or System) scope
+* User scope
+* Process scope
+
 ::
 
-   PS> get-childitem variable:        # list PowerShell environment variables, 'PSHome', 'PWD' etc.
-   PS> $pshome                        # variable containing which PowerShell and version
-   PS> $pwd                           # variable containing the working directory
-   
-   PS> get-childitem env:             # get 'cmd.exe' enviroment variables, UCASE by convention
-   PS> $env:SystemRoot                # variable containing C:\Windows
-   PS> $env:COMPUTERNAME              # variable containing MYLAPTOP001
-   PS> $env:USERNAME                  # variable containing username
-   PS> $env:TMP, $env:TEMP            # variable containing temp directory
-   PS> $env:LIB_PATH='/usr/local/lib' # setting LIB_PATH variable 
-   
-   PS> $psversiontable                # variable containing PowerShell version information.
-   PS> get-host                       # PowerShell version information.
+    # Viewing predefined
+    PS> get-childitem variable:        # list PowerShell environment variables, 'PSHome', 'PWD' etc.
+    PS> $pshome                        # variable containing which PowerShell and version
+    PS> $pwd                           # variable containing the working directory
+
+    PS> get-childitem env:             # get 'cmd.exe' environment variables, UCASE by convention
+    PS> $env:SystemRoot                # variable containing C:\Windows
+    PS> $env:COMPUTERNAME              # variable containing MYLAPTOP001
+    PS> $env:USERNAME                  # variable containing username
+    PS> $env:TMP, $env:TEMP            # variable containing temp directory
+    PS> $env:LIB_PATH='/usr/local/lib' # setting LIB_PATH variable
+
+    PS> $psversiontable                # variable containing PowerShell version information.
+    PS> get-host                       # PowerShell version information.
+
+Viewing, setting temporarily or permanently environment variables.
+
+::
+
+    # Temporary variables
+    PS> $Env:DEBUG_MODE = '0'                   # set using string value
+    PS> $Env:DEBUG_MODE = ''                    # unset, clear
+    PS> $Env:DEBUG_MODE = 1                     # set using integer, but stored as string
+    PS> $Env:DEBUG_MODE                         # display current value
+
+    PS> New-Item -Path Env:\DEBUG_MODE -Value 0
+    PS> Copy-Item -Path Env:\Foo -Destination Env:\DEBUG_MODE2 -PassThru
+    PS> Set-Item -Path Env:\DEBUG_MODE2 -Value '1'
+    PS> Get-Item -Path Env:\DEBUG_MODE*
+    PS> Remove-Item -Path Env:\DEBUG_MODE* -Verbose
+
+    # Permanent variables (alternative to using Control Panel)
+    PS> [Environment]::SetEnvironmentVariable('DEBUG_MODE','1') # User scope
+    PS> [Environment]::GetEnvironmentVariable('DEBUG_MODE')
+    PS> [Environment]::SetEnvironmentVariable('DEBUG_MODE', '1', 'Machine') # Machine scope
+
 
 Processes
 =========
@@ -190,7 +218,7 @@ Processes
    PS> stop-process -id $p.id -force        # terminate by id, (no confirmation prompt if not yours)
    
    PS> $p = start-process notepad -passthru # start notepad, -passthru to return the process object
-   PS> $p | get-member                      # methods and properties, (only 4 examples shown)
+   PS> $p | get-member                      # methods and properties, (6 examples shown)
    PS> $p.cpu                               # how much CPU has notepad used
    PS> $p.Modules                           # which .dll's are being used
    PS> $p.Threads.Count                     # how many threads
@@ -290,14 +318,14 @@ Command Line History
 
 You can recall and repeat commands::
 
-   PS> get-history
-   PS> invoke-history 10                                   # execute 10 in your history (aliases 'r' and 'ihy')
-   PS> r 10                                                # same using the alias
-   PS> get-history | select-string -pattern 'get'          # all the get-commands in your command history
-   PS> get-history | where {$_.CommandLine -like "*get*"}  # all the get-commands in your command history
-   PS> get-history | format-list -property *               # execution Start/EndExecutiontimes and status             
-   PS> get-history -count 100                              # get 100 lines
-   PS> clear-history
+    PS> get-history
+    PS> invoke-history 10                                   # execute 10 in your history (aliases 'r' and 'ihy')
+    PS> r 10                                                # same using the alias
+    PS> get-history | select-string -pattern 'get'          # all the get-commands in your command history
+    PS> get-history | where {$_.CommandLine -like "*get*"}  # all the get-commands in your command history
+    PS> get-history | format-list -property *               # execution Start/EndExecutiontimes and status
+    PS> get-history -count 100                              # get 100 lines
+    PS> clear-history
 
 Computer Information
 ====================
@@ -593,8 +621,8 @@ and avoids having to use ``Microsoft Excel`` or ``Microsoft Access``.
 ::
 
    PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # <TAB> separated file.
-   PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # ';' separated file.
-   PS> import-csv -Path file.csv -Delimeter "," | out-gridview  # ',' separated file.
+   PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # semi-colon ';' separated file.
+   PS> import-csv -Path file.csv -Delimeter "," | out-gridview  # comma ',' separated file.
    
    
 .. image:: ../images/file-csv-gridview.png
