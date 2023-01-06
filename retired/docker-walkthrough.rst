@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/howtos/docker-walkthrough.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/retired/docker-walkthrough.rst
 
 ***************************
 Docker Tutorial Walkthrough

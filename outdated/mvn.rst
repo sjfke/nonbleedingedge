@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/mvn.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/mvn.rst
 
 ************
 Apache Maven
