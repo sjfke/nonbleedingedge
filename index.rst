@@ -10,8 +10,8 @@ Welcome to NonBleedingEdge!
 
 This site is an online collection of my cheatsheets and howtos.
 
-I admit the name *"NonBleedingEdge"* is kind of strange, but resulted from a discussion with another 
-*"aging techie"* who also found himself forced into semi-retirement... 
+I admit the name *"NonBleedingEdge"* is kind of strange, but resulted from a discussion with another *"aging techie"*
+ who also found himself forced into semi-retirement...
 
 :Question: How can an *"aging techie"* be of any use in the ever changing I.T. industry? 
 
@@ -36,40 +36,40 @@ Hope you find it useful, and keep coming back because the site will be updated f
 	gcollis@ymail.com
 
 .. toctree::
-	:caption: HowTo's
-	:maxdepth: 1
-	
-	howtos/docker-walkthrough
-	howtos/eclipse-remote-dev
-	howtos/fedora29-install
-   
-.. toctree::
 	:maxdepth: 1
 	:caption: Cheatsheets:
 
-	cheatsheets/python
-	cheatsheets/git
-	cheatsheets/sphinx
-	cheatsheets/django
-	cheatsheets/perl
 	cheatsheets/brew
 	cheatsheets/linux-tricks
-	cheatsheets/svn
-	cheatsheets/daemontools
-	cheatsheets/iptables
-	cheatsheets/javascript
-	cheatsheets/jquery
-	cheatsheets/mvn
-	cheatsheets/mysql
-	cheatsheets/php
-	cheatsheets/pymysql
 	cheatsheets/powershell
 	cheatsheets/powershell-scripts
 	cheatsheets/screen
 	cheatsheets/systemctl-service
-	
+	cheatsheets/svn
+	cheatsheets/daemontools
+	cheatsheets/iptables
+	cheatsheets/mysql
+	cheatsheets/php
+	cheatsheets/pymysql
+
 .. toctree::
-	:caption: Notes
 	:maxdepth: 1
-	
-	notes/catalina-upgrade
+	:caption: Outdated:
+
+	outdated/python
+	outdated/git
+	outdated/sphinx
+	outdated/perl
+	outdated/javascript
+	outdated/jquery
+	outdated/mvn
+
+.. toctree::
+	:caption: Retired
+	:maxdepth: 1
+
+	retired/docker-walkthrough
+	retired/eclipse-remote-dev
+	retired/fedora29-install
+	retired/django
+	retired/catalina-upgrade
