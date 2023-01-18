@@ -281,9 +281,9 @@ Things to note:
 * The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of uninitialized variables;
 
 
-******************
-Language Keypoints
-******************
+*******************
+Language Keypoint's
+*******************
 
 Variables
 =========
@@ -459,7 +459,7 @@ Later versions support known/fixed order hash elements, ``$hash = [ordered]@{}``
        write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
    }
    
-   # specfific order (Fred, Wilma, Pebbles, Dino)
+   # specific order (Fred, Wilma, Pebbles, Dino)
    PS> $keys = ('fred', 'wilma', 'pebbles', 'dino')
    for ($i = 0; $i -lt $keys.length; $i++) {
       write-output ('{0} Flintstone is {1:D} years old' -f $keys[$i], $h[$keys[$i]])
@@ -475,7 +475,7 @@ Later versions support known/fixed order hash elements, ``$hash = [ordered]@{}``
 
 For more details read the excellent review by Kevin Marquette:
  
-* `Powershell: Everything you wanted to know about hashtables <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
+* `Powershell: Everything you wanted to know about a hashtable <https://powershellexplained.com/2016-11-06-powershell-hashtable-everything-you-wanted-to-know-about/>`_
 
 Objects
 =======
@@ -750,12 +750,12 @@ Note the following two points in the example:
 
 Further reading:
 
-* `Tutotials Point: Explain Try/Catch/Finally block in PowerShell <https://www.tutorialspoint.com/explain-try-catch-finally-block-in-powershell>`_
+* `Tutorials Point: Explain Try/Catch/Finally block in PowerShell <https://www.tutorialspoint.com/explain-try-catch-finally-block-in-powershell>`_
 
 Loops
 =====
 
-There are several loop constructirs ``for``, ``foreach``, ``while`` and ``do .. while``.
+There are several loop constructors ``for``, ``foreach``, ``while`` and ``do .. while``.
 
 ::
 
@@ -841,7 +841,7 @@ Operators
    # Assignment
    $d = $a + $b    # assignment = 30
    $d += $c        # addition, assignment = 32
-   $d -= $c        # subtraction, assiginment = 30
+   $d -= $c        # subtraction, assignment = 30
    
    $a = $true
    $b = $false
@@ -912,15 +912,15 @@ Table taken from `TutorialsPoint.com - Regular Expression <https://www.tutorials
 +-------------+----------------------------------------------------------------------------------------+
 | \\w         | The word characters.                                                                   |
 +-------------+----------------------------------------------------------------------------------------+
-| \\W         | The nonword characters.                                                                |
+| \\W         | The non-word characters.                                                                |
 +-------------+----------------------------------------------------------------------------------------+
 | \\s         | The whitespace. Equivalent to [\t\n\r\f].                                              |
 +-------------+----------------------------------------------------------------------------------------+
-| \\S         | The nonwhitespace.                                                                     |
+| \\S         | The non-whitespace.                                                                     |
 +-------------+----------------------------------------------------------------------------------------+
 | \\d         | The digits. Equivalent to [0-9].                                                       |
 +-------------+----------------------------------------------------------------------------------------+
-| \\D         | The nondigits.                                                                         |
+| \\D         | The non-digits.                                                                         |
 +-------------+----------------------------------------------------------------------------------------+
 | \\A         | The beginning of the string.                                                           |
 +-------------+----------------------------------------------------------------------------------------+
@@ -934,7 +934,7 @@ Table taken from `TutorialsPoint.com - Regular Expression <https://www.tutorials
 +-------------+----------------------------------------------------------------------------------------+
 | \\b         | The word boundaries. Matches the backspace (0x08) when inside the brackets.            |
 +-------------+----------------------------------------------------------------------------------------+
-| \\B         | The nonword boundaries.                                                                |
+| \\B         | The non-word boundaries.                                                                |
 +-------------+----------------------------------------------------------------------------------------+
 | \\n,\\t,\\r | Newlines, carriage returns, tabs, etc.                                                 |
 +-------------+----------------------------------------------------------------------------------------+
@@ -986,10 +986,10 @@ Examples
     "Fred Flintstone" -match "\w{2,3}" # (match >2 <=3 preceding pattern) True
     "Fred Flintstone" -match "\W{2,3}" # (match >2 <=3 preceding pattern) False
 
-    'Fred Flinstone' -replace '(\w+) (\w+)', 'Wilma $2' # Wilma Flinstone
-    'fred Flinstone' -ireplace 'Fred (\w+)', 'Wilma $1' # Wilma Flinstone
-    'fred Flinstone' -replace 'Fred (\w+)', 'Wilma $1'  # Wilma Flinstone
-    'fred Flinstone' -creplace 'Fred (\w+)', 'Wilma $1' # fred Flinstone
+    'Fred Flintstone' -replace '(\w+) (\w+)', 'Wilma $2' # Wilma Flintstone
+    'fred Flintstone' -ireplace 'Fred (\w+)', 'Wilma $1' # Wilma Flintstone
+    'fred Flintstone' -replace 'Fred (\w+)', 'Wilma $1'  # Wilma Flintstone
+    'fred Flintstone' -creplace 'Fred (\w+)', 'Wilma $1' # fred Flintstone
 
 
 Entire technical books are dedicated to Regular Expressions, the above is very brief.
@@ -1146,7 +1146,7 @@ which have many options not covered here.
    set-content -path $path -value $null # creates and closes an empty file
    foreach ($key in $h.keys) {
        add-content -path $path -value ("{0}:{1:D}" -f $key, $h[$key]) # adds content and closes
-       # ("{0}:{1:D}" -f $key, $h[$key]) | add-content -path $path    # same, less intuative
+       # ("{0}:{1:D}" -f $key, $h[$key]) | add-content -path $path    # same, less intuitive
    }
    
    clear-content -path $path # clear the file contents

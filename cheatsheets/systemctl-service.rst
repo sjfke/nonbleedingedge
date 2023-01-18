@@ -16,63 +16,29 @@ Useful Links
 Basic Command Comparison
 ========================
 
-::
-
-	List Processes 
-	 # chkconfig --list
-	 # systemctl list-units
-	
-	Enable a Service
-	 # chkconfig <service> on
-	 # systemctl enable <service>.service
-	
-	Disable a Service
-	 # chkconfig <service> off
-	 # systemctl disable <service>.service
-	
-	Start a Service
-	 # chkconfig <service> start
-	 # systemctl start <service>.service
-	
-	Stop a Service
-	 # chkconfig <service> stop
-	 # systemctl stop <service>.service
-	
-	Service Status Check
-	 # chkconfig <service> status
-	 # systemctl status <service>.service
-	
-	Restart a Service
-	 # chkconfig <service> restart
-	 # systemctl restart <service>.service
-	
-	Reload a Service
-	 # chkconfig <service> reload
-	 # systemctl reload <service>.service
-	
-	List All Services that can be Started or Stopped
-	 # ls /etc/rc.d/init.d/
-	 # systemctl list-unit-files --type=service
-	 # ls /lib/systemd/system/*.service /etc/systemd/system/*.service # alternative
-	
-	Listing a Specific Service
-	 # chkconfig <service> --list
-	 # ls /etc/systemd/system/*.wants/<service>.service
-	
-	Checking a Specific Service
-	 # chkconfig <service>
-	 # systemctl is-active <service>.service
-	
-	Adding a Service
-	 # chkconfig <service> --add
-	 # systemctl daemon-reload 
-	Note: need to add the files to the appropriate directories
+=========   =============================== ====================================================
+Services    chkconfig                       systemctl
+=========   =============================== ====================================================
+Processes   ``chkconfig --list``            ``systemctl list-units``
+Enable      ``chkconfig <service> on``      ``systemctl enable <service>.service``
+Disable     ``chkconfig <service> off``     ``systemctl disable <service>.service``
+Start       ``chkconfig <service> start``   ``systemctl start <service>.service``
+Stop        ``chkconfig <service> stop``    ``systemctl stop <service>.service``
+Status      ``chkconfig <service> status``  ``systemctl status <service>.service``
+Restart     ``chkconfig <service> restart`` ``systemctl restart <service>.service``
+Reload      ``chkconfig <service> reload``  ``systemctl reload <service>.service``
+List All    ``ls /etc/rc.d/init.d/``        ``systemctl list-unit-files --type=service``
+List        ``chkconfig <service> --list``  ``ls /etc/systemd/system/*.wants/<service>.service``
+Check       ``chkconfig <service>``         ``systemctl is-active <service>.service``
+Adding      ``chkconfig <service> --add``   ``systemctl daemon-reload``
+=========   =============================== ====================================================
 
 
 Systemctl Commands
 ==================
 
 Wants and Needs
+---------------
 
 These three targets take care of the system's basic configuration, including mounting filesystems and starting udev.
 
@@ -119,6 +85,7 @@ Alternative form of the above (using the symlinks)
  dev-mqueue.mount     proc-sys-fs-binfmt_misc.automount  sys-kernel-debug.mount         systemd-journald.service           systemd-sysctl.service
 
 Which Service started which Processes
+-------------------------------------
 
 ::
 
@@ -161,17 +128,21 @@ Which Service started which Processes
 	  469 /usr/lib/udev/udevd         cpuacct,cpu:/system/udev.service;name=systemd:/system/udev.service
 
 Boot-up Problems
+================
 
 - start the kernel with the following parameters
 	- systemd.log_target=kmsg systemd.log_level=debug
 - provides extensive troubleshooting information on the console and records it to kernel notification buffer created by dmesg.
 
-Looking for Answers::
+Looking for Answers
+-------------------
+
+::
 
 	# systemctl kill --signal=USR1 rsyslogd.service
 
-Runlevels/targets
-=================
+Run Levels/targets
+==================
 
 ::
 
@@ -184,8 +155,8 @@ Runlevels/targets
 	Runlevel: 6            # runlevel6.target, reboot.target      # Multi-user Graphical
 	Runlevel: emergency    # emergency.target                     # Emergency shell
 
-Changing runlevels
-==================
+Changing Run Levels
+-------------------
 
 ::
 
@@ -193,7 +164,7 @@ Changing runlevels
 	# systemctl isolate multi-user.target, systemctl isolate runlevel3.target
 
 Setting the default runlevel
-============================
+----------------------------
 
 ::
 
