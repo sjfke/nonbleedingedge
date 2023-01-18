@@ -19,8 +19,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'NonBleedingEdge'
-copyright = '2022, Geoffrey Collis'
-author = 'Geoffrey Collis'
+copyright = '2023, Geoffrey Collis'
+author = 'Geoffrey Collis (sjfke)'
 
 # The short X.Y version
 version = ''

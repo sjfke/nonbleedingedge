@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/javascript.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/javascript.rst
 
 *********************
 JavaScript Cheatsheet

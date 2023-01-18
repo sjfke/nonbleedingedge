@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/sphinx.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/sphinx.rst
 
 *****************
 Sphinx Cheatsheet

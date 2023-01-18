@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/python.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/python.rst
 
 *****************
 Python Cheatsheet
