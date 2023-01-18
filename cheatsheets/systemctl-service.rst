@@ -7,11 +7,9 @@ Systemctl vs Service Cheatsheet
 Useful Links
 ============
 
-* `Blog <http://0pointer.de/blog/>`_
-* `Sytsemd Docs <http://0pointer.de/blog/projects/systemd-docs.html>`_
-* `Freedesktop Systemd <http://www.freedesktop.org/wiki/Software/systemd/>`_
-* `Fedora Systemd <http://fedoraproject.org/wiki/Features/systemd>`_
-
+* `ArchLinux systemd <https://wiki.archlinux.org/title/systemd>`_
+* `ArchLinux systemd/User <https://wiki.archlinux.org/title/Systemd/User>`_
+* `Wikipedia systemd, System and Service Manager <https://en.wikipedia.org/wiki/Systemd>`_
 
 Basic Command Comparison
 ========================
