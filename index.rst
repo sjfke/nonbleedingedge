@@ -2,9 +2,14 @@
 
 .. nonBleedingEdge documentation master file, was created by sphinx-quickstart on Wed May 30 22:25:08 2018.
 
-
+===========================
 Welcome to NonBleedingEdge!
 ===========================
+
+.. |LinkedIn| image:: images/LinkedIn-Blue-14.png
+    :height: 17px
+
+:|LinkedIn|: `Geoffrey Collis <https://www.linkedin.com/in/gcollis/>`_
 
 This site is an online collection of my cheatsheets and howtos.
 
@@ -17,21 +22,12 @@ another *aging techie* who also found himself forced into semi-retirement...
 
 :Answer: *"Experience"* which should never be under-valued.
 
-So this site is not *"Bleeding Edge"* (urgh) but attempts to condense some of my work experience into 
-quick reference guides. The style is deliberately terse, for us *"seniors"* it's more like an 
-engineering logbook.
+So this site is not *"Bleeding Edge"* (Urgh!)
 
-Suggestions, comments, corrections or contributions are always welcomed. 
+    * It attempts to condense various work experience into quick reference guides.
+    * The style is deliberately terse, like an engineering logbook.
+    * Suggestions, comments, corrections or contributions are always welcomed.
 
-Hope you find it useful, and keep coming back because the site will be updated frequently.
-
-.. rst-class:: fa fa-linkedin-square
-
-    `gcollis <https://www.linkedin.com/in/gcollis/>`_
-
-.. rst-class:: fa fa-envelope
-
-    gcollis@ymail.com
 
 .. toctree::
     :maxdepth: 1

@@ -12,7 +12,7 @@ or virtual machines.
 
 This functionality exists with `PyCharm professional <https://www.jetbrains.com/pycharm/>`_, I was looking for ability to use a 
 virtual machine for Python development with Eclipse, rather than force everything through 
-muiltple virtualenv's on my Macbook and Linux desktop. 
+multiple virtualenv's on my Macbook and Linux desktop.
 
 Although well hidden one of the prebuilt Eclipse packages provides the functionality 
 to do this, but only for C/C++, so after installing the required package, you will
@@ -58,7 +58,7 @@ Now unless you are fortunate and plan to use ``C/C++`` you'll need to install yo
 Synchronized projects
 =====================
 
-After installing ``Eclipse`` and your required plugins, now let's create and setup your synchonized project.
+After installing ``Eclipse`` and your required plugins, now let's create and setup your synchronized project.
 
 Create your synchronized project
 --------------------------------
