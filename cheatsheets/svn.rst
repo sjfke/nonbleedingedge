@@ -106,16 +106,21 @@ By default, Subversion tends to regard UTF-16 files as binary. It assigns them a
 
 However, there is a solution. By giving the UTF-16 files a correct MIME type, SVN is able to perform merges just like a basic text file.
 
-The required MIME type is one of::
+The required MIME type is one of
+
+::
 
     text/plain;encoding=UTF-16LE
     text/plain;encoding=UTF-16BE
 
+
 depending upon whether the encoding is LittleEndian or BigEndian respectively.
 
-To set the property, use a command along the lines of::
+To set the property, use a command along the lines of
 
-	$ svn propset "svn:mime-type" "text/plain;encoding=UTF-16LE" *.utf-16.txt
+::
+
+    $ svn propset "svn:mime-type" "text/plain;encoding=UTF-16LE" *.utf-16.txt
 
 This works with the (command-line) SVN version 1.6+ clients on both Linux and Windows.
 
@@ -124,7 +129,7 @@ This works with the (command-line) SVN version 1.6+ clients on both Linux and Wi
 
 ::
 
-	$ notepad <filename> # use 'save as' :-), Try 'ANSI' on Windows ;-)
+    $ notepad <filename> # use 'save as' :-), Try 'ANSI' on Windows ;-)
 
 Subversion Keywords 
 ===================
@@ -133,32 +138,32 @@ To aid with page layout there are 2 forms:
 
 ::
 
-	# Variable length (Case Sensitive)
+    # Variable length (Case Sensitive)
 	$Date$            # [LastChangedDate] NOTE local time-zone
-	$Revision$        # [LastChangedRevision] last known revision (repository revision)
-	$Author$          # last known user to change the file
-	$HeadURL$         # full URL to the latest version of the file
-	$Id$              # like RCS/CVS "$Id: calc.c 148 2006-07-28 21:30:43Z sally $"
-	$LastChangedDate$
+    $Revision$        # [LastChangedRevision] last known revision (repository revision)
+    $Author$          # last known user to change the file
+    $HeadURL$         # full URL to the latest version of the file
+    $Id$              # like RCS/CVS "$Id: calc.c 148 2006-07-28 21:30:43Z sally $"
+    $LastChangedDate$
 
-	# Fixed length (Case Sensitive), <space> padded and '#' truncated
+    # Fixed length (Case Sensitive), <space> padded and '#' truncated
 	$Date::            $ # [LastChangedDate] NOTE local time-zone
-	$Revision::        $ # [LastChangedRevision] last known revision (repository revision)
-	$Author::          $ # last known user to change the file
-	$HeadURL::         $ # full URL to the latest version of the file
-	$Id::              $ # like RCS/CVS "$Id: calc.c 148 2006-07-28 21:30:43Z sally $"
-	$LastChangedDate:: $
+    $Revision::        $ # [LastChangedRevision] last known revision (repository revision)
+    $Author::          $ # last known user to change the file
+    $HeadURL::         $ # full URL to the latest version of the file
+    $Id::              $ # like RCS/CVS "$Id: calc.c 148 2006-07-28 21:30:43Z sally $"
+    $LastChangedDate:: $
 
 Repository Creation
 ===================
 
 ::
 
-	# - you need to checkout into a different location (like CVS)
+    # - you need to checkout into a different location (like CVS)
 	geoff@morph$ svnadmin create /var/sv/newrepos
-	geoff@morph$ svn import myfile file:///var/svn/trunk/newrepos/some/project -m "initial import"
-	geoff@morph$ svn list file:///var/svn/trunk/newrepos/some/project
-	geoff@morph$ cd somedir; svn checkout file:///var/svn/newrepos/trunk/some/project
+    geoff@morph$ svn import myfile file:///var/svn/trunk/newrepos/some/project -m "initial import"
+    geoff@morph$ svn list file:///var/svn/trunk/newrepos/some/project
+    geoff@morph$ cd somedir; svn checkout file:///var/svn/newrepos/trunk/some/project
 
 
 Repository Access Methods
@@ -166,14 +171,14 @@ Repository Access Methods
 
 ::
 
-	geoff@morph$ svn checkout http://svn.example.com:9834/repos (WebDAV protocol)
-	geoff@morph$ svn checkout https://svn.example.com:9834/repos (SSL WebDAV protocol)
-	geoff@morph$ svn checkout file:///var/svn/repos (on local disk)
-	geoff@morph$ svn checkout file://localhost/var/svn/repos (on local disk)
-	c:\> svn checkout file:///X:/var/svn/repos (on local drive X)
-	c:\> svn checkout file:///X|/var/svn/repos (on local drive X)
-	geoff@morph$ svn checkout svn://svn.example.com/repos (svnserve port 3690)
-	geoff@morph$ svn checkout svn+ssh://svn.example.com/repos (svnserve + ssh tunnel port 22)
+    geoff@morph$ svn checkout http://svn.example.com:9834/repos (WebDAV protocol)
+    geoff@morph$ svn checkout https://svn.example.com:9834/repos (SSL WebDAV protocol)
+    geoff@morph$ svn checkout file:///var/svn/repos (on local disk)
+    geoff@morph$ svn checkout file://localhost/var/svn/repos (on local disk)
+    c:\> svn checkout file:///X:/var/svn/repos (on local drive X)
+    c:\> svn checkout file:///X|/var/svn/repos (on local drive X)
+    geoff@morph$ svn checkout svn://svn.example.com/repos (svnserve port 3690)
+    geoff@morph$ svn checkout svn+ssh://svn.example.com/repos (svnserve + ssh tunnel port 22)
 
 
 Status prefixes; ``snv status``
@@ -181,7 +186,7 @@ Status prefixes; ``snv status``
 
 ::
 
-	# column 1 = files, column = 2 properties
+    # column 1 = files, column = 2 properties
 	geoff@morph$ svn status [$ svn status --verbose (-v) # for more details]
 	A item # scheduled for addition
 	C item # is in a state of conflict (updates blocked, until resolved)
@@ -414,38 +419,38 @@ For earlier Fedora versions that do not have ``systemd``.
 	     rm -f $pidfile
 	   fi
 	   return $RETVAL
-	}
+    }
 	
 	restart() {
-		stop
-		start
-	}
+        stop
+        start
+    }
 	
 	forcestop() {
-	   echo -n $"Shutting down $desc ($prog): "
+        echo -n $"Shutting down $desc ($prog): "
 	
-	   kill -s 3 $pid 
-	   RETVAL=$?
-	   [ $RETVAL -eq 0 ] && success || failure
-	   echo
-	   if [ $RETVAL -eq 0 ]; then
-	     rm -f /var/lock/subsys/$prog
-	     rm -f $pidfile
-	   fi
+        kill -s 3 $pid
+        RETVAL=$?
+        [ $RETVAL -eq 0 ] && success || failure
+        echo
+        if [ $RETVAL -eq 0 ]; then
+            rm -f /var/lock/subsys/$prog
+            rm -f $pidfile
+        fi
 	
-	   return $RETVAL
-	}
+        return $RETVAL
+    }
 	
 	status() {
-	   if [ -r "$pidfile" ]; then
-		pid=`cat $pidfile`
-	   fi
-	   if [ $pid ]; then
-	           echo "$prog (pid $pid) is running..."
-	   else
-	        echo "$prog is stopped"
-	   fi
-	}
+        if [ -r "$pidfile" ]; then
+            pid=`cat $pidfile`
+        fi
+        if [ $pid ]; then
+            echo "$prog (pid $pid) is running..."
+        else
+            echo "$prog is stopped"
+        fi
+    }
 	
 	obtainpid
 	

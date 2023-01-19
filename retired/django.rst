@@ -4,26 +4,28 @@
 Python Django Tutorial
 **********************
 
+.. important:: Very old draft, anticipate inaccuracies and outdated information.
+
 Installing ``pipenv``
 =====================
 
 Setup pipenv::
 
-	$ sudo pip install pipenv   # system-wide considered dangerous
-	$ pip install --user pipenv # user-wide safer
-	
-	$ mkdir my project && cd myproject
-	$ pipenv install requests
-	$ cat > main.py <<EOT
-	import requests
-	response = requests.get('https://httpbin.org/ip')
-	print('Your IP is {0}'.format(response.json()['origin']))
-	EOT
-	
-	$ pipenv run python main.py # Alternative: $ pipenv shell; python main.py
+    $ sudo pip install pipenv   # system-wide considered dangerous
+    $ pip install --user pipenv # user-wide safer
 
+    $ mkdir my project && cd myproject
+    $ pipenv install requests
+    $ cat > main.py <<EOT
+    import requests
+    response = requests.get('https://httpbin.org/ip')
+    print('Your IP is {0}'.format(response.json()['origin']))
+    EOT
+
+    $ pipenv run python main.py # Alternative: $ pipenv shell; python main.py
 
 Useful Links
+============
 
 * `Installing Python 3 on Linux <http://docs.python-guide.org/en/latest/starting/install3/linux/>`_
 * `Pipenv & Virtual Environments <http://docs.python-guide.org/en/latest/dev/virtualenvs/#virtualenvironments-ref>`_
@@ -36,62 +38,62 @@ Setting up Django project
 
 Create project directory and install Django::
 
-	$ mkdir django; cd django
-	$ pipenv --three # for python3
-	$ pipenv install django
-	$ pipenv shell
-	$ python -m django --version
+    $ mkdir django; cd django
+    $ pipenv --three # for python3
+    $ pipenv install django
+    $ pipenv shell
+    $ python -m django --version
 
 
 Create the Django project::
 
-	$ django-admin startproject mysite
-	$ cd mysite 
-	$ python manage.py runserver      # http://127.0.0.1:8000/
-	$ python manage.py runserver 8080 # http://127.0.0.1:8080/
-	
-	# Get rid of warning
-	$ vi +/ALLOWED mysite/settings.py 
-	$ vi +/mystic/settings.py
-	# ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.42']
+    $ django-admin startproject mysite
+    $ cd mysite
+    $ python manage.py runserver      # http://127.0.0.1:8000/
+    $ python manage.py runserver 8080 # http://127.0.0.1:8080/
+
+    # Get rid of warning
+    $ vi +/ALLOWED mysite/settings.py
+    $ vi +/mystic/settings.py
+    # ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.42']
 
 
 Note on Fedora may need to open the port on the firewall::
 
-	$ sudo firewall-cmd --add-port=8000/tcp # punch firewall hole for external access
-	$ python manage.py runserver 0:8080     # http://<ext-ip>:8000/
+    $ sudo firewall-cmd --add-port=8000/tcp # punch firewall hole for external access
+    $ python manage.py runserver 0:8080     # http://<ext-ip>:8000/
 
 
 Create the Django App (A Django project can have many apps)::
 
-	$ python manage.py startapp polls
-	$ cat > polls/views.py <<EOT
-	from django.http import HttpResponse
-	
-	def index(request):
-	    return HttpResponse("Hello, world. You're at the polls index.")
-	EOT
-	
-	$ cat > polls/urls.py <<EOT
-	from django.urls import path
-	from . import views
-	
-	urlpatterns = [
-	    path('', views.index, name='index'),
-	]
-	EOT
-	
-	$ cat mysite/urls.py <<EOT
-	from django.contrib import admin
-	from django.urls import include, path
-	
-	urlpatterns = [
-	    path('polls/', include('polls.urls')),
-	    path('admin/', admin.site.urls),
-	]
-	EOT
-	 
-	$ python manage.py runserver 0:8000    # http://<ext-ip>:8000/polls
+    $ python manage.py startapp polls
+    $ cat > polls/views.py <<EOT
+    from django.http import HttpResponse
+
+    def index(request):
+        return HttpResponse("Hello, world. You're at the polls index.")
+    EOT
+
+    $ cat > polls/urls.py <<EOT
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('', views.index, name='index'),
+    ]
+    EOT
+
+    $ cat mysite/urls.py <<EOT
+    from django.contrib import admin
+    from django.urls import include, path
+
+    urlpatterns = [
+        path('polls/', include('polls.urls')),
+        path('admin/', admin.site.urls),
+    ]
+    EOT
+
+    $ python manage.py runserver 0:8000    # http://<ext-ip>:8000/polls
 
 
 REST API

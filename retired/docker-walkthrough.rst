@@ -4,6 +4,8 @@
 Docker Tutorial Walkthrough
 ***************************
 
+.. important:: Very old draft, anticipate inaccuracies and outdated information.
+
 Introduction
 ============
 

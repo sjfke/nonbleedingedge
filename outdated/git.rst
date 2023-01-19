@@ -9,9 +9,9 @@ Git Hub Fork
 ::
 
 	#1 - go to the git repo you are going to work (http://git.corp.xyzab.com/dev/$repo) on and 'fork' it to your personal org
-	#2 - go to the box you are going to be developing on: 
+	#2 - go to the box you are going to be developing on:
 	 $ git clone git@git.corp.xyzab.com:$user/$repo
-	#3 - add "upstream": 
+	#3 - add "upstream":
 	 $ cd $repo && git remote add upstream git@git.corp.xyzab.com:dev/$repo
 	# then updating will work.
 	$ git add $changedfile
@@ -35,7 +35,7 @@ Git Branching and Merging
 	$ cd /path/to/local/git
 	$ git branch # View available branches
 	$ git checkout $BRANCH_NAME # create and checkout branch
-	
+
 	#Make your changes
 	...
 	$ git commit -m '$COMMIT_MESSAGE' #Commit your changes
@@ -51,7 +51,7 @@ Git Starting
 	$ git config --global color.ui true
 	$ git config --global color.status auto
 	$ git config --global push.default simple
-	$ git config --global merge.tool vimdiff  # kdiff3,tkdiff,meld,xxdiff,emerge,vimdiff,gvimdiff,ecmerge,opendiff 
+	$ git config --global merge.tool vimdiff  # kdiff3,tkdiff,meld,xxdiff,emerge,vimdiff,gvimdiff,ecmerge,opendiff
 
 These update ".gitconfig", which is in $HOME or "C:\Users\user1".
 
@@ -91,13 +91,13 @@ Darn did not mean to do last commit LUCKILY HAVE NOT YET PUSHED
 IFF you have not pushed and only broke the current branch.::
 
 	$ git status
-	
+
 	# if working directory is not clean… roll-back
 	$ git checkout — <file> # double-dash
-	
+
 	# Remove the last commit from git
-	$ git reset --hard HEAD^ 
-	$ git reset --hard HEAD~2 # to remove the last two 
+	$ git reset --hard HEAD^
+	$ git reset --hard HEAD~2 # to remove the last two
 
 Comparing files on different branches
 =====================================
@@ -120,7 +120,7 @@ Need to merge just file f of branch B into file f of branch A, when all changes 
 	$ git checkout A
 	$ git checkout --patch B f
 
-	
+
 Useful Commands
 ===============
 
@@ -318,7 +318,7 @@ First clone the repository::
 	$ git clone git@git.corp.xyzab.com:user1/repo1.git
 
 What are the remotes::
-	
+
 	$ git remote -v
 	origin  git@git.corp.xyzab.com:user1/repo1.git (fetch)
 	origin  git@git.corp.xyzab.com:user1/repo1.git (push)
@@ -334,7 +334,7 @@ Adding a remote repo::
 
 Getting updates from remote repo::
 
-	$ get fetch origin # fetches but does not merge 
+	$ get fetch origin # fetches but does not merge
 	$ git pull         # fetches and merges
 
 Sending your updates to the master::
@@ -396,157 +396,159 @@ Example command output
 
 ::
 
-	C:\Workspace\PeeringWebUI>ls
-	datetest.php  nav.css   public     request.php
-	includes      nav.html  README.md  test-gzip.php
-	
-	C:\Workspace\PeeringWebUI>git status
-	# On branch master
-	nothing to commit, working directory clean
+    C:\Workspace\PeeringWebUI>ls
+    datetest.php  nav.css   public     request.php
+    includes      nav.html  README.md  test-gzip.php
+
+    C:\Workspace\PeeringWebUI>git status
+    # On branch master
+    nothing to commit, working directory clean
 
 ::
 
-	C:\Workspace\PeeringWebUI>git remote show origin
-	* remote origin
-	  Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
-	  Push  URL: git@git.corp.xyzab.com:user1/repo1.git
-	  HEAD branch (remote HEAD is ambiguous, may be one of the following
-	    alpha
-	    master
-	  Remote branches:
-	    alpha  tracked
-	    master tracked
-	  Local branch configured for 'git pull':
-	    master merges with remote master
-	  Local ref configured for 'git push':
-	    master pushes to master (up to date)
+    C:\Workspace\PeeringWebUI>git remote show origin
+    * remote origin
+      Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
+      Push  URL: git@git.corp.xyzab.com:user1/repo1.git
+      HEAD branch (remote HEAD is ambiguous, may be one of the following
+        alpha
+        master
+      Remote branches:
+        alpha  tracked
+        master tracked
+      Local branch configured for 'git pull':
+        master merges with remote master
+      Local ref configured for 'git push':
+        master pushes to master (up to date)
 
 ::
 
-	C:\Workspace\PeeringWebUI>git remote -v
-	origin  git@git.corp.xyzab.com:user1/repo1.git (fetch)
-	origin  git@git.corp.xyzab.com:user1/repo1.git (push)
+    C:\Workspace\PeeringWebUI>git remote -v
+    origin  git@git.corp.xyzab.com:user1/repo1.git (fetch)
+    origin  git@git.corp.xyzab.com:user1/repo1.git (push)
 
 ::
 
-	C:\Workspace\PeeringWebUI>git show-ref
-	933bacdcafa1ea14e74b89d9abacbb2ea710aa5b refs/heads/master
-	933bacdcafa1ea14e74b89d9abacbb2ea710aa5b refs/remotes/origin/HEAD
-	933bacdcafa1ea14e74b89d9abacbb2ea710aa5b refs/remotes/origin/alpha
-	933bacdcafa1ea14e74b89d9abacbb2ea710aa5b refs/remotes/origin/master
-	b68e593607f7982dfc97969de32180527119a994 refs/tags/v0.1
+    C:\Workspace\PeeringWebUI>git show-ref
+    933bacdcafa1ea14e74b89d9abacbb2ea710aa5b refs/heads/master
+    933bacdcafa1ea14e74b89d9abacbb2ea710aa5b refs/remotes/origin/HEAD
+    933bacdcafa1ea14e74b89d9abacbb2ea710aa5b refs/remotes/origin/alpha
+    933bacdcafa1ea14e74b89d9abacbb2ea710aa5b refs/remotes/origin/master
+    b68e593607f7982dfc97969de32180527119a994 refs/tags/v0.1
 
 ::
 
-	C:\Workspace\PeeringWebUI>git branch -a
-	* master
-	  remotes/origin/HEAD -> origin/master
-	  remotes/origin/alpha
-	  remotes/origin/master
+    C:\Workspace\PeeringWebUI>git branch -a
+    * master
+      remotes/origin/HEAD -> origin/master
+      remotes/origin/alpha
+      remotes/origin/master
 
 ::
 
-	C:\Workspace\PeeringWebUI>ls
-	datetest.php  nav.css   public     request.php
-	includes      nav.html  README.md  test-gzip.php
-	
-	C:\Workspace\PeeringWebUI>del nav.html
-	
-	C:\Workspace\PeeringWebUI>del nav.css
-	
-	C:\Workspace\PeeringWebUI>git status
-	# On branch master
-	# Changes not staged for commit:
-	#   (use "git add/rm <file>..." to update what will be committed)
-	#   (use "git checkout -- <file>..." to discard changes in working d
-	#
-	#       deleted:    nav.css
-	#       deleted:    nav.html
-	#
-	no changes added to commit (use "git add" and/or "git commit -a")
-	
-	C:\Workspace\PeeringWebUI>git commit -a
-	[master 3fd83a7] remove test nav files
-	 2 files changed, 159 deletions(-)
-	 delete mode 100644 nav.css
-	 delete mode 100644 nav.html
+    C:\Workspace\PeeringWebUI>ls
+    datetest.php  nav.css   public     request.php
+    includes      nav.html  README.md  test-gzip.php
 
-	C:\Workspace\PeeringWebUI>git status
-	# On branch master
-	# Your branch is ahead of 'origin/master' by 1 commit.
-	#   (use "git push" to publish your local commits)
-	#
-	nothing to commit, working directory clean
-	
-	C:\Workspace\PeeringWebUI>git push
-	Counting objects: 3, done.
-	Delta compression using up to 4 threads.
-	Compressing objects: 100% (2/2), done.
-	Writing objects: 100% (2/2), 232 bytes | 0 bytes/s, done.
-	Total 2 (delta 1), reused 0 (delta 0)
-	To git@git.corp.xyzab.com:user1/repo1.git
-	   933bacd..3fd83a7  master -> master
+    C:\Workspace\PeeringWebUI>del nav.html
 
-::
+    C:\Workspace\PeeringWebUI>del nav.css
 
-	C:\Workspace\PeeringWebUI>git remote show origin
-	* remote origin
-	  Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
-	  Push  URL: git@git.corp.xyzab.com:user1/repo1.git
-	  HEAD branch: master
-	  Remote branches:
-	    alpha  tracked
-	    master tracked
-	  Local branch configured for 'git pull':
-	    master merges with remote master
-	  Local ref configured for 'git push':
-	    master pushes to master (up to date)
+    C:\Workspace\PeeringWebUI>git status
+    # On branch master
+    # Changes not staged for commit:
+    #   (use "git add/rm <file>..." to update what will be committed)
+    #   (use "git checkout -- <file>..." to discard changes in working d
+    #
+    #       deleted:    nav.css
+    #       deleted:    nav.html
+    #
+    no changes added to commit (use "git add" and/or "git commit -a")
+
+    C:\Workspace\PeeringWebUI>git commit -a
+    [master 3fd83a7] remove test nav files
+     2 files changed, 159 deletions(-)
+     delete mode 100644 nav.css
+     delete mode 100644 nav.html
+
+    C:\Workspace\PeeringWebUI>git status
+    # On branch master
+    # Your branch is ahead of 'origin/master' by 1 commit.
+    #   (use "git push" to publish your local commits)
+    #
+    nothing to commit, working directory clean
+
+    C:\Workspace\PeeringWebUI>git push
+    Counting objects: 3, done.
+    Delta compression using up to 4 threads.
+    Compressing objects: 100% (2/2), done.
+    Writing objects: 100% (2/2), 232 bytes | 0 bytes/s, done.
+    Total 2 (delta 1), reused 0 (delta 0)
+    To git@git.corp.xyzab.com:user1/repo1.git
+       933bacd..3fd83a7  master -> master
 
 ::
 
-	C:\Workspace\PeeringWebUI>
-	# removing remotes
-	$ git remote rm paul
-	$ git remote
+    C:\Workspace\PeeringWebUI>git remote show origin
+    * remote origin
+      Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
+      Push  URL: git@git.corp.xyzab.com:user1/repo1.git
+      HEAD branch: master
+      Remote branches:
+        alpha  tracked
+        master tracked
+      Local branch configured for 'git pull':
+        master merges with remote master
+      Local ref configured for 'git push':
+        master pushes to master (up to date)
+
+::
+
+    C:\Workspace\PeeringWebUI>
+    # removing remotes
+    $ git remote rm paul
+    $ git remote
 	origin
 
 Am I up to date with remote?
 ============================
+
 ::
 
-	$ git diff --name-only origin/master master
-	$ git diff --name-status origin/master master
-	$ git diff --raw origin/master master
-	$ git remote show origin # up to date example (see last line)
-	* remote origin
-	  Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
-	  Push  URL: git@git.corp.xyzab.com:user1/repo1.git
-	  HEAD branch: master
-	  Remote branch:
-	    master tracked
-	  Local branch configured for 'git pull':
-	    master merges with remote master
-	  Local ref configured for 'git push':
-	    master pushes to master (up to date)
+    $ git diff --name-only origin/master master
+    $ git diff --name-status origin/master master
+    $ git diff --raw origin/master master
+    $ git remote show origin # up to date example (see last line)
+    * remote origin
+      Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
+      Push  URL: git@git.corp.xyzab.com:user1/repo1.git
+      HEAD branch: master
+      Remote branch:
+        master tracked
+      Local branch configured for 'git pull':
+        master merges with remote master
+      Local ref configured for 'git push':
+        master pushes to master (up to date)
 
-	$ git remote show origin # out of date example (see last line)
-	* remote origin
-	  Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
-	  Push  URL: git@git.corp.xyzab.com:user1/repo1.git
-	  HEAD branch: master
-	  Remote branch:
-	    master tracked
-	  Local branch configured for 'git pull':
-	    master merges with remote master
-	  Local ref configured for 'git push':
-	    master pushes to master (local out of date)
+    $ git remote show origin # out of date example (see last line)
+    * remote origin
+      Fetch URL: git@git.corp.xyzab.com:user1/repo1.git
+      Push  URL: git@git.corp.xyzab.com:user1/repo1.git
+      HEAD branch: master
+      Remote branch:
+        master tracked
+      Local branch configured for 'git pull':
+        master merges with remote master
+      Local ref configured for 'git push':
+        master pushes to master (local out of date)
 
 Finding something that was removed/changed.
 ===========================================
+
 ::
 
-	$ git log -S"function find_z2a_id" --oneline
-	c4ec3a2 non-YUI backbone table, needs more work
-	c0a72ca rename: remove patui- prefix
-	1c0856b backbone interfaces - dev check-point
-	$ git show -p c0a72ca:includes/functions.php > very-old-functions.php
+    $ git log -S"function find_z2a_id" --oneline
+    c4ec3a2 non-YUI backbone table, needs more work
+    c0a72ca rename: remove patui- prefix
+    1c0856b backbone interfaces - dev check-point
+    $ git show -p c0a72ca:includes/functions.php > very-old-functions.php

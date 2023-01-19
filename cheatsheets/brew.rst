@@ -65,7 +65,7 @@ download the .dmg file.
 
 ::
 
-	$ brew cask install firefox
+    $ brew cask install firefox
 
 * `Listing of all casks available via the Homebrew package manager <https://formulae.brew.sh/cask/>`_
 
@@ -75,16 +75,16 @@ Fixing the pesky 'depends_on macos' value: ":lion"
 
 * `Fixing casks with **depends_on** that reference pre-Mavericks <https://github.com/Homebrew/homebrew-cask/issues/58046>`_
 
-Catlina Upgrade
-===============
+Catalina Upgrade
+================
 
 Unsurprisingly ``brew`` is broken by the upgrade and the effects of trying to force ``zsh`` as the default shell need to be seen.
 
 * `Use zsh as the default shell on your Mac <https://support.apple.com/en-us/HT208050>`_
-* `MacOS Cataline <https://www.apple.com/macos/catalina/>`_
+* `MacOS Catalina <https://www.apple.com/macos/catalina/>`_
 * `Why macOS Catalina is breaking so many apps, and what to do about it <https://www.theverge.com/2019/10/12/20908567/apple-macos-catalina-breaking-apps-32-bit-support-how-to-prepare-avoid-update>`_
 
-Steps taken post Catlina upgrade
+Steps taken post Catlaina upgrade
 
 ::
 

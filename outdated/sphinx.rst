@@ -4,19 +4,37 @@
 Sphinx Cheatsheet
 *****************
 
-Useful Links
+.. important:: Very early draft, a complete rewrite in progress.
+
+Sphinx Links
 ============
 
+* `Sphinx HomePage <http://www.sphinx-doc.org/en/stable/index.html>`_
+* `Sphinx Tutorial <https://sphinx-tutorial.readthedocs.io/>`_
+* `Sphinx Cheatsheet <https://sphinx-tutorial.readthedocs.io/cheatsheet/>`_
+* `Sphinx Extensions <http://www.sphinx-doc.org/en/stable/usage/extensions/index.html>`_
+
+Restructured Text Links
+=======================
+
+* `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
+* `reStructuredText Primer <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_
 * `Thomas Cokelaer <https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html>`_
+* `Read the Docs theme <https://sphinx-rtd-theme.readthedocs.io/en/latest/index.html>`_
+* `PyCharm reStructuredText support <https://www.jetbrains.com/help/pycharm/restructured-text.html>`_
+* `PEP 287 – reStructuredText Docstring Format <https://peps.python.org/pep-0287/>`_
+
+
+To Be Checked Links
+===================
+
 * `Openalea Sphinx <http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`_
 * `Example pypi project <https://pythonhosted.org/an_example_pypi_project/sphinx.html>`_
 * `reStructuredText Directives <http://docutils.sourceforge.net/docs/ref/rst/directives.html>`_
 * `reStructuredText Markup Specification <http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html>`_
 * `Online reStructure Editor (reStructure) <https://www.tutorialspoint.com/online_restructure_editor.php>`_
 * `Sphinx Domains <http://www.sphinx-doc.org/en/stable/usage/restructuredtext/domains.html>`_
-* `Sphinx HomePage <http://www.sphinx-doc.org/en/stable/index.html>`_
-* `Sphinx Extensions <http://www.sphinx-doc.org/en/stable/usage/extensions/index.html>`_
-* `Read the Docs theme <https://sphinx-rtd-theme.readthedocs.io/en/latest/index.html>`_
+
 
 Miscellaneous
 =============

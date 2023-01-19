@@ -250,3 +250,4 @@ Read-Only access to the database::
 	| GRANT SELECT ON `transpeer`.* TO 'readonly.user'@'localhost'                                                         |
 	| GRANT SELECT ON `fullmonty`.* TO 'readonly.user'@'localhost'                                                         |
 	+----------------------------------------------------------------------------------------------------------------------+
+

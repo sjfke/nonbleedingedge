@@ -503,26 +503,26 @@ Web-Pages and REST API's
 
 ::
    
-   PS> [system.web.httputility]::urlencode("https://test.com/q?name=fred flinstone&age=35")
-   https%3a%2f%2ftest.com%2fsearch%3fname%3dfred+flinstone%26age%3d35
+   PS> [system.web.httputility]::urlencode("https://test.com/q?name=fred flintstone&age=35")
+   https%3a%2f%2ftest.com%2fsearch%3fname%3dfred+flintstone%26age%3d35
 
-   PS> [system.web.httputility]::urldecode("https%3a%2f%2ftest.com%2fsearch%3fname%3dfred+flinstone%26age%3d35")
-   https://test.com/search?name=fred flinstone&age=35
+   PS> [system.web.httputility]::urldecode("https%3a%2f%2ftest.com%2fsearch%3fname%3dfred+flintstone%26age%3d35")
+   https://test.com/search?name=fred flintstone&age=35
 
-   PS> [system.web.httputility]::htmlencode("https://test.com/search?name=fred flinstone&age=35")
-   https://test.com/search?name=fred flinstone&amp;age=35   
+   PS> [system.web.httputility]::htmlencode("https://test.com/search?name=fred flintstone&age=35")
+   https://test.com/search?name=fred flintstone&amp;age=35   
 
-   PS> [system.web.httputility]::htmldecode("https://test.com/search?name=fred flinstone&amp;age=35")
-   https://test.com/search?name=fred flinstone&age=35
+   PS> [system.web.httputility]::htmldecode("https://test.com/search?name=fred flintstone&amp;age=35")
+   https://test.com/search?name=fred flintstone&age=35
    
-   PS> [uri]::escapedatastring("https://test.com/search?name=fred flinstone&age=35")
-   https%3A%2F%2Ftest.com%2Fsearch%3Fname%3Dfred%20flinstone%26age%3D35
+   PS> [uri]::escapedatastring("https://test.com/search?name=fred flintstone&age=35")
+   https%3A%2F%2Ftest.com%2Fsearch%3Fname%3Dfred%20flintstone%26age%3D35
 
-   PS> [uri]::unescapedatastring("https%3A%2F%2Ftest.com%2Fsearch%3Fname%3Dfred%20flinstone%26age%3D35")
-   https://test.com/search?name=fred flinstone&age=35
+   PS> [uri]::unescapedatastring("https%3A%2F%2Ftest.com%2Fsearch%3Fname%3Dfred%20flintstone%26age%3D35")
+   https://test.com/search?name=fred flintstone&age=35
 
-   PS> [uri]::escapeuristring("https://test.com/search?name=fred flinstone&age=35")
-   https://test.com/search?name=fred%20flinstone&age=35
+   PS> [uri]::escapeuristring("https://test.com/search?name=fred flintstone&age=35")
+   https://test.com/search?name=fred%20flintstone&age=35
 
  
 More detailed examples:
@@ -633,7 +633,7 @@ and avoids having to use ``Microsoft Excel`` or ``Microsoft Access``.
 Formatting Variables
 ====================
 
-Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assigment.
+Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assignment.
 Specified as ``{<index>, <alignment><width>:<format_spec>}``
 
 ::

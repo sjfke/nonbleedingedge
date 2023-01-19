@@ -255,48 +255,49 @@ Switch...Case
 =============
 ::
 
-	$today = date("l") ;
-	if ($today == "Monday")     { $tax_rate += 2 ; }
-	if ($today == "Tuesday")    { $tax_rate += 3 ; }
-	if ($today == "Wednesday")  { $tax_rate += 4; }
-	if ($today == "Thursday")   { $tax_rate += 5 ; }
-	if ($today == "Friday")     { $tax_rate += 6 ; }
-	if ($today == "Saturday")   { $tax_rate += 7 ; }
-	if ($today == "Sunday")     { $tax_rate += 8; }
-	
-	switch ($today) {
-	    case "Monday" :
-	        $tax_rate += 2 ;
-	        $wages = $salary * 0.2 ;
-	        $msg_color = "red" ;
-	        break;
-	    case "Tuesday" :
-	        $tax_rate += 3 ;
-	        $wages = $salary * 0.3 ;
-	        $msg_color = "yellow" ;
-	        break;
-	    case "Wednesday" :
-	        $tax_rate += 4 ;
-	        $wages = $salary * 0.4 ;
-	        $msg_color = "black" ;
-	        break;
-	    case "Thursday" :
-	        $tax_rate += 5 ;
-	        $wages = $salary * 0.5 ;
-	        $msg_color = "green" ;
-	        break;
-	    case "Friday" :
-	        $tax_rate += 6 ;
-	        $wages = $salary * 0.6 ;
-	        $msg_color = "orange" ;
-	        break;
-	    case "Saturday" :
-	    case "Sunday" :
-	        $tax_rate += 7 ;
-	        $wages = $salary * 0.7 ;
-	        $msg_color = "purple" ;
-	        break;
-	    }
+    $today = date("l") ;
+    if ($today == "Monday")     { $tax_rate += 2 ; }
+    if ($today == "Tuesday")    { $tax_rate += 3 ; }
+    if ($today == "Wednesday")  { $tax_rate += 4; }
+    if ($today == "Thursday")   { $tax_rate += 5 ; }
+    if ($today == "Friday")     { $tax_rate += 6 ; }
+    if ($today == "Saturday")   { $tax_rate += 7 ; }
+    if ($today == "Sunday")     { $tax_rate += 8; }
+
+    switch ($today) {
+        case "Monday" :
+            $tax_rate += 2 ;
+            $wages = $salary * 0.2 ;
+            $msg_color = "red" ;
+            break;
+        case "Tuesday" :
+            $tax_rate += 3 ;
+            $wages = $salary * 0.3 ;
+            $msg_color = "yellow" ;
+            break;
+        case "Wednesday" :
+            $tax_rate += 4 ;
+            $wages = $salary * 0.4 ;
+            $msg_color = "black" ;
+            break;
+        case "Thursday" :
+            $tax_rate += 5 ;
+            $wages = $salary * 0.5 ;
+            $msg_color = "green" ;
+            break;
+        case "Friday" :
+            $tax_rate += 6 ;
+            $wages = $salary * 0.6 ;
+            $msg_color = "orange" ;
+            break;
+        case "Saturday" :
+        case "Sunday" :
+            $tax_rate += 7 ;
+            $wages = $salary * 0.7 ;
+            $msg_color = "purple" ;
+            break;
+        }
+
 
 While...
 ========
@@ -308,7 +309,7 @@ While...
 	    echo "the counter is: " . $repeat . "<br/>" ;
 	    $repeat ++ ;
 	}
-	
+    
 	# typical repeat loop
 	$repeat = 0 ;
 	do {
@@ -324,3 +325,4 @@ For...
 	for ($i = 0; $i <= 25; $i++) {
 	    echo "the counter is: " . $i . "<br/>" ;
 	}
+

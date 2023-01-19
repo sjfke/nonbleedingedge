@@ -4,6 +4,8 @@
 Eclipse Remote Development
 **************************
 
+.. important:: Very old draft, anticipate inaccuracies and outdated information.
+
 Introduction
 ============
 
@@ -127,4 +129,4 @@ Now updates in ``Eclipse`` should be automatically synchronized to the remote se
 in the specified top level directory.
 
 I prefer to work in a remote terminal outside of Eclipse, but it should be able to configure 
-the Eclispe run-time to execute everything on the remote host, but that is *left as an exercise for the reader* 
+the Eclipse run-time to execute everything on the remote host, but that is *left as an exercise for the reader*
