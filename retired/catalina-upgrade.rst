@@ -4,6 +4,8 @@
 Catalina upgrade issues
 ***********************
 
+.. important:: Very old draft, anticipate inaccuracies and outdated information.
+
 This upgrade went smoothly (unlike Mojave), so fairly uneventful..
 
 Biggest issue is the switch to Zsh as the default shell, while you are not forced away from Bash, better to switch.
@@ -137,4 +139,4 @@ This will install a reasonable ``.zshrc``, but I made a few modifications.
 	# Example aliases
 	# alias zshconfig="mate ~/.zshrc"
 	# alias ohmyzsh="mate ~/.oh-my-zsh"
-	 
+

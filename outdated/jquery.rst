@@ -4,6 +4,8 @@
 jQuery CheatSheet
 *****************
 
+.. important:: Very early incomplete draft please ignore
+
 Selectors
 =========
 ::

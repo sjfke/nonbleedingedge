@@ -4,6 +4,8 @@
 Python Cheatsheet
 *****************
 
+.. important:: Being rewritten for Python-3 only, with an emphasis on using Python as a shell-script language.
+
 Useful Links
 ============
 
@@ -358,7 +360,8 @@ Objects
 =======
 
 Simple **Person** object in file named *Person.py*
-::
+
+.. code-block:: python
 
     #!/usr/bin/env python3
     #
@@ -419,7 +422,8 @@ Simple **Person** object in file named *Person.py*
         version = property(get_uuid, None, None, None)
 
 The **Person** object supports Python attribute style and also Java-like getters/setters style
-::
+
+.. code-block:: python
 
     >>> import Person
     >>> f = Person.Person(name='fred',age=99)
@@ -443,7 +447,7 @@ The **Person** object supports Python attribute style and also Java-like getters
 Try/Except
 ==========
 
-::
+.. code-block:: python
 
     import sys
 
@@ -491,18 +495,16 @@ explicitly modifying it, a kind of *wrapper*.
 Basic example
 -------------
 
-::
+.. code-block:: python
 
     def add_one(number):
         return number + 1
 
     print(add_one(41)) # 42
 
-
 Functions as arguments (say_hello, say_hi)
 ------------------------------------------
-
-::
+.. code-block:: python
 
     def say_hello(name):
         return f"Hello {name}"
@@ -521,12 +523,13 @@ Functions as arguments (say_hello, say_hi)
     print(greet_fred(say_hello)) # 'Hello Fred' # Note NOT 'say_hello()'
     print(greet_fred(say_hi))    # 'Hi Fred'    # Note NOT 'say_hi()'
 
+
 Functions and Methods
 ---------------------
 
 A common use is to wrap functions and methods to extend their capabilities.
 
-::
+.. code-block:: python
 
     def decorator1(func):
         def wrapper(*args,**kwargs):
@@ -553,7 +556,7 @@ A common use is to wrap functions and methods to extend their capabilities.
 Decorator chaining
 ------------------
 
-::
+.. code-block:: python
 
     def decorator1(func):
         def wrapper(*args,**kwargs):
@@ -591,7 +594,8 @@ Pipenv
 * `Which VirtualEnv <https://github.com/pypa/pipenv/issues/796>`_
 
 Using pipenv with Eclipse PyDev
-::
+
+.. code-block:: shell
 
     $ export PIPENV_VENV_IN_PROJECT=1 # force creation of '.venv' in project
     $ cd <eclipse-workspace>/<project>
@@ -604,7 +608,7 @@ Using pipenv with Eclipse PyDev
     $ pipenv check               # PEP8 check of the Pipfile
 
 
-Setup a new Python interpretor in Eclipse, and change the project to use it.
+Setup a new Python interpreter in Eclipse, and change the project to use it.
 
 * `PyDev and virtualenv <https://www.michaelpollmeier.com/eclipse-pydev-and-virtualenv>`_
 
