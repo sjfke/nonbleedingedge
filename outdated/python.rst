@@ -6,6 +6,149 @@ Python Cheatsheet
 
 .. important:: Being rewritten for Python-3 only, with an emphasis on using Python as a shell-script language.
 
+Background
+==========
+
+`Python <https://en.wikipedia.org/wiki/Python_(programming_language)>`_ has had a long history... this
+my brief summary from the `Python Wiki page <https://en.wikipedia.org/wiki/Python_(programming_language)>`_.
+
+* Python was first released it in 1991 as Python 0.9.0.
+* Python 2.0 was released in 2000, the last was Python 2.7.18 released in 2020.
+* Python 3.0, was released in 2008, a major revision not completely backward-compatible.
+* Currently only 3.7 and later are supported.
+
+In 2021, Python 3.9.2 and 3.8.8 were expedited as all versions of Python (including 2.7) had security issues leading
+to possible remote code execution and web cache poisoning.
+
+In 2022, Python 3.7.13, 3.8.13, 3.9.12 and 3.10.4 were expedited, because of many security issues.
+Python 3.9.13 was released in May 2022, but it was announced that the 3.9 series, like the 3.8 and 3.7 series would
+only receive security fixes in the future
+
+On September 7, 2022, four new releases were made due to a potential denial-of-service attack: 3.10.7, 3.9.14, 3.8.14,
+and 3.7.14.
+
+As of November 2022, Python 3.11.0 is the current stable release.
+Notable changes from 3.10 include increased program execution speed and improved error reporting
+
+Example Script
+==============
+
+Overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
+
+.. code-block:: python
+
+    import argparse
+    import sys
+
+    # https://docs.python.org/3/howto/argparse.html
+
+    _dict = {'Fred': 30, 'Wilma': 25, 'Pebbles': 1, 'Dino': 5}
+
+
+    def get_names():
+        """
+        Get person names
+
+        :rtype: List
+        :return: person names
+        """
+        return _dict.keys()
+
+
+    def get_ages():
+        """
+        Get ages
+
+        :rtype: List
+        :return: person ages
+        """
+
+        return _dict.values()
+
+
+    def get_person(name=None):
+        """
+        Get age of person
+
+        :param name: of the person
+        :type name: str
+
+        :rtype: str
+        :return: firstnames or None
+        """
+
+        if name is not None:
+
+            try:
+                _ans = {name: _dict[name]}
+                return _ans
+            except KeyError:
+                return f"KeyError: {name}"
+                # return "KeyError: {0}".format(name)  # prior to Python 3.6
+        else:
+            return None
+
+
+    if __name__ == '__main__':
+        arguments = None
+        parser = argparse.ArgumentParser(description='Simple Command Line Application')
+        parser.add_argument('-n', '--names', action='store_true', default=False, help='display names')
+        parser.add_argument('-a', '--ages', action='store_true', default=False, help='display ages')
+        parser.add_argument('-p', '--person', type=str, default=None, help='person to display')
+        parser.add_argument('-v', '--verbose', action='count', default=0)
+
+        args = parser.parse_args()
+
+        if args.verbose >= 1:
+            print("args: {0}".format(args.__str__()))
+
+        if args.names:
+            print("{0}".format(get_names()))
+        elif args.ages:
+            print("{0}".format(get_ages()))
+        elif args.person:
+            print("{0}".format(get_person(name=args.person)))
+
+        sys.exit(0)
+
+The `Docstrings`, the text between the *triple double-quotes*, are important but has no single agreed format and the
+style varies considerably. The top 3 Python docstring formats are: *Google*, *Sphinx*, *NumPY/ReST*
+
+* `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
+* `Google Python Style Guide: Docstrings <https://google.github.io/styleguide/pyguide.html#s3.8.1-comments-in-doc-strings>`_
+* `Numpydoc <https://numpydoc.readthedocs.io/en/latest/format.html>`_
+* `Python Function Docstrings <https://www.pythontutorial.net/python-basics/python-function-docstrings/>`_
+* `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_
+
+Usage example ::
+
+    $ python .\flintstones.py --help
+    usage: flintstones.py [-h] [-n] [-a] [-p PERSON] [-v]
+
+    Simple Command Line Application
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -n, --names           display names
+      -a, --ages            display ages
+      -p PERSON, --person PERSON
+                            person to display
+      -v, --verbose
+
+    $ python .\flintstones.py -n
+    dict_keys(['Fred', 'Wilma', 'Pebbles', 'Dino'])
+
+Other `argparse` examples I have written:
+
+* `Kitten: Simplistic version of the UNIX cat command <https://github.com/sjfke/python-projects/blob/main/kitten.py>`_
+* `Jinja-CLI: Application for using Jinja templates <https://github.com/sjfke/python-projects/blob/main/jinja-cli.py>`_
+* `Simple-CLI: Argparse example writing to a file <https://github.com/sjfke/python-projects/blob/main/simple-cli.py>`_
+
+None of these examples include Python logging and probably should.
+
+* `Python: Logging HOWTO <https://docs.python.org/3/howto/logging.html>`_
+* `6 Python Logging Best Practices You Should Be Aware Of <https://www.loggly.com/use-cases/6-python-logging-best-practices-you-should-be-aware-of/>`_
+
 Useful Links
 ============
 
