@@ -6,6 +6,7 @@ Python Cheatsheet
 
 .. important:: Being rewritten for Python-3 only, with an emphasis on using Python as a shell-script language.
 
+==========
 Background
 ==========
 
@@ -30,10 +31,11 @@ and 3.7.14.
 As of November 2022, Python 3.11.0 is the current stable release.
 Notable changes from 3.10 include increased program execution speed and improved error reporting
 
+==============
 Example Script
 ==============
 
-Overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
+Let's start with an overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
 
 .. code-block:: python
 
@@ -46,36 +48,20 @@ Overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/
 
 
     def get_names():
-        """
-        Get person names
-
-        :rtype: List
-        :return: person names
-        """
+        """ Get Flintstone family firstnames """
         return _dict.keys()
 
 
     def get_ages():
         """
-        Get ages
-
-        :rtype: List
-        :return: person ages
+        Get Flintstone family ages
         """
 
         return _dict.values()
 
 
     def get_person(name=None):
-        """
-        Get age of person
-
-        :param name: of the person
-        :type name: str
-
-        :rtype: str
-        :return: firstnames or None
-        """
+        """ Get age of Flintstone family member """
 
         if name is not None:
 
@@ -94,7 +80,7 @@ Overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/
         parser = argparse.ArgumentParser(description='Simple Command Line Application')
         parser.add_argument('-n', '--names', action='store_true', default=False, help='display names')
         parser.add_argument('-a', '--ages', action='store_true', default=False, help='display ages')
-        parser.add_argument('-p', '--person', type=str, default=None, help='person to display')
+        parser.add_argument('-p', '--person', type=str, default=None, help='display person')
         parser.add_argument('-v', '--verbose', action='count', default=0)
 
         args = parser.parse_args()
@@ -111,16 +97,22 @@ Overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/
 
         sys.exit(0)
 
-The `Docstrings`, the text between the *triple double-quotes*, are important but has no single agreed format and the
-style varies considerably. The top 3 Python docstring formats are: *Google*, *Sphinx*, *NumPY/ReST*
+While certain statements have to occur in the correct sequences, the overall sequence is largely arbitrary, the `import`
+can appear at various places. The above format is a good starting basis:
 
-* `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
-* `Google Python Style Guide: Docstrings <https://google.github.io/styleguide/pyguide.html#s3.8.1-comments-in-doc-strings>`_
-* `Numpydoc <https://numpydoc.readthedocs.io/en/latest/format.html>`_
-* `Python Function Docstrings <https://www.pythontutorial.net/python-basics/python-function-docstrings/>`_
-* `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_
+    * `import` the required modules
+    * `def` the required methods
+    * Define the main `if __name__ == '__main__':`
+    * Instantiate the ArgumentParser
+    * Process the command line input
 
-Usage example ::
+Notice it is assumed the script is executed as `python <script-name>`, see :ref:`using-shebang`.
+
+The `Docstrings`, the text between the *triple double-quotes*, are important but have no single agreed format and the
+style varies considerably, see :ref:`python-docstrings`, a single line description is illustrated above, and
+`PyCharm Community Edition <https://www.jetbrains.com/pycharm/download>`_ Docstrings are used on the GitHub version.
+
+Example usage ::
 
     $ python .\flintstones.py --help
     usage: flintstones.py [-h] [-n] [-a] [-p PERSON] [-v]
@@ -138,7 +130,7 @@ Usage example ::
     $ python .\flintstones.py -n
     dict_keys(['Fred', 'Wilma', 'Pebbles', 'Dino'])
 
-Other `argparse` examples I have written:
+Other simple `argparse` examples are provided on `GitHub (sjfke): Python Projects <https://github.com/sjfke/python-projects>`_ :
 
 * `Kitten: Simplistic version of the UNIX cat command <https://github.com/sjfke/python-projects/blob/main/kitten.py>`_
 * `Jinja-CLI: Application for using Jinja templates <https://github.com/sjfke/python-projects/blob/main/jinja-cli.py>`_
@@ -148,6 +140,38 @@ None of these examples include Python logging and probably should.
 
 * `Python: Logging HOWTO <https://docs.python.org/3/howto/logging.html>`_
 * `6 Python Logging Best Practices You Should Be Aware Of <https://www.loggly.com/use-cases/6-python-logging-best-practices-you-should-be-aware-of/>`_
+
+.. _python-docstrings:
+
+Python Docstrings
+-----------------
+
+The top 3 Python docstring formats are: *Google*, *Sphinx*, *NumPY/ReST*
+
+* `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
+* `Google Python Style Guide: Docstrings <https://google.github.io/styleguide/pyguide.html#s3.8.1-comments-in-doc-strings>`_
+* `Numpydoc <https://numpydoc.readthedocs.io/en/latest/format.html>`_
+* `VSCode autoDocstring - Python Docstring Generator <https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring>`_
+* `Python Function Docstrings <https://www.pythontutorial.net/python-basics/python-function-docstrings/>`_
+* `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_
+
+.. _using-shebang:
+
+Using Shebang
+-------------
+
+On `UNIX` and `Linux` systems it is common to have a `shebang` as the first line of the the script, so the Shell knows
+which interpreter to use. ::
+
+    #!/bin/bash           # execute using bash
+    #!/usr/bin/python     # interpreter /usr/bin/python (default Python)
+    #!/usr/bin/python3    # interpreter /usr/bin/python3
+
+    #!/usr/bin/env python # search and execute Python interpreter found
+
+This does not work on Windows, so the `shebang` is omitted from the examples.
+
+* `Why is it better to use "#!/usr/bin/env NAME" instead of "#!/path/to/NAME" as my shebang? <https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my>`_
 
 Useful Links
 ============
