@@ -97,19 +97,23 @@ Let's start with an overly simple example, `flinstones.py <https://github.com/sj
 
         sys.exit(0)
 
-While certain statements have to occur in the correct sequences, the overall sequence is largely arbitrary, the `import`
-can appear at various places. The above format is a good starting basis:
+While certain statements have to occur in the correct sequence, many do not, for example the `import` can appear at
+various places. The above format is a good starting basis:
 
-    * `import` the required modules
-    * `def` the required methods
-    * Define the main `if __name__ == '__main__':`
-    * Instantiate the ArgumentParser
-    * Process the command line input
+    * Import the required modules, ``import``
+    * Define the functions, ``def``
+    * Define the main block, ``if __name__ == '__main__':``
+    * Main block, instantiate the ArgumentParser
+    * Main block, process the command line input, calling the required functions
 
-Notice it is assumed the script is executed as `python <script-name>`, see :ref:`using-shebang`.
+Notice it is assumed the script is executed as ``python <script-name>``, see :ref:`using-shebang`.
 
-The `Docstrings`, the text between the *triple double-quotes*, are important but have no single agreed format and the
-style varies considerably, see :ref:`python-docstrings`, a single line description is illustrated above, and
+**Function definitions** can have *default* arguments values, optional in the function call.
+
+**Function calls** support *named* and *positional* arguments.
+
+The ``Docstrings``, the text between the *triple double-quotes* after the function definition, are important but
+no single agreed format is in use and style varies considerably, see :ref:`python-docstrings`, a single line description is illustrated above, and
 `PyCharm Community Edition <https://www.jetbrains.com/pycharm/download>`_ Docstrings are used on the GitHub version.
 
 Example usage ::
@@ -136,32 +140,66 @@ Other simple `argparse` examples are provided on `GitHub (sjfke): Python Project
 * `Jinja-CLI: Application for using Jinja templates <https://github.com/sjfke/python-projects/blob/main/jinja-cli.py>`_
 * `Simple-CLI: Argparse example writing to a file <https://github.com/sjfke/python-projects/blob/main/simple-cli.py>`_
 
-None of these examples include Python logging and probably should.
-
-* `Python: Logging HOWTO <https://docs.python.org/3/howto/logging.html>`_
-* `6 Python Logging Best Practices You Should Be Aware Of <https://www.loggly.com/use-cases/6-python-logging-best-practices-you-should-be-aware-of/>`_
+None of these examples include :ref:`python-logging` and probably should.
 
 .. _python-docstrings:
 
 Python Docstrings
 -----------------
 
-The top 3 Python docstring formats are: *Google*, *Sphinx*, *NumPY/ReST*
+The top 3 Python docstring formats are:
 
 * `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
 * `Google Python Style Guide: Docstrings <https://google.github.io/styleguide/pyguide.html#s3.8.1-comments-in-doc-strings>`_
-* `Numpydoc <https://numpydoc.readthedocs.io/en/latest/format.html>`_
+* `Numpydoc Example <https://numpydoc.readthedocs.io/en/latest/example.html>`_
+
+Other references:
+
+* `Creating documentation comments for Python functions <https://www.jetbrains.com/help/pycharm/creating-documentation-comments.html>`_
 * `VSCode autoDocstring - Python Docstring Generator <https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring>`_
 * `Python Function Docstrings <https://www.pythontutorial.net/python-basics/python-function-docstrings/>`_
 * `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_
+
+.. _python-logging:
+
+Python Logging
+--------------
+
+.. code-block:: python
+
+    import logging
+    logging.basicConfig(level=logging.INFO)
+
+    logging.info('This message will be logged')       # INFO:root:This message will be logged
+    logging.debug('This message will not be logged')
+
+.. code-block:: python
+
+    import logging
+    logging.basicConfig(filename='myfirstlog.log',
+    level=logging.DEBUG,
+    format='%(asctime)s | %(name)s | %(levelname)s | %(message)s')
+
+    logging.warning('Testing log formatting!')
+
+::
+
+    $ cat .\myfirstlog.log
+    2023-02-09 20:23:28,339 | root | WARNING | Testing log formatting!
+
+
+* `Python: Logging HOWTO <https://docs.python.org/3/howto/logging.html>`_
+* `6 Python Logging Best Practices You Should Be Aware Of <https://www.loggly.com/use-cases/6-python-logging-best-practices-you-should-be-aware-of/>`_
+* `The Hitchhikers Guide to Python: Logging <https://docs.python-guide.org/writing/logging/>`_
+
 
 .. _using-shebang:
 
 Using Shebang
 -------------
 
-On `UNIX` and `Linux` systems it is common to have a `shebang` as the first line of the the script, so the Shell knows
-which interpreter to use. ::
+On ``UNIX`` and ``Linux`` systems it is common to have a ``shebang`` as the first line of the the script, so the
+Shell knows which interpreter to use. ::
 
     #!/bin/bash           # execute using bash
     #!/usr/bin/python     # interpreter /usr/bin/python (default Python)
@@ -169,7 +207,7 @@ which interpreter to use. ::
 
     #!/usr/bin/env python # search and execute Python interpreter found
 
-This does not work on Windows, so the `shebang` is omitted from the examples.
+Windows does not support ``shebang``, so the it is omitted from the examples.
 
 * `Why is it better to use "#!/usr/bin/env NAME" instead of "#!/path/to/NAME" as my shebang? <https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my>`_
 
