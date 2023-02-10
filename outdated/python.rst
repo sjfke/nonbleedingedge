@@ -211,57 +211,58 @@ Windows does not support ``shebang``, so the it is omitted from the examples.
 
 * `Why is it better to use "#!/usr/bin/env NAME" instead of "#!/path/to/NAME" as my shebang? <https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my>`_
 
-Useful Links
-============
-
-* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
-* `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
-* `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
-* `Execute Python-3 Online (Python v3.6.2) <https://www.tutorialspoint.com/execute_python3_online.php>`_
-* `Python IDE Online (Python v2.7.13) <https://www.tutorialspoint.com/online_python_ide.php>`_
+=====================
+Language Key Features
+=====================
 
 Lists
-=====
+-----
 
 * mutable
 * ordered collections of arbitrary objects, accessed by offset
 * variable length, heterogeneous, arbitrarily nestable
 
-::
+.. code-block:: python
 
     L1 = []                         # Empty list
     L2 = [0, 1, 2, 3]               # Four items: indexes 0..3
     L3 = ['abc', ['def', 'ghi']]    # Nested lists
-    L2[0]                           # 0; L2[-3] => 1
+    L2[0]                           # 0
+    L2[-3]                          # 1
     L3[0][1]                        # 'b'
     L3[1][1]                        # 'ghi'
     L2[0:1]                         # [0]
-    L2[0:3]                         # [0, 2, 3]; L2[2:] => [2, 3]
+    L2[0:3]                         # [0, 2, 3]
+    L2[2:]                          # [2, 3]
     len(L2)                         # 4
+    dir(L3)                         # available methods
+    help(L3)                        # description of available methods
 
     L2 + L3                         # Concatenation -> [0, 1, 2, 3, 'abc', ['def', 'ghi']]
     L2 * 3                          # Repetition -> [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
     for x in L2: print(x)           # Iteration
     3 in L2                         # Membership -> True (False)
 
-    L2.append(4)                    # [0, 1, 2, 3, 4]
-    L2.extend([5,6,7])              # [0, 1, 2, 3, 4, 5, 6, 7]
+    L2.append(7)                    # [0, 1, 2, 3, 7]
+    L2.extend([4,5,6])              # [0, 1, 2, 3, 7, 4, 5, 6]
     L2.sort()                       # [0, 1, 2, 3, 4, 5, 6, 7]
-    L2.index(1)                     # 1
+    L2.index(4)                     # 4, not 7 because of L2.sort()
     L2.reverse()                    # [7, 6, 5, 4, 3, 2, 1, 0]
-    del L2[6]                       # [0, 1, 2, 3, 4, 5, 7]
-    del L2[4:6]                     # [0, 1, 2, 3, 7]
-    L2.pop()                        # 7, leaving [0, 1, 2, 3]
+    del L2[6]                       # [7, 6, 5, 4, 3, 2, 0]
+    del L2[4:6]                     # [7, 6, 5, 4, 0]
+    L2.pop()                        # 0, leaving [7, 6, 5, 4]
 
-    L2[1] = 2                       # [0, 2, 2, 3]
-    L2[1:2] = [1,4]                 # [0, 1, 4, 2, 3]
-    L5 = range(4)                   # [0, 1, 2, 3]
+    L2[2] = 2                       # [7, 2, 2, 4]
+    L2[1:2] = [1,3]                 # [7, 1, 3, 2, 4]
 
-    for x in xrange(0,4): print x   # return object (not list) slightly faster
+    L5 = range(4)                   # range(0, 4)
+
+    for x in range(0,4): print(x)   # 0, 1, 2, 3, return object (not list) slightly faster
     L4 = [x**2 for x in range(5)]   # [0, 1, 4, 9, 16]
 
-    textstr = ''.join(map(str, L2)) # convert List into a string concatenated with ''
-    isinstance(L1, list)            # list object?
+    textstr = ''.join(map(str, L2)) # '71324', convert List into a string concatenated with ''
+    isinstance(L1, list)            # True, it is a list object
+    isinstance(L1, dict)            # False, it is a dict object
 
 Dictionaries
 ============
@@ -789,7 +790,17 @@ Decorator chaining
     print(num21()) # 200 = (10 * 10) * 2
 
 
+============
+Useful Links
+============
 
+* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
+* `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
+* `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
+* `Execute Python-3 Online (Python v3.6.2) <https://www.tutorialspoint.com/execute_python3_online.php>`_
+* `Python IDE Online (Python v2.7.13) <https://www.tutorialspoint.com/online_python_ide.php>`_
+
+======
 Pipenv
 ======
 
