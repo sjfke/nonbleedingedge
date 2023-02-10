@@ -365,10 +365,13 @@ Tuples and Sequences
 
 Heapq
 =====
-* `Heap Theory (binary tree sort) <https://docs.python.org/3.0/library/heapq.html#theory>`_
-* `Heap queue algorithm (builtin heap implementation) <https://docs.python.org/3.0/library/heapq.html>`_
 
-::
+Heaps are binary trees for which every parent node has a value less than or equal to any of its children.
+
+* `heapq — Heap queue algorithm <https://docs.python.org/3/library/heapq.html>`_
+* `Heap Theory (binary tree sort) <https://docs.python.org/3.0/library/heapq.html#theory>`_
+
+.. code-block:: python
 
     import heapq
 
@@ -378,22 +381,29 @@ Heapq
         heapq.heappush(heap, item)
 
     heap = [11, 3, 15, 7, 9, 23, 4, 6, 8, 10]
-    heapq.heapify(heap)
+    heapq.heapify(heap)  # [3, 6, 4, 7, 9, 23, 15, 11, 8, 10]
 
-    print('nlargest(3): {0}'.format(heapq.nlargest(3, heap)))
-    print('nsmallest(3): {0}'.format(heapq.nsmallest(3, heap)))
+    print('nlargest(3): {0}'.format(heapq.nlargest(3, heap)))   # [23, 15, 11]
+    print('nsmallest(3): {0}'.format(heapq.nsmallest(3, heap))) # [3, 4, 6]
 
-    smallest_item = heapq.heappop(heap)
+    smallest_item = heapq.heappop(heap) # 3
 
     # convert to sorted list
     ordered = []
     while heap:
         ordered.append(heapq.heappop(heap))
 
+    print(ordered) # [4, 6, 7, 8, 9, 10, 11, 15, 23]
+
     # heap of tuples
     data = [(1, 'J'), (4, 'N'), (3, 'H'), (2, 'O')]
     for item in data:
         heapq.heappush(heap, item)
+
+    print('nlargest(3): {0}'.format(heapq.nlargest(3, heap)))   # [(4, 'N'), (3, 'H'), (2, 'O')]
+    print('nsmallest(3): {0}'.format(heapq.nsmallest(3, heap))) # [(1, 'J'), (2, 'O'), (3, 'H')]
+
+    smallest_item = heapq.heappop(heap) # (1, 'J')
 
 
 Files
