@@ -218,6 +218,8 @@ Language Key Features
 Lists
 -----
 
+* `Data Structures: Lists <https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>`_
+* `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
 * mutable
 * ordered collections of arbitrary objects, accessed by offset
 * variable length, heterogeneous, arbitrarily nestable
@@ -265,36 +267,56 @@ Lists
     isinstance(L1, dict)            # False, it is a dict object
 
 Dictionaries
-============
+------------
 
+* `Data Structures: Dictionaries <https://docs.python.org/3/tutorial/datastructures.html#dictionaries>`_
+* `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
 * mutable
 * unordered collections of arbitrary objects, accessed by key
 * variable length, heterogeneous, arbitrarily nestable
 
+.. code-block:: python
 
-::
+    D1 = {}                               # {} Empty dictionary
+    D2 = {'email': 'spam', 'total': 3}    # {'email': 'spam', 'total': 3}
+    D3 = {'food': {'ham': 2, 'eggs': 3}}  # {'food': {'ham': 2, 'eggs': 3}}
+    D2['total']                           # 3
+    D2.get('total')                       # 3
+    D3['food']['ham']                     # 2
+    D3['food']                            # {'ham': 2, 'eggs': 3}
+    D3['food']['ham'] = 1                 # {'food': {'ham': 1, 'eggs': 3}}
 
-    D1 = {}                               # Empty dictionary
-    D2 = {'spam': 2, 'eggs': 3}           # {'eggs': 3, 'spam': 2}
-    D3 = {'food': {'ham': 2, 'eggs': 3}}  # {'food': {'eggs': 3, 'ham': 2}}
-    D2['eggs']                            # 3; D2.get('eggs') => 3
-    D3['food']['ham']                     # 2; D3['food'] => {'eggs': 3, 'ham': 2}
-    D2.has_key('eggs'), 'eggs' in D2      # True, 'eggs' in D3 => False
+    'total' in D2                         # True
+    'food' in D3                          # True
+    'eggs' in D2                          # False
+    'eggs' in D3['food']                  # True
 
-    D2.keys()                             # ['eggs', 'spam']
-    D2.values()                           # [3, 2]
-    D3.keys()                             # ['food']; D3['food'].keys() => ['eggs', 'ham']
-    D3.values()                           # [{'eggs': 3, 'ham': 2}]; D3['food'].values() => [3, 2]
-    D2.items()                            # [('eggs', 3), ('spam', 2)]
+    D2.keys()                             # dict_keys(['email', 'total'])
+    D2.values()                           # dict_values(['spam', 3])
+    D2.items()                            # dict_items([('email', 'spam'), ('total', 3)])
+    D3.keys()                             # dict_keys(['food'])
+    D3['food'].keys()                     # dict_keys(['ham', 'eggs'])
+    D3.values()                           # dict_values([{'ham': 1, 'eggs': 3}])
+    D3.items()                            # dict_items([('food', {'ham': 1, 'eggs': 3})])
 
-    D4 = D2.copy()
-    D2.update(D3)                         # {'food': {'eggs': 3, 'ham': 2}, 'eggs': 3, 'spam': 2}
+    len(D2)                               # 2
+    len(D3)                               # 1
 
-    len(D2)                               # 3; len(D1) => 0; len(D3) => 1
+    for key, value in D2.items():         # email spam \n total 3
+        print(key, value)
 
-    keys = ['spam', 'eggs']               # or tuple: keys = ('spam', 'eggs')
-    vals = [2, 3]                         # or tuple: vals = (2, 3)
-    D4 = dict(zip(keys, vals))            # {'eggs': 3, 'spam': 2}
+    for key, value in D3.items():         # food {'ham': 1, 'eggs': 3}
+        print(key, value)
+
+    D4 = D2.copy()                        # {'email': 'spam', 'total': 3}
+    D2.update(D3)                         # {'email': 'spam', 'total': 3, 'food': {'ham': 1, 'eggs': 3}}
+    D4.items()                            # dict_items([('email', 'spam'), ('total', 3)])
+
+    keys = ['email', 'total']             # or tuple: keys = ('email', 'total')
+    vals = ['spam', 3]                    # or tuple: vals = ('spam', 3)
+    D5 = dict(zip(keys, vals))            # {'email': 'spam', 'total': 3}
+
+    D2.pop('total')                       # 3, leaving {'email': 'spam'}
 
     isinstance(D3, dict)                  # True
     isinstance(D3['food'], dict)          # True
