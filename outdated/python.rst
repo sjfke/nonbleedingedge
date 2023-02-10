@@ -323,38 +323,45 @@ Dictionaries
     isinstance(D3['food']['eggs'], dict)  # False
 
 
-Tuples
-======
+Tuples and Sequences
+--------------------
 
+* `Data Structures: Tuples and Sequences <https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences>`_
+* `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
+* immutable
 * ordered collections of arbitrary objects, accessed by offset
 * variable length, heterogeneous, arbitrarily nestable
 * can be used as dictionary keys
 
-::
+.. code-block:: python
 
-    t0 = ()                         # Empty tuple
-    t1 = (0,)                       # one-item tuple (not an expression)
-    t2 = (0, 'Ni', 1.2, 3)          # four-item tuple
-    t2 = 0, 'Ni', 1.2, 3            # four-item tuple (alternative syntax)
+    t0 = ()                         # () - Empty tuple
+    t1 = (42,)                       # (42,) - one-item tuple (not an expression)
+    i1 = (42)                        # 42 - integer
+    t2 = (0, 'Ni', 1.2, 3)          # (0, 'Ni', 1.2, 3) - four-item tuple
+    t2a = 0, 'Ni', 1.2, 3           # (0, 'Ni', 1.2, 3) - four-item tuple (alternative syntax)
     t3 = ('abc', ('def', 'ghi'))    # ('abc', ('def', 'ghi'))
 
-    t1 = (42,)                      # tuple
-    t1 = (42)                       # integer
-
-    t1[0]                           # 0
-    t3[0]                           # 'abc'; t3[1] => ('def', 'ghi')
+    t1[0]                           # 42
+    t3[0]                           # 'abc'
+    t3[1]                           # ('def', 'ghi')
     t3[0][1]                        # 'b'
     t3[1][1]                        # 'ghi'
-    t3[0:1]                         # ('abc',); t3[0:] => ('abc', ('def', 'ghi'))
+    t3[0:1]                         # ('abc',)
+    t3[0:]                          # ('abc', ('def', 'ghi'))
 
-    len(t2)                         # 4; len(t0) => 0, len(t1) => 1, len(t3) => 2
+    len(t2)                         # 4
+    len(t3)                         # 2
 
-    tx = t1 + t2                    # (0, 0, 'Ni', 1.2, 3)
+    tx = t1 + t2                    # (42, 0, 'Ni', 1.2, 3)
     tx = t2 * 3                     # (0, 'Ni', 1.2, 3, 0, 'Ni', 1.2, 3, 0, 'Ni', 1.2, 3)
 
-    for x in t2 : print x           # Iteration
-    3 in t2                         # True, 'Ni' in t2 => True, 4 in t2 => False
+    3 in t2                         # True
+    'Ni' in t2                      # True
+    4 in t2                         # False
 
+    for x in t2:                    # iteration
+        print x                     # 0 \n Ni \n 1.2 \n 3
 
 Heapq
 =====
