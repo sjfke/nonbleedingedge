@@ -363,8 +363,8 @@ Tuples and Sequences
     for x in t2:                    # iteration
         print x                     # 0 \n Ni \n 1.2 \n 3
 
-Heapq
-=====
+Heapq (binary tree)
+-------------------
 
 Heaps are binary trees for which every parent node has a value less than or equal to any of its children.
 
