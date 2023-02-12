@@ -11,12 +11,12 @@ Background
 ==========
 
 `Python <https://en.wikipedia.org/wiki/Python_(programming_language)>`_ has had a long history... this
-my brief summary from the `Python Wiki page <https://en.wikipedia.org/wiki/Python_(programming_language)>`_.
+a brief summary derived from the `Python Wiki page <https://en.wikipedia.org/wiki/Python_(programming_language)>`_.
 
-* Python was first released it in 1991 as Python 0.9.0.
-* Python 2.0 was released in 2000, the last was Python 2.7.18 released in 2020.
-* Python 3.0, was released in 2008, a major revision not completely backward-compatible.
-* Currently only 3.7 and later are supported.
+* Python 0.9.0 was released in 1991.
+* Python 2.0 was released in 2000, with last release being Python 2.7.18 released in 2020.
+* Python 3.0 was released in 2008, this major revision is not completely backward-compatible.
+* Currently only Python 3.7 and later are supported.
 
 In 2021, Python 3.9.2 and 3.8.8 were expedited as all versions of Python (including 2.7) had security issues leading
 to possible remote code execution and web cache poisoning.
@@ -31,11 +31,11 @@ and 3.7.14.
 As of November 2022, Python 3.11.0 is the current stable release.
 Notable changes from 3.10 include increased program execution speed and improved error reporting
 
-==============
-Example Script
-==============
+=====================
+Example Python Script
+=====================
 
-Let's start with an overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
+n overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
 
 .. code-block:: python
 
@@ -97,8 +97,8 @@ Let's start with an overly simple example, `flinstones.py <https://github.com/sj
 
         sys.exit(0)
 
-While certain statements have to occur in the correct sequence, many do not, for example the `import` can appear at
-various places. The above format is a good starting basis:
+While certain statements must occur in the correct sequence, many do not, for example the `import` can appear at
+various places. The above format is a good basis for starting:
 
     * Import the required modules, ``import``
     * Define the functions, ``def``
@@ -106,7 +106,7 @@ various places. The above format is a good starting basis:
     * Main block, instantiate the ArgumentParser
     * Main block, process the command line input, calling the required functions
 
-Notice it is assumed the script is executed as ``python <script-name>``, see :ref:`using-shebang`.
+Notice the script has to be executed as ``python <script-name>``, see :ref:`using-shebang`.
 
 **Function definitions** can have *default* arguments values, optional in the function call.
 
@@ -406,68 +406,142 @@ Heaps are binary trees for which every parent node has a value less than or equa
     smallest_item = heapq.heappop(heap) # (1, 'J')
 
 
-Files
-=====
+Reading and Writing Files
+-------------------------
 
-* `Input and Output <https://docs.python.org/3/tutorial/inputoutput.html>`_
-* `Writing files using Python <https://stackabuse.com/writing-files-using-python/>`_
-* `Python 101: Redirecting stdout <https://www.blog.pythonlibrary.org/2016/06/16/python-101-redirecting-stdout/>`_
+* `Python3: Input and Output <https://docs.python.org/3/tutorial/inputoutput.html>`_
+* `Python3: Reading and Writing Files <https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files>`_
 
+Text Files Sequential Access
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Sequential access
-::
+.. code-block:: python
 
-    output = open('tmp/spam', 'w')  # create/overwrite output file
-    input = open('data', 'r')       # open input file
-    S = input.read()				# Read entire file into a single string
-    S = input.read(N)               # Read N bytes ( N >= 1)
-    S = input.readline()            # Read next line, len(S) == 0 when no more input
-    L = input.readlines()           # Read entire file into list of line strings
-    output.write(S)                 # Write string S into file (returns number of chars written)
-    output.writelines(L)            # Write all strings in list L
-    print("lineFour", file=output)  # Better than low-level write(), writelines() methods
-    output.flush()                  # Flush buffered write to file
-    output.close()                  # May need to flush() to write contents
+    # mode: r (read), w (write), a (append), r+ (read/write), + (read/write)
+    outfile_handle = open('spam', 'w')                        # create/overwrite 'spam', <_io.TextIOWrapper>
+    outfile_handle = open('utf8spam', 'w', encoding="utf-8")   # create/overwrite 'utf8spam' in UTF8, <_io.TextIOWrapper>
+    infile_handle = open('data', 'r')                         # open input file
+
+    S = infile_handle.read()                # Read entire file into a single string
+    S = infile_handle.read(N)               # Read N bytes (N >= 1)
+    S = infile_handle.readline()            # Read next line, len(S) == 0 when no more input
+    L = infile_handle.readlines()           # Read entire file into list of line strings
+
+    outfile_handle.write(S)                 # Write string S into file (returns number of chars written)
+    outfile_handle.writelines(L)            # Write all strings in list L
+    print("lineFour", file=outfile_handle)  # Better than low-level write(), writelines() methods
+    outfile_handle.flush()                  # Flush buffered write to file
+    outfile_handle.close()                  # May need to flush() to write contents
 
     # Cleaner but will raise an exception and close cleanly
     with open(filename) as f:
         data = f.read()
 
-    # Cleaner and will trap any exception raised
+    # Alternative, traps and reports any exception raised
     try:
         with open(filename) as f:
         data = f.read()
     except Exception as error:
         print('{0}'.format(error))
 
+    # Example, forcing UTF8 encoding
+    outfile_handle = open('utf8spam', 'w', encoding="utf-8")
+    for i in range(1,11):
+        print("{0:2d}: line number {0}".format(i), file=outfile_handle)
 
-Random access
+    outfile_handle.flush()
+    outfile_handle.close()
+
+
+Text Files Random Access
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+    # random access to text files
+    import linecache
+    linecache.getline('utf8spam',1)  # ' 1: line number 1\n'
+    linecache.getline('utf8spam',7)  # ' 7: line number 7\n'
+    linecache.getline('utf8spam',0)  # ''
+    linecache.getline('utf8spam',15) # ''
+
+
+* `linecache — Random access to text lines <https://docs.python.org/3/library/linecache.html>`_
+
+File, and Directory Tests
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+    import os
+
+    os.path.exists('flintstones.json') # True
+    os.path.exists('flintstones.jsong') # False
+    os.path.exists('project') # True
+    os.path.exists('projects') # False
+
+    os.path.isfile('flintstones.json') # True
+    os.path.isfile('flintstones.jsong') # False
+    os.path.isdir('project') # True
+    os.path.isdir('projects') # False
+
+* `os.path — Common pathname manipulations <https://docs.python.org/3/library/os.path.html>`_
+* `pathlib — Object-oriented filesystem paths <https://docs.python.org/3/library/pathlib.html>`_
+
+JSON files
+^^^^^^^^^^
+
+.. code-block:: python
+
+    import json
+    f = open('flintstones.json', 'r')
+    x = json.load(f)  # {'flintstones': {'Fred': 30, 'Wilma': 25, 'Pebbles': 1, 'Dino': 5}}
+
+    x['flintstones']['Fred'] = 31
+    f = open('flintstones.json', 'w')
+    json.dump(x, f)
+    f.flush()
+    f.close()
+
+
+XML files
+^^^^^^^^^
+
 ::
 
-    # "Anchovies? You've got the wrong man! I spell my name DANGER! (click)"
-    # %
-    # "Benson, you are so free of the ravages of intelligence."
-    #         ― Time Bandits
-    # %
+    # flintstones.xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <family surname = "Flintstone">
+            <member>
+                    <name>Fred</name>
+                    <age>30</age>
+            </member>
+            <member>
+                    <name>Wilma</name>
+                    <age>25</age>
+            </member>
+            <member>
+                    <name>Pebbles</name>
+                    <age>1</age>
+            </member>
+            <member>
+                    <name>Dino</name>
+                    <age>5</age>
+            </member>
+    </family>
 
-    with open(filename, 'r') as fd:
-        current_offset = fd.tell()  # save file cursor
-        fd.seek(offset)
-        cookie_text = fd.readline()
+.. code-block:: python
 
-        # Cannot use for..loop and .tell() method, use repeat..until loop
-        while True:
-            line = fd.readline()
-            if not line:
-                break
-            elif re.match(r'^%$', line):
-                break
-            else:
-                cookie_text += line
+    import xml.etree.ElementTree as ET
+    tree = ET.parse('flintstones.xml')
+    root = tree.getroot()
+    root.tag    # 'family'
+    root.attrib # {'surname': 'Flintstone'}
 
-        fd.seek(current_offset)  # restore file cursor
 
-       
+* `xml.etree.ElementTree — The ElementTree XML <https://docs.python.org/3/library/xml.etree.elementtree.html>`_
+
+
 Comparisons, Equality, and Truth
 ================================
 
