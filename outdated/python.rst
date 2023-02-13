@@ -176,9 +176,8 @@ Python Logging
 .. code-block:: python
 
     import logging
-    logging.basicConfig(filename='myfirstlog.log',
-    level=logging.DEBUG,
-    format='%(asctime)s | %(name)s | %(levelname)s | %(message)s')
+    logging.basicConfig(filename='myfirstlog.log', level=logging.DEBUG,
+        format='%(asctime)s | %(name)s | %(levelname)s | %(message)s')
 
     logging.warning('Testing log formatting!')
 
@@ -507,9 +506,8 @@ JSON files
 XML files
 ^^^^^^^^^
 
-::
+.. code-block:: xml
 
-    # flintstones.xml
     <?xml version="1.0" encoding="UTF-8"?>
     <family surname = "Flintstone">
             <member>
@@ -538,6 +536,21 @@ XML files
     root.tag    # 'family'
     root.attrib # {'surname': 'Flintstone'}
 
+    for member in root.iter('member'):  # Fred: 30 \n Wilma: 25 \n Pebbles: 1 \n Dino: 5
+        name = member.find('name').text
+        age = member.find('age').text
+        print(f"{name}: {age}")
+
+    root[0][0].text  # 'Fred'
+    root[0][1].text  # '30'
+
+    root[0][1].text = '31'
+    ET.dump(root)
+
+    tree.write('flintstones.xml', encoding="UTF-8", xml_declaration=True)
+    tree.write('flintstones-ascii.xml') # missing '<?xml version="1.0" encoding="UTF-8"?>'
+
+References:
 
 * `xml.etree.ElementTree — The ElementTree XML <https://docs.python.org/3/library/xml.etree.elementtree.html>`_
 
