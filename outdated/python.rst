@@ -35,7 +35,7 @@ Notable changes from 3.10 include increased program execution speed and improved
 Example Python Script
 =====================
 
-n overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
+An overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
 
 .. code-block:: python
 
@@ -48,20 +48,24 @@ n overly simple example, `flinstones.py <https://github.com/sjfke/python-project
 
 
     def get_names():
-        """ Get Flintstone family firstnames """
+        """
+        Get Flintstones family firstnames
+        """
         return _dict.keys()
 
 
     def get_ages():
         """
-        Get Flintstone family ages
+        Get Flintstones family ages
         """
 
         return _dict.values()
 
 
     def get_person(name=None):
-        """ Get age of Flintstone family member """
+        """
+        Get age of Flintstones family member
+        """
 
         if name is not None:
 
@@ -134,7 +138,7 @@ Example usage ::
     $ python .\flintstones.py -n
     dict_keys(['Fred', 'Wilma', 'Pebbles', 'Dino'])
 
-Other simple `argparse` examples are provided on `GitHub (sjfke): Python Projects <https://github.com/sjfke/python-projects>`_ :
+Other simple `argparse` examples are available on `GitHub (sjfke): Python Projects <https://github.com/sjfke/python-projects>`_ :
 
 * `Kitten: Simplistic version of the UNIX cat command <https://github.com/sjfke/python-projects/blob/main/kitten.py>`_
 * `Jinja-CLI: Application for using Jinja templates <https://github.com/sjfke/python-projects/blob/main/jinja-cli.py>`_
@@ -509,7 +513,7 @@ XML files
 .. code-block:: xml
 
     <?xml version="1.0" encoding="UTF-8"?>
-    <family surname = "Flintstone">
+    <family surname = "Flintstones">
             <member>
                     <name>Fred</name>
                     <age>30</age>
@@ -528,31 +532,58 @@ XML files
             </member>
     </family>
 
+
+.. Warning:: xml.etree.ElementTree is insecure, see `Security issues <https://docs.python.org/3/library/xml.html>`_
+
 .. code-block:: python
 
     import xml.etree.ElementTree as ET
     tree = ET.parse('flintstones.xml')
     root = tree.getroot()
     root.tag    # 'family'
-    root.attrib # {'surname': 'Flintstone'}
+    root.attrib # {'surname': 'Flintstones'}
 
     for member in root.iter('member'):  # Fred: 30 \n Wilma: 25 \n Pebbles: 1 \n Dino: 5
         name = member.find('name').text
         age = member.find('age').text
         print(f"{name}: {age}")
 
-    root[0][0].text  # 'Fred'
-    root[0][1].text  # '30'
+    # Update Fred's age
+    root[0][0].text                      # 'Fred'
+    root[0][1].text                      # '30'
+    root[0][1].text = '31'               # update age, note it is a string!
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
 
-    root[0][1].text = '31'
-    ET.dump(root)
-
+    # Save XML, add UTF-8 header because default encoding is US-ASCII
     tree.write('flintstones.xml', encoding="UTF-8", xml_declaration=True)
-    tree.write('flintstones-ascii.xml') # missing '<?xml version="1.0" encoding="UTF-8"?>'
+    tree.write('flintstones-ascii.xml')
+
+    # Add sub-elements 'sex' and update values
+    for member in root.iter('member'):
+        subelement = ET.SubElement(member, 'sex')
+
+    sexes = ('M', 'F', 'F', 'N') # Male(Fred), Female(Wilma,Pebbles), Neuter(Dino)
+    for i in range(len(sexes)):
+        root[i][2].text = sexes[i]
+
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
+
+    # Remove sub-elements 'sex'
+    for member in root.iter('member'):
+        for sex in member.findall('sex'):
+            member.remove(sex)
+
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
+
 
 References:
 
 * `xml.etree.ElementTree — The ElementTree XML <https://docs.python.org/3/library/xml.etree.elementtree.html>`_
+* `XML Processing Modules - Security issues <https://docs.python.org/3/library/xml.html>`_
+* `Structured Markup Processing Tools <https://docs.python.org/3/library/markup.html>`_
 
 
 Comparisons, Equality, and Truth
