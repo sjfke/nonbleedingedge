@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/python.rst
+ :github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/python.rst
 
 *****************
 Python Cheatsheet
@@ -6,134 +6,374 @@ Python Cheatsheet
 
 .. important:: Being rewritten for Python-3 only, with an emphasis on using Python as a shell-script language.
 
-Useful Links
-============
+==========
+Background
+==========
 
-* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
-* `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
-* `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
-* `Execute Python-3 Online (Python v3.6.2) <https://www.tutorialspoint.com/execute_python3_online.php>`_
-* `Python IDE Online (Python v2.7.13) <https://www.tutorialspoint.com/online_python_ide.php>`_
+`Python <https://en.wikipedia.org/wiki/Python_(programming_language)>`_ has had a long history... this
+a brief summary derived from the `Python Wiki page <https://en.wikipedia.org/wiki/Python_(programming_language)>`_.
+
+* Python 0.9.0 was released in 1991.
+* Python 2.0 was released in 2000, with last release being Python 2.7.18 released in 2020.
+* Python 3.0 was released in 2008, this major revision is not completely backward-compatible.
+* Currently only Python 3.7 and later are supported.
+
+In 2021, Python 3.9.2 and 3.8.8 were expedited as all versions of Python (including 2.7) had security issues leading
+to possible remote code execution and web cache poisoning.
+
+In 2022, Python 3.7.13, 3.8.13, 3.9.12 and 3.10.4 were expedited, because of many security issues.
+Python 3.9.13 was released in May 2022, but it was announced that the 3.9 series, like the 3.8 and 3.7 series would
+only receive security fixes in the future
+
+On September 7, 2022, four new releases were made due to a potential denial-of-service attack: 3.10.7, 3.9.14, 3.8.14,
+and 3.7.14.
+
+As of November 2022, Python 3.11.0 is the current stable release.
+Notable changes from 3.10 include increased program execution speed and improved error reporting
+
+=====================
+Example Python Script
+=====================
+
+An overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
+
+.. code-block:: python
+
+    import argparse
+    import sys
+
+    # https://docs.python.org/3/howto/argparse.html
+
+    _dict = {'Fred': 30, 'Wilma': 25, 'Pebbles': 1, 'Dino': 5}
+
+
+    def get_names():
+        """
+        Get Flintstones family firstnames
+        """
+        return _dict.keys()
+
+
+    def get_ages():
+        """
+        Get Flintstones family ages
+        """
+
+        return _dict.values()
+
+
+    def get_person(name=None):
+        """
+        Get age of Flintstones family member
+        """
+
+        if name is not None:
+
+            try:
+                _ans = {name: _dict[name]}
+                return _ans
+            except KeyError:
+                return f"KeyError: {name}"
+                # return "KeyError: {0}".format(name)  # prior to Python 3.6
+        else:
+            return None
+
+
+    if __name__ == '__main__':
+        arguments = None
+        parser = argparse.ArgumentParser(description='Simple Command Line Application')
+        parser.add_argument('-n', '--names', action='store_true', default=False, help='display names')
+        parser.add_argument('-a', '--ages', action='store_true', default=False, help='display ages')
+        parser.add_argument('-p', '--person', type=str, default=None, help='display person')
+        parser.add_argument('-v', '--verbose', action='count', default=0)
+
+        args = parser.parse_args()
+
+        if args.verbose >= 1:
+            print("args: {0}".format(args.__str__()))
+
+        if args.names:
+            print("{0}".format(get_names()))
+        elif args.ages:
+            print("{0}".format(get_ages()))
+        elif args.person:
+            print("{0}".format(get_person(name=args.person)))
+
+        sys.exit(0)
+
+While certain statements must occur in the correct sequence, many do not, for example the `import` can appear at
+various places. The above format is a good basis for starting:
+
+    * Import the required modules, ``import``
+    * Define the functions, ``def``
+    * Define the main block, ``if __name__ == '__main__':``
+    * Main block, instantiate the ArgumentParser
+    * Main block, process the command line input, calling the required functions
+
+Notice the script has to be executed as ``python <script-name>``, see :ref:`using-shebang`.
+
+**Function definitions** can have *default* arguments values, optional in the function call.
+
+**Function calls** support *named* and *positional* arguments.
+
+The ``Docstrings``, the text between the *triple double-quotes* after the function definition, are important but
+no single agreed format is in use and style varies considerably, see :ref:`python-docstrings`, a single line description is illustrated above, and
+`PyCharm Community Edition <https://www.jetbrains.com/pycharm/download>`_ Docstrings are used on the GitHub version.
+
+Example usage ::
+
+    $ python .\flintstones.py --help
+    usage: flintstones.py [-h] [-n] [-a] [-p PERSON] [-v]
+
+    Simple Command Line Application
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -n, --names           display names
+      -a, --ages            display ages
+      -p PERSON, --person PERSON
+                            person to display
+      -v, --verbose
+
+    $ python .\flintstones.py -n
+    dict_keys(['Fred', 'Wilma', 'Pebbles', 'Dino'])
+
+Other simple `argparse` examples are available on `GitHub (sjfke): Python Projects <https://github.com/sjfke/python-projects>`_ :
+
+* `Kitten: Simplistic version of the UNIX cat command <https://github.com/sjfke/python-projects/blob/main/kitten.py>`_
+* `Jinja-CLI: Application for using Jinja templates <https://github.com/sjfke/python-projects/blob/main/jinja-cli.py>`_
+* `Simple-CLI: Argparse example writing to a file <https://github.com/sjfke/python-projects/blob/main/simple-cli.py>`_
+
+None of these examples include :ref:`python-logging` and probably should.
+
+.. _python-docstrings:
+
+Python Docstrings
+-----------------
+
+The top 3 Python docstring formats are:
+
+* `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
+* `Sphinx: Example on how to document your Python docstrings <https://thomas-cokelaer.info/tutorials/sphinx/docstring_python.html>`_
+* `Google: Python Style Guide - Docstrings <https://google.github.io/styleguide/pyguide.html#s3.8.1-comments-in-doc-strings>`_
+* `Numpydoc Example <https://numpydoc.readthedocs.io/en/latest/example.html>`_
+
+Other references:
+
+* `Creating documentation comments for Python functions <https://www.jetbrains.com/help/pycharm/creating-documentation-comments.html>`_
+* `VSCode autoDocstring - Python Docstring Generator <https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring>`_
+* `Python Function Docstrings <https://www.pythontutorial.net/python-basics/python-function-docstrings/>`_
+* `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_
+
+.. _python-logging:
+
+Python Logging
+--------------
+
+.. code-block:: python
+
+    import logging
+    logging.basicConfig(level=logging.INFO)
+
+    logging.info('This message will be logged')       # INFO:root:This message will be logged
+    logging.debug('This message will not be logged')
+
+.. code-block:: python
+
+    import logging
+    logging.basicConfig(filename='myfirstlog.log', level=logging.DEBUG,
+        format='%(asctime)s | %(name)s | %(levelname)s | %(message)s')
+
+    logging.warning('Testing log formatting!')
+
+::
+
+    $ cat .\myfirstlog.log
+    2023-02-09 20:23:28,339 | root | WARNING | Testing log formatting!
+
+* `Python: Logging HOWTO <https://docs.python.org/3/howto/logging.html>`_
+* `6 Python Logging Best Practices You Should Be Aware Of <https://www.loggly.com/use-cases/6-python-logging-best-practices-you-should-be-aware-of/>`_
+* `The Hitchhikers Guide to Python: Logging <https://docs.python-guide.org/writing/logging/>`_
+
+.. _using-shebang:
+
+Using Shebang
+-------------
+
+On ``UNIX`` and ``Linux`` systems it is common to have a ``shebang`` as the first line of the the script, so the
+Shell knows which interpreter to use. ::
+
+    #!/bin/bash           # execute using bash
+    #!/usr/bin/python     # interpreter /usr/bin/python (default Python)
+    #!/usr/bin/python3    # interpreter /usr/bin/python3
+
+    #!/usr/bin/env python # search and execute Python interpreter found
+
+Windows does not support ``shebang``, so the it is omitted from the examples, see also:
+
+* `Why is it better to use "#!/usr/bin/env NAME" instead of "#!/path/to/NAME" as my shebang? <https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my>`_
+
+=====================
+Language Key Features
+=====================
 
 Lists
-=====
+-----
 
+* `Data Structures: Lists <https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>`_
+* `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
 * mutable
 * ordered collections of arbitrary objects, accessed by offset
 * variable length, heterogeneous, arbitrarily nestable
 
-::
+.. code-block:: python
 
     L1 = []                         # Empty list
     L2 = [0, 1, 2, 3]               # Four items: indexes 0..3
     L3 = ['abc', ['def', 'ghi']]    # Nested lists
-    L2[0]                           # 0; L2[-3] => 1
+    L2[0]                           # 0
+    L2[-3]                          # 1
     L3[0][1]                        # 'b'
     L3[1][1]                        # 'ghi'
     L2[0:1]                         # [0]
-    L2[0:3]                         # [0, 2, 3]; L2[2:] => [2, 3]
+    L2[0:3]                         # [0, 2, 3]
+    L2[2:]                          # [2, 3]
     len(L2)                         # 4
+    dir(L3)                         # available methods
+    help(L3)                        # description of available methods
 
     L2 + L3                         # Concatenation -> [0, 1, 2, 3, 'abc', ['def', 'ghi']]
     L2 * 3                          # Repetition -> [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
     for x in L2: print(x)           # Iteration
     3 in L2                         # Membership -> True (False)
 
-    L2.append(4)                    # [0, 1, 2, 3, 4]
-    L2.extend([5,6,7])              # [0, 1, 2, 3, 4, 5, 6, 7]
+    L2.append(7)                    # [0, 1, 2, 3, 7]
+    L2.extend([4,5,6])              # [0, 1, 2, 3, 7, 4, 5, 6]
     L2.sort()                       # [0, 1, 2, 3, 4, 5, 6, 7]
-    L2.index(1)                     # 1
+    L2.index(4)                     # 4, not 7 because of L2.sort()
     L2.reverse()                    # [7, 6, 5, 4, 3, 2, 1, 0]
-    del L2[6]                       # [0, 1, 2, 3, 4, 5, 7]
-    del L2[4:6]                     # [0, 1, 2, 3, 7]
-    L2.pop()                        # 7, leaving [0, 1, 2, 3]
+    del L2[6]                       # [7, 6, 5, 4, 3, 2, 0]
+    del L2[4:6]                     # [7, 6, 5, 4, 0]
+    L2.pop()                        # 0, leaving [7, 6, 5, 4]
 
-    L2[1] = 2                       # [0, 2, 2, 3]
-    L2[1:2] = [1,4]                 # [0, 1, 4, 2, 3]
-    L5 = range(4)                   # [0, 1, 2, 3]
+    L2[2] = 2                       # [7, 2, 2, 4]
+    L2[1:2] = [1,3]                 # [7, 1, 3, 2, 4]
 
-    for x in xrange(0,4): print x   # return object (not list) slightly faster
+    L5 = range(4)                   # range(0, 4)
+
+    for x in range(0,4): print(x)   # 0, 1, 2, 3, return object (not list) slightly faster
     L4 = [x**2 for x in range(5)]   # [0, 1, 4, 9, 16]
 
-    textstr = ''.join(map(str, L2)) # convert List into a string concatenated with ''
-    isinstance(L1, list)            # list object?
+    textstr = ''.join(map(str, L2)) # '71324', convert List into a string concatenated with ''
+    isinstance(L1, list)            # True, it is a list object
+    isinstance(L1, dict)            # False, it is a dict object
 
 Dictionaries
-============
+------------
 
+* `Data Structures: Dictionaries <https://docs.python.org/3/tutorial/datastructures.html#dictionaries>`_
+* `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
 * mutable
 * unordered collections of arbitrary objects, accessed by key
 * variable length, heterogeneous, arbitrarily nestable
 
+.. code-block:: python
 
-::
+    D1 = {}                               # {} Empty dictionary
+    D2 = {'email': 'spam', 'total': 3}    # {'email': 'spam', 'total': 3}
+    D3 = {'food': {'ham': 2, 'eggs': 3}}  # {'food': {'ham': 2, 'eggs': 3}}
+    D2['total']                           # 3
+    D2.get('total')                       # 3
+    D3['food']['ham']                     # 2
+    D3['food']                            # {'ham': 2, 'eggs': 3}
+    D3['food']['ham'] = 1                 # {'food': {'ham': 1, 'eggs': 3}}
 
-    D1 = {}                               # Empty dictionary
-    D2 = {'spam': 2, 'eggs': 3}           # {'eggs': 3, 'spam': 2}
-    D3 = {'food': {'ham': 2, 'eggs': 3}}  # {'food': {'eggs': 3, 'ham': 2}}
-    D2['eggs']                            # 3; D2.get('eggs') => 3
-    D3['food']['ham']                     # 2; D3['food'] => {'eggs': 3, 'ham': 2}
-    D2.has_key('eggs'), 'eggs' in D2      # True, 'eggs' in D3 => False
+    'total' in D2                         # True
+    'food' in D3                          # True
+    'eggs' in D2                          # False
+    'eggs' in D3['food']                  # True
 
-    D2.keys()                             # ['eggs', 'spam']
-    D2.values()                           # [3, 2]
-    D3.keys()                             # ['food']; D3['food'].keys() => ['eggs', 'ham']
-    D3.values()                           # [{'eggs': 3, 'ham': 2}]; D3['food'].values() => [3, 2]
-    D2.items()                            # [('eggs', 3), ('spam', 2)]
+    D2.keys()                             # dict_keys(['email', 'total'])
+    D2.values()                           # dict_values(['spam', 3])
+    D2.items()                            # dict_items([('email', 'spam'), ('total', 3)])
+    D3.keys()                             # dict_keys(['food'])
+    D3['food'].keys()                     # dict_keys(['ham', 'eggs'])
+    D3.values()                           # dict_values([{'ham': 1, 'eggs': 3}])
+    D3.items()                            # dict_items([('food', {'ham': 1, 'eggs': 3})])
 
-    D4 = D2.copy()
-    D2.update(D3)                         # {'food': {'eggs': 3, 'ham': 2}, 'eggs': 3, 'spam': 2}
+    len(D2)                               # 2
+    len(D3)                               # 1
 
-    len(D2)                               # 3; len(D1) => 0; len(D3) => 1
+    for key, value in D2.items():         # email spam \n total 3
+        print(key, value)
 
-    keys = ['spam', 'eggs']               # or tuple: keys = ('spam', 'eggs')
-    vals = [2, 3]                         # or tuple: vals = (2, 3)
-    D4 = dict(zip(keys, vals))            # {'eggs': 3, 'spam': 2}
+    for key, value in D3.items():         # food {'ham': 1, 'eggs': 3}
+        print(key, value)
+
+    D4 = D2.copy()                        # {'email': 'spam', 'total': 3}
+    D2.update(D3)                         # {'email': 'spam', 'total': 3, 'food': {'ham': 1, 'eggs': 3}}
+    D4.items()                            # dict_items([('email', 'spam'), ('total', 3)])
+
+    keys = ['email', 'total']             # or tuple: keys = ('email', 'total')
+    vals = ['spam', 3]                    # or tuple: vals = ('spam', 3)
+    D5 = dict(zip(keys, vals))            # {'email': 'spam', 'total': 3}
+
+    D2.pop('total')                       # 3, leaving {'email': 'spam'}
 
     isinstance(D3, dict)                  # True
     isinstance(D3['food'], dict)          # True
     isinstance(D3['food']['eggs'], dict)  # False
 
 
-Tuples
-======
+Tuples and Sequences
+--------------------
 
+* `Data Structures: Tuples and Sequences <https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences>`_
+* `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
+* immutable
 * ordered collections of arbitrary objects, accessed by offset
 * variable length, heterogeneous, arbitrarily nestable
 * can be used as dictionary keys
 
-::
+.. code-block:: python
 
-    t0 = ()                         # Empty tuple
-    t1 = (0,)                       # one-item tuple (not an expression)
-    t2 = (0, 'Ni', 1.2, 3)          # four-item tuple
-    t2 = 0, 'Ni', 1.2, 3            # four-item tuple (alternative syntax)
+    t0 = ()                         # () - Empty tuple
+    t1 = (42,)                       # (42,) - one-item tuple (not an expression)
+    i1 = (42)                        # 42 - integer
+    t2 = (0, 'Ni', 1.2, 3)          # (0, 'Ni', 1.2, 3) - four-item tuple
+    t2a = 0, 'Ni', 1.2, 3           # (0, 'Ni', 1.2, 3) - four-item tuple (alternative syntax)
     t3 = ('abc', ('def', 'ghi'))    # ('abc', ('def', 'ghi'))
 
-    t1 = (42,)                      # tuple
-    t1 = (42)                       # integer
-
-    t1[0]                           # 0
-    t3[0]                           # 'abc'; t3[1] => ('def', 'ghi')
+    t1[0]                           # 42
+    t3[0]                           # 'abc'
+    t3[1]                           # ('def', 'ghi')
     t3[0][1]                        # 'b'
     t3[1][1]                        # 'ghi'
-    t3[0:1]                         # ('abc',); t3[0:] => ('abc', ('def', 'ghi'))
+    t3[0:1]                         # ('abc',)
+    t3[0:]                          # ('abc', ('def', 'ghi'))
 
-    len(t2)                         # 4; len(t0) => 0, len(t1) => 1, len(t3) => 2
+    len(t2)                         # 4
+    len(t3)                         # 2
 
-    tx = t1 + t2                    # (0, 0, 'Ni', 1.2, 3)
+    tx = t1 + t2                    # (42, 0, 'Ni', 1.2, 3)
     tx = t2 * 3                     # (0, 'Ni', 1.2, 3, 0, 'Ni', 1.2, 3, 0, 'Ni', 1.2, 3)
 
-    for x in t2 : print x           # Iteration
-    3 in t2                         # True, 'Ni' in t2 => True, 4 in t2 => False
+    3 in t2                         # True
+    'Ni' in t2                      # True
+    4 in t2                         # False
 
+    for x in t2:                    # iteration
+        print x                     # 0 \n Ni \n 1.2 \n 3
 
-Heapq
-=====
+Heapq (binary tree)
+-------------------
+
+Heaps are binary trees for which every parent node has a value less than or equal to any of its children.
+
+* `heapq — Heap queue algorithm <https://docs.python.org/3/library/heapq.html>`_
 * `Heap Theory (binary tree sort) <https://docs.python.org/3.0/library/heapq.html#theory>`_
-* `Heap queue algorithm (builtin heap implementation) <https://docs.python.org/3.0/library/heapq.html>`_
 
-::
+.. code-block:: python
 
     import heapq
 
@@ -143,105 +383,270 @@ Heapq
         heapq.heappush(heap, item)
 
     heap = [11, 3, 15, 7, 9, 23, 4, 6, 8, 10]
-    heapq.heapify(heap)
+    heapq.heapify(heap)  # [3, 6, 4, 7, 9, 23, 15, 11, 8, 10]
 
-    print('nlargest(3): {0}'.format(heapq.nlargest(3, heap)))
-    print('nsmallest(3): {0}'.format(heapq.nsmallest(3, heap)))
+    print('nlargest(3): {0}'.format(heapq.nlargest(3, heap)))   # [23, 15, 11]
+    print('nsmallest(3): {0}'.format(heapq.nsmallest(3, heap))) # [3, 4, 6]
 
-    smallest_item = heapq.heappop(heap)
+    smallest_item = heapq.heappop(heap) # 3
 
     # convert to sorted list
     ordered = []
     while heap:
         ordered.append(heapq.heappop(heap))
 
+    print(ordered) # [4, 6, 7, 8, 9, 10, 11, 15, 23]
+
     # heap of tuples
     data = [(1, 'J'), (4, 'N'), (3, 'H'), (2, 'O')]
     for item in data:
         heapq.heappush(heap, item)
 
+    print('nlargest(3): {0}'.format(heapq.nlargest(3, heap)))   # [(4, 'N'), (3, 'H'), (2, 'O')]
+    print('nsmallest(3): {0}'.format(heapq.nsmallest(3, heap))) # [(1, 'J'), (2, 'O'), (3, 'H')]
 
-Files
-=====
-
-* `Input and Output <https://docs.python.org/3/tutorial/inputoutput.html>`_
-* `Writing files using Python <https://stackabuse.com/writing-files-using-python/>`_
-* `Python 101: Redirecting stdout <https://www.blog.pythonlibrary.org/2016/06/16/python-101-redirecting-stdout/>`_
+    smallest_item = heapq.heappop(heap) # (1, 'J')
 
 
-Sequential access
-::
+Reading and Writing Files
+-------------------------
 
-    output = open('tmp/spam', 'w')  # create/overwrite output file
-    input = open('data', 'r')       # open input file
-    S = input.read()				# Read entire file into a single string
-    S = input.read(N)               # Read N bytes ( N >= 1)
-    S = input.readline()            # Read next line, len(S) == 0 when no more input
-    L = input.readlines()           # Read entire file into list of line strings
-    output.write(S)                 # Write string S into file (returns number of chars written)
-    output.writelines(L)            # Write all strings in list L
-    print("lineFour", file=output)  # Better than low-level write(), writelines() methods
-    output.flush()                  # Flush buffered write to file
-    output.close()                  # May need to flush() to write contents
+* `Python3: Input and Output <https://docs.python.org/3/tutorial/inputoutput.html>`_
+* `Python3: Reading and Writing Files <https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files>`_
+
+Text Files Sequential Access
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+    # mode: r (read), w (write), a (append), r+ (read/write), + (read/write)
+    outfile_handle = open('spam', 'w')                        # create/overwrite 'spam', <_io.TextIOWrapper>
+    outfile_handle = open('utf8spam', 'w', encoding="utf-8")   # create/overwrite 'utf8spam' in UTF8, <_io.TextIOWrapper>
+    infile_handle = open('data', 'r')                         # open input file
+
+    S = infile_handle.read()                # Read entire file into a single string
+    S = infile_handle.read(N)               # Read N bytes (N >= 1)
+    S = infile_handle.readline()            # Read next line, len(S) == 0 when no more input
+    L = infile_handle.readlines()           # Read entire file into list of line strings
+
+    outfile_handle.write(S)                 # Write string S into file (returns number of chars written)
+    outfile_handle.writelines(L)            # Write all strings in list L
+    print("lineFour", file=outfile_handle)  # Better than low-level write(), writelines() methods
+    outfile_handle.flush()                  # Flush buffered write to file
+    outfile_handle.close()                  # May need to flush() to write contents
 
     # Cleaner but will raise an exception and close cleanly
     with open(filename) as f:
         data = f.read()
 
-    # Cleaner and will trap any exception raised
+    # Alternative, traps and reports any exception raised
     try:
         with open(filename) as f:
         data = f.read()
     except Exception as error:
         print('{0}'.format(error))
 
+    # Example, forcing UTF8 encoding
+    outfile_handle = open('utf8spam', 'w', encoding="utf-8")
+    for i in range(1,11):
+        print("{0:2d}: line number {0}".format(i), file=outfile_handle)
 
-Random access
-::
+    outfile_handle.flush()
+    outfile_handle.close()
 
-    # "Anchovies? You've got the wrong man! I spell my name DANGER! (click)"
-    # %
-    # "Benson, you are so free of the ravages of intelligence."
-    #         ― Time Bandits
-    # %
 
-    with open(filename, 'r') as fd:
-        current_offset = fd.tell()  # save file cursor
-        fd.seek(offset)
-        cookie_text = fd.readline()
+Text Files Random Access
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-        # Cannot use for..loop and .tell() method, use repeat..until loop
-        while True:
-            line = fd.readline()
-            if not line:
-                break
-            elif re.match(r'^%$', line):
-                break
-            else:
-                cookie_text += line
+.. code-block:: python
 
-        fd.seek(current_offset)  # restore file cursor
+    # random access to text files
+    import linecache
+    linecache.getline('utf8spam',1)  # ' 1: line number 1\n'
+    linecache.getline('utf8spam',7)  # ' 7: line number 7\n'
+    linecache.getline('utf8spam',0)  # ''
+    linecache.getline('utf8spam',15) # ''
 
-       
+
+* `linecache — Random access to text lines <https://docs.python.org/3/library/linecache.html>`_
+
+File, and Directory Tests
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+    import os
+
+    os.path.exists('flintstones.json') # True
+    os.path.exists('flintstones.jsong') # False
+    os.path.exists('project') # True
+    os.path.exists('projects') # False
+
+    os.path.isfile('flintstones.json') # True
+    os.path.isfile('flintstones.jsong') # False
+    os.path.isdir('project') # True
+    os.path.isdir('projects') # False
+
+* `os.path — Common pathname manipulations <https://docs.python.org/3/library/os.path.html>`_
+* `pathlib — Object-oriented filesystem paths <https://docs.python.org/3/library/pathlib.html>`_
+
+JSON files
+^^^^^^^^^^
+
+.. code-block:: python
+
+    import json
+    f = open('flintstones.json', 'r')
+    x = json.load(f)  # {'flintstones': {'Fred': 30, 'Wilma': 25, 'Pebbles': 1, 'Dino': 5}}
+
+    x['flintstones']['Fred'] = 31
+    f = open('flintstones.json', 'w')
+    json.dump(x, f)
+    f.flush()
+    f.close()
+
+
+XML files
+^^^^^^^^^
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <family surname = "Flintstones">
+            <member>
+                    <name>Fred</name>
+                    <age>30</age>
+            </member>
+            <member>
+                    <name>Wilma</name>
+                    <age>25</age>
+            </member>
+            <member>
+                    <name>Pebbles</name>
+                    <age>1</age>
+            </member>
+            <member>
+                    <name>Dino</name>
+                    <age>5</age>
+            </member>
+    </family>
+
+
+.. Warning:: xml.etree.ElementTree is insecure, see `Security issues <https://docs.python.org/3/library/xml.html>`_
+
+.. code-block:: python
+
+    import xml.etree.ElementTree as ET
+    tree = ET.parse('flintstones.xml')
+    root = tree.getroot()
+    root.tag    # 'family'
+    root.attrib # {'surname': 'Flintstones'}
+
+    for member in root.iter('member'):  # Fred: 30 \n Wilma: 25 \n Pebbles: 1 \n Dino: 5
+        name = member.find('name').text
+        age = member.find('age').text
+        print(f"{name}: {age}")
+
+    # Update Fred's age
+    root[0][0].text                      # 'Fred'
+    root[0][1].text                      # '30'
+    root[0][1].text = '31'               # update age, note it is a string!
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
+
+    # Save XML, add UTF-8 header because default encoding is US-ASCII
+    tree.write('flintstones.xml', encoding="UTF-8", xml_declaration=True)
+    tree.write('flintstones-ascii.xml')
+
+    # Add sub-elements 'sex' and update values
+    for member in root.iter('member'):
+        subelement = ET.SubElement(member, 'sex')
+
+    sexes = ('M', 'F', 'F', 'N') # Male(Fred), Female(Wilma,Pebbles), Neuter(Dino)
+    for i in range(len(sexes)):
+        root[i][2].text = sexes[i]
+
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
+
+    # Remove sub-elements 'sex'
+    for member in root.iter('member'):
+        for sex in member.findall('sex'):
+            member.remove(sex)
+
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
+
+
+References:
+
+* `xml.etree.ElementTree — The ElementTree XML <https://docs.python.org/3/library/xml.etree.elementtree.html>`_
+* `XML Processing Modules - Security issues <https://docs.python.org/3/library/xml.html>`_
+* `Structured Markup Processing Tools <https://docs.python.org/3/library/markup.html>`_
+
+Operators
+^^^^^^^^^
+
+.. note:: Add table from Digital Ocean
+
+References:
+
+* `DigitalOcean: Python Operators - A Quick Reference <https://www.digitalocean.com/community/tutorials/python-operators>`_
+* `Python: operator — Standard operators as functions <https://docs.python.org/3/library/operator.html>`_
+
 Comparisons, Equality, and Truth
-================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-::
++----------+--------------------------+---------+
+| Operator | Name                     | Example |
++==========+==========================+=========+
+| ==       | Equal                    | x == y  |
++----------+--------------------------+---------+
+| !=       | Not equal                | x != y  |
++----------+--------------------------+---------+
+| >        | Greater than             | x > y   |
++----------+--------------------------+---------+
+| <        | Less than                | x < y   |
++----------+--------------------------+---------+
+| >=       | Greater than or equal to | x >= y  |
++----------+--------------------------+---------+
+| <=       | Less than or equal to    | x <= y  |
++----------+--------------------------+---------+
+| is       | Same object              | x is y  |
++----------+--------------------------+---------+
+| in       | Contained in Object      | x in y  |
++----------+--------------------------+---------+
 
-    L1 = [1, ('a', 3)]
-    L2 = [1, ('a', 3)]
-    L3 = L1
-    L1 == L2, L1 is L2                   # (True, False); Not the same object
-    L1 == L2, L1 is L2, L1 > L2, L2 > L1 # (True, False, False, False)
-    L1 == L3, L1 is L3                   # (True, True); Are the same object
+.. code-block:: python
 
-    S1 = 'spam'
-    S2 = 'spam'
-    S1 == S2, S1 is S2     # (True, True); WTF evil-bad caching! so same object
+    L1 = [1, ('a', 3)]; L2 = [1, ('a', 3)]; L3 = L1
+    #
+    L1 == L2            # True
+    L1 is L2            # False, Not the same object
+    L1 == L3            # True
+    L1 is L3            # True, Are the same object
+    #
+    1 in L1             # True
+    3 in L1             # False
+    3 in L1[1]          # True
 
-    S1 = 'a longer string'
-    S2 = 'a longer string'
-    S1 == S2, S1 is S2     # (True, False)
+    S1 = 'spam'; S2 = 'spam'
+    #
+    S1 == S2                # True
+    S1 is S2                # True! WTF evil-bad caching! so same object
+
+    LS1 = 'a longer string'; LS2 = 'a longer string'; LS3 = 'a bit longer string'
+    #
+    LS1 == LS2              # True
+    LS1 is LS2              # False
+    #
+    LS1 == LS3              # False
+    LS1 is LS3              # False
+    LS1 > LS3               # True, 'a (L)onger' > 'a (B)it longer'
+    len(LS1) > len(LS2)     # False
+
+References:
+* `PEP 207 – Rich Comparisons <https://peps.python.org/pep-0207/>`_
 
 Object Checking
 ===============
@@ -584,7 +989,17 @@ Decorator chaining
     print(num21()) # 200 = (10 * 10) * 2
 
 
+============
+Useful Links
+============
 
+* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
+* `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
+* `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
+* `Execute Python-3 Online (Python v3.6.2) <https://www.tutorialspoint.com/execute_python3_online.php>`_
+* `Python IDE Online (Python v2.7.13) <https://www.tutorialspoint.com/online_python_ide.php>`_
+
+======
 Pipenv
 ======
 

@@ -24,9 +24,26 @@ Restructured Text Links
 * `PyCharm reStructuredText support <https://www.jetbrains.com/help/pycharm/restructured-text.html>`_
 * `PEP 287 – reStructuredText Docstring Format <https://peps.python.org/pep-0287/>`_
 
+Document format
+===============
+::
+
+    - # with overline, for parts
+    - * with overline, for chapters
+    - =, for sections
+    - -, for subsections
+    - ^, for subsubsections
+    - “, for paragraphs
+
 
 To Be Checked Links
 ===================
+
+  - Sphinx - Restructured Text
+    - https://www.sphinx-doc.org/en/master/usage/configuration.html
+    - https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html
+    - https://www.sphinx-doc.org/en/master/usage/markdown.html
+    - https://myst-parser.readthedocs.io/en/latest/index.html
 
 * `Openalea Sphinx <http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`_
 * `Example pypi project <https://pythonhosted.org/an_example_pypi_project/sphinx.html>`_
