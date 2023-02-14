@@ -154,7 +154,8 @@ Python Docstrings
 The top 3 Python docstring formats are:
 
 * `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
-* `Google Python Style Guide: Docstrings <https://google.github.io/styleguide/pyguide.html#s3.8.1-comments-in-doc-strings>`_
+* `Sphinx: Example on how to document your Python docstrings <https://thomas-cokelaer.info/tutorials/sphinx/docstring_python.html>`_
+* `Google: Python Style Guide - Docstrings <https://google.github.io/styleguide/pyguide.html#s3.8.1-comments-in-doc-strings>`_
 * `Numpydoc Example <https://numpydoc.readthedocs.io/en/latest/example.html>`_
 
 Other references:
@@ -190,11 +191,9 @@ Python Logging
     $ cat .\myfirstlog.log
     2023-02-09 20:23:28,339 | root | WARNING | Testing log formatting!
 
-
 * `Python: Logging HOWTO <https://docs.python.org/3/howto/logging.html>`_
 * `6 Python Logging Best Practices You Should Be Aware Of <https://www.loggly.com/use-cases/6-python-logging-best-practices-you-should-be-aware-of/>`_
 * `The Hitchhikers Guide to Python: Logging <https://docs.python-guide.org/writing/logging/>`_
-
 
 .. _using-shebang:
 
@@ -210,7 +209,7 @@ Shell knows which interpreter to use. ::
 
     #!/usr/bin/env python # search and execute Python interpreter found
 
-Windows does not support ``shebang``, so the it is omitted from the examples.
+Windows does not support ``shebang``, so the it is omitted from the examples, see also:
 
 * `Why is it better to use "#!/usr/bin/env NAME" instead of "#!/path/to/NAME" as my shebang? <https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my>`_
 
@@ -585,26 +584,69 @@ References:
 * `XML Processing Modules - Security issues <https://docs.python.org/3/library/xml.html>`_
 * `Structured Markup Processing Tools <https://docs.python.org/3/library/markup.html>`_
 
+Operators
+^^^^^^^^^
+
+.. note:: Add table from Digital Ocean
+
+References:
+
+* `DigitalOcean: Python Operators - A Quick Reference <https://www.digitalocean.com/community/tutorials/python-operators>`_
+* `Python: operator — Standard operators as functions <https://docs.python.org/3/library/operator.html>`_
 
 Comparisons, Equality, and Truth
-================================
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-::
++----------+--------------------------+---------+
+| Operator | Name                     | Example |
++==========+==========================+=========+
+| ==       | Equal                    | x == y  |
++----------+--------------------------+---------+
+| !=       | Not equal                | x != y  |
++----------+--------------------------+---------+
+| >        | Greater than             | x > y   |
++----------+--------------------------+---------+
+| <        | Less than                | x < y   |
++----------+--------------------------+---------+
+| >=       | Greater than or equal to | x >= y  |
++----------+--------------------------+---------+
+| <=       | Less than or equal to    | x <= y  |
++----------+--------------------------+---------+
+| is       | Same object              | x is y  |
++----------+--------------------------+---------+
+| in       | Contained in Object      | x in y  |
++----------+--------------------------+---------+
 
-    L1 = [1, ('a', 3)]
-    L2 = [1, ('a', 3)]
-    L3 = L1
-    L1 == L2, L1 is L2                   # (True, False); Not the same object
-    L1 == L2, L1 is L2, L1 > L2, L2 > L1 # (True, False, False, False)
-    L1 == L3, L1 is L3                   # (True, True); Are the same object
+.. code-block:: python
 
-    S1 = 'spam'
-    S2 = 'spam'
-    S1 == S2, S1 is S2     # (True, True); WTF evil-bad caching! so same object
+    L1 = [1, ('a', 3)]; L2 = [1, ('a', 3)]; L3 = L1
+    #
+    L1 == L2            # True
+    L1 is L2            # False, Not the same object
+    L1 == L3            # True
+    L1 is L3            # True, Are the same object
+    #
+    1 in L1             # True
+    3 in L1             # False
+    3 in L1[1]          # True
 
-    S1 = 'a longer string'
-    S2 = 'a longer string'
-    S1 == S2, S1 is S2     # (True, False)
+    S1 = 'spam'; S2 = 'spam'
+    #
+    S1 == S2                # True
+    S1 is S2                # True! WTF evil-bad caching! so same object
+
+    LS1 = 'a longer string'; LS2 = 'a longer string'; LS3 = 'a bit longer string'
+    #
+    LS1 == LS2              # True
+    LS1 is LS2              # False
+    #
+    LS1 == LS3              # False
+    LS1 is LS3              # False
+    LS1 > LS3               # True, 'a (L)onger' > 'a (B)it longer'
+    len(LS1) > len(LS2)     # False
+
+References:
+* `PEP 207 – Rich Comparisons <https://peps.python.org/pep-0207/>`_
 
 Object Checking
 ===============
