@@ -195,6 +195,18 @@ Python Logging
 * `6 Python Logging Best Practices You Should Be Aware Of <https://www.loggly.com/use-cases/6-python-logging-best-practices-you-should-be-aware-of/>`_
 * `The Hitchhikers Guide to Python: Logging <https://docs.python-guide.org/writing/logging/>`_
 
+.. _module-import:
+
+Module Import
+-------------
+
+.. Note:: Insert examples of different ``import`` statements.
+
+.. code-block:: python
+
+    import argparse
+    import sys
+
 .. _using-shebang:
 
 Using Shebang
@@ -279,50 +291,54 @@ Dictionaries
 
 .. code-block:: python
 
-    D1 = {}                               # {} Empty dictionary
-    D2 = {'email': 'spam', 'total': 3}    # {'email': 'spam', 'total': 3}
-    D3 = {'food': {'ham': 2, 'eggs': 3}}  # {'food': {'ham': 2, 'eggs': 3}}
-    D2['total']                           # 3
-    D2.get('total')                       # 3
-    D3['food']['ham']                     # 2
-    D3['food']                            # {'ham': 2, 'eggs': 3}
-    D3['food']['ham'] = 1                 # {'food': {'ham': 1, 'eggs': 3}}
+    D1 = {}                                      # {} Empty dictionary
+    D2 = {'email': 'spam', 'total': 3}           # {'email': 'spam', 'total': 3}
+    D3 = {'food': {'ham': 2, 'eggs': 3}}         # {'food': {'ham': 2, 'eggs': 3}}
+    D2['total']                                  # 3
+    D2.get('total')                              # 3
+    D3['food']['ham']                            # 2
+    D3['food']                                   # {'ham': 2, 'eggs': 3}
+    D3['food']['ham'] = 1                        # {'food': {'ham': 1, 'eggs': 3}}
 
-    'total' in D2                         # True
-    'food' in D3                          # True
-    'eggs' in D2                          # False
-    'eggs' in D3['food']                  # True
+    'total' in D2                                # True
+    'food' in D3                                 # True
+    'eggs' in D2                                 # False
+    'eggs' in D3['food']                         # True
 
-    D2.keys()                             # dict_keys(['email', 'total'])
-    D2.values()                           # dict_values(['spam', 3])
-    D2.items()                            # dict_items([('email', 'spam'), ('total', 3)])
-    D3.keys()                             # dict_keys(['food'])
-    D3['food'].keys()                     # dict_keys(['ham', 'eggs'])
-    D3.values()                           # dict_values([{'ham': 1, 'eggs': 3}])
-    D3.items()                            # dict_items([('food', {'ham': 1, 'eggs': 3})])
+    D2.keys()                                    # dict_keys(['email', 'total'])
+    D2.values()                                  # dict_values(['spam', 3])
+    D2.items()                                   # dict_items([('email', 'spam'), ('total', 3)])
+    D3.keys()                                    # dict_keys(['food'])
+    D3['food'].keys()                            # dict_keys(['ham', 'eggs'])
+    D3.values()                                  # dict_values([{'ham': 1, 'eggs': 3}])
+    D3.items()                                   # dict_items([('food', {'ham': 1, 'eggs': 3})])
 
-    len(D2)                               # 2
-    len(D3)                               # 1
+    len(D2)                                      # 2
+    len(D3)                                      # 1
 
-    for key, value in D2.items():         # email spam \n total 3
+    for key, value in D2.items():                # email spam \n total 3
         print(key, value)
 
-    for key, value in D3.items():         # food {'ham': 1, 'eggs': 3}
+    for key, value in D3.items():                # food {'ham': 1, 'eggs': 3}
         print(key, value)
 
-    D4 = D2.copy()                        # {'email': 'spam', 'total': 3}
-    D2.update(D3)                         # {'email': 'spam', 'total': 3, 'food': {'ham': 1, 'eggs': 3}}
-    D4.items()                            # dict_items([('email', 'spam'), ('total', 3)])
+    D4 = D2.copy()                               # {'email': 'spam', 'total': 3}
+    D2.update(D3)                                # {'email': 'spam', 'total': 3, 'food': {'ham': 1, 'eggs': 3}}
+    D4.items()                                   # dict_items([('email', 'spam'), ('total', 3)])
 
-    keys = ['email', 'total']             # or tuple: keys = ('email', 'total')
-    vals = ['spam', 3]                    # or tuple: vals = ('spam', 3)
-    D5 = dict(zip(keys, vals))            # {'email': 'spam', 'total': 3}
+    keys = ['email', 'total']                    # list or tuple: keys = ('email', 'total')
+    vals = ['spam', 3]                           # list or tuple: vals = ('spam', 3)
+    D5 = dict(zip(keys, vals))                   # {'email': 'spam', 'total': 3}
 
-    D2.pop('total')                       # 3, leaving {'email': 'spam'}
+    D2.pop('total')                              # 3, leaving {'email': 'spam'}
 
-    isinstance(D3, dict)                  # True
-    isinstance(D3['food'], dict)          # True
-    isinstance(D3['food']['eggs'], dict)  # False
+    print(D3.__class__.__name__)                 # dict
+    print(D3['food'].__class__.__name__)         # dict
+    print(D3['food']['eggs'].__class__.__name__) # int
+
+    isinstance(D3, dict)                         # True
+    isinstance(D3['food'], dict)                 # True
+    isinstance(D3['food']['eggs'], dict)         # False
 
 
 Tuples and Sequences
@@ -338,8 +354,8 @@ Tuples and Sequences
 .. code-block:: python
 
     t0 = ()                         # () - Empty tuple
-    t1 = (42,)                       # (42,) - one-item tuple (not an expression)
-    i1 = (42)                        # 42 - integer
+    t1 = (42,)                      # (42,) - one-item tuple (not an expression)
+    i1 = (42)                       # 42 - integer
     t2 = (0, 'Ni', 1.2, 3)          # (0, 'Ni', 1.2, 3) - four-item tuple
     t2a = 0, 'Ni', 1.2, 3           # (0, 'Ni', 1.2, 3) - four-item tuple (alternative syntax)
     t3 = ('abc', ('def', 'ghi'))    # ('abc', ('def', 'ghi'))
@@ -419,9 +435,9 @@ Text Files Sequential Access
 
 .. code-block:: python
 
-    # mode: r (read), w (write), a (append), r+ (read/write), + (read/write)
-    outfile_handle = open('spam', 'w')                        # create/overwrite 'spam', <_io.TextIOWrapper>
-    outfile_handle = open('utf8spam', 'w', encoding="utf-8")   # create/overwrite 'utf8spam' in UTF8, <_io.TextIOWrapper>
+    # mode: r (read), w (write: create/overwrite), a (append), r+ (read/write), + (read/write)
+    outfile_handle = open('spam', 'w')                        # 'spam', <_io.TextIOWrapper>
+    outfile_handle = open('utf8spam', 'w', encoding="utf-8")  # 'utf8spam' in UTF8, <_io.TextIOWrapper>
     infile_handle = open('data', 'r')                         # open input file
 
     S = infile_handle.read()                # Read entire file into a single string
@@ -477,15 +493,15 @@ File, and Directory Tests
 
     import os
 
-    os.path.exists('flintstones.json') # True
+    os.path.exists('flintstones.json')  # True
     os.path.exists('flintstones.jsong') # False
-    os.path.exists('project') # True
-    os.path.exists('projects') # False
+    os.path.exists('project')           # True
+    os.path.exists('projects')          # False
 
-    os.path.isfile('flintstones.json') # True
+    os.path.isfile('flintstones.json')  # True
     os.path.isfile('flintstones.jsong') # False
-    os.path.isdir('project') # True
-    os.path.isdir('projects') # False
+    os.path.isdir('project')            # True
+    os.path.isdir('projects')           # False
 
 * `os.path — Common pathname manipulations <https://docs.python.org/3/library/os.path.html>`_
 * `pathlib — Object-oriented filesystem paths <https://docs.python.org/3/library/pathlib.html>`_
@@ -498,6 +514,10 @@ JSON files
     import json
     f = open('flintstones.json', 'r')
     x = json.load(f)  # {'flintstones': {'Fred': 30, 'Wilma': 25, 'Pebbles': 1, 'Dino': 5}}
+
+    print(x.__class__)          # <class 'dict'>
+    print(x.__class__.__name__) # dict
+    isinstance(x, dict)         # True
 
     x['flintstones']['Fred'] = 31
     f = open('flintstones.json', 'w')
@@ -538,6 +558,10 @@ XML files
 
     import xml.etree.ElementTree as ET
     tree = ET.parse('flintstones.xml')
+
+    print(tree.__class__)          # <class 'xml.etree.ElementTree.ElementTree'>
+    print(tree.__class__.__name__) # ElementTree
+
     root = tree.getroot()
     root.tag    # 'family'
     root.attrib # {'surname': 'Flintstones'}
@@ -621,14 +645,14 @@ Comparisons, Equality, and Truth
 
     L1 = [1, ('a', 3)]; L2 = [1, ('a', 3)]; L3 = L1
     #
-    L1 == L2            # True
-    L1 is L2            # False, Not the same object
-    L1 == L3            # True
-    L1 is L3            # True, Are the same object
+    L1 == L2                # True
+    L1 is L2                # False, Not the same object
+    L1 == L3                # True
+    L1 is L3                # True, Are the same object
     #
-    1 in L1             # True
-    3 in L1             # False
-    3 in L1[1]          # True
+    1 in L1                 # True
+    3 in L1                 # False
+    3 in L1[1]              # True
 
     S1 = 'spam'; S2 = 'spam'
     #
@@ -649,34 +673,42 @@ References:
 * `PEP 207 – Rich Comparisons <https://peps.python.org/pep-0207/>`_
 
 Object Checking
-===============
+---------------
 
-List of classinfo types
-::
+List of classinfo types:
+
+.. code-block:: python
 
     print([t.__name__ for t in __builtins__.__dict__.values() if isinstance(t, type)])
 
-    ['BuiltinImporter', 'bool', 'memoryview', 'bytearray', 'bytes', 'classmethod', 'complex',
-    'dict', 'enumerate', 'filter', 'float', 'frozenset', 'property', 'int', 'list', 'map',
-    'object', 'range', 'reversed', 'set', 'slice', 'staticmethod', 'str', 'super', 'tuple',
-    'type', 'zip', 'BaseException', 'Exception', 'TypeError', 'StopAsyncIteration',
-    'StopIteration', 'GeneratorExit', 'SystemExit', 'KeyboardInterrupt', 'ImportError',
-    'ModuleNotFoundError', 'OSError', 'OSError', 'OSError', 'EOFError', 'RuntimeError',
-    'RecursionError', 'NotImplementedError', 'NameError', 'UnboundLocalError',
-    'AttributeError', 'SyntaxError', 'IndentationError', 'TabError', 'LookupError', 'IndexError',
-    'KeyError', 'ValueError', 'UnicodeError', 'UnicodeEncodeError', 'UnicodeDecodeError',
-    'UnicodeTranslateError', 'AssertionError', 'ArithmeticError', 'FloatingPointError',
-    'OverflowError', 'ZeroDivisionError', 'SystemError', 'ReferenceError', 'MemoryError',
-    'BufferError', 'Warning', 'UserWarning', 'DeprecationWarning', 'PendingDeprecationWarning',
-    'SyntaxWarning', 'RuntimeWarning', 'FutureWarning', 'ImportWarning', 'UnicodeWarning',
-    'BytesWarning', 'ResourceWarning', 'ConnectionError', 'BlockingIOError', 'BrokenPipeError',
-    'ChildProcessError', 'ConnectionAbortedError', 'ConnectionRefusedError',
-    'ConnectionResetError', FileExistsError', 'FileNotFoundError', 'IsADirectoryError',
-    'NotADirectoryError', 'InterruptedError', 'PermissionError', 'ProcessLookupError',
-    'TimeoutError']
 
-Object is
-::
+Python-3.11 classinfo types: ::
+
+    ['BuiltinImporter', 'bool', 'memoryview', 'bytearray', 'bytes', 'classmethod', 'complex', 'dict',
+    'enumerate', 'filter', 'float', 'frozenset', 'property', 'int', 'list', 'map', 'object', 'range',
+    'reversed', 'set', 'slice', 'staticmethod', 'str', 'super', 'tuple', 'type', 'zip', 'BaseException',
+    'BaseExceptionGroup', 'Exception', 'GeneratorExit', 'KeyboardInterrupt', 'SystemExit', 'ArithmeticError',
+    'AssertionError', 'AttributeError', 'BufferError', 'EOFError', 'ImportError', 'LookupError',
+    'MemoryError', 'NameError', 'OSError', 'ReferenceError', 'RuntimeError', 'StopAsyncIteration',
+    'StopIteration', 'SyntaxError', 'SystemError', 'TypeError', 'ValueError', 'Warning',
+    'FloatingPointError', 'OverflowError', 'ZeroDivisionError', 'BytesWarning', 'DeprecationWarning',
+    'EncodingWarning', 'FutureWarning', 'ImportWarning', 'PendingDeprecationWarning', 'ResourceWarning',
+    'RuntimeWarning', 'SyntaxWarning', 'UnicodeWarning', 'UserWarning', 'BlockingIOError',
+    'ChildProcessError', 'ConnectionError', 'FileExistsError', 'FileNotFoundError', 'InterruptedError',
+    'IsADirectoryError', 'NotADirectoryError', 'PermissionError', 'ProcessLookupError', 'TimeoutError',
+    'IndentationError', 'IndexError', 'KeyError', 'ModuleNotFoundError', 'NotImplementedError',
+    'RecursionError', 'UnboundLocalError', 'UnicodeError', 'BrokenPipeError', 'ConnectionAbortedError',
+    'ConnectionRefusedError', 'ConnectionResetError', 'TabError', 'UnicodeDecodeError',
+    'UnicodeEncodeError', 'UnicodeTranslateError', 'ExceptionGroup', 'OSError', 'OSError', 'OSError']
+
+Checking what an object is:
+ .. code-block:: python
+
+    L = [1, 2, 3]; D = {'food': {'ham': 2, 'eggs': 3}}; t = (1, 2, 3); s = "string of text"
+    print(L.__class__.__name__) # list
+    print(D.__class__.__name__) # dict
+    print(t.__class__.__name__) # tuple
+    print(s.__class__.__name__) # str
 
     isinstance (object, classinfo)
 
@@ -700,9 +732,9 @@ Object is
     isinstance(T, (list, tuple))          # True
 
 IF statements
-=============
+-------------
 
-::
+ .. code-block:: python
 
     if <test1> :
         <statements1>
@@ -711,14 +743,19 @@ IF statements
     else :
         <statements3>
 
-    { 'spam' : 1.25, 'ham' : 1.99, 'eggs' : 0.99, 'bacon' : 1.10}['ham'] # 1.99
-
     a if <test> else b # ternary operator
 
-While Loops
-===========
+    # dictionary lookup
+    if 'ham' in {'spam' : 1.25, 'ham' : 1.99, 'eggs' : 0.99, 'bacon' : 1.10}:
+        print({'spam' : 1.25, 'ham' : 1.99, 'eggs' : 0.99, 'bacon' : 1.10}['ham'])  # 1.99
 
-::
+    print({'spam' : 1.25, 'ham' : 1.99, 'eggs' : 0.99, 'bacon' : 1.10}['ham'])      # 1.99
+
+
+While Loops
+-----------
+
+ .. code-block:: python
 
     while <test1>:
         <statements>
@@ -729,9 +766,9 @@ While Loops
 
 
 For Loops
-=========
+---------
 
-::
+ .. code-block:: python
 
     for <target> in <object> :
         <statements>
@@ -761,16 +798,15 @@ For Loops
     for i in range(0, len(S), 2):
         print(S[i], end=' ') # a c e g i k
 
-Objects
-=======
+Object Class Example
+--------------------
 
-Simple **Person** object in file named *Person.py*
+Simple ``Person`` object in file named ``Person.py``
 
 .. code-block:: python
 
-    #!/usr/bin/env python3
-    #
     import os
+    import uuid
 
     class Person:
         __NEXT_UUID = 0
@@ -830,27 +866,22 @@ The **Person** object supports Python attribute style and also Java-like getters
 
 .. code-block:: python
 
-    >>> import Person
-    >>> f = Person.Person(name='fred',age=99)
-    >>> b = Person.Person(name='barney',age=9)
-    >>> b.__str__()
-    'barney, 9, M, 2'
-    >>> f.__repr__()
-    'name         : fred\nage          : 99\nsex          : M\nuuid         : 1'
-    >>> f.name='freddy'
-    >>> f.name
-    'freddy'
-    >>> f.get_name()
-    'freddy'
-    >>> f.uuid
-    1
-    >>> f.uuid = 99
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    AttributeError: can't set attribute
+    import Person
+    f = Person.Person(name='fred',age=99)
+    b = Person.Person(name='barney',age=9)
+    b.__str__()     # 'barney, 9, M, 2'
+    f.__repr__()    # 'name         : fred\nage          : 99\nsex          : M\nuuid         : 1'
+    f.name='freddy'
+    f.name          # 'freddy'
+    f.get_name()    # 'freddy'
+    f.uuid          # 1
+    f.uuid = 99
+    >>> Traceback (most recent call last):
+    >>>  File "<stdin>", line 1, in <module>
+    >>>  AttributeError: can't set attribute
 
 Try/Except
-==========
+----------
 
 .. code-block:: python
 
@@ -885,11 +916,12 @@ Try/Except
         for line in f:
             print(line, end="")
 
+==========
 Decorators
 ==========
 
-A decorator is a function that takes another function and extends the behavior of the latter function without
-explicitly modifying it, a kind of *wrapper*.
+A decorator is a function that takes another function extending its behavior without explicitly modifying it,
+a kind of *wrapper*.
 
 * `Primer on Python Decorators <https://realpython.com/primer-on-python-decorators/>`_
 * `Decorators in Python <https://www.geeksforgeeks.org/decorators-in-python/>`_
@@ -989,19 +1021,17 @@ Decorator chaining
     print(num21()) # 200 = (10 * 10) * 2
 
 
-============
-Useful Links
-============
+===================
+Python Environments
+===================
 
-* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
-* `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
-* `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
-* `Execute Python-3 Online (Python v3.6.2) <https://www.tutorialspoint.com/execute_python3_online.php>`_
-* `Python IDE Online (Python v2.7.13) <https://www.tutorialspoint.com/online_python_ide.php>`_
+VirtualEnv
+----------
 
-======
+.. note:: add example and links
+
 Pipenv
-======
+------
 
 * `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
 * `Basic Usage <https://pipenv.readthedocs.io/en/latest/>`_
@@ -1026,6 +1056,18 @@ Using pipenv with Eclipse PyDev
 Setup a new Python interpreter in Eclipse, and change the project to use it.
 
 * `PyDev and virtualenv <https://www.michaelpollmeier.com/eclipse-pydev-and-virtualenv>`_
+
+============
+Useful Links
+============
+
+* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
+* `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
+* `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
+* `Execute Python-3 Online (Python v3.6.2) <https://www.tutorialspoint.com/execute_python3_online.php>`_
+* `Python IDE Online (Python v2.7.13) <https://www.tutorialspoint.com/online_python_ide.php>`_
+
+
 
 
 
