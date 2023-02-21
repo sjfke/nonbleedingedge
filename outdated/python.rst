@@ -200,12 +200,43 @@ Python Logging
 Module Import
 -------------
 
-.. Note:: Insert examples of different ``import`` statements.
+For illustration the file `fact.py` which contains a method called `fact` is copied into different folders.
+
+::
+
+    C:\USERS\FACTORIAL
+    │   fact-test.py
+    │   fact.py
+    │
+    └───subdir
+        │   fact.py
+        │
+        └───subdir
+                fact.py
 
 .. code-block:: python
 
-    import argparse
-    import sys
+    # fact.py
+    def fact(n):
+        return 1 if n == 1 else n * fact(n-1)
+
+.. code-block:: python
+
+    # fact-test.py
+    import random                         # module in sys.path (List) and sys.modules (Dictionary)
+    from sys import exit                  # so exit() and not sys.exit(), module in (sys.path, sys.modules)
+
+    from fact import fact
+    # from subdir.fact import fact        # file is in subdir
+    # from subdir.subdir.fact import fact # file is in subdir/subdir
+    # from fact import fact as factorial  # answer = factorial(n)
+
+    if (__name__ == '__main__'):
+        n = random.randrange(1,10,1)
+        answer = fact(n)
+        print(f"fact({n}) = {answer}")
+
+        exit(0)
 
 .. _using-shebang:
 
