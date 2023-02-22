@@ -1,4 +1,4 @@
- :github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/python.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/python.rst
 
 *****************
 Python Cheatsheet
@@ -160,9 +160,9 @@ The top 3 Python docstring formats are:
 
 Other references:
 
-* `Creating documentation comments for Python functions <https://www.jetbrains.com/help/pycharm/creating-documentation-comments.html>`_
-* `VSCode autoDocstring - Python Docstring Generator <https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring>`_
-* `Python Function Docstrings <https://www.pythontutorial.net/python-basics/python-function-docstrings/>`_
+* `JetBrains PyCharm: Creating documentation comments for Python functions <https://www.jetbrains.com/help/pycharm/creating-documentation-comments.html>`_
+* `VSCode: autoDocstring - Python Docstring Generator <https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring>`_
+* `Python Basics: Using docstrings to document functions <https://www.pythontutorial.net/python-basics/python-function-docstrings/>`_
 * `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_
 
 .. _python-logging:
@@ -331,6 +331,15 @@ Dictionaries
     D3['food']                                   # {'ham': 2, 'eggs': 3}
     D3['food']['ham'] = 1                        # {'food': {'ham': 1, 'eggs': 3}}
 
+    D3['food']['mushrooms'] = 4                  # {'food': {'ham': 1, 'eggs': 3, 'mushrooms': 4}}
+    if 'mushrooms' in D3['food']:                # safe delete using if
+         del D3['food']['mushrooms']             # {'food': {'ham': 1, 'eggs': 3}}
+
+    try:                                         # safe delete using try .. except
+        del D3['food']['mushrooms']
+    except KeyError:
+        pass
+
     'total' in D2                                # True
     'food' in D3                                 # True
     'eggs' in D2                                 # False
@@ -355,7 +364,7 @@ Dictionaries
 
     D4 = D2.copy()                               # {'email': 'spam', 'total': 3}
     D2.update(D3)                                # {'email': 'spam', 'total': 3, 'food': {'ham': 1, 'eggs': 3}}
-    D4.items()                                   # dict_items([('email', 'spam'), ('total', 3)])
+    D4.items()                                   # dict_items([('email', 'spam'), ('total', 3)]), so a true copy
 
     keys = ['email', 'total']                    # list or tuple: keys = ('email', 'total')
     vals = ['spam', 3]                           # list or tuple: vals = ('spam', 3)
@@ -832,21 +841,21 @@ For Loops
 Object Class Example
 --------------------
 
-Simple ``Person`` object in file named ``Person.py``
+Simple ``Person`` object in file named ``Person.py``, without Docstrings for brevity.
 
 .. code-block:: python
 
     import os
     import uuid
 
+
     class Person:
-        __NEXT_UUID = 0
+
         def __init__(self, name, age, sex='M'):
             self.__name = name
             self.__age = age
             self.__sex = sex
-            Person.__NEXT_UUID += 1
-            self.__uuid = Person.__NEXT_UUID
+            self.__uuid = str(uuid.uuid4())
 
         def get_name(self):
             return self.__name
@@ -870,8 +879,8 @@ Simple ``Person`` object in file named ``Person.py``
             return self.__uuid
 
         def __str__(self):
-            ''' String representation '''
-            __str = ''
+            """ String representation """
+            __str = 'Person: '
             __str += str(self.__name) + ', '
             __str += str(self.__age) + ', '
             __str += str(self.__sex) + ', '
@@ -879,37 +888,50 @@ Simple ``Person`` object in file named ``Person.py``
             return __str
 
         def __repr__(self):
-            ''' YAML like string representation '''
-             __str = ''
-             __str += "{0:<13s}: {1}".format('name', self.__name) + os.linesep
-             __str += "{0:<13s}: {1}".format('age', self.__age) + os.linesep
-             __str += "{0:<13s}: {1}".format('sex', self.__sex) + os.linesep
-             __str += "{0:<13s}: {1}".format('uuid', self.__uuid)
-             return __str
+            """ repr() string representation """
+            __str = "{"
+            __str += f"'name': {self.__name}, "
+            __str += f"'age': {self.__age}, "
+            __str += f"'sex': {self.__sex}, "
+            __str += f"'uuid': {self.__uuid}"
+            __str += "}"
+            return __str
 
-        # property(fget=None, fset=None, fdel=None, doc=None)
-        username = property(get_name, set_name, None, None)
-        age = property(get_age, set_age, None, None)
-        sex = property(get_sex, set_sex, None, None)
-        version = property(get_uuid, None, None, None)
 
-The **Person** object supports Python attribute style and also Java-like getters/setters style
+    # Python attributes requires:
+    # property(fget=None, fset=None, fdel=None, doc=None)
+    name = property(get_name, set_name, None, None)
+    age = property(get_age, set_age, None, None)
+    sex = property(get_sex, set_sex, None, None)
+    uuid = property(get_uuid, None, None, None)
+
+Example usage:
 
 .. code-block:: python
 
     import Person
     f = Person.Person(name='fred',age=99)
     b = Person.Person(name='barney',age=9)
-    b.__str__()     # 'barney, 9, M, 2'
-    f.__repr__()    # 'name         : fred\nage          : 99\nsex          : M\nuuid         : 1'
-    f.name='freddy'
-    f.name          # 'freddy'
-    f.get_name()    # 'freddy'
-    f.uuid          # 1
-    f.uuid = 99
-    >>> Traceback (most recent call last):
-    >>>  File "<stdin>", line 1, in <module>
-    >>>  AttributeError: can't set attribute
+    b.__str__()        # 'Person: barney, 9, M, c569ea0b-90bf-4433-b620-9472f6afbd8f'
+    f.__repr__()       # "{'name': fred, 'age': 99, 'sex': M, 'uuid': be1f8143-8619-477d-9658-aece55b8c98f}"
+
+    f.name='freddy'    # attribute update
+    f.name             # 'freddy'
+    f.get_name()       # 'freddy'
+
+    f.set_name('fred') # getter/setter update
+    f.name             # 'fred'
+    f.get_name()       # 'fred'
+
+    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
+    f.get_uuid()       # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
+
+    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
+    AttributeError: property 'uuid' of 'Person' object has no setter
+
+    dir(f)             # methods and attributes
+    help(f)            # methods, attributes and docstrings
+
 
 Try/Except
 ----------
@@ -921,31 +943,66 @@ Try/Except
     for arg in sys.argv[1:]:
         try:
             f = open(arg, 'r')
-        except OSError:
-            print('cannot open', arg)
+        except OSError as os_error:
+            print(f"{os_error}")
         else:
             print(arg, 'has', len(f.readlines()), 'lines')
             f.close()
 
-    # Clumsy file handling
+    #################################################################
+    ## A Clumsy File handling and ValueError example
+
+    import sys
+
     try:
-        f = open('myfile.txt')
+        f = open('filename.txt')
         s = f.readline()
         i = int(s.strip())
-    except OSError as err:
-        print("OS error: {0}".format(err))
-    except ValueError:
-        print("Could not convert data to an integer.")
+    except OSError as os_error:
+        print(f"{os_error}")
+    except ValueError as value_error:
+        print(f"{value_error}")
     except:
         print("Unexpected error:", sys.exc_info()[0])
         raise
     finally:
         print("always executed exception or not")
 
-    # Better using the predefined clean-up actions
-    with open("myfile.txt") as f:
-        for line in f:
-            print(line, end="")
+    #################################################################
+    ## A better approach using 'with' and predefined clean-up actions
+
+    with open("filename.txt") as f:
+        for s in f:
+            i = int(s.strip())
+
+    # But displays Traceback if an error occurs
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    FileNotFoundError: [Errno 2] No such file or directory: 'filename.txt'
+
+    Traceback (most recent call last):
+      File "<stdin>", line 3, in <module>
+    ValueError: invalid literal for int() with base 10: '<?xml version="1.0" encoding="UTF-8"?>'
+
+    #################################################################
+    ## Alternative approach still using 'with' but no Traceback
+
+    try:
+        f = open("filename.txt")
+    except IOError as io_error:
+        print(f"{io_error}")
+    else:
+        with f:
+            for s in f:
+                try:
+                    i = int(s.strip())
+                except ValueError as value_error:
+                    print(f"{value_error}")
+
+    # Display only an error message if an error occurs
+    [Errno 2] No such file or directory: 'filename.txt'
+
+    invalid literal for int() with base 10: '<?xml version="1.0" encoding="UTF-8"?>'
 
 ==========
 Decorators
