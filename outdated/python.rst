@@ -1,4 +1,4 @@
- :github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/python.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/python.rst
 
 *****************
 Python Cheatsheet
@@ -160,9 +160,9 @@ The top 3 Python docstring formats are:
 
 Other references:
 
-* `Creating documentation comments for Python functions <https://www.jetbrains.com/help/pycharm/creating-documentation-comments.html>`_
-* `VSCode autoDocstring - Python Docstring Generator <https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring>`_
-* `Python Function Docstrings <https://www.pythontutorial.net/python-basics/python-function-docstrings/>`_
+* `JetBrains PyCharm: Creating documentation comments for Python functions <https://www.jetbrains.com/help/pycharm/creating-documentation-comments.html>`_
+* `VSCode: autoDocstring - Python Docstring Generator <https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring>`_
+* `Python Basics: Using docstrings to document functions <https://www.pythontutorial.net/python-basics/python-function-docstrings/>`_
 * `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_
 
 .. _python-logging:
@@ -194,6 +194,49 @@ Python Logging
 * `Python: Logging HOWTO <https://docs.python.org/3/howto/logging.html>`_
 * `6 Python Logging Best Practices You Should Be Aware Of <https://www.loggly.com/use-cases/6-python-logging-best-practices-you-should-be-aware-of/>`_
 * `The Hitchhikers Guide to Python: Logging <https://docs.python-guide.org/writing/logging/>`_
+
+.. _module-import:
+
+Module Import
+-------------
+
+For illustration the file `fact.py` which contains a method called `fact` is copied into different folders.
+
+::
+
+    C:\USERS\FACTORIAL
+    │   fact-test.py
+    │   fact.py
+    │
+    └───subdir
+        │   fact.py
+        │
+        └───subdir
+                fact.py
+
+.. code-block:: python
+
+    # fact.py
+    def fact(n):
+        return 1 if n == 1 else n * fact(n-1)
+
+.. code-block:: python
+
+    # fact-test.py
+    import random                         # module in sys.path (List) and sys.modules (Dictionary)
+    from sys import exit                  # so exit() and not sys.exit(), module in (sys.path, sys.modules)
+
+    from fact import fact
+    # from subdir.fact import fact        # file is in subdir
+    # from subdir.subdir.fact import fact # file is in subdir/subdir
+    # from fact import fact as factorial  # answer = factorial(n)
+
+    if (__name__ == '__main__'):
+        n = random.randrange(1,10,1)
+        answer = fact(n)
+        print(f"fact({n}) = {answer}")
+
+        exit(0)
 
 .. _using-shebang:
 
@@ -279,50 +322,63 @@ Dictionaries
 
 .. code-block:: python
 
-    D1 = {}                               # {} Empty dictionary
-    D2 = {'email': 'spam', 'total': 3}    # {'email': 'spam', 'total': 3}
-    D3 = {'food': {'ham': 2, 'eggs': 3}}  # {'food': {'ham': 2, 'eggs': 3}}
-    D2['total']                           # 3
-    D2.get('total')                       # 3
-    D3['food']['ham']                     # 2
-    D3['food']                            # {'ham': 2, 'eggs': 3}
-    D3['food']['ham'] = 1                 # {'food': {'ham': 1, 'eggs': 3}}
+    D1 = {}                                      # {} Empty dictionary
+    D2 = {'email': 'spam', 'total': 3}           # {'email': 'spam', 'total': 3}
+    D3 = {'food': {'ham': 2, 'eggs': 3}}         # {'food': {'ham': 2, 'eggs': 3}}
+    D2['total']                                  # 3
+    D2.get('total')                              # 3
+    D3['food']['ham']                            # 2
+    D3['food']                                   # {'ham': 2, 'eggs': 3}
+    D3['food']['ham'] = 1                        # {'food': {'ham': 1, 'eggs': 3}}
 
-    'total' in D2                         # True
-    'food' in D3                          # True
-    'eggs' in D2                          # False
-    'eggs' in D3['food']                  # True
+    D3['food']['mushrooms'] = 4                  # {'food': {'ham': 1, 'eggs': 3, 'mushrooms': 4}}
+    if 'mushrooms' in D3['food']:                # safe delete using if
+         del D3['food']['mushrooms']             # {'food': {'ham': 1, 'eggs': 3}}
 
-    D2.keys()                             # dict_keys(['email', 'total'])
-    D2.values()                           # dict_values(['spam', 3])
-    D2.items()                            # dict_items([('email', 'spam'), ('total', 3)])
-    D3.keys()                             # dict_keys(['food'])
-    D3['food'].keys()                     # dict_keys(['ham', 'eggs'])
-    D3.values()                           # dict_values([{'ham': 1, 'eggs': 3}])
-    D3.items()                            # dict_items([('food', {'ham': 1, 'eggs': 3})])
+    try:                                         # safe delete using try .. except
+        del D3['food']['mushrooms']
+    except KeyError:
+        pass
 
-    len(D2)                               # 2
-    len(D3)                               # 1
+    'total' in D2                                # True
+    'food' in D3                                 # True
+    'eggs' in D2                                 # False
+    'eggs' in D3['food']                         # True
 
-    for key, value in D2.items():         # email spam \n total 3
+    D2.keys()                                    # dict_keys(['email', 'total'])
+    D2.values()                                  # dict_values(['spam', 3])
+    D2.items()                                   # dict_items([('email', 'spam'), ('total', 3)])
+    D3.keys()                                    # dict_keys(['food'])
+    D3['food'].keys()                            # dict_keys(['ham', 'eggs'])
+    D3.values()                                  # dict_values([{'ham': 1, 'eggs': 3}])
+    D3.items()                                   # dict_items([('food', {'ham': 1, 'eggs': 3})])
+
+    len(D2)                                      # 2
+    len(D3)                                      # 1
+
+    for key, value in D2.items():                # email spam \n total 3
         print(key, value)
 
-    for key, value in D3.items():         # food {'ham': 1, 'eggs': 3}
+    for key, value in D3.items():                # food {'ham': 1, 'eggs': 3}
         print(key, value)
 
-    D4 = D2.copy()                        # {'email': 'spam', 'total': 3}
-    D2.update(D3)                         # {'email': 'spam', 'total': 3, 'food': {'ham': 1, 'eggs': 3}}
-    D4.items()                            # dict_items([('email', 'spam'), ('total', 3)])
+    D4 = D2.copy()                               # {'email': 'spam', 'total': 3}
+    D2.update(D3)                                # {'email': 'spam', 'total': 3, 'food': {'ham': 1, 'eggs': 3}}
+    D4.items()                                   # dict_items([('email', 'spam'), ('total', 3)]), so a true copy
 
-    keys = ['email', 'total']             # or tuple: keys = ('email', 'total')
-    vals = ['spam', 3]                    # or tuple: vals = ('spam', 3)
-    D5 = dict(zip(keys, vals))            # {'email': 'spam', 'total': 3}
+    keys = ['email', 'total']                    # list or tuple: keys = ('email', 'total')
+    vals = ['spam', 3]                           # list or tuple: vals = ('spam', 3)
+    D5 = dict(zip(keys, vals))                   # {'email': 'spam', 'total': 3}
 
-    D2.pop('total')                       # 3, leaving {'email': 'spam'}
+    D2.pop('total')                              # 3, leaving {'email': 'spam'}
 
-    isinstance(D3, dict)                  # True
-    isinstance(D3['food'], dict)          # True
-    isinstance(D3['food']['eggs'], dict)  # False
+    print(D3.__class__.__name__)                 # dict
+    print(D3['food'].__class__.__name__)         # dict
+    print(D3['food']['eggs'].__class__.__name__) # int
+
+    isinstance(D3, dict)                         # True
+    isinstance(D3['food'], dict)                 # True
+    isinstance(D3['food']['eggs'], dict)         # False
 
 
 Tuples and Sequences
@@ -338,8 +394,8 @@ Tuples and Sequences
 .. code-block:: python
 
     t0 = ()                         # () - Empty tuple
-    t1 = (42,)                       # (42,) - one-item tuple (not an expression)
-    i1 = (42)                        # 42 - integer
+    t1 = (42,)                      # (42,) - one-item tuple (not an expression)
+    i1 = (42)                       # 42 - integer
     t2 = (0, 'Ni', 1.2, 3)          # (0, 'Ni', 1.2, 3) - four-item tuple
     t2a = 0, 'Ni', 1.2, 3           # (0, 'Ni', 1.2, 3) - four-item tuple (alternative syntax)
     t3 = ('abc', ('def', 'ghi'))    # ('abc', ('def', 'ghi'))
@@ -419,9 +475,9 @@ Text Files Sequential Access
 
 .. code-block:: python
 
-    # mode: r (read), w (write), a (append), r+ (read/write), + (read/write)
-    outfile_handle = open('spam', 'w')                        # create/overwrite 'spam', <_io.TextIOWrapper>
-    outfile_handle = open('utf8spam', 'w', encoding="utf-8")   # create/overwrite 'utf8spam' in UTF8, <_io.TextIOWrapper>
+    # mode: r (read), w (write: create/overwrite), a (append), r+ (read/write), + (read/write)
+    outfile_handle = open('spam', 'w')                        # 'spam', <_io.TextIOWrapper>
+    outfile_handle = open('utf8spam', 'w', encoding="utf-8")  # 'utf8spam' in UTF8, <_io.TextIOWrapper>
     infile_handle = open('data', 'r')                         # open input file
 
     S = infile_handle.read()                # Read entire file into a single string
@@ -477,15 +533,15 @@ File, and Directory Tests
 
     import os
 
-    os.path.exists('flintstones.json') # True
+    os.path.exists('flintstones.json')  # True
     os.path.exists('flintstones.jsong') # False
-    os.path.exists('project') # True
-    os.path.exists('projects') # False
+    os.path.exists('project')           # True
+    os.path.exists('projects')          # False
 
-    os.path.isfile('flintstones.json') # True
+    os.path.isfile('flintstones.json')  # True
     os.path.isfile('flintstones.jsong') # False
-    os.path.isdir('project') # True
-    os.path.isdir('projects') # False
+    os.path.isdir('project')            # True
+    os.path.isdir('projects')           # False
 
 * `os.path — Common pathname manipulations <https://docs.python.org/3/library/os.path.html>`_
 * `pathlib — Object-oriented filesystem paths <https://docs.python.org/3/library/pathlib.html>`_
@@ -498,6 +554,10 @@ JSON files
     import json
     f = open('flintstones.json', 'r')
     x = json.load(f)  # {'flintstones': {'Fred': 30, 'Wilma': 25, 'Pebbles': 1, 'Dino': 5}}
+
+    print(x.__class__)          # <class 'dict'>
+    print(x.__class__.__name__) # dict
+    isinstance(x, dict)         # True
 
     x['flintstones']['Fred'] = 31
     f = open('flintstones.json', 'w')
@@ -538,6 +598,10 @@ XML files
 
     import xml.etree.ElementTree as ET
     tree = ET.parse('flintstones.xml')
+
+    print(tree.__class__)          # <class 'xml.etree.ElementTree.ElementTree'>
+    print(tree.__class__.__name__) # ElementTree
+
     root = tree.getroot()
     root.tag    # 'family'
     root.attrib # {'surname': 'Flintstones'}
@@ -621,14 +685,14 @@ Comparisons, Equality, and Truth
 
     L1 = [1, ('a', 3)]; L2 = [1, ('a', 3)]; L3 = L1
     #
-    L1 == L2            # True
-    L1 is L2            # False, Not the same object
-    L1 == L3            # True
-    L1 is L3            # True, Are the same object
+    L1 == L2                # True
+    L1 is L2                # False, Not the same object
+    L1 == L3                # True
+    L1 is L3                # True, Are the same object
     #
-    1 in L1             # True
-    3 in L1             # False
-    3 in L1[1]          # True
+    1 in L1                 # True
+    3 in L1                 # False
+    3 in L1[1]              # True
 
     S1 = 'spam'; S2 = 'spam'
     #
@@ -649,34 +713,42 @@ References:
 * `PEP 207 – Rich Comparisons <https://peps.python.org/pep-0207/>`_
 
 Object Checking
-===============
+---------------
 
-List of classinfo types
-::
+List of classinfo types:
+
+.. code-block:: python
 
     print([t.__name__ for t in __builtins__.__dict__.values() if isinstance(t, type)])
 
-    ['BuiltinImporter', 'bool', 'memoryview', 'bytearray', 'bytes', 'classmethod', 'complex',
-    'dict', 'enumerate', 'filter', 'float', 'frozenset', 'property', 'int', 'list', 'map',
-    'object', 'range', 'reversed', 'set', 'slice', 'staticmethod', 'str', 'super', 'tuple',
-    'type', 'zip', 'BaseException', 'Exception', 'TypeError', 'StopAsyncIteration',
-    'StopIteration', 'GeneratorExit', 'SystemExit', 'KeyboardInterrupt', 'ImportError',
-    'ModuleNotFoundError', 'OSError', 'OSError', 'OSError', 'EOFError', 'RuntimeError',
-    'RecursionError', 'NotImplementedError', 'NameError', 'UnboundLocalError',
-    'AttributeError', 'SyntaxError', 'IndentationError', 'TabError', 'LookupError', 'IndexError',
-    'KeyError', 'ValueError', 'UnicodeError', 'UnicodeEncodeError', 'UnicodeDecodeError',
-    'UnicodeTranslateError', 'AssertionError', 'ArithmeticError', 'FloatingPointError',
-    'OverflowError', 'ZeroDivisionError', 'SystemError', 'ReferenceError', 'MemoryError',
-    'BufferError', 'Warning', 'UserWarning', 'DeprecationWarning', 'PendingDeprecationWarning',
-    'SyntaxWarning', 'RuntimeWarning', 'FutureWarning', 'ImportWarning', 'UnicodeWarning',
-    'BytesWarning', 'ResourceWarning', 'ConnectionError', 'BlockingIOError', 'BrokenPipeError',
-    'ChildProcessError', 'ConnectionAbortedError', 'ConnectionRefusedError',
-    'ConnectionResetError', FileExistsError', 'FileNotFoundError', 'IsADirectoryError',
-    'NotADirectoryError', 'InterruptedError', 'PermissionError', 'ProcessLookupError',
-    'TimeoutError']
 
-Object is
-::
+Python-3.11 classinfo types: ::
+
+    ['BuiltinImporter', 'bool', 'memoryview', 'bytearray', 'bytes', 'classmethod', 'complex', 'dict',
+    'enumerate', 'filter', 'float', 'frozenset', 'property', 'int', 'list', 'map', 'object', 'range',
+    'reversed', 'set', 'slice', 'staticmethod', 'str', 'super', 'tuple', 'type', 'zip', 'BaseException',
+    'BaseExceptionGroup', 'Exception', 'GeneratorExit', 'KeyboardInterrupt', 'SystemExit', 'ArithmeticError',
+    'AssertionError', 'AttributeError', 'BufferError', 'EOFError', 'ImportError', 'LookupError',
+    'MemoryError', 'NameError', 'OSError', 'ReferenceError', 'RuntimeError', 'StopAsyncIteration',
+    'StopIteration', 'SyntaxError', 'SystemError', 'TypeError', 'ValueError', 'Warning',
+    'FloatingPointError', 'OverflowError', 'ZeroDivisionError', 'BytesWarning', 'DeprecationWarning',
+    'EncodingWarning', 'FutureWarning', 'ImportWarning', 'PendingDeprecationWarning', 'ResourceWarning',
+    'RuntimeWarning', 'SyntaxWarning', 'UnicodeWarning', 'UserWarning', 'BlockingIOError',
+    'ChildProcessError', 'ConnectionError', 'FileExistsError', 'FileNotFoundError', 'InterruptedError',
+    'IsADirectoryError', 'NotADirectoryError', 'PermissionError', 'ProcessLookupError', 'TimeoutError',
+    'IndentationError', 'IndexError', 'KeyError', 'ModuleNotFoundError', 'NotImplementedError',
+    'RecursionError', 'UnboundLocalError', 'UnicodeError', 'BrokenPipeError', 'ConnectionAbortedError',
+    'ConnectionRefusedError', 'ConnectionResetError', 'TabError', 'UnicodeDecodeError',
+    'UnicodeEncodeError', 'UnicodeTranslateError', 'ExceptionGroup', 'OSError', 'OSError', 'OSError']
+
+Checking what an object is:
+ .. code-block:: python
+
+    L = [1, 2, 3]; D = {'food': {'ham': 2, 'eggs': 3}}; t = (1, 2, 3); s = "string of text"
+    print(L.__class__.__name__) # list
+    print(D.__class__.__name__) # dict
+    print(t.__class__.__name__) # tuple
+    print(s.__class__.__name__) # str
 
     isinstance (object, classinfo)
 
@@ -700,9 +772,9 @@ Object is
     isinstance(T, (list, tuple))          # True
 
 IF statements
-=============
+-------------
 
-::
+ .. code-block:: python
 
     if <test1> :
         <statements1>
@@ -711,14 +783,19 @@ IF statements
     else :
         <statements3>
 
-    { 'spam' : 1.25, 'ham' : 1.99, 'eggs' : 0.99, 'bacon' : 1.10}['ham'] # 1.99
-
     a if <test> else b # ternary operator
 
-While Loops
-===========
+    # dictionary lookup
+    if 'ham' in {'spam' : 1.25, 'ham' : 1.99, 'eggs' : 0.99, 'bacon' : 1.10}:
+        print({'spam' : 1.25, 'ham' : 1.99, 'eggs' : 0.99, 'bacon' : 1.10}['ham'])  # 1.99
 
-::
+    print({'spam' : 1.25, 'ham' : 1.99, 'eggs' : 0.99, 'bacon' : 1.10}['ham'])      # 1.99
+
+
+While Loops
+-----------
+
+ .. code-block:: python
 
     while <test1>:
         <statements>
@@ -729,9 +806,9 @@ While Loops
 
 
 For Loops
-=========
+---------
 
-::
+ .. code-block:: python
 
     for <target> in <object> :
         <statements>
@@ -761,25 +838,24 @@ For Loops
     for i in range(0, len(S), 2):
         print(S[i], end=' ') # a c e g i k
 
-Objects
-=======
+Object Class Example
+--------------------
 
-Simple **Person** object in file named *Person.py*
+Simple ``Person`` object in file named ``Person.py``, without Docstrings for brevity.
 
 .. code-block:: python
 
-    #!/usr/bin/env python3
-    #
     import os
+    import uuid
+
 
     class Person:
-        __NEXT_UUID = 0
+
         def __init__(self, name, age, sex='M'):
             self.__name = name
             self.__age = age
             self.__sex = sex
-            Person.__NEXT_UUID += 1
-            self.__uuid = Person.__NEXT_UUID
+            self.__uuid = str(uuid.uuid4())
 
         def get_name(self):
             return self.__name
@@ -803,8 +879,8 @@ Simple **Person** object in file named *Person.py*
             return self.__uuid
 
         def __str__(self):
-            ''' String representation '''
-            __str = ''
+            """ String representation """
+            __str = 'Person: '
             __str += str(self.__name) + ', '
             __str += str(self.__age) + ', '
             __str += str(self.__sex) + ', '
@@ -812,45 +888,53 @@ Simple **Person** object in file named *Person.py*
             return __str
 
         def __repr__(self):
-            ''' YAML like string representation '''
-             __str = ''
-             __str += "{0:<13s}: {1}".format('name', self.__name) + os.linesep
-             __str += "{0:<13s}: {1}".format('age', self.__age) + os.linesep
-             __str += "{0:<13s}: {1}".format('sex', self.__sex) + os.linesep
-             __str += "{0:<13s}: {1}".format('uuid', self.__uuid)
-             return __str
+            """ repr() string representation """
+            __str = "{"
+            __str += f"'name': {self.__name}, "
+            __str += f"'age': {self.__age}, "
+            __str += f"'sex': {self.__sex}, "
+            __str += f"'uuid': {self.__uuid}"
+            __str += "}"
+            return __str
 
-        # property(fget=None, fset=None, fdel=None, doc=None)
-        username = property(get_name, set_name, None, None)
-        age = property(get_age, set_age, None, None)
-        sex = property(get_sex, set_sex, None, None)
-        version = property(get_uuid, None, None, None)
 
-The **Person** object supports Python attribute style and also Java-like getters/setters style
+    # Python attributes requires:
+    # property(fget=None, fset=None, fdel=None, doc=None)
+    name = property(get_name, set_name, None, None)
+    age = property(get_age, set_age, None, None)
+    sex = property(get_sex, set_sex, None, None)
+    uuid = property(get_uuid, None, None, None)
+
+Example usage:
 
 .. code-block:: python
 
-    >>> import Person
-    >>> f = Person.Person(name='fred',age=99)
-    >>> b = Person.Person(name='barney',age=9)
-    >>> b.__str__()
-    'barney, 9, M, 2'
-    >>> f.__repr__()
-    'name         : fred\nage          : 99\nsex          : M\nuuid         : 1'
-    >>> f.name='freddy'
-    >>> f.name
-    'freddy'
-    >>> f.get_name()
-    'freddy'
-    >>> f.uuid
-    1
-    >>> f.uuid = 99
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    AttributeError: can't set attribute
+    import Person
+    f = Person.Person(name='fred',age=99)
+    b = Person.Person(name='barney',age=9)
+    b.__str__()        # 'Person: barney, 9, M, c569ea0b-90bf-4433-b620-9472f6afbd8f'
+    f.__repr__()       # "{'name': fred, 'age': 99, 'sex': M, 'uuid': be1f8143-8619-477d-9658-aece55b8c98f}"
+
+    f.name='freddy'    # attribute update
+    f.name             # 'freddy'
+    f.get_name()       # 'freddy'
+
+    f.set_name('fred') # getter/setter update
+    f.name             # 'fred'
+    f.get_name()       # 'fred'
+
+    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
+    f.get_uuid()       # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
+
+    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
+    AttributeError: property 'uuid' of 'Person' object has no setter
+
+    dir(f)             # methods and attributes
+    help(f)            # methods, attributes and docstrings
+
 
 Try/Except
-==========
+----------
 
 .. code-block:: python
 
@@ -859,37 +943,73 @@ Try/Except
     for arg in sys.argv[1:]:
         try:
             f = open(arg, 'r')
-        except OSError:
-            print('cannot open', arg)
+        except OSError as os_error:
+            print(f"{os_error}")
         else:
             print(arg, 'has', len(f.readlines()), 'lines')
             f.close()
 
-    # Clumsy file handling
+    #################################################################
+    ## A Clumsy File handling and ValueError example
+
+    import sys
+
     try:
-        f = open('myfile.txt')
+        f = open('filename.txt')
         s = f.readline()
         i = int(s.strip())
-    except OSError as err:
-        print("OS error: {0}".format(err))
-    except ValueError:
-        print("Could not convert data to an integer.")
+    except OSError as os_error:
+        print(f"{os_error}")
+    except ValueError as value_error:
+        print(f"{value_error}")
     except:
         print("Unexpected error:", sys.exc_info()[0])
         raise
     finally:
         print("always executed exception or not")
 
-    # Better using the predefined clean-up actions
-    with open("myfile.txt") as f:
-        for line in f:
-            print(line, end="")
+    #################################################################
+    ## A better approach using 'with' and predefined clean-up actions
 
+    with open("filename.txt") as f:
+        for s in f:
+            i = int(s.strip())
+
+    # But displays Traceback if an error occurs
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    FileNotFoundError: [Errno 2] No such file or directory: 'filename.txt'
+
+    Traceback (most recent call last):
+      File "<stdin>", line 3, in <module>
+    ValueError: invalid literal for int() with base 10: '<?xml version="1.0" encoding="UTF-8"?>'
+
+    #################################################################
+    ## Alternative approach still using 'with' but no Traceback
+
+    try:
+        f = open("filename.txt")
+    except IOError as io_error:
+        print(f"{io_error}")
+    else:
+        with f:
+            for s in f:
+                try:
+                    i = int(s.strip())
+                except ValueError as value_error:
+                    print(f"{value_error}")
+
+    # Display only an error message if an error occurs
+    [Errno 2] No such file or directory: 'filename.txt'
+
+    invalid literal for int() with base 10: '<?xml version="1.0" encoding="UTF-8"?>'
+
+==========
 Decorators
 ==========
 
-A decorator is a function that takes another function and extends the behavior of the latter function without
-explicitly modifying it, a kind of *wrapper*.
+A decorator is a function that takes another function extending its behavior without explicitly modifying it,
+a kind of *wrapper*.
 
 * `Primer on Python Decorators <https://realpython.com/primer-on-python-decorators/>`_
 * `Decorators in Python <https://www.geeksforgeeks.org/decorators-in-python/>`_
@@ -989,19 +1109,17 @@ Decorator chaining
     print(num21()) # 200 = (10 * 10) * 2
 
 
-============
-Useful Links
-============
+===================
+Python Environments
+===================
 
-* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
-* `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
-* `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
-* `Execute Python-3 Online (Python v3.6.2) <https://www.tutorialspoint.com/execute_python3_online.php>`_
-* `Python IDE Online (Python v2.7.13) <https://www.tutorialspoint.com/online_python_ide.php>`_
+VirtualEnv
+----------
 
-======
+.. note:: add example and links
+
 Pipenv
-======
+------
 
 * `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
 * `Basic Usage <https://pipenv.readthedocs.io/en/latest/>`_
@@ -1026,6 +1144,18 @@ Using pipenv with Eclipse PyDev
 Setup a new Python interpreter in Eclipse, and change the project to use it.
 
 * `PyDev and virtualenv <https://www.michaelpollmeier.com/eclipse-pydev-and-virtualenv>`_
+
+============
+Useful Links
+============
+
+* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
+* `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
+* `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
+* `Execute Python-3 Online (Python v3.6.2) <https://www.tutorialspoint.com/execute_python3_online.php>`_
+* `Python IDE Online (Python v2.7.13) <https://www.tutorialspoint.com/online_python_ide.php>`_
+
+
 
 
 
