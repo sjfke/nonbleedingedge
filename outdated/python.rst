@@ -843,6 +843,98 @@ Object Class Example
 
 Simple ``Person`` object in file named ``Person.py``, without Docstrings for brevity.
 
+Using Python decorators
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This is considered the *pythonic* approach because it **only supports attributes**.
+
+There are no functions `get_name()`, `set_name()` etc.
+
+.. code-block:: python
+
+    import os
+    import uuid
+
+    class Person:
+
+        def __init__(self, name, age, sex='M'):
+            self.__name = name
+
+            if not isinstance(age, int):
+                raise ValueError(f"invalid int for age: '{age}'")
+            elif age > 0:
+                self.__age = age
+            else:
+                self.__age = 0
+
+            self.__sex = sex
+            self.__uuid = str(uuid.uuid4())
+
+        # a getter function, uses a property decorator
+        @property
+        def name(self):
+            return self.__name
+
+        # a setter function
+        @name.setter
+        def name(self, value):
+            self.__name = value
+
+        # a deleter function
+        # @name.deleter
+        # def name(self):
+        #     del self._value
+
+        @property
+        def age(self):
+            return self.__age
+
+        @age.setter
+        def age(self, value):
+            if not isinstance(value, int):
+                raise ValueError(f"invalid int for age: '{value}'")
+            elif value > 0:
+                self.__age = value
+            else:
+                self.__age = 0
+
+        @property
+        def sex(self):
+            return self.__sex
+
+        @sex.setter
+        def sex(self, value):
+            self.__sex = value
+
+        @property
+        def uuid(self):
+            return self.__uuid
+
+        def __str__(self):
+            """ String representation """
+            __str = 'Person: '
+            __str += str(self.__name) + ', '
+            __str += str(self.__age) + ', '
+            __str += str(self.__sex) + ', '
+            __str += str(self.__uuid)
+            return __str
+
+        def __repr__(self):
+            """ repr() string representation """
+            __str = "{"
+            __str += f"'name': {self.__name}, "
+            __str += f"'age': {self.__age}, "
+            __str += f"'sex': {self.__sex}, "
+            __str += f"'uuid': {self.__uuid}"
+            __str += "}"
+            return __str
+
+
+Using the property class
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+This approach supports `get_name()`, `set_name()` etc **AND** attributes.
+
 .. code-block:: python
 
     import os
@@ -853,7 +945,14 @@ Simple ``Person`` object in file named ``Person.py``, without Docstrings for bre
 
         def __init__(self, name, age, sex='M'):
             self.__name = name
-            self.__age = age
+
+            if not isinstance(age, int):
+                raise ValueError(f"invalid int for age: '{age}'")
+            elif age > 0:
+                self.__age = age
+            else:
+                self.__age = 0
+
             self.__sex = sex
             self.__uuid = str(uuid.uuid4())
 
@@ -867,7 +966,12 @@ Simple ``Person`` object in file named ``Person.py``, without Docstrings for bre
             return self.__age
 
         def set_age(self, value):
-            self.__age = value
+            if not isinstance(value, int):
+                raise ValueError(f"invalid int for age: '{value}'")
+            elif value > 0:
+                self.__age = value
+            else:
+                self.__age = 0
 
         def get_sex(self):
             return self.__sex
@@ -915,6 +1019,27 @@ Example usage:
     b.__str__()        # 'Person: barney, 9, M, c569ea0b-90bf-4433-b620-9472f6afbd8f'
     f.__repr__()       # "{'name': fred, 'age': 99, 'sex': M, 'uuid': be1f8143-8619-477d-9658-aece55b8c98f}"
 
+    dir(f)             # methods and attributes
+    help(f)            # methods, attributes and docstrings
+
+    ## 'Person' object using decorator approach - get(), set() calls fail!
+    #
+    f.name='freddy'    # attribute update
+    f.name             # 'freddy'
+    f.get_name()       # *** fails, no attribute 'get_name' ***
+
+    f.set_name('fred') # *** fails, no attribute 'set_name' ***
+    f.name             # 'freddy'
+    f.get_name()       # *** fails, no attribute 'get_name' ***
+
+    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
+    f.get_uuid()       # *** fails,  no attribute 'get_uuid' ***
+
+    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
+    AttributeError: property 'uuid' of 'Person' object has no setter
+
+    ## 'Person' object using property class approach
+    #
     f.name='freddy'    # attribute update
     f.name             # 'freddy'
     f.get_name()       # 'freddy'
@@ -929,8 +1054,6 @@ Example usage:
     f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
     AttributeError: property 'uuid' of 'Person' object has no setter
 
-    dir(f)             # methods and attributes
-    help(f)            # methods, attributes and docstrings
 
 
 Try/Except
