@@ -421,6 +421,69 @@ Tuples and Sequences
     for x in t2:                    # iteration
         print x                     # 0 \n Ni \n 1.2 \n 3
 
+Sets
+----
+
+.. code-block:: python
+
+    S0 = set()
+    type(S0)   # <class 'set'>
+
+    S1 = set(['fred','wilma','pebbles','barney','betty','bam-bam']) # List iterable
+    S2 = set(('fred','wilma','pebbles','barney','betty','bam-bam')) # Tuple iterable
+    S3 = {'fred','wilma','pebbles','barney','betty','bam-bam'}      # Dict iterable
+    S4 = {42, 'foo', 3.14159, None}                                 # mixed content
+
+    L1 = ['fred','wilma','pebbles','barney','betty','bam-bam']
+    S11 = set(L1)
+
+    t2 = ('fred','wilma','pebbles','barney','betty','bam-bam')
+    S12 = set(t2)
+
+    bool(S0) # False - empty set
+    bool(S1) # True  - non-empty set
+
+    'fred' in S1    # True
+    'freddie' in S1 # False
+
+    # https://realpython.com/python-sets/
+    # x.add(<elem>)
+    # x.remove(<elem>)
+    # x.discard(<elem>)
+    # x.pop()
+    # x.clear()
+    # x = frozenset(['foo', 'bar', 'baz'])
+    # x & {'baz', 'qux', 'quux'} # frozenset({'baz'})
+
+    a = {1, 2, 3, 4}
+    b = {2, 3, 4, 5}
+    c = {3, 4, 5, 6}
+    d = {4, 5, 6, 7}
+
+    a.union(b)            # {1, 2, 3, 4, 5}
+    a | b                 # {1, 2, 3, 4, 5}
+    a.union((2, 3, 4, 5)) # {1, 2, 3, 4, 5}
+    a | (2, 3, 4, 5)      # TypeError: unsupported operand type(s) for |: 'set' and 'tuple'
+    a | {2, 3, 4, 5}      # {1, 2, 3, 4, 5}
+
+    a.intersection(b)       # {2, 3, 4}
+    a & b                   # {2, 3, 4}
+    a.intersection(b,c)     # {3, 4}
+    a & b & c               # {3, 4}
+    a.intersection(b,c,d)   # {4}
+    a & b & c & d           # {4}
+
+    # https://realpython.com/python-sets/
+    # x1.difference(x2)
+    # x1.symmetric_difference(x2)
+    # x1.isdisjoint(x2)
+    # x1.issubset(x2)
+    # x1.issuperset(x2)
+    # x1.update(x2[, x3 ...])
+    # x1.intersection_update(x2[, x3 ...])
+    # x1.difference_update(x2[, x3 ...])
+    # x1.symmetric_difference_update(x2)
+
 Heapq (binary tree)
 -------------------
 
@@ -1140,66 +1203,126 @@ a kind of *wrapper*.
 * `Python Decorators Tutorial <https://www.datacamp.com/tutorial/decorators-python>`_
 * `PEP 318 – Decorators for Functions and Methods <https://peps.python.org/pep-0318/>`_
 
-Basic example
--------------
+Before explaining decorators, it is important to realize that Python functions are first class objects,
+meaning a function:
+
+* is an instance of the Object type.
+* can be stored in a variable.
+* used as a parameter to another function.
+* returned from another function.
+* can be stored in data structures such as hash tables, lists etc.
+
+Functions as objects, arguments, and return values
+--------------------------------------------------
+
+Functions as objects
 
 .. code-block:: python
 
-    def add_one(number):
-        return number + 1
+    # https://www.geeksforgeeks.org/decorators-in-python/
+    def to_upper(text):
+        return text.upper()
 
-    print(add_one(41)) # 42
+    print(to_upper("Hello World"))  # HELLO WORLD (function parameter)
+    uppercase = to_upper
+    print(uppercase("Hello World")) # HELLO WORLD (stored in a variable)
 
-Functions as arguments (say_hello, say_hi)
-------------------------------------------
+Passing the function as an argument
+
 .. code-block:: python
 
-    def say_hello(name):
-        return f"Hello {name}"
+    def to_upper(text):
+        return text.upper()
 
-    def say_hi(name):
-        return f"Hi {name}"
+    def to_lower(text):
+        return text.lower()
 
-    >>> say_hello("Fred") # 'Hello Fred'
-    >>> say_hi("Fred")    # 'Hi Fred'
-    >>> say_hello         # <function say_hello at 0x000001C8E4F6E9D0>
-    >>> say_hi            # <function say_hi at 0x000001C8E4F6EB80>
+    def greeting(argument):                   # function as an argument, to_upper, to_lower
+        hello_world = argument("Hello World") # function stored in a variable
+        print(hello_world)
 
-    def greet_fred(greeting):
-        return greeting("Fred")
+    greeting(to_upper) # HELLO WORLD
+    greeting(to_lower) # hello world
 
-    print(greet_fred(say_hello)) # 'Hello Fred' # Note NOT 'say_hello()'
-    print(greet_fred(say_hi))    # 'Hi Fred'    # Note NOT 'say_hi()'
+Returning functions from inside another function.
+
+.. code-block:: python
+
+    def prefix(x):
+        def concatenate(y):
+            return x + ' ' + y
+        return concatenate         # return nested function
+
+    hello_prefix = prefix("Hello") # function stored in a variable with x = "Hello",
+    hello_prefix                   # <function prefix.<locals>.concatenate at 0x000001A4F2ED49A0>
+    print(hello_prefix("World"))   # Hello World
 
 
 Functions and Methods
 ---------------------
 
-A common use is to wrap functions and methods to extend their capabilities.
+A common use is to wrap functions and methods, to extend their capabilities.
 
 .. code-block:: python
 
     def decorator1(func):
         def wrapper(*args,**kwargs):
-            print("before execution")
-            result = func(*args,**kwargs)
-            print("after execution")
+            print("wrapper: before 'func' execution")
+            result = func(*args,**kwargs) # func has variable number of arguments
+            print("wrapper: after 'func' execution")
             return result
-    return wrapper
+        return wrapper
 
     @decorator1
     def addition(a, b):
-        print("inside the function")
+        print(f"addition: {a} + {b}")
         return a + b
 
-    print(addition(7,35))
-    before execution
-    inside the function
-    after execution
+    @decorator1
+    def subtraction(a, b):
+        print(f"subtraction: {a} - {b}")
+        return a - b
+
+    >>> print(addition(35,7))
+    wrapper: before 'func' execution
+    addition: 35 + 7
+    wrapper: after 'func' execution
     42
+    >>> print(subtraction(35,7))
+    wrapper: before 'func' execution
+    subtraction: 35 - 7
+    wrapper: after 'func' execution
+    28
+
 
 * ``*args,**kwargs`` allows a variable number of arguments to be passed to the function
 * ``@`` indicates the decorator function that is being extended
+
+Another simple more realistic execution time example
+
+.. code-block:: python
+
+    import time
+    import math
+
+    def execution_time(func):
+        def wrapper(*args,**kwargs):
+            begin = time.time()
+            result = func(*args,**kwargs) # func has variable number of arguments
+            end = time.time()
+            print(f"execution_time: {func.__name__}, {end - begin}")
+            return result
+        return wrapper
+
+    @execution_time
+    def factorial(num):
+        time.sleep(2) # slow to provide time delta
+        print(math.factorial(num))
+
+    >>> factorial(10)
+    3628800
+    execution_time: factorial, 2.0123209953308105
+
 
 Decorator chaining
 ------------------
