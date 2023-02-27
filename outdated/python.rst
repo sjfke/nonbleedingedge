@@ -112,9 +112,11 @@ various places. The above format is a good basis for starting:
 
 Notice the script has to be executed as ``python <script-name>``, see :ref:`using-shebang`.
 
-**Function definitions** can have *default* arguments values, optional in the function call.
+Function definitions
+    Can have *default* arguments values, optional in the function call.
 
-**Function calls** support *named* and *positional* arguments.
+Function calls
+    Support *named* and *positional* arguments.
 
 The ``Docstrings``, the text between the *triple double-quotes* after the function definition, are important but
 no single agreed format is in use and style varies considerably, see :ref:`python-docstrings`, a single line description is illustrated above, and
@@ -256,6 +258,13 @@ Windows does not support ``shebang``, so the it is omitted from the examples, se
 
 * `Why is it better to use "#!/usr/bin/env NAME" instead of "#!/path/to/NAME" as my shebang? <https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my>`_
 
+How to print to stderr and stdout
+---------------------------------
+
+Quick Red fox jumped over the lazy Brown dog.
+
+* [stdout, stderr](https://www.geeksforgeeks.org/how-to-print-to-stderr-and-stdout-in-python/)
+
 =====================
 Language Key Features
 =====================
@@ -263,11 +272,11 @@ Language Key Features
 Lists
 -----
 
+* Mutable
+* Ordered collections of arbitrary objects, accessed by offset
+* Variable length, heterogeneous, arbitrarily nestable
 * `Data Structures: Lists <https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>`_
 * `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
-* mutable
-* ordered collections of arbitrary objects, accessed by offset
-* variable length, heterogeneous, arbitrarily nestable
 
 .. code-block:: python
 
@@ -314,11 +323,11 @@ Lists
 Dictionaries
 ------------
 
+* Mutable
+* Unordered collections of arbitrary objects, accessed by key
+* Variable length, heterogeneous, arbitrarily nestable
 * `Data Structures: Dictionaries <https://docs.python.org/3/tutorial/datastructures.html#dictionaries>`_
 * `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
-* mutable
-* unordered collections of arbitrary objects, accessed by key
-* variable length, heterogeneous, arbitrarily nestable
 
 .. code-block:: python
 
@@ -384,12 +393,12 @@ Dictionaries
 Tuples and Sequences
 --------------------
 
+* Immutable
+* Ordered collections of arbitrary objects, accessed by offset
+* Variable length, heterogeneous, arbitrarily nestable
+* Can be used as dictionary keys
 * `Data Structures: Tuples and Sequences <https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences>`_
 * `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
-* immutable
-* ordered collections of arbitrary objects, accessed by offset
-* variable length, heterogeneous, arbitrarily nestable
-* can be used as dictionary keys
 
 .. code-block:: python
 
@@ -424,6 +433,12 @@ Tuples and Sequences
 Sets
 ----
 
+* Mutable, but its elements are immutable and unique
+* Unordered collections of arbitrary objects, accessed by key
+* Variable length, heterogeneous, arbitrarily nestable
+* `RealPython: Sets in Python <https://realpython.com/python-sets/>`_
+* `GeeksForGeeks: Sets in Python <https://www.geeksforgeeks.org/sets-in-python/>`_
+
 .. code-block:: python
 
     S0 = set()
@@ -446,43 +461,87 @@ Sets
     'fred' in S1    # True
     'freddie' in S1 # False
 
-    # https://realpython.com/python-sets/
-    # x.add(<elem>)
-    # x.remove(<elem>)
-    # x.discard(<elem>)
-    # x.pop()
-    # x.clear()
-    # x = frozenset(['foo', 'bar', 'baz'])
-    # x & {'baz', 'qux', 'quux'} # frozenset({'baz'})
+    S1.add('dino')     # {'pebbles', 'barney', 'wilma', 'fred', 'bam-bam', 'dino', 'betty'}
+    S1.remove('dino')  # {'pebbles', 'barney', 'wilma', 'fred', 'bam-bam', 'betty'}
+    S1.remove('dino')  # KeyError: 'dino'
+    S1.discard('dino') # Ignores missing key
+    S1.pop()           # 'pebbles' pops random element from set
+    S1.clear()         # removes all elements from set
+
+    FS1 = frozenset(['fred','wilma','pebbles']) # immutable
+    type(FS1)          # <class 'frozenset'>
+    FS1.add('dino')    # AttributeError: 'frozenset' object has no attribute 'add'
+    FS1 & {'fred'}     # returns frozenset({'fred'})
+    FS1 & {'dino'}     # returns empty frozenset()
+
+Available Operators and Methods
+
+.. code-block:: python
 
     a = {1, 2, 3, 4}
     b = {2, 3, 4, 5}
     c = {3, 4, 5, 6}
     d = {4, 5, 6, 7}
 
-    a.union(b)            # {1, 2, 3, 4, 5}
-    a | b                 # {1, 2, 3, 4, 5}
-    a.union((2, 3, 4, 5)) # {1, 2, 3, 4, 5}
-    a | (2, 3, 4, 5)      # TypeError: unsupported operand type(s) for |: 'set' and 'tuple'
-    a | {2, 3, 4, 5}      # {1, 2, 3, 4, 5}
+    a.union(b)                # {1, 2, 3, 4, 5}
+    a | b                     # {1, 2, 3, 4, 5}
+    a.union((2, 3, 4, 5))     # {1, 2, 3, 4, 5}
+    a | {2, 3, 4, 5}          # {1, 2, 3, 4, 5}
+    a | (2, 3, 4, 5)          # TypeError: unsupported operand type(s) for |: 'set' and 'tuple'
 
-    a.intersection(b)       # {2, 3, 4}
-    a & b                   # {2, 3, 4}
-    a.intersection(b,c)     # {3, 4}
-    a & b & c               # {3, 4}
-    a.intersection(b,c,d)   # {4}
-    a & b & c & d           # {4}
+    a.intersection(b)         # {2, 3, 4}
+    a & b                     # {2, 3, 4}
+    a.intersection(b,c)       # {3, 4}
+    a & b & c                 # {3, 4}
+    a.intersection(b,c,d)     # {4}
+    a & b & c & d             # {4}
 
-    # https://realpython.com/python-sets/
-    # x1.difference(x2)
-    # x1.symmetric_difference(x2)
-    # x1.isdisjoint(x2)
-    # x1.issubset(x2)
-    # x1.issuperset(x2)
-    # x1.update(x2[, x3 ...])
-    # x1.intersection_update(x2[, x3 ...])
-    # x1.difference_update(x2[, x3 ...])
-    # x1.symmetric_difference_update(x2)
+    a.difference(b)           # {1} elements in 'a' but not in 'b'
+    a - b                     # {1} elements in 'a' but not in 'b'
+
+    a.symmetric_difference(b) # {1, 5} elements in 'a' or 'b', but not both
+    a ^ b                     # {1, 5} elements in 'a' or 'b', but not both
+
+.. code-block:: python
+
+    a = {1, 2, 3, 4}
+    b = {2, 3, 4, 5}
+    e = {6, 7, 8, 9}
+    f = {1, 2, 3}
+
+    a.isdisjoint(b)  # False, has {2, 3, 4} in both
+    a.isdisjoint(e)  # True, has no common elements
+
+    a.issubset(f)    # False, (subset) every element of 'a' is in 'f'
+    a <= f           # False, (subset) every element of 'a' is in 'f'
+    a < f            # False, (proper subset) every element of 'a' is in 'f'; 'a' and 'f' are not equal.
+
+    a.issuperset(f)  # True, (superset) 'a' contains every element of 'f'
+    a >= f           # True, (superset) 'a' contains every element of 'f'
+    a > f            # True, (proper superset) 'a' contains every element of 'f'; 'a' and 'f' are not equal
+
+Augmented Assignment Operators and Methods
+
+.. code-block:: python
+
+    a = {1, 2, 3, 4}
+    b = {2, 3, 4, 5}
+
+    a.update(b)                      # {1, 2, 3, 4, 5}
+    a |= b                           # {1, 2, 3, 4, 5}
+
+    a = {1, 2, 3, 4}                 # reset 'a', a = {1, 2, 3, 4}
+    a.intersection_update(b)         # {2, 3, 4}
+    a &= b                           # {2, 3, 4}
+
+    a = {1, 2, 3, 4}                 # reset 'a', a = {1, 2, 3, 4}
+    a.difference_update(b)           # {1}
+    a -= b                           # {1}
+
+    a = {1, 2, 3, 4}                 # reset 'a', a = {1, 2, 3, 4}
+    a.symmetric_difference_update(b) # {1, 5}
+    a ^= b                           # {1, 5}
+
 
 Heapq (binary tree)
 -------------------
