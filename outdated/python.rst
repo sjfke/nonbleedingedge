@@ -1427,26 +1427,46 @@ Decorator chaining
 Python Environments
 ===================
 
-VirtualEnv
-----------
+If using `UNIX`, `Linux` or `MacOS` there is a version of Python installed and used by the operating system.
+Your own work should not interfere with this so it is normal to use your own environment, see
 
-.. note:: add example and links
+* `The Hitchhicker's Guide to Python: Pipenv & Virtual Environments <https://docs.python-guide.org/dev/virtualenvs/>`_
+
+On Windows various Python releases are available from `Microsoft App Store <https://apps.microsoft.com/store/apps>`_.
+These releases do not have `pipenv`, only `python` and `idle3` so use `VirtualEnv` with an IDE like:
+
+* `PyCharm Community Edition Download <https://www.jetbrains.com/pycharm/download/#section=windows>`_
+* `Eclipse Download <https://www.eclipse.org/downloads/>`_ and `PyDev <https://www.pydev.org/>`_
 
 Pipenv
 ------
 
-* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
-* `Basic Usage <https://pipenv.readthedocs.io/en/latest/>`_
-* `Advanced Usage <https://pipenv.readthedocs.io/en/latest/advanced/#configuration-with-environment-variables>`_
-* `Which VirtualEnv <https://github.com/pypa/pipenv/issues/796>`_
+* `Github: Pipenv <https://github.com/pypa/pipenv>`_
+* `The Hitchhicker's Guide to Python: Basic Usage <https://pipenv.pypa.io/en/latest/basics/>`_
+* `The Hitchhicker's Guide to Python: Advanced Usage <https://pipenv.pypa.io/en/latest/advanced/>`_
 
-Using pipenv with Eclipse PyDev
+.. code-block:: shell
+
+    $ cd myproject
+    $ pipenv --python 3           # Create a virtual env and install dependencies (if it does not exist already)
+    $ pipenv install <package>    # Add the package to the virtual environment and to Pipfile and Pipfile.lock
+    $ pipenv uninstall <package>  # Will remove the <package>
+    $ pipenv lock                 # Regenerate Pipfile.lock and updates the dependencies inside it
+    $ pipenv graph                # Show you a dependency graph of installed dependencies
+    $ pipenv shell                # Spawn a shell with the virtualenv activated, deactivated by using exit
+    $ pipenv run <program.py>     # Run a <program.py> from the virtualenv, with any arguments forwarded
+    $ pipenv check                # Checks for security vulnerabilities, asserts PEP 508 requirements
+
+
+Eclipse/PyDev
+
+Setup a new Python project in Eclipse, and change the project to use it.
 
 .. code-block:: shell
 
     $ export PIPENV_VENV_IN_PROJECT=1 # force creation of '.venv' in project
     $ cd <eclipse-workspace>/<project>
-    $ pipenv --three             # python3 project
+    $ pipenv --python 3          # python3 project
     $ pipenv install <package>   # updates the Pipfile
     $ pipenv uninstall <package> # updates the Pipfile
     $ pipenv --rm                # remove virtualenv
@@ -1455,9 +1475,61 @@ Using pipenv with Eclipse PyDev
     $ pipenv check               # PEP8 check of the Pipfile
 
 
-Setup a new Python interpreter in Eclipse, and change the project to use it.
+VirtualEnv
+----------
 
-* `PyDev and virtualenv <https://www.michaelpollmeier.com/eclipse-pydev-and-virtualenv>`_
+* `RealPython: Python Virtual Environments: A Primer <https://realpython.com/python-virtual-environments-a-primer/>`_
+* `Python: venv — Creation of virtual environments <https://docs.python.org/3/library/venv.html>`_
+* `PyPA: PIP - Python Packaging User Guide <https://packaging.python.org/en/latest/>`_
+
+The example below is for Windows, but will also work on `UNIX`, `Linux` or `MacOS`, with the exception
+of the PowerShell `get-command`.
+
+.. code-block:: powershell
+
+    PS> mkdir myproject
+    PS> cd myproject
+    PS> python -m venv venv
+    PS> venv\Scripts\activate
+
+    (venv) PS> get-command python | format-list
+    Name            : python.exe
+    CommandType     : Application
+    Definition      : C:\Users\sjfke\sandbox\Python\myproject\venv\Scripts\python.exe
+    Extension       : .exe
+    Path            : C:\Users\sjfke\sandbox\Python\myproject\venv\Scripts\python.exe
+    FileVersionInfo : File:             C:\Users\sjfke\sandbox\Python\myproject\venv\Scripts\python.exe
+                      InternalName:     Python Launcher
+                      OriginalFilename: py.exe
+                      FileVersion:      3.9.13
+                      FileDescription:  Python
+                      Product:          Python
+                      ProductVersion:   3.9.13
+                      Debug:            False
+                      Patched:          False
+                      PreRelease:       False
+                      PrivateBuild:     False
+                      SpecialBuild:     False
+                      Language:         Language Neutral
+
+    (venv) PS> pip install flask
+
+    (venv) PS> flask --version
+    Python 3.9.13
+    Flask 2.2.3
+    Werkzeug 2.2.3
+
+    (venv) PS> pip uninstall flask
+    Found existing installation: Flask 2.2.3
+    Uninstalling Flask-2.2.3:
+      Would remove:
+        c:\users\sjfke\sandbox\python\myproject\venv\lib\site-packages\flask-2.2.3.dist-info\*
+        c:\users\sjfke\sandbox\python\myproject\venv\lib\site-packages\flask\*
+        c:\users\sjfke\sandbox\python\myproject\venv\scripts\flask.exe
+
+    (venv) PS> deactivate
+    PS>
+
 
 ============
 Useful Links
