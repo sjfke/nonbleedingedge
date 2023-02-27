@@ -258,12 +258,21 @@ Windows does not support ``shebang``, so the it is omitted from the examples, se
 
 * `Why is it better to use "#!/usr/bin/env NAME" instead of "#!/path/to/NAME" as my shebang? <https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my>`_
 
-How to print to stderr and stdout
----------------------------------
+Print to stderr and stdout
+--------------------------
 
-Quick Red fox jumped over the lazy Brown dog.
+From `sys — System-specific parameters and functions <https://docs.python.org/3/library/sys.html>`_
+    `sys.stdin`, `sys.stdout`, `sys.stderr`, file objects used for standard input, output and errors.
 
-* [stdout, stderr](https://www.geeksforgeeks.org/how-to-print-to-stderr-and-stdout-in-python/)
+.. code-block:: python
+
+    import sys
+
+    a = 'fred'
+    print(f"hello, {a}")                  # 'hello, fred' (stdout)
+    print(f"hello, {a}", file=sys.stdout) # 'hello, fred' (stdout)
+    print(f"hello, {a}", file=sys.stderr) # 'hello, fred' (stderr)
+
 
 =====================
 Language Key Features
