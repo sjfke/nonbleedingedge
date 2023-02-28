@@ -35,7 +35,7 @@ Notable changes from 3.10 include increased program execution speed and improved
 Example Python Script
 =====================
 
-An overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
+An overly simple example, `flintstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
 
 .. code-block:: python
 
@@ -305,7 +305,9 @@ Lists
 
     L2 + L3                         # Concatenation -> [0, 1, 2, 3, 'abc', ['def', 'ghi']]
     L2 * 3                          # Repetition -> [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
-    for x in L2: print(x)           # Iteration
+    for x in L2:                    # Iteration
+         print(x)
+
     3 in L2                         # Membership -> True (False)
 
     L2.append(7)                    # [0, 1, 2, 3, 7]
@@ -320,12 +322,20 @@ Lists
     L2[2] = 2                       # [7, 2, 2, 4]
     L2[1:2] = [1,3]                 # [7, 1, 3, 2, 4]
 
-    L5 = range(4)                   # range(0, 4)
+    L5 = list(range(4))             # range(0, 4)
+    range(0,10)                     # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    range(0,10,2)                   # [0, 2, 4, 6, 8]
+    range(-5,5)                     # [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4]
+    range(5,-5,-1)                  # [5, 4, 3, 2, 1, 0, -1, -2, -3, -4]
 
-    for x in range(0,4): print(x)   # 0, 1, 2, 3, return object (not list) slightly faster
+    for x in range(0,4):            # 0, 1, 2, 3, return object (not list) slightly faster
+        print(x)
+
     L4 = [x**2 for x in range(5)]   # [0, 1, 4, 9, 16]
 
-    textstr = ''.join(map(str, L2)) # '71324', convert List into a string concatenated with ''
+    text = ''.join(map(str, L2))    # '71324', convert List into a string concatenated with ''
+    type(L1)                        # <class 'list'>
+    type(L3)                        # <class 'list'>
     isinstance(L1, list)            # True, it is a list object
     isinstance(L1, dict)            # False, it is a dict object
 
@@ -394,13 +404,17 @@ Dictionaries
     print(D3['food'].__class__.__name__)         # dict
     print(D3['food']['eggs'].__class__.__name__) # int
 
+    type(D1)                                     # <class 'dict'>
+    type(D3)                                     # <class 'dict'>
+    type(D3['food'])                             # <class 'dict'>
+    type(D3['food']['eggs'])                     # <class 'int'>
     isinstance(D3, dict)                         # True
     isinstance(D3['food'], dict)                 # True
     isinstance(D3['food']['eggs'], dict)         # False
 
 
-Tuples and Sequences
---------------------
+Tuples
+------
 
 * Immutable
 * Ordered collections of arbitrary objects, accessed by offset
@@ -439,10 +453,14 @@ Tuples and Sequences
     for x in t2:                    # iteration
         print x                     # 0 \n Ni \n 1.2 \n 3
 
+    type(t0)                        # <class 'tuple'>
+    type(t3)                        # <class 'tuple'>
+    isinstance(t3, tuple)           # True
+
 Sets
 ----
 
-* Mutable, but its elements are immutable and unique
+* Mutable, but the elements are immutable and unique
 * Unordered collections of arbitrary objects, accessed by key
 * Variable length, heterogeneous, arbitrarily nestable
 * `RealPython: Sets in Python <https://realpython.com/python-sets/>`_
@@ -451,8 +469,6 @@ Sets
 .. code-block:: python
 
     S0 = set()
-    type(S0)   # <class 'set'>
-
     S1 = set(['fred','wilma','pebbles','barney','betty','bam-bam']) # List iterable
     S2 = set(('fred','wilma','pebbles','barney','betty','bam-bam')) # Tuple iterable
     S3 = {'fred','wilma','pebbles','barney','betty','bam-bam'}      # Dict iterable
@@ -467,21 +483,28 @@ Sets
     bool(S0) # False - empty set
     bool(S1) # True  - non-empty set
 
-    'fred' in S1    # True
-    'freddie' in S1 # False
+    'fred' in S1        # True
+    'freddie' in S1     # False
+
+    type(S0)            # <class 'set'>
+    type(S1)            # <class 'set'>
+    isinstance(S1, set) # True
 
     S1.add('dino')     # {'pebbles', 'barney', 'wilma', 'fred', 'bam-bam', 'dino', 'betty'}
     S1.remove('dino')  # {'pebbles', 'barney', 'wilma', 'fred', 'bam-bam', 'betty'}
     S1.remove('dino')  # KeyError: 'dino'
     S1.discard('dino') # Ignores missing key
-    S1.pop()           # 'pebbles' pops random element from set
+    S1.pop()           # 'pebbles', pops random element from set
     S1.clear()         # removes all elements from set
 
-    FS1 = frozenset(['fred','wilma','pebbles']) # immutable
-    type(FS1)          # <class 'frozenset'>
-    FS1.add('dino')    # AttributeError: 'frozenset' object has no attribute 'add'
-    FS1 & {'fred'}     # returns frozenset({'fred'})
-    FS1 & {'dino'}     # returns empty frozenset()
+    FS1 = frozenset(['fred','wilma','pebbles']) # set is immutable
+    type(FS1)                   # <class 'frozenset'>
+    isinstance(FS1, frozenset)  # True
+
+    FS1.add('dino')     # AttributeError: 'frozenset' object has no attribute 'add'
+    FS1.remove('dino')  # AttributeError: 'frozenset' object has no attribute 'add'
+    FS1 & {'fred'}      # returns frozenset({'fred'})
+    FS1 & {'dino'}      # returns empty frozenset()
 
 Available Operators and Methods
 
@@ -569,6 +592,8 @@ Heaps are binary trees for which every parent node has a value less than or equa
     for item in data:
         heapq.heappush(heap, item)
 
+    type(heap) # <class 'list'>
+
     heap = [11, 3, 15, 7, 9, 23, 4, 6, 8, 10]
     heapq.heapify(heap)  # [3, 6, 4, 7, 9, 23, 15, 11, 8, 10]
 
@@ -593,6 +618,60 @@ Heaps are binary trees for which every parent node has a value less than or equa
     print('nsmallest(3): {0}'.format(heapq.nsmallest(3, heap))) # [(1, 'J'), (2, 'O'), (3, 'H')]
 
     smallest_item = heapq.heappop(heap) # (1, 'J')
+
+String Formatting
+-----------------
+
+Python string formatting has evolved starting with `%`, then `.format()`, and now `f"text{variable}"`.
+
+A string can be enclosed in `"` (double-quote) or `'`'` (single-quote), for consistency the examples use
+double-quote.
+
+* `Using % and .format() for great good! <https://pyformat.info/>`_
+* `Python 3's f-Strings: An Improved String Formatting Syntax (Guide) <https://realpython.com/python-f-strings/>`_
+
+.. code-block:: python
+
+    a = 'one'; b = 'two'
+    print("%s %s" % (a, b))     # one two
+    print("{} {}".format(a, b)) # one two
+    print(f"{a} {b}")           # one two
+
+    # Padding (10) and aligning strings
+    c = 'short'; d = 'long string with more text'
+    print("%10s;%10s" % (c,d))           #      short;long string with more text
+    print("{:10};{:10}".format(c,d))     #      short;long string with more text
+    print(f"{c:10};{d:10}")              #      short;long string with more text
+
+    print("%-10s;%-10s" % (c,d))         # short     ;long string with more text
+    print("{:>10};{:>10}".format(c,d))   # short     ;long string with more text
+    print(f"{c:>10};{d:>10}")            # short     ;long string with more text
+
+    print("{:_<10};{:_<10}".format(c,d)) # short_____;long string with more text
+    print(f"{c:_<10};{d:_<10}")          # short_____;long string with more text
+
+    print("{:^10};{:^10}".format(c,d))   #   short   ;long string with more text
+    print(f"{c:^10};{d:^10}")            #   short   ;long string with more text
+
+    # Truncating (7) long strings
+    print("%.7s;%.7s" % (c,d))           # short;long st
+    print("{:.7};{:.7}".format(c,d))     # short;long st
+    print(f"{c:.7};{d:.7}")              # short;long st
+
+    # Truncating (7) and padding (10) long strings
+    print("%-10.7s;%-10.7s" % (c,d))     # short     ;long st
+    print("{:10.7};{:10.7}".format(c,d)) # short     ;long st
+    print(f"{c:10.7};{d:10.7}")          # short     ;long st
+
+    # Numbers
+    n = 42;  pi = 3.141592653589793
+    print("%d;%d" % (n, pi))             # 42;3
+    print("%d;%f" % (n, pi))             # 42;3.141593
+    print("{:d};{:d}".format(n,pi))      # ValueError: Unknown format code 'd' for object of type 'float'
+    print("{:d};{:f}".format(n,pi))      # 42;3.141593
+    print(f"{n:d}")                      # 42
+    print(f"{n:d};{pi:d}")               # ValueError: Unknown format code 'd' for object of type 'float'
+    print(f"{n:d};{pi:f}")               # 42;3.141593
 
 
 Reading and Writing Files
@@ -881,6 +960,11 @@ Checking what an object is:
     print(t.__class__.__name__) # tuple
     print(s.__class__.__name__) # str
 
+    type(L)                     # <class 'list'>
+    type(D)                     # <class 'dict'>
+    type(t)                     # <class 'tuple'>
+    type(s)                     # <class 'str'>
+
     isinstance (object, classinfo)
 
     isinstance('fred', str)               # True
@@ -899,8 +983,8 @@ Checking what an object is:
 
     L = [1,2,3]
     T = (1, 2, 3)
-    isinstance(L, (list, tuple))          # True
-    isinstance(T, (list, tuple))          # True
+    isinstance(L, (list, tuple))          # True, because it is a list
+    isinstance(T, (list, tuple))          # True, because it is a tuple
 
 IF statements
 -------------
