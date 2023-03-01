@@ -622,13 +622,27 @@ Heaps are binary trees for which every parent node has a value less than or equa
 String Formatting
 -----------------
 
-Python string formatting has evolved starting with `%`, then `.format()`, and now `f"text{variable}"`.
+Python string formatting has evolved over the years, and while all three formats are supported
+in Python3, the ***f-string*** format is the one that should be used.
+
+#. **"** *<format-str>* **" % (** *<variable(s)>* **)**
+#. **"** *<format-str>*"**.format(** *<variable(s)>* **)**
+#. **f"{** *<variable>* **:** *<format-str>* **}"**
 
 A string can be enclosed in `"` (double-quote) or `'`'` (single-quote), for consistency the examples use
 double-quote.
 
-* `Using % and .format() for great good! <https://pyformat.info/>`_
-* `Python 3's f-Strings: An Improved String Formatting Syntax (Guide) <https://realpython.com/python-f-strings/>`_
+* `Pyformat: Using % and .format() for great good! <https://pyformat.info/>`_
+* `RealPython: Python 3's f-Strings: An Improved String Formatting Syntax (Guide) <https://realpython.com/python-f-strings/>`_
+* `Python: Input and Output - Fancier Output Formatting <https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting>`_
+* `Python: Formatted string literals <https://docs.python.org/3/reference/lexical_analysis.html#f-strings>`_
+
+For Docstrings:
+
+* `use str() for __str__ <https://docs.python.org/3/library/stdtypes.html#str>`_
+* `use repr() for __repr__ <https://docs.python.org/3/library/functions.html#repr>`_
+
+Strings
 
 .. code-block:: python
 
@@ -663,8 +677,11 @@ double-quote.
     print("{:10.7};{:10.7}".format(c,d)) # short     ;long st
     print(f"{c:10.7};{d:10.7}")          # short     ;long st
 
-    # Numbers
-    n = 42;  pi = 3.141592653589793
+Numbers
+
+.. code-block:: python
+
+    n = 42; N = -42; pi = 3.141592653589793
     print("%d;%d" % (n, pi))             # 42;3
     print("%d;%f" % (n, pi))             # 42;3.141593
     print("{:d};{:d}".format(n,pi))      # ValueError: Unknown format code 'd' for object of type 'float'
@@ -672,6 +689,58 @@ double-quote.
     print(f"{n:d}")                      # 42
     print(f"{n:d};{pi:d}")               # ValueError: Unknown format code 'd' for object of type 'float'
     print(f"{n:d};{pi:f}")               # 42;3.141593
+
+    # Padding numbers
+    print("%7d;%7d" % (n, pi))            #      42;      3
+    print("%7d;%7.2f" % (n, pi))          #      42;   3.14
+    print("{:7d};{:7.2f}".format(n,pi))   #      42;   3.14
+    print(f"{n:7d};{pi:7.2f}")            #      42;   3.14
+
+    print("%07d;%07d" % (n, pi))          # 0000042;0000003
+    print("%07d;%07.2f" % (n, pi))        # 0000042;0003.14
+    print("{:07d};{:07.2f}".format(n,pi)) # 0000042;0003.14
+    print(f"{n:07d};{pi:07.2f}")          # 0000042;0003.14
+
+    # Signed numbers
+    n = 42;  N = -42 pi = 3.141592653589793
+    print("%+d;%+d" % (n, N))             # +42;-42
+    print("% d;% d" % (n, N))             #  42;-42
+    print("%+d;%+7.2f" % (n, pi))         # +42;  +3.14
+
+    print("{:+d};{:+d}".format(n,N))      # +42;-42
+    print("{: d};{: d}".format(n,N))      #  42;-42
+    print("{:+d};{:+7.2f}".format(n,pi))  # +42;  +3.14
+    print("{:=5d};{:=5d}".format(n,N))    #    42;-  42
+
+    print(f"{n:+d};{N:+d}")               # +42;-42
+    print(f"{n: d};{N: d}")               #  42;-42
+    print(f"{n:+d};{pi:+07.2f}")          # +42;+003.14
+    print(f"{n:=5d};{N:=5d}")             #    42;-  42
+
+Miscellaneous
+
+.. code-block:: python
+
+    name = {'first': 'Fred', 'last': 'Flintstone'}
+    print("%(first)s %(last)s" % name)                                   # Fred Flintstone
+    print("{first} {last}".format(**name))                               # Fred Flintstone
+    print("{p[first]} {p[last]}".format(p=name))                         # Fred Flintstone
+    print(f"{name['first']} {name['last']}")                             # Fred Flintstone
+    print(f"{name['first'].lower()} {name['last'].lower()}")             # fred flintstone
+
+    from datetime import datetime
+    now = datetime.now()
+    print(now)                                                           # 2023-03-01 16:50:03.393791
+    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 16:50
+    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 16:50
+    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 16:50
+
+    from datetime import date
+    today = date.today()
+    print(today)                                                         # 2023-03-01
+    print("{:%B %d %Y}".format(today))                                   # March 01 2023
+    print("{:{dfmt}}".format(today, dfmt="%B %d %Y"))                    # March 01 2023
+    print(f"{today:%B %d %Y}")                                           # March 01 2023
 
 
 Reading and Writing Files
