@@ -35,7 +35,7 @@ Notable changes from 3.10 include increased program execution speed and improved
 Example Python Script
 =====================
 
-An overly simple example, `flinstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
+An overly simple example, `flintstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
 
 .. code-block:: python
 
@@ -112,9 +112,11 @@ various places. The above format is a good basis for starting:
 
 Notice the script has to be executed as ``python <script-name>``, see :ref:`using-shebang`.
 
-**Function definitions** can have *default* arguments values, optional in the function call.
+Function definitions
+    Can have *default* arguments values, optional in the function call.
 
-**Function calls** support *named* and *positional* arguments.
+Function calls
+    Support *named* and *positional* arguments.
 
 The ``Docstrings``, the text between the *triple double-quotes* after the function definition, are important but
 no single agreed format is in use and style varies considerably, see :ref:`python-docstrings`, a single line description is illustrated above, and
@@ -256,6 +258,22 @@ Windows does not support ``shebang``, so the it is omitted from the examples, se
 
 * `Why is it better to use "#!/usr/bin/env NAME" instead of "#!/path/to/NAME" as my shebang? <https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my>`_
 
+Print to stderr and stdout
+--------------------------
+
+From `sys — System-specific parameters and functions <https://docs.python.org/3/library/sys.html>`_
+    `sys.stdin`, `sys.stdout`, `sys.stderr`, file objects used for standard input, output and errors.
+
+.. code-block:: python
+
+    import sys
+
+    a = 'fred'
+    print(f"hello, {a}")                  # 'hello, fred' (stdout)
+    print(f"hello, {a}", file=sys.stdout) # 'hello, fred' (stdout)
+    print(f"hello, {a}", file=sys.stderr) # 'hello, fred' (stderr)
+
+
 =====================
 Language Key Features
 =====================
@@ -263,11 +281,11 @@ Language Key Features
 Lists
 -----
 
+* Mutable
+* Ordered collections of arbitrary objects, accessed by offset
+* Variable length, heterogeneous, arbitrarily nestable
 * `Data Structures: Lists <https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>`_
 * `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
-* mutable
-* ordered collections of arbitrary objects, accessed by offset
-* variable length, heterogeneous, arbitrarily nestable
 
 .. code-block:: python
 
@@ -287,7 +305,9 @@ Lists
 
     L2 + L3                         # Concatenation -> [0, 1, 2, 3, 'abc', ['def', 'ghi']]
     L2 * 3                          # Repetition -> [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
-    for x in L2: print(x)           # Iteration
+    for x in L2:                    # Iteration
+         print(x)
+
     3 in L2                         # Membership -> True (False)
 
     L2.append(7)                    # [0, 1, 2, 3, 7]
@@ -302,23 +322,31 @@ Lists
     L2[2] = 2                       # [7, 2, 2, 4]
     L2[1:2] = [1,3]                 # [7, 1, 3, 2, 4]
 
-    L5 = range(4)                   # range(0, 4)
+    L5 = list(range(4))             # range(0, 4)
+    range(0,10)                     # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    range(0,10,2)                   # [0, 2, 4, 6, 8]
+    range(-5,5)                     # [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4]
+    range(5,-5,-1)                  # [5, 4, 3, 2, 1, 0, -1, -2, -3, -4]
 
-    for x in range(0,4): print(x)   # 0, 1, 2, 3, return object (not list) slightly faster
+    for x in range(0,4):            # 0, 1, 2, 3, return object (not list) slightly faster
+        print(x)
+
     L4 = [x**2 for x in range(5)]   # [0, 1, 4, 9, 16]
 
-    textstr = ''.join(map(str, L2)) # '71324', convert List into a string concatenated with ''
+    text = ''.join(map(str, L2))    # '71324', convert List into a string concatenated with ''
+    type(L1)                        # <class 'list'>
+    type(L3)                        # <class 'list'>
     isinstance(L1, list)            # True, it is a list object
     isinstance(L1, dict)            # False, it is a dict object
 
 Dictionaries
 ------------
 
+* Mutable
+* Unordered collections of arbitrary objects, accessed by key
+* Variable length, heterogeneous, arbitrarily nestable
 * `Data Structures: Dictionaries <https://docs.python.org/3/tutorial/datastructures.html#dictionaries>`_
 * `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
-* mutable
-* unordered collections of arbitrary objects, accessed by key
-* variable length, heterogeneous, arbitrarily nestable
 
 .. code-block:: python
 
@@ -376,20 +404,24 @@ Dictionaries
     print(D3['food'].__class__.__name__)         # dict
     print(D3['food']['eggs'].__class__.__name__) # int
 
+    type(D1)                                     # <class 'dict'>
+    type(D3)                                     # <class 'dict'>
+    type(D3['food'])                             # <class 'dict'>
+    type(D3['food']['eggs'])                     # <class 'int'>
     isinstance(D3, dict)                         # True
     isinstance(D3['food'], dict)                 # True
     isinstance(D3['food']['eggs'], dict)         # False
 
 
-Tuples and Sequences
---------------------
+Tuples
+------
 
+* Immutable
+* Ordered collections of arbitrary objects, accessed by offset
+* Variable length, heterogeneous, arbitrarily nestable
+* Can be used as dictionary keys
 * `Data Structures: Tuples and Sequences <https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences>`_
 * `Data Structures: Looping techniques <https://docs.python.org/3/tutorial/datastructures.html#looping-techniques>`_
-* immutable
-* ordered collections of arbitrary objects, accessed by offset
-* variable length, heterogeneous, arbitrarily nestable
-* can be used as dictionary keys
 
 .. code-block:: python
 
@@ -421,6 +453,128 @@ Tuples and Sequences
     for x in t2:                    # iteration
         print x                     # 0 \n Ni \n 1.2 \n 3
 
+    type(t0)                        # <class 'tuple'>
+    type(t3)                        # <class 'tuple'>
+    isinstance(t3, tuple)           # True
+
+Sets
+----
+
+* Mutable, but the elements are immutable and unique
+* Unordered collections of arbitrary objects, accessed by key
+* Variable length, heterogeneous, arbitrarily nestable
+* `RealPython: Sets in Python <https://realpython.com/python-sets/>`_
+* `GeeksForGeeks: Sets in Python <https://www.geeksforgeeks.org/sets-in-python/>`_
+
+.. code-block:: python
+
+    S0 = set()
+    S1 = set(['fred','wilma','pebbles','barney','betty','bam-bam']) # List iterable
+    S2 = set(('fred','wilma','pebbles','barney','betty','bam-bam')) # Tuple iterable
+    S3 = {'fred','wilma','pebbles','barney','betty','bam-bam'}      # Dict iterable
+    S4 = {42, 'foo', 3.14159, None}                                 # mixed content
+
+    L1 = ['fred','wilma','pebbles','barney','betty','bam-bam']
+    S11 = set(L1)
+
+    t2 = ('fred','wilma','pebbles','barney','betty','bam-bam')
+    S12 = set(t2)
+
+    bool(S0) # False - empty set
+    bool(S1) # True  - non-empty set
+
+    'fred' in S1        # True
+    'freddie' in S1     # False
+
+    type(S0)            # <class 'set'>
+    type(S1)            # <class 'set'>
+    isinstance(S1, set) # True
+
+    S1.add('dino')     # {'pebbles', 'barney', 'wilma', 'fred', 'bam-bam', 'dino', 'betty'}
+    S1.remove('dino')  # {'pebbles', 'barney', 'wilma', 'fred', 'bam-bam', 'betty'}
+    S1.remove('dino')  # KeyError: 'dino'
+    S1.discard('dino') # Ignores missing key
+    S1.pop()           # 'pebbles', pops random element from set
+    S1.clear()         # removes all elements from set
+
+    FS1 = frozenset(['fred','wilma','pebbles']) # set is immutable
+    type(FS1)                   # <class 'frozenset'>
+    isinstance(FS1, frozenset)  # True
+
+    FS1.add('dino')     # AttributeError: 'frozenset' object has no attribute 'add'
+    FS1.remove('dino')  # AttributeError: 'frozenset' object has no attribute 'add'
+    FS1 & {'fred'}      # returns frozenset({'fred'})
+    FS1 & {'dino'}      # returns empty frozenset()
+
+Available Operators and Methods
+
+.. code-block:: python
+
+    a = {1, 2, 3, 4}
+    b = {2, 3, 4, 5}
+    c = {3, 4, 5, 6}
+    d = {4, 5, 6, 7}
+
+    a.union(b)                # {1, 2, 3, 4, 5}
+    a | b                     # {1, 2, 3, 4, 5}
+    a.union((2, 3, 4, 5))     # {1, 2, 3, 4, 5}
+    a | {2, 3, 4, 5}          # {1, 2, 3, 4, 5}
+    a | (2, 3, 4, 5)          # TypeError: unsupported operand type(s) for |: 'set' and 'tuple'
+
+    a.intersection(b)         # {2, 3, 4}
+    a & b                     # {2, 3, 4}
+    a.intersection(b,c)       # {3, 4}
+    a & b & c                 # {3, 4}
+    a.intersection(b,c,d)     # {4}
+    a & b & c & d             # {4}
+
+    a.difference(b)           # {1} elements in 'a' but not in 'b'
+    a - b                     # {1} elements in 'a' but not in 'b'
+
+    a.symmetric_difference(b) # {1, 5} elements in 'a' or 'b', but not both
+    a ^ b                     # {1, 5} elements in 'a' or 'b', but not both
+
+.. code-block:: python
+
+    a = {1, 2, 3, 4}
+    b = {2, 3, 4, 5}
+    e = {6, 7, 8, 9}
+    f = {1, 2, 3}
+
+    a.isdisjoint(b)  # False, has {2, 3, 4} in both
+    a.isdisjoint(e)  # True, has no common elements
+
+    a.issubset(f)    # False, (subset) every element of 'a' is in 'f'
+    a <= f           # False, (subset) every element of 'a' is in 'f'
+    a < f            # False, (proper subset) every element of 'a' is in 'f'; 'a' and 'f' are not equal.
+
+    a.issuperset(f)  # True, (superset) 'a' contains every element of 'f'
+    a >= f           # True, (superset) 'a' contains every element of 'f'
+    a > f            # True, (proper superset) 'a' contains every element of 'f'; 'a' and 'f' are not equal
+
+Augmented Assignment Operators and Methods
+
+.. code-block:: python
+
+    a = {1, 2, 3, 4}
+    b = {2, 3, 4, 5}
+
+    a.update(b)                      # {1, 2, 3, 4, 5}
+    a |= b                           # {1, 2, 3, 4, 5}
+
+    a = {1, 2, 3, 4}                 # reset 'a', a = {1, 2, 3, 4}
+    a.intersection_update(b)         # {2, 3, 4}
+    a &= b                           # {2, 3, 4}
+
+    a = {1, 2, 3, 4}                 # reset 'a', a = {1, 2, 3, 4}
+    a.difference_update(b)           # {1}
+    a -= b                           # {1}
+
+    a = {1, 2, 3, 4}                 # reset 'a', a = {1, 2, 3, 4}
+    a.symmetric_difference_update(b) # {1, 5}
+    a ^= b                           # {1, 5}
+
+
 Heapq (binary tree)
 -------------------
 
@@ -437,6 +591,8 @@ Heaps are binary trees for which every parent node has a value less than or equa
     data = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
     for item in data:
         heapq.heappush(heap, item)
+
+    type(heap) # <class 'list'>
 
     heap = [11, 3, 15, 7, 9, 23, 4, 6, 8, 10]
     heapq.heapify(heap)  # [3, 6, 4, 7, 9, 23, 15, 11, 8, 10]
@@ -462,6 +618,129 @@ Heaps are binary trees for which every parent node has a value less than or equa
     print('nsmallest(3): {0}'.format(heapq.nsmallest(3, heap))) # [(1, 'J'), (2, 'O'), (3, 'H')]
 
     smallest_item = heapq.heappop(heap) # (1, 'J')
+
+String Formatting
+-----------------
+
+Python string formatting has evolved over the years, and while all three formats are supported
+in Python3, the ***f-string*** format is the one that should be used.
+
+#. **"** *<format-str>* **" % (** *<variable(s)>* **)**
+#. **"** *<format-str>*"**.format(** *<variable(s)>* **)**
+#. **f"{** *<variable>* **:** *<format-str>* **}"**
+
+A string can be enclosed in `"` (double-quote) or `'`'` (single-quote), for consistency the examples use
+double-quote.
+
+* `Pyformat: Using % and .format() for great good! <https://pyformat.info/>`_
+* `RealPython: Python 3's f-Strings: An Improved String Formatting Syntax (Guide) <https://realpython.com/python-f-strings/>`_
+* `Python: Input and Output - Fancier Output Formatting <https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting>`_
+* `Python: Formatted string literals <https://docs.python.org/3/reference/lexical_analysis.html#f-strings>`_
+
+For Docstrings:
+
+* `use str() for __str__ <https://docs.python.org/3/library/stdtypes.html#str>`_
+* `use repr() for __repr__ <https://docs.python.org/3/library/functions.html#repr>`_
+
+Strings
+
+.. code-block:: python
+
+    a = 'one'; b = 'two'
+    print("%s %s" % (a, b))     # one two
+    print("{} {}".format(a, b)) # one two
+    print(f"{a} {b}")           # one two
+
+    # Padding (10) and aligning strings
+    c = 'short'; d = 'long string with more text'
+    print("%10s;%10s" % (c,d))           #      short;long string with more text
+    print("{:10};{:10}".format(c,d))     #      short;long string with more text
+    print(f"{c:10};{d:10}")              #      short;long string with more text
+
+    print("%-10s;%-10s" % (c,d))         # short     ;long string with more text
+    print("{:>10};{:>10}".format(c,d))   # short     ;long string with more text
+    print(f"{c:>10};{d:>10}")            # short     ;long string with more text
+
+    print("{:_<10};{:_<10}".format(c,d)) # short_____;long string with more text
+    print(f"{c:_<10};{d:_<10}")          # short_____;long string with more text
+
+    print("{:^10};{:^10}".format(c,d))   #   short   ;long string with more text
+    print(f"{c:^10};{d:^10}")            #   short   ;long string with more text
+
+    # Truncating (7) long strings
+    print("%.7s;%.7s" % (c,d))           # short;long st
+    print("{:.7};{:.7}".format(c,d))     # short;long st
+    print(f"{c:.7};{d:.7}")              # short;long st
+
+    # Truncating (7) and padding (10) long strings
+    print("%-10.7s;%-10.7s" % (c,d))     # short     ;long st
+    print("{:10.7};{:10.7}".format(c,d)) # short     ;long st
+    print(f"{c:10.7};{d:10.7}")          # short     ;long st
+
+Numbers
+
+.. code-block:: python
+
+    n = 42; N = -42; pi = 3.141592653589793
+    print("%d;%d" % (n, pi))             # 42;3
+    print("%d;%f" % (n, pi))             # 42;3.141593
+    print("{:d};{:d}".format(n,pi))      # ValueError: Unknown format code 'd' for object of type 'float'
+    print("{:d};{:f}".format(n,pi))      # 42;3.141593
+    print(f"{n:d}")                      # 42
+    print(f"{n:d};{pi:d}")               # ValueError: Unknown format code 'd' for object of type 'float'
+    print(f"{n:d};{pi:f}")               # 42;3.141593
+
+    # Padding numbers
+    print("%7d;%7d" % (n, pi))            #      42;      3
+    print("%7d;%7.2f" % (n, pi))          #      42;   3.14
+    print("{:7d};{:7.2f}".format(n,pi))   #      42;   3.14
+    print(f"{n:7d};{pi:7.2f}")            #      42;   3.14
+
+    print("%07d;%07d" % (n, pi))          # 0000042;0000003
+    print("%07d;%07.2f" % (n, pi))        # 0000042;0003.14
+    print("{:07d};{:07.2f}".format(n,pi)) # 0000042;0003.14
+    print(f"{n:07d};{pi:07.2f}")          # 0000042;0003.14
+
+    # Signed numbers
+    n = 42;  N = -42 pi = 3.141592653589793
+    print("%+d;%+d" % (n, N))             # +42;-42
+    print("% d;% d" % (n, N))             #  42;-42
+    print("%+d;%+7.2f" % (n, pi))         # +42;  +3.14
+
+    print("{:+d};{:+d}".format(n,N))      # +42;-42
+    print("{: d};{: d}".format(n,N))      #  42;-42
+    print("{:+d};{:+7.2f}".format(n,pi))  # +42;  +3.14
+    print("{:=5d};{:=5d}".format(n,N))    #    42;-  42
+
+    print(f"{n:+d};{N:+d}")               # +42;-42
+    print(f"{n: d};{N: d}")               #  42;-42
+    print(f"{n:+d};{pi:+07.2f}")          # +42;+003.14
+    print(f"{n:=5d};{N:=5d}")             #    42;-  42
+
+Miscellaneous
+
+.. code-block:: python
+
+    name = {'first': 'Fred', 'last': 'Flintstone'}
+    print("%(first)s %(last)s" % name)                                   # Fred Flintstone
+    print("{first} {last}".format(**name))                               # Fred Flintstone
+    print("{p[first]} {p[last]}".format(p=name))                         # Fred Flintstone
+    print(f"{name['first']} {name['last']}")                             # Fred Flintstone
+    print(f"{name['first'].lower()} {name['last'].lower()}")             # fred flintstone
+
+    from datetime import datetime
+    now = datetime.now()
+    print(now)                                                           # 2023-03-01 16:50:03.393791
+    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 16:50
+    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 16:50
+    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 16:50
+
+    from datetime import date
+    today = date.today()
+    print(today)                                                         # 2023-03-01
+    print("{:%B %d %Y}".format(today))                                   # March 01 2023
+    print("{:{dfmt}}".format(today, dfmt="%B %d %Y"))                    # March 01 2023
+    print(f"{today:%B %d %Y}")                                           # March 01 2023
 
 
 Reading and Writing Files
@@ -750,6 +1029,11 @@ Checking what an object is:
     print(t.__class__.__name__) # tuple
     print(s.__class__.__name__) # str
 
+    type(L)                     # <class 'list'>
+    type(D)                     # <class 'dict'>
+    type(t)                     # <class 'tuple'>
+    type(s)                     # <class 'str'>
+
     isinstance (object, classinfo)
 
     isinstance('fred', str)               # True
@@ -768,8 +1052,8 @@ Checking what an object is:
 
     L = [1,2,3]
     T = (1, 2, 3)
-    isinstance(L, (list, tuple))          # True
-    isinstance(T, (list, tuple))          # True
+    isinstance(L, (list, tuple))          # True, because it is a list
+    isinstance(T, (list, tuple))          # True, because it is a tuple
 
 IF statements
 -------------
@@ -843,6 +1127,98 @@ Object Class Example
 
 Simple ``Person`` object in file named ``Person.py``, without Docstrings for brevity.
 
+Using Python decorators
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This is considered the *pythonic* approach because it **only supports attributes**.
+
+There are no functions `get_name()`, `set_name()` etc.
+
+.. code-block:: python
+
+    import os
+    import uuid
+
+    class Person:
+
+        def __init__(self, name, age, sex='M'):
+            self.__name = name
+
+            if not isinstance(age, int):
+                raise ValueError(f"invalid int for age: '{age}'")
+            elif age > 0:
+                self.__age = age
+            else:
+                self.__age = 0
+
+            self.__sex = sex
+            self.__uuid = str(uuid.uuid4())
+
+        # a getter function, uses a property decorator
+        @property
+        def name(self):
+            return self.__name
+
+        # a setter function
+        @name.setter
+        def name(self, value):
+            self.__name = value
+
+        # a deleter function
+        # @name.deleter
+        # def name(self):
+        #     del self._value
+
+        @property
+        def age(self):
+            return self.__age
+
+        @age.setter
+        def age(self, value):
+            if not isinstance(value, int):
+                raise ValueError(f"invalid int for age: '{value}'")
+            elif value > 0:
+                self.__age = value
+            else:
+                self.__age = 0
+
+        @property
+        def sex(self):
+            return self.__sex
+
+        @sex.setter
+        def sex(self, value):
+            self.__sex = value
+
+        @property
+        def uuid(self):
+            return self.__uuid
+
+        def __str__(self):
+            """ String representation """
+            __str = 'Person: '
+            __str += str(self.__name) + ', '
+            __str += str(self.__age) + ', '
+            __str += str(self.__sex) + ', '
+            __str += str(self.__uuid)
+            return __str
+
+        def __repr__(self):
+            """ repr() string representation """
+            __str = "{"
+            __str += f"'name': {self.__name}, "
+            __str += f"'age': {self.__age}, "
+            __str += f"'sex': {self.__sex}, "
+            __str += f"'uuid': {self.__uuid}"
+            __str += "}"
+            return __str
+
+
+Using the property class
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+This approach supports `get_name()`, `set_name()` etc **AND** attributes.
+
 .. code-block:: python
 
     import os
@@ -853,7 +1229,14 @@ Simple ``Person`` object in file named ``Person.py``, without Docstrings for bre
 
         def __init__(self, name, age, sex='M'):
             self.__name = name
-            self.__age = age
+
+            if not isinstance(age, int):
+                raise ValueError(f"invalid int for age: '{age}'")
+            elif age > 0:
+                self.__age = age
+            else:
+                self.__age = 0
+
             self.__sex = sex
             self.__uuid = str(uuid.uuid4())
 
@@ -867,7 +1250,12 @@ Simple ``Person`` object in file named ``Person.py``, without Docstrings for bre
             return self.__age
 
         def set_age(self, value):
-            self.__age = value
+            if not isinstance(value, int):
+                raise ValueError(f"invalid int for age: '{value}'")
+            elif value > 0:
+                self.__age = value
+            else:
+                self.__age = 0
 
         def get_sex(self):
             return self.__sex
@@ -915,6 +1303,27 @@ Example usage:
     b.__str__()        # 'Person: barney, 9, M, c569ea0b-90bf-4433-b620-9472f6afbd8f'
     f.__repr__()       # "{'name': fred, 'age': 99, 'sex': M, 'uuid': be1f8143-8619-477d-9658-aece55b8c98f}"
 
+    dir(f)             # methods and attributes
+    help(f)            # methods, attributes and docstrings
+
+    ## 'Person' object using decorator approach - get(), set() calls fail!
+    #
+    f.name='freddy'    # attribute update
+    f.name             # 'freddy'
+    f.get_name()       # *** fails, no attribute 'get_name' ***
+
+    f.set_name('fred') # *** fails, no attribute 'set_name' ***
+    f.name             # 'freddy'
+    f.get_name()       # *** fails, no attribute 'get_name' ***
+
+    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
+    f.get_uuid()       # *** fails,  no attribute 'get_uuid' ***
+
+    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
+    AttributeError: property 'uuid' of 'Person' object has no setter
+
+    ## 'Person' object using property class approach
+    #
     f.name='freddy'    # attribute update
     f.name             # 'freddy'
     f.get_name()       # 'freddy'
@@ -929,8 +1338,6 @@ Example usage:
     f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
     AttributeError: property 'uuid' of 'Person' object has no setter
 
-    dir(f)             # methods and attributes
-    help(f)            # methods, attributes and docstrings
 
 
 Try/Except
@@ -1017,66 +1424,126 @@ a kind of *wrapper*.
 * `Python Decorators Tutorial <https://www.datacamp.com/tutorial/decorators-python>`_
 * `PEP 318 – Decorators for Functions and Methods <https://peps.python.org/pep-0318/>`_
 
-Basic example
--------------
+Before explaining decorators, it is important to realize that Python functions are first class objects,
+meaning a function:
+
+* is an instance of the Object type.
+* can be stored in a variable.
+* used as a parameter to another function.
+* returned from another function.
+* can be stored in data structures such as hash tables, lists etc.
+
+Functions as objects, arguments, and return values
+--------------------------------------------------
+
+Functions as objects
 
 .. code-block:: python
 
-    def add_one(number):
-        return number + 1
+    # https://www.geeksforgeeks.org/decorators-in-python/
+    def to_upper(text):
+        return text.upper()
 
-    print(add_one(41)) # 42
+    print(to_upper("Hello World"))  # HELLO WORLD (function parameter)
+    uppercase = to_upper
+    print(uppercase("Hello World")) # HELLO WORLD (stored in a variable)
 
-Functions as arguments (say_hello, say_hi)
-------------------------------------------
+Passing the function as an argument
+
 .. code-block:: python
 
-    def say_hello(name):
-        return f"Hello {name}"
+    def to_upper(text):
+        return text.upper()
 
-    def say_hi(name):
-        return f"Hi {name}"
+    def to_lower(text):
+        return text.lower()
 
-    >>> say_hello("Fred") # 'Hello Fred'
-    >>> say_hi("Fred")    # 'Hi Fred'
-    >>> say_hello         # <function say_hello at 0x000001C8E4F6E9D0>
-    >>> say_hi            # <function say_hi at 0x000001C8E4F6EB80>
+    def greeting(argument):                   # function as an argument, to_upper, to_lower
+        hello_world = argument("Hello World") # function stored in a variable
+        print(hello_world)
 
-    def greet_fred(greeting):
-        return greeting("Fred")
+    greeting(to_upper) # HELLO WORLD
+    greeting(to_lower) # hello world
 
-    print(greet_fred(say_hello)) # 'Hello Fred' # Note NOT 'say_hello()'
-    print(greet_fred(say_hi))    # 'Hi Fred'    # Note NOT 'say_hi()'
+Returning functions from inside another function.
+
+.. code-block:: python
+
+    def prefix(x):
+        def concatenate(y):
+            return x + ' ' + y
+        return concatenate         # return nested function
+
+    hello_prefix = prefix("Hello") # function stored in a variable with x = "Hello",
+    hello_prefix                   # <function prefix.<locals>.concatenate at 0x000001A4F2ED49A0>
+    print(hello_prefix("World"))   # Hello World
 
 
 Functions and Methods
 ---------------------
 
-A common use is to wrap functions and methods to extend their capabilities.
+A common use is to wrap functions and methods, to extend their capabilities.
 
 .. code-block:: python
 
     def decorator1(func):
         def wrapper(*args,**kwargs):
-            print("before execution")
-            result = func(*args,**kwargs)
-            print("after execution")
+            print("wrapper: before 'func' execution")
+            result = func(*args,**kwargs) # func has variable number of arguments
+            print("wrapper: after 'func' execution")
             return result
-    return wrapper
+        return wrapper
 
     @decorator1
     def addition(a, b):
-        print("inside the function")
+        print(f"addition: {a} + {b}")
         return a + b
 
-    print(addition(7,35))
-    before execution
-    inside the function
-    after execution
+    @decorator1
+    def subtraction(a, b):
+        print(f"subtraction: {a} - {b}")
+        return a - b
+
+    >>> print(addition(35,7))
+    wrapper: before 'func' execution
+    addition: 35 + 7
+    wrapper: after 'func' execution
     42
+    >>> print(subtraction(35,7))
+    wrapper: before 'func' execution
+    subtraction: 35 - 7
+    wrapper: after 'func' execution
+    28
+
 
 * ``*args,**kwargs`` allows a variable number of arguments to be passed to the function
 * ``@`` indicates the decorator function that is being extended
+
+Another simple more realistic execution time example
+
+.. code-block:: python
+
+    import time
+    import math
+
+    def execution_time(func):
+        def wrapper(*args,**kwargs):
+            begin = time.time()
+            result = func(*args,**kwargs) # func has variable number of arguments
+            end = time.time()
+            print(f"execution_time: {func.__name__}, {end - begin}")
+            return result
+        return wrapper
+
+    @execution_time
+    def factorial(num):
+        time.sleep(2) # slow to provide time delta
+        print(math.factorial(num))
+
+    >>> factorial(10)
+    3628800
+    execution_time: factorial, 2.0123209953308105
+
 
 Decorator chaining
 ------------------
@@ -1113,26 +1580,46 @@ Decorator chaining
 Python Environments
 ===================
 
-VirtualEnv
-----------
+If using `UNIX`, `Linux` or `MacOS` there is a version of Python installed and used by the operating system.
+Your own work should not interfere with this so it is normal to use your own environment, see
 
-.. note:: add example and links
+* `The Hitchhicker's Guide to Python: Pipenv & Virtual Environments <https://docs.python-guide.org/dev/virtualenvs/>`_
+
+On Windows various Python releases are available from `Microsoft App Store <https://apps.microsoft.com/store/apps>`_.
+These releases do not have `pipenv`, only `python` and `idle3` so use `VirtualEnv` with an IDE like:
+
+* `PyCharm Community Edition Download <https://www.jetbrains.com/pycharm/download/#section=windows>`_
+* `Eclipse Download <https://www.eclipse.org/downloads/>`_ and `PyDev <https://www.pydev.org/>`_
 
 Pipenv
 ------
 
-* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
-* `Basic Usage <https://pipenv.readthedocs.io/en/latest/>`_
-* `Advanced Usage <https://pipenv.readthedocs.io/en/latest/advanced/#configuration-with-environment-variables>`_
-* `Which VirtualEnv <https://github.com/pypa/pipenv/issues/796>`_
+* `Github: Pipenv <https://github.com/pypa/pipenv>`_
+* `The Hitchhicker's Guide to Python: Basic Usage <https://pipenv.pypa.io/en/latest/basics/>`_
+* `The Hitchhicker's Guide to Python: Advanced Usage <https://pipenv.pypa.io/en/latest/advanced/>`_
 
-Using pipenv with Eclipse PyDev
+.. code-block:: shell
+
+    $ cd myproject
+    $ pipenv --python 3           # Create a virtual env and install dependencies (if it does not exist already)
+    $ pipenv install <package>    # Add the package to the virtual environment and to Pipfile and Pipfile.lock
+    $ pipenv uninstall <package>  # Will remove the <package>
+    $ pipenv lock                 # Regenerate Pipfile.lock and updates the dependencies inside it
+    $ pipenv graph                # Show you a dependency graph of installed dependencies
+    $ pipenv shell                # Spawn a shell with the virtualenv activated, deactivated by using exit
+    $ pipenv run <program.py>     # Run a <program.py> from the virtualenv, with any arguments forwarded
+    $ pipenv check                # Checks for security vulnerabilities, asserts PEP 508 requirements
+
+
+Eclipse/PyDev
+
+Setup a new Python project in Eclipse, and change the project to use it.
 
 .. code-block:: shell
 
     $ export PIPENV_VENV_IN_PROJECT=1 # force creation of '.venv' in project
     $ cd <eclipse-workspace>/<project>
-    $ pipenv --three             # python3 project
+    $ pipenv --python 3          # python3 project
     $ pipenv install <package>   # updates the Pipfile
     $ pipenv uninstall <package> # updates the Pipfile
     $ pipenv --rm                # remove virtualenv
@@ -1141,9 +1628,61 @@ Using pipenv with Eclipse PyDev
     $ pipenv check               # PEP8 check of the Pipfile
 
 
-Setup a new Python interpreter in Eclipse, and change the project to use it.
+VirtualEnv
+----------
 
-* `PyDev and virtualenv <https://www.michaelpollmeier.com/eclipse-pydev-and-virtualenv>`_
+* `RealPython: Python Virtual Environments: A Primer <https://realpython.com/python-virtual-environments-a-primer/>`_
+* `Python: venv — Creation of virtual environments <https://docs.python.org/3/library/venv.html>`_
+* `PyPA: PIP - Python Packaging User Guide <https://packaging.python.org/en/latest/>`_
+
+The example below is for Windows, but will also work on `UNIX`, `Linux` or `MacOS`, with the exception
+of the PowerShell `get-command`.
+
+.. code-block:: powershell
+
+    PS> mkdir myproject
+    PS> cd myproject
+    PS> python -m venv venv
+    PS> venv\Scripts\activate
+
+    (venv) PS> get-command python | format-list
+    Name            : python.exe
+    CommandType     : Application
+    Definition      : C:\Users\sjfke\sandbox\Python\myproject\venv\Scripts\python.exe
+    Extension       : .exe
+    Path            : C:\Users\sjfke\sandbox\Python\myproject\venv\Scripts\python.exe
+    FileVersionInfo : File:             C:\Users\sjfke\sandbox\Python\myproject\venv\Scripts\python.exe
+                      InternalName:     Python Launcher
+                      OriginalFilename: py.exe
+                      FileVersion:      3.9.13
+                      FileDescription:  Python
+                      Product:          Python
+                      ProductVersion:   3.9.13
+                      Debug:            False
+                      Patched:          False
+                      PreRelease:       False
+                      PrivateBuild:     False
+                      SpecialBuild:     False
+                      Language:         Language Neutral
+
+    (venv) PS> pip install flask
+
+    (venv) PS> flask --version
+    Python 3.9.13
+    Flask 2.2.3
+    Werkzeug 2.2.3
+
+    (venv) PS> pip uninstall flask
+    Found existing installation: Flask 2.2.3
+    Uninstalling Flask-2.2.3:
+      Would remove:
+        c:\users\sjfke\sandbox\python\myproject\venv\lib\site-packages\flask-2.2.3.dist-info\*
+        c:\users\sjfke\sandbox\python\myproject\venv\lib\site-packages\flask\*
+        c:\users\sjfke\sandbox\python\myproject\venv\scripts\flask.exe
+
+    (venv) PS> deactivate
+    PS>
+
 
 ============
 Useful Links
