@@ -1683,10 +1683,42 @@ of the PowerShell `get-command`.
     (venv) PS> deactivate
     PS>
 
+==========================
+Useful Python 3 references
+==========================
 
-============
-Useful Links
-============
+Language Fundamentals
+---------------------
+
+* `Python: Built-in Types <https://docs.python.org/3/library/stdtypes.html>`_
+* `Python: Built-in Exceptions <https://docs.python.org/3/library/exceptions.html>`_
+* `Python: The import system <https://docs.python.org/3/reference/import.html>`_
+* `Python: Modules <https://docs.python.org/3/tutorial/modules.html>`_
+* `Python: Errors and Exceptions <https://docs.python.org/3/tutorial/errors.html>`_
+
+Docstrings
+----------
+* `BetterProgramming: start Writing Python Docstrings <https://betterprogramming.pub/the-guide-to-python-docstrings-3d40340e824b>`_
+* `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
+
+.. note::
+
+    *BetterProgramming: start Writing Python Docstrings* is limited views per month
+
+f-Strings
+---------
+
+* `RealPython: Python 3's f-Strings: An Improved String Formatting Syntax <https://realpython.com/python-f-strings/>`_
+* `GeeksForGeeks: f-strings in Python <https://www.geeksforgeeks.org/formatted-string-literals-f-strings-python/>`_
+* `FreeCodeCampe: Python f-String Tutorial <https://www.freecodecamp.org/news/python-f-strings-tutorial-how-to-use-f-strings-for-string-formatting/>`_
+
+.. note::
+
+    Supports almost all the ***.format()**** formatting options in `Pyformat: Using % and .format() for great good! <https://pyformat.info/>`_
+
+==========================
+To be checked Useful Links
+==========================
 
 * `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
 * `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
