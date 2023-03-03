@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/systemctl-service.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/systemctl-service.rst
 
 *******************************
 Systemctl vs Service Cheatsheet

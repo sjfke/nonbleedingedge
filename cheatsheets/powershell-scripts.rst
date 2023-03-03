@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/powershell-scripts.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/powershell-scripts.rst
 
 ===============================
 PowerShell Scripting Cheatsheet

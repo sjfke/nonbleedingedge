@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/mysql.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/mysql.rst
 
 ****************
 MySQL Cheatsheet

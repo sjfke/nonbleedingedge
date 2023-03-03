@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/perl.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/outdated/perl.rst
 
 ****************
 Perl Cheatsheet

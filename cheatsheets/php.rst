@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/php.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/php.rst
 
 **************
 PHP CheatSheet

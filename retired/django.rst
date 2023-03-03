@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/retired/django.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/retired/django.rst
 
 **********************
 Python Django Tutorial

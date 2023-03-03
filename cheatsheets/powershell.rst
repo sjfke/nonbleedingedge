@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/powershell.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/powershell.rst
 
 *********************
 PowerShell Cheatsheet
