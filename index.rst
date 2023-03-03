@@ -35,6 +35,7 @@ So this site is not *"Bleeding Edge"* (Urgh!)
 
     cheatsheets/powershell
     cheatsheets/powershell-scripts
+    cheatsheets/python
     cheatsheets/brew
     cheatsheets/linux-tricks
     cheatsheets/screen
@@ -50,7 +51,6 @@ So this site is not *"Bleeding Edge"* (Urgh!)
     :maxdepth: 1
     :caption: Outdated:
 
-    outdated/python
     outdated/git
     outdated/sphinx
     outdated/perl

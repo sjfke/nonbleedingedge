@@ -1,10 +1,10 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/python.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/python.rst
 
 *****************
 Python Cheatsheet
 *****************
 
-.. important:: Being rewritten for Python-3 only, with an emphasis on using Python as a shell-script language.
+.. important:: Python-3 only, with an emphasis on using Python as a shell-scripting language.
 
 ==========
 Background
@@ -30,6 +30,22 @@ and 3.7.14.
 
 As of November 2022, Python 3.11.0 is the current stable release.
 Notable changes from 3.10 include increased program execution speed and improved error reporting
+
+Python on Linux
+---------------
+
+Almost all distributions provide Python by default.
+
+Python on Windows
+-----------------
+
+The author is using Python from the `Microsoft Store <https://apps.microsoft.com/store/apps>`_
+
+* `Python - Using Python on Windows <https://docs.python.org/3/using/windows.html>`_
+* `How to manage App execution aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
+* `Microsoft - Get started using Python on Windows for beginners <https://learn.microsoft.com/en-us/windows/python/beginners>`_
+* `Anaconda offers the easiest way to perform Python/R data science <https://www.anaconda.com/>`_
+* `RealPython - Your Python Coding Environment on Windows: Setup Guide <https://realpython.com/python-coding-setup-windows/>`_
 
 =====================
 Example Python Script
@@ -1683,20 +1699,77 @@ of the PowerShell `get-command`.
     (venv) PS> deactivate
     PS>
 
+==========================
+Useful Python 3 references
+==========================
 
-============
-Useful Links
-============
+Language Fundamentals
+---------------------
 
-* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
-* `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
+* `Python: Built-in Types <https://docs.python.org/3/library/stdtypes.html>`_
+* `Python: Built-in Exceptions <https://docs.python.org/3/library/exceptions.html>`_
+* `Python: The import system <https://docs.python.org/3/reference/import.html>`_
+* `Python: Modules <https://docs.python.org/3/tutorial/modules.html>`_
+* `Python: Errors and Exceptions <https://docs.python.org/3/tutorial/errors.html>`_
+
+Docstrings
+----------
+* `BetterProgramming: start Writing Python Docstrings <https://betterprogramming.pub/the-guide-to-python-docstrings-3d40340e824b>`_ is limited views per month
+* `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
+
+f-Strings
+---------
+
+* `RealPython: Python 3's f-Strings: An Improved String Formatting Syntax <https://realpython.com/python-f-strings/>`_
+* `GeeksForGeeks: f-strings in Python <https://www.geeksforgeeks.org/formatted-string-literals-f-strings-python/>`_
+* `FreeCodeCampe: Python f-String Tutorial <https://www.freecodecamp.org/news/python-f-strings-tutorial-how-to-use-f-strings-for-string-formatting/>`_
+
+.. note::
+
+    Supports almost all the ***.format()**** options in `Pyformat: Using % and .format() for great good! <https://pyformat.info/>`_
+
+Strings
+-------
+
+* `W3Schools: Python String Methods <https://www.w3schools.com/python/python_ref_string.asp>`_
+* `Python: Text Processing Services <https://docs.python.org/3/library/text.html>`_
+* `GeeksForGeeks: str() vs repr() in Python <https://www.geeksforgeeks.org/str-vs-repr-in-python/>`_
+* `Python: string — Common string operations <https://docs.python.org/3/library/string.html>`_
+* `Python: re — Regular expression operations <https://docs.python.org/3/library/re.html>`_
+* `PyFormat: Using % and .format() for great good! <https://pyformat.info/>`_
+
+PEP Guides
+----------
+
+* `PEP 0 – Index of Python Enhancement Proposals (PEPs) <https://peps.python.org/pep-0000/>`_
+* `PEP 8 – Style Guide for Python Code <https://peps.python.org/pep-0008/>`_
+* `PEP 207 – Rich Comparisons <https://peps.python.org/pep-0207/>`_
+* `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_
+* `PEP 318 – Decorators for Functions and Methods <https://peps.python.org/pep-0318/>`_
+
+Introductory Guides
+-------------------
+
 * `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
-* `Execute Python-3 Online (Python v3.6.2) <https://www.tutorialspoint.com/execute_python3_online.php>`_
-* `Python IDE Online (Python v2.7.13) <https://www.tutorialspoint.com/online_python_ide.php>`_
+* `Tutorials Point - Python Tutorial <https://www.tutorialspoint.com/python/>`_
+* `Real Python - Tutorials <https://realpython.com/>`_
+* `W3Schools - Python Tutorial <https://www.w3schools.com/python/>`_
+* `Online Python-3 Compiler (Interpreter) <https://www.tutorialspoint.com/execute_python3_online.php>`_
 
+Intermediate Guides
+-------------------
 
+* `Packaging Python <https://packaging.python.org/en/latest/tutorials/packaging-projects/>`_
+* `Python Modules and Packages – An Introduction <https://realpython.com/python-modules-packages/>`_
+* `The Hitchhiker’s Guide to Python <https://docs.python-guide.org/>`_
 
+Graphical User Interfaces
+-------------------------
 
+* `Tkinter - Python interface to Tcl/Tk <https://docs.python.org/3/library/tkinter.html>`_
+* `Overview of wxPython <https://wxpython.org/pages/overview/index.html>`_
+* `Learn Python PyQt <https://pythonpyqt.com/>`_
+* `Welcome to Kivy <https://kivy.org/doc/stable/>`_
 
 
 
