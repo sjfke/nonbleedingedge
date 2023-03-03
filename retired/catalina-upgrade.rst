@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/retired/catalina-upgrade.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/retired/catalina-upgrade.rst
 
 ***********************
 Catalina upgrade issues

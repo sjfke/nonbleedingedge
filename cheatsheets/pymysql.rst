@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/pymysql.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/pymysql.rst
 
 ******************
 PyMySQL CheatSheet

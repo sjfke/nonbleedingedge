@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/retired/eclipse-remote-dev.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/retired/eclipse-remote-dev.rst
 
 **************************
 Eclipse Remote Development

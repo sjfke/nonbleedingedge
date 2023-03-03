@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/retired/fedora29-install.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/retired/fedora29-install.rst
 
 ****************************
 Fedora 29 Live Media Install

@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/daemontools.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/daemontools.rst
 
 **********************
 Daemontools Cheatsheet

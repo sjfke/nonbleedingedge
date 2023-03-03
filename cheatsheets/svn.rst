@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/svn.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/svn.rst
 
 *********************
 Subversion Cheatsheet

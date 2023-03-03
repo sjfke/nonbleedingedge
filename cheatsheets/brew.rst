@@ -1,4 +1,4 @@
-git:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/brew.rst
+git:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/brew.rst
 
 
 ***************************

@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/outdated/jquery.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/outdated/jquery.rst
 
 *****************
 jQuery CheatSheet

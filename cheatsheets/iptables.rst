@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/master/cheatsheets/iptables.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/iptables.rst
 
 *******************
 Iptables CheatSheet
