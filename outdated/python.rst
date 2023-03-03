@@ -4,7 +4,7 @@
 Python Cheatsheet
 *****************
 
-.. important:: Being rewritten for Python-3 only, with an emphasis on using Python as a shell-script language.
+.. important:: Python-3 only, with an emphasis on using Python as a shell-scripting language.
 
 ==========
 Background
@@ -1698,12 +1698,8 @@ Language Fundamentals
 
 Docstrings
 ----------
-* `BetterProgramming: start Writing Python Docstrings <https://betterprogramming.pub/the-guide-to-python-docstrings-3d40340e824b>`_
+* `BetterProgramming: start Writing Python Docstrings <https://betterprogramming.pub/the-guide-to-python-docstrings-3d40340e824b>`_ is limited views per month
 * `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
-
-.. note::
-
-    *BetterProgramming: start Writing Python Docstrings* is limited views per month
 
 f-Strings
 ---------
@@ -1714,19 +1710,42 @@ f-Strings
 
 .. note::
 
-    Supports almost all the ***.format()**** formatting options in `Pyformat: Using % and .format() for great good! <https://pyformat.info/>`_
+    Supports almost all the ***.format()**** options in `Pyformat: Using % and .format() for great good! <https://pyformat.info/>`_
 
-==========================
-To be checked Useful Links
-==========================
+Strings
+-------
 
-* `Pipenv <https://robots.thoughtbot.com/how-to-manage-your-python-projects-with-pipenv>`_
-* `Tutorialspoint <https://www.tutorialspoint.com/python/>`_
+* `W3Schools: Python String Methods <https://www.w3schools.com/python/python_ref_string.asp>`_
+* `Python: Text Processing Services <https://docs.python.org/3/library/text.html>`_
+* `GeeksForGeeks: str() vs repr() in Python <https://www.geeksforgeeks.org/str-vs-repr-in-python/>`_
+* `Python: string — Common string operations <https://docs.python.org/3/library/string.html>`_
+* `Python: re — Regular expression operations <https://docs.python.org/3/library/re.html>`_
+* `PyFormat: Using % and .format() for great good! <https://pyformat.info/>`_
+
+PEP Guides
+----------
+
+* `PEP 0 – Index of Python Enhancement Proposals (PEPs) <https://peps.python.org/pep-0000/>`_
+* `PEP 8 – Style Guide for Python Code <https://peps.python.org/pep-0008/>`_
+* `PEP 207 – Rich Comparisons <https://peps.python.org/pep-0207/>`_
+* `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_
+* `PEP 318 – Decorators for Functions and Methods <https://peps.python.org/pep-0318/>`_
+
+Introductory Guides
+-------------------
+
 * `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
-* `Execute Python-3 Online (Python v3.6.2) <https://www.tutorialspoint.com/execute_python3_online.php>`_
-* `Python IDE Online (Python v2.7.13) <https://www.tutorialspoint.com/online_python_ide.php>`_
+* `Tutorials Point - Python Tutorial <https://www.tutorialspoint.com/python/>`_
+* `Real Python - Tutorials <https://realpython.com/>`_
+* `W3Schools - Python Tutorial <https://www.w3schools.com/python/>`_
+* `Online Python-3 Compiler (Interpreter) <https://www.tutorialspoint.com/execute_python3_online.php>`_
 
+Intermediate Guides
+-------------------
 
+* `Packaging Python <https://packaging.python.org/en/latest/tutorials/packaging-projects/>`_
+* `Python Modules and Packages – An Introduction <https://realpython.com/python-modules-packages/>`_
+* `The Hitchhiker’s Guide to Python <https://docs.python-guide.org/>`_
 
 
 
