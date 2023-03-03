@@ -31,6 +31,22 @@ and 3.7.14.
 As of November 2022, Python 3.11.0 is the current stable release.
 Notable changes from 3.10 include increased program execution speed and improved error reporting
 
+Python on Linux
+---------------
+
+Almost all distributions provide Python by default.
+
+Python on Windows
+-----------------
+
+The author is using Python from the `Microsoft Store <https://apps.microsoft.com/store/apps>`_
+
+* `Python - Using Python on Windows <https://docs.python.org/3/using/windows.html>`_
+* `How to manage App execution aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
+* `Microsoft - Get started using Python on Windows for beginners <https://learn.microsoft.com/en-us/windows/python/beginners>`_
+* `Anaconda offers the easiest way to perform Python/R data science <https://www.anaconda.com/>`_
+* `RealPython - Your Python Coding Environment on Windows: Setup Guide <https://realpython.com/python-coding-setup-windows/>`_
+
 =====================
 Example Python Script
 =====================
@@ -1747,7 +1763,13 @@ Intermediate Guides
 * `Python Modules and Packages – An Introduction <https://realpython.com/python-modules-packages/>`_
 * `The Hitchhiker’s Guide to Python <https://docs.python-guide.org/>`_
 
+Graphical User Interfaces
+-------------------------
 
+* `Tkinter - Python interface to Tcl/Tk <https://docs.python.org/3/library/tkinter.html>`_
+* `Overview of wxPython <https://wxpython.org/pages/overview/index.html>`_
+* `Learn Python PyQt <https://pythonpyqt.com/>`_
+* `Welcome to Kivy <https://kivy.org/doc/stable/>`_
 
 
 
