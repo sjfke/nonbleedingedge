@@ -42,8 +42,12 @@ Python on Windows
 The author is using Python from the `Microsoft Store <https://apps.microsoft.com/store/apps>`_
 
 * `Python - Using Python on Windows <https://docs.python.org/3/using/windows.html>`_
-* `How to manage App execution aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
 * `Microsoft - Get started using Python on Windows for beginners <https://learn.microsoft.com/en-us/windows/python/beginners>`_
+* `Microsoft - Get started using Python for web development on Windows <https://learn.microsoft.com/en-us/windows/python/web-frameworks>`_
+* `Microsoft Store - Python 3.11 <https://apps.microsoft.com/store/detail/python-311/9NRWMJP3717K>`_
+    * `Python 3.10 <https://apps.microsoft.com/store/detail/python-310/9PJPW5LDXLZ5>`_
+    * `Python 3.9 <https://apps.microsoft.com/store/detail/python-39/9P7QFQMJRFP7>`_
+    * `How to manage App execution aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
 * `Anaconda offers the easiest way to perform Python/R data science <https://www.anaconda.com/>`_
 * `RealPython - Your Python Coding Environment on Windows: Setup Guide <https://realpython.com/python-coding-setup-windows/>`_
 
@@ -944,7 +948,7 @@ References:
 * `Structured Markup Processing Tools <https://docs.python.org/3/library/markup.html>`_
 
 Operators
-^^^^^^^^^
+---------
 
 .. note:: Add table from Digital Ocean
 
@@ -954,7 +958,7 @@ References:
 * `Python: operator — Standard operators as functions <https://docs.python.org/3/library/operator.html>`_
 
 Comparisons, Equality, and Truth
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
 +----------+--------------------------+---------+
 | Operator | Name                     | Example |
