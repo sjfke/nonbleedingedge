@@ -155,10 +155,17 @@ Environment variables are
 * User scope
 * Process scope
 
-::
+.. code-block:: pwsh-session
 
     # Viewing predefined
     PS> get-childitem variable:        # list PowerShell environment variables, 'PSHome', 'PWD' etc.
+
+    PS> $PROFILE                       # C:\Users\sjfke\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+    PS> get-childitem variable:PROFILE
+    Name                           Value
+    ----                           -----
+    PROFILE                        C:\Users\sjfke\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+
     PS> $pshome                        # variable containing which PowerShell and version
     PS> $pwd                           # variable containing the working directory
 
@@ -174,7 +181,7 @@ Environment variables are
 
 Viewing, setting temporarily or permanently environment variables.
 
-::
+.. code-block:: pwsh-session
 
     # Temporary variables
     PS> $Env:DEBUG_MODE = '0'                   # set using string value
