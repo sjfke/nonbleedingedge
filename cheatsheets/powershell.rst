@@ -58,7 +58,7 @@ objects, for example:
 * An ``MSFT_NetAdapter`` object, for network interfaces;
 * A ``ComputerInfo`` object, providing details of the computer, operating system etc;
 
-::
+.. code-block:: pwsh-session
 
    PS> get-childitem                      # directory listing
    PS> get-computerinfo                   # computer information
@@ -66,7 +66,9 @@ objects, for example:
    PS> get-process                        # running processes
    PS> get-command                        # powershell commands
 
-You should become familiar with ``get-help`` and ``get-member`` cmdlets::
+You should become familiar with ``get-help`` and ``get-member`` cmdlets
+
+.. code-block:: pwsh-session
 
    PS> get-help get-childitem             # Help on Get-ChildItem
    PS> get-help get-childiten -online     # Online Web based documentation from Microsoft
@@ -90,7 +92,7 @@ Quick Introduction
 
 Examples of common commands.
 
-::
+.. code-block:: pwsh-session
 
    PS> set-location dir                            # change directory, ('sl', 'cd', 'chdir')
    PS> cd dir                                      # using the 'cd' alias to change directory
@@ -155,10 +157,17 @@ Environment variables are
 * User scope
 * Process scope
 
-::
+.. code-block:: pwsh-session
 
     # Viewing predefined
     PS> get-childitem variable:        # list PowerShell environment variables, 'PSHome', 'PWD' etc.
+
+    PS> $PROFILE                       # C:\Users\sjfke\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+    PS> get-childitem variable:PROFILE
+    Name                           Value
+    ----                           -----
+    PROFILE                        C:\Users\sjfke\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+
     PS> $pshome                        # variable containing which PowerShell and version
     PS> $pwd                           # variable containing the working directory
 
@@ -174,7 +183,7 @@ Environment variables are
 
 Viewing, setting temporarily or permanently environment variables.
 
-::
+.. code-block:: pwsh-session
 
     # Temporary variables
     PS> $Env:DEBUG_MODE = '0'                   # set using string value
@@ -197,7 +206,7 @@ Viewing, setting temporarily or permanently environment variables.
 Processes
 =========
 
-::
+.. code-block:: pwsh-session
 
    PS> get-process | get-member                                       # show returned object
    PS> get-process | select -first 10                                 # first 10 processes
@@ -229,7 +238,7 @@ Processes
 Executables
 ===========
 
-::
+.. code-block:: pwsh-session
 
    PS> get-command notepad
    
@@ -269,7 +278,7 @@ Executables
 Files and Folders
 =================
 
-::
+.. code-block:: pwsh-session
 
    PS> new-item fred.txt, wilma.txt                     # create two empty files ('ni')
    PS> remove-item fred.txt                             # delete file ('ri','rm','rmdir','del','erase','rd')
@@ -316,7 +325,9 @@ Files and Folders
 Command Line History
 ====================
 
-You can recall and repeat commands::
+You can recall and repeat commands
+
+.. code-block:: pwsh-session
 
     PS> get-history
     PS> invoke-history 10                                   # execute 10 in your history (aliases 'r' and 'ihy')
@@ -329,7 +340,8 @@ You can recall and repeat commands::
 
 Computer Information
 ====================
-::
+
+.. code-block:: pwsh-session
 
    PS> systeminfo | more                                          # summary of the computer and more 
    PS> systeminfo | select-string 'System Boot Time'              # boot time
@@ -355,7 +367,7 @@ Network Information
 
 A lot more information is available than shown here, see further reading.
 
-::
+.. code-block:: pwsh-session
 
    PS> Get-NetAdapter -physical                  # Physical interfaces: Name, Status, Mac Address, Speed
    PS> Get-NetAdapter                            # All interfaces: Name, Status, Mac Address, Speed
@@ -369,7 +381,7 @@ Further reading:
 Services
 ========
 
-::
+.. code-block:: pwsh-session
 
    PS> get-service | out-host -Paging                     # paged listing of the services
    PS> get-service | where -property Status -eq 'running' # all running services
@@ -383,7 +395,7 @@ Services
 Windows EventLog
 ================
 
-::
+.. code-block:: pwsh-session
 
    # Gets events from event logs and event tracing log files
    PS> (Get-WinEvent -ListLog Application).ProviderNames | out-host -paging  # who is writing Application logs
@@ -416,7 +428,7 @@ Further reading:
 HotFixes
 ========
 
-::
+.. code-block:: pwsh-session
 
    PS> get-hotfix                    # list all installed hot fixes and their ID
    PS> get-hotfix -Id KB4516115      # when was hotfix installed
@@ -427,7 +439,7 @@ HotFixes
 Network TCPIP
 =============
 
-::
+.. code-block:: pwsh-session
 
    PS> test-netconnection                                  # ping internetbeacon.msedge.net
    PS> test-netconnection -computername localhost          # ping oneself
@@ -444,7 +456,7 @@ Network TCPIP
 DNS Resolver
 ============
 
-::
+.. code-block:: pwsh-session
 
    PS> resolve-dnsname -name www.google.com               # IP address of google.com
    PS> resolve-dnsname -name 172.217.168.4                # reverse IP of www.google.com
@@ -477,7 +489,7 @@ More detailed examples:
 Web-Pages and REST API's
 ========================
 
-::
+.. code-block:: pwsh-session
 
    # web-pages
    PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com/missing.html").statuscode       # error: (404) Not Found.
@@ -501,7 +513,7 @@ Web-Pages and REST API's
    PowerShell 7.2 Preview 2 release                                  Wed, 16 Dec 2020 00:08:04 +0000
    Announcing PowerShell Crescendo Preview.1                         Tue, 08 Dec 2020 17:20:18 +0000
 
-::
+.. code-block:: pwsh-session
    
    PS> [system.web.httputility]::urlencode("https://test.com/q?name=fred flintstone&age=35")
    https%3a%2f%2ftest.com%2fsearch%3fname%3dfred+flintstone%26age%3d35
@@ -537,7 +549,7 @@ Active Directory
 
 Generic examples are stolen from further reading reference.
 
-:: 
+.. code-block:: pwsh-session
 
    PS> Get-ADDomain                      # Basic Domain Information
    PS> Get-ADUser username -Properties * # Get User and List All Properties
@@ -564,7 +576,7 @@ By default Powershell appears to render *cmdlet* output, using ``format-table``.
 
 Others such as ``format-list``, ``out-gridview`` are available as illustrated here.
 
-::
+.. code-block:: pwsh-session
 
    PS> Get-Service | Format-List | out-host -paging
    Name                : AarSvc_191cbe5f
@@ -618,7 +630,7 @@ in the example which is shows only running services in alphabetic *DisplayName* 
 The ``out-gridview`` in combination with ``import-csv`` *cmdlets* can quickly render CSV files, 
 and avoids having to use ``Microsoft Excel`` or ``Microsoft Access``.
 
-::
+.. code-block:: pwsh-session
 
    PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # <TAB> separated file.
    PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # semi-colon ';' separated file.
@@ -636,7 +648,7 @@ Formatting Variables
 Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assignment.
 Specified as ``{<index>, <alignment><width>:<format_spec>}``
 
-::
+.. code-block:: pwsh-session
 
    PS> $shortText = "Align me"
    PS> $longerText = "Please Align me, but I am very wide"

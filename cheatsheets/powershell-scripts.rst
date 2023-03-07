@@ -31,7 +31,8 @@ target for *would-be hackers*. To mitigate this Microsoft limits PowerShell exec
 individual ``cmdlets`` can always be run.
 
 If your ``Get-ExecutionPolicy`` is like this
-::
+
+.. code-block:: pwsh-session
 
    PS> Get-ExecutionPolicy
    Restricted
@@ -48,7 +49,7 @@ If your ``Get-ExecutionPolicy`` is like this
 
 The ``PowerShell`` script will not execute!
 
-::
+.. code-block:: pwsh-session
 
     PS1> .\hello-world.ps1
     .\hello-world.ps1 : File C:\Users\sjfke\hello-world.ps1 cannot be loaded because running scripts is disabled on this
@@ -59,16 +60,17 @@ The ``PowerShell`` script will not execute!
         + CategoryInfo          : SecurityError: (:) [], PSSecurityException
         + FullyQualifiedErrorId : UnauthorizedAccess
 
-Many articles on the internet suggest the disabling or trying to work around this security feature... **PLEASE AVOID DOING THIS**!
+.. warning::
+    Many articles on the internet suggest the disabling or trying to work around this security feature... **PLEASE AVOID DOING THIS**!
 
-Many Windows distributions provide *Developer* section in ``Settings``, which allows local ``PowerShell``  scripts to be
+Windows often provides *Developer* section in ``Settings``, which allows local ``PowerShell``  scripts to be
 executed by the ``CurrentUser`` by setting the ``ExecutionPolicy`` to ``RemoteSigned``.
 
 Alternatively run a ``PowerShell`` as ``Administrator`` set the following, choosing the ``[A]`` option.
 
-::
+.. code-block:: pwsh-session
 
-    ADM-PS1> set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    PS-ADM> set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
     Execution Policy Change
     The execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose you to the security risks
@@ -81,7 +83,7 @@ Suggested Laptop settings
 
 Locally developed ``PowerShell scripts`` will be executed but those from any other source will need to be signed.
 
-::
+.. code-block:: pwsh-session
 
     PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
             Scope ExecutionPolicy
@@ -101,7 +103,7 @@ Suggested Server settings
 All ``PowerShell scripts`` should be signed, if *too restrictive* for your environment use
 `Suggested Laptop settings`_
 
-::
+.. code-block:: pwsh-session
 
     PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
             Scope ExecutionPolicy
@@ -149,7 +151,7 @@ This is a contrived but realistic PowerShell script to illustrate several import
 It is based on a `gist template from 9to5IT <https://gist.github.com/9to5IT/9620683>`_, which is augmented to force
 the syntax version and to be more strict on the use of uninitialized variables.
 
-::
+.. code-block:: powershell
 
    #requires -version 4
    <#
@@ -291,7 +293,7 @@ Variables
 Powershell variables can be any of the `Basic DataTypes`_ such as *integers*, *characters*, *strings*, *arrays*, and *hash-tables*, but also ``.Net`` objects that represent such things as
 *processes*, *services*, *event-logs*, and even *computers*.
 
-::
+.. code-block:: pwsh-session
 
    PS> $age = 5                       # System.Int32
    PS> [int]$age = "5"                # System.Int32, cast System.String + System.Int32
@@ -359,7 +361,8 @@ Array Variables
 
 Array variables are a fixed size, can have mixed values and can be multi-dimensional.
 
-::
+.. code-block:: pwsh-session
+
   
    PS> $a = 1, 2, 3                    # array of integers
    PS> $a = (1, 2, 3)                  # array of integers (my personal preference)
@@ -409,7 +412,7 @@ HashTables
 A HashTable is an unordered collection of key:value pairs, synonymous with an object and its properties. 
 Later versions support known/fixed order hash elements, ``$hash = [ordered]@{}``.
 
-::
+.. code-block:: pwsh-session
 
    PS> $h = @{}              # empty hash
    PS> $key = 'Fred'         # set key name
@@ -502,7 +505,7 @@ While mixing named (*order independent*) and positional (*order dependent*) argu
 supplying one or two arguments, a better approach is to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_.
 The following contrived example illustrates the basics but the ``param ( ... )`` section has many options not shown here. 
 
-::
+.. code-block:: powershell
   
    #requires -version 4
    Set-StrictMode -Version 2
@@ -587,7 +590,7 @@ Further reading:
 ArrayList
 =========
 
-::
+.. code-block:: pwsh-session
 
    PS> $names = New-Object -TypeName System.Collections.ArrayList
    PS> $names = [System.Collections.ArrayList]::new()
@@ -657,7 +660,7 @@ The conditions that can be tested in an ``if`` statement are very extensive:
 
 There is also a ``switch`` statement for comparing against multiple values.
 
-::
+.. code-block:: powershell
 
    #requires -version 2
    Set-StrictMode -Version 2
@@ -709,7 +712,7 @@ Try/Catch
 
 Exception handling uses *Try/Catch*, but  the *Catch block* is only invoked on *terminating errors*.
 
-::
+.. code-block:: powershell
 
    #requires -version 4
    Set-StrictMode -Version 2
@@ -757,7 +760,7 @@ Loops
 
 There are several loop constructors ``for``, ``foreach``, ``while`` and ``do .. while``.
 
-::
+.. code-block:: powershell
 
    #requires -version 4
    Set-StrictMode -Version 2
@@ -801,7 +804,7 @@ Operators
 
 ``PowerShell`` supports the almost all the common programming language operators, with parenthesis to alter operator precedence.
 
-::
+.. code-block:: powershell
 
    #requires -version 4
    Set-StrictMode -Version 2
@@ -944,7 +947,8 @@ Table taken from `TutorialsPoint.com - Regular Expression <https://www.tutorials
 +-------------+----------------------------------------------------------------------------------------+
 
 Examples
-::
+
+.. code-block:: powershell
 
     #requires -version 4
     Set-StrictMode -Version 2
@@ -1011,7 +1015,7 @@ Reading Files
 
 Simple example, with the filename specified in the script.
 
-::
+.. code-block:: powershell
 
    #requires -version 4
    Set-StrictMode -Version 2
@@ -1057,7 +1061,7 @@ Simple example, with the filename specified in the script.
 If the filename(s) are supplied on the command line, then ``globbing`` (file pattern matching) will treat several files as one file.
 This following accepts a single file name argument and expands the ``glob`` before processing so the name can be displayed.
 
-::
+.. code-block:: powershell
 
    #requires -version 4
    Set-StrictMode -Version 2
@@ -1094,7 +1098,7 @@ This following accepts a single file name argument and expands the ``glob`` befo
 
 This example accepts all commandline arguments as file names and does not consider any ``globbing`` (file pattern matching).
 
-::
+.. code-block:: powershell
 
    #requires -version 4
    Set-StrictMode -Version 2
@@ -1131,7 +1135,7 @@ Simplest approach is to use `set-content <https://docs.microsoft.com/powershell/
 `clear-content <https://docs.microsoft.com/powershell/module/microsoft.powershell.management/clear-content>`_ *cmd-lets*, 
 which have many options not covered here.
 
-::
+.. code-block:: powershell
 
    #requires -version 4
    Set-StrictMode -Version 2
@@ -1182,7 +1186,7 @@ Displaying CSV Files
 Powershell provides ``cmdlets`` for handling these which avoid importing into ``Excel`` and ``MS Access``.
 The ``out-gridview`` renders the output the data in an interactive table. 
 
-::
+.. code-block:: pwsh-session
 
     PS> import-csv -Path file.csv -Delimeter "`t" | out-gridview # load and display a <TAB> separated file.
     PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # load and display a ';' separated file.
@@ -1212,69 +1216,69 @@ Reading JSON files
 
 PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are installed.
 
-::
+.. code-block:: pwsh-session
 
-   PS> get-content file2.json
-   {
-           "family":"flintstone",
-           "members":
-                   [
-                           {"Name":"Fred", "Age":"30"},
-                           {"Name":"Wilma", "Age":"25"},
-                           {"Name":"Pebbles", "Age":"1"},
-                           {"Name":"Dino", "Age":"5"}
-                   ]
-   }
+    PS> get-content file2.json
+    {
+        "family":"flintstone",
+        "members":
+        [
+            {"Name":"Fred", "Age":"30"},
+            {"Name":"Wilma", "Age":"25"},
+            {"Name":"Pebbles", "Age":"1"},
+            {"Name":"Dino", "Age":"5"}
+        ]
+    }
 
-   PS> get-content file2.json | ConvertFrom-Json
-   family     members
-   ------     -------
-   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
+    PS> get-content file2.json | ConvertFrom-Json
+    family     members
+    ------     -------
+    flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
 
 
-   PS> $obj = get-content file2.json | convertfrom-json
-   PS> $obj
-   family     members
-   ------     -------
-   flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
-   
-   PS> $obj.family                                      # returns flintstone
-   PS> $obj.members[0].name                             # returns Fred
-   PS> $obj.members[0].age                              # returns 30
-   PS> $obj.members[0].age = 35                         # set Fred's age to 35
-   PS> $obj.members[0].age                              # now returns 35
-   PS> $obj | convertto-json | add-content newfile.json # save as JSON
-   
-   PS> $obj.members.name                                # returns: Fred Wilma Pebbles Dino
-   PS> $obj.members.age                                 # returns: 35 25 1 5
-   PS> $obj.members.age[0]                              # returns  35
-   PS> $obj.members.age[0] = 37                         # immutable, silently fails, no error
-   PS> $obj.members.age[0]                              # returns 35
-   
-   PS> remove-variable -name obj                        # cleanup
-   
-   PS> get-content newfile.json
-   {
-       "family":  "flintstone",
-       "members":  [
-                       {
-                           "Name":  "Fred",
-                           "Age":  35
-                       },
-                       {
-                           "Name":  "Wilma",
-                           "Age":  "25"
-                       },
-                       {
-                           "Name":  "Pebbles",
-                           "Age":  "1"
-                       },
-                       {
-                           "Name":  "Dino",
-                           "Age":  "5"
-                       }
-                   ]
-   }
+    PS> $obj = get-content file2.json | convertfrom-json
+    PS> $obj
+    family     members
+    ------     -------
+    flintstone {@{Name=Fred; Age=30}, @{Name=Wilma; Age=25}, @{Name=Pebbles; Age=1}, @{Name=Dino; Age=5}}
+
+    PS> $obj.family                                      # returns flintstone
+    PS> $obj.members[0].name                             # returns Fred
+    PS> $obj.members[0].age                              # returns 30
+    PS> $obj.members[0].age = 35                         # set Fred's age to 35
+    PS> $obj.members[0].age                              # now returns 35
+    PS> $obj | convertto-json | add-content newfile.json # save as JSON
+
+    PS> $obj.members.name                                # returns: Fred Wilma Pebbles Dino
+    PS> $obj.members.age                                 # returns: 35 25 1 5
+    PS> $obj.members.age[0]                              # returns  35
+    PS> $obj.members.age[0] = 37                         # immutable, silently fails, no error
+    PS> $obj.members.age[0]                              # returns 35
+
+    PS> remove-variable -name obj                        # cleanup
+
+    PS> get-content newfile.json
+    {
+        "family":  "flintstone",
+        "members":  [
+            {
+                "Name":  "Fred",
+                "Age":  35
+            },
+            {
+                "Name":  "Wilma",
+                "Age":  "25"
+            },
+            {
+                "Name":  "Pebbles",
+                "Age":  "1"
+            },
+            {
+                "Name":  "Dino",
+                "Age":  "5"
+            }
+        ]
+    }
 
 Further reading:
    
@@ -1293,29 +1297,29 @@ are very rudimentary, and only show a few of the manipulations you can perform o
 `Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
 and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
 
-::
+.. code-block:: pwsh-session
 
-   PS> get-content .\file2.xml
-   <?xml version="1.0" encoding="UTF-8"?>
-   <family surname = "Flintstone">
-           <member>
-                   <name>Fred</name>
-                   <age>30</age>
-           </member>
-           <member>
-                   <name>Wilma</name>
-                   <age>25</age>
-           </member>
-           <member>
-                   <name>Pebbles</name>
-                   <age>1</age>
-           </member>
-           <member>
-                   <name>Dino</name>
-                   <age>5</age>
-           </member>
-   </family>
-   
+    PS> get-content .\file2.xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <family surname = "Flintstone">
+        <member>
+            <name>Fred</name>
+            <age>30</age>
+        </member>
+        <member>
+            <name>Wilma</name>
+            <age>25</age>
+        </member>
+        <member>
+            <name>Pebbles</name>
+            <age>1</age>
+        </member>
+        <member>
+            <name>Dino</name>
+            <age>5</age>
+        </member>
+    </family>
+
    PS> $obj = [XML] (get-content .\file2.xml) # returns a System.Xml.XmlDocument object
    
    PS> $obj.childnodes                        # returns all the child nodes
@@ -1345,25 +1349,25 @@ and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
    PS> $obj.Save("$PWD\newfile.xml")                     # needs a full pathname
 
    PS> get-content newfile.xml
-   <?xml version="1.0" encoding="UTF-8"?>
-   <family surname="Flintstone">
-     <member>
-       <name>Fred</name>
-       <age>35</age>
-     </member>
-     <member>
-       <name>Wilma</name>
-       <age>25</age>
-     </member>
-     <member>
-       <name>Pebbles</name>
-       <age>1</age>
-     </member>
-     <member>
-       <name>Dino</name>
-       <age>5</age>
-     </member>
-   </family>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <family surname="Flintstone">
+        <member>
+            <name>Fred</name>
+            <age>35</age>
+        </member>
+        <member>
+            <name>Wilma</name>
+            <age>25</age>
+        </member>
+        <member>
+            <name>Pebbles</name>
+            <age>1</age>
+        </member>
+        <member>
+            <name>Dino</name>
+            <age>5</age>
+        </member>
+    </family>
 
 
 Writing XML files
@@ -1375,82 +1379,82 @@ To generate an XML file, use the `XmlTextWriter Class <https://docs.microsoft.co
 `Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
 and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
 
-::
+.. code-block:: powershell
 
-   $settings = New-Object System.Xml.XmlWriterSettings  # to update XmlWriterSettings
-   $settings.Indent = $true                             # indented XML
-   $settings.IndentChars = "`t"                         # <TAB> indents
-   $settings.Encoding = [System.Text.Encoding]::UTF8    # force the default UTF8 encoding; others ASCII, Unicode...
+    $settings = New-Object System.Xml.XmlWriterSettings  # to update XmlWriterSettings
+    $settings.Indent = $true                             # indented XML
+    $settings.IndentChars = "`t"                         # <TAB> indents
+    $settings.Encoding = [System.Text.Encoding]::UTF8    # force the default UTF8 encoding; others ASCII, Unicode...
+
+    $obj = [System.XML.XmlWriter]::Create("C:\users\geoff\bedrock.xml", $settings) # note full-pathname
+
+    # Simpler approach but no encoding is specified in XML header and again note full-pathname
+    # $obj = New-Object System.XMl.XmlTextWriter('C:\users\geoff\bedrock.xml', $null)
+    # $obj.Formatting = 'Indented'
+    # $obj.Indentation = 1
+    # $obj.IndentChar = "`t"
+
+    $obj.WriteStartDocument()                          # start xml document, <?xml version="1.0"?>
+    $obj.WriteComment('Bedrock Families')              # add a comment, <!-- Bedrock Families -->
+    $obj.WriteStartElement('family')                   # start element <family>
+    $obj.WriteAttributeString('surname', 'Flintstone') # add surname attribute
+
+    $obj.WriteStartElement('member')                   # start element <member>
+    $obj.WriteElementString('name','Fred')             # add <name>Fred</name>
+    $obj.WriteElementString('age','30')                # add <age>30</age>
+    $obj.WriteEndElement()                             # end element </member>
+
+    $obj.WriteStartElement('member')                   # start element <member>
+    $obj.WriteElementString('name','Wilma')            # add <name>Wilma</name>
+    $obj.WriteElementString('age','25')                # add <age>25</age>
+    $obj.WriteEndElement()                             # end element </member>
+
+    $obj.WriteStartElement('member')                   # start element <member>
+    $obj.WriteElementString('name','Pebbles')          # add <name>Pebbles</name>
+    $obj.WriteElementString('age','1')                 # add <age>1</age>
+    $obj.WriteEndElement()                             # end element </member>
+
+    $obj.WriteStartElement('member')                   # start element <member>
+    $obj.WriteElementString('name','Dino')             # add <name>Dino</name>
+    $obj.WriteElementString('age','5')                 # add <age>5</age>
+    $obj.WriteEndElement()                             # end element </member>
+
+    $obj.WriteEndElement()                             # end element <family>
+
+    $obj.WriteEndDocument()                            # end document
+    $obj.Flush()                                       # flush
+    $obj.Close()                                       # close, writes the file
+
+    PS> get-content C:\users\geoff\bedrock.xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <!--Bedrock Families-->
+    <family surname="Flintstone">
+        <member>
+            <name>Fred</name>
+            <age>30</age>
+        </member>
+        <member>
+            <name>Wilma</name>
+            <age>25</age>
+        </member>
+        <member>
+            <name>Pebbles</name>
+            <age>1</age>
+        </member>
+        <member>
+            <name>Dino</name>
+            <age>5</age>
+        </member>
+    </family>
    
-   $obj = [System.XML.XmlWriter]::Create("C:\users\geoff\bedrock.xml", $settings) # note full-pathname
-   
-   # Simpler approach but no encoding is specified in XML header and again note full-pathname
-   # $obj = New-Object System.XMl.XmlTextWriter('C:\users\geoff\bedrock.xml', $null)
-   # $obj.Formatting = 'Indented'
-   # $obj.Indentation = 1
-   # $obj.IndentChar = "`t"
-   
-   $obj.WriteStartDocument()                          # start xml document, <?xml version="1.0"?>
-   $obj.WriteComment('Bedrock Families')              # add a comment, <!-- Bedrock Families -->
-   $obj.WriteStartElement('family')                   # start element <family>
-   $obj.WriteAttributeString('surname', 'Flintstone') # add surname attribute
-   
-   $obj.WriteStartElement('member')                   # start element <member>
-   $obj.WriteElementString('name','Fred')             # add <name>Fred</name>
-   $obj.WriteElementString('age','30')                # add <age>30</age>
-   $obj.WriteEndElement()                             # end element </member>
-   
-   $obj.WriteStartElement('member')                   # start element <member>
-   $obj.WriteElementString('name','Wilma')            # add <name>Wilma</name>
-   $obj.WriteElementString('age','25')                # add <age>25</age>
-   $obj.WriteEndElement()                             # end element </member>
-   
-   $obj.WriteStartElement('member')                   # start element <member>
-   $obj.WriteElementString('name','Pebbles')          # add <name>Pebbles</name>
-   $obj.WriteElementString('age','1')                 # add <age>1</age>
-   $obj.WriteEndElement()                             # end element </member>
-   
-   $obj.WriteStartElement('member')                   # start element <member>
-   $obj.WriteElementString('name','Dino')             # add <name>Dino</name>
-   $obj.WriteElementString('age','5')                 # add <age>5</age>
-   $obj.WriteEndElement()                             # end element </member>
-   
-   $obj.WriteEndElement()                             # end element <family>
-   
-   $obj.WriteEndDocument()                            # end document
-   $obj.Flush()                                       # flush
-   $obj.Close()                                       # close, writes the file
-   
-   PS> get-content C:\users\geoff\bedrock.xml
-   <?xml version="1.0" encoding="utf-8"?>
-   <!--Bedrock Families-->
-   <family surname="Flintstone">
-           <member>
-                   <name>Fred</name>
-                   <age>30</age>
-           </member>
-           <member>
-                   <name>Wilma</name>
-                   <age>25</age>
-           </member>
-           <member>
-                   <name>Pebbles</name>
-                   <age>1</age>
-           </member>
-           <member>
-                   <name>Dino</name>
-                   <age>5</age>
-           </member>
-   </family>
-   
-   PS> remove-variable -name settings
-   PS> remove-variable -name obj
-   PS> remove-item C:\users\geoff\bedrock.xml
+    PS> remove-variable -name settings
+    PS> remove-variable -name obj
+    PS> remove-item C:\users\geoff\bedrock.xml
 
 Log files: tail, write time-stamped message
 ===========================================
 
-::
+.. code-block:: pwsh-session
 
    # tailing a log file
    PS> get-content -wait -last 10 "application.log"
@@ -1468,7 +1472,7 @@ Formatting Variables
 Very similar to Python ``-f`` operator, examples use ``write-host`` but can be used with other cmdlets, such as assignment.
 Specified as ``{<index>, <alignment><width>:<format_spec>}``
 
-::
+.. code-block:: pwsh-session
 
    PS> $shortText = "Align me"
    PS> $longerText = "Please Align me, but I am very wide"
@@ -1533,9 +1537,9 @@ executed by the ``CurrentUser`` by setting the ``ExecutionPolicy`` to ``RemoteSi
 
 Alternatively this can also be done manually by running ``PowerShell`` as ``Administrator``
 
-::
+.. code-block:: pwsh-session
 
-    ADM-PS1> set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    PS-ADM> set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
     Execution Policy Change
     The execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose you to the security risks
@@ -1545,7 +1549,7 @@ Alternatively this can also be done manually by running ``PowerShell`` as ``Admi
 
 A sensible working setup for your personal laptop
 
-::
+.. code-block:: pwsh-session
 
     PS> Get-ExecutionPolicy -list
             Scope ExecutionPolicy
@@ -1557,7 +1561,8 @@ A sensible working setup for your personal laptop
      LocalMachine       Undefined
 
 A sensible working setup for a typical windows server installation
-::
+
+.. code-block:: pwsh-session
 
     PS> Get-ExecutionPolicy -list
             Scope ExecutionPolicy
@@ -1598,15 +1603,16 @@ In a commercial or industrial environment this is usually managed by your local 
 ``MachinePolicy`` and ``UserPolicy`` in ``Execution Policy Scope`` and you maybe prevented from changing anything.
 
 Example ``Set-ExecutionPolicy`` commands, these need to be executed in ``PowerShell`` running as ``Administrator``
-::
 
-   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned # sets: LocalMachine RemoteSigned
-   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Restricted   # sets: LocalMachine Restricted
-   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Undefined    # sets: LocalMachine Undefined
+.. code-block:: pwsh-session
 
-   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate AllSigned for LocalMachine
-   ADM-PS1> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
+   PS-ADM> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned # sets: LocalMachine RemoteSigned
+   PS-ADM> Set-ExecutionPolicy -ExecutionPolicy Restricted   # sets: LocalMachine Restricted
+   PS-ADM> Set-ExecutionPolicy -ExecutionPolicy Undefined    # sets: LocalMachine Undefined
+
+   PS-ADM> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   PS-ADM> Set-ExecutionPolicy -ExecutionPolicy AllSigned    # mandate AllSigned for LocalMachine
+   PS-ADM> Set-ExecutionPolicy -ExecutionPolicy Default      # restore: LocalMachine defaults
 
 PowerShell Code Signing
 =======================
@@ -1655,14 +1661,14 @@ Requires creating the following certificates using a ``PowerShell`` in *Administ
 * **LocalMachine\\Root** - certificate for authentication;
 * **LocalMachine\\TrustedPublisher** - certificate for authentication;
 
-::
+.. code-block:: pwsh-session
 
     # Certificate Manager tools
-    C:\Windows\system32\certmgr.msc # Current User
-    C:\Windows\system32\certlm.msc  # Local Machine
-    C:\Windows\system32\mmc.exe     # MMC tool
+    PS> C:\Windows\system32\certmgr.msc # Current User
+    PS> C:\Windows\system32\certlm.msc  # Local Machine
+    PS> C:\Windows\system32\mmc.exe     # MMC tool
 
-    ADM-PS> Get-ExecutionPolicy -List
+    PS-ADM> Get-ExecutionPolicy -List
             Scope ExecutionPolicy
             ----- ---------------
     MachinePolicy       Undefined
@@ -1671,34 +1677,34 @@ Requires creating the following certificates using a ``PowerShell`` in *Administ
       CurrentUser    RemoteSigned
      LocalMachine       Undefined
 
-    ADM-PS> $authenticode = New-SelfSignedCertificate -Subject "ATA Authenticode" -CertStoreLocation Cert:\LocalMachine\My -Type CodeSigningCert
+    PS-ADM> $authenticode = New-SelfSignedCertificate -Subject "ATA Authenticode" -CertStoreLocation Cert:\LocalMachine\My -Type CodeSigningCert
 
     # Add the self-signed Authenticode to LocalMachine\Root certificate store
-    ADM-PS> $rootStore = [System.Security.Cryptography.X509Certificates.X509Store]::new("Root","LocalMachine")
-    ADM-PS> $rootStore.Open("ReadWrite")             ## Open LocalMachine\Root certificate store for read/write
-    ADM-PS> $rootStore.Add($authenticode)            ## Add the certificate stored in the $authenticode variable.
-    ADM-PS> $rootStore.Close()                       ## Close the root certificate store.
+    PS-ADM> $rootStore = [System.Security.Cryptography.X509Certificates.X509Store]::new("Root","LocalMachine")
+    PS-ADM> $rootStore.Open("ReadWrite")             ## Open LocalMachine\Root certificate store for read/write
+    PS-ADM> $rootStore.Add($authenticode)            ## Add the certificate stored in the $authenticode variable.
+    PS-ADM> $rootStore.Close()                       ## Close the root certificate store.
 
     # Add the self-signed Authenticode to LocalMachine\TrustedPublisher certificate store.
-    ADM-PS> $publisherStore = [System.Security.Cryptography.X509Certificates.X509Store]::new("TrustedPublisher","LocalMachine")
-    ADM-PS> $publisherStore.Open("ReadWrite")        ## Open LocalMachine\TrustedPublisher certificate store for read/write
-    ADM-PS> $publisherStore.Add($authenticode)       ## Add the certificate stored in the $authenticode variable.
-    ADM-PS> $publisherStore.Close()                  ## Close the TrustedPublisher certificate store.
+    PS-ADM> $publisherStore = [System.Security.Cryptography.X509Certificates.X509Store]::new("TrustedPublisher","LocalMachine")
+    PS-ADM> $publisherStore.Open("ReadWrite")        ## Open LocalMachine\TrustedPublisher certificate store for read/write
+    PS-ADM> $publisherStore.Add($authenticode)       ## Add the certificate stored in the $authenticode variable.
+    PS-ADM> $publisherStore.Close()                  ## Close the TrustedPublisher certificate store.
 
     # Verify all certificates are created and the Thumbprint same
-    ADM-PS> Get-ChildItem Cert:\LocalMachine\My | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
+    PS-ADM> Get-ChildItem Cert:\LocalMachine\My | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
        PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\My
     Thumbprint                                Subject
     ----------                                -------
     F71A096EFCDC99DFAC109A228565B427B66DF49F  CN=ATA Authenticode
 
-    ADM-PS> Get-ChildItem Cert:\LocalMachine\Root | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
+    PS-ADM> Get-ChildItem Cert:\LocalMachine\Root | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
        PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\Root
     Thumbprint                                Subject
     ----------                                -------
     F71A096EFCDC99DFAC109A228565B427B66DF49F  CN=ATA Authenticode
 
-    ADM-PS> Get-ChildItem Cert:\LocalMachine\TrustedPublisher | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
+    PS-ADM> Get-ChildItem Cert:\LocalMachine\TrustedPublisher | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
        PSParentPath: Microsoft.PowerShell.Security\Certificate::LocalMachine\TrustedPublisher
     Thumbprint                                Subject
     ----------                                -------
@@ -1708,13 +1714,13 @@ Requires creating the following certificates using a ``PowerShell`` in *Administ
 Using the Authenticode, Signing and Running
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-::
+.. code-block:: pwsh-session
 
     # Enforce AllSigned, select '[A] Yes to All' option
-    ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
-    ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+    PS-ADM> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
+    PS-ADM> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
 
-    ADM-PS> PS C:\Users\geoff> Get-ExecutionPolicy -List
+    PS-ADM> PS C:\Users\geoff> Get-ExecutionPolicy -List
             Scope ExecutionPolicy
             ----- ---------------
     MachinePolicy       Undefined
@@ -1724,7 +1730,7 @@ Using the Authenticode, Signing and Running
      LocalMachine       AllSigned
 
     # Get the *ATA Authenticode*
-    ADM-PS> $codeCertificate = Get-ChildItem Cert:\LocalMachine\My | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
+    PS-ADM> $codeCertificate = Get-ChildItem Cert:\LocalMachine\My | Where-Object {$_.Subject -eq "CN=ATA Authenticode"}
 
     PS C:\> Get-Content C:\Users\sjfke\hello-world.ps1
     #requires -version 4
@@ -1733,7 +1739,7 @@ Using the Authenticode, Signing and Running
     write-output 'output: hello world!'
     exit(0)
 
-    ADM-PS> Set-AuthenticodeSignature -FilePath C:\Users\sjfke\hello-world.ps1  -Certificate $codeCertificate
+    PS-ADM> Set-AuthenticodeSignature -FilePath C:\Users\sjfke\hello-world.ps1  -Certificate $codeCertificate
     # Appends a signature, makes it immutable, any changes require Set-AuthenticodeSignature again.
     PS C:\> Get-Content C:\Users\sjfke\hello-world.ps1
     #requires -version 4
@@ -1745,7 +1751,7 @@ Using the Authenticode, Signing and Running
     <-- text-removed -->
     # SIG # End signature block
 
-    ADM-PS> C:\Users\sjfke\hello-world.ps1
+    PS-ADM> C:\Users\sjfke\hello-world.ps1
     host: hello world!
     output: hello world!
 
@@ -1755,9 +1761,9 @@ Using the Authenticode, Signing and Running
 
 Adding a TimeStampServer should ensure that your code will not expire when the signing certificate expires.
 
-::
+.. code-block:: pwsh-session
 
-    ADM-PS> Set-AuthenticodeSignature -FilePath C:\Users\sjfke\hello-world.ps1  -Certificate $codeCertificate -TimeStampServer http://timestamp.digicert.com
+    PS-ADM> Set-AuthenticodeSignature -FilePath C:\Users\sjfke\hello-world.ps1  -Certificate $codeCertificate -TimeStampServer http://timestamp.digicert.com
     # Freely available TimeStampServers
     - http://timestamp.digicert.com
     - http://timestamp.comodoca.com
@@ -1794,7 +1800,8 @@ differences in the default configuration in the OpenSSL installation.
 
 OpenSSL: Self-Signed Certificates Setup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-::
+
+.. code-block:: bash
 
     Step 1a - generate atb-authenticode.key and atb-authenticode.csr
     $ openssl req -new -newkey rsa:2048 -nodes -keyout authenticode.key -out authenticode.csr -config authenticode-selfsign-openssl.cnf
@@ -1818,7 +1825,7 @@ OpenSSL: Self-Signed Certificates Setup
     Common Name (eg, YOUR name) [HighlyDubious]:ATB Authenticode
     Email Address []:.
 
-::
+.. code-block:: bash
 
     Step 1b - generate self-signed atb-authenticode.crt
     # Note options: -extensions v3_req -extfile authenticode-selfsign-openssl.cnf
@@ -1837,7 +1844,7 @@ OpenSSL: Self-Signed Certificates Setup
             X509v3 Extended Key Usage: critical
                 Code Signing, Microsoft Individual Code Signing
 
-::
+.. code-block:: bash
 
     Step 1c - merge atb-authenticode.crt and authenticode.key -into- authenticode.pfx
     Note: an empty password can be used
@@ -1849,7 +1856,7 @@ The next few steps involve importing the ``authenticode.pfx`` into the Windows c
 `PowerShell Generating, Installing and Using a Self-Signed Certificate`_ it uses *CurrentUser\\My*, *CurrentUser\\Root* and
 *CurrentUser\\TrustedPublisher*.
 
-::
+.. code-block:: pwsh-session
 
     # Certificate Manager tools
     PS1> C:\Windows\system32\certmgr.msc # Current User
@@ -1863,16 +1870,16 @@ The next few steps involve importing the ``authenticode.pfx`` into the Windows c
 OpenSSL: Using the Authenticode, Signing and Running
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Requires using a ``PowerShell`` in *Administrative mode* to execute ``set-ExecutionPolicy`` commands, prompt ``ADM-PS1>``
+Requires using a ``PowerShell`` in *Administrative mode* to execute ``set-ExecutionPolicy`` commands, prompt ``PS-ADM>``
 and a normal ``PowerShell``, prompt ``PS1>`` for the rest.
 
-::
+.. code-block:: pwsh-session
 
     # Enforce AllSigned, select '[A] Yes to All' option
-    ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
-    ADM-PS> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+    PS-ADM> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
+    PS-ADM> set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
 
-    ADM-PS> PS C:\Users\sjfke> Get-ExecutionPolicy -List
+    PS-ADM> PS C:\Users\sjfke> Get-ExecutionPolicy -List
             Scope ExecutionPolicy
             ----- ---------------
     MachinePolicy       Undefined
@@ -1881,7 +1888,7 @@ and a normal ``PowerShell``, prompt ``PS1>`` for the rest.
       CurrentUser       AllSigned
      LocalMachine       AllSigned
 
-::
+.. code-block:: pwsh-session
 
     PS1> Get-Content -Path C:\Users\sjfke\hello-world.ps1
     #requires -version 4
@@ -1931,7 +1938,7 @@ This is the result of many iterations and consulting many references, most relev
 * `x509v3_config - X509 V3 certificate extension configuration format <https://www.openssl.org/docs/manmaster/man5/x509v3_config.htm>`_ v3_req, v3_ca
 * `openssl-pkcs12 - PKCS#12 file command <https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html>`_
 
-::
+.. code-block:: ini
 
     ####################################################################
     # CA Definition

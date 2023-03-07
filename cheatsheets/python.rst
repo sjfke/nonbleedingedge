@@ -42,8 +42,12 @@ Python on Windows
 The author is using Python from the `Microsoft Store <https://apps.microsoft.com/store/apps>`_
 
 * `Python - Using Python on Windows <https://docs.python.org/3/using/windows.html>`_
-* `How to manage App execution aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
 * `Microsoft - Get started using Python on Windows for beginners <https://learn.microsoft.com/en-us/windows/python/beginners>`_
+* `Microsoft - Get started using Python for web development on Windows <https://learn.microsoft.com/en-us/windows/python/web-frameworks>`_
+* `Microsoft Store - Python 3.11 <https://apps.microsoft.com/store/detail/python-311/9NRWMJP3717K>`_
+    * `Python 3.10 <https://apps.microsoft.com/store/detail/python-310/9PJPW5LDXLZ5>`_
+    * `Python 3.9 <https://apps.microsoft.com/store/detail/python-39/9P7QFQMJRFP7>`_
+    * `How to manage App execution aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
 * `Anaconda offers the easiest way to perform Python/R data science <https://www.anaconda.com/>`_
 * `RealPython - Your Python Coding Environment on Windows: Setup Guide <https://realpython.com/python-coding-setup-windows/>`_
 
@@ -138,7 +142,9 @@ The ``Docstrings``, the text between the *triple double-quotes* after the functi
 no single agreed format is in use and style varies considerably, see :ref:`python-docstrings`, a single line description is illustrated above, and
 `PyCharm Community Edition <https://www.jetbrains.com/pycharm/download>`_ Docstrings are used on the GitHub version.
 
-Example usage ::
+Example usage
+
+.. code-block:: shell-session
 
     $ python .\flintstones.py --help
     usage: flintstones.py [-h] [-n] [-a] [-p PERSON] [-v]
@@ -204,7 +210,7 @@ Python Logging
 
     logging.warning('Testing log formatting!')
 
-::
+.. code-block:: shell-session
 
     $ cat .\myfirstlog.log
     2023-02-09 20:23:28,339 | root | WARNING | Testing log formatting!
@@ -220,7 +226,7 @@ Module Import
 
 For illustration the file `fact.py` which contains a method called `fact` is copied into different folders.
 
-::
+.. code-block:: dosbatch
 
     C:\USERS\FACTORIAL
     │   fact-test.py
@@ -262,7 +268,9 @@ Using Shebang
 -------------
 
 On ``UNIX`` and ``Linux`` systems it is common to have a ``shebang`` as the first line of the the script, so the
-Shell knows which interpreter to use. ::
+Shell knows which interpreter to use.
+
+.. code-block:: bash
 
     #!/bin/bash           # execute using bash
     #!/usr/bin/python     # interpreter /usr/bin/python (default Python)
@@ -944,7 +952,7 @@ References:
 * `Structured Markup Processing Tools <https://docs.python.org/3/library/markup.html>`_
 
 Operators
-^^^^^^^^^
+---------
 
 .. note:: Add table from Digital Ocean
 
@@ -954,7 +962,7 @@ References:
 * `Python: operator — Standard operators as functions <https://docs.python.org/3/library/operator.html>`_
 
 Comparisons, Equality, and Truth
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
 +----------+--------------------------+---------+
 | Operator | Name                     | Example |
@@ -1037,6 +1045,7 @@ Python-3.11 classinfo types: ::
     'UnicodeEncodeError', 'UnicodeTranslateError', 'ExceptionGroup', 'OSError', 'OSError', 'OSError']
 
 Checking what an object is:
+
  .. code-block:: python
 
     L = [1, 2, 3]; D = {'food': {'ham': 2, 'eggs': 3}}; t = (1, 2, 3); s = "string of text"
@@ -1146,9 +1155,8 @@ Simple ``Person`` object in file named ``Person.py``, without Docstrings for bre
 Using Python decorators
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-This is considered the *pythonic* approach because it **only supports attributes**.
-
-There are no functions `get_name()`, `set_name()` etc.
+This is considered the *pythonic* approach because it **only supports attributes**, there are
+no functions `get_name()`, `set_name()` etc.
 
 .. code-block:: python
 
@@ -1233,7 +1241,7 @@ There are no functions `get_name()`, `set_name()` etc.
 Using the property class
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-This approach supports `get_name()`, `set_name()` etc **AND** attributes.
+This approach supports attributes  **AND** `get_name()`, `set_name()` etc.
 
 .. code-block:: python
 
@@ -1614,7 +1622,7 @@ Pipenv
 * `The Hitchhicker's Guide to Python: Basic Usage <https://pipenv.pypa.io/en/latest/basics/>`_
 * `The Hitchhicker's Guide to Python: Advanced Usage <https://pipenv.pypa.io/en/latest/advanced/>`_
 
-.. code-block:: shell
+.. code-block:: shell-session
 
     $ cd myproject
     $ pipenv --python 3           # Create a virtual env and install dependencies (if it does not exist already)
@@ -1631,7 +1639,7 @@ Eclipse/PyDev
 
 Setup a new Python project in Eclipse, and change the project to use it.
 
-.. code-block:: shell
+.. code-block:: shell-session
 
     $ export PIPENV_VENV_IN_PROJECT=1 # force creation of '.venv' in project
     $ cd <eclipse-workspace>/<project>
@@ -1654,7 +1662,7 @@ VirtualEnv
 The example below is for Windows, but will also work on `UNIX`, `Linux` or `MacOS`, with the exception
 of the PowerShell `get-command`.
 
-.. code-block:: powershell
+.. code-block:: pwsh-session
 
     PS> mkdir myproject
     PS> cd myproject
