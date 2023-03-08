@@ -741,7 +741,55 @@ Numbers
     print(f"{n:+d};{pi:+07.2f}")          # +42;+003.14
     print(f"{n:=5d};{N:=5d}")             #    42;-  42
 
-Miscellaneous
+DateTime, UNIX Epoch and TimeStamps
+
+.. code-block:: python
+
+    # Examples with DateTime and TimeZone
+    from datetime import datetime, timezone
+    now = datetime.now()                                                 # (naive) No TimeZone
+    now = datetime.utcnow()                                              # (naive) No TimeZone
+    now.tzinfo                                                           # None
+    now.utcoffset()                                                      # None
+    utc = datetime.now(timezone.utc)                                     # (aware) UTC TimeZone
+    utc.tzinfo                                                           # datetime.timezone.utc
+    utc.utcoffset()                                                      # datetime.timedelta(0)
+
+    # Example UNIX Epoch
+    import time
+    time.mktime(utc.timetuple())                                         # UNIX epoch as float
+    int(time.mktime(utc.timetuple()))                                    # UNIX epoch as int
+    round(time.mktime(utc.timetuple()))                                  # UNIX epoch as int
+
+    # DateTime Only (CET, CEST TimeZone)
+    from datetime import datetime
+    now = datetime.now()
+    print(now)                                                           # 2023-03-01 16:50:03.393791
+    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 16:50
+    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 16:50
+    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 16:50
+
+    # DateTime and TimeZone (In CET, CEST TimeZone)
+    from datetime import datetime, timezone
+    now = datetime.utcnow()
+    print(now)                                                           # 2023-03-01 15:50:03.393791
+    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 15:50
+    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 15:50
+    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 15:50
+    print(now.isoformat())                                               # 2023-03-01T15:50:03.393791+00:00
+    print(f"{now:%Y-%m-%dT%H:%M:%S+00:00}")                              # 2023-03-01T15:50:03.39+00:00
+
+    # Date Only
+    from datetime import date
+    today = date.today()
+    print(today)                                                         # 2023-03-01
+    print("{:%B %d %Y}".format(today))                                   # March 01 2023
+    print("{:{dfmt}}".format(today, dfmt="%B %d %Y"))                    # March 01 2023
+    print(f"{today:%B %d %Y}")                                           # March 01 2023
+
+    #
+
+Dictionaries
 
 .. code-block:: python
 
@@ -750,21 +798,10 @@ Miscellaneous
     print("{first} {last}".format(**name))                               # Fred Flintstone
     print("{p[first]} {p[last]}".format(p=name))                         # Fred Flintstone
     print(f"{name['first']} {name['last']}")                             # Fred Flintstone
-    print(f"{name['first'].lower()} {name['last'].lower()}")             # fred flintstone
+    print(f"{name['first'].lower()} {name['last'].upper()}")             # fred FLINTSTONE
 
-    from datetime import datetime
-    now = datetime.now()
-    print(now)                                                           # 2023-03-01 16:50:03.393791
-    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 16:50
-    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 16:50
-    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 16:50
 
-    from datetime import date
-    today = date.today()
-    print(today)                                                         # 2023-03-01
-    print("{:%B %d %Y}".format(today))                                   # March 01 2023
-    print("{:{dfmt}}".format(today, dfmt="%B %d %Y"))                    # March 01 2023
-    print(f"{today:%B %d %Y}")                                           # March 01 2023
+
 
 
 Reading and Writing Files
