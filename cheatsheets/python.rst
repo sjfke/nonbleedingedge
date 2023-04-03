@@ -726,7 +726,7 @@ Numbers
     print(f"{n:07d};{pi:07.2f}")          # 0000042;0003.14
 
     # Signed numbers
-    n = 42;  N = -42 pi = 3.141592653589793
+    n = 42;  N = -42; pi = 3.141592653589793
     print("%+d;%+d" % (n, N))             # +42;-42
     print("% d;% d" % (n, N))             #  42;-42
     print("%+d;%+7.2f" % (n, pi))         # +42;  +3.14
@@ -740,6 +740,11 @@ Numbers
     print(f"{n: d};{N: d}")               #  42;-42
     print(f"{n:+d};{pi:+07.2f}")          # +42;+003.14
     print(f"{n:=5d};{N:=5d}")             #    42;-  42
+
+    # Convert <number> to str
+    f"{n!r}"                              # '42'
+    f"{N!r}"                              # '-42'
+    f"{pi!r}"                             # '3.141592653589793'
 
 DateTime, UNIX Epoch and TimeStamps
 
@@ -799,10 +804,6 @@ Dictionaries
     print("{p[first]} {p[last]}".format(p=name))                         # Fred Flintstone
     print(f"{name['first']} {name['last']}")                             # Fred Flintstone
     print(f"{name['first'].lower()} {name['last'].upper()}")             # fred FLINTSTONE
-
-
-
-
 
 Reading and Writing Files
 -------------------------
@@ -1656,7 +1657,7 @@ Pipenv
 ------
 
 * `Github: Pipenv <https://github.com/pypa/pipenv>`_
-* `The Hitchhicker's Guide to Python: Basic Usage <https://pipenv.pypa.io/en/latest/basics/>`_
+* `Pipenv: Python Dev Workflow for Humans <https://pipenv.pypa.io/en/latest/>`_
 * `The Hitchhicker's Guide to Python: Advanced Usage <https://pipenv.pypa.io/en/latest/advanced/>`_
 
 .. code-block:: shell-session
