@@ -894,7 +894,7 @@ JSON files
 
     import json
     f = open('flintstones.json', 'r')
-    x = json.load(f)  # {'flintstones': {'Fred': 30, 'Wilma': 25, 'Pebbles': 1, 'Dino': 5}}
+    x = json.load(f)  # {"flintstones": {"Fred": 30, "Wilma": 25, "Pebbles": 1, "Dino": 5}}
 
     print(x.__class__)          # <class 'dict'>
     print(x.__class__.__name__) # dict
