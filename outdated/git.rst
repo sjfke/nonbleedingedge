@@ -4,6 +4,8 @@
 Git Cheatsheet
 **************
 
+.. warning:: Old or incomplete, anticipate inaccuracies and outdated information.
+
 Git Hub Fork
 ============
 ::

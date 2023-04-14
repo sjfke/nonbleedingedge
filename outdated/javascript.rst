@@ -4,6 +4,8 @@
 JavaScript Cheatsheet
 *********************
 
+.. warning:: Old or incomplete, anticipate inaccuracies and outdated information.
+
 Comments
 ========
 ::
