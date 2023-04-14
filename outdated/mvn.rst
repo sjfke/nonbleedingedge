@@ -4,6 +4,8 @@
 Apache Maven
 ************
 
+.. warning:: Old or incomplete, anticipate inaccuracies and outdated information.
+
 General introductions
 =====================
 

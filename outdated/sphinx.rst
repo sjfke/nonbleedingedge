@@ -4,7 +4,7 @@
 Sphinx Cheatsheet
 *****************
 
-.. important:: Very early draft, a complete rewrite in progress.
+.. warning:: Very early draft, a complete rewrite in progress.
 
 Sphinx Links
 ============

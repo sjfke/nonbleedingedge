@@ -4,7 +4,7 @@
 Catalina upgrade issues
 ***********************
 
-.. important:: Very old draft, anticipate inaccuracies and outdated information.
+.. warning:: Very old draft, anticipate inaccuracies and outdated information.
 
 This upgrade went smoothly (unlike Mojave), so fairly uneventful..
 

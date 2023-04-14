@@ -4,7 +4,7 @@
 Python Django Tutorial
 **********************
 
-.. important:: Very old draft, anticipate inaccuracies and outdated information.
+.. warning:: Very old draft, anticipate inaccuracies and outdated information.
 
 Installing ``pipenv``
 =====================
