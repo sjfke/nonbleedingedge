@@ -750,22 +750,6 @@ DateTime, UNIX Epoch and TimeStamps
 
 .. code-block:: python
 
-    # Examples with DateTime and TimeZone
-    from datetime import datetime, timezone
-    now = datetime.now()                                                 # (naive) No TimeZone
-    now = datetime.utcnow()                                              # (naive) No TimeZone
-    now.tzinfo                                                           # None
-    now.utcoffset()                                                      # None
-    utc = datetime.now(timezone.utc)                                     # (aware) UTC TimeZone
-    utc.tzinfo                                                           # datetime.timezone.utc
-    utc.utcoffset()                                                      # datetime.timedelta(0)
-
-    # Example UNIX Epoch
-    import time
-    time.mktime(utc.timetuple())                                         # UNIX epoch as float
-    int(time.mktime(utc.timetuple()))                                    # UNIX epoch as int
-    round(time.mktime(utc.timetuple()))                                  # UNIX epoch as int
-
     # DateTime Only (CET, CEST TimeZone)
     from datetime import datetime
     now = datetime.now()
@@ -792,7 +776,6 @@ DateTime, UNIX Epoch and TimeStamps
     print("{:{dfmt}}".format(today, dfmt="%B %d %Y"))                    # March 01 2023
     print(f"{today:%B %d %Y}")                                           # March 01 2023
 
-    #
 
 Dictionaries
 
@@ -1472,6 +1455,31 @@ Try/Except
     [Errno 2] No such file or directory: 'filename.txt'
 
     invalid literal for int() with base 10: '<?xml version="1.0" encoding="UTF-8"?>'
+
+
+DateTime and TimeZone
+---------------------
+
+.. code-block:: python
+
+    # With/Without TimeZone
+    from datetime import datetime, timezone
+    now = datetime.now()                     # (naive) No TimeZone
+    now = datetime.utcnow()                  # (naive) No TimeZone
+    now.tzinfo                               # None
+    now.utcoffset()                          # None
+    utc = datetime.now(timezone.utc)         # (aware) UTC TimeZone
+    utc.tzinfo                               # datetime.timezone.utc
+    utc.utcoffset()                          # datetime.timedelta(0)
+
+    # UNIX epoch (UTC)
+    import time
+    from datetime import datetime, timezone
+    utc = datetime.utcnow()                  # (naive) No TimeZone
+    time.mktime(utc.timetuple())             # UNIX epoch as float
+    int(time.mktime(utc.timetuple()))        # UNIX epoch as int
+    round(time.mktime(utc.timetuple()))      # UNIX epoch as int
+
 
 ==========
 Decorators
