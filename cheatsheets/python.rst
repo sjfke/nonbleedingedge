@@ -250,7 +250,7 @@ For illustration the file `fact.py` which contains a method called `fact` is cop
     import random                         # module in sys.path (List) and sys.modules (Dictionary)
     from sys import exit                  # so exit() and not sys.exit(), module in (sys.path, sys.modules)
 
-    from fact import fact
+    from fact import fact                 # from file './fact.py' import 'def fact(n)'
     # from subdir.fact import fact        # file is in subdir
     # from subdir.subdir.fact import fact # file is in subdir/subdir
     # from fact import fact as factorial  # answer = factorial(n)
@@ -758,7 +758,7 @@ DateTime, UNIX Epoch and TimeStamps
     print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 16:50
     print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 16:50
 
-    # DateTime and TimeZone (In CET, CEST TimeZone)
+    # DateTime (Naive, in CET, CEST TimeZone)
     from datetime import datetime, timezone
     now = datetime.utcnow()
     print(now)                                                           # 2023-03-01 15:50:03.393791
@@ -767,6 +767,20 @@ DateTime, UNIX Epoch and TimeStamps
     print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 15:50
     print(now.isoformat())                                               # 2023-03-01T15:50:03.393791+00:00
     print(f"{now:%Y-%m-%dT%H:%M:%S+00:00}")                              # 2023-03-01T15:50:03.39+00:00
+
+    # DateTime (TimeZone aware, in CET, CEST TimeZone)
+    import pytz                                                          # python time-zones
+    import tzlocal                                                       # python local time-zone
+    from pytz import timezone
+    from tzlocal import get_localzone
+    from datetime import datetime
+    epoch = 1682490209                                                   # UNIX epoch (naive, no time-zone)
+    dt_format = "%Y-%m-%d %H:%M:%S %Z%z"
+    dt = datetime.fromtimestamp(epoch).replace(tzinfo=pytz.UTC)          # make UTC datetime (time-zone aware)
+    print(dt.strftime(dt_format))                                        # 2023-04-26 08:23:29 UTC+0000
+    print(dt.astimezone(timezone('Europe/Zurich')).strftime(dt_format))  # 2023-04-26 10:23:29 CEST+0200
+    print(dt.astimezone(get_localzone()).strftime(dt_format))            # 2023-04-26 10:23:29 CEST+0200
+
 
     # Date Only
     from datetime import date
