@@ -768,8 +768,9 @@ DateTime, UNIX Epoch and TimeStamps
     print(now.isoformat())                                               # 2023-03-01T15:50:03.393791+00:00
     print(f"{now:%Y-%m-%dT%H:%M:%S+00:00}")                              # 2023-03-01T15:50:03.39+00:00
 
-    # DateTime (TimeZone aware, in CET, CEST TimeZone)
-    import pytz                                                          # python time-zones
+    # Prior to Python-3.9, DateTime (TimeZone aware, in CET, CEST TimeZone)
+    # NOTE: pip install pytz, pip install tzlocal
+    import pytz                                                          # python IANA timezone implementation
     import tzlocal                                                       # python local time-zone
     from pytz import timezone
     from tzlocal import get_localzone
@@ -781,6 +782,20 @@ DateTime, UNIX Epoch and TimeStamps
     print(dt.astimezone(timezone('Europe/Zurich')).strftime(dt_format))  # 2023-04-26 10:23:29 CEST+0200
     print(dt.astimezone(get_localzone()).strftime(dt_format))            # 2023-04-26 10:23:29 CEST+0200
 
+    # Python-3.9 or later, DateTime (TimeZone aware, in CET, CEST TimeZone)
+    # NOTE: pip install tzdata (IANA timezone data)
+    import time
+    from zoneinfo import ZoneInfo
+    from datetime import datetime, timezone
+    epoch = 1682490209                                                   # UNIX epoch (naive, no time-zone)
+    dt_format = "%Y-%m-%d %H:%M:%S %Z%z"
+    dt = datetime.fromtimestamp(epoch).replace(tzinfo=timezone.utc)      # make UTC datetime (time-zone aware)
+    print(dt.strftime(dt_format))                                        # 2023-04-26 08:23:29 UTC+0000
+    print(dt.astimezone(ZoneInfo('Europe/Zurich'))).strftime(dt_format)) # 2023-04-26 10:23:29 CEST+0200
+
+    localzone =  datetime.now(tz=timezone.utc).astimezone().tzinfo
+    print(dt.astimezone(localzone).strftime(dt_format))                  # 2023-04-26 10:23:29 CEST+0200
+    print(dt.astimezone().strftime(dt_format))                           # 2023-04-26 10:23:29 CEST+0200
 
     # Date Only
     from datetime import date
