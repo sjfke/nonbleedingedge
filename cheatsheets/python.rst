@@ -1204,6 +1204,11 @@ For Loops
     for i in range(0, len(S), 2):
         print(S[i], end=' ') # a c e g i k
 
+    D = {"spam": None, "eggs": 2, "ham": 1}
+    for key,value in D.items():
+        print(f"key={key}, value={value}") # key=spam, value=None \n key=eggs, value=2 \n key=ham, value=1
+
+
 Object Class Example
 --------------------
 
