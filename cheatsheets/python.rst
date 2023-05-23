@@ -719,6 +719,7 @@ Numbers
     print("%7d;%7.2f" % (n, pi))          #      42;   3.14
     print("{:7d};{:7.2f}".format(n,pi))   #      42;   3.14
     print(f"{n:7d};{pi:7.2f}")            #      42;   3.14
+    print("%07d;%07d" % (n, pi))          # 0000042;0000003
 
     print("%07d;%07d" % (n, pi))          # 0000042;0000003
     print("%07d;%07.2f" % (n, pi))        # 0000042;0003.14
@@ -745,6 +746,12 @@ Numbers
     f"{n!r}"                              # '42'
     f"{N!r}"                              # '-42'
     f"{pi!r}"                             # '3.141592653589793'
+    f"{n!r}".zfill(7)                     # '0000042'
+    f"{N!r}".zfill(7)                     # '-000042'
+    f"{pi!r}".zfill(7)                    # '3.141592653589793'
+    str(n).zfill(7)                       # '0000042'
+    str(N).zfill(7)                       # '-000042'
+    str(pi).zfill(7)                      # '3.141592653589793'
 
 DateTime, UNIX Epoch and TimeStamps
 
