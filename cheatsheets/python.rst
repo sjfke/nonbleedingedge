@@ -398,6 +398,7 @@ Dictionaries
     'eggs' in D3['food']                         # True
 
     D2.keys()                                    # dict_keys(['email', 'total'])
+    list(D2.keys())                              # ['email', 'total'],             # <class 'list'>
     D2.values()                                  # dict_values(['spam', 3])
     D2.items()                                   # dict_items([('email', 'spam'), ('total', 3)])
     D3.keys()                                    # dict_keys(['food'])
@@ -427,6 +428,8 @@ Dictionaries
     print(D3.__class__.__name__)                 # dict
     print(D3['food'].__class__.__name__)         # dict
     print(D3['food']['eggs'].__class__.__name__) # int
+    print(f"{D2.keys()}")                        # "dict_keys(['email', 'total'])" # <class 'str'>
+    print(f"{list(D2.keys())}")                  # "['email', 'total']"            # <class 'str'>
 
     type(D1)                                     # <class 'dict'>
     type(D3)                                     # <class 'dict'>
