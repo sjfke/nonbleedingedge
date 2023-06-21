@@ -1005,6 +1005,11 @@ XML files
     ET.dump(root)                        # display on console
 
 
+.. Important:: To secure the above example, see `defusedxml 0.7.1 <https://pypi.org/project/defusedxml/>`_ and `GitHub defusedxml <https://github.com/tiran/defusedxml/>`_
+
+Replace ``import xml.etree.ElementTree as ET`` with ``import defusedxml.etree.ElementTree as ET``
+
+
 References:
 
 * `xml.etree.ElementTree — The ElementTree XML <https://docs.python.org/3/library/xml.etree.elementtree.html>`_
