@@ -10,8 +10,9 @@ Python Cheatsheet
 Background
 ==========
 
-`Python <https://en.wikipedia.org/wiki/Python_(programming_language)>`_ has had a long history... this
-a brief summary derived from the `Python Wiki page <https://en.wikipedia.org/wiki/Python_(programming_language)>`_.
+`Python <https://en.wikipedia.org/wiki/Python_(programming_language)>`_ has had a long history, and has accumulated
+a lot of *issues*, *incompatibilities* and *tech-debt* over the years which can make learning the language complex and
+confusing. This a brief history derived from the `Python Wiki page <https://en.wikipedia.org/wiki/Python_(programming_language)>`_.
 
 * Python 0.9.0 was released in 1991.
 * Python 2.0 was released in 2000, with last release being Python 2.7.18 released in 2020.
