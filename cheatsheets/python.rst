@@ -1711,8 +1711,34 @@ These releases do not have `pipenv`, only `python` and `idle3` so use `VirtualEn
 * `PyCharm Community Edition Download <https://www.jetbrains.com/pycharm/download/#section=windows>`_
 * `Eclipse Download <https://www.eclipse.org/downloads/>`_ and `PyDev <https://www.pydev.org/>`_
 
-Pipenv
-------
+``pip``
+-------
+
+The *original* normally run in a :ref:`virtualenv-label`.
+
+* `Pip - User Guide <https://pip.pypa.io/en/stable/user_guide/>`_
+* `Pip - Requirements File Format <https://pip.pypa.io/en/stable/reference/requirements-file-format/>`_
+
+.. code-block:: shell
+
+    # Basic operations
+    $ pip search SomePackage
+    $ pip install SomePackage
+    $ pip uninstall SomePackage
+    $ pip freeze > requirements.txt  # save current installation
+    $ pip list                       # currently installed packages
+    $ pip list --outdated            # upgradeable packages
+
+    # Updating all packages
+    # Note: may need several iterations and manual additions to 'requirements.txt'
+    $ pip list --outdated
+    $ pip freeze > requirements.txt
+    # edit 'requirements.txt', replace '==' with '>='
+    $ pip install -r requirements.txt --upgrade
+
+
+``pipenv``
+----------
 
 * `Github: Pipenv <https://github.com/pypa/pipenv>`_
 * `Pipenv: Python Dev Workflow for Humans <https://pipenv.pypa.io/en/latest/>`_
@@ -1747,6 +1773,7 @@ Setup a new Python project in Eclipse, and change the project to use it.
     $ pipenv run <program.py>    # virtualenv: run script
     $ pipenv check               # PEP8 check of the Pipfile
 
+.. _virtualenv-label:
 
 VirtualEnv
 ----------
@@ -1802,6 +1829,12 @@ of the PowerShell `get-command`.
 
     (venv) PS> deactivate
     PS>
+
+``pipx``
+--------
+
+* `pipx — Install and Run Python Applications in Isolated Environments <https://pypa.github.io/pipx/>`_
+* `pipx — Comparison to Other Tools <https://pypa.github.io/pipx/comparisons/>`_
 
 ==========================
 Useful Python 3 references
