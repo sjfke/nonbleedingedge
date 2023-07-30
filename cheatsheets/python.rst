@@ -10,9 +10,10 @@ Python Cheatsheet
 Background
 ==========
 
-`Python <https://en.wikipedia.org/wiki/Python_(programming_language)>`_ has had a long history, and has accumulated
-a lot of *issues*, *incompatibilities* and *tech-debt* over the years which can make learning the language complex and
-confusing. This a brief history derived from the `Python Wiki page <https://en.wikipedia.org/wiki/Python_(programming_language)>`_.
+`Python <https://www.python.org/>`_ has had a long history, and has accumulated a lot of *new features*,
+*incompatibilities* and *tech-debt* over the years which can make learning the language complex and confusing.
+This is a brief summary of the Python version history derived from the
+`Python Wiki page <https://en.wikipedia.org/wiki/Python_(programming_language)>`_.
 
 * Python 0.9.0 was released in 1991.
 * Python 2.0 was released in 2000, with last release being Python 2.7.18 released in 2020.
@@ -956,7 +957,7 @@ XML files
     </family>
 
 
-.. Warning:: xml.etree.ElementTree is insecure, see `Security issues <https://docs.python.org/3/library/xml.html>`_
+.. Warning:: xml.etree.ElementTree is insecure, see `Security issues <https://docs.python.org/3/library/xml.html>`_ and `GitHub defusedxml <https://github.com/tiran/defusedxml/>`_
 
 .. code-block:: python
 
@@ -1006,7 +1007,7 @@ XML files
     ET.dump(root)                        # display on console
 
 
-.. Important:: To secure the above example, see `defusedxml 0.7.1 <https://pypi.org/project/defusedxml/>`_ and `GitHub defusedxml <https://github.com/tiran/defusedxml/>`_
+.. Important:: To secure the above example use `defusedxml 0.7.1 <https://pypi.org/project/defusedxml/>`_, see `GitHub defusedxml <https://github.com/tiran/defusedxml/>`_
 
 Replace ``import xml.etree.ElementTree as ET`` with ``import defusedxml.etree.ElementTree as ET``
 
@@ -1020,65 +1021,105 @@ References:
 Operators
 ---------
 
-.. note:: Add table from Digital Ocean
+.. code-block:: python
 
-References:
-
-* `DigitalOcean: Python Operators - A Quick Reference <https://www.digitalocean.com/community/tutorials/python-operators>`_
-* `Python: operator — Standard operators as functions <https://docs.python.org/3/library/operator.html>`_
-
-Comparisons, Equality, and Truth
---------------------------------
-
-+----------+--------------------------+---------+
-| Operator | Name                     | Example |
-+==========+==========================+=========+
-| ==       | Equal                    | x == y  |
-+----------+--------------------------+---------+
-| !=       | Not equal                | x != y  |
-+----------+--------------------------+---------+
-| >        | Greater than             | x > y   |
-+----------+--------------------------+---------+
-| <        | Less than                | x < y   |
-+----------+--------------------------+---------+
-| >=       | Greater than or equal to | x >= y  |
-+----------+--------------------------+---------+
-| <=       | Less than or equal to    | x <= y  |
-+----------+--------------------------+---------+
-| is       | Same object              | x is y  |
-+----------+--------------------------+---------+
-| in       | Contained in Object      | x in y  |
-+----------+--------------------------+---------+
+    # Arithmetic operators
+    (a,b) = (2,3)
+    z = 'Abc'
+    print(a + b)  # 5
+    print(a - b)  # -1
+    print(b - a)  # 1
+    print(a * b)  # 6
+    print(z * a)  # AbcAbc
+    print(a / b)  # 0.6666666666666666
+    print(b / a)  # 1.5
+    print(a % b)  # 2 (modulus)
+    print(b % a)  # 1 (modulus)
+    print(a ** b) # 8 (exponent)
 
 .. code-block:: python
 
+    # Comparison operators
+    (a,b) = (2,3)
+    print(a == b) # False
+    print(a != b) # True
+    print(a > b)  # False
+    print(a < b)  # True
+    print(a >= b) # False
+    print(a <= b) # True
+
+.. code-block:: python
+
+    # Bitwise operators
+    (a,b) = (10,7)          # a='1010',     b='0111'
+    (x,y) = (0b1010, 0b111) # x='1010'(10), y='0111'(7)
+    print(bin(a))           # 0b1010
+    print(bin(b))           # 0b111
+
+    print(a & b)            #  2      Binary AND
+    print(a | b)            # 15      Binary OR
+    print(~b)               # -8      Binary OR
+    print(a ^ b)            # 13      Binary XOR
+    print(~a)               # -11     Ones Complement
+    print(bin(~a))          # -0b1011 Ones Complement
+    print(a << 1)           # 14      Binary Left Shift
+    print(bin(a<<1))        # 0b10100 Binary Left Shift
+    print(a >> 1)           # 5       Binary Right Shift
+    print(bin(a >> 1))      # 0b101   Binary Right Shift
+
+* `RealPython: Overview of Python’s Bitwise Operators <https://realpython.com/python-bitwise-operators/>`_
+
+.. code-block:: python
+
+    # Assignment operators
+    (a,b) = (2,3) # before assignment
+    a += b  # a is 5
+    a *= b  # a is 6
+    a /= b  # a is 0.6666666666666666
+    a %= b  # a is 2 (modulus)
+    b %= a  # b is 1 (modulus)
+    a **= b # a is 8 (exponent operator)
+    a //= b # a is 0 (floor division)
+    b //= a # b is 1 (floor division)
+
+.. code-block:: python
+
+    # Logical Operators
+    (a,b,c,d) = (2,3,4,5)
+    print(a > b and c < d)      # False
+    print(a > b or c < d)       # True
+    print(not(a > b) and c < d) # True
+
+    # Rich Comparisons
     L1 = [1, ('a', 3)]; L2 = [1, ('a', 3)]; L3 = L1
-    #
-    L1 == L2                # True
-    L1 is L2                # False, Not the same object
-    L1 == L3                # True
-    L1 is L3                # True, Are the same object
-    #
-    1 in L1                 # True
-    3 in L1                 # False
-    3 in L1[1]              # True
+    L1 == L2                    # True
+    L1 is L2                    # False, Not the same object
+    L1 == L3                    # True
+    L1 is L3                    # True, Are the same object
+    1 in L1                     # True
+    3 in L1                     # False
+    3 in L1[1]                  # True
 
     S1 = 'spam'; S2 = 'spam'
-    #
-    S1 == S2                # True
-    S1 is S2                # True! WTF evil-bad caching! so same object
+    S1 == S2                    # True
+    S1 is S2                    # True! WTF ** evil-bad caching! ** so same object
 
-    LS1 = 'a longer string'; LS2 = 'a longer string'; LS3 = 'a bit longer string'
-    #
-    LS1 == LS2              # True
-    LS1 is LS2              # False
-    #
-    LS1 == LS3              # False
-    LS1 is LS3              # False
-    LS1 > LS3               # True, 'a (L)onger' > 'a (B)it longer'
-    len(LS1) > len(LS2)     # False
+    LS1 = 'a longer string text'
+    LS2 = 'a longer string text'
+    LS3 = 'a longer string message'
+    LS4 = 'a bit longer string text'
+    LS1 == LS2           # True
+    LS1 is LS2           # False
+    LS1 == LS3           # False
+    LS1 is LS3           # False
+    LS1 > LS3            # True '... text' > '... message'
+    LS1 > LS4            # True 'a longer ...' > 'a bit longer ...'
+    len(LS1) == len(LS2) # True
 
 References:
+
+* `RealPython: Operators and Expressions in Python <https://realpython.com/python-operators-expressions/>`_
+* `Python: operator — Standard operators as functions <https://docs.python.org/3/library/operator.html>`_
 * `PEP 207 – Rich Comparisons <https://peps.python.org/pep-0207/>`_
 
 Object Checking
@@ -1722,12 +1763,16 @@ The *original* normally run in a :ref:`virtualenv-label`.
 .. code-block:: shell
 
     # Basic operations
-    $ pip search SomePackage
-    $ pip install SomePackage
+    $ pip search SomePackage           # RuntimeError: PyPI no longer supports 'pip search' (or XML-RPC search).
+                                       # Please use https://pypi.org/search (via a browser) instead.
+    $ pip install SomePackage          # latest version
+    $ pip install SomePackage==1.0.4   # specific version
+    $ pip install 'SomePackage>=1.0.4' # version 1.0.4 or later
     $ pip uninstall SomePackage
-    $ pip freeze > requirements.txt  # save current installation
-    $ pip list                       # currently installed packages
-    $ pip list --outdated            # upgradeable packages
+    $ pip freeze > requirements.txt    # save current installation
+    $ pip install -r requirements.txt  # install all the specified packages
+    $ pip list                         # currently installed packages
+    $ pip list --outdated              # upgradeable packages
 
     # Updating all packages
     # Note: may need several iterations and manual additions to 'requirements.txt'
