@@ -1021,9 +1021,10 @@ References:
 Operators
 ---------
 
+Arithmetic operators
+
 .. code-block:: python
 
-    # Arithmetic operators
     (a,b) = (2,3)
     z = 'Abc'
     print(a + b)  # 5
@@ -1037,9 +1038,10 @@ Operators
     print(b % a)  # 1 (modulus)
     print(a ** b) # 8 (exponent)
 
+Comparison operators
+
 .. code-block:: python
 
-    # Comparison operators
     (a,b) = (2,3)
     print(a == b) # False
     print(a != b) # True
@@ -1048,9 +1050,10 @@ Operators
     print(a >= b) # False
     print(a <= b) # True
 
+Bitwise operators
+
 .. code-block:: python
 
-    # Bitwise operators
     (a,b) = (10,7)          # a='1010',     b='0111'
     (x,y) = (0b1010, 0b111) # x='1010'(10), y='0111'(7)
     print(bin(a))           # 0b1010
@@ -1069,9 +1072,10 @@ Operators
 
 * `RealPython: Overview of Python’s Bitwise Operators <https://realpython.com/python-bitwise-operators/>`_
 
+Assignment operators
+
 .. code-block:: python
 
-    # Assignment operators
     (a,b) = (2,3) # before assignment
     a += b  # a is 5
     a *= b  # a is 6
@@ -1082,15 +1086,19 @@ Operators
     a //= b # a is 0 (floor division)
     b //= a # b is 1 (floor division)
 
+Logical Operators
+
 .. code-block:: python
 
-    # Logical Operators
     (a,b,c,d) = (2,3,4,5)
     print(a > b and c < d)      # False
     print(a > b or c < d)       # True
     print(not(a > b) and c < d) # True
 
-    # Rich Comparisons
+Rich Comparisons
+
+.. code-block:: python
+
     L1 = [1, ('a', 3)]; L2 = [1, ('a', 3)]; L3 = L1
     L1 == L2                    # True
     L1 is L2                    # False, Not the same object
