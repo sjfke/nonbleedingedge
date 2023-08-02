@@ -10,7 +10,7 @@ Password Generators
 * `OSTechNix passwords <https://www.ostechnix.com/4-easy-ways-to-generate-a-strong-password-in-linux/>`_
 * `MUO passwords <https://www.makeuseof.com/tag/5-ways-generate-secure-passwords-linux/>`_
 
-::
+.. code-block:: console
 
 	$ brew install pwgen     # MacOS
 	$ sudo dnf install pwgen # Fedora
@@ -37,7 +37,7 @@ Password Generators
 * `OSTechNix tree <https://www.ostechnix.com/view-directory-tree-structure-linux/>`_
 * `GeeksForGeeks tree <https://www.geeksforgeeks.org/tree-command-unixlinux/>`_
 
-::
+.. code-block:: console
 
 	$ brew install tree     # MacOS
 	$ sudo dnf install tree # Fedora
@@ -52,7 +52,7 @@ Password Generators
 
 Fedora package installer `DNF <https://www.rootusers.com/25-useful-dnf-command-examples-for-package-management-in-linux/>`_
 
-::
+.. code-block:: console
 
 	$ sudo dnf install httpd                            # install httpd
 	$ sudo dnf install httpd-manual -y                  # assume yes
@@ -78,7 +78,7 @@ Terminal Pagers
 
 Stolen from the `Fedora Magazine: 5 cool terminal pages <https://fedoramagazine.org/5-cool-terminal-pagers-in-fedora/#more-29502>`_ post.
 
-::
+.. code-block:: console
 
 	$ more --help                   # trusty original with limited features
 	$ more <file>                   # 
@@ -105,7 +105,7 @@ Stolen from the `Fedora Magazine: 5 cool terminal pages <https://fedoramagazine.
 Cat File Tricks
 ===============
 
-::
+.. code-block:: console
 
     $ cat -n <filename>                      # adds line number prefix
     $ cat -e <filename>                      # shows crlf ending (Unix, DOS, MacOS)
@@ -116,7 +116,7 @@ Cat File Tricks
 Grep File Tricks
 ================
 
-::
+.. code-block:: console
 
     $ cat flintstones.yaml
     ---
@@ -201,7 +201,7 @@ JSON File Tricks
 * ``jq`` is a lightweight command-line JSON processor, similar to ``sed``.
 * ``yq`` is a Python command-line (``jq`` wrapper) YAML/XML/TOML processor.
 
-::
+.. code-block:: console
 
     $ sudo dnf install jq # Fedora
     $ brew install jq     # MacOS
@@ -267,7 +267,7 @@ Using `PyCharm Community Edition <https://www.jetbrains.com/pycharm/>`_ as an ex
 Create the ``com.jetbrains.pycharm.community.desktop`` file, modify it as necessary, and then copy it to
 ``$HOME/.local/share/applications``
 
-::
+.. code-block:: console
 
     $ cat com.jetbrains.pycharm.community.desktop
     [Desktop Entry]
@@ -364,7 +364,7 @@ Some of the perennial *audio* and *video* playback issues are still there, so fo
 
 * `Installing plugins for playing movies and music <https://docs.fedoraproject.org/en-US/quick-docs/assembly_installing-plugins-for-playing-movies-and-music/>`_
 
-::
+.. code-block:: console
 
     $ sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
     $ sudo dnf install lame\* --exclude=lame-devel
