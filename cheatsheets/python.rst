@@ -829,194 +829,6 @@ Dictionaries
     print(f"{name['first']} {name['last']}")                             # Fred Flintstone
     print(f"{name['first'].lower()} {name['last'].upper()}")             # fred FLINTSTONE
 
-Reading and Writing Files
--------------------------
-
-* `Python3: Input and Output <https://docs.python.org/3/tutorial/inputoutput.html>`_
-* `Python3: Reading and Writing Files <https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files>`_
-
-Text Files Sequential Access
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: python
-
-    # mode: r (read), w (write: create/overwrite), a (append), r+ (read/write), + (read/write)
-    outfile_handle = open('spam', 'w')                        # 'spam', <_io.TextIOWrapper>
-    outfile_handle = open('utf8spam', 'w', encoding="utf-8")  # 'utf8spam' in UTF8, <_io.TextIOWrapper>
-    infile_handle = open('data', 'r')                         # open input file
-
-    S = infile_handle.read()                # Read entire file into a single string
-    S = infile_handle.read(N)               # Read N bytes (N >= 1)
-    S = infile_handle.readline()            # Read next line, len(S) == 0 when no more input
-    L = infile_handle.readlines()           # Read entire file into list of line strings
-
-    outfile_handle.write(S)                 # Write string S into file (returns number of chars written)
-    outfile_handle.writelines(L)            # Write all strings in list L
-    print("lineFour", file=outfile_handle)  # Better than low-level write(), writelines() methods
-    outfile_handle.flush()                  # Flush buffered write to file
-    outfile_handle.close()                  # May need to flush() to write contents
-
-    # Cleaner but will raise an exception and close cleanly
-    with open(filename) as f:
-        data = f.read()
-
-    # Alternative, traps and reports any exception raised
-    try:
-        with open(filename) as f:
-        data = f.read()
-    except Exception as error:
-        print('{0}'.format(error))
-
-    # Example, forcing UTF8 encoding
-    outfile_handle = open('utf8spam', 'w', encoding="utf-8")
-    for i in range(1,11):
-        print("{0:2d}: line number {0}".format(i), file=outfile_handle)
-
-    outfile_handle.flush()
-    outfile_handle.close()
-
-
-Text Files Random Access
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: python
-
-    # random access to text files
-    import linecache
-    linecache.getline('utf8spam',1)  # ' 1: line number 1\n'
-    linecache.getline('utf8spam',7)  # ' 7: line number 7\n'
-    linecache.getline('utf8spam',0)  # ''
-    linecache.getline('utf8spam',15) # ''
-
-
-* `linecache — Random access to text lines <https://docs.python.org/3/library/linecache.html>`_
-
-File, and Directory Tests
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: python
-
-    import os
-
-    os.path.exists('flintstones.json')  # True
-    os.path.exists('flintstones.jsong') # False
-    os.path.exists('project')           # True
-    os.path.exists('projects')          # False
-
-    os.path.isfile('flintstones.json')  # True
-    os.path.isfile('flintstones.jsong') # False
-    os.path.isdir('project')            # True
-    os.path.isdir('projects')           # False
-
-* `os.path — Common pathname manipulations <https://docs.python.org/3/library/os.path.html>`_
-* `pathlib — Object-oriented filesystem paths <https://docs.python.org/3/library/pathlib.html>`_
-
-JSON files
-^^^^^^^^^^
-
-.. code-block:: python
-
-    import json
-    f = open('flintstones.json', 'r')
-    x = json.load(f)  # {"flintstones": {"Fred": 30, "Wilma": 25, "Pebbles": 1, "Dino": 5}}
-
-    print(x.__class__)          # <class 'dict'>
-    print(x.__class__.__name__) # dict
-    isinstance(x, dict)         # True
-
-    x['flintstones']['Fred'] = 31
-    f = open('flintstones.json', 'w')
-    json.dump(x, f)
-    f.flush()
-    f.close()
-
-
-XML files
-^^^^^^^^^
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <family surname = "Flintstones">
-            <member>
-                    <name>Fred</name>
-                    <age>30</age>
-            </member>
-            <member>
-                    <name>Wilma</name>
-                    <age>25</age>
-            </member>
-            <member>
-                    <name>Pebbles</name>
-                    <age>1</age>
-            </member>
-            <member>
-                    <name>Dino</name>
-                    <age>5</age>
-            </member>
-    </family>
-
-
-.. Warning:: xml.etree.ElementTree is insecure, see `Security issues <https://docs.python.org/3/library/xml.html>`_ and `GitHub defusedxml <https://github.com/tiran/defusedxml/>`_
-
-.. code-block:: python
-
-    import xml.etree.ElementTree as ET
-    tree = ET.parse('flintstones.xml')
-
-    print(tree.__class__)          # <class 'xml.etree.ElementTree.ElementTree'>
-    print(tree.__class__.__name__) # ElementTree
-
-    root = tree.getroot()
-    root.tag    # 'family'
-    root.attrib # {'surname': 'Flintstones'}
-
-    for member in root.iter('member'):  # Fred: 30 \n Wilma: 25 \n Pebbles: 1 \n Dino: 5
-        name = member.find('name').text
-        age = member.find('age').text
-        print(f"{name}: {age}")
-
-    # Update Fred's age
-    root[0][0].text                      # 'Fred'
-    root[0][1].text                      # '30'
-    root[0][1].text = '31'               # update age, note it is a string!
-    ET.indent(root, space="\t", level=0) # pretty-print
-    ET.dump(root)                        # display on console
-
-    # Save XML, add UTF-8 header because default encoding is US-ASCII
-    tree.write('flintstones.xml', encoding="UTF-8", xml_declaration=True)
-    tree.write('flintstones-ascii.xml')
-
-    # Add sub-elements 'sex' and update values
-    for member in root.iter('member'):
-        subelement = ET.SubElement(member, 'sex')
-
-    sexes = ('M', 'F', 'F', 'N') # Male(Fred), Female(Wilma,Pebbles), Neuter(Dino)
-    for i in range(len(sexes)):
-        root[i][2].text = sexes[i]
-
-    ET.indent(root, space="\t", level=0) # pretty-print
-    ET.dump(root)                        # display on console
-
-    # Remove sub-elements 'sex'
-    for member in root.iter('member'):
-        for sex in member.findall('sex'):
-            member.remove(sex)
-
-    ET.indent(root, space="\t", level=0) # pretty-print
-    ET.dump(root)                        # display on console
-
-
-.. Important:: To secure the above example use `defusedxml 0.7.1 <https://pypi.org/project/defusedxml/>`_, see `GitHub defusedxml <https://github.com/tiran/defusedxml/>`_
-
-Replace ``import xml.etree.ElementTree as ET`` with ``import defusedxml.etree.ElementTree as ET``
-
-
-References:
-
-* `xml.etree.ElementTree — The ElementTree XML <https://docs.python.org/3/library/xml.etree.elementtree.html>`_
-* `XML Processing Modules - Security issues <https://docs.python.org/3/library/xml.html>`_
-* `Structured Markup Processing Tools <https://docs.python.org/3/library/markup.html>`_
 
 Operators
 ---------
@@ -1579,6 +1391,195 @@ DateTime and TimeZone
     int(time.mktime(utc.timetuple()))        # UNIX epoch as int
     round(time.mktime(utc.timetuple()))      # UNIX epoch as int
 
+=========================
+Reading and Writing Files
+=========================
+
+* `Python3: Input and Output <https://docs.python.org/3/tutorial/inputoutput.html>`_
+* `Python3: Reading and Writing Files <https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files>`_
+
+Text Files Sequential Access
+----------------------------
+
+.. code-block:: python
+
+    # mode: r (read), w (write: create/overwrite), a (append), r+ (read/write), + (read/write)
+    outfile_handle = open('spam', 'w')                        # 'spam', <_io.TextIOWrapper>
+    outfile_handle = open('utf8spam', 'w', encoding="utf-8")  # 'utf8spam' in UTF8, <_io.TextIOWrapper>
+    infile_handle = open('data', 'r')                         # open input file
+
+    S = infile_handle.read()                # Read entire file into a single string
+    S = infile_handle.read(N)               # Read N bytes (N >= 1)
+    S = infile_handle.readline()            # Read next line, len(S) == 0 when no more input
+    L = infile_handle.readlines()           # Read entire file into list of line strings
+
+    outfile_handle.write(S)                 # Write string S into file (returns number of chars written)
+    outfile_handle.writelines(L)            # Write all strings in list L
+    print("lineFour", file=outfile_handle)  # Better than low-level write(), writelines() methods
+    outfile_handle.flush()                  # Flush buffered write to file
+    outfile_handle.close()                  # May need to flush() to write contents
+
+    # Cleaner but will raise an exception and close cleanly
+    with open(filename) as f:
+        data = f.read()
+
+    # Alternative, traps and reports any exception raised
+    try:
+        with open(filename) as f:
+        data = f.read()
+    except Exception as error:
+        print('{0}'.format(error))
+
+    # Example, forcing UTF8 encoding
+    outfile_handle = open('utf8spam', 'w', encoding="utf-8")
+    for i in range(1,11):
+        print("{0:2d}: line number {0}".format(i), file=outfile_handle)
+
+    outfile_handle.flush()
+    outfile_handle.close()
+
+
+Text Files Random Access
+------------------------
+
+.. code-block:: python
+
+    # random access to text files
+    import linecache
+    linecache.getline('utf8spam',1)  # ' 1: line number 1\n'
+    linecache.getline('utf8spam',7)  # ' 7: line number 7\n'
+    linecache.getline('utf8spam',0)  # ''
+    linecache.getline('utf8spam',15) # ''
+
+
+* `linecache — Random access to text lines <https://docs.python.org/3/library/linecache.html>`_
+
+File, and Directory Tests
+-------------------------
+
+.. code-block:: python
+
+    import os
+
+    os.path.exists('flintstones.json')  # True
+    os.path.exists('flintstones.jsong') # False
+    os.path.exists('project')           # True
+    os.path.exists('projects')          # False
+
+    os.path.isfile('flintstones.json')  # True
+    os.path.isfile('flintstones.jsong') # False
+    os.path.isdir('project')            # True
+    os.path.isdir('projects')           # False
+
+* `os.path — Common pathname manipulations <https://docs.python.org/3/library/os.path.html>`_
+* `pathlib — Object-oriented filesystem paths <https://docs.python.org/3/library/pathlib.html>`_
+
+JSON files
+----------
+
+.. code-block:: python
+
+    import json
+    f = open('flintstones.json', 'r')
+    x = json.load(f)  # {"flintstones": {"Fred": 30, "Wilma": 25, "Pebbles": 1, "Dino": 5}}
+
+    print(x.__class__)          # <class 'dict'>
+    print(x.__class__.__name__) # dict
+    isinstance(x, dict)         # True
+
+    x['flintstones']['Fred'] = 31
+    f = open('flintstones.json', 'w')
+    json.dump(x, f)
+    f.flush()
+    f.close()
+
+
+XML files
+---------
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <family surname = "Flintstones">
+            <member>
+                    <name>Fred</name>
+                    <age>30</age>
+            </member>
+            <member>
+                    <name>Wilma</name>
+                    <age>25</age>
+            </member>
+            <member>
+                    <name>Pebbles</name>
+                    <age>1</age>
+            </member>
+            <member>
+                    <name>Dino</name>
+                    <age>5</age>
+            </member>
+    </family>
+
+
+.. Warning:: xml.etree.ElementTree is insecure, see `Security issues <https://docs.python.org/3/library/xml.html>`_ and `GitHub defusedxml <https://github.com/tiran/defusedxml/>`_
+
+.. code-block:: python
+
+    import xml.etree.ElementTree as ET
+    tree = ET.parse('flintstones.xml')
+
+    print(tree.__class__)          # <class 'xml.etree.ElementTree.ElementTree'>
+    print(tree.__class__.__name__) # ElementTree
+
+    root = tree.getroot()
+    root.tag    # 'family'
+    root.attrib # {'surname': 'Flintstones'}
+
+    for member in root.iter('member'):  # Fred: 30 \n Wilma: 25 \n Pebbles: 1 \n Dino: 5
+        name = member.find('name').text
+        age = member.find('age').text
+        print(f"{name}: {age}")
+
+    # Update Fred's age
+    root[0][0].text                      # 'Fred'
+    root[0][1].text                      # '30'
+    root[0][1].text = '31'               # update age, note it is a string!
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
+
+    # Save XML, add UTF-8 header because default encoding is US-ASCII
+    tree.write('flintstones.xml', encoding="UTF-8", xml_declaration=True)
+    tree.write('flintstones-ascii.xml')
+
+    # Add sub-elements 'sex' and update values
+    for member in root.iter('member'):
+        subelement = ET.SubElement(member, 'sex')
+
+    sexes = ('M', 'F', 'F', 'N') # Male(Fred), Female(Wilma,Pebbles), Neuter(Dino)
+    for i in range(len(sexes)):
+        root[i][2].text = sexes[i]
+
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
+
+    # Remove sub-elements 'sex'
+    for member in root.iter('member'):
+        for sex in member.findall('sex'):
+            member.remove(sex)
+
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
+
+
+.. Important:: To secure the above example use `defusedxml 0.7.1 <https://pypi.org/project/defusedxml/>`_, see `GitHub defusedxml <https://github.com/tiran/defusedxml/>`_
+
+Replace ``import xml.etree.ElementTree as ET`` with ``import defusedxml.etree.ElementTree as ET``
+
+
+References:
+
+* `xml.etree.ElementTree — The ElementTree XML <https://docs.python.org/3/library/xml.etree.elementtree.html>`_
+* `XML Processing Modules - Security issues <https://docs.python.org/3/library/xml.html>`_
+* `Structured Markup Processing Tools <https://docs.python.org/3/library/markup.html>`_
 
 ==========
 Decorators
