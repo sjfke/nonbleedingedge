@@ -864,186 +864,6 @@ Heaps are binary trees for which every parent node has a value less than or equa
 
     smallest_item = heapq.heappop(heap) # (1, 'J')
 
-String Formatting
------------------
-
-Python string formatting has evolved over the years, and while all three formats are supported
-in Python3, the ***f-string*** format is the one that should be used.
-
-#. **"** *<format-str>* **" % (** *<variable(s)>* **)**
-#. **"** *<format-str>*"**.format(** *<variable(s)>* **)**
-#. **f"{** *<variable>* **:** *<format-str>* **}"**
-
-A string can be enclosed in `"` (double-quote) or `'`'` (single-quote), for consistency the examples use
-double-quote.
-
-* `Pyformat: Using % and .format() for great good! <https://pyformat.info/>`_
-* `RealPython: Python 3's f-Strings: An Improved String Formatting Syntax (Guide) <https://realpython.com/python-f-strings/>`_
-* `Python: Input and Output - Fancier Output Formatting <https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting>`_
-* `Python: Formatted string literals <https://docs.python.org/3/reference/lexical_analysis.html#f-strings>`_
-
-For Docstrings:
-
-* `use str() for __str__ <https://docs.python.org/3/library/stdtypes.html#str>`_
-* `use repr() for __repr__ <https://docs.python.org/3/library/functions.html#repr>`_
-
-Strings
-
-.. code-block:: python
-
-    a = 'one'; b = 'two'
-    print("%s %s" % (a, b))     # one two
-    print("{} {}".format(a, b)) # one two
-    print(f"{a} {b}")           # one two
-
-    # Padding (10) and aligning strings
-    c = 'short'; d = 'long string with more text'
-    print("%10s;%10s" % (c,d))           #      short;long string with more text
-    print("{:10};{:10}".format(c,d))     #      short;long string with more text
-    print(f"{c:10};{d:10}")              #      short;long string with more text
-
-    print("%-10s;%-10s" % (c,d))         # short     ;long string with more text
-    print("{:>10};{:>10}".format(c,d))   # short     ;long string with more text
-    print(f"{c:>10};{d:>10}")            # short     ;long string with more text
-
-    print("{:_<10};{:_<10}".format(c,d)) # short_____;long string with more text
-    print(f"{c:_<10};{d:_<10}")          # short_____;long string with more text
-
-    print("{:^10};{:^10}".format(c,d))   #   short   ;long string with more text
-    print(f"{c:^10};{d:^10}")            #   short   ;long string with more text
-
-    # Truncating (7) long strings
-    print("%.7s;%.7s" % (c,d))           # short;long st
-    print("{:.7};{:.7}".format(c,d))     # short;long st
-    print(f"{c:.7};{d:.7}")              # short;long st
-
-    # Truncating (7) and padding (10) long strings
-    print("%-10.7s;%-10.7s" % (c,d))     # short     ;long st
-    print("{:10.7};{:10.7}".format(c,d)) # short     ;long st
-    print(f"{c:10.7};{d:10.7}")          # short     ;long st
-
-Numbers
-
-.. code-block:: python
-
-    n = 42; N = -42; pi = 3.141592653589793
-    print("%d;%d" % (n, pi))             # 42;3
-    print("%d;%f" % (n, pi))             # 42;3.141593
-    print("{:d};{:d}".format(n,pi))      # ValueError: Unknown format code 'd' for object of type 'float'
-    print("{:d};{:f}".format(n,pi))      # 42;3.141593
-    print(f"{n:d}")                      # 42
-    print(f"{n:d};{pi:d}")               # ValueError: Unknown format code 'd' for object of type 'float'
-    print(f"{n:d};{pi:f}")               # 42;3.141593
-
-    # Padding numbers
-    print("%7d;%7d" % (n, pi))            #      42;      3
-    print("%7d;%7.2f" % (n, pi))          #      42;   3.14
-    print("{:7d};{:7.2f}".format(n,pi))   #      42;   3.14
-    print(f"{n:7d};{pi:7.2f}")            #      42;   3.14
-    print("%07d;%07d" % (n, pi))          # 0000042;0000003
-
-    print("%07d;%07d" % (n, pi))          # 0000042;0000003
-    print("%07d;%07.2f" % (n, pi))        # 0000042;0003.14
-    print("{:07d};{:07.2f}".format(n,pi)) # 0000042;0003.14
-    print(f"{n:07d};{pi:07.2f}")          # 0000042;0003.14
-
-    # Signed numbers
-    n = 42;  N = -42; pi = 3.141592653589793
-    print("%+d;%+d" % (n, N))             # +42;-42
-    print("% d;% d" % (n, N))             #  42;-42
-    print("%+d;%+7.2f" % (n, pi))         # +42;  +3.14
-
-    print("{:+d};{:+d}".format(n,N))      # +42;-42
-    print("{: d};{: d}".format(n,N))      #  42;-42
-    print("{:+d};{:+7.2f}".format(n,pi))  # +42;  +3.14
-    print("{:=5d};{:=5d}".format(n,N))    #    42;-  42
-
-    print(f"{n:+d};{N:+d}")               # +42;-42
-    print(f"{n: d};{N: d}")               #  42;-42
-    print(f"{n:+d};{pi:+07.2f}")          # +42;+003.14
-    print(f"{n:=5d};{N:=5d}")             #    42;-  42
-
-    # Convert <number> to str
-    f"{n!r}"                              # '42'
-    f"{N!r}"                              # '-42'
-    f"{pi!r}"                             # '3.141592653589793'
-    f"{n!r}".zfill(7)                     # '0000042'
-    f"{N!r}".zfill(7)                     # '-000042'
-    f"{pi!r}".zfill(7)                    # '3.141592653589793'
-    str(n).zfill(7)                       # '0000042'
-    str(N).zfill(7)                       # '-000042'
-    str(pi).zfill(7)                      # '3.141592653589793'
-
-DateTime, UNIX Epoch and TimeStamps
-
-.. code-block:: python
-
-    # DateTime Only (CET, CEST TimeZone)
-    from datetime import datetime
-    now = datetime.now()
-    print(now)                                                           # 2023-03-01 16:50:03.393791
-    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 16:50
-    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 16:50
-    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 16:50
-
-    # DateTime (Naive, in CET, CEST TimeZone)
-    from datetime import datetime, timezone
-    now = datetime.utcnow()
-    print(now)                                                           # 2023-03-01 15:50:03.393791
-    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 15:50
-    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 15:50
-    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 15:50
-    print(now.isoformat())                                               # 2023-03-01T15:50:03.393791+00:00
-    print(f"{now:%Y-%m-%dT%H:%M:%S+00:00}")                              # 2023-03-01T15:50:03.39+00:00
-
-    # Prior to Python-3.9, DateTime (TimeZone aware, in CET, CEST TimeZone)
-    # NOTE: pip install pytz, pip install tzlocal
-    import pytz                                                          # python IANA timezone implementation
-    import tzlocal                                                       # python local time-zone
-    from pytz import timezone
-    from tzlocal import get_localzone
-    from datetime import datetime
-    epoch = 1682490209                                                   # UNIX epoch (naive, no time-zone)
-    dt_format = "%Y-%m-%d %H:%M:%S %Z%z"
-    dt = datetime.fromtimestamp(epoch).replace(tzinfo=pytz.UTC)          # make UTC datetime (time-zone aware)
-    print(dt.strftime(dt_format))                                        # 2023-04-26 08:23:29 UTC+0000
-    print(dt.astimezone(timezone('Europe/Zurich')).strftime(dt_format))  # 2023-04-26 10:23:29 CEST+0200
-    print(dt.astimezone(get_localzone()).strftime(dt_format))            # 2023-04-26 10:23:29 CEST+0200
-
-    # Python-3.9 or later, DateTime (TimeZone aware, in CET, CEST TimeZone)
-    # NOTE: pip install tzdata (IANA timezone data)
-    import time
-    from zoneinfo import ZoneInfo
-    from datetime import datetime, timezone
-    epoch = 1682490209                                                   # UNIX epoch (naive, no time-zone)
-    dt_format = "%Y-%m-%d %H:%M:%S %Z%z"
-    dt = datetime.fromtimestamp(epoch).replace(tzinfo=timezone.utc)      # make UTC datetime (time-zone aware)
-    print(dt.strftime(dt_format))                                        # 2023-04-26 08:23:29 UTC+0000
-    print(dt.astimezone(ZoneInfo('Europe/Zurich'))).strftime(dt_format)) # 2023-04-26 10:23:29 CEST+0200
-
-    localzone =  datetime.now(tz=timezone.utc).astimezone().tzinfo
-    print(dt.astimezone(localzone).strftime(dt_format))                  # 2023-04-26 10:23:29 CEST+0200
-    print(dt.astimezone().strftime(dt_format))                           # 2023-04-26 10:23:29 CEST+0200
-
-    # Date Only
-    from datetime import date
-    today = date.today()
-    print(today)                                                         # 2023-03-01
-    print("{:%B %d %Y}".format(today))                                   # March 01 2023
-    print("{:{dfmt}}".format(today, dfmt="%B %d %Y"))                    # March 01 2023
-    print(f"{today:%B %d %Y}")                                           # March 01 2023
-
-
-Dictionaries
-
-.. code-block:: python
-
-    name = {'first': 'Fred', 'last': 'Flintstone'}
-    print("%(first)s %(last)s" % name)                                   # Fred Flintstone
-    print("{first} {last}".format(**name))                               # Fred Flintstone
-    print("{p[first]} {p[last]}".format(p=name))                         # Fred Flintstone
-    print(f"{name['first']} {name['last']}")                             # Fred Flintstone
-    print(f"{name['first'].lower()} {name['last'].upper()}")             # fred FLINTSTONE
 
 
 Operators
@@ -1392,6 +1212,187 @@ DateTime and TimeZone
     time.mktime(utc.timetuple())             # UNIX epoch as float
     int(time.mktime(utc.timetuple()))        # UNIX epoch as int
     round(time.mktime(utc.timetuple()))      # UNIX epoch as int
+
+String Formatting
+-----------------
+
+Python string formatting has evolved over the years, and while all three formats are supported
+in Python3, the ***f-string*** format is the one that should be used.
+
+#. **"** *<format-str>* **" % (** *<variable(s)>* **)**
+#. **"** *<format-str>*"**.format(** *<variable(s)>* **)**
+#. **f"{** *<variable>* **:** *<format-str>* **}"**
+
+A string can be enclosed in `"` (double-quote) or `'`'` (single-quote), for consistency the examples use
+double-quote.
+
+* `Pyformat: Using % and .format() for great good! <https://pyformat.info/>`_
+* `RealPython: Python 3's f-Strings: An Improved String Formatting Syntax (Guide) <https://realpython.com/python-f-strings/>`_
+* `Python: Input and Output - Fancier Output Formatting <https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting>`_
+* `Python: Formatted string literals <https://docs.python.org/3/reference/lexical_analysis.html#f-strings>`_
+
+For Docstrings:
+
+* `use str() for __str__ <https://docs.python.org/3/library/stdtypes.html#str>`_
+* `use repr() for __repr__ <https://docs.python.org/3/library/functions.html#repr>`_
+
+Strings
+
+.. code-block:: python
+
+    a = 'one'; b = 'two'
+    print("%s %s" % (a, b))     # one two
+    print("{} {}".format(a, b)) # one two
+    print(f"{a} {b}")           # one two
+
+    # Padding (10) and aligning strings
+    c = 'short'; d = 'long string with more text'
+    print("%10s;%10s" % (c,d))           #      short;long string with more text
+    print("{:10};{:10}".format(c,d))     #      short;long string with more text
+    print(f"{c:10};{d:10}")              #      short;long string with more text
+
+    print("%-10s;%-10s" % (c,d))         # short     ;long string with more text
+    print("{:>10};{:>10}".format(c,d))   # short     ;long string with more text
+    print(f"{c:>10};{d:>10}")            # short     ;long string with more text
+
+    print("{:_<10};{:_<10}".format(c,d)) # short_____;long string with more text
+    print(f"{c:_<10};{d:_<10}")          # short_____;long string with more text
+
+    print("{:^10};{:^10}".format(c,d))   #   short   ;long string with more text
+    print(f"{c:^10};{d:^10}")            #   short   ;long string with more text
+
+    # Truncating (7) long strings
+    print("%.7s;%.7s" % (c,d))           # short;long st
+    print("{:.7};{:.7}".format(c,d))     # short;long st
+    print(f"{c:.7};{d:.7}")              # short;long st
+
+    # Truncating (7) and padding (10) long strings
+    print("%-10.7s;%-10.7s" % (c,d))     # short     ;long st
+    print("{:10.7};{:10.7}".format(c,d)) # short     ;long st
+    print(f"{c:10.7};{d:10.7}")          # short     ;long st
+
+Numbers
+
+.. code-block:: python
+
+    n = 42; N = -42; pi = 3.141592653589793
+    print("%d;%d" % (n, pi))             # 42;3
+    print("%d;%f" % (n, pi))             # 42;3.141593
+    print("{:d};{:d}".format(n,pi))      # ValueError: Unknown format code 'd' for object of type 'float'
+    print("{:d};{:f}".format(n,pi))      # 42;3.141593
+    print(f"{n:d}")                      # 42
+    print(f"{n:d};{pi:d}")               # ValueError: Unknown format code 'd' for object of type 'float'
+    print(f"{n:d};{pi:f}")               # 42;3.141593
+
+    # Padding numbers
+    print("%7d;%7d" % (n, pi))            #      42;      3
+    print("%7d;%7.2f" % (n, pi))          #      42;   3.14
+    print("{:7d};{:7.2f}".format(n,pi))   #      42;   3.14
+    print(f"{n:7d};{pi:7.2f}")            #      42;   3.14
+    print("%07d;%07d" % (n, pi))          # 0000042;0000003
+
+    print("%07d;%07d" % (n, pi))          # 0000042;0000003
+    print("%07d;%07.2f" % (n, pi))        # 0000042;0003.14
+    print("{:07d};{:07.2f}".format(n,pi)) # 0000042;0003.14
+    print(f"{n:07d};{pi:07.2f}")          # 0000042;0003.14
+
+    # Signed numbers
+    n = 42;  N = -42; pi = 3.141592653589793
+    print("%+d;%+d" % (n, N))             # +42;-42
+    print("% d;% d" % (n, N))             #  42;-42
+    print("%+d;%+7.2f" % (n, pi))         # +42;  +3.14
+
+    print("{:+d};{:+d}".format(n,N))      # +42;-42
+    print("{: d};{: d}".format(n,N))      #  42;-42
+    print("{:+d};{:+7.2f}".format(n,pi))  # +42;  +3.14
+    print("{:=5d};{:=5d}".format(n,N))    #    42;-  42
+
+    print(f"{n:+d};{N:+d}")               # +42;-42
+    print(f"{n: d};{N: d}")               #  42;-42
+    print(f"{n:+d};{pi:+07.2f}")          # +42;+003.14
+    print(f"{n:=5d};{N:=5d}")             #    42;-  42
+
+    # Convert <number> to str
+    f"{n!r}"                              # '42'
+    f"{N!r}"                              # '-42'
+    f"{pi!r}"                             # '3.141592653589793'
+    f"{n!r}".zfill(7)                     # '0000042'
+    f"{N!r}".zfill(7)                     # '-000042'
+    f"{pi!r}".zfill(7)                    # '3.141592653589793'
+    str(n).zfill(7)                       # '0000042'
+    str(N).zfill(7)                       # '-000042'
+    str(pi).zfill(7)                      # '3.141592653589793'
+
+DateTime, UNIX Epoch and TimeStamps
+
+.. code-block:: python
+
+    # DateTime Only (CET, CEST TimeZone)
+    from datetime import datetime
+    now = datetime.now()
+    print(now)                                                           # 2023-03-01 16:50:03.393791
+    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 16:50
+    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 16:50
+    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 16:50
+
+    # DateTime (Naive, in CET, CEST TimeZone)
+    from datetime import datetime, timezone
+    now = datetime.utcnow()
+    print(now)                                                           # 2023-03-01 15:50:03.393791
+    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 15:50
+    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 15:50
+    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 15:50
+    print(now.isoformat())                                               # 2023-03-01T15:50:03.393791+00:00
+    print(f"{now:%Y-%m-%dT%H:%M:%S+00:00}")                              # 2023-03-01T15:50:03.39+00:00
+
+    # Prior to Python-3.9, DateTime (TimeZone aware, in CET, CEST TimeZone)
+    # NOTE: pip install pytz, pip install tzlocal
+    import pytz                                                          # python IANA timezone implementation
+    import tzlocal                                                       # python local time-zone
+    from pytz import timezone
+    from tzlocal import get_localzone
+    from datetime import datetime
+    epoch = 1682490209                                                   # UNIX epoch (naive, no time-zone)
+    dt_format = "%Y-%m-%d %H:%M:%S %Z%z"
+    dt = datetime.fromtimestamp(epoch).replace(tzinfo=pytz.UTC)          # make UTC datetime (time-zone aware)
+    print(dt.strftime(dt_format))                                        # 2023-04-26 08:23:29 UTC+0000
+    print(dt.astimezone(timezone('Europe/Zurich')).strftime(dt_format))  # 2023-04-26 10:23:29 CEST+0200
+    print(dt.astimezone(get_localzone()).strftime(dt_format))            # 2023-04-26 10:23:29 CEST+0200
+
+    # Python-3.9 or later, DateTime (TimeZone aware, in CET, CEST TimeZone)
+    # NOTE: pip install tzdata (IANA timezone data)
+    import time
+    from zoneinfo import ZoneInfo
+    from datetime import datetime, timezone
+    epoch = 1682490209                                                   # UNIX epoch (naive, no time-zone)
+    dt_format = "%Y-%m-%d %H:%M:%S %Z%z"
+    dt = datetime.fromtimestamp(epoch).replace(tzinfo=timezone.utc)      # make UTC datetime (time-zone aware)
+    print(dt.strftime(dt_format))                                        # 2023-04-26 08:23:29 UTC+0000
+    print(dt.astimezone(ZoneInfo('Europe/Zurich'))).strftime(dt_format)) # 2023-04-26 10:23:29 CEST+0200
+
+    localzone =  datetime.now(tz=timezone.utc).astimezone().tzinfo
+    print(dt.astimezone(localzone).strftime(dt_format))                  # 2023-04-26 10:23:29 CEST+0200
+    print(dt.astimezone().strftime(dt_format))                           # 2023-04-26 10:23:29 CEST+0200
+
+    # Date Only
+    from datetime import date
+    today = date.today()
+    print(today)                                                         # 2023-03-01
+    print("{:%B %d %Y}".format(today))                                   # March 01 2023
+    print("{:{dfmt}}".format(today, dfmt="%B %d %Y"))                    # March 01 2023
+    print(f"{today:%B %d %Y}")                                           # March 01 2023
+
+
+Dictionaries
+
+.. code-block:: python
+
+    name = {'first': 'Fred', 'last': 'Flintstone'}
+    print("%(first)s %(last)s" % name)                                   # Fred Flintstone
+    print("{first} {last}".format(**name))                               # Fred Flintstone
+    print("{p[first]} {p[last]}".format(p=name))                         # Fred Flintstone
+    print(f"{name['first']} {name['last']}")                             # Fred Flintstone
+    print(f"{name['first'].lower()} {name['last'].upper()}")             # fred FLINTSTONE
 
 =========================
 Reading and Writing Files
