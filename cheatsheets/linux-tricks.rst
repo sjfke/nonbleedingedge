@@ -287,6 +287,25 @@ Create the ``com.jetbrains.pycharm.community.desktop`` file, modify it as necess
 * `KDE and GNOME desktop environments have adopted a similar format <https://specifications.freedesktop.org/desktop-entry-spec/latest/index.html#introduction>`_
 * `DBUS Specification Message Protocol Names <https://dbus.freedesktop.org/doc/dbus-specification.html#message-protocol-names>`_
 
+WSL2 on Windows
+===============
+
+Read the `prerequisites` in, `Install Linux on Windows with WSL <https://learn.microsoft.com/en-us/windows/wsl/install>`_
+
+Installation can now be done via the `Microsoft Store`
+
+First enable Windows optional features to run WSL, so the sequence is as follows.
+
+::
+
+    1. Windows -> Settings -> Optional Features -> More Windows Features
+        - [x] Virtual Machine Platform
+        - [x] Windows Subsystem for Linux
+    2. Reboot
+    3. Install WSL from Microsoft Store
+    4. Reboot
+    5. Install Ubuntu (20.04.6 LTS) from Microsoft Store
+
 Brendan Gregg's Homepage
 ========================
 

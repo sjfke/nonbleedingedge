@@ -1211,8 +1211,8 @@ The ``out-gridview`` renders the output the data in an interactive table.
 * `Microsoft docs: Import-CSV <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/import-csv>`_
 * `Microsoft docs: Out-GridView <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-gridview>`_
 
-Reading JSON files
-==================
+Reading and Writing JSON Files
+==============================
 
 PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are installed.
 
@@ -1282,11 +1282,11 @@ PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are
 
 Further reading:
    
-* `ConvertTo-Json converts an object to a JSON-formatted string. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json>`_
 * `ConvertFrom-Json converts a JSON-formatted string to a custom object or a hash table. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json>`_
+* `ConvertTo-Json converts an object to a JSON-formatted string. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json>`_
 * `W3Schools: Introduction to JSON <https://www.w3schools.com/js/js_json_intro.asp>`_
 
-Reading XML files
+Reading XML Files
 =================
 
 ``Powershell`` supports full manipulation of the XML DOM, read the `Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ 
@@ -1370,7 +1370,7 @@ and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
     </family>
 
 
-Writing XML files
+Writing XML Files
 =================
 
 To generate an XML file, use the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
@@ -1451,7 +1451,7 @@ and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
     PS> remove-variable -name obj
     PS> remove-item C:\users\geoff\bedrock.xml
 
-Log files: tail, write time-stamped message
+Log Files: tail, write time-stamped message
 ===========================================
 
 .. code-block:: pwsh-session

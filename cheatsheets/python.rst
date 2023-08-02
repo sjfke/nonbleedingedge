@@ -10,8 +10,10 @@ Python Cheatsheet
 Background
 ==========
 
-`Python <https://en.wikipedia.org/wiki/Python_(programming_language)>`_ has had a long history... this
-a brief summary derived from the `Python Wiki page <https://en.wikipedia.org/wiki/Python_(programming_language)>`_.
+`Python <https://www.python.org/>`_ has had a long history, and has accumulated a lot of *new features*,
+*incompatibilities* and *tech-debt* over the years which can make learning the language complex and confusing.
+This is a brief summary of the Python version history derived from the
+`Python Wiki page <https://en.wikipedia.org/wiki/Python_(programming_language)>`_.
 
 * Python 0.9.0 was released in 1991.
 * Python 2.0 was released in 2000, with last release being Python 2.7.18 released in 2020.
@@ -250,7 +252,7 @@ For illustration the file `fact.py` which contains a method called `fact` is cop
     import random                         # module in sys.path (List) and sys.modules (Dictionary)
     from sys import exit                  # so exit() and not sys.exit(), module in (sys.path, sys.modules)
 
-    from fact import fact
+    from fact import fact                 # from file './fact.py' import 'def fact(n)'
     # from subdir.fact import fact        # file is in subdir
     # from subdir.subdir.fact import fact # file is in subdir/subdir
     # from fact import fact as factorial  # answer = factorial(n)
@@ -296,6 +298,222 @@ From `sys — System-specific parameters and functions <https://docs.python.org/
     print(f"hello, {a}")                  # 'hello, fred' (stdout)
     print(f"hello, {a}", file=sys.stdout) # 'hello, fred' (stdout)
     print(f"hello, {a}", file=sys.stderr) # 'hello, fred' (stderr)
+
+====================
+Object Class Example
+====================
+
+Simple ``Person`` object in file named ``Person.py``, without Docstrings for brevity.
+
+Using Python decorators
+-----------------------
+
+This is considered the *pythonic* approach because it **only supports attributes**, there are
+no functions `get_name()`, `set_name()` etc.
+
+.. code-block:: python
+
+    import os
+    import uuid
+
+    class Person:
+
+        def __init__(self, name, age, sex='M'):
+            self.__name = name
+
+            if not isinstance(age, int):
+                raise ValueError(f"invalid int for age: '{age}'")
+            elif age > 0:
+                self.__age = age
+            else:
+                self.__age = 0
+
+            self.__sex = sex
+            self.__uuid = str(uuid.uuid4())
+
+        # a getter function, uses a property decorator
+        @property
+        def name(self):
+            return self.__name
+
+        # a setter function
+        @name.setter
+        def name(self, value):
+            self.__name = value
+
+        # a deleter function
+        # @name.deleter
+        # def name(self):
+        #     del self._value
+
+        @property
+        def age(self):
+            return self.__age
+
+        @age.setter
+        def age(self, value):
+            if not isinstance(value, int):
+                raise ValueError(f"invalid int for age: '{value}'")
+            elif value > 0:
+                self.__age = value
+            else:
+                self.__age = 0
+
+        @property
+        def sex(self):
+            return self.__sex
+
+        @sex.setter
+        def sex(self, value):
+            self.__sex = value
+
+        @property
+        def uuid(self):
+            return self.__uuid
+
+        def __str__(self):
+            """ String representation """
+            __str = 'Person: '
+            __str += str(self.__name) + ', '
+            __str += str(self.__age) + ', '
+            __str += str(self.__sex) + ', '
+            __str += str(self.__uuid)
+            return __str
+
+        def __repr__(self):
+            """ repr() string representation """
+            __str = "{"
+            __str += f"'name': {self.__name}, "
+            __str += f"'age': {self.__age}, "
+            __str += f"'sex': {self.__sex}, "
+            __str += f"'uuid': {self.__uuid}"
+            __str += "}"
+            return __str
+
+Using the Property Class
+------------------------
+
+This approach supports attributes  **AND** `get_name()`, `set_name()` etc.
+
+.. code-block:: python
+
+    import os
+    import uuid
+
+
+    class Person:
+
+        def __init__(self, name, age, sex='M'):
+            self.__name = name
+
+            if not isinstance(age, int):
+                raise ValueError(f"invalid int for age: '{age}'")
+            elif age > 0:
+                self.__age = age
+            else:
+                self.__age = 0
+
+            self.__sex = sex
+            self.__uuid = str(uuid.uuid4())
+
+        def get_name(self):
+            return self.__name
+
+        def set_name(self, value):
+            self.__name = value
+
+        def get_age(self):
+            return self.__age
+
+        def set_age(self, value):
+            if not isinstance(value, int):
+                raise ValueError(f"invalid int for age: '{value}'")
+            elif value > 0:
+                self.__age = value
+            else:
+                self.__age = 0
+
+        def get_sex(self):
+            return self.__sex
+
+        def set_sex(self, value):
+            self.__sex = value
+
+        def get_uuid(self):
+            return self.__uuid
+
+        def __str__(self):
+            """ String representation """
+            __str = 'Person: '
+            __str += str(self.__name) + ', '
+            __str += str(self.__age) + ', '
+            __str += str(self.__sex) + ', '
+            __str += str(self.__uuid)
+            return __str
+
+        def __repr__(self):
+            """ repr() string representation """
+            __str = "{"
+            __str += f"'name': {self.__name}, "
+            __str += f"'age': {self.__age}, "
+            __str += f"'sex': {self.__sex}, "
+            __str += f"'uuid': {self.__uuid}"
+            __str += "}"
+            return __str
+
+
+    # Python attributes requires:
+    # property(fget=None, fset=None, fdel=None, doc=None)
+    name = property(get_name, set_name, None, None)
+    age = property(get_age, set_age, None, None)
+    sex = property(get_sex, set_sex, None, None)
+    uuid = property(get_uuid, None, None, None)
+
+Example usage
+-------------
+
+.. code-block:: python
+
+    import Person
+    f = Person.Person(name='fred',age=99)
+    b = Person.Person(name='barney',age=9)
+    b.__str__()        # 'Person: barney, 9, M, c569ea0b-90bf-4433-b620-9472f6afbd8f'
+    f.__repr__()       # "{'name': fred, 'age': 99, 'sex': M, 'uuid': be1f8143-8619-477d-9658-aece55b8c98f}"
+
+    dir(f)             # methods and attributes
+    help(f)            # methods, attributes and docstrings
+
+    ## 'Person' object using decorator approach - get(), set() calls fail!
+    #
+    f.name='freddy'    # attribute update
+    f.name             # 'freddy'
+    f.get_name()       # *** fails, no attribute 'get_name' ***
+
+    f.set_name('fred') # *** fails, no attribute 'set_name' ***
+    f.name             # 'freddy'
+    f.get_name()       # *** fails, no attribute 'get_name' ***
+
+    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
+    f.get_uuid()       # *** fails,  no attribute 'get_uuid' ***
+
+    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
+    AttributeError: property 'uuid' of 'Person' object has no setter
+
+    ## 'Person' object using property class approach
+    #
+    f.name='freddy'    # attribute update
+    f.name             # 'freddy'
+    f.get_name()       # 'freddy'
+
+    f.set_name('fred') # getter/setter update
+    f.name             # 'fred'
+    f.get_name()       # 'fred'
+
+    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
+    f.get_uuid()       # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
+
+    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
+    AttributeError: property 'uuid' of 'Person' object has no setter
 
 
 =====================
@@ -398,6 +616,7 @@ Dictionaries
     'eggs' in D3['food']                         # True
 
     D2.keys()                                    # dict_keys(['email', 'total'])
+    list(D2.keys())                              # ['email', 'total'],             # <class 'list'>
     D2.values()                                  # dict_values(['spam', 3])
     D2.items()                                   # dict_items([('email', 'spam'), ('total', 3)])
     D3.keys()                                    # dict_keys(['food'])
@@ -427,6 +646,8 @@ Dictionaries
     print(D3.__class__.__name__)                 # dict
     print(D3['food'].__class__.__name__)         # dict
     print(D3['food']['eggs'].__class__.__name__) # int
+    print(f"{D2.keys()}")                        # "dict_keys(['email', 'total'])" # <class 'str'>
+    print(f"{list(D2.keys())}")                  # "['email', 'total']"            # <class 'str'>
 
     type(D1)                                     # <class 'dict'>
     type(D3)                                     # <class 'dict'>
@@ -643,397 +864,118 @@ Heaps are binary trees for which every parent node has a value less than or equa
 
     smallest_item = heapq.heappop(heap) # (1, 'J')
 
-String Formatting
------------------
 
-Python string formatting has evolved over the years, and while all three formats are supported
-in Python3, the ***f-string*** format is the one that should be used.
-
-#. **"** *<format-str>* **" % (** *<variable(s)>* **)**
-#. **"** *<format-str>*"**.format(** *<variable(s)>* **)**
-#. **f"{** *<variable>* **:** *<format-str>* **}"**
-
-A string can be enclosed in `"` (double-quote) or `'`'` (single-quote), for consistency the examples use
-double-quote.
-
-* `Pyformat: Using % and .format() for great good! <https://pyformat.info/>`_
-* `RealPython: Python 3's f-Strings: An Improved String Formatting Syntax (Guide) <https://realpython.com/python-f-strings/>`_
-* `Python: Input and Output - Fancier Output Formatting <https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting>`_
-* `Python: Formatted string literals <https://docs.python.org/3/reference/lexical_analysis.html#f-strings>`_
-
-For Docstrings:
-
-* `use str() for __str__ <https://docs.python.org/3/library/stdtypes.html#str>`_
-* `use repr() for __repr__ <https://docs.python.org/3/library/functions.html#repr>`_
-
-Strings
-
-.. code-block:: python
-
-    a = 'one'; b = 'two'
-    print("%s %s" % (a, b))     # one two
-    print("{} {}".format(a, b)) # one two
-    print(f"{a} {b}")           # one two
-
-    # Padding (10) and aligning strings
-    c = 'short'; d = 'long string with more text'
-    print("%10s;%10s" % (c,d))           #      short;long string with more text
-    print("{:10};{:10}".format(c,d))     #      short;long string with more text
-    print(f"{c:10};{d:10}")              #      short;long string with more text
-
-    print("%-10s;%-10s" % (c,d))         # short     ;long string with more text
-    print("{:>10};{:>10}".format(c,d))   # short     ;long string with more text
-    print(f"{c:>10};{d:>10}")            # short     ;long string with more text
-
-    print("{:_<10};{:_<10}".format(c,d)) # short_____;long string with more text
-    print(f"{c:_<10};{d:_<10}")          # short_____;long string with more text
-
-    print("{:^10};{:^10}".format(c,d))   #   short   ;long string with more text
-    print(f"{c:^10};{d:^10}")            #   short   ;long string with more text
-
-    # Truncating (7) long strings
-    print("%.7s;%.7s" % (c,d))           # short;long st
-    print("{:.7};{:.7}".format(c,d))     # short;long st
-    print(f"{c:.7};{d:.7}")              # short;long st
-
-    # Truncating (7) and padding (10) long strings
-    print("%-10.7s;%-10.7s" % (c,d))     # short     ;long st
-    print("{:10.7};{:10.7}".format(c,d)) # short     ;long st
-    print(f"{c:10.7};{d:10.7}")          # short     ;long st
-
-Numbers
-
-.. code-block:: python
-
-    n = 42; N = -42; pi = 3.141592653589793
-    print("%d;%d" % (n, pi))             # 42;3
-    print("%d;%f" % (n, pi))             # 42;3.141593
-    print("{:d};{:d}".format(n,pi))      # ValueError: Unknown format code 'd' for object of type 'float'
-    print("{:d};{:f}".format(n,pi))      # 42;3.141593
-    print(f"{n:d}")                      # 42
-    print(f"{n:d};{pi:d}")               # ValueError: Unknown format code 'd' for object of type 'float'
-    print(f"{n:d};{pi:f}")               # 42;3.141593
-
-    # Padding numbers
-    print("%7d;%7d" % (n, pi))            #      42;      3
-    print("%7d;%7.2f" % (n, pi))          #      42;   3.14
-    print("{:7d};{:7.2f}".format(n,pi))   #      42;   3.14
-    print(f"{n:7d};{pi:7.2f}")            #      42;   3.14
-
-    print("%07d;%07d" % (n, pi))          # 0000042;0000003
-    print("%07d;%07.2f" % (n, pi))        # 0000042;0003.14
-    print("{:07d};{:07.2f}".format(n,pi)) # 0000042;0003.14
-    print(f"{n:07d};{pi:07.2f}")          # 0000042;0003.14
-
-    # Signed numbers
-    n = 42;  N = -42; pi = 3.141592653589793
-    print("%+d;%+d" % (n, N))             # +42;-42
-    print("% d;% d" % (n, N))             #  42;-42
-    print("%+d;%+7.2f" % (n, pi))         # +42;  +3.14
-
-    print("{:+d};{:+d}".format(n,N))      # +42;-42
-    print("{: d};{: d}".format(n,N))      #  42;-42
-    print("{:+d};{:+7.2f}".format(n,pi))  # +42;  +3.14
-    print("{:=5d};{:=5d}".format(n,N))    #    42;-  42
-
-    print(f"{n:+d};{N:+d}")               # +42;-42
-    print(f"{n: d};{N: d}")               #  42;-42
-    print(f"{n:+d};{pi:+07.2f}")          # +42;+003.14
-    print(f"{n:=5d};{N:=5d}")             #    42;-  42
-
-    # Convert <number> to str
-    f"{n!r}"                              # '42'
-    f"{N!r}"                              # '-42'
-    f"{pi!r}"                             # '3.141592653589793'
-
-DateTime, UNIX Epoch and TimeStamps
-
-.. code-block:: python
-
-    # DateTime Only (CET, CEST TimeZone)
-    from datetime import datetime
-    now = datetime.now()
-    print(now)                                                           # 2023-03-01 16:50:03.393791
-    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 16:50
-    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 16:50
-    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 16:50
-
-    # DateTime and TimeZone (In CET, CEST TimeZone)
-    from datetime import datetime, timezone
-    now = datetime.utcnow()
-    print(now)                                                           # 2023-03-01 15:50:03.393791
-    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 15:50
-    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 15:50
-    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 15:50
-    print(now.isoformat())                                               # 2023-03-01T15:50:03.393791+00:00
-    print(f"{now:%Y-%m-%dT%H:%M:%S+00:00}")                              # 2023-03-01T15:50:03.39+00:00
-
-    # Date Only
-    from datetime import date
-    today = date.today()
-    print(today)                                                         # 2023-03-01
-    print("{:%B %d %Y}".format(today))                                   # March 01 2023
-    print("{:{dfmt}}".format(today, dfmt="%B %d %Y"))                    # March 01 2023
-    print(f"{today:%B %d %Y}")                                           # March 01 2023
-
-
-Dictionaries
-
-.. code-block:: python
-
-    name = {'first': 'Fred', 'last': 'Flintstone'}
-    print("%(first)s %(last)s" % name)                                   # Fred Flintstone
-    print("{first} {last}".format(**name))                               # Fred Flintstone
-    print("{p[first]} {p[last]}".format(p=name))                         # Fred Flintstone
-    print(f"{name['first']} {name['last']}")                             # Fred Flintstone
-    print(f"{name['first'].lower()} {name['last'].upper()}")             # fred FLINTSTONE
-
-Reading and Writing Files
--------------------------
-
-* `Python3: Input and Output <https://docs.python.org/3/tutorial/inputoutput.html>`_
-* `Python3: Reading and Writing Files <https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files>`_
-
-Text Files Sequential Access
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: python
-
-    # mode: r (read), w (write: create/overwrite), a (append), r+ (read/write), + (read/write)
-    outfile_handle = open('spam', 'w')                        # 'spam', <_io.TextIOWrapper>
-    outfile_handle = open('utf8spam', 'w', encoding="utf-8")  # 'utf8spam' in UTF8, <_io.TextIOWrapper>
-    infile_handle = open('data', 'r')                         # open input file
-
-    S = infile_handle.read()                # Read entire file into a single string
-    S = infile_handle.read(N)               # Read N bytes (N >= 1)
-    S = infile_handle.readline()            # Read next line, len(S) == 0 when no more input
-    L = infile_handle.readlines()           # Read entire file into list of line strings
-
-    outfile_handle.write(S)                 # Write string S into file (returns number of chars written)
-    outfile_handle.writelines(L)            # Write all strings in list L
-    print("lineFour", file=outfile_handle)  # Better than low-level write(), writelines() methods
-    outfile_handle.flush()                  # Flush buffered write to file
-    outfile_handle.close()                  # May need to flush() to write contents
-
-    # Cleaner but will raise an exception and close cleanly
-    with open(filename) as f:
-        data = f.read()
-
-    # Alternative, traps and reports any exception raised
-    try:
-        with open(filename) as f:
-        data = f.read()
-    except Exception as error:
-        print('{0}'.format(error))
-
-    # Example, forcing UTF8 encoding
-    outfile_handle = open('utf8spam', 'w', encoding="utf-8")
-    for i in range(1,11):
-        print("{0:2d}: line number {0}".format(i), file=outfile_handle)
-
-    outfile_handle.flush()
-    outfile_handle.close()
-
-
-Text Files Random Access
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: python
-
-    # random access to text files
-    import linecache
-    linecache.getline('utf8spam',1)  # ' 1: line number 1\n'
-    linecache.getline('utf8spam',7)  # ' 7: line number 7\n'
-    linecache.getline('utf8spam',0)  # ''
-    linecache.getline('utf8spam',15) # ''
-
-
-* `linecache — Random access to text lines <https://docs.python.org/3/library/linecache.html>`_
-
-File, and Directory Tests
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: python
-
-    import os
-
-    os.path.exists('flintstones.json')  # True
-    os.path.exists('flintstones.jsong') # False
-    os.path.exists('project')           # True
-    os.path.exists('projects')          # False
-
-    os.path.isfile('flintstones.json')  # True
-    os.path.isfile('flintstones.jsong') # False
-    os.path.isdir('project')            # True
-    os.path.isdir('projects')           # False
-
-* `os.path — Common pathname manipulations <https://docs.python.org/3/library/os.path.html>`_
-* `pathlib — Object-oriented filesystem paths <https://docs.python.org/3/library/pathlib.html>`_
-
-JSON files
-^^^^^^^^^^
-
-.. code-block:: python
-
-    import json
-    f = open('flintstones.json', 'r')
-    x = json.load(f)  # {"flintstones": {"Fred": 30, "Wilma": 25, "Pebbles": 1, "Dino": 5}}
-
-    print(x.__class__)          # <class 'dict'>
-    print(x.__class__.__name__) # dict
-    isinstance(x, dict)         # True
-
-    x['flintstones']['Fred'] = 31
-    f = open('flintstones.json', 'w')
-    json.dump(x, f)
-    f.flush()
-    f.close()
-
-
-XML files
-^^^^^^^^^
-
-.. code-block:: xml
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <family surname = "Flintstones">
-            <member>
-                    <name>Fred</name>
-                    <age>30</age>
-            </member>
-            <member>
-                    <name>Wilma</name>
-                    <age>25</age>
-            </member>
-            <member>
-                    <name>Pebbles</name>
-                    <age>1</age>
-            </member>
-            <member>
-                    <name>Dino</name>
-                    <age>5</age>
-            </member>
-    </family>
-
-
-.. Warning:: xml.etree.ElementTree is insecure, see `Security issues <https://docs.python.org/3/library/xml.html>`_
-
-.. code-block:: python
-
-    import xml.etree.ElementTree as ET
-    tree = ET.parse('flintstones.xml')
-
-    print(tree.__class__)          # <class 'xml.etree.ElementTree.ElementTree'>
-    print(tree.__class__.__name__) # ElementTree
-
-    root = tree.getroot()
-    root.tag    # 'family'
-    root.attrib # {'surname': 'Flintstones'}
-
-    for member in root.iter('member'):  # Fred: 30 \n Wilma: 25 \n Pebbles: 1 \n Dino: 5
-        name = member.find('name').text
-        age = member.find('age').text
-        print(f"{name}: {age}")
-
-    # Update Fred's age
-    root[0][0].text                      # 'Fred'
-    root[0][1].text                      # '30'
-    root[0][1].text = '31'               # update age, note it is a string!
-    ET.indent(root, space="\t", level=0) # pretty-print
-    ET.dump(root)                        # display on console
-
-    # Save XML, add UTF-8 header because default encoding is US-ASCII
-    tree.write('flintstones.xml', encoding="UTF-8", xml_declaration=True)
-    tree.write('flintstones-ascii.xml')
-
-    # Add sub-elements 'sex' and update values
-    for member in root.iter('member'):
-        subelement = ET.SubElement(member, 'sex')
-
-    sexes = ('M', 'F', 'F', 'N') # Male(Fred), Female(Wilma,Pebbles), Neuter(Dino)
-    for i in range(len(sexes)):
-        root[i][2].text = sexes[i]
-
-    ET.indent(root, space="\t", level=0) # pretty-print
-    ET.dump(root)                        # display on console
-
-    # Remove sub-elements 'sex'
-    for member in root.iter('member'):
-        for sex in member.findall('sex'):
-            member.remove(sex)
-
-    ET.indent(root, space="\t", level=0) # pretty-print
-    ET.dump(root)                        # display on console
-
-
-References:
-
-* `xml.etree.ElementTree — The ElementTree XML <https://docs.python.org/3/library/xml.etree.elementtree.html>`_
-* `XML Processing Modules - Security issues <https://docs.python.org/3/library/xml.html>`_
-* `Structured Markup Processing Tools <https://docs.python.org/3/library/markup.html>`_
 
 Operators
 ---------
 
-.. note:: Add table from Digital Ocean
+Arithmetic operators
 
-References:
+.. code-block:: python
 
-* `DigitalOcean: Python Operators - A Quick Reference <https://www.digitalocean.com/community/tutorials/python-operators>`_
-* `Python: operator — Standard operators as functions <https://docs.python.org/3/library/operator.html>`_
+    (a,b) = (2,3)
+    z = 'Abc'
+    print(a + b)  # 5
+    print(a - b)  # -1
+    print(b - a)  # 1
+    print(a * b)  # 6
+    print(z * a)  # AbcAbc
+    print(a / b)  # 0.6666666666666666
+    print(b / a)  # 1.5
+    print(a % b)  # 2 (modulus)
+    print(b % a)  # 1 (modulus)
+    print(a ** b) # 8 (exponent)
 
-Comparisons, Equality, and Truth
---------------------------------
+Comparison operators
 
-+----------+--------------------------+---------+
-| Operator | Name                     | Example |
-+==========+==========================+=========+
-| ==       | Equal                    | x == y  |
-+----------+--------------------------+---------+
-| !=       | Not equal                | x != y  |
-+----------+--------------------------+---------+
-| >        | Greater than             | x > y   |
-+----------+--------------------------+---------+
-| <        | Less than                | x < y   |
-+----------+--------------------------+---------+
-| >=       | Greater than or equal to | x >= y  |
-+----------+--------------------------+---------+
-| <=       | Less than or equal to    | x <= y  |
-+----------+--------------------------+---------+
-| is       | Same object              | x is y  |
-+----------+--------------------------+---------+
-| in       | Contained in Object      | x in y  |
-+----------+--------------------------+---------+
+.. code-block:: python
+
+    (a,b) = (2,3)
+    print(a == b) # False
+    print(a != b) # True
+    print(a > b)  # False
+    print(a < b)  # True
+    print(a >= b) # False
+    print(a <= b) # True
+
+Bitwise operators
+
+.. code-block:: python
+
+    (a,b) = (10,7)          # a='1010',     b='0111'
+    (x,y) = (0b1010, 0b111) # x='1010'(10), y='0111'(7)
+    print(bin(a))           # 0b1010
+    print(bin(b))           # 0b111
+
+    print(a & b)            #  2      Binary AND
+    print(a | b)            # 15      Binary OR
+    print(~b)               # -8      Binary OR
+    print(a ^ b)            # 13      Binary XOR
+    print(~a)               # -11     Ones Complement
+    print(bin(~a))          # -0b1011 Ones Complement
+    print(a << 1)           # 14      Binary Left Shift
+    print(bin(a<<1))        # 0b10100 Binary Left Shift
+    print(a >> 1)           # 5       Binary Right Shift
+    print(bin(a >> 1))      # 0b101   Binary Right Shift
+
+* `RealPython: Overview of Python’s Bitwise Operators <https://realpython.com/python-bitwise-operators/>`_
+
+Assignment operators
+
+.. code-block:: python
+
+    (a,b) = (2,3) # before assignment
+    a += b  # a is 5
+    a *= b  # a is 6
+    a /= b  # a is 0.6666666666666666
+    a %= b  # a is 2 (modulus)
+    b %= a  # b is 1 (modulus)
+    a **= b # a is 8 (exponent operator)
+    a //= b # a is 0 (floor division)
+    b //= a # b is 1 (floor division)
+
+Logical Operators
+
+.. code-block:: python
+
+    (a,b,c,d) = (2,3,4,5)
+    print(a > b and c < d)      # False
+    print(a > b or c < d)       # True
+    print(not(a > b) and c < d) # True
+
+Rich Comparisons
 
 .. code-block:: python
 
     L1 = [1, ('a', 3)]; L2 = [1, ('a', 3)]; L3 = L1
-    #
-    L1 == L2                # True
-    L1 is L2                # False, Not the same object
-    L1 == L3                # True
-    L1 is L3                # True, Are the same object
-    #
-    1 in L1                 # True
-    3 in L1                 # False
-    3 in L1[1]              # True
+    L1 == L2                    # True
+    L1 is L2                    # False, Not the same object
+    L1 == L3                    # True
+    L1 is L3                    # True, Are the same object
+    1 in L1                     # True
+    3 in L1                     # False
+    3 in L1[1]                  # True
 
     S1 = 'spam'; S2 = 'spam'
-    #
-    S1 == S2                # True
-    S1 is S2                # True! WTF evil-bad caching! so same object
+    S1 == S2                    # True
+    S1 is S2                    # True! WTF ** evil-bad caching! ** so same object
 
-    LS1 = 'a longer string'; LS2 = 'a longer string'; LS3 = 'a bit longer string'
-    #
-    LS1 == LS2              # True
-    LS1 is LS2              # False
-    #
-    LS1 == LS3              # False
-    LS1 is LS3              # False
-    LS1 > LS3               # True, 'a (L)onger' > 'a (B)it longer'
-    len(LS1) > len(LS2)     # False
+    LS1 = 'a longer string text'
+    LS2 = 'a longer string text'
+    LS3 = 'a longer string message'
+    LS4 = 'a bit longer string text'
+    LS1 == LS2           # True
+    LS1 is LS2           # False
+    LS1 == LS3           # False
+    LS1 is LS3           # False
+    LS1 > LS3            # True '... text' > '... message'
+    LS1 > LS4            # True 'a longer ...' > 'a bit longer ...'
+    len(LS1) == len(LS2) # True
 
 References:
+
+* `RealPython: Operators and Expressions in Python <https://realpython.com/python-operators-expressions/>`_
+* `Python: operator — Standard operators as functions <https://docs.python.org/3/library/operator.html>`_
 * `PEP 207 – Rich Comparisons <https://peps.python.org/pep-0207/>`_
 
 Object Checking
@@ -1168,220 +1110,11 @@ For Loops
     for i in range(0, len(S), 2):
         print(S[i], end=' ') # a c e g i k
 
-Object Class Example
---------------------
-
-Simple ``Person`` object in file named ``Person.py``, without Docstrings for brevity.
-
-Using Python decorators
-^^^^^^^^^^^^^^^^^^^^^^^
-
-This is considered the *pythonic* approach because it **only supports attributes**, there are
-no functions `get_name()`, `set_name()` etc.
-
-.. code-block:: python
-
-    import os
-    import uuid
-
-    class Person:
-
-        def __init__(self, name, age, sex='M'):
-            self.__name = name
-
-            if not isinstance(age, int):
-                raise ValueError(f"invalid int for age: '{age}'")
-            elif age > 0:
-                self.__age = age
-            else:
-                self.__age = 0
-
-            self.__sex = sex
-            self.__uuid = str(uuid.uuid4())
-
-        # a getter function, uses a property decorator
-        @property
-        def name(self):
-            return self.__name
-
-        # a setter function
-        @name.setter
-        def name(self, value):
-            self.__name = value
-
-        # a deleter function
-        # @name.deleter
-        # def name(self):
-        #     del self._value
-
-        @property
-        def age(self):
-            return self.__age
-
-        @age.setter
-        def age(self, value):
-            if not isinstance(value, int):
-                raise ValueError(f"invalid int for age: '{value}'")
-            elif value > 0:
-                self.__age = value
-            else:
-                self.__age = 0
-
-        @property
-        def sex(self):
-            return self.__sex
-
-        @sex.setter
-        def sex(self, value):
-            self.__sex = value
-
-        @property
-        def uuid(self):
-            return self.__uuid
-
-        def __str__(self):
-            """ String representation """
-            __str = 'Person: '
-            __str += str(self.__name) + ', '
-            __str += str(self.__age) + ', '
-            __str += str(self.__sex) + ', '
-            __str += str(self.__uuid)
-            return __str
-
-        def __repr__(self):
-            """ repr() string representation """
-            __str = "{"
-            __str += f"'name': {self.__name}, "
-            __str += f"'age': {self.__age}, "
-            __str += f"'sex': {self.__sex}, "
-            __str += f"'uuid': {self.__uuid}"
-            __str += "}"
-            return __str
+    D = {"spam": None, "eggs": 2, "ham": 1}
+    for key,value in D.items():
+        print(f"key={key}, value={value}") # key=spam, value=None \n key=eggs, value=2 \n key=ham, value=1
 
 
-Using the property class
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-This approach supports attributes  **AND** `get_name()`, `set_name()` etc.
-
-.. code-block:: python
-
-    import os
-    import uuid
-
-
-    class Person:
-
-        def __init__(self, name, age, sex='M'):
-            self.__name = name
-
-            if not isinstance(age, int):
-                raise ValueError(f"invalid int for age: '{age}'")
-            elif age > 0:
-                self.__age = age
-            else:
-                self.__age = 0
-
-            self.__sex = sex
-            self.__uuid = str(uuid.uuid4())
-
-        def get_name(self):
-            return self.__name
-
-        def set_name(self, value):
-            self.__name = value
-
-        def get_age(self):
-            return self.__age
-
-        def set_age(self, value):
-            if not isinstance(value, int):
-                raise ValueError(f"invalid int for age: '{value}'")
-            elif value > 0:
-                self.__age = value
-            else:
-                self.__age = 0
-
-        def get_sex(self):
-            return self.__sex
-
-        def set_sex(self, value):
-            self.__sex = value
-
-        def get_uuid(self):
-            return self.__uuid
-
-        def __str__(self):
-            """ String representation """
-            __str = 'Person: '
-            __str += str(self.__name) + ', '
-            __str += str(self.__age) + ', '
-            __str += str(self.__sex) + ', '
-            __str += str(self.__uuid)
-            return __str
-
-        def __repr__(self):
-            """ repr() string representation """
-            __str = "{"
-            __str += f"'name': {self.__name}, "
-            __str += f"'age': {self.__age}, "
-            __str += f"'sex': {self.__sex}, "
-            __str += f"'uuid': {self.__uuid}"
-            __str += "}"
-            return __str
-
-
-    # Python attributes requires:
-    # property(fget=None, fset=None, fdel=None, doc=None)
-    name = property(get_name, set_name, None, None)
-    age = property(get_age, set_age, None, None)
-    sex = property(get_sex, set_sex, None, None)
-    uuid = property(get_uuid, None, None, None)
-
-Example usage:
-
-.. code-block:: python
-
-    import Person
-    f = Person.Person(name='fred',age=99)
-    b = Person.Person(name='barney',age=9)
-    b.__str__()        # 'Person: barney, 9, M, c569ea0b-90bf-4433-b620-9472f6afbd8f'
-    f.__repr__()       # "{'name': fred, 'age': 99, 'sex': M, 'uuid': be1f8143-8619-477d-9658-aece55b8c98f}"
-
-    dir(f)             # methods and attributes
-    help(f)            # methods, attributes and docstrings
-
-    ## 'Person' object using decorator approach - get(), set() calls fail!
-    #
-    f.name='freddy'    # attribute update
-    f.name             # 'freddy'
-    f.get_name()       # *** fails, no attribute 'get_name' ***
-
-    f.set_name('fred') # *** fails, no attribute 'set_name' ***
-    f.name             # 'freddy'
-    f.get_name()       # *** fails, no attribute 'get_name' ***
-
-    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
-    f.get_uuid()       # *** fails,  no attribute 'get_uuid' ***
-
-    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
-    AttributeError: property 'uuid' of 'Person' object has no setter
-
-    ## 'Person' object using property class approach
-    #
-    f.name='freddy'    # attribute update
-    f.name             # 'freddy'
-    f.get_name()       # 'freddy'
-
-    f.set_name('fred') # getter/setter update
-    f.name             # 'fred'
-    f.get_name()       # 'fred'
-
-    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
-    f.get_uuid()       # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
-
-    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
-    AttributeError: property 'uuid' of 'Person' object has no setter
 
 
 
@@ -1480,6 +1213,376 @@ DateTime and TimeZone
     int(time.mktime(utc.timetuple()))        # UNIX epoch as int
     round(time.mktime(utc.timetuple()))      # UNIX epoch as int
 
+String Formatting
+-----------------
+
+Python string formatting has evolved over the years, and while all three formats are supported
+in Python3, the ***f-string*** format is the one that should be used.
+
+#. **"** *<format-str>* **" % (** *<variable(s)>* **)**
+#. **"** *<format-str>*"**.format(** *<variable(s)>* **)**
+#. **f"{** *<variable>* **:** *<format-str>* **}"**
+
+A string can be enclosed in `"` (double-quote) or `'`'` (single-quote), for consistency the examples use
+double-quote.
+
+* `Pyformat: Using % and .format() for great good! <https://pyformat.info/>`_
+* `RealPython: Python 3's f-Strings: An Improved String Formatting Syntax (Guide) <https://realpython.com/python-f-strings/>`_
+* `Python: Input and Output - Fancier Output Formatting <https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting>`_
+* `Python: Formatted string literals <https://docs.python.org/3/reference/lexical_analysis.html#f-strings>`_
+
+For Docstrings:
+
+* `use str() for __str__ <https://docs.python.org/3/library/stdtypes.html#str>`_
+* `use repr() for __repr__ <https://docs.python.org/3/library/functions.html#repr>`_
+
+Strings
+
+.. code-block:: python
+
+    a = 'one'; b = 'two'
+    print("%s %s" % (a, b))     # one two
+    print("{} {}".format(a, b)) # one two
+    print(f"{a} {b}")           # one two
+
+    # Padding (10) and aligning strings
+    c = 'short'; d = 'long string with more text'
+    print("%10s;%10s" % (c,d))           #      short;long string with more text
+    print("{:10};{:10}".format(c,d))     #      short;long string with more text
+    print(f"{c:10};{d:10}")              #      short;long string with more text
+
+    print("%-10s;%-10s" % (c,d))         # short     ;long string with more text
+    print("{:>10};{:>10}".format(c,d))   # short     ;long string with more text
+    print(f"{c:>10};{d:>10}")            # short     ;long string with more text
+
+    print("{:_<10};{:_<10}".format(c,d)) # short_____;long string with more text
+    print(f"{c:_<10};{d:_<10}")          # short_____;long string with more text
+
+    print("{:^10};{:^10}".format(c,d))   #   short   ;long string with more text
+    print(f"{c:^10};{d:^10}")            #   short   ;long string with more text
+
+    # Truncating (7) long strings
+    print("%.7s;%.7s" % (c,d))           # short;long st
+    print("{:.7};{:.7}".format(c,d))     # short;long st
+    print(f"{c:.7};{d:.7}")              # short;long st
+
+    # Truncating (7) and padding (10) long strings
+    print("%-10.7s;%-10.7s" % (c,d))     # short     ;long st
+    print("{:10.7};{:10.7}".format(c,d)) # short     ;long st
+    print(f"{c:10.7};{d:10.7}")          # short     ;long st
+
+Numbers
+
+.. code-block:: python
+
+    n = 42; N = -42; pi = 3.141592653589793
+    print("%d;%d" % (n, pi))             # 42;3
+    print("%d;%f" % (n, pi))             # 42;3.141593
+    print("{:d};{:d}".format(n,pi))      # ValueError: Unknown format code 'd' for object of type 'float'
+    print("{:d};{:f}".format(n,pi))      # 42;3.141593
+    print(f"{n:d}")                      # 42
+    print(f"{n:d};{pi:d}")               # ValueError: Unknown format code 'd' for object of type 'float'
+    print(f"{n:d};{pi:f}")               # 42;3.141593
+
+    # Padding numbers
+    print("%7d;%7d" % (n, pi))            #      42;      3
+    print("%7d;%7.2f" % (n, pi))          #      42;   3.14
+    print("{:7d};{:7.2f}".format(n,pi))   #      42;   3.14
+    print(f"{n:7d};{pi:7.2f}")            #      42;   3.14
+    print("%07d;%07d" % (n, pi))          # 0000042;0000003
+
+    print("%07d;%07d" % (n, pi))          # 0000042;0000003
+    print("%07d;%07.2f" % (n, pi))        # 0000042;0003.14
+    print("{:07d};{:07.2f}".format(n,pi)) # 0000042;0003.14
+    print(f"{n:07d};{pi:07.2f}")          # 0000042;0003.14
+
+    # Signed numbers
+    n = 42;  N = -42; pi = 3.141592653589793
+    print("%+d;%+d" % (n, N))             # +42;-42
+    print("% d;% d" % (n, N))             #  42;-42
+    print("%+d;%+7.2f" % (n, pi))         # +42;  +3.14
+
+    print("{:+d};{:+d}".format(n,N))      # +42;-42
+    print("{: d};{: d}".format(n,N))      #  42;-42
+    print("{:+d};{:+7.2f}".format(n,pi))  # +42;  +3.14
+    print("{:=5d};{:=5d}".format(n,N))    #    42;-  42
+
+    print(f"{n:+d};{N:+d}")               # +42;-42
+    print(f"{n: d};{N: d}")               #  42;-42
+    print(f"{n:+d};{pi:+07.2f}")          # +42;+003.14
+    print(f"{n:=5d};{N:=5d}")             #    42;-  42
+
+    # Convert <number> to str
+    f"{n!r}"                              # '42'
+    f"{N!r}"                              # '-42'
+    f"{pi!r}"                             # '3.141592653589793'
+    f"{n!r}".zfill(7)                     # '0000042'
+    f"{N!r}".zfill(7)                     # '-000042'
+    f"{pi!r}".zfill(7)                    # '3.141592653589793'
+    str(n).zfill(7)                       # '0000042'
+    str(N).zfill(7)                       # '-000042'
+    str(pi).zfill(7)                      # '3.141592653589793'
+
+DateTime, UNIX Epoch and TimeStamps
+
+.. code-block:: python
+
+    # DateTime Only (CET, CEST TimeZone)
+    from datetime import datetime
+    now = datetime.now()
+    print(now)                                                           # 2023-03-01 16:50:03.393791
+    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 16:50
+    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 16:50
+    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 16:50
+
+    # DateTime (Naive, in CET, CEST TimeZone)
+    from datetime import datetime, timezone
+    now = datetime.utcnow()
+    print(now)                                                           # 2023-03-01 15:50:03.393791
+    print("{:%Y-%m-%d %H:%M}".format(now))                               # 2023-03-01 15:50
+    print("{:{dfmt} {tfmt}}".format(now, dfmt="%Y-%m-%d", tfmt="%H:%M")) # 2023-03-01 15:50
+    print(f"{now:%Y-%m-%d %H:%M}")                                       # 2023-03-01 15:50
+    print(now.isoformat())                                               # 2023-03-01T15:50:03.393791+00:00
+    print(f"{now:%Y-%m-%dT%H:%M:%S+00:00}")                              # 2023-03-01T15:50:03.39+00:00
+
+    # Prior to Python-3.9, DateTime (TimeZone aware, in CET, CEST TimeZone)
+    # NOTE: pip install pytz, pip install tzlocal
+    import pytz                                                          # python IANA timezone implementation
+    import tzlocal                                                       # python local time-zone
+    from pytz import timezone
+    from tzlocal import get_localzone
+    from datetime import datetime
+    epoch = 1682490209                                                   # UNIX epoch (naive, no time-zone)
+    dt_format = "%Y-%m-%d %H:%M:%S %Z%z"
+    dt = datetime.fromtimestamp(epoch).replace(tzinfo=pytz.UTC)          # make UTC datetime (time-zone aware)
+    print(dt.strftime(dt_format))                                        # 2023-04-26 08:23:29 UTC+0000
+    print(dt.astimezone(timezone('Europe/Zurich')).strftime(dt_format))  # 2023-04-26 10:23:29 CEST+0200
+    print(dt.astimezone(get_localzone()).strftime(dt_format))            # 2023-04-26 10:23:29 CEST+0200
+
+    # Python-3.9 or later, DateTime (TimeZone aware, in CET, CEST TimeZone)
+    # NOTE: pip install tzdata (IANA timezone data)
+    import time
+    from zoneinfo import ZoneInfo
+    from datetime import datetime, timezone
+    epoch = 1682490209                                                   # UNIX epoch (naive, no time-zone)
+    dt_format = "%Y-%m-%d %H:%M:%S %Z%z"
+    dt = datetime.fromtimestamp(epoch).replace(tzinfo=timezone.utc)      # make UTC datetime (time-zone aware)
+    print(dt.strftime(dt_format))                                        # 2023-04-26 08:23:29 UTC+0000
+    print(dt.astimezone(ZoneInfo('Europe/Zurich'))).strftime(dt_format)) # 2023-04-26 10:23:29 CEST+0200
+
+    localzone =  datetime.now(tz=timezone.utc).astimezone().tzinfo
+    print(dt.astimezone(localzone).strftime(dt_format))                  # 2023-04-26 10:23:29 CEST+0200
+    print(dt.astimezone().strftime(dt_format))                           # 2023-04-26 10:23:29 CEST+0200
+
+    # Date Only
+    from datetime import date
+    today = date.today()
+    print(today)                                                         # 2023-03-01
+    print("{:%B %d %Y}".format(today))                                   # March 01 2023
+    print("{:{dfmt}}".format(today, dfmt="%B %d %Y"))                    # March 01 2023
+    print(f"{today:%B %d %Y}")                                           # March 01 2023
+
+
+Dictionaries
+
+.. code-block:: python
+
+    name = {'first': 'Fred', 'last': 'Flintstone'}
+    print("%(first)s %(last)s" % name)                                   # Fred Flintstone
+    print("{first} {last}".format(**name))                               # Fred Flintstone
+    print("{p[first]} {p[last]}".format(p=name))                         # Fred Flintstone
+    print(f"{name['first']} {name['last']}")                             # Fred Flintstone
+    print(f"{name['first'].lower()} {name['last'].upper()}")             # fred FLINTSTONE
+
+=========================
+Reading and Writing Files
+=========================
+
+* `Python3: Input and Output <https://docs.python.org/3/tutorial/inputoutput.html>`_
+* `Python3: Reading and Writing Files <https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files>`_
+
+Text Files Sequential Access
+----------------------------
+
+.. code-block:: python
+
+    # mode: r (read), w (write: create/overwrite), a (append), r+ (read/write), + (read/write)
+    outfile_handle = open('spam', 'w')                        # 'spam', <_io.TextIOWrapper>
+    outfile_handle = open('utf8spam', 'w', encoding="utf-8")  # 'utf8spam' in UTF8, <_io.TextIOWrapper>
+    infile_handle = open('data', 'r')                         # open input file
+
+    S = infile_handle.read()                # Read entire file into a single string
+    S = infile_handle.read(N)               # Read N bytes (N >= 1)
+    S = infile_handle.readline()            # Read next line, len(S) == 0 when no more input
+    L = infile_handle.readlines()           # Read entire file into list of line strings
+
+    outfile_handle.write(S)                 # Write string S into file (returns number of chars written)
+    outfile_handle.writelines(L)            # Write all strings in list L
+    print("lineFour", file=outfile_handle)  # Better than low-level write(), writelines() methods
+    outfile_handle.flush()                  # Flush buffered write to file
+    outfile_handle.close()                  # May need to flush() to write contents
+
+    # Cleaner but will raise an exception and close cleanly
+    with open(filename) as f:
+        data = f.read()
+
+    # Alternative, traps and reports any exception raised
+    try:
+        with open(filename) as f:
+        data = f.read()
+    except Exception as error:
+        print('{0}'.format(error))
+
+    # Example, forcing UTF8 encoding
+    outfile_handle = open('utf8spam', 'w', encoding="utf-8")
+    for i in range(1,11):
+        print("{0:2d}: line number {0}".format(i), file=outfile_handle)
+
+    outfile_handle.flush()
+    outfile_handle.close()
+
+
+Text Files Random Access
+------------------------
+
+.. code-block:: python
+
+    # random access to text files
+    import linecache
+    linecache.getline('utf8spam',1)  # ' 1: line number 1\n'
+    linecache.getline('utf8spam',7)  # ' 7: line number 7\n'
+    linecache.getline('utf8spam',0)  # ''
+    linecache.getline('utf8spam',15) # ''
+
+
+* `linecache — Random access to text lines <https://docs.python.org/3/library/linecache.html>`_
+
+File, and Directory Tests
+-------------------------
+
+.. code-block:: python
+
+    import os
+
+    os.path.exists('flintstones.json')  # True
+    os.path.exists('flintstones.jsong') # False
+    os.path.exists('project')           # True
+    os.path.exists('projects')          # False
+
+    os.path.isfile('flintstones.json')  # True
+    os.path.isfile('flintstones.jsong') # False
+    os.path.isdir('project')            # True
+    os.path.isdir('projects')           # False
+
+* `os.path — Common pathname manipulations <https://docs.python.org/3/library/os.path.html>`_
+* `pathlib — Object-oriented filesystem paths <https://docs.python.org/3/library/pathlib.html>`_
+
+JSON files
+----------
+
+.. code-block:: python
+
+    import json
+    f = open('flintstones.json', 'r')
+    x = json.load(f)  # {"flintstones": {"Fred": 30, "Wilma": 25, "Pebbles": 1, "Dino": 5}}
+
+    print(x.__class__)          # <class 'dict'>
+    print(x.__class__.__name__) # dict
+    isinstance(x, dict)         # True
+
+    x['flintstones']['Fred'] = 31
+    f = open('flintstones.json', 'w')
+    json.dump(x, f)
+    f.flush()
+    f.close()
+
+
+XML files
+---------
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <family surname = "Flintstones">
+            <member>
+                    <name>Fred</name>
+                    <age>30</age>
+            </member>
+            <member>
+                    <name>Wilma</name>
+                    <age>25</age>
+            </member>
+            <member>
+                    <name>Pebbles</name>
+                    <age>1</age>
+            </member>
+            <member>
+                    <name>Dino</name>
+                    <age>5</age>
+            </member>
+    </family>
+
+
+.. Warning:: xml.etree.ElementTree is insecure, see `Security issues <https://docs.python.org/3/library/xml.html>`_ and `GitHub defusedxml <https://github.com/tiran/defusedxml/>`_
+
+.. code-block:: python
+
+    import xml.etree.ElementTree as ET
+    tree = ET.parse('flintstones.xml')
+
+    print(tree.__class__)          # <class 'xml.etree.ElementTree.ElementTree'>
+    print(tree.__class__.__name__) # ElementTree
+
+    root = tree.getroot()
+    root.tag    # 'family'
+    root.attrib # {'surname': 'Flintstones'}
+
+    for member in root.iter('member'):  # Fred: 30 \n Wilma: 25 \n Pebbles: 1 \n Dino: 5
+        name = member.find('name').text
+        age = member.find('age').text
+        print(f"{name}: {age}")
+
+    # Update Fred's age
+    root[0][0].text                      # 'Fred'
+    root[0][1].text                      # '30'
+    root[0][1].text = '31'               # update age, note it is a string!
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
+
+    # Save XML, add UTF-8 header because default encoding is US-ASCII
+    tree.write('flintstones.xml', encoding="UTF-8", xml_declaration=True)
+    tree.write('flintstones-ascii.xml')
+
+    # Add sub-elements 'sex' and update values
+    for member in root.iter('member'):
+        subelement = ET.SubElement(member, 'sex')
+
+    sexes = ('M', 'F', 'F', 'N') # Male(Fred), Female(Wilma,Pebbles), Neuter(Dino)
+    for i in range(len(sexes)):
+        root[i][2].text = sexes[i]
+
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
+
+    # Remove sub-elements 'sex'
+    for member in root.iter('member'):
+        for sex in member.findall('sex'):
+            member.remove(sex)
+
+    ET.indent(root, space="\t", level=0) # pretty-print
+    ET.dump(root)                        # display on console
+
+
+.. Important:: To secure the above example use `defusedxml 0.7.1 <https://pypi.org/project/defusedxml/>`_, see `GitHub defusedxml <https://github.com/tiran/defusedxml/>`_
+
+Replace ``import xml.etree.ElementTree as ET`` with ``import defusedxml.etree.ElementTree as ET``
+
+
+References:
+
+* `xml.etree.ElementTree — The ElementTree XML <https://docs.python.org/3/library/xml.etree.elementtree.html>`_
+* `XML Processing Modules - Security issues <https://docs.python.org/3/library/xml.html>`_
+* `Structured Markup Processing Tools <https://docs.python.org/3/library/markup.html>`_
 
 ==========
 Decorators
@@ -1661,8 +1764,38 @@ These releases do not have `pipenv`, only `python` and `idle3` so use `VirtualEn
 * `PyCharm Community Edition Download <https://www.jetbrains.com/pycharm/download/#section=windows>`_
 * `Eclipse Download <https://www.eclipse.org/downloads/>`_ and `PyDev <https://www.pydev.org/>`_
 
-Pipenv
-------
+``pip``
+-------
+
+The *original* normally run in a :ref:`virtualenv-label`.
+
+* `Pip - User Guide <https://pip.pypa.io/en/stable/user_guide/>`_
+* `Pip - Requirements File Format <https://pip.pypa.io/en/stable/reference/requirements-file-format/>`_
+
+.. code-block:: shell
+
+    # Basic operations
+    $ pip search SomePackage           # RuntimeError: PyPI no longer supports 'pip search' (or XML-RPC search).
+                                       # Please use https://pypi.org/search (via a browser) instead.
+    $ pip install SomePackage          # latest version
+    $ pip install SomePackage==1.0.4   # specific version
+    $ pip install 'SomePackage>=1.0.4' # version 1.0.4 or later
+    $ pip uninstall SomePackage
+    $ pip freeze > requirements.txt    # save current installation
+    $ pip install -r requirements.txt  # install all the specified packages
+    $ pip list                         # currently installed packages
+    $ pip list --outdated              # upgradeable packages
+
+    # Updating all packages
+    # Note: may need several iterations and manual additions to 'requirements.txt'
+    $ pip list --outdated
+    $ pip freeze > requirements.txt
+    # edit 'requirements.txt', replace '==' with '>='
+    $ pip install -r requirements.txt --upgrade
+
+
+``pipenv``
+----------
 
 * `Github: Pipenv <https://github.com/pypa/pipenv>`_
 * `Pipenv: Python Dev Workflow for Humans <https://pipenv.pypa.io/en/latest/>`_
@@ -1697,6 +1830,7 @@ Setup a new Python project in Eclipse, and change the project to use it.
     $ pipenv run <program.py>    # virtualenv: run script
     $ pipenv check               # PEP8 check of the Pipfile
 
+.. _virtualenv-label:
 
 VirtualEnv
 ----------
@@ -1752,6 +1886,12 @@ of the PowerShell `get-command`.
 
     (venv) PS> deactivate
     PS>
+
+``pipx``
+--------
+
+* `pipx — Install and Run Python Applications in Isolated Environments <https://pypa.github.io/pipx/>`_
+* `pipx — Comparison to Other Tools <https://pypa.github.io/pipx/comparisons/>`_
 
 ==========================
 Useful Python 3 references
