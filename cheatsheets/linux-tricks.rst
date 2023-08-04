@@ -317,17 +317,15 @@ Linux Network Tools
 | `hping3 <https://linux.die.net/man/8/hping3>`_                       | TCP/IP equivalent of ping                          |
 +----------------------------------------------------------------------+----------------------------------------------------+
 | `curl <https://linux.die.net/man/1/curl>`_,                          | Access URL meta-data or content                    |
-| `wget <https://linux.die.net/man/1/wget>`_                           |                                                    |
-+----------------------------------------------------------------------+----------------------------------------------------+
-| `HTTPie <https://httpie.io/docs/cli>`_                               | Create and send arbitrary HTTP requests            |
+| `wget <https://linux.die.net/man/1/wget>`_,                          |                                                    |
+| `HTTPie <https://httpie.io/docs/cli>`_                               |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
 | `tc <https://linux.die.net/man/8/tc>`_                               | Show / manipulate traffic control settings         |
 +----------------------------------------------------------------------+----------------------------------------------------+
 | `dig <https://linux.die.net/man/1/dig>`_,                            | DNS lookup utilities                               |
 | `nslookup <https://linux.die.net/man/1/nslookup>`_,                  |                                                    |
-| `host <https://linux.die.net/man/1/host>`_                           |                                                    |
-+----------------------------------------------------------------------+----------------------------------------------------+
-| `whois <https://www.baeldung.com/linux/whois-command>`_              | Client for the whois directory service             |
+| `host <https://linux.die.net/man/1/host>`_,                          |                                                    |
+| `whois <https://www.baeldung.com/linux/whois-command>`_              |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
 | `ssh <https://linux.die.net/man/1/ssh>`_,                            | Secure client connection and copy                  |
 | `scp <https://linux.die.net/man/1/scp>`_                             |                                                    |
@@ -372,6 +370,9 @@ Linux Network Tools
 | `iptables <https://linux.die.net/man/8/netstat>`_,                   | Firewall, TCP/IP packet filtering and NAT          |
 | `ip6tables <https://linux.die.net/man/8/ip6tables>`_,                |                                                    |
 | `nftables <https://www.netfilter.org/projects/nftables/index.html>`_ |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `arp <https://linux.die.net/man/8/arp>`_,                            | Manipulate the system ARP cache                    |
+| `arptables <https://linux.die.net/man/8/arptables>`_,                |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
 | `traceroute <https://linux.die.net/man/8/traceroute>`_,              | Troubleshoot connections, processes, file usage    |
 | `mtr <https://linux.die.net/man/8/mtr>`_,                            |                                                    |
