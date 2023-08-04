@@ -306,6 +306,93 @@ First enable Windows optional features to run WSL, so the sequence is as follows
     4. Reboot
     5. Install Ubuntu (20.04.6 LTS) from Microsoft Store
 
+Linux Network Tools
+===================
+
++----------------------------------------------------------------------+----------------------------------------------------+
+| Command                                                              | Description                                        |
++======================================================================+====================================================+
+| `ping, ping6 <https://linux.die.net/man/8/ping>`_                    | Send ICMP ECHO_REQUEST to network hosts            |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `hping3 <https://linux.die.net/man/8/hping3>`_                       | TCP/IP equivalent of ping                          |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `curl <https://linux.die.net/man/1/curl>`_,                          | Access URL meta-data or content                    |
+| `wget <https://linux.die.net/man/1/wget>`_                           |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `HTTPie <https://httpie.io/docs/cli>`_                               | Create and send arbitrary HTTP requests            |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `tc <https://linux.die.net/man/8/tc>`_                               | Show / manipulate traffic control settings         |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `dig <https://linux.die.net/man/1/dig>`_,                            | DNS lookup utilities                               |
+| `nslookup <https://linux.die.net/man/1/nslookup>`_,                  |                                                    |
+| `host <https://linux.die.net/man/1/host>`_                           |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `whois <https://www.baeldung.com/linux/whois-command>`_              | Client for the whois directory service             |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `ssh <https://linux.die.net/man/1/ssh>`_,                            | Secure client connection and copy                  |
+| `scp <https://linux.die.net/man/1/scp>`_                             |                                                    |
+| `sftp <https://linux.die.net/man/1/sftp>`_                           |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `telnet <https://linux.die.net/man/1/telnet>`_,                      | Insecure client connection and copy                |
+| `ftp <https://linux.die.net/man/1/ftp>`_,                            |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `rsync <https://linux.die.net/man/1/rsync>`_                         | Sophisticated remote/local file-copying            |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `tcpdump <https://linux.die.net/man/8/tcpdump>`_,                    | Dump and analyze network traffic                   |
+| `wireshark <https://linux.die.net/man/1/wireshark>`_,                |                                                    |
+| `tshark <https://linux.die.net/man/1/tshark>`_                       |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `ngrep <https://linux.die.net/man/8/ngrep>`_                         | Network grep                                       |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `ifconfig <https://linux.die.net/man/8/ifconfig>`_,                  | Show/manipulate ip routing, devices, and tunnels   |
+| `route <https://linux.die.net/man/8/route>`_,                        |                                                    |
+| `ethtool <https://linux.die.net/man/8/ethtool>`_,                    |                                                    |
+| `ip <https://linux.die.net/man/8/ip>`_                               |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `iw <https://linux.die.net/man/8/iw>`_,                              | Configure a wireless network interface             |
+| `iwconfig <https://linux.die.net/man/8/iwconfig>`_                   |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `nmap <https://linux.die.net/man/1/nmap>`_,                          | Network exploration tool and security/port scanner |
+| `zenmap <https://linux.die.net/man/1/zenmap>`_                       |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `p0f <https://linux.die.net/man/1/p0f>`_                             | Identify remote systems passively                  |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `openvpn <https://linux.die.net/man/8/openvpn>`_,                    | Secure VPN tunnels                                 |
+| `wireguard <https://www.wireguard.com/>`_                            |                                                    |
+| `stunnel <https://linux.die.net/man/8/stunnel>`_                     |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `nc <https://linux.die.net/man/1/nc>`_,                              | Arbitrary TCP and UDP connections and listeners    |
+| `socat <https://linux.die.net/man/1/socat>`_                         |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `netstat <https://linux.die.net/man/8/netstat>`_,                    | Troubleshoot connections, processes, file usage    |
+| `ss <https://linux.die.net/man/8/ss>`_,                              |                                                    |
+| `lsof <https://linux.die.net/man/8/lsof>`_,                          |                                                    |
+| `fuser <https://linux.die.net/man/1/fuser>`_                         |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `iptables <https://linux.die.net/man/8/netstat>`_,                   | Firewall, TCP/IP packet filtering and NAT          |
+| `ip6tables <https://linux.die.net/man/8/ip6tables>`_,                |                                                    |
+| `nftables <https://www.netfilter.org/projects/nftables/index.html>`_ |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `traceroute <https://linux.die.net/man/8/traceroute>`_,              | Troubleshoot connections, processes, file usage    |
+| `mtr <https://linux.die.net/man/8/mtr>`_,                            |                                                    |
+| `tcptraceroute <https://linux.die.net/man/1/tcptraceroute>`_         |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `iptraf <https://linux.die.net/man/8/iptraf>`_,                      | Troubleshoot network bandwidth issues              |
+| `nethogs <https://linux.die.net/man/8/nethogs>`_,                    |                                                    |
+| `iftop <https://linux.die.net/man/8/iftop>`_,                        |                                                    |
+| `ntop <https://linux.die.net/man/8/ntop>`_                           |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `ab <https://linux.die.net/man/1/ab>`_,                              | Benchmarking tools                                 |
+| `nload <https://linux.die.net/man/1/nload>`_,                        |                                                    |
+| `iperf <https://linux.die.net/man/1/iperf>`_                         |                                                    |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `ipcalc <https://linux.die.net/man/1/ipcalc>`_                       | Simple manipulation of IP addresses                |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `nsenter <https://linuxhint.com/nsenter-linux-command/>`_            | Enter container process's namespace                |
++----------------------------------------------------------------------+----------------------------------------------------+
+| `Python HTTP modules <https://docs.python.org/3/library/http.html>`_ | HTTP serve files in CWD, ``python -m http.server`` |
++----------------------------------------------------------------------+----------------------------------------------------+
+
 Brendan Gregg's Homepage
 ========================
 
