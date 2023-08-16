@@ -36,6 +36,7 @@ Password Generators
 * `nixCraft tree <https://www.cyberciti.biz/faq/linux-show-directory-structure-command-line/>`_
 * `OSTechNix tree <https://www.ostechnix.com/view-directory-tree-structure-linux/>`_
 * `GeeksForGeeks tree <https://www.geeksforgeeks.org/tree-command-unixlinux/>`_
+* `hier - description of the file system hierarchy <https://linux.die.net/man/7/hier>`_
 
 .. code-block:: console
 
@@ -46,6 +47,8 @@ Password Generators
 	$ tree /path/to/directory
 	$ tree [options]
 	$ tree [options] /path/to/directory
+
+
 
 ``dnf`` Useful Commands
 =======================
