@@ -38,6 +38,7 @@ So this site is not *"Bleeding Edge"* (Urgh!)
     cheatsheets/python
     cheatsheets/brew
     cheatsheets/linux-tricks
+    cheatsheets/markdown
     cheatsheets/screen
     cheatsheets/systemctl-service
     cheatsheets/svn
