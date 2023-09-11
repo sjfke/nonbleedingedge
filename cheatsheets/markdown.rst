@@ -10,13 +10,12 @@ Wikipedia
 `Markdown <https://www.markdownguide.org/>`_  is a lightweight markup language for creating
 formatted text using a plain-text editor.
 
-John Gruber created `Introducing Markdown <https://daringfireball.net/2004/03/introducing_markdown>`_ in 2004 as a
+`Introducing Markdown <https://daringfireball.net/2004/03/introducing_markdown>`_ was published by John Gruber  in 2004 as a
 markup language that is easier to read in its source code form. It is widely used for blogging, instant messaging,
 online forums, collaborative software, documentation pages, and readme files.
 
 The initial description in `Introducing Markdown <https://daringfireball.net/2004/03/introducing_markdown>`_ contained
-ambiguities and raised unanswered questions, addressed in 2014 by `CommonMark <https://commonmark.org/>`_, specification
-and test suite.
+ambiguities which were eventually addressed in 2014 by `CommonMark <https://commonmark.org/>`_, specification and test suite.
 
 Frequently used
 ===============
@@ -25,6 +24,7 @@ Frequently used
 
     # Heading level 1
     ## Heading level 2
+
     ###### Heading level 6
 
     Heading level 1
@@ -77,17 +77,17 @@ Markdown Language
 Basics
 ------
 
-* `Markdown-Guide <https://www.markdownguide.org/>`_
-* `Markdown-Guide Cheat-Sheet <https://www.markdownguide.org/cheat-sheet/>`_
-* `Basic Syntax <https://www.markdownguide.org/basic-syntax>`_
-* `Extended Syntax <https://www.markdownguide.org/extended-syntax>`_
+* `Markdown-Guide <https://www.markdownguide.org/>`_ is a free and open-source reference guide
+* `Markdown-Guide Cheat-Sheet <https://www.markdownguide.org/cheat-sheet/>`_ a quick reference to the Markdown syntax
+* `Basic Syntax <https://www.markdownguide.org/basic-syntax>`_ the Markdown elements outlined in the original design document.
+* `Extended Syntax <https://www.markdownguide.org/extended-syntax>`_ advanced features that build on the basic Markdown syntax.
 
 Syntax Highlighting
 -------------------
 
-* `Markdown Supported Languages <https://github.com/jincheng9/markdown_supported_languages>`_
-* `Markdown Syntax highlighting <https://rust-lang.github.io/mdBook/format/theme/syntax-highlighting.html>`_
-* `Bitbucket - MarkdownDemo <https://bitbucket.org/tutorials/markdowndemo/src/master/#markdown-header-code-and-syntax-highlighting>`_
+* `Markdown Supported Languages <https://github.com/jincheng9/markdown_supported_languages>`_ a full list of supported languages
+* `Markdown Syntax highlighting <https://rust-lang.github.io/mdBook/format/theme/syntax-highlighting.html>`_ for mdBook a command line tool
+* `Bitbucket - MarkdownDemo <https://bitbucket.org/tutorials/markdowndemo/src/master/#markdown-header-code-and-syntax-highlighting>`_ supported Bitbucket Markdown
 
 Tables
 ------
