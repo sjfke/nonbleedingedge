@@ -6,6 +6,22 @@ Git Cheatsheet
 
 .. warning:: Old or incomplete, anticipate inaccuracies and outdated information.
 
+Create a Git Repository
+=======================
+
+* Bitbucket `Setting up a repository <https://www.atlassian.com/git/tutorials/setting-up-a-repository>`_ tutorial
+
+Local Repository
+----------------
+
+.. code-block:: console
+
+    $ cd /path/to/your/existing/code
+    $ git init
+
+    $ git init <project directory>
+
+
 Git Hub Fork
 ============
 ::

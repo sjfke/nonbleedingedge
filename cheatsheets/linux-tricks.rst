@@ -38,7 +38,7 @@ Password Generators
 * `GeeksForGeeks tree <https://www.geeksforgeeks.org/tree-command-unixlinux/>`_
 * `hier - description of the file system hierarchy <https://linux.die.net/man/7/hier>`_
 
-.. code-block:: console
+
 
 	$ brew install tree     # MacOS
 	$ sudo dnf install tree # Fedora
