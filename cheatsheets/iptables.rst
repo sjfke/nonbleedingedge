@@ -6,7 +6,8 @@ Iptables CheatSheet
 
 Basic Commands
 ==============
-::
+
+.. code-block:: console
 
 	$ sudo iptables -L -v -n --line-numbers # list chains
 	$ sudo iptables -D INPUT 2 # delete line 2 from INPOUT chain
