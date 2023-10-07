@@ -7,7 +7,9 @@ Daemontools Cheatsheet
 Installing ``daemontools``
 ==========================
 
-Setup pipenv::
+Setup pipenv
+
+.. code-block:: console
 
 	$ sudo dnf install daemontools   # Fedora installation
 	$ sudo brew install daemontools  # MacOS  installation
@@ -19,7 +21,8 @@ Useful Links
 
 Common commands
 ===============
-::
+
+.. code-block:: console
 
 	$ sudo svstat /service/netsnmpd
 	$ sudo svc -d /service/netsnmpd # terminate and leave down
@@ -30,7 +33,8 @@ Common commands
 
 What is managed by Daemontools
 ==============================
-::
+
+.. code-block:: console
 
 	$ ls -al /service/netsnmpd/
 	netsnmpd -> /home/y/var/daemontools/netsnmpd

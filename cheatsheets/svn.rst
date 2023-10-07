@@ -18,27 +18,27 @@ Useful Links
 Which version is installed?
 ===========================
 
-::
+.. code-block:: console
 
-	geoff@morph$ svn --version --quiet
+	$ svn --version --quiet
 	1.6.9
 
 SVN Help
 ========
 
-::
+.. code-block:: console
 
-	geoff@morph$ svn help
-	geoff@morph$ svn help import
+	$ svn help
+	$ svn help import
 
 Recommended Repository Layout
 =============================
 
 You can have multiple ``release directories`` in a repository, each should have the following:
 
-::
+.. code-block:: console
 
-	geoff@morph$ svn list file:///var/svn/newrepos
+	$ svn list file:///var/svn/newrepos
 	/trunk
 	/branches
 	/tags
@@ -47,34 +47,34 @@ You can have multiple ``release directories`` in a repository, each should have 
 Basic Work Cycle
 ================
 
-::
+.. code-block:: console
 
 	# update your working copy
-	geoff@morph$ svn update    # CAUTION will update your local copy
-	geoff@morph$ svn status    # to get an overview of changes
-	geoff@morph$ svn status -v # to get an detailed view, includes version number
+	$ svn update    # CAUTION will update your local copy
+	$ svn status    # to get an overview of changes
+	$ svn status -v # to get an detailed view, includes version number
 
 	# make changes
-	geoff@morph$ svn add
-	geoff@morph$ svn delete
-	geoff@morph$ svn copy 
-	geoff@morph$ svn move 
+	$ svn add
+	$ svn delete
+	$ svn copy
+	$ svn move
 
 	# examine your changes
-	geoff@morph$ svn status
-	geoff@morph$ svn diff
+	$ svn status
+	$ svn diff
 
 	# undo some changes
-	geoff@morph$ svn revert
+	$ svn revert
 
 	# resolve conflicts
-	geoff@morph$ svn update
-	geoff@morph$ svn resolve
+	$ svn update
+	$ svn resolve
 
 	# commit your changes
-	geoff@morph$ svn commit
-	geoff@morph$ svn commit -m 'commital message' -a          # all changes
-	geoff@morph$ svn commit -m 'commital message' <filename>  # specific file
+	$ svn commit
+	$ svn commit -m 'commital message' -a          # all changes
+	$ svn commit -m 'commital message' <filename>  # specific file
 
 	
 Undo ``svn add`` without reverting local edits
@@ -82,15 +82,15 @@ Undo ``svn add`` without reverting local edits
 
 * `Undo svn add without reverting local edits <https://stackoverflow.com/questions/5083242/undo-svn-add-without-reverting-local-edits>`_
 
-::
+.. code-block:: console
 
-	svm rm --keep-local <filename>
-	svn rm --keep-local .
+	$ svn rm --keep-local <filename>
+	$ svn rm --keep-local .
 
 Reversing a committed change
 ============================
 
-::
+.. code-block:: console
 
 	# make sure working copy is consistent with 173 commit
 	$ svn status -v <filename>
@@ -108,17 +108,16 @@ However, there is a solution. By giving the UTF-16 files a correct MIME type, SV
 
 The required MIME type is one of
 
-::
+.. code-block:: console
 
     text/plain;encoding=UTF-16LE
     text/plain;encoding=UTF-16BE
-
 
 depending upon whether the encoding is LittleEndian or BigEndian respectively.
 
 To set the property, use a command along the lines of
 
-::
+.. code-block:: console
 
     $ svn propset "svn:mime-type" "text/plain;encoding=UTF-16LE" *.utf-16.txt
 
@@ -127,7 +126,7 @@ This works with the (command-line) SVN version 1.6+ clients on both Linux and Wi
 
 * `Get encoding of a file in Windows <https://stackoverflow.com/questions/3710374/get-encoding-of-a-file-in-windows>`_
 
-::
+.. code-block:: console
 
     $ notepad <filename> # use 'save as' :-), Try 'ANSI' on Windows ;-)
 
@@ -136,10 +135,10 @@ Subversion Keywords
 
 To aid with page layout there are 2 forms:
 
-::
+.. code-block:: console
 
     # Variable length (Case Sensitive)
-	$Date$            # [LastChangedDate] NOTE local time-zone
+    $Date$            # [LastChangedDate] NOTE local time-zone
     $Revision$        # [LastChangedRevision] last known revision (repository revision)
     $Author$          # last known user to change the file
     $HeadURL$         # full URL to the latest version of the file
@@ -147,7 +146,7 @@ To aid with page layout there are 2 forms:
     $LastChangedDate$
 
     # Fixed length (Case Sensitive), <space> padded and '#' truncated
-	$Date::            $ # [LastChangedDate] NOTE local time-zone
+    $Date::            $ # [LastChangedDate] NOTE local time-zone
     $Revision::        $ # [LastChangedRevision] last known revision (repository revision)
     $Author::          $ # last known user to change the file
     $HeadURL::         $ # full URL to the latest version of the file
@@ -157,34 +156,34 @@ To aid with page layout there are 2 forms:
 Repository Creation
 ===================
 
-::
+.. code-block:: console
 
     # - you need to checkout into a different location (like CVS)
-	geoff@morph$ svnadmin create /var/sv/newrepos
-    geoff@morph$ svn import myfile file:///var/svn/trunk/newrepos/some/project -m "initial import"
-    geoff@morph$ svn list file:///var/svn/trunk/newrepos/some/project
-    geoff@morph$ cd somedir; svn checkout file:///var/svn/newrepos/trunk/some/project
+	$ svnadmin create /var/sv/newrepos
+    $ svn import myfile file:///var/svn/trunk/newrepos/some/project -m "initial import"
+    $ svn list file:///var/svn/trunk/newrepos/some/project
+    $ cd somedir; svn checkout file:///var/svn/newrepos/trunk/some/project
 
 
 Repository Access Methods
 =========================
 
-::
+.. code-block:: console
 
-    geoff@morph$ svn checkout http://svn.example.com:9834/repos (WebDAV protocol)
-    geoff@morph$ svn checkout https://svn.example.com:9834/repos (SSL WebDAV protocol)
-    geoff@morph$ svn checkout file:///var/svn/repos (on local disk)
-    geoff@morph$ svn checkout file://localhost/var/svn/repos (on local disk)
+    $ svn checkout http://svn.example.com:9834/repos (WebDAV protocol)
+    $ svn checkout https://svn.example.com:9834/repos (SSL WebDAV protocol)
+    $ svn checkout file:///var/svn/repos (on local disk)
+    $ svn checkout file://localhost/var/svn/repos (on local disk)
     c:\> svn checkout file:///X:/var/svn/repos (on local drive X)
     c:\> svn checkout file:///X|/var/svn/repos (on local drive X)
-    geoff@morph$ svn checkout svn://svn.example.com/repos (svnserve port 3690)
-    geoff@morph$ svn checkout svn+ssh://svn.example.com/repos (svnserve + ssh tunnel port 22)
+    $ svn checkout svn://svn.example.com/repos (svnserve port 3690)
+    $ svn checkout svn+ssh://svn.example.com/repos (svnserve + ssh tunnel port 22)
 
 
 Status prefixes; ``snv status``
 ===============================
 
-::
+.. code-block:: console
 
     # column 1 = files, column = 2 properties
 	geoff@morph$ svn status [$ svn status --verbose (-v) # for more details]
@@ -197,39 +196,39 @@ Status prefixes; ``snv status``
 History Commands
 ================
 
-::
+.. code-block:: console
 
-	geoff@morph$ svn log  # log information
-	geoff@morph$ svn diff # line-level details
-	geoff@morph$ svn cat  # cat version in repository
-	geoff@morph$ svn list # display files in a directory
+	$ svn log  # log information
+	$ svn diff # line-level details
+	$ svn cat  # cat version in repository
+	$ svn list # display files in a directory
 	
-	geoff@morph$ svn log foo.c                               # show log history of foo.c
-	geoff@morph$ svn log http://foo.com/svn/trunk/code/foo.c # show log history of foo.c
-	geoff@morph$ svn log -r 5:19                             # shows logs 5 thru 19 (chronological order)
-	geoff@morph$ svn log -r 19:5                             # shows logs 19 thru 5 (reversed order)
-	geoff@morph$ svn log -r 8 -v                             # shows verbose log for revision 8
-	geoff@morph$ svn log --quiet --verbose                   # show only changed files
+	$ svn log foo.c                               # show log history of foo.c
+	$ svn log http://foo.com/svn/trunk/code/foo.c # show log history of foo.c
+	$ svn log -r 5:19                             # shows logs 5 thru 19 (chronological order)
+	$ svn log -r 19:5                             # shows logs 19 thru 5 (reversed order)
+	$ svn log -r 8 -v                             # shows verbose log for revision 8
+	$ svn log --quiet --verbose                   # show only changed files
 
 Ignoring files and directories
 ==============================
 
-::
+.. code-block:: console
 
-	geoff@morph$ svn propedit svn:ignore . # Opens an editor (SVN_EDITOR, EDITOR)
-	geoff@morph$ svn propget svn:ignore .  # So you can see the properties
-	geoff@morph$ svn status --no-ignore    # You should see an 'I' next to the ignored files
-	geoff@morph$ svn propdel svn:ignore .  # Delete the svn:ignore property
+	$ svn propedit svn:ignore . # Opens an editor (SVN_EDITOR, EDITOR)
+	$ svn propget svn:ignore .  # So you can see the properties
+	$ svn status --no-ignore    # You should see an 'I' next to the ignored files
+	$ svn propdel svn:ignore .  # Delete the svn:ignore property
 	
 	# For Maven project
-	geoff@morph$ svn propset svn:ignore '*' target # Ignore everything in target (cannot hide directory)
-	geoff@morph$ svn propget svn:ignore target     # List svn:ignore properties
-	geoff@morph$ svn status --no-ignore            # You should see an 'I' next to the ignored files
+	$ svn propset svn:ignore '*' target # Ignore everything in target (cannot hide directory)
+	$ svn propget svn:ignore target     # List svn:ignore properties
+	$ svn status --no-ignore            # You should see an 'I' next to the ignored files
 
 Revision Keywords / Dates
 =========================
 
-::
+.. code-block:: console
 
 	HEAD                        # latest revision in repository ("youngest")
 	BASE                        # revision number of item working copy
@@ -247,7 +246,7 @@ Creating a Subversion release
 
 * `SVN: How to release software properly <https://www.devroom.io/2006/11/21/svn-how-to-release-software-properly/>`_
 
-::
+.. code-block:: console
 
 	# Should already exist
 	$ svn mkdir -m "Branches directory" https://svn.sourceforge.net/svnroot/cse-tool/branches
@@ -269,7 +268,7 @@ Creating a Subversion release
 Subversion Properties
 =====================
 
-::
+.. code-block:: console
 
 	# meta-data: key(ASCII) value (arbitrary value)
 	# "svn:" reserved subversion properties
@@ -282,7 +281,7 @@ Subversion Properties
 Subversion Unversioned Properties 
 ---------------------------------
 
-::
+.. code-block:: console
 
 	# By default disabled (considered dangerous)
 	$ svn propset svn:log 'updated log message' -r11 -revprop
@@ -292,7 +291,7 @@ Subversion Unversioned Properties
 Automatic Property Setting
 --------------------------
 
-::
+.. code-block:: console
 
   svn:executable (add/import) # no exectable bit on Windows
   svn:mime-type  (add/import) # is it text or not!
@@ -300,10 +299,11 @@ Automatic Property Setting
 Common Useful Properties
 ------------------------
 
-::
+.. code-block:: console
 
 	svn:eol-style native # CRLF/LF conversion; CRLF, LF, CR to force
 	svn:ignore "*.class file dir" # syntax like .cvsignore (does not support '!' reset)
+
 	$ svn propset svn:ignore -F .cvsignore . # equivqlent of .cvsignore file
 	$ svn status --no-ignore # to override "svn:ignore" flag   
 	$ svn propset svn:keywords "Date Author" weather.txt # set on these two keywords
@@ -320,7 +320,7 @@ Common Useful Properties
 Creating lock entries
 =====================
 
-::
+.. code-block:: console
 	
 	# typically use on binary/image files, so no deltas
 	$ svn lock raisin.jpg             # lock file, other lock requests will fail
@@ -340,7 +340,7 @@ Creating lock entries
 Change-lists
 ============
 
-::
+.. code-block:: console
 
 	# Works only local copy (not on repo)
 	$ svn changelist maths-fixes integer.c mathops.c
@@ -353,9 +353,9 @@ The ``svnserve`` startup script
 
 For earlier Fedora versions that do not have ``systemd``.
 
-::
+.. code-block:: bash
 
-	[root@wallace ~]# cat /etc/init.d/svnserve
+	$ sudo cat /etc/init.d/svnserve
 	#!/bin/bash
 	#
 	#   /etc/rc.d/init.d/subversion
@@ -485,9 +485,9 @@ For earlier Fedora versions that do not have ``systemd``.
 The ``svnserve`` Configuration file
 ===================================
 
-::
+.. code-block:: console
 
-	[root@wallace ~]# cat /etc/sysconfig/subversion 
+	$ sudo cat /etc/sysconfig/subversion
 	REPO_ROOT=/home/svnroot
 	REPO_OWNER=svn
 

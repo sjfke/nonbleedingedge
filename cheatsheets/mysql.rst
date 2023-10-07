@@ -19,20 +19,26 @@ Useful Commands
 Common table manipulation commands
 ----------------------------------
 
-Copy a table::
+Copy a table
+
+.. code-block:: none
 
 	mysql> CREATE TABLE mail2 like mail;
 	mysql> INSERT INTO mail2 SELECT * FROM mail [WHERE ...];
 	mysql> INSERT INTO dbase2.table1 SELECT * FROM dbase1.table1; # across DB's
 
-Add, create or delete an index::
+Add, create or delete an index
+
+.. code-block:: none
 
 	mysql> CREATE INDEX sku_name ON node(sku_name);
 	mysql> ALTER TABLE <table> ADD INDEX (<column>);
 	mysql> ALTER TABLE <table> ADD UNIQUE INDEX (<column>);
 	mysql> ALTER TABLE RequestDetails ADD INDEX (request_id);
 
-Add, delete or modify a column::
+Add, delete or modify a column
+
+.. code-block:: none
 
 	mysql> ALTER TABLE <table> ADD <col> INDEX <col> (<col>);
 	mysql> ALTER TABLE DROP <col>;
@@ -41,12 +47,16 @@ Add, delete or modify a column::
 	
 	mysql> ALTER TABLE table1 MODIFY COLUMN name VARCHAR(95);
 
-Creating a TSV, mysqld must be able to write, i.e use "/tmp"::
+Creating a TSV, mysqld must be able to write, i.e use "/tmp"
+
+.. code-block:: none
 
 	# Produces: /tmp/<table>.txt (and empty /tmp/<table>.sql)
 	mysqldump -u root --no-create-info --tab=/tmp <db> <table>
 
-`Loading data from a TSV file <https://dev.mysql.com/doc/refman/5.7/en/load-data.html>`_::
+`Loading data from a TSV file <https://dev.mysql.com/doc/refman/5.7/en/load-data.html>`_
+
+.. code-block:: none
 
 	mysql> LOAD LOCAL DATA INFILE '/home/user/table1.txt' INTO TABLE table1;
 	mysql> SHOW WARNINGS;
@@ -64,7 +74,9 @@ Creating a TSV, mysqld must be able to write, i.e use "/tmp"::
 	| short    | varchar(80)  | NO   | MUL | NULL    |                |
 	+----------+--------------+------+-----+---------+----------------+
 
-Exporting a Table in CSV format::
+Exporting a Table in CSV format
+
+.. code-block:: none
 
 	$ mysqldump -u root --no-create-info --tab=/tmp dbase2 table1
 	$ mysqldump -u root --tab=/tmp dbase2 table1
@@ -72,30 +84,42 @@ Exporting a Table in CSV format::
 Common User commands
 --------------------
 
-Show users::
+Show users
+
+.. code-block:: none
 
 	mysql> SELECT User,Host FROM mysql.user;
 
-Show User Grants::
+Show User Grants
+
+.. code-block:: none
 
 	mysql> select * from information_schema.user_privileges;
 
-Show User Grants on Databases::
+Show User Grants on Databases
+
+.. code-block:: none
 
 	mysql> SELECT user,host,db,select_priv,insert_priv,grant_priv FROM mysql.db WHERE db IN ('dbase1','dbase2') ORDER BY db;
 
-Change User password::
+Change User password
+
+.. code-block:: none
 
 	mysql> use mysql
 	mysql> update mysql.user SET Password=PASSWORD('<new-password>') WHERE User='<user>' AND Host='<host-name>';
 
-Show Userr grants::
+Show User grants
+
+.. code-block:: none
 
 	mysql> SHOW GRANTS FOR 'readonly.user'@'localhost';
 	mysql> GRANT SELET ON <db>.* TO 'readonly.user'@'<remote-host>' IDENTIFIED BY '<passwd>'; # passwd from SHOW GRANTS
 	mysql> REVOKE SELECT ON <db>.* FROM 'readonly.user'@'localhost';
 
-Which Users have access to which database::
+Which Users have access to which database
+
+.. code-block:: none
 
 	mysql> SELECT user,host,db,select_priv,insert_priv,grant_priv FROM mysql.db WHERE db IN ('dbase1','dbase2') ORDER BY db;
 	+--------------+-------------------------------+----------+-------------+-------------+------------+
@@ -110,7 +134,9 @@ Which Users have access to which database::
 	| ro_user      | server2.corp.dc1.xyzab.com    | dbase2   | Y           | N           | N          |
 	+--------------+-------------------------------+----------+-------------+-------------+------------+
 
-Changing Password::
+Changing Password
+
+.. code-block:: none
 
 	$ mysql -u root
 	mysql> set password for 'readonly.user'@'localhost' = password('LB4wK81Mp2BEFwxOQ7saVq2PEOgss3hUYVF2.cqKfkk-');
@@ -118,7 +144,9 @@ Changing Password::
 Display Table details
 ---------------------
 
-Table structure::
+Table structure
+
+.. code-block:: none
 
 	mysql> SHOW CREATE TABLE <table>\G
 	mysql> DESCRIBE <table>;
@@ -127,11 +155,15 @@ Table structure::
 Deleting data from a table
 --------------------------
 
-Deleting rows which match::
+Deleting rows which match
+
+.. code-block:: none
 
 	mysql> DELETE FROM <table> WHERE start_date >= '2014.02.02';
 
-Deleting the entire contents of a table::
+Deleting the entire contents of a table
+
+.. code-block:: none
 
 	mysql> TRUNCATE TABLE <table>;
 	mysql> DELETE FROM <table>;
@@ -142,41 +174,56 @@ MySQL Select examples
 
 **Note** to cancel a query ``\c``
 
-Calculated column in where clause::
+Calculated column in where clause
+
+.. code-block:: none
 
 	mysql> SELECT a,b,c,(a*b+c) AS d, n FROM table HAVING d > n ORDER by d; # NB ’n’ is in SELECT
 
-Data in t1 and NOT in t2::
+Data in t1 and NOT in t2
+
+.. code-block:: none
 
 	mysql> SELECT t1.name,t1.qty,t1.id FROM table1 AS t1 LEFT JOIN table2 AS t2 ON t1.id=t2.id WHERE t2.id IS NULL;
 
-Non-ASCII data `manual <https://dev.mysql.com/doc/refman/5.7/en/binary-varbinary.html>`_::
+Non-ASCII data `manual <https://dev.mysql.com/doc/refman/5.7/en/binary-varbinary.html>`_
+
+.. code-block:: none
 
 	mysql> SELECT name FROM table1 WHERE BINARY provider='X';
 
-Using aggregates in filters::
+Using aggregates in filters
+
+.. code-block:: none
 
 	# WHERE is applied before GROUP BY
 	# HAVING is applied after GROUP BY and hence can filter on aggregates
 	mysql> SELECT intfid,COUNT(id) AS num FROM missed_polls GROUP BY intfid HAVING COUNT(id) > 10;
 	mysql> SELECT intfid,COUNT(id) AS count FROM missed_polls GROUP BY intfid HAVING count > 10;
 
-Inner Join example::
+Inner Join example
+
+.. code-block:: none
 
 	mysql> SELECT MAX(t2.outmax) FROM table1 AS t1 INNER JOIN table2 AS t2 ON t1.id = t2.id WHERE t1.dc='dc1' AND RIGHT(t1.rtr,3)<>'dc1' AND t2.start_date>='2013.03.01' AND t2.end_date<='2014.06.28';
 
-``SELECT DISTINCT`` like on first part of string, e.g. john-to-paul::
+``SELECT DISTINCT`` like on first part of string, e.g. john-to-paul
+
+.. code-block:: none
 
 	mysql> SELECT LEFT(name,INSTR(name,'-to-')-1) AS gift FROM presents GROUP BY gift;
 	mysql> SELECT LEFT(name,INSTR(name,'-to-')-1) AS gift FROM presents GROUP BY gift;
 
-Confirming week numbers::
+Confirming week numbers
+
+.. code-block:: none
 
 	mysql> SELECT start_date,WEEK(REPLACE(start_date, '.', '-')) AS Week from traffic WHERE start_date>='2015.02.15' AND end_date<='2015.03.21' GROUP BY start_date ORDER BY start_date;
 
 Testing arithmetic functions
 ----------------------------
-::
+
+.. code-block:: none
 
 	mysql> SELECT MD5(RAND());
 	mysql> SELECT UPPER(LEFT(CONVERT(MD5(RAND()),CHAR),3));
@@ -185,15 +232,21 @@ Testing arithmetic functions
 Miscellaneous MySQL information
 -------------------------------
 
-Schema information::
+Schema information
+
+.. code-block:: none
 
 	mysql> SELECT TABLE_NAME,ENGINE FROM information.schema.TABLES WHERE TABLE_SCHEMA='dbname';
 
-MySQL status::
+MySQL status
+
+.. code-block:: none
 
 	mysql> STATUS; # \s
 
-Flushing Replication::
+Flushing Replication
+
+.. code-block:: none
 
 	mysql> SHOW MASTER LOGS;
 	mysql> FLUSH LOGS;
@@ -214,7 +267,9 @@ BLOB sizing
 Handling Databases forced to read-only mode
 ===========================================
 
-Full Read-Write access to the database::
+Full Read-Write access to the database
+
+.. code-block:: none
 
 	mysql> CREATE USER 'admin.user'@'localhost' IDENTIFIED BY 'JizrAjPpd_1o8pQEXm4UzJb_k_R7KS2UPV.1YJ59k34-';
 	mysql> SHOW GRANTS FOR 'admin.user'@'localhost';
@@ -240,7 +295,9 @@ Full Read-Write access to the database::
 	| GRANT ALL PRIVILEGES ON `fullmonty`.* TO 'admin.user'@'localhost'                                                 |
 	+---------------------------------------------------------------------------------------------------------------------+
 
-Read-Only access to the database::
+Read-Only access to the database
+
+.. code-block:: none
 
 	mysql> SHOW GRANTS FOR 'readonly.user'@'localhost';
 	+----------------------------------------------------------------------------------------------------------------------+

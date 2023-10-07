@@ -7,17 +7,22 @@ PHP CheatSheet
 General Notes
 =============
 
-Perl split type functions::
+Perl split type functions
+
+.. code-block:: php
 
 	$words = explode(" ", "hypertext language, programming");
 	$words = preg_split("/[\s,]+/", "hypertext language, programming");
 
-Equiv on Linux seq::
+Equiv on Linux seq
+
+.. code-block:: php
 
 	range($start, $end [, $step = 1 ]);
 
 `Null, Empty isset() <https://www.virendrachandak.com/techtalk/php-isset-vs-empty-vs-is_null/>`_
-::
+
+.. code-block:: php
 
 	(bool) is an array, a numeric/float/int/string/object
 	is_array( $var );
@@ -27,17 +32,22 @@ Equiv on Linux seq::
 	is_string( $var );
 	is_object( $var );
 
-End of line::
+End of line
+
+.. code-block:: php
 
 	PHP_EOL (cf. “\n”;)
 
-Ternary operator::
+Ternary operator
+
+.. code-block:: php
 
 	$var_is_greater_than_two = ($var > 2 ? true : false);
 
 String operations
 =================
-::
+
+.. code-block:: php
 
 	strlen ( $str )
 	ucfirst( $str )
@@ -54,7 +64,8 @@ String operations
 
 Numeric operations
 ==================
-::
+
+.. code-block:: php
 
 	ceil($float)  # round up
 	floor($float) # round down
@@ -63,21 +74,24 @@ Numeric operations
 
 Date/Time formatting
 ====================
-::
+
+.. code-block:: php
 
 	$today = getdate(); # $today[‘seconds’,’minutes’,’hours’,’mday’,’wday’,’mon’,’year’,’yday’,’weekday’,’month’,0]
 	strftime ($format, $timestamp) # http://php.net/manual/en/function.strftime.php
 
 Currency formatting
 ===================
-::
+
+.. code-block:: php
 
 	setlocale(LC_MONETARY, 'en_US');
 	echo money_format('%.2n', $number) . "\n";
 
 HTML operations
 ===============
-::
+
+.. code-block:: php
 
 	$data = array('foo'=>'bar', 'baz'=>'boom','cow'=>'milk','php'=>'hypertext processor');
 	$query_str = http_build_query($data) # build HTTP request query part
@@ -92,32 +106,34 @@ HTML operations
 
 Arrays crash course
 ===================
-::
 
-	array_key_exists($key, $array); # equiv of Perl exists
-	$arr0 = array(); # empty array
+.. code-block:: php
+
+	array_key_exists($key, $array);               # equiv of Perl exists
+	$arr0 = array();                              # empty array
 	
-	unset($array); $array = array (); # clearing array contents, unset and re-create
+	unset($array); $array = array ();             # clearing array contents, unset and re-create
 	
-	$arr1 = array ( 0 => 'fred', 1 => 'barney' ); # creating a populate array
+	$arr1 = array ( 0 => 'fred', 1 => 'barney' );                  # creating a populate array
 	$arr2 = array ( 'fred' => 'flintstone', 'barney' => 'rubble'); # creating a populate array
 	
-	$arr1[0] = "fred"; # array element assignment
-	$arr1[1] = "barney"; # array element assignment
+	$arr1[0] = "fred";            # array element assignment
+	$arr1[1] = "barney";          # array element assignment
 	$arr2['fred'] = "flintstone"; # array element assignment
-	$arr2['barney'] = "rubble"; # array element assignment
+	$arr2['barney'] = "rubble";   # array element assignment
 	
 	var arr1 = array();
 	foreach (range(0, 12) as $int) {
 		arr1[] = $int;
 	}
 	
-	$int = count($array); # number of elements
+	$int = count($array);                                                  # number of elements
 	in_array ( mixed $needle , array $haystack [, bool $strict = FALSE ] ) # Checks if a value exists in an array
 
 Relative array index
 ====================
-::
+
+.. code-block:: php
 
 	$value = current($array);
 	$value = next($array);
@@ -126,7 +142,8 @@ Relative array index
 
 Looping over an array
 =====================
-::
+
+.. code-block:: php
 
 	foreach ($arr1 as $value) {
 		echo $value; # fred, barney
@@ -138,13 +155,15 @@ Looping over an array
 
 Skipping to next foreach iteration
 ==================================
-::
+
+.. code-block:: php
  
 	continue; # equivalent of Perl next;
 
 Perl-like split/join operators
 ==============================
-::
+
+.. code-block:: php
 
 	explode ( string $delimiter , string $string [, int $limit ] ) # simple split
 	preg_split ( string $pattern , string $subject [, int $limit = -1 [, int $flags = 0 ]] ) # split with regex like Perl
@@ -154,7 +173,8 @@ Perl-like split/join operators
 
 Week numbers
 ============
-::
+
+.. code-block:: php
 
 	$datestr = str_replace(".", "/", '2014.10.26');
 	$sdate = strtotime($datestr);
@@ -163,7 +183,8 @@ Week numbers
 
 Random Notes
 ============
-::
+
+.. code-block:: php
 
 	<?php echo "Hello my good web browser" ; ?> # <? ... ?> form is deprecated >= PHP5
 	
@@ -173,7 +194,8 @@ Random Notes
 
 Variables
 =========
-::
+
+.. code-block:: php
 
 	$ + (_[a-zA-Z]) + (_[a-zA-Z0-9)* and are CASE Sensitive
 	$firstname, $FirstName, $_a1, $_2, etc
@@ -192,17 +214,19 @@ Variables
 
 Defined Constants
 =================
-::
 
-	delcared using define()
+.. code-block:: none
+
+	declared using define()
 	global scope
-	(_[a-zA-Z]) + (_[a-zA-Z0-9)* and are CASE Sensitive, convention use UPPERCASSE
+	(_[a-zA-Z]) + (_[a-zA-Z0-9)* and are CASE Sensitive, convention use UPPERCASE
 	define("SYS_OWNER", "Peter");
 	echo "System owner is:" . SYS_OWNER . "<br/>" ;
 
 Expressions - collective term for code statements
 =================================================
-::
+
+.. code-block:: php
 
 	examples, NB function returns value => expression 
 	function myName() {
@@ -213,7 +237,8 @@ Expressions - collective term for code statements
 
 If...Then...Else...
 ===================
-::
+
+.. code-block:: php
 
 	Note with: '==' the string is converted to a number prior to comparison (passes)
 	Note with:  '===' no conversion compared on content and type (fails on type: number vs string)
@@ -253,7 +278,8 @@ If...Then...Else...
 
 Switch...Case
 =============
-::
+
+.. code-block:: php
 
     $today = date("l") ;
     if ($today == "Monday")     { $tax_rate += 2 ; }
@@ -296,12 +322,13 @@ Switch...Case
             $wages = $salary * 0.7 ;
             $msg_color = "purple" ;
             break;
-        }
+    }
 
 
 While...
 ========
-::
+
+.. code-block:: php
 
 	# typical while loop
 	$repeat = 1 ;
@@ -310,18 +337,19 @@ While...
 	    $repeat ++ ;
 	}
     
-	# typical repeat loop
+    # typical repeat loop
 	$repeat = 0 ;
-	do {
+    do {
 	    $repeat ++ ;
 	       echo "the counter is: " . $repeat . "<br/>" ;
 	} while ($repeat <= 25);
 
 For...
 ======
-::
 
-	# typical for loop (foreach also exists)
+.. code-block:: php
+
+    # typical for loop (foreach also exists)
 	for ($i = 0; $i <= 25; $i++) {
 	    echo "the counter is: " . $i . "<br/>" ;
 	}

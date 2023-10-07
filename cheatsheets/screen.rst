@@ -51,3 +51,7 @@ Working across screen sessions::
 	I   logging on
 	O   logging off
 	]   paste .
+
+
+
+See also, `Tmux Cheat Sheet & Quick Reference <https://tmuxcheatsheet.com/>`_ and `Tmux Homepage <https://github.com/tmux/tmux/wiki>`_
