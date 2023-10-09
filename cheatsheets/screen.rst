@@ -8,7 +8,8 @@ Useful Links
 =============
 
 * `GNU Screen <https://www.gnu.org/software/screen/manual/screen.html>`_
-* `Screen Quick Reference <http://aperiodic.net/screen/quick_reference>`_
+* `Screen Quick Reference <http://aperiodic.net/screen/quick_reference>`
+* `How to Use tmux on Linux, and Why It's Better Than Screen <https://www.howtogeek.com/671422/how-to-use-tmux-on-linux-and-why-its-better-than-screen/>`_
 
 Screen key bindings
 -------------------
