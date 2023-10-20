@@ -10,10 +10,12 @@ Useful Links
 * `GNU: Screen User’s Manual <https://www.gnu.org/software/screen/manual/screen.html>`_
 * `Screen Quick Reference <http://aperiodic.net/screen/quick_reference>`_
 * `Howto Geek: How to Use Linux's screen Command <https://www.howtogeek.com/662422/how-to-use-linuxs-screen-command/>`_
+* `GNU 'screen' Status Line(s) <https://www.gilesorr.com/blog/screen-status-bar.html>`_
 * `Howto Geek: How to Use tmux on Linux, and Why It's Better Than Screen <https://www.howtogeek.com/671422/how-to-use-tmux-on-linux-and-why-its-better-than-screen/>`_
 
-Screen Basic commands
----------------------
+
+Basic commands ``screen``
+-------------------------
 
 .. code-block:: console
 
@@ -47,7 +49,7 @@ Command key:  ^A   Literal ^A:  a::
   xon         ^Q q
 
 Working across screen sessions::
-	
+
 	^]  paste .
 	"   windowlist -b
 	-   select -
@@ -68,3 +70,13 @@ Working across screen sessions::
 
 
 See also, `Tmux Cheat Sheet & Quick Reference <https://tmuxcheatsheet.com/>`_ and `Tmux Homepage <https://github.com/tmux/tmux/wiki>`_
+
+Basic Commands ``tmux``
+-----------------------
+
+.. code-block:: console
+
+    $ tmux           # create and attach to a screen session
+    $ Ctrl+B x       # prompt to close a tmux session
+    $ exit           # exit and close a tmux session
+
