@@ -41,6 +41,7 @@ So this site is not *"Bleeding Edge"* (Urgh!)
     cheatsheets/markdown
     cheatsheets/gpg
     cheatsheets/screen
+    cheatsheets/windows-tricks
     cheatsheets/systemctl-service
     cheatsheets/svn
     cheatsheets/daemontools
