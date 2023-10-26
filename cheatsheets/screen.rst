@@ -31,41 +31,40 @@ Basic commands
 Inside a Screen Session
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-``Screen`` commands start with ``Ctrl+A`` followed by a sub-command key such as ``C`` which invokes a new ``screen``
-session. If an uppercase subcommand key is required it is shown as ``Shift+S``, horizontal window split.
+``Screen`` commands start with ``Ctrl+A`` followed by a *subcommand key* such as ``C``, invokes a new ``screen``
+session. If an uppercase *subcommand key* is required it is shown as ``Shift+S``, horizontal window split.
 
 .. code-block:: console
 
     # Detaching
-    $ Ctrl+A d               # detach
+    $ Ctrl+A D               # detach
     $ Ctrl+A Shift+D Shift+D # detach and logout
 
 
-::
+.. code-block:: console
+    :force:
 
     # Window Management
     $ Ctrl+A C               # create new window
     $ Ctrl+A Ctrl+A          # previous active new window
     $ Ctrl+A <number>        # connect to a given screen (0..9)
-    $ Ctrl+A '<title>        # connect to a given screen title or number
-    $ Ctrl+A n               # next window in list
+    $ Ctrl+A ' <title>       # connect to a given screen title or number
+    $ Ctrl+A N               # next window in list
     $ Ctrl+A <space-key>     # next window in list
-    $ Ctrl+A p               # next window in list
+    $ Ctrl+A P               # next window in list
     $ Ctrl+A <backspace-key> # next window in list
+    $ Ctrl+A W               # display window bar
+    $ Ctrl+A Shift+A         # rename current window
     $ Ctrl+A "               # window list
-    $ Ctrl+A w               # window
-    $ Ctrl+A A               # rename current window
-
 
 .. code-block:: console
 
     # Split Screen Regions
     $ Ctrl+A Shift+S         # split horizontally
     $ Ctrl+A |               # split vertically
-    $ Ctrl+A V               # split vertically
     $ Ctrl+A <tab-key>       # jump to next window region
-    $ Ctrl+A X               # remove current region
-    $ Ctrl+A Q               # remove all regions except current one
+    $ Ctrl+A Shift+X         # remove current region
+    $ Ctrl+A Shift+Q         # remove all regions except current one
 
 .. code-block:: console
 
