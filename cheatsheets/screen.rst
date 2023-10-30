@@ -105,13 +105,31 @@ Useful Links
 * `Howto Geek: How to Use tmux on Linux, and Why It's Better Than Screen <https://www.howtogeek.com/671422/how-to-use-tmux-on-linux-and-why-its-better-than-screen/>`_
 * `Tmux Cheat Sheet & Quick Reference <https://tmuxcheatsheet.com/>`_
 * `Tmux Homepage <https://github.com/tmux/tmux/wiki>`_
+* `Github: Tmux Getting Started <https://github.com/tmux/tmux/wiki/Getting-Started>`_
 
 Basic Commands
 --------------
 
 .. code-block:: console
 
-    $ tmux           # create and attach to a screen session
-    $ Ctrl+B x       # prompt to close a tmux session
-    $ exit           # exit and close a tmux session
+    $ tmux                          # create and attach to a tmux session
+    $ tmux new -s <name>            # create and attach to a named session
+    $ tmux ls                       # list your tmux sessions
+    $ tmux list-session             # list your tmux sessions
+    $ tmux attach                   # reattach
+    $ tmux attach-session           # reattach
+    $ tmux attach-session -t <name> # reattach to specific session
+    $ Ctrl+d                        # exit and close a tmux session
+    $ exit                          # exit and close a tmux session
 
+Inside a tmux Session
+^^^^^^^^^^^^^^^^^^^^^
+
+``tmux`` commands start with ``Ctrl+B`` followed by a *subcommand key* such as ``C``, invokes a new ``screen``
+session. If an uppercase *subcommand key* is required it is shown as ``Shift+S``, horizontal window split.
+
+.. code-block:: console
+
+    # Detaching
+    $ Ctrl+B D           # prompt to close a tmux session
+    $ Ctrl+B S           # list tmux sessions
