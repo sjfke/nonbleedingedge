@@ -126,10 +126,55 @@ Inside a tmux Session
 ^^^^^^^^^^^^^^^^^^^^^
 
 ``tmux`` commands start with ``Ctrl+B`` followed by a *subcommand key* such as ``C``, invokes a new ``screen``
-session. If an uppercase *subcommand key* is required it is shown as ``Shift+S``, horizontal window split.
+session. There are **NO** uppercase *subcommand keys*
 
 .. code-block:: console
 
     # Detaching
     $ Ctrl+B D           # prompt to close a tmux session
     $ Ctrl+B S           # list tmux sessions
+
+.. code-block:: console
+    :force:
+
+    # Window Management
+    $ Ctrl+B C                       # create new window
+    $ Ctrl+B L                       # previous active new window
+    $ Ctrl+B <number>                # connect to a given screen (0..9)
+    $ Ctrl+B ' <title>               # connect to a given screen title or number
+    $ Ctrl+B N                       # next window in list
+    $ Ctrl+B P                       # next window in list
+    $ Ctrl+B ,                       # rename current window
+    $ Ctrl+B W                       # window list
+    $ Ctrl+B : swap-window -s 2 -t 1 # reorder windows, swap window number 2(src) and 1(dst)
+    $ Ctrl+B : swap-window -t -1     # move current window to the left one position
+
+.. code-block:: console
+    :force:
+
+    # Split Window into Panes
+    $ Ctrl+B "                 # split horizontally
+    $ Ctrl+B : split-window -h # split horizontally
+    $ Ctrl+B %                 # split vertically
+    $ Ctrl+B : split-window -v # split vertically
+    $ Ctrl+B ;                 # toggle last active pane
+
+    $ Ctrl+B O                  # jump to next pane
+    $ Ctrl+B <up-arrow>        # select pane up
+    $ Ctrl+B <down-arrow>      # select pane down
+    $ Ctrl+B <left-arrow>      # select pane left
+    $ Ctrl+B <right-arrow>     # select pane right
+
+    $ Ctrl+B Q                 # show pane numbers
+    $ Ctrl+B Q <number>        # switch/select pane by number
+
+    $ Ctrl+B }                  # move pane right
+    $ Ctrl+B {                  # move pane left
+
+    $ Ctrl+B Ctrl+<up-arrow>    # adjust pane height
+    $ Ctrl+B Ctrl+<down-arrow>  # adjust pane height
+    $ Ctrl+B Ctrl+<left-arrow>  # adjust pane width
+    $ Ctrl+B Ctrl+<right-arrow> # adjust pane width
+
+    $ Ctrl+B X                  # remove current pane
+    $ Ctrl+B !                  # convert current pane to a window
