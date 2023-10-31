@@ -126,7 +126,9 @@ Inside a tmux Session
 ^^^^^^^^^^^^^^^^^^^^^
 
 ``tmux`` commands start with ``Ctrl+B`` followed by a *subcommand key* such as ``C``, invokes a new ``screen``
-session. There are **NO** uppercase *subcommand keys*
+session.
+
+In ``tmux`` there are **NO uppercase** *subcommand keys* and the **menu bar** is mandatory
 
 .. code-block:: console
 
