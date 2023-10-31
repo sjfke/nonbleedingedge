@@ -23,6 +23,7 @@ Restructured Text Links
 * `Read the Docs theme <https://sphinx-rtd-theme.readthedocs.io/en/latest/index.html>`_
 * `PyCharm reStructuredText support <https://www.jetbrains.com/help/pycharm/restructured-text.html>`_
 * `PEP 287 – reStructuredText Docstring Format <https://peps.python.org/pep-0287/>`_
+* `reStructuredText Code Block Directive <https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-code-block>`_
 
 Document format
 ===============
