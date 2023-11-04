@@ -40,6 +40,11 @@ session. If an uppercase *subcommand key* is required it is shown as ``Shift+S``
     $ Ctrl+A D               # detach
     $ Ctrl+A Shift+D Shift+D # detach and logout
 
+    # Reattaching - from UNIX shell
+    $ screen -x              # reattach
+    $ screen -r <id>         # reattach to specific session
+
+
 
 .. code-block:: console
     :force:
@@ -77,23 +82,6 @@ session. If an uppercase *subcommand key* is required it is shown as ``Shift+S``
     $ Ctrl+A H               # enable screen session logging
     $ Ctrl+A ?               # help, list key bindings
 
-.. code-block:: console
-
-    # Clipboard
-    $ Ctrl+A [               # freely navigate buffer
-    $ Ctrl+A <escape-key>    # freely navigate buffer
-    $ <space-key>            # toggle selection to copy
-    $ Ctrl+A ]               # paste
-
-.. code-block:: console
-
-    # Copy Mode Scrollback Buffer
-    $ Ctrl+A u               # half page up (back)
-    $ Ctrl+A b               # full page up (back)
-    $ Ctrl+A d               # half page down (forward)
-    $ Ctrl+A f               # full page down (forward)
-    $ Ctrl+A h/j/k/l         # full page down (forward)
-
 ****
 
 ``Tmux``
@@ -116,6 +104,8 @@ Basic Commands
     $ tmux new -s <name>            # create and attach to a named session
     $ tmux ls                       # list your tmux sessions
     $ tmux list-session             # list your tmux sessions
+    $ tmux a                        # reattach
+    $ tmux at                       # reattach
     $ tmux attach                   # reattach
     $ tmux attach-session           # reattach
     $ tmux attach-session -t <name> # reattach to specific session
@@ -128,13 +118,18 @@ Inside a tmux Session
 ``tmux`` commands start with ``Ctrl+B`` followed by a *subcommand key* such as ``C``, invokes a new ``screen``
 session.
 
-In ``tmux`` there are **NO uppercase** *subcommand keys* and the **menu bar** is mandatory
+In ``tmux`` there are **NO uppercase** *subcommand keys* and the **menu bar** is always shown.
 
 .. code-block:: console
 
     # Detaching
-    $ Ctrl+B D           # prompt to close a tmux session
-    $ Ctrl+B S           # list tmux sessions
+    $ Ctrl+B D                      # detach
+    $ Ctrl+B &                      # close current window
+
+    # Reattaching - from UNIX shell
+    $ tmux attach-session           # reattach
+    $ tmux attach-session -t <name> # reattach to specific session
+
 
 .. code-block:: console
     :force:
@@ -161,7 +156,7 @@ In ``tmux`` there are **NO uppercase** *subcommand keys* and the **menu bar** is
     $ Ctrl+B : split-window -v # split vertically
     $ Ctrl+B ;                 # toggle last active pane
 
-    $ Ctrl+B O                  # jump to next pane
+    $ Ctrl+B O                 # jump to next pane
     $ Ctrl+B <up-arrow>        # select pane up
     $ Ctrl+B <down-arrow>      # select pane down
     $ Ctrl+B <left-arrow>      # select pane left
@@ -178,5 +173,11 @@ In ``tmux`` there are **NO uppercase** *subcommand keys* and the **menu bar** is
     $ Ctrl+B Ctrl+<left-arrow>  # adjust pane width
     $ Ctrl+B Ctrl+<right-arrow> # adjust pane width
 
-    $ Ctrl+B X                  # remove current pane
+    $ Ctrl+B X                  # close current pane
     $ Ctrl+B !                  # convert current pane to a window
+
+.. code-block:: console
+
+    # Miscellaneous
+    $ Ctrl+B $                  # rename session
+    $ Ctrl+B S                  # list tmux sessions
