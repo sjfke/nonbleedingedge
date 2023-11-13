@@ -96,4 +96,11 @@ Oh My Posh
 
     $ . $PROFILE                                # If errors open a new PowerShell
 
+Update notifications via the ``Microsoft Store`` do not work, ``oh-my-posh`` update command line update alerts
+do not always trigger, so manually check on a regular basis.
 
+.. code-block:: console
+
+    $ winget upgrade JanDeDobbeleer.OhMyPosh -s winget
+
+See `Oh My Posh upgrades <https://ohmyposh.dev/docs/installation/windows#update>`_, for more details.
