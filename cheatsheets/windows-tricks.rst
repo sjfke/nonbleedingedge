@@ -104,3 +104,26 @@ do not always trigger, so manually check on a regular basis.
     $ winget upgrade JanDeDobbeleer.OhMyPosh -s winget
 
 See `Oh My Posh upgrades <https://ohmyposh.dev/docs/installation/windows#update>`_, for more details.
+
+Are Files Identical?
+====================
+
+One novel approach is to compute a hash to see if they are the same.
+
+Typical hashes being, ``SHA1`` default, ``MD5`` and ``SHA256``
+
+.. code-block:: console
+
+    $ certutil -hashfile file1.txt
+    SHA1 hash of file1.txt:
+    2236964ee87bff078491008b506044391975e2a6
+    CertUtil: -hashfile command completed successfully.
+
+    $ certutil -hashfile file2.txt
+    SHA1 hash of file2.txt:
+    ff514214353904815cf96a71a1eddee860bd7bfe
+    CertUtil: -hashfile command completed successfully.
+
+The `certutil <https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil>`_  utility
+is intended for manipulating certificates and so can do much more.
+
