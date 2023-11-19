@@ -38,6 +38,7 @@ So this site is not *"Bleeding Edge"* (Urgh!)
     cheatsheets/python
     cheatsheets/brew
     cheatsheets/linux-tricks
+    cheatsheets/json-xml
     cheatsheets/markdown
     cheatsheets/gpg
     cheatsheets/screen
