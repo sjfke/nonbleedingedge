@@ -201,7 +201,7 @@ Array Example
       </fruit>
     </fruits>
 
-    $ xq -q name fruits.xml        # extract name; apple,
+    $ xq -q name fruits.xml        # extract name; apple, banana
     $ xq -q color fruits.xml       # extract color; green, yellow
     $ xq -q color,price fruits.xml # extract color/price; green, 1.20, yellow, 0.60
 
