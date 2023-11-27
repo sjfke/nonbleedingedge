@@ -1829,6 +1829,7 @@ Setup a new Python project in Eclipse, and change the project to use it.
     $ pipenv shell               # virtualenv interactive shell
     $ pipenv run <program.py>    # virtualenv: run script
     $ pipenv check               # PEP8 check of the Pipfile
+    $ pipenv update              # update all packages
 
 .. _virtualenv-label:
 
@@ -1886,6 +1887,43 @@ of the PowerShell `get-command`.
 
     (venv) PS> deactivate
     PS>
+
+Updating packages in a `venv` session is done using `pip`.
+
+.. code-block:: shell-session
+
+    # Updating all packages
+    # Note: may need several iterations and manual additions to 'requirements.txt'
+    $ pip list --outdated
+    $ pip freeze > requirements.txt
+    # edit 'requirements.txt', replace '==' with '>='
+    $ pip install -r requirements.txt --upgrade
+
+If you are brave like `ActiveState`, `How to Update All Python Packages <https://www.activestate.com/resources/quick-reads/how-to-update-all-python-packages/>`_
+
+.. code-block:: pwsh-session
+
+    PS> pip freeze | %{$_.split('==')[0]} | %{pip install --upgrade $_}
+
+.. code-block:: shell-session
+
+    $ pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U
+    $ pip3 list -o | cut -f1 -d' ' | tr " " "\n" | awk '{if(NR>=3)print}' | cut -d' ' -f1 | xargs -n1 pip3 install -U
+
+.. code-block:: python
+
+    # using python inside a 'venv' session
+    import pkg_resources
+    from subprocess import callfor dist in pkg_resources.working_set:
+        call("python -m pip install --upgrade " + dist.<projectname>, shell=True)
+
+
+Using `PyCharm` it is a little easier using the Python Interpreter dialogue, but is still manual and can take several
+iterations if new packages need to be installed because of dependencies.
+
+.. code-block:: console
+
+    Settings => Project <name> => Python Interpreter
 
 ``pipx``
 --------
