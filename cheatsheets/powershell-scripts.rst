@@ -372,7 +372,7 @@ Array variables are a fixed size, can have mixed values and can be multi-dimensi
    
    PS> $a = ('fred','wilma','pebbles')
    PS> $a[0]             # fred
-   PS> $[2]              # pebbles
+   PS> $a[2]             # pebbles
    PS> $a.length         # 3
    PS> $a[0] = 'freddie' # fred becomes freddie
    PS> $a[3] = 'dino'    # Error: Index was outside the bounds of the array.
@@ -414,67 +414,69 @@ Later versions support known/fixed order hash elements, ``$hash = [ordered]@{}``
 
 .. code-block:: pwsh-session
 
-   PS> $h = @{}              # empty hash
-   PS> $key = 'Fred'         # set key name
-   PS> $value = 30           # set key value
-   PS> $h.add($key, $value)  # add key:value ('fred':30) to the hash-table
-   
-   PS> $h.add('Wilma', 25 )  # add 'Wilma':25
-   PS> $h['Pebbles'] = 1     # add 'Pebbles':1
-   PS> $h.Dino = 5           # add 'Dino':5
-   
-   PS> $h                    # actual hash-table, printed if on command-line
-   PS> $h['Fred']            # how old is Fred? 30
-   PS> $h[$key]              # how old is Fred? 30
-   PS> $h.fred               # how old is Fred? 30
-   
-   # creating a populated hash, multi-line.
-   PS> $h = @{
+    PS> $h = @{}              # empty hash
+    PS> $key = 'Fred'         # set key name
+    PS> $value = 30           # set key value
+    PS> $h.add($key, $value)  # add key:value ('fred':30) to the hash-table
+
+    PS> $h.add('Wilma', 25 )  # add 'Wilma':25
+    PS> $h['Pebbles'] = 1     # add 'Pebbles':1
+    PS> $h.Dino = 5           # add 'Dino':5
+
+    PS> $h                    # actual hash-table, printed if on command-line
+    PS> $h['Fred']            # how old is Fred? 30
+    PS> $h[$key]              # how old is Fred? 30
+    PS> $h.fred               # how old is Fred? 30
+
+    # creating a populated hash, multi-line.
+    PS> $h = @{
        Fred = 30
        Wilma  = 25
        Pebbles = 1
        Dino = 5
-   }
-   
-   # creating the same populated hash, on single-line
-   PS> $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
-   
-   PS> $h.keys            # unordered: Dino, Pebbles, Fred, Wilma
-   PS> $h.values          # unordered: 5, 1, 30, 25 (but same as $h.keys order)
-   
-   # later PowerShell versions allow the order to be fixed.
-   PS> $h = [ordered]@{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
-   PS> $h.keys            # ordered: Fred, Wilma, Pebbles, Dino
-   PS> $h.values          # ordered: 30, 25, 1, 5 
-   
-   # key order is random, unless [ordered] was used in the declaration
-   PS> foreach ($key in $h.keys) {
+    }
+
+    # creating the same populated hash, on single-line
+    PS> $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+
+    PS> $h.keys                    # unordered: Dino, Pebbles, Fred, Wilma
+    PS> $h.values                  # unordered: 5, 1, 30, 25 (but same as $h.keys order)
+    PS> $h.keys | sort             # sorted: Dino, Fred, Pebbles, Wilma
+    PS> $h.keys | sort -Descending # reverse-sorted: Wilma, Pebbles, Fred, Dino
+
+    # later PowerShell versions allow the order to be fixed.
+    PS> $h = [ordered]@{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+    PS> $h.keys            # ordered: Fred, Wilma, Pebbles, Dino
+    PS> $h.values          # ordered: 30, 25, 1, 5
+
+    # key order is random, unless [ordered] was used in the declaration
+    PS> foreach ($key in $h.keys) {
        write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
-   }
-   
-   # ascending alphabetic order (Dino, Fred, Pebbles, Wilma)
-   PS> foreach ($key in $h.keys | sort) {
+    }
+
+    # ascending alphabetic order (Dino, Fred, Pebbles, Wilma)
+    PS> foreach ($key in $h.keys | sort) {
        write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
-   }
-   
-   # descending alphabetic order (Wilma, Pebbles, Fred, Dino)
-   PS> foreach ($key in $h.keys | sort -descending) {
+    }
+
+    # descending alphabetic order (Wilma, Pebbles, Fred, Dino)
+    PS> foreach ($key in $h.keys | sort -descending) {
        write-output ('{0} Flintstone is {1:D} years old' -f $key, $h[$key])
-   }
-   
-   # specific order (Fred, Wilma, Pebbles, Dino)
-   PS> $keys = ('fred', 'wilma', 'pebbles', 'dino')
-   for ($i = 0; $i -lt $keys.length; $i++) {
+    }
+
+    # specific order (Fred, Wilma, Pebbles, Dino)
+    PS> $keys = ('fred', 'wilma', 'pebbles', 'dino')
+    for ($i = 0; $i -lt $keys.length; $i++) {
       write-output ('{0} Flintstone is {1:D} years old' -f $keys[$i], $h[$keys[$i]])
-   }
-   
-   PS> if ($h.ContainsKey('fred')) { ... }   # true 
-   PS> if ($h.ContainsKey('barney')) { ... } # false
-   PS> if ($h.fred) { ... }                  # avoid, works most of the time.
-   PS> if ($h['barney']) { ... }             # avoid, works most of the time.
-   
-   PS> $h.remove('Dino')                # remove Dino, because he ran away :-)
-   PS> $h.clear()                       # flintstone family deceased
+    }
+
+    PS> if ($h.ContainsKey('fred')) { ... }   # true
+    PS> if ($h.ContainsKey('barney')) { ... } # false
+    PS> if ($h.fred) { ... }                  # avoid, works most of the time.
+    PS> if ($h['barney']) { ... }             # avoid, works most of the time.
+
+    PS> $h.remove('Dino')                # remove Dino, because he ran away :-)
+    PS> $h.clear()                       # flintstone family deceased
 
 For more details read the excellent review by Kevin Marquette:
  
@@ -507,80 +509,80 @@ The following contrived example illustrates the basics but the ``param ( ... )``
 
 .. code-block:: powershell
   
-   #requires -version 4
-   Set-StrictMode -Version 2
-   
-   function createPerson {
-      param (
-         [string]$name = '',
-         [int]$age = 0,
-         [switch]$verbose = $false,
-         [switch]$debug = $false
-      )
-      
-      if (($name -eq $null) -or ($name.length -eq 0)) {
-         if ($verbose) {
-            write-warning("createPerson - name is missing")
-            return $null
-         }
-         elseif ($debug) {
-            write-error("createPerson - name is missing")
-            exit(1)
-         }
-         else {
-            return $null
-         }
-      }
-      
-      if (($age -le 0) -or ($age -gt 130)) {
-         if ($verbose) {
-         write-warning("createPerson - age, {0:D}, is incorrect" -f $age)
-            return $null
-         }
-         elseif ($debug) {
-            write-error("createPerson - age, {0:D}, is incorrect" -f $age)
-            exit(1)
-         }
-         else {
-            return $null
-         }
-      }
-      
-      $hash = @{}
-      $hash[$name] = $age 
-      
-      return $hash
-   
-   }
-   
-   createPerson 'fred' 30 -verbose            # positional arguments
-   createPerson 30 'fred' -verbose            # positional arguments, breaks name=30
-   createPerson -name 'fred' -age 30 -verbose # named arguments
-   createPerson -age 30 'fred' -verbose       # mixed arguments, be careful, no-named taken param order
-   
-   $arguments = @{                            # splatting
-      name = 'fred'
-      age = 30
-      verbose = $true
-   }
-   createPerson @arguments
-   
-   $arguments = @{name = 'wilma'; age = 25; verbose = $true} # splatting one-line
-   createPerson @arguments
-   
-   $arguments = @{
-      name = 'fred'
-      verbose = $true
-      debug = $false
-   }
-   createPerson @arguments                   # fails, age default is 0
-   
-   $arguments = @{
-      age = 21
-      verbose = $true
-      debug = $false
-   }
-   createPerson @arguments                   # fails, name default is an empty string
+    #requires -version 4
+    Set-StrictMode -Version 2
+
+    function createPerson {
+        param (
+            [string]$name = '',
+            [int]$age = 0,
+            [switch]$verbose = $false,
+            [switch]$debug = $false
+        )
+
+        if (($name -eq $null) -or ($name.length -eq 0)) {
+            if ($verbose) {
+                write-warning("createPerson - name is missing")
+                return $null
+            }
+            elseif ($debug) {
+                write-error("createPerson - name is missing")
+                exit(1)
+            }
+            else {
+                return $null
+            }
+        }
+
+        if (($age -le 0) -or ($age -gt 130)) {
+            if ($verbose) {
+                write-warning("createPerson - age, {0:D}, is incorrect" -f $age)
+                return $null
+            }
+            elseif ($debug) {
+                write-error("createPerson - age, {0:D}, is incorrect" -f $age)
+                exit(1)
+            }
+            else {
+                return $null
+            }
+        }
+
+        $hash = @{}
+        $hash[$name] = $age
+
+        return $hash
+
+    }
+
+    createPerson 'fred' 30 -verbose            # positional arguments
+    createPerson 30 'fred' -verbose            # positional arguments, breaks name=30
+    createPerson -name 'fred' -age 30 -verbose # named arguments
+    createPerson -age 30 'fred' -verbose       # mixed arguments, be careful, no-named taken param order
+
+    $arguments = @{                            # splatting
+        name = 'fred'
+        age = 30
+        verbose = $true
+    }
+    createPerson @arguments
+
+    $arguments = @{name = 'wilma'; age = 25; verbose = $true} # splatting one-line
+    createPerson @arguments
+
+    $arguments = @{
+        name = 'fred'
+        verbose = $true
+        debug = $false
+    }
+    createPerson @arguments                   # fails,  WARNING: createPerson - age, 0, is incorrect
+
+    $arguments = @{
+        age = 21
+        verbose = $true
+        debug = $false
+    }
+    createPerson @arguments                   # fails, WARNING: createPerson - name is missing
 
 Further reading:
 
@@ -592,48 +594,50 @@ ArrayList
 
 .. code-block:: pwsh-session
 
-   PS> $names = New-Object -TypeName System.Collections.ArrayList
-   PS> $names = [System.Collections.ArrayList]::new()
-   PS> $names.gettype()              # ArrayList
-   
-   PS> $index = $names.Add('fred')   # returns array-list index: i.e. 0
-   PS> [void]$names.Add('wilma')     # discard array-list index
-   PS> [void]$names.Add('pebbles')
-   PS> [void]$names.Add('dino')
-   
-   # one-line creation, empty or populated
-   PS> [System.Collections.ArrayList]$names = @()
-   PS> [System.Collections.ArrayList]$names = @('fred','wilma','pebbles', 'dino')
-   
-   PS> $names.Count                  # returns 4
-   PS> $names[1]                     # wilma
-   PS> $names.remove(3)              # dino ran away or did he?
-   PS> $names.Count                  # 4, no dino is still there
-   PS> $names.[3]                    # dino
-   PS> $names.RemoveAt(3)            # dino, has really gone this time
-   PS> [void]$names.Add('dino')      # dino found 
-   PS> $names.Remove('dino')         # dino, escaped again
-   PS> [void]$names.Add('dino')      # dino found ... again
-  
-   PS> 'fred' -in $names             # True  (not supported in PowerShell 2)
-   PS> 'barney' -in $names           # False (not supported in PowerShell 2)
-   PS> $names -contains 'fred'       # True
-   PS> $names -contains 'barney'     # False
-    
-   PS> [void]$names.Insert(3,'fido')
-   PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:fido, 4:dino
-   PS> $names.remove('fido')
-   PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:dino
-   
-   # Generic List are ArrayList's of a fixed type
-   PS> [System.Collections.Generic.List[string]]$names = @()
-   PS> [System.Collections.Generic.List[string]]$names = @('fred','wilma','pebbles', 'dino')
-   
-   PS> [System.Collections.Generic.List[int]]$ages = @()
-   PS> [System.Collections.Generic.List[int]]$ages = (30, 25, 1, 5)
-   
-   $names.add(30)                    # 0:fred, 1:wilma, 2:pebbles, 3:dino, 4:30
-   $ages.add('fred')                 # fails, throws conversion exception
+    PS> $names = New-Object -TypeName System.Collections.ArrayList
+    PS> $names.gettype()              # ArrayList
+
+    PS> $firstnames = [System.Collections.ArrayList]::new() # alternative syntax
+    PS> $firstnames.gettype()         # ArrayList
+
+    PS> $index = $names.Add('fred')   # returns array-list index: i.e. 0
+    PS> [void]$names.Add('wilma')     # discard array-list index
+    PS> [void]$names.Add('pebbles')
+    PS> [void]$names.Add('dino')
+
+    # one-line creation, empty or populated
+    PS> [System.Collections.ArrayList]$names = @()
+    PS> [System.Collections.ArrayList]$names = @('fred','wilma','pebbles', 'dino')
+
+    PS> $names.Count                  # returns 4
+    PS> $names[1]                     # wilma
+    PS> $names.remove(3)              # dino ran away or did he?
+    PS> $names.Count                  # 4, no dino is still there
+    PS> $names.[3]                    # dino
+    PS> $names.RemoveAt(3)            # dino, has really gone this time
+    PS> [void]$names.Add('dino')      # dino found
+    PS> $names.Remove('dino')         # dino, escaped again
+    PS> [void]$names.Add('dino')      # dino found ... again
+
+    PS> 'fred' -in $names             # True  (not supported in PowerShell 2)
+    PS> 'barney' -in $names           # False (not supported in PowerShell 2)
+    PS> $names -contains 'fred'       # True
+    PS> $names -contains 'barney'     # False
+
+    PS> [void]$names.Insert(3,'fido')
+    PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:fido, 4:dino
+    PS> $names.remove('fido')
+    PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:dino
+
+    # Generic List are ArrayList's of a fixed type
+    PS> [System.Collections.Generic.List[string]]$names = @()
+    PS> [System.Collections.Generic.List[string]]$names = @('fred','wilma','pebbles', 'dino')
+
+    PS> [System.Collections.Generic.List[int]]$ages = @()
+    PS> [System.Collections.Generic.List[int]]$ages = (30, 25, 1, 5)
+
+    $names.add(30)                    # 0:fred, 1:wilma, 2:pebbles, 3:dino, 4:30
+    $ages.add('fred')                 # fails, throws conversion exception
 
 Further reading:
 
@@ -662,45 +666,45 @@ There is also a ``switch`` statement for comparing against multiple values.
 
 .. code-block:: powershell
 
-   #requires -version 2
-   Set-StrictMode -Version 2
-   
-   $apple = 10
-   $pear = 20
-   if ( $apple -gt $pear ) {
-      write-host('apple is higher than pear')
-   }
-   elseif ( $apple -lt $pear ) {
-      write-host('apple is lower than pear')
-   }
-   else {
-      write-host('apple and pear are equal')
-   }
-   
-   $path = 'file.txt'
-   $alternatePath = 'folder1'
-   if ( Test-Path -Path $path -PathType Leaf ) {
-      Move-Item -Path $path -Destination $alternatePath
-   }
-   elseif ( Test-Path -Path $path ) {
-      Write-Warning "A file is required but a folder was given."
-   }
-   else {
-      Write-Warning "$path could not be found."
-   }
-   
-   $fruit = 10
-   switch ( $fruit ) {
-      10  {
-         write-host('fruit is an apple')
-      }
-      20 {
-         write-host('fruit is an apple')
-      }
-      Default {
-         write-host('unknown fruit')
-      }
-   }
+    #requires -version 2
+    Set-StrictMode -Version 2
+
+    $apple = 10
+    $pear = 20
+    if ( $apple -gt $pear ) {
+        write-host('apple is higher than pear')
+    }
+    elseif ( $apple -lt $pear ) {
+        write-host('apple is lower than pear')
+    }
+    else {
+        write-host('apple and pear are equal')
+    }
+
+    $path = 'file.txt'
+    $alternatePath = 'folder1'
+    if ( Test-Path -Path $path -PathType Leaf ) {
+        Move-Item -Path $path -Destination $alternatePath
+    }
+    elseif ( Test-Path -Path $path ) {
+        Write-Warning "A file is required but a folder was given."
+    }
+    else {
+        Write-Warning "$path could not be found."
+    }
+
+    $fruit = 10
+    switch ( $fruit ) {
+        10  {
+            write-host('fruit is an apple')
+        }
+        20 {
+            write-host('fruit is an apple')
+        }
+        Default {
+            write-host('unknown fruit')
+        }
+    }
    
 Further reading:
 
@@ -714,37 +718,38 @@ Exception handling uses *Try/Catch*, but  the *Catch block* is only invoked on *
 
 .. code-block:: powershell
 
-   #requires -version 4
-   Set-StrictMode -Version 2
-   
-   $error.clear()
-   # $Error is an array of recent errors, index 0 being the latest
-   # $Error[0] | get-member                 # what does an error return
-   # $Error[0].tostring()                   # error text message
-   # $Error[0].Exception | get-member       # method, properties of the exception
-   # $Error[0].Exception.GetType().FullName # how to catch-it :-)
-   
-   $cwd =  get-childitem variable:pwd
-   $filename = 'cannot-readme.txt'
-   $path = Join-Path -path $cwd.value -childpath $filename
-   try {
-      $content = get-content -path $path -ErrorAction Stop
-   }
-   catch [System.Management.Automation.ItemNotFoundException] {
-      write-warning $Error[0].ToString()
-      exit(1) 
-   }
-   catch {
-      write-warning $Error[0].ToString()
-      write-warning $Error[0].Exception.GetType().FullName # exception message type
-      exit(1) 
-   }
-   finally {
-      write-warning("Resetting the Error Array")
-      $error.clear()
-   }
-   write-host("Fetched the content of {0}" -f $path)
-   exit(0)   
+    #requires -version 4
+    Set-StrictMode -Version 2
+
+    $error.clear()
+    # $Error is an array of recent errors, index 0 being the latest
+    # $Error[0] | get-member                 # what does an error return
+    # $Error[0].tostring()                   # error text message
+    # $Error[0].Exception | get-member       # method, properties of the exception
+    # $Error[0].Exception.GetType().FullName # how to catch-it :-)
+
+    $cwd =  get-childitem variable:pwd
+    $filename = 'cannot-readme.txt'
+    $path = Join-Path -path $cwd.value -childpath $filename
+    try {
+        $content = get-content -path $path -ErrorAction Stop
+    }
+    catch [System.Management.Automation.ItemNotFoundException] {
+        write-warning $Error[0].ToString()
+        exit(1)
+    }
+    catch {
+        write-warning $Error[0].ToString()
+        write-warning $Error[0].Exception.GetType().FullName # exception message type
+        exit(1)
+    }
+    finally {
+        write-warning("Resetting the Error Array")
+        $error.clear()
+    }
+
+    write-host("Fetched the content of {0}" -f $path)
+    exit(0)
 
 Note the following two points in the example:
 
@@ -762,41 +767,40 @@ There are several loop constructors ``for``, ``foreach``, ``while`` and ``do .. 
 
 .. code-block:: powershell
 
-   #requires -version 4
-   Set-StrictMode -Version 2
-   
-   $names = ('Fred', 'Wilma', 'Pebbles', 'Dino')
-   
-   for ($index = 0; $index -lt $names.length; $index++) {
-      write-host ('{0} Flintstone' -f $names[$index])
-   }
-   
-   # Index often written as $i, $j, $k    
-   for ($i = 0; $i -lt $names.length; $i++) {
-      write-host ('{0} Flintstone' -f $names[$i])
-   }
-   
-   foreach ($name in $names) {
-      write-host ('{0} Flintstone' -f $name)
-   }
+    #requires -version 4
+    Set-StrictMode -Version 2
 
-   $hash = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }   
-   foreach ($key in $hash.keys) {
-      write-host ('{0} Flintstone is {1:D} years old' -f $key, $hash[$key])
-   }
+    $names = ('Fred', 'Wilma', 'Pebbles', 'Dino')
 
-   $index = 0;
-   while ($index -lt $names.length){
-      write-host ('{0} Flintstone' -f $names[$index])
-      $index += 1
-   }
-   
-   $index = 0;
-   do {
-      write-host ('{0} Flintstone' -f $names[$index])
-      $index += 1
-   } while($index -lt $names.length)
+    for ($index = 0; $index -lt $names.length; $index++) {
+        write-host ('{0} Flintstone' -f $names[$index])
+    }
 
+    # Index often written as $i, $j, $k
+    for ($i = 0; $i -lt $names.length; $i++) {
+        write-host ('{0} Flintstone' -f $names[$i])
+    }
+
+    foreach ($name in $names) {
+        write-host ('{0} Flintstone' -f $name)
+    }
+
+    $hash = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
+    foreach ($key in $hash.keys) {
+        write-host ('{0} Flintstone is {1:D} years old' -f $key, $hash[$key])
+    }
+
+    $index = 0;
+    while ($index -lt $names.length){
+        write-host ('{0} Flintstone' -f $names[$index])
+        $index += 1
+    }
+
+    $index = 0;
+    do {
+        write-host ('{0} Flintstone' -f $names[$index])
+        $index += 1
+    } while($index -lt $names.length)
 
 
 Operators
@@ -806,56 +810,55 @@ Operators
 
 .. code-block:: powershell
 
-   #requires -version 4
-   Set-StrictMode -Version 2
-   
-   $a = 20
-   $b = 10
-   $c = 2
-   
-   # Arithmetic
-   $a + $b + $c    # addition = 32
-   $a - $b - $c    # subtraction = 8
-   $a - $b + $c    # subtraction, addition = 12
-   $a + $b - $c    # addition, subtraction = 28
-   
-   $a * $b * $c    # multiplication = 400
-   $a + $b * $c    # addition, multiplication = 40
-   $a * $b + $c    # multiplication, addition = 202
-   $a * ($b + $c)  # multiplication, addition = 240
-   
-   $a / $b / $c    # division = 1
-   $a + $b / $c    # addition, division = 15
-   $a / $b + $c    # division, addition = 4
-   $a / ($b + $c)  # division, addition = 1.66666666666667
-   
-   $a % $b         # modulus = 0
-   $b % $a         # modulus = 10
-   $c % $b         # modulus = 2
-   
-   # Comparison
-   $a -eq $b       # equals = False
-   $a -ne $b       # not equals = True
-   $a -gt $b       # greater than = True
-   $a -ge $a       # greater than or equal = True
-   $a -lt $b       # less than = False
-   $a -le $a       # less than or equal = True
-   
-   # Assignment
-   $d = $a + $b    # assignment = 30
-   $d += $c        # addition, assignment = 32
-   $d -= $c        # subtraction, assignment = 30
-   
-   $a = $true
-   $b = $false
-   
-   # Logical
-   $a -and $b      # and = False
-   $a -or $b       # or = True
-   -not $a         # not = False
-   -not $a -and $b # not, and = False
-   $a -and -not $b # and, not  = True
+    #requires -version 4
+    Set-StrictMode -Version 2
 
+    $a = 20
+    $b = 10
+    $c = 2
+
+    # Arithmetic
+    $a + $b + $c    # addition = 32
+    $a - $b - $c    # subtraction = 8
+    $a - $b + $c    # subtraction, addition = 12
+    $a + $b - $c    # addition, subtraction = 28
+
+    $a * $b * $c    # multiplication = 400
+    $a + $b * $c    # addition, multiplication = 40
+    $a * $b + $c    # multiplication, addition = 202
+    $a * ($b + $c)  # multiplication, addition = 240
+
+    $a / $b / $c    # division = 1
+    $a + $b / $c    # addition, division = 15
+    $a / $b + $c    # division, addition = 4
+    $a / ($b + $c)  # division, addition = 1.66666666666667
+
+    $a % $b         # modulus = 0
+    $b % $a         # modulus = 10
+    $c % $b         # modulus = 2
+
+    # Comparison
+    $a -eq $b       # equals = False
+    $a -ne $b       # not equals = True
+    $a -gt $b       # greater than = True
+    $a -ge $a       # greater than or equal = True
+    $a -lt $b       # less than = False
+    $a -le $a       # less than or equal = True
+
+    # Assignment
+    $d = $a + $b    # assignment = 30
+    $d += $c        # addition, assignment = 32
+    $d -= $c        # subtraction, assignment = 30
+
+    $a = $true
+    $b = $false
+
+    # Logical
+    $a -and $b      # and = False
+    $a -or $b       # or = True
+    -not $a         # not = False
+    -not $a -and $b # not, and = False
+    $a -and -not $b # and, not  = True
 
 Backtick Operator
 =================
@@ -953,34 +956,34 @@ Examples
     #requires -version 4
     Set-StrictMode -Version 2
 
-    "fred" -match "f..d"           # True (same as imatch)
-    "fred" -imatch "F..d"          # True
-    "fred" -cmatch "F..d"          # False
-    "fred" -notmatch "W..ma"       # True
-    "fred" -match "re"             # (match 're') True
+    "fred" -match "f..d"               # True (same as imatch)
+    "fred" -imatch "F..d"              # True
+    "fred" -cmatch "F..d"              # False
+    "fred" -notmatch "W..ma"           # True
+    "fred" -match "re"                 # (match 're') True
 
-    "dog" -match "d[iou]g"         # (dig, dug) True
-    "ant" -match "[a-e]nt"         # (bnt, cnt, dnt, ent) True
-    "ant" -match "[^brt]nt"        # True
-    "fred" -match "^fr"            # (starts with 'fr') True
-    "fred" -match "ed$"            # (ends with 'ed') True
-    "doggy" -match "g*"            # True
-    "doggy" -match "g?"            # True
+    "dog" -match "d[iou]g"             # (dig, dug) True
+    "ant" -match "[a-e]nt"             # (bnt, cnt, dnt, ent) True
+    "ant" -match "[^brt]nt"            # True
+    "fred" -match "^fr"                # (starts with 'fr') True
+    "fred" -match "ed$"                # (ends with 'ed') True
+    "doggy" -match "g*"                # True
+    "doggy" -match "g?"                # True
 
-    "Fred Flintstone" -match "\w+" # (matches word Fred) True
-    "FredFlintstone" -match "\w+"  # (matches word Fred) True
-    "Fred Flintstone" -match "\W+" # (matches >= 1 non-word) True
-    "FredFlintstone" -match "\W+"  # (matches >= 1 non-word) False
+    "Fred Flintstone" -match "\w+"     # (matches word Fred) True
+    "FredFlintstone" -match "\w+"      # (matches word Fred) True
+    "Fred Flintstone" -match "\W+"     # (matches >= 1 non-word) True
+    "FredFlintstone" -match "\W+"      # (matches >= 1 non-word) False
 
-    "Fred Flintstone" -match "\s+" # (matches >= 1 white-space) True
-    "FredFlintstone" -match "\s+"  # (matches >= 1 white-space) False
-    "Fred Flintstone" -match "\S+" # (matches >= 1 non white-space) True
-    "FredFlintstone" -match "\S+"  # (matches >= 1 non white-space) True
+    "Fred Flintstone" -match "\s+"     # (matches >= 1 white-space) True
+    "FredFlintstone" -match "\s+"      # (matches >= 1 white-space) False
+    "Fred Flintstone" -match "\S+"     # (matches >= 1 non white-space) True
+    "FredFlintstone" -match "\S+"      # (matches >= 1 non white-space) True
 
-    "Fred Flintstone" -match "\d+" # (matches >= 1 digit 0..9) False
-    "Fred is 30" -match "\d+"      # (matches >= 1 digit 0..9) True
-    "Fred Flintstone" -match "\D+" # (matches >= 1 non-digit 0..9) True
-    "Fred is 30" -match "\D+"      # (matches >= 1 non-digit 0..9) True
+    "Fred Flintstone" -match "\d+"     # (matches >= 1 digit 0..9) False
+    "Fred is 30" -match "\d+"          # (matches >= 1 digit 0..9) True
+    "Fred Flintstone" -match "\D+"     # (matches >= 1 non-digit 0..9) True
+    "Fred is 30" -match "\D+"          # (matches >= 1 non-digit 0..9) True
 
     "Fred Flintstone" -match "\w?"     # (match >= 0 preceding pattern) True
     "Fred Flintstone" -match "\w{2}"   # (match 2 preceding pattern) True
@@ -994,7 +997,6 @@ Examples
     'fred Flintstone' -ireplace 'Fred (\w+)', 'Wilma $1' # Wilma Flintstone
     'fred Flintstone' -replace 'Fred (\w+)', 'Wilma $1'  # Wilma Flintstone
     'fred Flintstone' -creplace 'Fred (\w+)', 'Wilma $1' # fred Flintstone
-
 
 Entire technical books are dedicated to Regular Expressions, the above is very brief.
 For more details see:
@@ -1017,114 +1019,114 @@ Simple example, with the filename specified in the script.
 
 .. code-block:: powershell
 
-   #requires -version 4
-   Set-StrictMode -Version 2
-   
-   $filename = 'file.txt'
-   $addCWD = $false
-   $path = $filename 
-   if ($addCWD) {
-      $path = Join-Path -path $cwd.value -childpath $filename
-   }
-   
-   write-host("if...then...else")
-   if (-not (Test-Path -path $path -pathtype leaf) ) {
-      write-warning("Filename, {0}, does not exist" -f $path)
-      exit(1)
-   }
-   else {
-      $count = 1
-      foreach ($line in get-content $path) {
-         write-host("{0:D3}:{1}" -f $count, $line)
-         $count += 1
-      }
-      $fh = get-childitem $path # get file attributes
-   }
-   
-   write-host("try...catch")
-   try {
-      $count = 1
-      foreach ($line in get-content $path -ErrorAction Stop) {
-         write-host("{0:D3}:{1}" -f $count, $line)
-         $count += 1
-      }
-      $fh = get-childitem $path # get file attributes
-   }
-   catch {
-      write-warning $Error[0].ToString()
-      write-warning $Error[0].Exception.GetType().FullName # exception message type
-      exit(1)
-   }
-   
-   exit(0) 
+    #requires -version 4
+    Set-StrictMode -Version 2
+
+    $filename = 'file.txt'
+    $addCWD = $false
+    $path = $filename
+    if ($addCWD) {
+        $path = Join-Path -path $cwd.value -childpath $filename
+    }
+
+    write-host("if...then...else")
+    if (-not (Test-Path -path $path -pathtype leaf) ) {
+        write-warning("Filename, {0}, does not exist" -f $path)
+        exit(1)
+    }
+    else {
+        $count = 1
+        foreach ($line in get-content $path) {
+            write-host("{0:D3}:{1}" -f $count, $line)
+            $count += 1
+        }
+        $fh = get-childitem $path # get file attributes
+    }
+
+    write-host("try...catch")
+    try {
+        $count = 1
+        foreach ($line in get-content $path -ErrorAction Stop) {
+            write-host("{0:D3}:{1}" -f $count, $line)
+            $count += 1
+        }
+        $fh = get-childitem $path # get file attributes
+    }
+    catch {
+        write-warning $Error[0].ToString()
+        write-warning $Error[0].Exception.GetType().FullName # exception message type
+        exit(1)
+    }
+
+    exit(0)
 
 If the filename(s) are supplied on the command line, then ``globbing`` (file pattern matching) will treat several files as one file.
 This following accepts a single file name argument and expands the ``glob`` before processing so the name can be displayed.
 
 .. code-block:: powershell
 
-   #requires -version 4
-   Set-StrictMode -Version 2
-   
-   $pattern = $Args[0]  # 'file*'
-   if ($Args[0] -eq $null) {
-      write-warning("Missing file pattern argument")
-      exit(1)
-   }
-   $filenames = get-childitem -Name $pattern
-   
-   write-host("Simple file pattern")
-   foreach ($filename in $filenames) {
-      $addCWD = $false
-      $path = $filename
-      if ($addCWD) {
-         $path = Join-Path -path $cwd.value -childpath $filename
-      }
-      
-      if (-not (Test-Path -path $path -pathtype leaf) ) {
-         write-warning("Filename, {0}, does not exist" -f $path)
-         exit(1)
-      }
-      else {
-         $count = 1
-         write-host("filename: {0}" -f $filename)
-         foreach ($line in get-content $path) {
-           write-host("  {0:D3}:{1}" -f $count, $line)
-           $count += 1
-         }
-         $fh = get-childitem $path # get file attributes
-      }
-   }
+    #requires -version 4
+    Set-StrictMode -Version 2
+
+    $pattern = $Args[0]  # 'file*'
+    if ($Args[0] -eq $null) {
+        write-warning("Missing file pattern argument")
+        exit(1)
+    }
+    $filenames = get-childitem -Name $pattern
+
+    write-host("Simple file pattern")
+    foreach ($filename in $filenames) {
+        $addCWD = $false
+        $path = $filename
+        if ($addCWD) {
+            $path = Join-Path -path $cwd.value -childpath $filename
+        }
+
+        if (-not (Test-Path -path $path -pathtype leaf) ) {
+            write-warning("Filename, {0}, does not exist" -f $path)
+            exit(1)
+        }
+        else {
+            $count = 1
+            write-host("filename: {0}" -f $filename)
+            foreach ($line in get-content $path) {
+                write-host("  {0:D3}:{1}" -f $count, $line)
+                $count += 1
+            }
+            $fh = get-childitem $path # get file attributes
+        }
+    }
 
 This example accepts all commandline arguments as file names and does not consider any ``globbing`` (file pattern matching).
 
 .. code-block:: powershell
 
-   #requires -version 4
-   Set-StrictMode -Version 2
-   
-   write-host("All file arguments")
-   foreach ($filename in $Args) {
-      $addCWD = $false
-      $path = $filename
-      if ($addCWD) {
-         $path = Join-Path -path $cwd.value -childpath $filename
-      }
-      
-      if (-not (Test-Path -path $path -pathtype leaf) ) {
-         write-warning("Filename, {0}, does not exist" -f $path)
-         exit(1)
-      }
-      else {
-         $count = 1
-         write-host("filename: {0}" -f $filename)
-         foreach ($line in get-content $path) {
-           write-host("  {0:D3}:{1}" -f $count, $line)
-           $count += 1
-         }
-         $fh = get-childitem $path # get file attributes
-      }
-   }
+    #requires -version 4
+    Set-StrictMode -Version 2
+
+    write-host("All file arguments")
+    foreach ($filename in $Args) {
+        $addCWD = $false
+        $path = $filename
+        if ($addCWD) {
+            $path = Join-Path -path $cwd.value -childpath $filename
+        }
+
+        if (-not (Test-Path -path $path -pathtype leaf) ) {
+            write-warning("Filename, {0}, does not exist" -f $path)
+            exit(1)
+        }
+        else {
+            $count = 1
+            write-host("filename: {0}" -f $filename)
+            foreach ($line in get-content $path) {
+                write-host("  {0:D3}:{1}" -f $count, $line)
+                $count += 1
+            }
+            $fh = get-childitem $path # get file attributes
+        }
+    }
 
 
 Writing Files
@@ -1137,41 +1139,41 @@ which have many options not covered here.
 
 .. code-block:: powershell
 
-   #requires -version 4
-   Set-StrictMode -Version 2
-      
-   $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
-   
-   set-content -path "file.obj" -value $h    # writes hash-table object 
-   
-   $path = "file.txt"
-   
-   # add one line at a time, note no need to close the file
-   set-content -path $path -value $null # creates and closes an empty file
-   foreach ($key in $h.keys) {
-       add-content -path $path -value ("{0}:{1:D}" -f $key, $h[$key]) # adds content and closes
-       # ("{0}:{1:D}" -f $key, $h[$key]) | add-content -path $path    # same, less intuitive
-   }
-   
-   clear-content -path $path # clear the file contents
+    #requires -version 4
+    Set-StrictMode -Version 2
 
-   # string with line continuation characters.
-   $text = "Fred:30`
-   Wilma:25`
-   Pebbles:1`
-   Dino:5"
-   $text | set-content -path $path
-   
-   clear-content -path $path # clear the file contents
+    $h = @{ Fred = 30; Wilma = 25; Pebbles = 1; Dino = 5 }
 
-   # string containing new-line characters.
-   $text = "Fred:30`nWilma:25`nPebbles:1`nDino:5"
-   $text | set-content -path $path
+    set-content -path "file.obj" -value $h    # writes hash-table object
 
-   clear-content -path $path # clear the file contents
-   
-   # string containing new-line characters using out-file
-   $text | Out-File -FilePath $path
+    $path = "file.txt"
+
+    # add one line at a time, note no need to close the file
+    set-content -path $path -value $null # creates and closes an empty file
+    foreach ($key in $h.keys) {
+        add-content -path $path -value ("{0}:{1:D}" -f $key, $h[$key]) # adds content and closes
+        # ("{0}:{1:D}" -f $key, $h[$key]) | add-content -path $path    # same, less intuitive
+    }
+
+    clear-content -path $path # clear the file contents
+
+    # string with line continuation characters.
+    $text = "Fred:30`
+    Wilma:25`
+    Pebbles:1`
+    Dino:5"
+    $text | set-content -path $path
+
+    clear-content -path $path # clear the file contents
+
+    # string containing new-line characters.
+    $text = "Fred:30`nWilma:25`nPebbles:1`nDino:5"
+    $text | set-content -path $path
+
+    clear-content -path $path # clear the file contents
+
+    # string containing new-line characters using out-file
+    $text | Out-File -FilePath $path
 
 See also:
 
@@ -1192,19 +1194,22 @@ The ``out-gridview`` renders the output the data in an interactive table.
     PS> import-csv -Path file.csv -Delimeter ";" | out-gridview  # load and display a ';' separated file.
 
     PS> get-content file.csv
-       Name;Age
-       Fred;30
-       Wilma;25
-       Pebbles;1
-       Dino;5
-    PS> $f = import-csv -delimiter ';' file.csv
+    Name;Age
+    Fred;30
+    Wilma;25
+    Pebbles;1
+    Dino;5
+
+    PS> $f = import-csv -delimiter ';' file.
+
     PS> $f.Name    # Fred Wilma Pebbles Dino
     PS> $f[1].Name # Wilma
     PS> $f.Age     # 30 25 1 5
     PS> $f[3].Age  # 5
+
     PS> for ($i =0; $i -lt $f.length; $i++) {
-           write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age)
-       }
+        write-output("{0,-7} is {1:D} years" -f $f[$i].Name, $f[$i].Age)
+    }
 
     PS> import-csv -delimiter ';' file.csv | out-gridview
 
