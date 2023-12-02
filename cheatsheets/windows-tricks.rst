@@ -81,8 +81,9 @@ Oh My Posh
 
 .. code-block:: console
 
-    $ notepad $PROFILE                          # If errors create it, using New-Item
-    $ New-Item -Path $PROFILE -Type File -Force # Create $PROFILE
+    $ Test-Path $PROFILE -PathType Leaf         # If FALSE, then create it using New-Item
+    $ New-Item -Path $PROFILE -Type File -Force # Create the PowerShell_profile.ps1 file
+
     $ notepad $PROFILE                          # Choose your theme and Invoke it
 
     $ Get-Content -Path $PROFILE
@@ -101,9 +102,21 @@ do not always trigger, so manually check on a regular basis.
 
 .. code-block:: console
 
-    $ winget upgrade JanDeDobbeleer.OhMyPosh -s winget
+    $ oh-my-posh notice                                # Is an upgrade is available?
 
-See `Oh My Posh upgrades <https://ohmyposh.dev/docs/installation/windows#update>`_, for more details.
+    $ oh-my-posh version                               # Existing version
+    $ winget upgrade JanDeDobbeleer.OhMyPosh -s winget # Upgrade
+    $ oh-my-posh version                               # New version
+
+For more details, see `Oh My Posh upgrades <https://ohmyposh.dev/docs/installation/windows#update>`_
+
+Summary of the ``oh-my-posh`` commands
+
+.. code-block:: console
+
+    $ oh-my-posh help        # help summary
+    $ oh-my-posh help --help # help on the 'help' command
+
 
 Are Files Identical?
 ====================
