@@ -65,7 +65,7 @@ language = "en"
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.venv', 'venv', 'venv-python3.11', 'venv-3.12', 'nginx']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.venv', 'venv', 'venv-3.12', 'nginx']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
