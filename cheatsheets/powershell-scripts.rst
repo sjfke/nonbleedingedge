@@ -611,10 +611,11 @@ ArrayList
 
     PS> $names.Count                  # returns 4
     PS> $names[1]                     # wilma
-    PS> $names.remove(3)              # dino ran away or did he?
+    PS> $names.Remove(3)              # dino ran away or did he?
     PS> $names.Count                  # 4, no dino is still there
     PS> $names.[3]                    # dino
     PS> $names.RemoveAt(3)            # dino, has really gone this time
+    PS> $names.Count                  # returns 3
     PS> [void]$names.Add('dino')      # dino found
     PS> $names.Remove('dino')         # dino, escaped again
     PS> [void]$names.Add('dino')      # dino found ... again
@@ -624,20 +625,20 @@ ArrayList
     PS> $names -contains 'fred'       # True
     PS> $names -contains 'barney'     # False
 
-    PS> [void]$names.Insert(3,'fido')
-    PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:fido, 4:dino
+    PS> [void]$names.Insert(3,'baby puss')
+    PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:baby puss, 4:dino
     PS> $names.remove('fido')
     PS> $names                        # 0:fred, 1:wilma, 2:pebbles, 3:dino
 
     # Generic List are ArrayList's of a fixed type
-    PS> [System.Collections.Generic.List[string]]$names = @()
-    PS> [System.Collections.Generic.List[string]]$names = @('fred','wilma','pebbles', 'dino')
+    PS> [System.Collections.Generic.List[string]]$names = @()                                 # empty
+    PS> [System.Collections.Generic.List[string]]$names = @('fred','wilma','pebbles', 'dino') # populated
 
-    PS> [System.Collections.Generic.List[int]]$ages = @()
-    PS> [System.Collections.Generic.List[int]]$ages = (30, 25, 1, 5)
+    PS> [System.Collections.Generic.List[int]]$ages = @()                                     # empty
+    PS> [System.Collections.Generic.List[int]]$ages = (30, 25, 1, 5)                          # populated
 
-    $names.add(30)                    # 0:fred, 1:wilma, 2:pebbles, 3:dino, 4:30
-    $ages.add('fred')                 # fails, throws conversion exception
+    PS> [void]$names.add(30)          # 0:fred, 1:wilma, 2:pebbles, 3:dino, 4:30              # auto-casting
+    PS> $ages.add('baby puss')        # fails, throws System.Int32 conversion exception
 
 Further reading:
 
