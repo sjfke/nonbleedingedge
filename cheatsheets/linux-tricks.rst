@@ -290,6 +290,17 @@ Create the ``com.jetbrains.pycharm.community.desktop`` file, modify it as necess
 * `KDE and GNOME desktop environments have adopted a similar format <https://specifications.freedesktop.org/desktop-entry-spec/latest/index.html#introduction>`_
 * `DBUS Specification Message Protocol Names <https://dbus.freedesktop.org/doc/dbus-specification.html#message-protocol-names>`_
 
+Base 64 Encode/Decode
+=====================
+
+.. code-block:: console
+
+    $ echo -n "EncodeMe-in-Base64" | base64
+    RW5jb2RlTWUtaW4tQmFzZTY0
+
+    $ echo -n "RW5jb2RlTWUtaW4tQmFzZTY0" | base64 -d
+    EncodeMe-in-Base64
+
 WSL2 on Windows
 ===============
 
