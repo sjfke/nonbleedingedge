@@ -140,3 +140,13 @@ Typical hashes being, ``SHA1`` default, ``MD5`` and ``SHA256``
 The `certutil <https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil>`_  utility
 is intended for manipulating certificates and so can do much more.
 
+Base 64 Encode/Decode
+=====================
+
+.. code-block:: console
+
+    $ [Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("EncodeMe-in-Base64"))
+    RW5jb2RlTWUtaW4tQmFzZTY0
+
+    $ [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String('RW5jb2RlTWUtaW4tQmFzZTY0'))
+    EncodeMe-in-Base64
