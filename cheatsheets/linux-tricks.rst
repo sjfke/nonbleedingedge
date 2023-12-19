@@ -337,6 +337,23 @@ First enable Windows optional features to run WSL, so the sequence is as follows
     4. Reboot
     5. Install Ubuntu (20.04.6 LTS) from Microsoft Store
 
+Update Ubuntu
+=============
+
+.. code-block:: console
+
+    $ man apt-get
+    $ sudo apt-get update  # sync the package index files
+    $ sudo apt-get upgrade # install the newest versions
+    $ sudo reboot
+
+    $ man apt
+    $ sudo apt update      # sync the package index files
+    $ sudo apt upgrade     # install the newest versions
+    $ sudo reboot
+
+    $ apt --help
+
 Linux Network Tools
 ===================
 
