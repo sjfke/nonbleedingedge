@@ -167,13 +167,13 @@ Using ``Python``, if installed
 .. code-block:: python
 
     >>> import base64
-    >>> _bytes = "EncodeMe-in-Base64".encode("ascii")
-    >>> _b64bytes = base64.b64encode(_bytes)
+    >>> _ascii = "EncodeMe-in-Base64".encode("ascii")
+    >>> _b64bytes = base64.b64encode(_ascii)
     >>> print(_b64bytes.decode("ascii"))
     RW5jb2RlTWUtaW4tQmFzZTY0
 
     >>> import base64
-    >>> _bytes = "RW5jb2RlTWUtaW4tQmFzZTY0".encode("ascii")
-    >>> _b64bytes = base64.b64decode(_bytes)
+    >>> _ascii = "RW5jb2RlTWUtaW4tQmFzZTY0".encode("ascii")
+    >>> _b64bytes = base64.b64decode(_ascii)
     >>> print(_b64bytes.decode("ascii"))
     EncodeMe-in-Base64
