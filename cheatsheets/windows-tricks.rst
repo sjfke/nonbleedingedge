@@ -150,3 +150,30 @@ Base 64 Encode/Decode
 
     $ [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String('RW5jb2RlTWUtaW4tQmFzZTY0'))
     EncodeMe-in-Base64
+
+Using ``wsl``, if installed
+
+.. code-block:: console
+
+    $ wsl
+    $ echo -n 'EncodeMe-in-Base64' | base64
+    RW5jb2RlTWUtaW4tQmFzZTY0
+
+    $ echo -n 'RW5jb2RlTWUtaW4tQmFzZTY0' | base64 -d
+    EncodeMe-in-Base64
+
+Using ``Python``, if installed
+
+.. code-block:: python
+
+    >>> import base64
+    >>> _bytes = "EncodeMe-in-Base64".encode("ascii")
+    >>> _b64bytes = base64.b64encode(_bytes)
+    >>> print(_b64bytes.decode("ascii"))
+    RW5jb2RlTWUtaW4tQmFzZTY0
+
+    >>> import base64
+    >>> _bytes = "RW5jb2RlTWUtaW4tQmFzZTY0".encode("ascii")
+    >>> _b64bytes = base64.b64decode(_bytes)
+    >>> print(_b64bytes.decode("ascii"))
+    EncodeMe-in-Base64
