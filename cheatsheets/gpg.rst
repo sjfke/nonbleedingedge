@@ -32,6 +32,7 @@ Git GPG integrations
 ====================
 
 * `Telling Git about your signing key <https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key>`_
+* `Use GPG Signing Keys with Git (and GitHub) on Windows 10 <https://medium.com/@ryanmillerc/use-gpg-signing-keys-with-git-on-windows-10-github-4acbced49f68>`_
 * `Git Tools - Signing Your Work <https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work>`_
 
 .. code-block:: console
@@ -48,6 +49,10 @@ Git GPG integrations
     $ git config --global user.signingkey 09D708FAED728E4C
     $ git config --global commit.gpgsign true
 
+    # On Windows
+    $ C:\Windows\System32\where.exe gpg # C:\Program Files (x86)\GnuPG\bin\gpg.exe
+    $ git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+
     # Project (local) auto-sign commits
     $ git config --local --list
     $ git config --local user.email sjfke.pool.shark@hotmail.com
@@ -55,3 +60,39 @@ Git GPG integrations
     $ git config --local commit.gpgsign true
 
 For `GitHub <https://github.com>`_  add these keys to `SSH and GPG keys <https://github.com/settings/keys>`_
+
+Exporting GPG keys
+==================
+
+.. note:: Private key(s) will prompt for a pass-phrase
+
+.. code-block:: console
+
+    $ gpg --list-keys --keyid-format LONG                                                      # public keys
+    $ gpg --list-secret-keys --keyid-format LONG                                               # private keys
+
+    $ gpg --output export-public.gpg --armor --export sjfke.pool.shark@hotmail.com             # public key
+    $ gpg --output export-private.gpg --armor --export-secret-key sjfke.pool.shark@hotmail.com # private key
+
+Backup or Transfer GPG keys
+===========================
+
+.. note:: Each private key will prompt for it's pass-phrase
+
+* `How to export a GPG private key and public key to a file <https://hackerthink.com/solutions/how-to-export-a-gpg-private-key-and-public-key-to-a-file/>`_
+* `How-To-Geek Back Up and Restore Your GPG Keys on Linux <https://www.howtogeek.com/816878/how-to-back-up-and-restore-gpg-keys-on-linux/>`_
+* `JWillikers  Backup and Restore GPG key<https://www.jwillikers.com/backup-and-restore-a-gpg-key>`_
+
+.. code-block:: console
+
+    $ gpg --list-keys --keyid-format LONG                                               # public keys
+    $ gpg --list-secret-keys --keyid-format LONG                                        # private keys
+
+    # All keys
+    $ gpg --export --export-options backup --output backup-all-public.gpg               # public keys
+    $ gpg --export-secret-keys --export-options backup --output backup-all-private.gpg  # private keys
+    $ gpg --export-ownertrust > backup-all-trust.gpg                                    # trust database
+
+    # Single key only
+    $ gpg --export-secret-keys --export-options backup --output backup-private.gpg sjfke.pool.shark@hotmail.com
+    $ gpg --export-secret-keys --export-options backup --output backup-private.gpg sjfke.pool.shark@hotmail.com
