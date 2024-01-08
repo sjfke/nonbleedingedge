@@ -2,9 +2,9 @@
 
 .. nonBleedingEdge documentation master file, was created by sphinx-quickstart on Wed May 30 22:25:08 2018.
 
-===========================
+###########################
 Welcome to NonBleedingEdge!
-===========================
+###########################
 
 .. |LinkedIn| image:: images/LinkedIn-Blue-14.png
     :height: 17px
