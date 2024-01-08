@@ -19,11 +19,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'NonBleedingEdge'
-copyright = '2023, Geoffrey Collis'
+copyright = '2024, Geoffrey Collis'
 author = 'Geoffrey Collis (sjfke)'
 
 # The short X.Y version
-version = ''
+version = '2024-v1.0'
 # The full version, including alpha/beta/rc tags
 release = ''
 
@@ -38,6 +38,7 @@ release = ''
 # ones.
 extensions = [
     'sphinx.ext.ifconfig',
+    'sphinxemoji.sphinxemoji',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -90,7 +91,7 @@ html_theme_options = {
     'logo_only': False,
     'display_version': True,
     'prev_next_buttons_location': 'bottom',
-    'style_external_links': False,
+    'style_external_links': True,
     # Toc options
     'collapse_navigation': True,
     'sticky_navigation': True,

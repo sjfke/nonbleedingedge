@@ -1,71 +1,79 @@
 :github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/brew.rst
 
+###############
+Brew Cheatsheet
+###############
 
-***************************
-Brew / Brew Cask Cheatsheet
-***************************
-
-
+************
 Useful Links
-============
+************
 
-* `HomeBrew - The missing package manager for macOS (or Linux) <https://brew.sh/>`_
+* `Homebrew - The missing package manager for macOS (or Linux) <https://brew.sh/>`_
 * `Install Homebrew - Complete Guide <https://mac.install.guide/homebrew/>`_ by Daniel Kehoe
 
-
+**************
 Basic Commands
-==============
-
-::
-
- Example usage:
-   brew search [TEXT|/REGEX/]
-   brew info [FORMULA...]
-   brew install FORMULA...
-   brew update
-   brew upgrade [FORMULA...]
-   brew uninstall FORMULA...
-   brew list [FORMULA...]
-
- Troubleshooting:
-   brew config
-   brew doctor
-   brew install --verbose --debug FORMULA
-
- Contributing:
-   brew create [URL [--no-fetch]]
-   brew edit [FORMULA...]
-
- Further help:
-   brew commands
-   brew help [COMMAND]
-   man brew
-   https://docs.brew.sh
-
-Brew Update vs Upgrade
-======================
-
-The **"update"** updates Homebrew itself, where as **"upgrade"** updates the installed packages.
+**************
 
 .. code-block:: console
 
-    $ brew doctor            # ensure brew is clean and consistent
-    $ brew update            # update the formulae and Homebrew itself
-    $ brew outdated          #  what is outdated
-    $ brew upgrade           # Upgrade everything
-    $ brew upgrade <formula> # Or upgrade a specific formula
+    # Example usage:
+    $ brew search [TEXT|/REGEX/]
+    $ brew info [FORMULA...]
+    $ brew install FORMULA...
+    $ brew update
+    $ brew upgrade [FORMULA...]
+    $ brew uninstall FORMULA...
+    $ brew list [FORMULA...]
 
-  
-HomeBrew Casks
-==============
+    # Troubleshooting:
+    $ brew config
+    $ brew doctor
+    $ brew install --verbose --debug FORMULA
 
-Homebrew-Cask is an extension built on top of `HomeBrew <https://brew.sh/>`_ which speeds up the 
-installation process of large binary files with the use of the Terminal App. Applications such 
-as Google Chrome, Firefox, Alfred, and Docker can be easily installed without having to 
-download the .dmg file. 
+    # Contributing:
+    $ brew create [URL [--no-fetch]]
+    $ brew edit [FORMULA...]
+
+    # Further help:
+    $ brew commands
+    $ brew help [COMMAND]
+    $ man brew
+
+* `Homebrew Documentation <https://docs.brew.sh>`_
+
+*****************
+Homebrew Updating
+*****************
+
+* ``brew update`` updates `Homebrew` itself
+* ``brew upgrade`` updates the installed packages.
+
+Typical workflow
 
 .. code-block:: console
 
-    $ brew cask install firefox
+    $ brew doctor  [--verbose]  # ensure brew is clean and consistent
+    $ brew update  [--verbose]  # update the formulae and Homebrew itself
+    $ brew outdated             # what is outdated
+    $ brew upgrade [--verbose]  # upgrade everything
+    $ brew upgrade <formula>    # upgrade a specific formula
+    $ brew doctor  [--verbose]  # ensure brew is still clean and consistent
 
-* `Listing of all casks available via the Homebrew package manager <https://formulae.brew.sh/cask/>`_
+**************
+Homebrew Casks
+**************
+
+The ``--cask`` extension is built on top of `Homebrew <https://brew.sh/>`_ to simplify the
+installation and updating of applications such as `Google Chrome <https://www.google.com/chrome/>`_,
+`Firefox <https://www.mozilla.org/en-US/firefox/new/>`_, `Alfred <https://www.alfredapp.com/>`_,
+`Docker <https://www.docker.com/>`_ etc. (avoids manually downloading and installing the ``.dmg`` file)
+
+.. code-block:: console
+
+    $ brew search --cask firefox                 # search, incomplete names permitted
+    $ brew install --cask [--verbose] firefox    # install
+    $ brew uninstall --cask [--verbose] firefox  # uninstall
+
+
+* `Browsing all casks available via the Homebrew package manager <https://formulae.brew.sh/cask/>`_
