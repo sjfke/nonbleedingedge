@@ -19,11 +19,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'NonBleedingEdge'
-copyright = '2023, Geoffrey Collis'
+copyright = '2024, Geoffrey Collis'
 author = 'Geoffrey Collis (sjfke)'
 
 # The short X.Y version
-version = ''
+version = '2024-v1.0'
 # The full version, including alpha/beta/rc tags
 release = ''
 
