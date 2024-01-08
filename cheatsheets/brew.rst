@@ -1,20 +1,19 @@
 :github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/brew.rst
 
-
-***************
+###############
 Brew Cheatsheet
-***************
+###############
 
-
+************
 Useful Links
-============
+************
 
 * `Homebrew - The missing package manager for macOS (or Linux) <https://brew.sh/>`_
 * `Install Homebrew - Complete Guide <https://mac.install.guide/homebrew/>`_ by Daniel Kehoe
 
-
+**************
 Basic Commands
-==============
+**************
 
 .. code-block:: console
 
@@ -43,8 +42,9 @@ Basic Commands
 
 * `Homebrew Documentation <https://docs.brew.sh>`_
 
+*****************
 Homebrew Updating
-=================
+*****************
 
 * ``brew update`` updates `Homebrew` itself
 * ``brew upgrade`` updates the installed packages.
@@ -60,9 +60,9 @@ Typical workflow
     $ brew upgrade <formula>    # upgrade a specific formula
     $ brew doctor  [--verbose]  # ensure brew is still clean and consistent
 
-  
+**************
 Homebrew Casks
-==============
+**************
 
 The ``--cask`` extension is built on top of `Homebrew <https://brew.sh/>`_ to simplify the
 installation and updating of applications such as `Google Chrome <https://www.google.com/chrome/>`_,
