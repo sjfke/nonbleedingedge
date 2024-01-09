@@ -30,6 +30,12 @@ Basic Command Examples
     $ gpg --output geoffreycollis-hotmail-pub.gpg --armor --export geoffreycollis@hotmail.com
     $ gpg --output sjfke-pool-shark-hotmail-pub.gpg --armor --export 49220AC61317062D
 
+******************
+GPG key generation
+******************
+
+.. note:: Still to be written
+
 ********************
 Git GPG integrations
 ********************
