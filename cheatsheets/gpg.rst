@@ -19,7 +19,7 @@ Basic Command Examples
 
 .. code-block:: console
 
-    $ gpg --version                                   # gpg version
+    $ gpg --version                                   # gpg version - gpg (GnuPG) 2.4.0
     $ gpg --gen-key                                   # (interactive) key generation
     $ gpg --list-keys                                 # list public keys
     $ gpg --list-secret-keys                          # list private keys
@@ -29,6 +29,12 @@ Basic Command Examples
 
     $ gpg --output geoffreycollis-hotmail-pub.gpg --armor --export geoffreycollis@hotmail.com
     $ gpg --output sjfke-pool-shark-hotmail-pub.gpg --armor --export 49220AC61317062D
+
+******************
+GPG key generation
+******************
+
+.. note:: Still to be written
 
 ********************
 Git GPG integrations
