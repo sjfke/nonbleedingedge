@@ -20,7 +20,7 @@ Basic Command Examples
 .. code-block:: console
 
     $ gpg --version                                   # gpg version - gpg (GnuPG) 2.4.0
-    $ gpg --gen-key                                   # (interactive) key generation
+    $ gpg --generate-key                              # (interactive) key generation
     $ gpg --list-keys                                 # list public keys
     $ gpg --list-secret-keys                          # list private keys
     $ gpg --fingerprint                               # list all fingerprints
@@ -36,7 +36,7 @@ GPG key generation
 
 .. code-block:: console
 
-    $ gpg --key-gen
+    $ gpg --generate-key
     gpg (GnuPG) 2.4.3; Copyright (C) 2023 g10 Code GmbH
     This is free software: you are free to change and redistribute it.
     There is NO WARRANTY, to the extent permitted by law.
@@ -81,7 +81,8 @@ Git GPG integrations
 
 .. code-block:: console
 
-    $ gpg --list-secret-keys --keyid-format=long | select-string @('sec ', 'uid ')
+    $ gpg --list-secret-keys --keyid-format=long | grep -E "sec|uid"               # Unix
+    $ gpg --list-secret-keys --keyid-format=long | select-string @('sec ', 'uid ') # Windows
     sec   ed25519/09D708FAED728E4C 2022-07-27 [SC] [expires: 2024-07-27]
     uid                 [ultimate] Geoffrey Collis <geoffreycollis@hotmail.com>
     sec   ed25519/49220AC61317062D 2023-03-31 [SC] [expires: 2024-01-25]
@@ -102,6 +103,12 @@ Git GPG integrations
     $ git config --local user.email sjfke.pool.shark@hotmail.com
     $ git config --local user.signingkey 49220AC61317062D
     $ git config --local commit.gpgsign true
+
+    # Remove GPG signing
+    $ git config --global --unset user.signingkey
+    $ git config --global --unset commit.gpgsign
+    $ git config --local --unset user.signingkey
+    $ git config --local --unset commit.gpgsign
 
 For `GitHub <https://github.com>`_  add these keys to `SSH and GPG keys <https://github.com/settings/keys>`_
 
@@ -222,7 +229,7 @@ Deleting GPG keys
 Delete a public-only key
 ========================
 
-.. note:: Cannot orphan a *private* key, so this fails if there is a corresponding *private* key
+.. note:: This will fail if there is a corresponding *private* key
 
 .. code-block:: console
 
