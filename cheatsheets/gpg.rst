@@ -229,7 +229,7 @@ Deleting GPG keys
 Delete a public-only key
 ========================
 
-.. note:: This will fail if there is a corresponding *private* key
+.. note:: This will fail if the *public* key has a corresponding *private* key
 
 .. code-block:: console
 
