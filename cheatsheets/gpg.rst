@@ -226,8 +226,8 @@ Import the key ring
 Deleting GPG keys
 *****************
 
-Delete a public-only key
-========================
+Delete a public key
+===================
 
 .. note:: This will fail if the *public* key has a corresponding *private* key
 
@@ -236,8 +236,8 @@ Delete a public-only key
     $ gpg --list-keys                                      # list public keys
     $ gpg --delete-key sjfke.pool.shark@hotmail.com        # delete public key
 
-To delete a key-pair
-====================
+Delete a key-pair
+=================
 
 1. delete the `private` key acknowledging **all warnings** (**All FOUR** on Windows)
 2. delete the `public` key
