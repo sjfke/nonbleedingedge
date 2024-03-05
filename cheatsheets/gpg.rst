@@ -88,15 +88,15 @@ Git GPG integrations
     sec   ed25519/49220AC61317062D 2023-03-31 [SC] [expires: 2024-01-25]
     uid                 [ultimate] Sjfke <sjfke.pool.shark@hotmail.com>
 
+    # On Windows with 'Git for Windows' installed
+    $ where.exe gpg  # C:\Program Files (x86)\GnuPG\bin\gpg.exe
+    $ git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+
     # Global auto-sign commits
     $ git config --global --list
     $ git config --global user.email geoffreycollis@hotmail.com
     $ git config --global user.signingkey 09D708FAED728E4C
     $ git config --global commit.gpgsign true
-
-    # On Windows with 'Git for Windows' installed
-    $ where.exe gpg  # C:\Program Files (x86)\GnuPG\bin\gpg.exe
-    $ git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
 
     # Project (local) auto-sign commits
     $ git config --local --list
