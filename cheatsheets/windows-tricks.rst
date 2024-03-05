@@ -51,10 +51,27 @@ A further reboot maybe necessary, but ``Ubuntu 22.04.2 LTS`` or ``Ubuntu`` shoul
      * Management:     https://landscape.canonical.com
      * Support:        https://ubuntu.com/advantage
 
-    sjfke@WALLACE:/mnt/c/Users/geoff$
+    sjfke@wallace:~$                       # UNIX home directory, /home/sjfke
+    sjfke@wallace:~$ cd /mnt/c/Users/geoff # Change to Windows home directory
+    sjfk@eWALLACE:/mnt/c/Users/geoff$ ls   # Windows home directory
+
 
 Oh My Posh
 ==========
+
+.. note:: Laptop must be configured to run scripts, `PowerShell  Scripting Cheatsheet - Introduction <https://nonbleedingedge.com/cheatsheets/powershell-scripts.html#introduction>`_
+
+.. code-block::
+
+    $ Get-ExecutionPolicy -List
+
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser    RemoteSigned
+     LocalMachine       Undefined
 
 * `Oh My Posh Docs <https://ohmyposh.dev/docs>`_
 * `Nerd Fonts <https://www.nerdfonts.com/>`_
