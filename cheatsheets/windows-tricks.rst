@@ -134,6 +134,21 @@ Summary of the ``oh-my-posh`` commands
     $ oh-my-posh help        # help summary
     $ oh-my-posh help --help # help on the 'help' command
 
+Use ``Terminal Icons`` to add color and icons to ``oh-my-posh`` directory listings
+
+.. code-block:: console
+
+    $ Install-Module -Name Terminal-Icons -Repository PSGallery -Scope CurrentUser
+    $ Import-Module -Name Terminal-Icons
+
+    # Add to $PROFILE
+    $ Get-Content -Path $PROFILE
+    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnoster.omp.json" | Invoke-Expression
+    Import-Module -Name Terminal-Icons
+
+.. warning:: Exercise caution when installing from `PowerShell Gallery <https://www.powershellgallery.com/>`_
+
+Want more, see `My Ultimate PowerShell prompt with Oh My Posh and the Windows Terminal <https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal>`_
 
 Are Files Identical?
 ====================
@@ -149,9 +164,27 @@ Typical hashes being, ``SHA1`` default, ``MD5`` and ``SHA256``
     2236964ee87bff078491008b506044391975e2a6
     CertUtil: -hashfile command completed successfully.
 
-    $ certutil -hashfile file2.txt
-    SHA1 hash of file2.txt:
-    ff514214353904815cf96a71a1eddee860bd7bfe
+    $ certutil -hashfile file1.txt MD5
+    MD5 hash of file1.txt:
+    4ead6a1f65b3f97d86a093dfb87a8be2
+    CertUtil: -hashfile command completed successfully.
+
+    $ certutil -hashfile file1.txt SHA256
+    SHA256 hash of file1.txt:
+    dde3f13078dae2baf1d1a12ad3be20ce6cc0d370cbab0f579fca16dcc4791394
+    CertUtil: -hashfile command completed successfully.
+
+    $ certutil -hashfile .\Fred_Flintstone.png SHA256
+    SHA256 hash of .\Fred_Flintstone.png:
+    a4c8843ce4fb12654ccbe7aa14256c7e0243739d42874d42b531e74bc27ba32c
+    CertUtil: -hashfile command completed successfully.
+
+    $ sha256_hash = Invoke-Expression "certutil -hashfile .\Fred_Flintstone.png SHA256 | Select-Object -Index 1"
+    $ write($sha256_hash) # a4c8843ce4fb12654ccbe7aa14256c7e0243739d42874d42b531e74bc27ba32c
+
+    $ certutil -hashfile .\kustomize.exe SHA256
+    SHA256 hash of .\kustomize.exe:
+    2cd041a2e4d3533ffa6f5f03dc2d9e0828bae7931021cc5d11dfcd644bd8b4c0
     CertUtil: -hashfile command completed successfully.
 
 The `certutil <https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil>`_  utility
