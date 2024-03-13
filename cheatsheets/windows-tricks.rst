@@ -115,7 +115,8 @@ Oh My Posh
     $ . $PROFILE                                # If errors open a new PowerShell
 
 Update notifications via the ``Microsoft Store`` do not work, ``oh-my-posh`` update command line update alerts
-do not always trigger, so manually check on a regular basis.
+do not always trigger, so manually check on a regular basis, see
+`Oh My Posh upgrades <https://ohmyposh.dev/docs/installation/windows#update>`_
 
 .. code-block:: console
 
@@ -124,8 +125,6 @@ do not always trigger, so manually check on a regular basis.
     $ oh-my-posh version                               # Existing version
     $ winget upgrade JanDeDobbeleer.OhMyPosh -s winget # Upgrade
     $ oh-my-posh version                               # New version
-
-For more details, see `Oh My Posh upgrades <https://ohmyposh.dev/docs/installation/windows#update>`_
 
 Summary of the ``oh-my-posh`` commands
 
@@ -153,9 +152,10 @@ Want more, see `My Ultimate PowerShell prompt with Oh My Posh and the Windows Te
 Are Files Identical?
 ====================
 
-One novel approach is to compute a hash to see if they are the same.
+One novel approach is to use ``certutil`` to compute a hash to see if they are the same.
 
-Typical hashes being, ``SHA1`` default, ``MD5`` and ``SHA256``
+* ``certutil`` supports hash algorithms: ``MD2``, ``MD4``, ``MD5``, ``SHA1``, ``SHA256``, ``SHA384`` ``SHA512``
+* Commonly used hash algorithms being, ``SHA1`` default, ``MD5`` and ``SHA256``
 
 .. code-block:: console
 
@@ -174,12 +174,12 @@ Typical hashes being, ``SHA1`` default, ``MD5`` and ``SHA256``
     dde3f13078dae2baf1d1a12ad3be20ce6cc0d370cbab0f579fca16dcc4791394
     CertUtil: -hashfile command completed successfully.
 
-    $ certutil -hashfile .\Fred_Flintstone.png SHA256
-    SHA256 hash of .\Fred_Flintstone.png:
+    $ certutil -hashfile Fred_Flintstone.png SHA256
+    SHA256 hash of Fred_Flintstone.png:
     a4c8843ce4fb12654ccbe7aa14256c7e0243739d42874d42b531e74bc27ba32c
     CertUtil: -hashfile command completed successfully.
 
-    $ sha256_hash = Invoke-Expression "certutil -hashfile .\Fred_Flintstone.png SHA256 | Select-Object -Index 1"
+    $ sha256_hash = Invoke-Expression "certutil -hashfile Fred_Flintstone.png SHA256 | Select-Object -Index 1"
     $ write($sha256_hash) # a4c8843ce4fb12654ccbe7aa14256c7e0243739d42874d42b531e74bc27ba32c
 
     $ certutil -hashfile .\kustomize.exe SHA256
@@ -187,8 +187,8 @@ Typical hashes being, ``SHA1`` default, ``MD5`` and ``SHA256``
     2cd041a2e4d3533ffa6f5f03dc2d9e0828bae7931021cc5d11dfcd644bd8b4c0
     CertUtil: -hashfile command completed successfully.
 
-The `certutil <https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil>`_  utility
-is intended for manipulating certificates and so can do much more.
+Utility `certutil <https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/certutil>`_ is
+intended for manipulating certificates and so can do much more.
 
 Base 64 Encode/Decode
 =====================
