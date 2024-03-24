@@ -53,6 +53,12 @@ This site is written by an **aging techie** so obviously is **Non-Bleeding-Edge*
 
 .. toctree::
     :maxdepth: 1
+    :caption: Projects:
+
+    projects/docker-or-podman
+
+.. toctree::
+    :maxdepth: 1
     :caption: Outdated:
 
     outdated/git
