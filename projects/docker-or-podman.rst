@@ -16,16 +16,16 @@ Docker Desktop
 **************
 
 * Upsides
-    * polished bundled product, docker + desktop
+    * polished bundled product, ``Docker Desktop``
     * infrequent updates
     * leading-edge container (docker) technology
-    * 'compose' for multi-container
+    * ``docker compose`` for multi-container
 * Downsides
     * cannot run kubernetes pods
-    * kubernetes-style ``secrets`` are not supported (docker swarm only)
-    * kubernetes-style ``configMaps`` are not supported (docker swarm only)
-    * primarily windows, but available on Linux and MacOS (brew)
-    * slow start up
+    * kubernetes-style ``secrets`` are not supported, ``docker swarm`` *only*
+    * kubernetes-style ``configMaps`` are not supported, ``docker swarm`` *only*
+    * primarily Windows, but available on Linux and MacOS (brew)
+    * application slow to start and upgrade
 
 
 *************************
@@ -33,30 +33,37 @@ Podman and Podman Desktop
 *************************
 
 * Upsides
-    * supports containers and kubernetes manifests (pod, service, deployment)
-    * kubernetes-style ``secrets`` are supported
-    * kubernetes-style ``configMaps`` are supported
+    * supports containers and kubernetes manifests (*pod*, *service*, *deployment*)
+    * supports kubernetes-style ``secrets``
+    * supports kubernetes-style ``configMaps``
     * primarily Linux, but well supported on Windows and MacOS (brew)
-    * importing via ``docker compose`` is supported, not sure advanced features will work
-    * exporting of containers to ``pod``, ``deployment`` and ``service`` manifests
+    * supports importing basic ``docker compose`` using ``podman compose``
+    * exporting of *containers* to ``pod``, ``deployment`` and ``service`` manifests
 * Downsides
-    * separate products, podman, podman-desktop
-    * frequent updates, active community driven development
-    * compose supported natively on Linux and MacOS, Python script on windows
+    * separate products, ``podman``, ``podman-desktop``
+    * frequent updates, active community driven *development* and *support*
+    * ``podman-compose`` supported natively on Linux and MacOS, Python script on Windows
 
 ************
 Installation
 ************
 
-``Windows 11 Home edition`` does not support `Hyper-V <https://techcommunity.microsoft.com/t5/educator-developer-blog/step-by-step-enabling-hyper-v-for-use-on-windows-11/ba-p/3745905>`_ so `WSL <https://learn.microsoft.com/en-us/windows/wsl/about>`_ is used.
+``Windows 11 Home edition`` does not support `Hyper-V <https://techcommunity.microsoft.com/t5/educator-developer-blog/step-by-step-enabling-hyper-v-for-use-on-windows-11/ba-p/3745905>`_
+so `WSL <https://learn.microsoft.com/en-us/windows/wsl/about>`_ is used.
+
+WSL
+===
 
 Essentially this requires:
 
-* checking the platform is virtualization capable
-* enabling the additional windows features
-* installing WSL 2, typically from the `Microsoft Store <https://apps.microsoft.com/>`_
+1. checking the platform is virtualization capable
+2. enabling the additional Windows features
+3. installing WSL 2, typically from the `Microsoft Store <https://apps.microsoft.com/>`_
 
 Follow cheatsheet `WSL - Windows Subsystem for Linux <https://nonbleedingedge.com/cheatsheets/windows-tricks.html#wsl-windows-subsystem-for-linux>`_
+
+Docker Desktop
+==============
 
 Installing ``Docker Desktop`` is very simple follow,
 `Install Docker Desktop on Windows <https://docs.docker.com/desktop/install/windows-install/>`_
@@ -77,8 +84,10 @@ Installing ``Docker Desktop`` is very simple follow,
     docker-desktop
     AlmaLinuxOS-9
 
+Podman and Podman Desktop
+=========================
 
-For ``Podman`` you also need to install ``Podman Desktop``
+Both ``Podman`` and ``Podman Desktop`` need to be installed.
 
 * `Podman for Windows <https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md>`_
 * `Installing Podman Desktop and Podman on Windows <https://podman-desktop.io/docs/installation/windows-install>`_
@@ -96,7 +105,7 @@ For ``Podman`` you also need to install ``Podman Desktop``
 Testing
 *******
 
-An example from CodeJava, `JSP Servlet JDBC MySQL C.R.U.D Example <https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example>`_ was used the details of
+A modified example from `CodeJava <https://codejava.net/all-tutorials>`_, `JSP Servlet JDBC MySQL C.R.U.D Example <https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example>`_ was used the details of
 which are on GitHub `sjfke - tomcat containers <https://github.com/sjfke/tomcat-containers>`_
 
 Separate containers will be used for:
@@ -105,7 +114,12 @@ Separate containers will be used for:
 * ``bookstoredb`` the database
 * ``adminer`` the web interface used for database administration
 
-The containers can be deployed using
+Additionally
+
+* ``bookstoredb`` uses a ``volume`` for persistent storage, *jsp_bookstoredata*
+* all three containers use a dedicated ``network``, *tomcat-containers_jspnet*
+
+The containers are deployed using
 
 * `Docker <https://www.docker.com/>`_ and `docker compose <https://docs.docker.com/compose/compose-file/>`_
 * `Podman <https://podman.io/>`_ and the Python script `podman-compose <https://github.com/containers/podman-compose>`_
@@ -114,6 +128,44 @@ The containers can be deployed using
 This is aim to provide a multi container example that was integrated with an IDE, such as ``Eclipse``
 
 The `Build README <https://github.com/sjfke/tomcat-containers/blob/main/wharf/BUILD.md>`_ details the steps taken to build, test and modernize the ``Bookstore`` application.
+
+Typical Docker Session
+======================
+
+.. code-block:: pwsh-session
+
+    # Initial build and deploy
+    PS> mvn -f .\Bookstore\pom.xml clean package
+    PS> docker compose -f .\compose.yaml build bookstore
+    PS> docker compose -f .\compose.yaml up -d
+    PS> start "http://localhost:8080/Bookstore"
+
+    # Develop, build and test (wash repeat) cycle
+    PS> docker compose -f .\compose.yaml down bookstore
+    PS> mvn -f .\Bookstore\pom.xml clean package
+    PS> docker compose -f .\compose.yaml build bookstore
+    PS> docker compose -f .\compose.yaml up -d bookstore
+
+    # Clean-up
+    PS> docker compose -f .\compose.yaml down
+
+    # Helpful
+    PS> docker compose ps --all
+    PS> docker volume ls
+    PS> docker network ls
+    PS> docker image ls --all
+    PS> docker image ls | select-string bookstore   # get docker-compose 'name' (tomcat-containers-bookstore)
+    PS> docker image rm tomcat-containers-bookstore # delete specific image
+    PS> docker image prune                          # remove all 'dangling' images
+    PS> docker image prune --all                    # remove 'ALL' images
+
+Typical Podman Session
+======================
+
+.. note:: Content needs to be written
+
+README's
+========
 
 Supplementary README's are used to focus on specific topics and to avoid *writing an epic*.
 
@@ -138,10 +190,11 @@ If you want to work with Kubernetes for development, testing and deployment then
 Additionally commands like ``podman generate`` permit creating template Kubernetes manifest files from deployed containers,
 and ``podman compose`` (executable or Python script) allows your existing ``docker compose`` files to be used.
 
-Personally I found ``podman`` to be easy to use, the command syntax is a bit more consistent, and on the ``Windows 11 Home edition``
-laptops used for testing, ``podman`` was quicker to start, deploy and at running containers but noticeably slower when building containers.
+Personally I found ``podman`` to be easy to use, the command syntax is a bit more consistent. On the ``Windows 11 Home edition``
+laptops used for testing, ``podman`` was quicker to start, deploy and at running containers, especially using ``podman kube play`` but
+appeared slower when building containers where the container base image is not local and has to be ``pulled``
 
-Overall I prefer to work with ``Podman`` and ``Podman Desktop`` and avoid using ``Docker compose``
+Overall I prefer to work with ``Podman`` and ``Podman Desktop`` using ``podman kube play`` and avoid using ``Docker compose``
 
 **********
 References
