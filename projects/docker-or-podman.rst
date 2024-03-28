@@ -34,8 +34,8 @@ Podman and Podman Desktop
 
 * Upsides
     * supports containers and kubernetes manifests (*pod*, *service*, *deployment*)
-    * supports kubernetes-style ``secrets``
-    * supports kubernetes-style ``configMaps``
+    * supports kubernetes-style ``secrets``, ``podman secret``
+    * supports kubernetes-style ``configMaps``, ``podman kube play``
     * primarily Linux, but well supported on Windows and MacOS (brew)
     * supports importing basic ``docker compose`` using ``podman compose``
     * exporting of *containers* to ``pod``, ``deployment`` and ``service`` manifests
@@ -134,6 +134,9 @@ Typical Docker Session
 
 .. code-block:: pwsh-session
 
+    # Volumes
+    PS> docker volume create jsp_bookstoredata
+
     # Initial build and deploy
     PS> mvn -f .\Bookstore\pom.xml clean package
     PS> docker compose -f .\compose.yaml build bookstore
@@ -164,6 +167,41 @@ Typical Podman Session
 
 .. note:: Content needs to be written
 
+.. code-block:: pwsh-session
+
+    # Volumes, networks and secrets
+    PS> podman volume create jsp_bookstoredata
+    PS> podman network create jspnet
+    PS> podman kube play secrets.yaml
+    PS> podman secret create
+
+    # Initial build and deploy
+    PS> mvn -f .\Bookstore\pom.xml clean package
+    PS> podman play kube --start --network jspnet .\adminer-pod.yaml
+    PS> podman play kube --network jspnet .\bookstoredb-pod.yaml        # --start is default
+    PS> podman play kube --network jspnet .\bookstore-pod.yaml
+
+    # Develop, build and test (wash repeat) cycle
+    PS> podman play kube --down .\bookstore-pod.yaml                    # --network optional
+    PS> mvn -f .\Bookstore\pom.xml clean package
+    PS> podman build --tag localhost/bookstore --squash -f .\Dockerfile
+    PS> podman play kube --start --network jspnet .\bookstore-pod.yaml  # --start is default
+
+    # Clean-up
+    PS> podman play kube --down .\bookstore-pod.yaml
+    PS> podman play kube --down .\adminer-pod.yaml
+    PS> podman play kube --down .\bookstoredb-pod.yaml
+    PS> podman network delete jspnet
+    PS> podman volume delete jsp_bookstoredata
+
+    # Helpful
+    PS> podman volume ls
+    PS> podman network ls
+    PS> podman secret ls
+    PS> podman image prune                  # remove all 'dangling' images
+    PS> podman image rm localhost/bookstore # delete image by name
+    PS> podman image rm ba3f9f9af813        # delete image by id (alias: podman rmi)
+
 README's
 ========
 
@@ -183,14 +221,15 @@ Supplementary README's are used to focus on specific topics and to avoid *writin
 Recommendation
 **************
 
-If you want the latest, greatest, Docker technology, and are happy to work with ``docker compose`` for multi-container development, then Docker is the better choice.
-It lacks direct Kubernetes support, so forced to use ``Kind``, ``MiniKube``, ``Kubernetes`` and develop and maintain separate files.
+If you want the latest, greatest, Docker technology, and are happy to work with ``docker compose`` for multi-container
+development, then Docker is the better choice. It lacks direct Kubernetes support, so forced to use ``Kind``,
+``MiniKube``, ``Kubernetes`` and develop and maintain separate manifest files.
 
 If you want to work with Kubernetes for development, testing and deployment then ``Podman`` and ``Podman Desktop`` is the better choice.
 Additionally commands like ``podman generate`` permit creating template Kubernetes manifest files from deployed containers,
 and ``podman compose`` (executable or Python script) allows your existing ``docker compose`` files to be used.
 
-Personally I found ``podman`` to be easy to use, the command syntax is a bit more consistent. On the ``Windows 11 Home edition``
+Personally I found ``podman`` to be easier because the command syntax is a bit more consistent. On the ``Windows 11 Home edition``
 laptops used for testing, ``podman`` was quicker to start, deploy and at running containers, especially using ``podman kube play`` but
 appeared slower when building containers where the container base image is not local and has to be ``pulled``
 
@@ -204,13 +243,14 @@ References
 * `Docker Compose overview <https://docs.docker.com/compose/>`_
 * `Podman Commands <https://docs.podman.io/en/latest/Commands.html>`_
 * `Github podman-compose <https://github.com/containers/podman-compose>`_
-* `podman play kube <https://docs.podman.io/en/v4.2/markdown/podman-play-kube.1.html>`_
+* `podman kube play <https://docs.podman.io/en/latest/markdown/podman-kube-play.1.html>`_
 * `Podman Releases <https://github.com/containers/podman/releases>`_
 * `Openshift API index <https://docs.openshift.com/container-platform/4.15/rest_api/index.html>`_ - pod, deployment etc. specifications
 * `Kubernetes manifests <https://loft.sh/blog/kubernetes-manifests-everything-you-need-to-know/>`_
+* `Compose file version 3 reference <https://docs.docker.com/compose/compose-file/compose-file-v3/>`_
 * `Docker Swarm vs Kubernetes <https://phoenixnap.com/blog/kubernetes-vs-docker-swarm>`_
 * `Kubernetes Manifests <https://loft.sh/blog/kubernetes-manifests-everything-you-need-to-know/>`_
-* `Swarm mode overview <https://docs.docker.com/engine/swarm/>`_ - requires multiple hosts or VM's)
+* `Swarm mode overview <https://docs.docker.com/engine/swarm/>`_ - requires multiple hosts or VM's
 * `Docker SDK for Python <https://docker-py.readthedocs.io/en/stable/>`_
 * `Podman Python SDK <https://podman-py.readthedocs.io/en/latest/>`_
 
