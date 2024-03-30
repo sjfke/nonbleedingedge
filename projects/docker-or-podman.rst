@@ -91,7 +91,7 @@ Both ``Podman`` and ``Podman Desktop`` need to be installed.
 
 * `Podman for Windows <https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md>`_
 * `Installing Podman Desktop and Podman on Windows <https://podman-desktop.io/docs/installation/windows-install>`_
-* `Github - sjfke - Windows Platform Setup <https://github.com/sjfke/tomcat-containers/blob/main/wharf/PODMAN.md>`_
+* `Setup of Podman for tomcat-containers <https://github.com/sjfke/tomcat-containers/blob/main/wharf/PODMAN.md>`_
 
 .. code-block:: console
 
@@ -105,19 +105,19 @@ Both ``Podman`` and ``Podman Desktop`` need to be installed.
 Testing
 *******
 
-A modified example from `CodeJava <https://codejava.net/all-tutorials>`_, `JSP Servlet JDBC MySQL C.R.U.D Example <https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example>`_ was used the details of
+A modified example from `CodeJava <https://codejava.net/all-tutorials>`_, `JSP Servlet JDBC MySQL C.R.U.D Example <https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example>`_ is used the details of
 which are on GitHub `sjfke - tomcat containers <https://github.com/sjfke/tomcat-containers>`_
 
 Separate containers will be used for:
 
 * ``bookstore`` the tomcat application
-* ``bookstoredb`` the database
+* ``bookstoredb`` the MariaDB database
 * ``adminer`` the web interface used for database administration
 
 Additionally
 
-* ``bookstoredb`` uses a ``volume`` for persistent storage, *jsp_bookstoredata*
-* all three containers use a dedicated ``network``, *tomcat-containers_jspnet*
+* ``bookstoredb`` uses a ``volume`` for persistent storage, "*jsp_bookstoredata*"
+* all three containers use a dedicated ``network``, "*tomcat-containers_jspnet*"
 
 The containers are deployed using
 
@@ -172,8 +172,7 @@ Typical Podman Session
     # Volumes, networks and secrets
     PS> podman volume create jsp_bookstoredata
     PS> podman network create jspnet
-    PS> podman kube play secrets.yaml
-    PS> podman secret create
+    PS> podman kube play secrets.yaml (or podman secret create)
 
     # Initial build and deploy
     PS> mvn -f .\Bookstore\pom.xml clean package
@@ -224,13 +223,13 @@ In addition to main **README**, supplementary README's are used to focus on spec
 **************
 Recommendation
 **************
-
+yment*, such as `Kind <https://kind.sigs.k8s.io/>`_,
+`minikube <https://minikube.sigs.k8s.io/docs/>`_, or
 If you want the latest, greatest, Docker technology, and are happy to work with ``docker compose`` for multi-container
-development and testing, then Docker is the better choice. It lacks *Kubernetes-like* features, forcing the use of
-`Kind <https://kind.sigs.k8s.io/>`_, `minikube <https://minikube.sigs.k8s.io/docs/>`_, or
+*development* and *testing*, then Docker is the better choice. Given it lacks *Kubernetes-like* features, other
+technologies are needed to test production like *deplo
 `Red Hat Openshift Local <https://developers.redhat.com/products/openshift-local/overview>`_
-and developing and maintaining separate manifest files for ultimate deployment. Note
-``Docker-Desktop`` may need to be `licensed <https://docs.docker.com/subscription/desktop-license/>`_
+Also note ``Docker-Desktop`` may need to be `licensed <https://docs.docker.com/subscription/desktop-license/>`_
 
 To work directly with *Kubernetes-like* features for *development*, *testing* and *deployment* then the combination of
 `Podman <https://podman.io/>`_ and `Podman Desktop <https://podman-desktop.io/>`_ is the better choice.
