@@ -91,7 +91,7 @@ Both ``Podman`` and ``Podman Desktop`` need to be installed.
 
 * `Podman for Windows <https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md>`_
 * `Installing Podman Desktop and Podman on Windows <https://podman-desktop.io/docs/installation/windows-install>`_
-* `Github - sjfke - Windows Platform Setup <https://github.com/sjfke/tomcat-containers/blob/main/wharf/PODMAN.md>`_
+* `Setup of Podman for tomcat-containers <https://github.com/sjfke/tomcat-containers/blob/main/wharf/PODMAN.md>`_
 
 .. code-block:: console
 
@@ -105,19 +105,19 @@ Both ``Podman`` and ``Podman Desktop`` need to be installed.
 Testing
 *******
 
-A modified example from `CodeJava <https://codejava.net/all-tutorials>`_, `JSP Servlet JDBC MySQL C.R.U.D Example <https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example>`_ was used the details of
+A modified example from `CodeJava <https://codejava.net/all-tutorials>`_, `JSP Servlet JDBC MySQL C.R.U.D Example <https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example>`_ is used the details of
 which are on GitHub `sjfke - tomcat containers <https://github.com/sjfke/tomcat-containers>`_
 
 Separate containers will be used for:
 
 * ``bookstore`` the tomcat application
-* ``bookstoredb`` the database
+* ``bookstoredb`` the MariaDB database
 * ``adminer`` the web interface used for database administration
 
 Additionally
 
-* ``bookstoredb`` uses a ``volume`` for persistent storage, *jsp_bookstoredata*
-* all three containers use a dedicated ``network``, *tomcat-containers_jspnet*
+* ``bookstoredb`` uses a ``volume`` for persistent storage, "*jsp_bookstoredata*"
+* all three containers use a dedicated ``network``, "*tomcat-containers_jspnet*"
 
 The containers are deployed using
 
@@ -151,6 +151,8 @@ Typical Docker Session
 
     # Clean-up
     PS> docker compose -f .\compose.yaml down
+    PS> docker volume rm jsp_bookstoredata
+
 
     # Helpful
     PS> docker compose ps --all
@@ -165,34 +167,32 @@ Typical Docker Session
 Typical Podman Session
 ======================
 
-.. note:: Content needs to be written
-
 .. code-block:: pwsh-session
 
     # Volumes, networks and secrets
     PS> podman volume create jsp_bookstoredata
     PS> podman network create jspnet
-    PS> podman kube play secrets.yaml
-    PS> podman secret create
+    PS> podman kube play secrets.yaml (or podman secret create)
 
     # Initial build and deploy
     PS> mvn -f .\Bookstore\pom.xml clean package
     PS> podman play kube --start --network jspnet .\adminer-pod.yaml
     PS> podman play kube --network jspnet .\bookstoredb-pod.yaml        # --start is default
     PS> podman play kube --network jspnet .\bookstore-pod.yaml
+    PS> start "http://localhost:8080/Bookstore"
 
     # Develop, build and test (wash repeat) cycle
     PS> podman play kube --down .\bookstore-pod.yaml                    # --network optional
     PS> mvn -f .\Bookstore\pom.xml clean package
     PS> podman build --tag localhost/bookstore --squash -f .\Dockerfile
-    PS> podman play kube --start --network jspnet .\bookstore-pod.yaml  # --start is default
+    PS> podman play kube --network jspnet .\bookstore-pod.yaml
 
     # Clean-up
     PS> podman play kube --down .\bookstore-pod.yaml
     PS> podman play kube --down .\adminer-pod.yaml
     PS> podman play kube --down .\bookstoredb-pod.yaml
-    PS> podman network delete jspnet
-    PS> podman volume delete jsp_bookstoredata
+    PS> podman network rm jspnet
+    PS> podman volume rm jsp_bookstoredata
 
     # Helpful
     PS> podman volume ls
@@ -202,38 +202,52 @@ Typical Podman Session
     PS> podman image rm localhost/bookstore # delete image by name
     PS> podman image rm ba3f9f9af813        # delete image by id (alias: podman rmi)
 
-README's
-========
+Github tomcat-containers
+========================
 
-Supplementary README's are used to focus on specific topics and to avoid *writing an epic*.
+The `tomcat-containers Github repository <https://github.com/sjfke/tomcat-containers>`_ contains all the details of
+the work done for this review.
+
+In addition to main **README**, supplementary README's are used to focus on specific topics and to avoid "**writing an epic**"
 
 * `BUILD.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/BUILD.md>`_ - Setup and build within Eclipse, plus corrections to the ``CodeJava Tutorial``
-* `CONTAINERS.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/CONTAINERS.md>`_ - How to build and deploy ``Bookstore`` container image to Quay.IO and DockerHub.
-* `DOCKER.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/DOCKER.md>`_ - How to build and test ``Bookstore`` using Docker, Docker Compose
+* `CONTAINERS.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/CONTAINERS.md>`_ - Build and deploy ``Bookstore`` container to `Quay.IO <https://quay.io/>`_ and `dockerhub <https://hub.docker.com/>`_
+* `DOCKER.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/DOCKER.md>`_ - Build and test ``Bookstore`` using ``docker``, ``docker compose``
 * `ECLIPSE.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/ECLIPSE.md>`_ - Eclipse setup
 * `MARIADB.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/MARIADB.md>`_ - Install ``MariaDB`` container
 * `MAVEN.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/MAVEN.md>`_ - Installing ``maven`` and configuring the version included with ``Eclipse``
-* `TOMCAT.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/TOMCAT.md>`_ - How to setup standalone Tomcat to test ``Bookstore`` maven builds
-* `PODMAN-KUBE.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/PODMAN-KUBE.md>`_ - How to create and use ``podman play kube`` to test ``Bookstore``
-* `PODMAN.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/PODMAN.md>`_ - How to test ``Bookstore`` using ``podman kube play`` and ``podman-compose.py``
+* `TOMCAT.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/TOMCAT.md>`_ - Setup standalone Tomcat to test ``Bookstore`` maven builds
+* `PODMAN-KUBE.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/PODMAN-KUBE.md>`_ - Create and use ``podman play kube`` to test ``Bookstore``
+* `PODMAN.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/PODMAN.md>`_ - Test ``Bookstore`` using ``podman kube play`` and ``podman-compose.py``
 
 **************
 Recommendation
 **************
-
+yment*, such as `Kind <https://kind.sigs.k8s.io/>`_,
+`minikube <https://minikube.sigs.k8s.io/docs/>`_, or
 If you want the latest, greatest, Docker technology, and are happy to work with ``docker compose`` for multi-container
-development, then Docker is the better choice. It lacks direct Kubernetes support, so forced to use ``Kind``,
-``MiniKube``, ``Kubernetes`` and develop and maintain separate manifest files.
+*development* and *testing*, then Docker is the better choice. Given it lacks *Kubernetes-like* features, other
+technologies are needed to test production like *deplo
+`Red Hat Openshift Local <https://developers.redhat.com/products/openshift-local/overview>`_
+Also note ``Docker-Desktop`` may need to be `licensed <https://docs.docker.com/subscription/desktop-license/>`_
 
-If you want to work with Kubernetes for development, testing and deployment then ``Podman`` and ``Podman Desktop`` is the better choice.
-Additionally commands like ``podman generate`` permit creating template Kubernetes manifest files from deployed containers,
-and ``podman compose`` (executable or Python script) allows your existing ``docker compose`` files to be used.
+To work directly with *Kubernetes-like* features for *development*, *testing* and *deployment* then the combination of
+`Podman <https://podman.io/>`_ and `Podman Desktop <https://podman-desktop.io/>`_ is the better choice.
+Additionally commands like ``podman generate`` permit creating Kubernetes manifest files from running containers, and
+``podman compose`` (executable or Python script) allows your existing ``docker compose`` files to be used.
 
-Personally I found ``podman`` to be easier because the command syntax is a bit more consistent. On the ``Windows 11 Home edition``
-laptops used for testing, ``podman`` was quicker to start, deploy and at running containers, especially using ``podman kube play`` but
-appeared slower when building containers where the container base image is not local and has to be ``pulled``
+On the ``Windows 11 Home edition`` laptops used for testing, ``podman`` was quicker to start, deploy and at running
+containers, especially using ``podman kube play`` but appeared slower at building when the base container image was
+not local and had to be pulled.
 
-Overall I prefer to work with ``Podman`` and ``Podman Desktop`` using ``podman kube play`` and avoid using ``Docker compose``
+Updates to ``Podman`` and ``Podman Desktop`` are much quicker to apply, but with ``podman`` in particular need to be done
+more frequently to be on the latest stable release.
+
+Personally I found ``podman`` to be a bit easier to learn and use because the command syntax is slightly more
+consistent, and ``Podman Desktop`` is more than sufficient but is *less polished* than ``Docker-Desktop``.
+
+Overall I prefer to work with ``Podman`` and ``Podman Desktop`` using ``podman kube play`` so every phase of
+*development*, *testing* and *deployment* is using *Kubernetes-like* features.
 
 **********
 References
