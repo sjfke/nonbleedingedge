@@ -41,7 +41,7 @@ Podman and Podman Desktop
     * exporting of *containers* to ``pod``, ``deployment`` and ``service`` manifests
 * Downsides
     * separate products, ``podman``, ``podman-desktop``
-    * frequent updates, active community driven *development* and *support*
+    * frequent updates, `active community <https://github.com/containers/>`_ driven *development* and *support*
     * ``podman-compose`` supported natively on Linux and MacOS, Python script on Windows
 
 ************
@@ -87,7 +87,7 @@ Installing ``Docker Desktop`` is very simple follow,
 Podman and Podman Desktop
 =========================
 
-Both ``Podman`` and ``Podman Desktop`` need to be installed.
+To be equivalent to ``Docker Desktop`` both ``Podman`` and ``Podman Desktop`` need to be installed
 
 * `Podman for Windows <https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md>`_
 * `Installing Podman Desktop and Podman on Windows <https://podman-desktop.io/docs/installation/windows-install>`_
@@ -108,13 +108,13 @@ Testing
 A modified example from `CodeJava <https://codejava.net/all-tutorials>`_, `JSP Servlet JDBC MySQL C.R.U.D Example <https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example>`_ is used the details of
 which are on GitHub `sjfke - tomcat containers <https://github.com/sjfke/tomcat-containers>`_
 
-Separate containers will be used for:
+Separate containers are used for:
 
 * ``bookstore`` the tomcat application
 * ``bookstoredb`` the MariaDB database
 * ``adminer`` the web interface used for database administration
 
-Additionally
+and additionally
 
 * ``bookstoredb`` uses a ``volume`` for persistent storage, "*jsp_bookstoredata*"
 * all three containers use a dedicated ``network``, "*tomcat-containers_jspnet*"
@@ -125,9 +125,10 @@ The containers are deployed using
 * `Podman <https://podman.io/>`_ and the Python script `podman-compose <https://github.com/containers/podman-compose>`_
 * `Kubernetes Pods <https://kubernetes.io/docs/concepts/workloads/pods/>`_ with `podman kube play <https://docs.podman.io/en/latest/markdown/podman-kube-play.1.html>`_
 
-This is aim to provide a multi container example that was integrated with an IDE, such as ``Eclipse``
-
-The `Build README <https://github.com/sjfke/tomcat-containers/blob/main/wharf/BUILD.md>`_ details the steps taken to build, test and modernize the ``Bookstore`` application.
+Like the `CodeJava example <https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example>`_, the
+development uses `Eclipse <https://www.eclipse.org/downloads/>`_ and the
+`Build README <https://github.com/sjfke/tomcat-containers/blob/main/wharf/BUILD.md>`_ details the steps taken to build,
+test and modernize the ``Bookstore`` application.
 
 Typical Docker Session
 ======================
@@ -202,8 +203,8 @@ Typical Podman Session
     PS> podman image rm localhost/bookstore # delete image by name
     PS> podman image rm ba3f9f9af813        # delete image by id (alias: podman rmi)
 
-Github tomcat-containers
-========================
+Github ``tomcat-containers`` Example
+====================================
 
 The `tomcat-containers Github repository <https://github.com/sjfke/tomcat-containers>`_ contains all the details of
 the work done for this review.
@@ -223,31 +224,35 @@ In addition to main **README**, supplementary README's are used to focus on spec
 **************
 Recommendation
 **************
-yment*, such as `Kind <https://kind.sigs.k8s.io/>`_,
-`minikube <https://minikube.sigs.k8s.io/docs/>`_, or
+
 If you want the latest, greatest, Docker technology, and are happy to work with ``docker compose`` for multi-container
-*development* and *testing*, then Docker is the better choice. Given it lacks *Kubernetes-like* features, other
-technologies are needed to test production like *deplo
+*development* and *testing*, then ``Docker Desktop`` is the better choice. However, it lacks *Kubernetes-like* features,
+so other technologies are needed to test *deployments*, such as `Kind <https://kind.sigs.k8s.io/>`_,
+`minikube <https://minikube.sigs.k8s.io/docs/>`_, or
 `Red Hat Openshift Local <https://developers.redhat.com/products/openshift-local/overview>`_
 Also note ``Docker-Desktop`` may need to be `licensed <https://docs.docker.com/subscription/desktop-license/>`_
 
 To work directly with *Kubernetes-like* features for *development*, *testing* and *deployment* then the combination of
 `Podman <https://podman.io/>`_ and `Podman Desktop <https://podman-desktop.io/>`_ is the better choice.
-Additionally commands like ``podman generate`` permit creating Kubernetes manifest files from running containers, and
+Commands like ``podman generate`` permit creating Kubernetes manifest files from running containers, and
 ``podman compose`` (executable or Python script) allows your existing ``docker compose`` files to be used.
+However, `active community <https://github.com/containers/>`_ development and support means frequent updates
+may be needed to be latest stable release
 
 On the ``Windows 11 Home edition`` laptops used for testing, ``podman`` was quicker to start, deploy and at running
 containers, especially using ``podman kube play`` but appeared slower at building when the base container image was
-not local and had to be pulled.
+not cached locally and had to be pulled.
 
 Updates to ``Podman`` and ``Podman Desktop`` are much quicker to apply, but with ``podman`` in particular need to be done
 more frequently to be on the latest stable release.
 
 Personally I found ``podman`` to be a bit easier to learn and use because the command syntax is slightly more
-consistent, and ``Podman Desktop`` is more than sufficient but is *less polished* than ``Docker-Desktop``.
+consistent than ``docker``, and ``Podman Desktop`` while *less polished* than ``Docker-Desktop`` is more than adequate
 
-Overall I prefer to work with ``Podman`` and ``Podman Desktop`` using ``podman kube play`` so every phase of
-*development*, *testing* and *deployment* is using *Kubernetes-like* features.
+Based on this investigation I now prefer to avoid ``docker compose`` and to work with ``Podman`` and ``Podman Desktop``
+using ``podman kube play``. This way every phase of *development*, *testing* and *deployment* is using
+*Kubernetes-like* features, and ``podman secret`` can be used to avoid **hard-coding passwords** in
+*configuration files*, which tend to creep into your Git repositories! |:wink:|
 
 **********
 References
