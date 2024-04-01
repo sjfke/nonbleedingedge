@@ -92,23 +92,27 @@ Git GPG integrations
     $ where.exe gpg  # C:\Program Files (x86)\GnuPG\bin\gpg.exe
     $ git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
 
-    # Global auto-sign commits
+    # Global auto-sign commits and tags
     $ git config --global --list
     $ git config --global user.email geoffreycollis@hotmail.com
-    $ git config --global user.signingkey 09D708FAED728E4C
-    $ git config --global commit.gpgsign true
+    $ git config --global user.signingKey 09D708FAED728E4C
+    $ git config --global commit.gpgSign true
+    $ git config --global tag.gpgSign true
 
-    # Project (local) auto-sign commits
+    # Project (local) auto-sign commits and tags
     $ git config --local --list
     $ git config --local user.email sjfke.pool.shark@hotmail.com
-    $ git config --local user.signingkey 49220AC61317062D
-    $ git config --local commit.gpgsign true
+    $ git config --local user.signingKey 49220AC61317062D
+    $ git config --local commit.gpgSign true
+    $ git config --local tag.gpgSign true
 
     # Remove GPG signing
-    $ git config --global --unset user.signingkey
-    $ git config --global --unset commit.gpgsign
-    $ git config --local --unset user.signingkey
-    $ git config --local --unset commit.gpgsign
+    $ git config --global --unset user.signingKey
+    $ git config --global --unset commit.gpgSign
+    $ git config --global --unset tag.gpgSign
+    $ git config --local --unset user.signingKey
+    $ git config --local --unset commit.gpgSign
+    $ git config --local --unset tag.gpgSign
 
 For `GitHub <https://github.com>`_  add these keys to `SSH and GPG keys <https://github.com/settings/keys>`_
 
