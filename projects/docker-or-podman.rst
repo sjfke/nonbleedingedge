@@ -4,7 +4,7 @@
 Docker or Podman
 ================
 
-* Which is better for containerization development
+* Which is better for containerization development?
 * Comparison using Windows 11 Home edition (no Hyper-V) both WSLv2 based
 
 #######
@@ -209,7 +209,7 @@ Github ``tomcat-containers`` Example
 The `tomcat-containers Github repository <https://github.com/sjfke/tomcat-containers>`_ contains all the details of
 the work done for this review.
 
-In addition to main **README**, supplementary README's are used to focus on specific topics and to avoid "**writing an epic**"
+In addition to main **README**, supplementary README's are used to focus on specific topics
 
 * `BUILD.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/BUILD.md>`_ - Setup and build within Eclipse, plus corrections to the ``CodeJava Tutorial``
 * `CONTAINERS.md <https://github.com/sjfke/tomcat-containers/blob/main/wharf/CONTAINERS.md>`_ - Build and deploy ``Bookstore`` container to `Quay.IO <https://quay.io/>`_ and `dockerhub <https://hub.docker.com/>`_
