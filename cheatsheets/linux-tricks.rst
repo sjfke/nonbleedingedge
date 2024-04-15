@@ -259,6 +259,33 @@ JSON File Tricks
 * `jq, xq and yq - Handy tools for the command line <https://blog.lazy-evaluation.net/posts/linux/jq-xq-yq.html>`_
 * `TOML [Tom's Obvious Minimal Language] (.INI like) <https://toml.io/en/>`_
 
+Email Checking
+==============
+
+Shameless repost of the LinkedIn post by `Jan Schaumann <https://www.netmeister.org/>`_
+
+.. code-block:: console
+
+    $ sudo dnf install bind-utils                            # Install dig, if necessary
+    $ dig +short MX yahoo.com                                # DNS MX records
+    $ dig +short TXT yahoo.com | grep spf                    # domain spoofing check
+    $ dig +short TXT selector._domainkey.yahoo.com           # DKIM email authentication method
+    $ dig +short TXT _dmarc.yahoo.com                        # DMARC (spf and/or DKIM)
+    $ dig +short TXT _mta-sts.yahoo.com                      # MTA-STS (is TLS enforced)
+    $ curl https://mta-sts.yahoo.com/.well-known/mta-sts.txt # MTA-STS (is TLS enforced)
+    $ dig +short TXT _smtp._tls.yahoo.com                    # SMTP TLS Reporting
+    $ dig +short TLSA _port._tcp.yahoo.com                   # DANE check (no results?)
+    $ dig +short TXT default._bimi.yahoo.com                 # BIMI check (no results?)
+
+To help understand these commands
+
+* `Sender Policy Framework <http://www.open-spf.org/>`_
+* `DomainKeys Identified Mail <https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail>`_
+* `Domain-based Message Authentication, Reporting and Conformance (DMARC) <https://en.wikipedia.org/wiki/DMARC>`_
+* `What is MTA-STS, and Why Do You Need It? <https://easydmarc.com/blog/what-is-mta-sts-and-why-do-you-need-it/>`_
+* `What is SMTP TLS Reporting? <https://dmarcadvisor.com/smtp-tls-reporting/>`_
+* `How DANE Improves the Security of Email (SMTP) Communication <https://dmarcadvisor.com/dane-for-smtp/>`_
+* `BIMI an emerging technology to display a brand’s logo next to authenticated emails. <https://www.smtp.com/blog/technical/bimi-what-it-means-for-marketers-and-businesses/>`_
 
 Gnome Desktop Custom Launcher
 =============================
