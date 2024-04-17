@@ -57,24 +57,25 @@ Fedora package installer `DNF <https://www.rootusers.com/25-useful-dnf-command-e
 
 .. code-block:: console
 
-	$ sudo dnf install httpd                            # install httpd
-	$ sudo dnf install httpd-manual -y                  # assume yes
-	$ sudo dnf dnf check-update                         # check for available updates
-	$ sudo dnf update                                   # updateb installed packages
-	$ sudo dnf install unbound-1.4.20-28.el7.x86_64.rpm # install local package
-	$ sudo dnf remove httpd                             # remove package
-	$ sudo dnf reinstall httpd -y                       # reinstall package
-	$ sudo dnf search php                               # search for a package
-	$ sudo dnf provides /etc/httpd/conf/httpd.conf      # which package provides the file
-	$ sudo dnf info httpd                               # 
-	$ sudo dnf repoquery --list httpd                   # list the files installed
-	$ sudo dnf history                                  # installation history
-	$ sudo dnf history info 13                          # what did install 13 do
-	$ sudo dnf history undo 13 -y                       # undo install 13
-	$ sudo dnf history redo 13 -y
-	$ sudo dnf list installed
-	$ sudo dnf grouplist                                # list which groups are available, installed, not-installed.
-	$ sudo dnf groupinfo "Web Server"                   # what is installed by this group
+    $ sudo dnf install httpd                            # install httpd
+    $ sudo dnf install httpd-manual -y                  # assume yes
+    $ sudo dnf dnf check-update                         # check for available updates
+    $ sudo dnf update                                   # update installed packages
+    $ sudo dnf install unbound-1.4.20-28.el7.x86_64.rpm # install local package
+    $ sudo dnf remove httpd                             # remove package
+    $ sudo dnf reinstall httpd -y                       # reinstall package
+    $ sudo dnf search php                               # search for a package
+    $ sudo dnf provides /etc/httpd/conf/httpd.conf      # which package provides the file
+    $ sudo dnf provides httpd                           # which package provides 'http'
+    $ sudo dnf info httpd                               # package info
+    $ sudo dnf repoquery --list httpd                   # list the files installed by package
+    $ sudo dnf history                                  # installation history
+    $ sudo dnf history info 13                          # what did install 13 do
+    $ sudo dnf history undo 13 -y                       # undo install 13
+    $ sudo dnf history redo 13 -y                       # redo install 13
+    $ sudo dnf list installed                           # list installed packages
+    $ sudo dnf grouplist                                # list which groups are available, installed, not-installed.
+    $ sudo dnf groupinfo "System Tools"                 # what is installed by this group
 
 Terminal Pagers
 ===============
@@ -214,44 +215,137 @@ JSON File Tricks
     $ echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' | jq '.' # pretty-print
     $ curl http://api.open-notify.org/iss-now.json | jq '.' # pretty-print HTTP response
 
-    # Simple JSON file example
-    $ jq '.' fruit.json
-    {
-        "fruit": {
-        "name": "apple",
-        "color": "green",
-        "price": 1.2
-        }
-    }
-    $ jq '.' fruit.json                         # pretty-print file
-    $ jq '.fruit.color' fruit.json              # extract colors
-    $ jq '.fruit.color,.fruit.price' fruit.json # extract colors and price
-    $ jq '.fruit | keys' fruit.json             # keys
+Simple JSON file example
+------------------------
 
-    # JSON array example
-    $ jq '.' fruits.json
+.. code-block:: console
+
+    $ cat flintstones.json
+    {
+        "family": "flintstones",
+        "members": [
+            { "Name": "Fred", "Age": 35, "Gender": "male" },
+            { "Name": "Wilma", "Age": 25, "Gender": "female" },
+            { "Name": "Pebbles", "Age": 1, "Gender": "female" },
+            { "Name": "Dino", "Age": 5, "Gender": "male" }
+        ]
+    }
+
+Pretty print (in color)
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ jq '.' flintstones.json
+    {
+      "family": "flintstones",
+      "members": [
+        {
+          "Name": "Fred",
+          "Age": 35,
+          "Gender": "male"
+        },
+        {
+          "Name": "Wilma",
+          "Age": 25,
+          "Gender": "female"
+        },
+        {
+          "Name": "Pebbles",
+          "Age": 1,
+          "Gender": "female"
+        },
+        {
+          "Name": "Dino",
+          "Age": 5,
+          "Gender": "male"
+        }
+      ]
+    }
+    $ jq '.members' flintstones.json
     [
       {
-        "name": "apple",
-        "color": "green",
-        "price": 1.2
+        "Name": "Fred",
+        "Age": 35,
+        "Gender": "male"
       },
       {
-        "name": "banana",
-        "color": "yellow",
-        "price": 0.5
+        "Name": "Wilma",
+        "Age": 25,
+        "Gender": "female"
       },
       {
-        "name": "kiwi",
-        "color": "green",
-        "price": 1.25
+        "Name": "Pebbles",
+        "Age": 1,
+        "Gender": "female"
+      },
+      {
+        "Name": "Dino",
+        "Age": 5,
+        "Gender": "male"
       }
     ]
 
-    $ jq '.' fruits.json           # pretty-print
-    $ jq '.[] | .name' fruits.json # list all fruits in the array
-    $ jq '.[].name' fruits.json    # list all fruits in the array
-    $ jq '.[1]' fruits.json        # array element 1
+Filtering
+^^^^^^^^^
+
+.. code-block:: console
+
+    $ jq '.members[].Name' flintstones.json
+    "Fred"
+    "Wilma"
+    "Pebbles"
+    "Dino"
+    $ jq '.members[] | .Name' flintstones.json
+    "Fred"
+    "Wilma"
+    "Pebbles"
+    "Dino"
+
+    $ jq '.members[].Name,.members[].Age' flintstones.json
+    "Fred"
+    "Wilma"
+    "Pebbles"
+    "Dino"
+    35
+    25
+    1
+    5
+    $ jq '.members[] | .Name,.Age' flintstones.json
+    "Fred"
+    35
+    "Wilma"
+    25
+    "Pebbles"
+    1
+    "Dino"
+    5
+
+    $ jq '.members[1].Name,.members[1].Age' flintstones.json
+    "Wilma"
+    25
+
+Keys and lengths
+^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ jq '. | keys' flintstones.json
+    [
+      "family",
+      "members"
+    ]
+    $ jq '.members[0] | keys' flintstones.json
+    [
+      "Age",
+      "Gender",
+      "Name"
+    ]
+    $ jq '. | length' flintstones.json                        # 2
+    $ jq '.members | length' flintstones.json                 # 4
+    $ jq '.members[] | length' flintstones.json               # 3 3 3 3
+    $ jq '.members[].Name | length' flintstones.json          # 4 5 7 4
+
 
 * `Guide to Linux jq Command for JSON Processing <https://www.baeldung.com/linux/jq-command-json>`_
 * `Querying JSON and XML with jq and xq <https://www.ashbyhq.com/blog/engineering/jq-and-yq>`_
@@ -262,7 +356,7 @@ JSON File Tricks
 Email Checking
 ==============
 
-Shameless repost of the LinkedIn post by `Jan Schaumann <https://www.netmeister.org/>`_
+Shameless copy of the LinkedIn post by `Jan Schaumann <https://www.netmeister.org/>`_
 
 .. code-block:: console
 
@@ -510,6 +604,8 @@ For example, if ``~/.bashrc`` is tracked by ``rcm``, a long listing would look l
 
 Fedora 36 Live CD install
 =========================
+
+.. note:: Fedora 37, 38 and 39 `Install media don’t boot in UEFI mode on certain motherboards <https://discussion.fedoraproject.org/t/install-media-dont-boot-in-uefi-mode-on-certain-motherboards/71376>`_
 
 Of course backup everything you want to keep because you are going to reformat the HDD or SSD!
 
