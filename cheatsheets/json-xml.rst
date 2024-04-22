@@ -46,48 +46,143 @@ Basic Usage
       "timestamp": 1700410500
     }
 
-Examples
-========
-
-Simple Example
---------------
+JSON Example
+============
 
 .. code-block:: console
 
-    $ echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' > fruit.json
-    $ jq '.' fruit.json                         # pretty-print; see 'Basic Usage'
-    $ jq '.fruit.color' fruit.json              # extract color; "green"
-    $ jq '.fruit.color,.fruit.price' fruit.json # extract colors and price; "green", 1.20
-    $ jq '.fruit | .color,.price' fruit.json    # extract colors and price, alternative syntax
-    $ jq '.fruit | keys' fruit.json             # extract keys; "color", "name", "price"
-
-Array Example
--------------
-
-.. code-block:: console
-
-    $ echo '{"fruit":[{"name":"apple","color":"green","price":1.20},{"name":"banana","color":"yellow","price":0.60}]}' > fruits.json
-    $ jq '.' fruits.json
+    $ cat flintstones.json
     {
-      "fruit": [
+        "family": "flintstones",
+        "members": [
+            { "Name": "Fred", "Age": 35, "Gender": "male" },
+            { "Name": "Wilma", "Age": 25, "Gender": "female" },
+            { "Name": "Pebbles", "Age": 1, "Gender": "female" },
+            { "Name": "Dino", "Age": 5, "Gender": "male" }
+        ]
+    }
+
+Pretty print (in color)
+-----------------------
+
+.. code-block:: console
+
+    $ jq '.' flintstones.json
+    {
+      "family": "flintstones",
+      "members": [
         {
-          "name": "apple",
-          "color": "green",
-          "price": 1.20
+          "Name": "Fred",
+          "Age": 35,
+          "Gender": "male"
         },
         {
-          "name": "banana",
-          "color": "yellow",
-          "price": 0.60
+          "Name": "Wilma",
+          "Age": 25,
+          "Gender": "female"
+        },
+        {
+          "Name": "Pebbles",
+          "Age": 1,
+          "Gender": "female"
+        },
+        {
+          "Name": "Dino",
+          "Age": 5,
+          "Gender": "male"
         }
       ]
     }
-    $ jq '.fruit[].name' fruits.json                 # extract names; "apple", "banana"
-    $ jq '.fruit[].color,.fruit[].price' fruits.json # extract color/price; "green", "yellow", 1.20, 0.60
-    $ jq '.fruit[] | .color,.price' fruits.json      # extract color/price; "green", 1.20, "yellow", 0.60
-    $ jq '.fruit[1] | .color,.price' fruits.json     # extract color/price; "yellow", 0.60
-    $ jq '.fruit | keys' fruits.json                 # extract keys; [0,1]
-    $ jq '.fruit[] | keys' fruits.json               # extract keys; ["color", "name","price"]["color","name","price"]
+    $ jq '.members' flintstones.json
+    [
+      {
+        "Name": "Fred",
+        "Age": 35,
+        "Gender": "male"
+      },
+      {
+        "Name": "Wilma",
+        "Age": 25,
+        "Gender": "female"
+      },
+      {
+        "Name": "Pebbles",
+        "Age": 1,
+        "Gender": "female"
+      },
+      {
+        "Name": "Dino",
+        "Age": 5,
+        "Gender": "male"
+      }
+    ]
+
+Filtering
+---------
+
+.. code-block:: console
+
+    $ jq '.members[].Name' flintstones.json
+    "Fred"
+    "Wilma"
+    "Pebbles"
+    "Dino"
+    $ jq '.members[] | .Name' flintstones.json
+    "Fred"
+    "Wilma"
+    "Pebbles"
+    "Dino"
+
+    $ jq '.members[].Name,.members[].Age' flintstones.json
+    "Fred"
+    "Wilma"
+    "Pebbles"
+    "Dino"
+    35
+    25
+    1
+    5
+    $ jq '.members[] | .Name,.Age' flintstones.json
+    "Fred"
+    35
+    "Wilma"
+    25
+    "Pebbles"
+    1
+    "Dino"
+    5
+
+    $ jq '.members[1].Name,.members[1].Age' flintstones.json
+    "Wilma"
+    25
+
+Keys and lengths
+----------------
+
+.. code-block:: console
+
+    $ jq '. | keys' flintstones.json
+    [
+      "family",
+      "members"
+    ]
+    $ jq '.members[0] | keys' flintstones.json
+    [
+      "Age",
+      "Gender",
+      "Name"
+    ]
+    $ jq '. | length' flintstones.json                        # 2
+    $ jq '.members | length' flintstones.json                 # 4
+    $ jq '.members[] | length' flintstones.json               # 3 3 3 3
+    $ jq '.members[].Name | length' flintstones.json          # 4 5 7 4
+
+
+* `Guide to Linux jq Command for JSON Processing <https://www.baeldung.com/linux/jq-command-json>`_
+* `Querying JSON and XML with jq and xq <https://www.ashbyhq.com/blog/engineering/jq-and-yq>`_
+* `yq: Command-line YAML/XML/TOML processor - jq wrapper for YAML, XML, TOML documents <https://github.com/kislyuk/yq>`_
+* `jq, xq and yq - Handy tools for the command line <https://blog.lazy-evaluation.net/posts/linux/jq-xq-yq.html>`_
+* `TOML [Tom's Obvious Minimal Language] (.INI like) <https://toml.io/en/>`_
 
 *********************************************
 XML - ``xq`` beautifier and content extractor
