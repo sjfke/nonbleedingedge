@@ -54,7 +54,7 @@ JSON Example
 
     $ cat flintstones.json
     {
-        "family": "flintstones",
+        "family": "Flintstones",
         "members": [
             { "Name": "Fred", "Age": 35, "Gender": "male" },
             { "Name": "Wilma", "Age": 25, "Gender": "female" },
@@ -70,7 +70,7 @@ Pretty print (in color)
 
     $ jq '.' flintstones.json
     {
-      "family": "flintstones",
+      "family": "Flintstones",
       "members": [
         {
           "Name": "Fred",
@@ -255,7 +255,7 @@ XML Example
 
     $ cat flintstones.xml
     <?xml version="1.0" encoding="UTF-8" ?>
-    <family Lastname="flintstones">
+    <family Lastname="Flintstones">
       <member><Name>Fred</Name><Age>35</Age><Gender>male</Gender></member>
       <member><Name>Wilma</Name><Age>25</Age><Gender>female</Gender></member>
       <member><Name>Pebbles</Name><Age>1</Age><Gender>female</Gender></member>
@@ -269,7 +269,7 @@ Pretty print (in color)
 
     $ xq flintstones.xml
     <?xml version="1.0" encoding="UTF-8"?>
-    <family Lastname="flintstones">
+    <family Lastname="Flintstones">
       <member>
         <Name>Fred</Name>
         <Age>35</Age>
@@ -322,7 +322,7 @@ XPath Extraction
     # Note: quotation maybe needed to avoid SHELL interpretation of certain symbols
 
     $ xq -x //@Lastname flintstones.xml
-    flintstones
+    Flintstones
 
     $ xq -x //Name flintstones.xml
     Fred
@@ -364,13 +364,49 @@ YAML - ``yq`` command-line YAML processor
 * `GitBook - yq <https://mikefarah.gitbook.io/yq>`_
 * `GitHub - mikefarah/yq <https://github.com/mikefarah/yq>`_
 
-********************************************
-TOML - ``dasel`` command-line TOML processor
-********************************************
+YAML Example
+============
+
+.. code-block:: console
+
+    $ cat flintstones.yaml
+    ---
+    family: Flintstones
+    members:
+      - Name: Fred
+        Age: 35
+        Gender: male
+      - Name: Wilma
+        Age: 25
+        Gender: female
+      - Name: Pebbles
+        Age: 1
+        Gender: female
+      - Name: Dino
+        Age: 5
+        Gender: male
+
+*******************************************************
+TOML - ``Taplo``, ``dasel`` command-line TOML processor
+*******************************************************
 
 .. note:: Section needs to be written
 
 * `TOML - Tom's Obvious Minimal Language <https://toml.io/en/>`_
+* `Taplo - A versatile, feature-rich TOML toolkit<https://taplo.tamasfe.dev/>`_
+* `VS Code - tamsfe plugin <https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml>`_
 * `Dasel - jq for yaml json and toml <https://dev.to/ruanbekker/dasel-jq-for-yaml-json-and-toml-1hhf>`_
 * `GitHub - TomWright/dasel <https://github.com/TomWright/dasel>`_
-* `VS Code - tamsfe plugin <https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml>`_
+
+TOML Example
+============
+
+.. code-block:: console
+
+    $ cat flintstones.toml
+    Title = "Flinstones Example"
+
+    [family]
+    Lastname= "Flintstones"
+    members = [ { "Name" = "Fred", "Age" = 35, "Gender" = "male"}, { "Name" = "Wilma", "Age" = 25, "Gender" = "female"}, { "Name" = "Pebbles", "Age" = 1, "Gender" = "female"}, { "Name" = "Dino", "Age" = 5, "Gender" = "male"} ]
+
