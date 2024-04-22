@@ -38,7 +38,7 @@ This site is written by an **aging techie** so obviously is **Non-Bleeding-Edge*
     cheatsheets/python
     cheatsheets/brew
     cheatsheets/linux-tricks
-    cheatsheets/json-xml
+    cheatsheets/json-xml-yaml-toml
     cheatsheets/markdown
     cheatsheets/gpg
     cheatsheets/screen

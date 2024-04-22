@@ -1,8 +1,8 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/json-xml.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/json-xml-yaml-toml.rst
 
-#######################
-JSON and XML Cheatsheet
-#######################
+###################################
+JSON, XML, YAML and TOML Cheatsheet
+###################################
 
 *******************************
 JSON - ``jq`` sed for JSON data
@@ -352,3 +352,25 @@ XPath Extraction
     Wilma
     35
     25
+
+*****************************************
+YAML - ``yq`` command-line YAML processor
+*****************************************
+
+.. note:: Section needs to be written
+
+* `YAML - YAML Ain't Markup Language <https://yaml.org/>`_
+* `YAML - Specification version 1.2 <https://yaml.org/spec/1.2.2/>`_
+* `GitBook - yq <https://mikefarah.gitbook.io/yq>`_
+* `GitHub - mikefarah/yq <https://github.com/mikefarah/yq>`_
+
+********************************************
+TOML - ``dasel`` command-line TOML processor
+********************************************
+
+.. note:: Section needs to be written
+
+* `TOML - Tom's Obvious Minimal Language <https://toml.io/en/>`_
+* `Dasel - jq for yaml json and toml <https://dev.to/ruanbekker/dasel-jq-for-yaml-json-and-toml-1hhf>`_
+* `GitHub - TomWright/dasel <https://github.com/TomWright/dasel>`_
+* `VS Code - tamsfe plugin <https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml>`_
