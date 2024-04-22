@@ -12,6 +12,7 @@ JSON - ``jq`` sed for JSON data
 * `jq Manual (development version) <https://jqlang.github.io/jq/manual/>`_
 * `JSON - Introduction <https://www.w3schools.com/js/js_json_intro.asp>`_
 * `JSON Schema <https://json-schema.org/>`_ enables the confident and reliable use of the JSON data format.
+* `JSON Online <https://jsononline.net/>`_
 
 Installation
 ============
@@ -189,6 +190,7 @@ XML - ``xq`` beautifier and content extractor
 *********************************************
 
 * `xq <https://github.com/sibprogrammer/xq>`_ XML and HTML beautifier and content extractor
+* `GitHub: sibprogrammer/xq <https://github.com/sibprogrammer/xq>`_
 
 Installation
 ============
@@ -246,57 +248,107 @@ Basic Usage
     </html>
 
 
-Examples
-========
-
-Simple Example
---------------
+XML Example
+===========
 
 .. code-block:: console
 
-    $ cat > fruit.xml <<EOF
-    > <?xml version="1.0" encoding="UTF-8"?><fruit><name>apple</name><color>green</color><price>1.20</price></fruit>
-    > EOF
+    $ cat flintstones.xml
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <family Lastname="flintstones">
+      <member><Name>Fred</Name><Age>35</Age><Gender>male</Gender></member>
+      <member><Name>Wilma</Name><Age>25</Age><Gender>female</Gender></member>
+      <member><Name>Pebbles</Name><Age>1</Age><Gender>female</Gender></member>
+      <member><Name>Dino</Name><Age>5</Age><Gender>male</Gender></member>
+    </family>
 
-    $ xq fruit.xml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <fruit>
-      <name>apple</name>
-      <color>green</color>
-      <price>1.20</price>
-    </fruit>
-
-    $ xq -q color fruit.xml                     # extract color; "green"
-    $ xq -q color,price fruit.xml               # extract colors and price; "green", 1.20
-
-Array Example
--------------
+Pretty print (in color)
+-----------------------
 
 .. code-block:: console
 
-    $ cat > fruits.xml <<EOF
-    <fruits>
-    <fruit><name>apple</name><color>green</color><price>1.20</price></fruit>
-    <fruit><name>banana</name><color>yellow</color><price>0.60</price></fruit>
-    </fruits>
-    > EOF
-
-    $ xq fruits.xml
+    $ xq flintstones.xml
     <?xml version="1.0" encoding="UTF-8"?>
-    <fruits>
-      <fruit>
-        <name>apple</name>
-        <color>green</color>
-        <price>1.20</price>
-      </fruit>
-      <fruit>
-        <name>banana</name>
-        <color>yellow</color>
-        <price>0.60</price>
-      </fruit>
-    </fruits>
+    <family Lastname="flintstones">
+      <member>
+        <Name>Fred</Name>
+        <Age>35</Age>
+        <Gender>male</Gender>
+      </member>
+      <member>
+        <Name>Wilma</Name>
+        <Age>25</Age>
+        <Gender>female</Gender>
+      </member>
+      <member>
+        <Name>Pebbles</Name>
+        <Age>1</Age>
+        <Gender>female</Gender>
+      </member>
+      <member>
+        <Name>Dino</Name>
+        <Age>5</Age>
+        <Gender>male</Gender>
+      </member>
+    </family>
 
-    $ xq -q name fruits.xml        # extract name; apple, banana
-    $ xq -q color fruits.xml       # extract color; green, yellow
-    $ xq -q color,price fruits.xml # extract color/price; green, 1.20, yellow, 0.60
+Querying
+--------
 
+.. code-block:: console
+
+    $ xq -q Name flintstones.xml
+    Fred
+    Wilma
+    Pebbles
+    Dino
+    $ xq -q Name,Age flintstones.xml
+    Fred
+    35
+    Wilma
+    25
+    Pebbles
+    1
+    Dino
+    5
+
+XPath Extraction
+----------------
+
+* `w3schools: XML and XPath <https://www.w3schools.com/xml/xml_xpath.asp>`_
+
+.. code-block:: console
+
+    # Note: quotation maybe needed to avoid SHELL interpretation of certain symbols
+
+    $ xq -x //@Lastname flintstones.xml
+    flintstones
+
+    $ xq -x //Name flintstones.xml
+    Fred
+    Wilma
+    Pebbles
+    Dino
+
+    $ xq -x "//Name | //Age" flintstones.xml
+    Fred
+    Wilma
+    Pebbles
+    Dino
+    35
+    25
+    1
+    5
+
+    $ xq -x "/family/member[2]/Name" flintstones.xml
+    Wilma
+
+    $ xq -x "/family/member[Age>10]/Name" flintstones.xml
+    Fred
+    Wilma
+
+    $ xq -x "/family/member[Age>10]/Name | /family/member[Age>10]/Age" flintstones.xml
+    Fred
+    Wilma
+    35
+    25

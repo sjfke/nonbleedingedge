@@ -48,8 +48,6 @@ Password Generators
 	$ tree [options]
 	$ tree [options] /path/to/directory
 
-
-
 ``dnf`` Useful Commands
 =======================
 
@@ -104,7 +102,7 @@ Stolen from the `Fedora Magazine: 5 cool terminal pages <https://fedoramagazine.
 	
 	mysql> pager pspg;              # replace less or more as pager	
 	$ export PAGER=pspg; mycli ...  # MySQL CLI example
-	$ export PAGER=pspg; pgcli ...  # PostygreSQL CLI example	
+	$ export PAGER=pspg; pgcli ...  # PostgreSQL CLI example
 
 Cat File Tricks
 ===============
@@ -248,6 +246,11 @@ JSON Example
     $ jq '.members[].Name | length' flintstones.json         # 4 5 7 4
 
 * `JSON and XML Cheatsheet <https://nonbleedingedge.com/cheatsheets/json-xml.html>`_
+
+Repology
+=========
+
+* `Repology, the packaging hub <https://repology.org>`_
 
 Email Checking
 ==============
