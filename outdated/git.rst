@@ -21,6 +21,18 @@ Local Repository
 
     $ git init <project directory>
 
+Git Tagging
+===========
+
+.. code-block:: console
+
+    $ git tag # list existing tags
+    $ git tag -a v1.0 -m 'create version 1.0' # annotated (commit) tag
+    $ git show v1.0
+    $ git push origin v1.0
+
+* `Git Basics - Tagging <https://git-scm.com/book/en/v2/Git-Basics-Tagging>`_
+* `GitHub: Pushing commits to a remote repository <https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository>`_
 
 Git Hub Fork
 ============
@@ -527,6 +539,7 @@ Example command output
     $ git remote rm paul
     $ git remote
 	origin
+
 
 Am I up to date with remote?
 ============================
