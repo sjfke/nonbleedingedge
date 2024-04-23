@@ -48,8 +48,6 @@ Password Generators
 	$ tree [options]
 	$ tree [options] /path/to/directory
 
-
-
 ``dnf`` Useful Commands
 =======================
 
@@ -104,7 +102,7 @@ Stolen from the `Fedora Magazine: 5 cool terminal pages <https://fedoramagazine.
 	
 	mysql> pager pspg;              # replace less or more as pager	
 	$ export PAGER=pspg; mycli ...  # MySQL CLI example
-	$ export PAGER=pspg; pgcli ...  # PostygreSQL CLI example	
+	$ export PAGER=pspg; pgcli ...  # PostgreSQL CLI example
 
 Cat File Tricks
 ===============
@@ -215,8 +213,8 @@ JSON File Tricks
     $ echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' | jq '.' # pretty-print
     $ curl http://api.open-notify.org/iss-now.json | jq '.' # pretty-print HTTP response
 
-Simple JSON file example
-------------------------
+JSON Example
+------------
 
 .. code-block:: console
 
@@ -231,127 +229,28 @@ Simple JSON file example
         ]
     }
 
-Pretty print (in color)
-^^^^^^^^^^^^^^^^^^^^^^^
-
 .. code-block:: console
 
-    $ jq '.' flintstones.json
-    {
-      "family": "flintstones",
-      "members": [
-        {
-          "Name": "Fred",
-          "Age": 35,
-          "Gender": "male"
-        },
-        {
-          "Name": "Wilma",
-          "Age": 25,
-          "Gender": "female"
-        },
-        {
-          "Name": "Pebbles",
-          "Age": 1,
-          "Gender": "female"
-        },
-        {
-          "Name": "Dino",
-          "Age": 5,
-          "Gender": "male"
-        }
-      ]
-    }
-    $ jq '.members' flintstones.json
-    [
-      {
-        "Name": "Fred",
-        "Age": 35,
-        "Gender": "male"
-      },
-      {
-        "Name": "Wilma",
-        "Age": 25,
-        "Gender": "female"
-      },
-      {
-        "Name": "Pebbles",
-        "Age": 1,
-        "Gender": "female"
-      },
-      {
-        "Name": "Dino",
-        "Age": 5,
-        "Gender": "male"
-      }
-    ]
+    $ jq '.' flintstones.json                                # pretty-print in color
+    $ jq '.members' flintstones.json                         # pretty-print "members" array in color
+    $ jq '.members[].Name' flintstones.json                  # "Fred" "Wilma" "Pebbles" "Dino"
+    $ jq '.members[] | .Name' flintstones.json               # "Fred" "Wilma" "Pebbles" "Dino"
+    $ jq '.members[].Name,.members[].Age' flintstones.json   # "Fred" "Wilma" "Pebbles" "Dino" 35 25 1 5
+    $ jq '.members[] | .Name,.Age' flintstones.json          # "Fred" 35 "Wilma" 25 "Pebbles" 1 "Dino" 5
+    $ jq '.members[1].Name,.members[1].Age' flintstones.json # "Wilma" 25
+    $ jq '. | keys' flintstones.json                         # [ "family", "members" ]
+    $ jq '.members[0] | keys' flintstones.json               # [ "Age", "Gender", "Name" ]
+    $ jq '. | length' flintstones.json                       # 2
+    $ jq '.members | length' flintstones.json                # 4
+    $ jq '.members[] | length' flintstones.json              # 3 3 3 3
+    $ jq '.members[].Name | length' flintstones.json         # 4 5 7 4
 
-Filtering
-^^^^^^^^^
+* `JSON and XML Cheatsheet <https://nonbleedingedge.com/cheatsheets/json-xml.html>`_
 
-.. code-block:: console
+Repology
+=========
 
-    $ jq '.members[].Name' flintstones.json
-    "Fred"
-    "Wilma"
-    "Pebbles"
-    "Dino"
-    $ jq '.members[] | .Name' flintstones.json
-    "Fred"
-    "Wilma"
-    "Pebbles"
-    "Dino"
-
-    $ jq '.members[].Name,.members[].Age' flintstones.json
-    "Fred"
-    "Wilma"
-    "Pebbles"
-    "Dino"
-    35
-    25
-    1
-    5
-    $ jq '.members[] | .Name,.Age' flintstones.json
-    "Fred"
-    35
-    "Wilma"
-    25
-    "Pebbles"
-    1
-    "Dino"
-    5
-
-    $ jq '.members[1].Name,.members[1].Age' flintstones.json
-    "Wilma"
-    25
-
-Keys and lengths
-^^^^^^^^^^^^^^^^
-
-.. code-block:: console
-
-    $ jq '. | keys' flintstones.json
-    [
-      "family",
-      "members"
-    ]
-    $ jq '.members[0] | keys' flintstones.json
-    [
-      "Age",
-      "Gender",
-      "Name"
-    ]
-    $ jq '. | length' flintstones.json                        # 2
-    $ jq '.members | length' flintstones.json                 # 4
-    $ jq '.members[] | length' flintstones.json               # 3 3 3 3
-    $ jq '.members[].Name | length' flintstones.json          # 4 5 7 4
-
-
-* `Guide to Linux jq Command for JSON Processing <https://www.baeldung.com/linux/jq-command-json>`_
-* `Querying JSON and XML with jq and xq <https://www.ashbyhq.com/blog/engineering/jq-and-yq>`_
-* `yq: Command-line YAML/XML/TOML processor - jq wrapper for YAML, XML, TOML documents <https://github.com/kislyuk/yq>`_
-* `jq, xq and yq - Handy tools for the command line <https://blog.lazy-evaluation.net/posts/linux/jq-xq-yq.html>`_
-* `TOML [Tom's Obvious Minimal Language] (.INI like) <https://toml.io/en/>`_
+* `Repology, the packaging hub <https://repology.org>`_
 
 Email Checking
 ==============
