@@ -76,6 +76,8 @@ Oh My Posh
 * `Oh My Posh Docs <https://ohmyposh.dev/docs>`_
 * `Nerd Fonts <https://www.nerdfonts.com/>`_
 * `Meslo LGM NF download <https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip>`_
+* `PowerShell - Customizing your shell environment <https://learn.microsoft.com/en-us/powershell/scripting/learn/shell/creating-profiles>`_
+* `PowerShell - about_Profiles <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles/>`_
 
 1. Install `Windows Terminal <https://github.com/microsoft/terminal>`_ from the ``Microsoft Store``
 
