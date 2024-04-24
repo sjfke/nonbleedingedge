@@ -476,8 +476,18 @@ Filtering
     1
     5
 
+    # equivalent: $ jq '.members[] | .Name,.Age' flintstones.json
+    $ yq '.members[] | with_entries(select(.key | test("Name|Age")))' flintstones.yaml
+    Name: Fred
+    Age: 35
+    Name: Wilma
+    Age: 25
+    Name: Pebbles
+    Age: 1
+    Name: Dino
+    Age: 5
+
     # Does not work in 'yq' but does work in 'jq'
-    $ yq '.members[] | .Name,.Age' flintstones.json
     "Fred"
     "Wilma"
     "Pebbles"
