@@ -449,8 +449,13 @@ Also color pretty-prints 'flintstones.json' and pretty-prints flintstones.xml
       }
     ]
 
+Evaluate
+--------
+
+* `Evaluate the given expression against each yaml document in each file, in sequence <https://mikefarah.gitbook.io/yq/commands/evaluate>`_
+
 Filtering
----------
+^^^^^^^^^
 
 .. code-block:: console
 
@@ -499,7 +504,7 @@ Filtering
     25
 
 Keys and lengths
-----------------
+^^^^^^^^^^^^^^^^
 
 .. code-block:: console
 
@@ -535,28 +540,3 @@ Various conversions and formatting options are possible see, `Usage <https://mik
     $ yq -ox '.' flintstones.yaml   # convert YAML to XML
     $ yq -ox '.' flintstones.json   # convert JSON to XML
     $ yq -ox '.' flintstones.toml   # convert TOML to XML
-
-*******************************************************
-TOML - ``Taplo``, ``dasel`` command-line TOML processor
-*******************************************************
-
-.. note:: Section needs to be written
-
-* `TOML - Tom's Obvious Minimal Language <https://toml.io/en/>`_
-* `Taplo - A versatile, feature-rich TOML toolkit<https://taplo.tamasfe.dev/>`_
-* `VS Code - tamsfe plugin <https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml>`_
-* `Dasel - jq for yaml json and toml <https://dev.to/ruanbekker/dasel-jq-for-yaml-json-and-toml-1hhf>`_
-* `GitHub - TomWright/dasel <https://github.com/TomWright/dasel>`_
-
-TOML Example
-============
-
-.. code-block:: console
-
-    $ cat flintstones.toml
-    Title = "Flinstones Example"
-
-    [family]
-    Lastname= "Flintstones"
-    members = [ { "Name" = "Fred", "Age" = 35, "Gender" = "male"}, { "Name" = "Wilma", "Age" = 25, "Gender" = "female"}, { "Name" = "Pebbles", "Age" = 1, "Gender" = "female"}, { "Name" = "Dino", "Age" = 5, "Gender" = "male"} ]
-
