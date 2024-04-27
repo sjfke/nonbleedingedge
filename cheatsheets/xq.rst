@@ -11,6 +11,10 @@
 * `xq <https://github.com/sibprogrammer/xq>`_ XML and HTML beautifier and content extractor
 * `GitHub: sibprogrammer/xq <https://github.com/sibprogrammer/xq>`_
 * `jq, xq and yq - Handy tools for the command line <https://blog.lazy-evaluation.net/posts/linux/jq-xq-yq.html>`_
+* `Introduction to XML <https://www.w3schools.com/xml/xml_whatis.asp>`_
+* `XML DTD <https://www.w3schools.com/xml/xml_dtd.asp>`_
+* `XML Schema <https://www.w3schools.com/xml/xml_schema.asp>`_
+* `XML Validator <https://jsonformatter.org/xml-validator>`_
 
 Installation
 ============

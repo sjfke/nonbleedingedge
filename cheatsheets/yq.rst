@@ -8,10 +8,13 @@
 ``yq`` command-line YAML processor
 **********************************
 
-* `YAML - YAML Ain't Markup Language <https://yaml.org/>`_
-* `YAML - Specification version 1.2 <https://yaml.org/spec/1.2.2/>`_
+Is a lightweight and portable command-line YAML processor, using ``jq`` like syntax that works with ``YAML`` and
+``JSON`` files.
+
 * `GitBook - yq <https://mikefarah.gitbook.io/yq>`_
 * `GitHub - mikefarah/yq <https://github.com/mikefarah/yq>`_
+* `YAML - YAML Ain't Markup Language <https://yaml.org/>`_
+* `YAML - Specification version 1.2 <https://yaml.org/spec/1.2.2/>`_
 * `JSON - Introduction <https://www.w3schools.com/js/js_json_intro.asp>`_
 * `JSON Schema <https://json-schema.org/>`_ enables the confident and reliable use of the JSON data format.
 * `JSON Online <https://jsononline.net/>`_
@@ -27,7 +30,8 @@ Installation
     # Fedora
     $ VERSION=v4.43.1
     $ BINARY=yq_linux_amd64
-    $ wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq && chmod +x /usr/bin/yq
+    $ sudo wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq
+    $ sudo chmod +x /usr/bin/yq
 
     $ brew install yq                  # MacOS
     $ winget install --id MikeFarah.yq # Windows
@@ -55,10 +59,8 @@ YAML Example
         Age: 5
         Gender: male
 
-Pretty print (in color)
------------------------
-
-Also color pretty-prints 'flintstones.json' and pretty-prints flintstones.xml
+Pretty print YAML (in color)
+----------------------------
 
 .. code-block:: console
 
@@ -79,7 +81,7 @@ Also color pretty-prints 'flintstones.json' and pretty-prints flintstones.xml
         Age: 5
         Gender: male
 
-    $ yq '.members' flintstones.yaml # or 'flintstones.json'
+    $ yq '.members' flintstones.yaml
     [
       {
         "Name": "Fred",
@@ -103,10 +105,10 @@ Also color pretty-prints 'flintstones.json' and pretty-prints flintstones.xml
       }
     ]
 
-Evaluate
---------
+Evaluate YAML
+-------------
 
-* `Evaluate the given expression against each yaml document in each file, in sequence <https://mikefarah.gitbook.io/yq/commands/evaluate>`_
+`Evaluate the given expression against each yaml document in each file, in sequence <https://mikefarah.gitbook.io/yq/commands/evaluate>`_
 
 Filtering
 ^^^^^^^^^
@@ -135,7 +137,7 @@ Filtering
     1
     5
 
-    # equivalent: $ jq '.members[] | .Name,.Age' flintstones.json
+    # $ jq '.members[] | .Name,.Age' flintstones.json - does not work, equivalent
     $ yq '.members[] | with_entries(select(.key | test("Name|Age")))' flintstones.yaml
     Name: Fred
     Age: 35
@@ -145,13 +147,6 @@ Filtering
     Age: 1
     Name: Dino
     Age: 5
-
-    # Does not work in 'yq' but does work in 'jq'
-    "Fred"
-    "Wilma"
-    "Pebbles"
-    "Dino"
-    null
 
     $ yq '.members[1].Name,.members[1].Age' flintstones.yaml
     Wilma
@@ -176,8 +171,145 @@ Keys and lengths
     $ yq '.members[] | length' flintstones.yaml       # 3 3 3 3
     $ yq '.members[].Name | length' flintstones.yaml  # 4 5 7 4
 
+JSON Example
+============
+
+.. code-block:: console
+
+    $ cat flintstones.json
+    {
+        "family": "Flintstones",
+        "members": [
+            { "Name": "Fred", "Age": 35, "Gender": "male" },
+            { "Name": "Wilma", "Age": 25, "Gender": "female" },
+            { "Name": "Pebbles", "Age": 1, "Gender": "female" },
+            { "Name": "Dino", "Age": 5, "Gender": "male" }
+        ]
+    }
+
+Pretty print JSON (in color)
+----------------------------
+
+.. code-block:: console
+
+    $ yq flintstones.json
+    {
+      "family": "flintstones",
+      "members": [
+        {
+          "Name": "Fred",
+          "Age": 35,
+          "Gender": "male"
+        },
+        {
+          "Name": "Wilma",
+          "Age": 25,
+          "Gender": "female"
+        },
+        {
+          "Name": "Pebbles",
+          "Age": 1,
+          "Gender": "female"
+        },
+        {
+          "Name": "Dino",
+          "Age": 5,
+          "Gender": "male"
+        }
+      ]
+    }
+
+    $ yq '.members' flintstones.json
+    [
+      {
+        "Name": "Fred",
+        "Age": 35,
+        "Gender": "male"
+      },
+      {
+        "Name": "Wilma",
+        "Age": 25,
+        "Gender": "female"
+      },
+      {
+        "Name": "Pebbles",
+        "Age": 1,
+        "Gender": "female"
+      },
+      {
+        "Name": "Dino",
+        "Age": 5,
+        "Gender": "male"
+      }
+    ]
+
+Evaluate JSON
+-------------
+
+`Evaluate the given expression against each yaml document in each file, in sequence <https://mikefarah.gitbook.io/yq/commands/evaluate>`_
+
+Filtering
+^^^^^^^^^
+
+.. code-block:: console
+
+    $ yq '.members[].Name' flintstones.json
+    "Fred"
+    "Wilma"
+    "Pebbles"
+    "Dino"
+
+    $ yq '.members[] | .Name' flintstones.json
+    "Fred"
+    "Wilma"
+    "Pebbles"
+    "Dino"
+
+    # $ jq '.members[] | .Name,.Age' flintstones.json - does not work, equivalent
+    $ yq '.members[] | with_entries(select(.key | test("Name|Age")))' flintstones.json
+    {
+      "Name": "Fred",
+      "Age": 35
+    }
+    {
+      "Name": "Wilma",
+      "Age": 25
+    }
+    {
+      "Name": "Pebbles",
+      "Age": 1
+    }
+    {
+      "Name": "Dino",
+      "Age": 5
+    }
+
+
+Keys and lengths
+^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    $ yq '. | keys' flintstones.json
+    [
+      "family",
+      "members"
+    ]
+
+    $ yq '.members[0] | keys' flintstones.json
+    [
+      "Name",
+      "Age",
+      "Gender"
+    ]
+
+    $ yq '. | length' flintstones.json                # 2
+    $ yq '.members | length' flintstones.json         # 4
+    $ yq '.members[] | length' flintstones.json       # 3 3 3 3
+    $ yq '.members[].Name | length' flintstones.json  # 4 5 7 4
+
 Conversion
-----------
+==========
 
 Various conversions and formatting options are possible see, `Usage <https://mikefarah.gitbook.io/yq/usage/output-format>`_
 
