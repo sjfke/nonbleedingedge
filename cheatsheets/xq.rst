@@ -51,12 +51,12 @@ Basic Usage
     </note>
 
     $ cat > test.html <<EOF
-    > <!doctype html><html>
+    <!doctype html><html>
     <head><title>Example Page Title</title>
     <meta name="description" content="Simple HTML example">
     <meta name="keywords" content="html basic example"></head>
     <body>Example page content</body></html>
-    > EOF
+    EOF
 
     $ xq test.html
     <!doctype html>
@@ -176,3 +176,129 @@ XPath Extraction
     Wilma
     35
     25
+
+HTML Example
+============
+
+.. code-block:: console
+
+    $ cat flintstones.html
+    <!doctype html><html>
+    <head><title>Title Flintstones</title>
+      <meta name="description" content="Flintstones family">
+      <meta name="keywords" content="HTML, CSS, JavaScript">
+      <meta name="author" content="Sjfke">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <body>
+      <h1 style="color:blue;">Heading Flintstones</h1>
+      <p style="color:red;">members</p>
+      <table>
+        <tr><th>Name</th><th>Age</th><th>Gender</th></tr>
+        <tr><td>Fred</td><td>35</td><td>male</td></tr>
+        <tr><td>Wilma</td><td>25</td><td>female</td></tr>
+        <tr><td>Pebbles</td><td>1</td><td>female</td></tr>
+        <tr><td>Dino</td><td>5</td><td>male</td></tr>
+      </table>
+      <hr>
+    <script>let d = Date(Date.now()); a = d.toString() document.write(a); </script>
+    </body></html>
+
+Pretty print (in color)
+-----------------------
+
+.. code-block:: console
+
+    $ xq -m flintstones.html      # '-m' is optional
+    <!doctype html>
+    <html>
+      <head>
+        <title>Title Flintstones</title>
+        <meta name="description" content="Flintstones family"/>
+        <meta name="keywords" content="HTML, CSS, JavaScript"/>
+        <meta name="author" content="Sjfke"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <body>
+          <h1 style="color:blue;">Heading Flintstones</h1>
+          <p style="color:red;">members</p>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+            </tr>
+            <tr>
+              <td>Fred</td>
+              <td>35</td>
+              <td>male</td>
+            </tr>
+            <tr>
+              <td>Wilma</td>
+              <td>25</td>
+              <td>female</td>
+            </tr>
+            <tr>
+              <td>Pebbles</td>
+              <td>1</td>
+              <td>female</td>
+            </tr>
+            <tr>
+              <td>Dino</td>
+              <td>5</td>
+              <td>male</td>
+            </tr>
+          </table>
+          <hr/>
+          <script>let d = Date(Date.now()); a = d.toString() document.write(a);</script>
+        </body>
+      </html>
+
+Querying
+--------
+
+.. code-block:: console
+
+    $ xq -q head flintstones.html
+    Title Flintstones
+
+    $ xq -q meta flintstones.html  # returns 4 blank lines
+
+    $ xq -q meta -a name flintstones.html
+    description
+    keywords
+    author
+    viewport
+
+    $ xq -q meta -a content flintstones.html
+    Flintstones family
+    HTML, CSS, JavaScript
+    Sjfke
+    width=device-width, initial-scale=1.0
+
+    $ xq -q "body > h1" flintstones.html
+    Heading Flintstones
+
+    $ xq -q "body > h1" -a style flintstones.html
+    color:blue;
+
+    $ xq -q "body > p" flintstones.html
+    members
+
+    $ xq -q "body > p" -a style flintstones.html
+    color:red;
+
+    $ xq -q "script" flintstones.html
+    let d = Date(Date.now()); a = d.toString() document.write(a);
+
+    $ xq -q "body > table" flintstones.html
+    NameAgeGender
+        Fred35male
+        Wilma25female
+        Pebbles1female
+        Dino5male
+
+    $ xq -q tr flintstones.html
+    NameAgeGender
+    Fred35male
+    Wilma25female
+    Pebbles1female
+    Dino5male
