@@ -20,6 +20,7 @@ Docker Desktop
     * infrequent updates
     * leading-edge container (docker) technology
     * ``docker compose`` for multi-container
+    * Command line completions ``Bash``, ``Zsh``
 * Downsides
     * cannot run kubernetes pods
     * kubernetes-style ``secrets`` are not supported, ``docker swarm`` *only*
@@ -39,10 +40,12 @@ Podman and Podman Desktop
     * primarily Linux, but well supported on Windows and MacOS (brew)
     * supports importing basic ``docker compose`` using ``podman compose``
     * exporting of *containers* to ``pod``, ``deployment`` and ``service`` manifests
+    * Command line completions ``Bash``, ``Zsh``, ``Fish``, ``PowerShell``
 * Downsides
     * separate products, ``podman``, ``podman-desktop``
     * frequent updates, `active community <https://github.com/containers/>`_ driven *development* and *support*
     * ``podman-compose`` supported natively on Linux and MacOS, Python script on Windows
+    * ``podman v5`` does not support all the platforms supported by ``podman v4``
 
 ************
 Installation
