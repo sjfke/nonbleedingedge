@@ -126,6 +126,13 @@ Querying
     Wilma
     Pebbles
     Dino
+
+    $ xq -n -q Name flintstones.xml
+    <name>Fred</name>
+    <name>Wilma</name>
+    <name>Pebbles</name>
+    <name>Dino</name>
+
     $ xq -q Name,Age flintstones.xml
     Fred
     35
@@ -135,6 +142,16 @@ Querying
     1
     Dino
     5
+
+    $ xq -nq Name,Age flintstones.xml
+    <name>Fred</name>
+    <age>35</age>
+    <name>Wilma</name>
+    <age>25</age>
+    <name>Pebbles</name>
+    <age>1</age>
+    <name>Dino</name>
+    <age>5</age>
 
 XPath Extraction
 ----------------
@@ -147,12 +164,20 @@ XPath Extraction
 
     $ xq -x //@Lastname flintstones.xml
     Flintstones
+    $ xq -nx //@Lastname flintstones.xml
+    <Lastname>flintstones</Lastname>
 
     $ xq -x //Name flintstones.xml
     Fred
     Wilma
     Pebbles
     Dino
+
+    $ xq -n -x //Name flintstones.xml
+    <Name>Fred</Name>
+    <Name>Wilma</Name>
+    <Name>Pebbles</Name>
+    <Name>Dino</Name>
 
     $ xq -x "//Name | //Age" flintstones.xml
     Fred
@@ -164,18 +189,41 @@ XPath Extraction
     1
     5
 
+    $ xq -nx "//Name | //Age" flintstones.xml
+    <Name>Fred</Name>
+    <Name>Wilma</Name>
+    <Name>Pebbles</Name>
+    <Name>Dino</Name>
+    <Age>35</Age>
+    <Age>25</Age>
+    <Age>1</Age>
+    <Age>5</Age>
+
     $ xq -x "/family/member[2]/Name" flintstones.xml
     Wilma
+
+    $ xq -nx "/family/member[2]/Name" flintstones.xml
+    <Name>Wilma</Name>
 
     $ xq -x "/family/member[Age>10]/Name" flintstones.xml
     Fred
     Wilma
+
+    $ xq -nx "/family/member[Age>10]/Name" flintstones.xml
+    <Name>Fred</Name>
+    <Name>Wilma</Name>
 
     $ xq -x "/family/member[Age>10]/Name | /family/member[Age>10]/Age" flintstones.xml
     Fred
     Wilma
     35
     25
+
+    $ xq -nx "/family/member[Age>10]/Name | /family/member[Age>10]/Age" flintstones.xml
+    <Name>Fred</Name>
+    <Name>Wilma</Name>
+    <Age>35</Age>
+    <Age>25</Age>
 
 HTML Example
 ============
@@ -262,7 +310,19 @@ Querying
 
     $ xq -q meta flintstones.html  # returns 4 blank lines
 
+    $ xq -nq meta flintstones.html
+    <meta name="description" content="Flintstones family"/></meta>
+    <meta name="keywords" content="HTML, CSS, JavaScript"/></meta>
+    <meta name="author" content="Sjfke"/></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/></meta>
+
     $ xq -q meta -a name flintstones.html
+    description
+    keywords
+    author
+    viewport
+
+    $ xq -nq meta -a name flintstones.html # '-a' supersedes '-n'
     description
     keywords
     author
@@ -277,17 +337,26 @@ Querying
     $ xq -q "body > h1" flintstones.html
     Heading Flintstones
 
+    $ xq -nq "body > h1" flintstones.html
+    <h1 style="color:blue;">Heading Flintstones</h1>
+
     $ xq -q "body > h1" -a style flintstones.html
     color:blue;
 
     $ xq -q "body > p" flintstones.html
     members
 
+    $ xq -nq "body > p" flintstones.html
+    <p style="color:red;">members</p>
+
     $ xq -q "body > p" -a style flintstones.html
     color:red;
 
     $ xq -q "script" flintstones.html
     let d = Date(Date.now()); a = d.toString() document.write(a);
+
+    $ xq -nq "script" flintstones.html
+    <script>let d = Date(Date.now()); a = d.toString() document.write(a);</script>
 
     $ xq -q "body > table" flintstones.html
     NameAgeGender
@@ -296,9 +365,67 @@ Querying
         Pebbles1female
         Dino5male
 
+    $ xq -nq "body > table" flintstones.html
+    <table>
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+        </tr>
+        <tr>
+          <td>Fred</td>
+          <td>35</td>
+          <td>male</td>
+        </tr>
+        <tr>
+          <td>Wilma</td>
+          <td>25</td>
+          <td>female</td>
+        </tr>
+        <tr>
+          <td>Pebbles</td>
+          <td>1</td>
+          <td>female</td>
+        </tr>
+        <tr>
+          <td>Dino</td>
+          <td>5</td>
+          <td>male</td>
+        </tr>
+      </tbody>
+    </table>
+
     $ xq -q tr flintstones.html
     NameAgeGender
     Fred35male
     Wilma25female
     Pebbles1female
     Dino5male
+
+    $ xq -nq tr flintstones.html
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+    </tr>
+    <tr>
+      <td>Fred</td>
+      <td>35</td>
+      <td>male</td>
+    </tr>
+    <tr>
+      <td>Wilma</td>
+      <td>25</td>
+      <td>female</td>
+    </tr>
+    <tr>
+      <td>Pebbles</td>
+      <td>1</td>
+      <td>female</td>
+    </tr>
+    <tr>
+      <td>Dino</td>
+      <td>5</td>
+      <td>male</td>
+    </tr>
