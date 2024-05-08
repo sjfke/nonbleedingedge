@@ -1,5 +1,5 @@
 # nonbleedingedge
-nonBleeedingEdge website
+nonBleedingEdge website
 
 This is as a collection of notes and cheatsheets compiled over a number of years.
 Initially ASCII text files, that were copied from laptop to laptop each time as needed.
