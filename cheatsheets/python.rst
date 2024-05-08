@@ -1793,6 +1793,11 @@ The *original* normally run in a :ref:`virtualenv-label`.
     # edit 'requirements.txt', replace '==' with '>='
     $ pip install -r requirements.txt --upgrade
 
+.. code-block:: shell
+
+    # pip self-update
+    $ python -m pip install --upgrade pip
+
 
 ``pipenv``
 ----------
@@ -1830,6 +1835,11 @@ Setup a new Python project in Eclipse, and change the project to use it.
     $ pipenv run <program.py>    # virtualenv: run script
     $ pipenv check               # PEP8 check of the Pipfile
     $ pipenv update              # update all packages
+
+.. code-block:: shell-session
+
+    # pipenv self-update
+    $ pip install --upgrade pipenv
 
 .. _virtualenv-label:
 
