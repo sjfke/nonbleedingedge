@@ -1771,6 +1771,7 @@ The *original* normally run in a :ref:`virtualenv-label`.
 
 * `Pip - User Guide <https://pip.pypa.io/en/stable/user_guide/>`_
 * `Pip - Requirements File Format <https://pip.pypa.io/en/stable/reference/requirements-file-format/>`_
+* `pipdev - Requirement version visualizer <https://nok.github.io/pipdev/>`_
 
 .. code-block:: shell
 
@@ -1793,11 +1794,17 @@ The *original* normally run in a :ref:`virtualenv-label`.
     # edit 'requirements.txt', replace '==' with '>='
     $ pip install -r requirements.txt --upgrade
 
+.. code-block:: shell
+
+    # pip self-update
+    $ python -m pip install --upgrade pip
+
 
 ``pipenv``
 ----------
 
 * `Github: Pipenv <https://github.com/pypa/pipenv>`_
+* `Pipenv: A Guide to the New Python Packaging Tool <https://realpython.com/pipenv-guide/>`_
 * `Pipenv: Python Dev Workflow for Humans <https://pipenv.pypa.io/en/latest/>`_
 * `The Hitchhicker's Guide to Python: Advanced Usage <https://pipenv.pypa.io/en/latest/advanced/>`_
 
@@ -1830,6 +1837,11 @@ Setup a new Python project in Eclipse, and change the project to use it.
     $ pipenv run <program.py>    # virtualenv: run script
     $ pipenv check               # PEP8 check of the Pipfile
     $ pipenv update              # update all packages
+
+.. code-block:: shell-session
+
+    # pipenv self-update
+    $ pip install --upgrade pipenv
 
 .. _virtualenv-label:
 
