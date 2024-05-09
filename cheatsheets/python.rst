@@ -1771,6 +1771,7 @@ The *original* normally run in a :ref:`virtualenv-label`.
 
 * `Pip - User Guide <https://pip.pypa.io/en/stable/user_guide/>`_
 * `Pip - Requirements File Format <https://pip.pypa.io/en/stable/reference/requirements-file-format/>`_
+* `pipdev - Requirement version visualizer <https://nok.github.io/pipdev/>`_
 
 .. code-block:: shell
 
@@ -1803,6 +1804,7 @@ The *original* normally run in a :ref:`virtualenv-label`.
 ----------
 
 * `Github: Pipenv <https://github.com/pypa/pipenv>`_
+* `Pipenv: A Guide to the New Python Packaging Tool <https://realpython.com/pipenv-guide/>`_
 * `Pipenv: Python Dev Workflow for Humans <https://pipenv.pypa.io/en/latest/>`_
 * `The Hitchhicker's Guide to Python: Advanced Usage <https://pipenv.pypa.io/en/latest/advanced/>`_
 
