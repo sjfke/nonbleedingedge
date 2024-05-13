@@ -237,7 +237,7 @@ HTML Example
       <meta name="keywords" content="HTML, CSS, JavaScript">
       <meta name="author" content="Sjfke">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <body>
+    </head><body>
       <h1 style="color:blue;">Heading Flintstones</h1>
       <p style="color:red;">members</p>
       <table>
@@ -265,40 +265,41 @@ Pretty print (in color)
         <meta name="keywords" content="HTML, CSS, JavaScript"/>
         <meta name="author" content="Sjfke"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <body>
-          <h1 style="color:blue;">Heading Flintstones</h1>
-          <p style="color:red;">members</p>
-          <table>
-            <tr>
-              <th>Name</th>
-              <th>Age</th>
-              <th>Gender</th>
-            </tr>
-            <tr>
-              <td>Fred</td>
-              <td>35</td>
-              <td>male</td>
-            </tr>
-            <tr>
-              <td>Wilma</td>
-              <td>25</td>
-              <td>female</td>
-            </tr>
-            <tr>
-              <td>Pebbles</td>
-              <td>1</td>
-              <td>female</td>
-            </tr>
-            <tr>
-              <td>Dino</td>
-              <td>5</td>
-              <td>male</td>
-            </tr>
-          </table>
-          <hr/>
-          <script>let d = Date(Date.now()); a = d.toString() document.write(a);</script>
-        </body>
-      </html>
+      </head>
+      <body>
+        <h1 style="color:blue;">Heading Flintstones</h1>
+        <p style="color:red;">members</p>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+          </tr>
+          <tr>
+            <td>Fred</td>
+            <td>35</td>
+            <td>male</td>
+          </tr>
+          <tr>
+            <td>Wilma</td>
+            <td>25</td>
+            <td>female</td>
+          </tr>
+          <tr>
+            <td>Pebbles</td>
+            <td>1</td>
+            <td>female</td>
+          </tr>
+          <tr>
+            <td>Dino</td>
+            <td>5</td>
+            <td>male</td>
+          </tr>
+        </table>
+        <hr/>
+        <script>let d = Date(Date.now()); a = d.toString() document.write(a);</script>
+      </body>
+    </html>
 
 Querying
 --------
