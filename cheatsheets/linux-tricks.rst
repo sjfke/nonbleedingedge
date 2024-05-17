@@ -12,22 +12,29 @@ Password Generators
 
 .. code-block:: console
 
-	$ brew install pwgen     # MacOS
-	$ sudo dnf install pwgen # Fedora
-	$ pwgen 12
-	sei9AhPiokai jaezooThahn4 yahghooCh5ha uquiCh7soog0 Pahthe0fe5Ku owaht4xooPhu
-	eet2eijeeT6E Chie8oz1Enee Piemu7pi1uqu TheebohNg8se eil2AhNeiF2s WueGh8guoxie
-	
-	$ sudo dnf install apg   # Fedora
-	$ apg -n 3 -m 12 -M SNCL
-	|OgFeOcVask6
-	Aw*SwuKalap7
-	Nagnec8swif?
-	
-	$ brew install gpg       # MacOS
-	$ sudo dnf install gpg   # Fedora
-	$ gpg --gen-random --armor 1 14
-	spdhuOS2il2JjhOq2ZU=
+    # pwgen
+    $ brew install pwgen            # MacOS
+    $ sudo dnf install pwgen        # Fedora
+    $ pwgen 12
+    sei9AhPiokai jaezooThahn4 yahghooCh5ha uquiCh7soog0 Pahthe0fe5Ku owaht4xooPhu
+    eet2eijeeT6E Chie8oz1Enee Piemu7pi1uqu TheebohNg8se eil2AhNeiF2s WueGh8guoxie
+
+    # apg
+    $ sudo dnf install apg          # Fedora
+    $ apg -n 3 -m 12 -M SNCL        # pronounceable
+    tit8OdcigEp~
+    Plaf@dryRec6
+    JavJu%Wudek6
+    $ apg -a 1 -n 3 -m 12 -M SNCL   # random
+    ,+c"e3P[Me%H
+    ZlL0qw_8L)Ff
+    1x=2nizg}x!X
+
+    # gpg
+    $ brew install gpg              # MacOS
+    $ sudo dnf install gpg          # Fedora
+    $ gpg --gen-random --armor 1 14
+    spdhuOS2il2JjhOq2ZU=
 
 
 ``tree`` Directory Viewer
