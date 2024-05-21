@@ -4,7 +4,7 @@ certifi==2024.2.2
 charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
-docutils<=0.21
+docutils<=0.21.2
 idna==3.7
 imagesize==1.4.1
 importlib_metadata==7.1.0
@@ -14,8 +14,8 @@ packaging==24.0
 Pygments==2.18.0
 pyparsing==3.1.2
 pytz==2024.1
-requests==2.31.0
-setuptools==69.5.1
+requests==2.32.1
+setuptools==70.0.0
 snowballstemmer==2.2.0
 Sphinx==7.3.7
 sphinx-intl==2.2.0
@@ -29,4 +29,4 @@ sphinxcontrib-qthelp==1.0.7
 sphinxcontrib-serializinghtml==1.1.10
 sphinxemoji==0.3.1
 urllib3==2.2.1
-zipp==3.18.1
+zipp==3.18.2
