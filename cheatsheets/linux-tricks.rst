@@ -268,7 +268,34 @@ HTTP Header Checking
 .. code-block:: console
 
     $ curl -I 127.0.0.1:8080
+    HTTP/1.1 200 OK
+    Server: nginx/1.27.0
+    Date: Sat, 01 Jun 2024 15:14:01 GMT
+    Content-Type: text/html
+    Content-Length: 4253
+    Last-Modified: Sat, 01 Jun 2024 14:14:45 GMT
+    Connection: keep-alive
+    ETag: "665b2cd5-109d"
+    Accept-Ranges: bytes
+
     $ wget -S --spider 127.0.0.1:8080
+    Spider mode enabled. Check if remote file exists.
+    --2024-06-01 17:13:56--  http://127.0.0.1:8080/
+    Connecting to 127.0.0.1:8080... connected.
+    HTTP request sent, awaiting response...
+      HTTP/1.1 200 OK
+      Server: nginx/1.27.0
+      Date: Sat, 01 Jun 2024 15:13:56 GMT
+      Content-Type: text/html
+      Content-Length: 4253
+      Last-Modified: Sat, 01 Jun 2024 14:14:45 GMT
+      Connection: keep-alive
+      ETag: "665b2cd5-109d"
+      Accept-Ranges: bytes
+    Length: 4253 (4.2K) [text/html]
+    Remote file exists and could contain further links,
+    but recursion is disabled -- not retrieving.
+
 
 Email Checking
 ==============
