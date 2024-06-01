@@ -259,6 +259,17 @@ Repology
 
 * `Repology, the packaging hub <https://repology.org>`_
 
+Repology shows you in which repositories a given project is packaged, which version is the latest and which
+needs updating, who maintains the package, and other related information.
+
+HTTP Header Checking
+====================
+
+.. code-block:: console
+
+    $ curl -I 127.0.0.1:8080
+    $ wget -S --spider 127.0.0.1:8080
+
 Email Checking
 ==============
 
