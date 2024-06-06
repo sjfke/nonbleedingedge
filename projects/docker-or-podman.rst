@@ -27,6 +27,7 @@ Docker Desktop
     * kubernetes-style ``configMaps`` are not supported, ``docker swarm`` *only*
     * primarily Windows, but available on Linux and MacOS (brew)
     * application slow to start and upgrade
+    * releases ``v4.29``, ``v4.30`` have issues, try manually start starting ``Docker Desktop Service``
 
 
 *************************
@@ -45,7 +46,9 @@ Podman and Podman Desktop
     * separate products, ``podman``, ``podman-desktop``
     * frequent updates, `active community <https://github.com/containers/>`_ driven *development* and *support*
     * ``podman-compose`` supported natively on Linux and MacOS, Python script on Windows
-    * ``podman v5`` does not support all the platforms supported by ``podman v4``
+    * ``MacOS`` ``podman v5`` is only supported on ``macOS 13 (Ventura)`` or later
+    * ``MacOS`` ``podman v4`` download and install ``dmg`` from `podman releases <https://github.com/containers/podman/releases>`_
+    * ``Windows`` ``podman v4`` and ``podman v5`` use different a ``podman-machine`` version
 
 ************
 Installation
@@ -95,6 +98,10 @@ To be equivalent to ``Docker Desktop`` both ``Podman`` and ``Podman Desktop`` ne
 * `Podman for Windows <https://github.com/containers/podman/blob/main/docs/tutorials/podman-for-windows.md>`_
 * `Installing Podman Desktop and Podman on Windows <https://podman-desktop.io/docs/installation/windows-install>`_
 * `Setup of Podman for tomcat-containers <https://github.com/sjfke/tomcat-containers/blob/main/wharf/PODMAN.md>`_
+
+.. note::
+
+    On Windows ``Podman v5`` upgrade requires stopping and deleting the ``podman-default-machine``
 
 .. code-block:: console
 
