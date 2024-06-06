@@ -1776,22 +1776,24 @@ The *original* normally run in a :ref:`virtualenv-label`.
 .. code-block:: shell
 
     # Basic operations
-    $ pip search SomePackage           # RuntimeError: PyPI no longer supports 'pip search' (or XML-RPC search).
-                                       # Please use https://pypi.org/search (via a browser) instead.
-    $ pip install SomePackage          # latest version
-    $ pip install SomePackage==1.0.4   # specific version
-    $ pip install 'SomePackage>=1.0.4' # version 1.0.4 or later
+    $ pip search SomePackage                                    # Fails, use https://pypi.org/search
+    $ pip install SomePackage                                   # latest version
+    $ pip install SomePackage==1.0.4                            # specific version
+    $ pip install 'SomePackage>=1.0.4'                          # version 1.0.4 or later
     $ pip uninstall SomePackage
-    $ pip freeze > requirements.txt    # save current installation
-    $ pip install -r requirements.txt  # install all the specified packages
-    $ pip list                         # currently installed packages
-    $ pip list --outdated              # upgradeable packages
+    $ pip freeze > requirements.txt                             # UNIX save current installation
+    $ pip freeze | Add-Content -Encoding ASCII requirements.txt # Windows save current installation
+    $ pip install -r requirements.txt                           # install all the specified packages
+    $ pip list                                                  # currently installed packages
+    $ pip list --outdated                                       # upgradeable packages
 
     # Updating all packages
-    # Note: may need several iterations and manual additions to 'requirements.txt'
+    # - Note: may need several iterations and manual additions to 'requirements.txt'
     $ pip list --outdated
-    $ pip freeze > requirements.txt
-    # edit 'requirements.txt', replace '==' with '>='
+    $ pip freeze > requirements.txt                             # UNIX
+    $ pip freeze | Add-Content -Encoding ASCII requirements.txt # Windows
+    $ pip install -r requirements.txt --upgrade
+    # - Failures edit 'requirements.txt', replace '==' with '<='
     $ pip install -r requirements.txt --upgrade
 
 .. code-block:: shell
