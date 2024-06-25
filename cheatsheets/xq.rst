@@ -1,8 +1,8 @@
 :github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/xq.rst
 
-#################
-``xq`` Cheatsheet
-#################
+##########################
+``xq`` XML/HTML Cheatsheet
+##########################
 
 ***************************************
 ``xq`` beautifier and content extractor

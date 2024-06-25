@@ -1,8 +1,8 @@
 :github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/yq.rst
 
-#################
-``yq`` Cheatsheet
-#################
+###########################
+``yq`` YAML/JSON Cheatsheet
+###########################
 
 **********************************
 ``yq`` command-line YAML processor
