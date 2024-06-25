@@ -27,7 +27,7 @@ Installation
 
 .. code-block:: console
 
-    # Fedora
+    # Linux
     $ VERSION=v4.43.1
     $ BINARY=yq_linux_amd64
     $ sudo wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq
