@@ -1,8 +1,8 @@
 :github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/jq.rst
 
-#################
-``jq`` Cheatsheet
-#################
+######################
+``jq`` JSON Cheatsheet
+######################
 
 ************************
 ``jq`` sed for JSON data

@@ -204,55 +204,89 @@ Grep File Tricks
         Age: 5
         Gender: male
 
-JSON File Tricks
-================
+JSON, YAML File Filtering
+=========================
 
 * ``jq`` is a lightweight command-line JSON processor, similar to ``sed``.
-* ``yq`` is a Python command-line (``jq`` wrapper) YAML/XML/TOML processor.
+* ``yq`` is a Python command-line (``jq`` wrapper) YAML/XML processor.
 
 .. code-block:: console
 
-    $ sudo dnf install jq # Fedora
-    $ brew install jq     # MacOS
-    $ pip install yq      # Python
+    # Installation
+    $ sudo dnf install jq      # Fedora
+    $ brew install jq          # MacOS
+    $ pip install yq           # Python
+    $ winget install jqlang.jq # Windows
 
     # Command Line examples
     $ echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' | jq '.' # pretty-print
-    $ curl http://api.open-notify.org/iss-now.json | jq '.' # pretty-print HTTP response
-
-JSON Example
-------------
-
-.. code-block:: console
-
-    $ cat flintstones.json
     {
-        "family": "flintstones",
-        "members": [
-            { "Name": "Fred", "Age": 35, "Gender": "male" },
-            { "Name": "Wilma", "Age": 25, "Gender": "female" },
-            { "Name": "Pebbles", "Age": 1, "Gender": "female" },
-            { "Name": "Dino", "Age": 5, "Gender": "male" }
-        ]
+      "fruit": {
+        "name": "apple",
+        "color": "green",
+        "price": 1.2
+      }
+    }
+
+    # Get International Space Station Current Location
+    $ curl http://api.open-notify.org/iss-now.json | jq '.' # pretty-print HTTP response
+    {
+      "message": "success",
+      "iss_position": {
+        "longitude": "103.2534",
+        "latitude": "-44.3309"
+      },
+      "timestamp": 1719322950
     }
 
 .. code-block:: console
 
-    $ jq '.' flintstones.json                                # pretty-print in color
-    $ jq '.members' flintstones.json                         # pretty-print "members" array in color
-    $ jq '.members[].Name' flintstones.json                  # "Fred" "Wilma" "Pebbles" "Dino"
-    $ jq '.members[] | .Name' flintstones.json               # "Fred" "Wilma" "Pebbles" "Dino"
-    $ jq '.members[].Name,.members[].Age' flintstones.json   # "Fred" "Wilma" "Pebbles" "Dino" 35 25 1 5
-    $ jq '.members[] | .Name,.Age' flintstones.json          # "Fred" 35 "Wilma" 25 "Pebbles" 1 "Dino" 5
-    $ jq '.members[1].Name,.members[1].Age' flintstones.json # "Wilma" 25
-    $ jq '. | keys' flintstones.json                         # [ "family", "members" ]
-    $ jq '.members[0] | keys' flintstones.json               # [ "Age", "Gender", "Name" ]
-    $ jq '. | length' flintstones.json                       # 2
-    $ jq '.members | length' flintstones.json                # 4
-    $ jq '.members[] | length' flintstones.json              # 3 3 3 3
-    $ jq '.members[].Name | length' flintstones.json         # 4 5 7 4
+    # Installation
+    # Linux
+    $ VERSION=v4.43.1
+    $ BINARY=yq_linux_amd64
+    $ sudo wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq
+    $ sudo chmod +x /usr/bin/yq
 
-* `JSON and XML Cheatsheet <https://nonbleedingedge.com/cheatsheets/json-xml.html>`_
+    $ brew install yq                  # MacOS
+    $ winget install --id MikeFarah.yq # Windows
+
+    # Command Line examples
+    $ echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' | yq '.'
+    {"fruit": {"name": "apple", "color": "green", "price": 1.20}}
+
+    # Get International Space Station Current Location
+    $ curl http://api.open-notify.org/iss-now.json | yq '.' # pretty-print HTTP GET response
+    {"message": "success", "iss_position": {"longitude": "103.9546", "latitude": "-44.0234"}, "timestamp": 1719322960}
+
+* `JSON Examples, see "jq JSON Cheatsheet" <https://nonbleedingedge.com/cheatsheets/jq.html>`_
+* `YAML, JSON Examples, see "yq YAML/JSON Cheatsheet" <https://nonbleedingedge.com/cheatsheets/yq.html>`_
+
+XML, HTML File Filtering
+========================
+
+* `xq <https://github.com/sibprogrammer/xq>`_ XML and HTML beautifier and content extractor
+* `GitHub: sibprogrammer/xq <https://github.com/sibprogrammer/xq>`_
+* `jq, xq and yq - Handy tools for the command line <https://blog.lazy-evaluation.net/posts/linux/jq-xq-yq.html>`_
+
+.. code-block:: console
+
+    # Installation
+    $ sudo dnf install xq                               # Fedora
+    $ brew install xq                                   # MacOS
+    $ curl -sSL https://bit.ly/install-xq | sudo bash   # Linux, installs into /usr/local/bin
+
+    # Command Line example
+    $ curl -s https://www.w3schools.com/xml/note.xml | xq
+    <?xml version="1.0" encoding="UTF-8"?>
+    <note>
+      <to>Tove</to>
+      <from>Jani</from>
+      <heading>Reminder</heading>
+      <body>Don't forget me this weekend!</body>
+    </note>
+
+* `XML, HTML Examples, see "xq XML/HTML Cheatsheet" <https://nonbleedingedge.com/cheatsheets/xq.html>`_
 
 Repology
 =========

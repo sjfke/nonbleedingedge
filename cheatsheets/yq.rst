@@ -1,8 +1,8 @@
 :github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/yq.rst
 
-#################
-``yq`` Cheatsheet
-#################
+###########################
+``yq`` YAML/JSON Cheatsheet
+###########################
 
 **********************************
 ``yq`` command-line YAML processor
@@ -27,7 +27,7 @@ Installation
 
 .. code-block:: console
 
-    # Fedora
+    # Linux
     $ VERSION=v4.43.1
     $ BINARY=yq_linux_amd64
     $ sudo wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq
