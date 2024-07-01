@@ -212,9 +212,11 @@ JSON, YAML File Filtering
 
 .. code-block:: console
 
-    $ sudo dnf install jq # Fedora
-    $ brew install jq     # MacOS
-    $ pip install yq      # Python
+    # Installation
+    $ sudo dnf install jq      # Fedora
+    $ brew install jq          # MacOS
+    $ pip install yq           # Python
+    $ winget install jqlang.jq # Windows
 
     # Command Line examples
     $ echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' | jq '.' # pretty-print
@@ -226,6 +228,7 @@ JSON, YAML File Filtering
       }
     }
 
+    # Get International Space Station Current Location
     $ curl http://api.open-notify.org/iss-now.json | jq '.' # pretty-print HTTP response
     {
       "message": "success",
@@ -238,6 +241,7 @@ JSON, YAML File Filtering
 
 .. code-block:: console
 
+    # Installation
     # Linux
     $ VERSION=v4.43.1
     $ BINARY=yq_linux_amd64
@@ -251,7 +255,8 @@ JSON, YAML File Filtering
     $ echo '{"fruit":{"name":"apple","color":"green","price":1.20}}' | yq '.'
     {"fruit": {"name": "apple", "color": "green", "price": 1.20}}
 
-    $ curl http://api.open-notify.org/iss-now.json | yq '.' # pretty-print HTTP response
+    # Get International Space Station Current Location
+    $ curl http://api.open-notify.org/iss-now.json | yq '.' # pretty-print HTTP GET response
     {"message": "success", "iss_position": {"longitude": "103.9546", "latitude": "-44.0234"}, "timestamp": 1719322960}
 
 * `JSON Examples, see "jq JSON Cheatsheet" <https://nonbleedingedge.com/cheatsheets/jq.html>`_
@@ -266,6 +271,7 @@ XML, HTML File Filtering
 
 .. code-block:: console
 
+    # Installation
     $ sudo dnf install xq                               # Fedora
     $ brew install xq                                   # MacOS
     $ curl -sSL https://bit.ly/install-xq | sudo bash   # Linux, installs into /usr/local/bin

@@ -229,3 +229,60 @@ Using ``Python``, if installed
     >>> _b64bytes = base64.b64decode(_ascii)
     >>> print(_b64bytes.decode("ascii"))
     EncodeMe-in-Base64
+
+JSON, YAML File Filtering
+=========================
+
+* ``jq`` is a lightweight command-line JSON processor, similar to ``sed``.
+* ``yq`` is a Python command-line (``jq`` wrapper) YAML/XML processor.
+
+.. code-block:: console
+
+    # Installation
+    $ winget install jqlang.jq
+
+    # Command Line examples
+    $ Write-Output '{"fruit":{"name":"apple","color":"green","price":1.20}}' | jq '.' # pretty-print
+    {
+      "fruit": {
+        "name": "apple",
+        "color": "green",
+        "price": 1.2
+      }
+    }
+
+    # Get International Space Station Current Location
+    $ Invoke-WebRequest -uri http://api.open-notify.org/iss-now.json -outfile iss-now.json
+    $ jq '.' .\iss-now.json # pretty-print
+    {
+      "message": "success",
+      "iss_position": {
+        "latitude": "-1.5479",
+        "longitude": "-51.8420"
+      },
+      "timestamp": 1719839316
+    }
+
+.. code-block:: console
+
+    # Installation
+    $ winget install --id MikeFarah.yq
+
+    # Command Line examples
+    $ Write-Output '{"fruit":{"name":"apple","color":"green","price":1.20}}' | yq '.'
+    {"fruit": {"name": "apple", "color": "green", "price": 1.20}}
+
+    # Get International Space Station Current Location
+    $ Invoke-WebRequest -uri http://api.open-notify.org/iss-now.json -outfile iss-now.json
+    $ yq '.' .\iss-now.json # pretty-print
+    {
+      "message": "success",
+      "iss_position": {
+        "latitude": "-32.9725",
+        "longitude": "-24.9078"
+      },
+      "timestamp": 1719839968
+    }
+
+* `JSON Examples, see "jq JSON Cheatsheet" <https://nonbleedingedge.com/cheatsheets/jq.html>`_
+* `YAML, JSON Examples, see "yq YAML/JSON Cheatsheet" <https://nonbleedingedge.com/cheatsheets/yq.html>`_
