@@ -252,7 +252,9 @@ JSON, YAML File Filtering
     }
 
     # Get International Space Station Current Location
-    $ Invoke-WebRequest -uri http://api.open-notify.org/iss-now.json -outfile iss-now.json
+    $ Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json | ConvertTo-Json -Depth 10 | jq '.'
+    # -or-
+    $ Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json -outfile iss-now.json
     $ jq '.' .\iss-now.json # pretty-print
     {
       "message": "success",
@@ -273,7 +275,9 @@ JSON, YAML File Filtering
     {"fruit": {"name": "apple", "color": "green", "price": 1.20}}
 
     # Get International Space Station Current Location
-    $ Invoke-WebRequest -uri http://api.open-notify.org/iss-now.json -outfile iss-now.json
+    $ Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json | ConvertTo-Json -Depth 10 | yq '.'
+    # -or-
+    $ Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json -outfile iss-now.json
     $ yq '.' .\iss-now.json # pretty-print
     {
       "message": "success",
