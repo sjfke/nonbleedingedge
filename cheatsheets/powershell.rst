@@ -494,50 +494,61 @@ Web-Pages and REST API's
 
 .. code-block:: pwsh-session
 
-   # web-pages
-   PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com/missing.html").statuscode       # error: (404) Not Found.
-   PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com").statuscode                    # 200
-   PS> Invoke-WebRequest -uri "https://www.nonbleedingedge.com/index.html" -outfile "index.htm" # index.htm
-   
-   # rest-api
-   PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/
-   PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/ | Format-Table -Property Title, pubDate
-   
-   title                                                             pubDate
-   -----                                                             -------
-   SecretStore Release Candidate 3                                   Mon, 15 Mar 2021 22:12:04 +0000
-   Updating help for the PSReadLine module in Windows PowerShell 5.1 Thu, 11 Mar 2021 15:29:00 +0000
-   Announcing PSReadLine 2.2-beta.2 with Dynamic help                Fri, 05 Mar 2021 20:09:10 +0000
-   SecretManagement and SecretStore Release Candidate 2              Wed, 03 Mar 2021 18:55:58 +0000
-   PowerShell Team 2021 Investments                                  Tue, 02 Mar 2021 14:19:46 +0000
-   PowerShell for Visual Studio Code Updates – February 2021         Thu, 25 Feb 2021 20:52:17 +0000
-   Announcing PowerShell Community Blog                              Thu, 18 Feb 2021 17:28:05 +0000
-   SecretManagement and SecretStore Release Candidates               Thu, 07 Jan 2021 18:19:44 +0000
-   PowerShell 7.2 Preview 2 release                                  Wed, 16 Dec 2020 00:08:04 +0000
-   Announcing PowerShell Crescendo Preview.1                         Tue, 08 Dec 2020 17:20:18 +0000
+    # web-pages
+    PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com/missing.html").statuscode       # error: (404) Not Found.
+    PS> (Invoke-WebRequest -uri "https://www.nonbleedingedge.com").statuscode                    # 200
+    PS> Invoke-WebRequest -uri "https://www.nonbleedingedge.com/index.html" -outfile "index.htm" # index.htm
+
+    # rest-api
+    PS> Invoke-RestMethod -uri https://jsonplaceholder.typicode.com/todos/1 | ConvertTo-Json -Depth 10
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "delectus aut autem",
+      "completed": false
+    }
+    PS> Invoke-RestMethod -uri https://jsonplaceholder.typicode.com/todos/1 | Format-Table -Property title, completed
+    title              completed
+    -----              ---------
+    delectus aut autem     False
+
+    PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/
+    PS> Invoke-RestMethod -uri https://blogs.msdn.microsoft.com/powershell/feed/ | Format-Table -Property Title, pubDate
+    title                                                                  pubDate
+    -----                                                                  -------
+    PSResourceGet support for Azure Container Registry (ACR) is in Preview Tue, 02 Apr 2024 22:37:11 +0000
+    PowerShell and OpenSSH team investments for 2024                       Mon, 05 Feb 2024 19:08:41 +0000
+    PowerShell 7.4 General Availability                                    Thu, 16 Nov 2023 18:56:58 +0000
+    PowerShell 7.4 Release Candidate 1                                     Tue, 31 Oct 2023 01:05:13 +0000
+    PowerShell Extension for Visual Studio Code Fall 2023 Update           Wed, 25 Oct 2023 22:06:44 +0000
+    PSResourceGet is generally available                                   Mon, 09 Oct 2023 18:19:07 +0000
+    PSReadLine 2.3.4 GA Release                                            Tue, 03 Oct 2023 18:21:11 +0000
+    PowerShellGet 3.0.22-beta22 is now available                           Wed, 20 Sep 2023 18:30:37 +0000
+    Announcing PowerShell Crescendo 1.1.0 General Availability (GA)        Tue, 12 Sep 2023 15:13:59 +0000
+    PSResourceGet Release Candidate is Now Available                       Thu, 07 Sep 2023 20:52:47 +0000
 
 .. code-block:: pwsh-session
-   
-   PS> [system.web.httputility]::urlencode("https://test.com/q?name=fred flintstone&age=35")
-   https%3a%2f%2ftest.com%2fsearch%3fname%3dfred+flintstone%26age%3d35
 
-   PS> [system.web.httputility]::urldecode("https%3a%2f%2ftest.com%2fsearch%3fname%3dfred+flintstone%26age%3d35")
-   https://test.com/search?name=fred flintstone&age=35
+    PS> [system.web.httputility]::urlencode("https://test.com/q?name=fred flintstone&age=35")
+    https%3a%2f%2ftest.com%2fsearch%3fname%3dfred+flintstone%26age%3d35
 
-   PS> [system.web.httputility]::htmlencode("https://test.com/search?name=fred flintstone&age=35")
-   https://test.com/search?name=fred flintstone&amp;age=35   
+    PS> [system.web.httputility]::urldecode("https%3a%2f%2ftest.com%2fsearch%3fname%3dfred+flintstone%26age%3d35")
+    https://test.com/search?name=fred flintstone&age=35
 
-   PS> [system.web.httputility]::htmldecode("https://test.com/search?name=fred flintstone&amp;age=35")
-   https://test.com/search?name=fred flintstone&age=35
-   
-   PS> [uri]::escapedatastring("https://test.com/search?name=fred flintstone&age=35")
-   https%3A%2F%2Ftest.com%2Fsearch%3Fname%3Dfred%20flintstone%26age%3D35
+    PS> [system.web.httputility]::htmlencode("https://test.com/search?name=fred flintstone&age=35")
+    https://test.com/search?name=fred flintstone&amp;age=35
 
-   PS> [uri]::unescapedatastring("https%3A%2F%2Ftest.com%2Fsearch%3Fname%3Dfred%20flintstone%26age%3D35")
-   https://test.com/search?name=fred flintstone&age=35
+    PS> [system.web.httputility]::htmldecode("https://test.com/search?name=fred flintstone&amp;age=35")
+    https://test.com/search?name=fred flintstone&age=35
 
-   PS> [uri]::escapeuristring("https://test.com/search?name=fred flintstone&age=35")
-   https://test.com/search?name=fred%20flintstone&age=35
+    PS> [uri]::escapedatastring("https://test.com/search?name=fred flintstone&age=35")
+    https%3A%2F%2Ftest.com%2Fsearch%3Fname%3Dfred%20flintstone%26age%3D35
+
+    PS> [uri]::unescapedatastring("https%3A%2F%2Ftest.com%2Fsearch%3Fname%3Dfred%20flintstone%26age%3D35")
+    https://test.com/search?name=fred flintstone&age=35
+
+    PS> [uri]::escapeuristring("https://test.com/search?name=fred flintstone&age=35")
+    https://test.com/search?name=fred%20flintstone&age=35
 
  
 More detailed examples:
@@ -546,7 +557,7 @@ More detailed examples:
 * `Microsoft Docs: Send an HTTP or HTTPS request to a RESTful web service <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-RestMethod>`_
 * `AdamTheAutomator: Invoke-WebRequest - PowerShell’s Web Swiss Army Knife <https://adamtheautomator.com/invoke-webrequest/>`_
 * `Microsoft Docs: HttpUtility Class <hhttps://docs.microsoft.com/en-us/dotnet/api/system.web.httputility>`_
-
+* `{JSON} Placeholder <https://jsonplaceholder.typicode.com/>`_ Free fake and reliable API for testing and prototyping.
 Active Directory
 ================
 
