@@ -7,7 +7,7 @@ colorama==0.4.6
 docutils<=0.21.2
 idna==3.7
 imagesize==1.4.1
-importlib_metadata==7.2.1
+importlib_metadata==8.0.0
 Jinja2==3.1.4
 MarkupSafe==2.1.5
 packaging==24.1
@@ -15,7 +15,7 @@ Pygments==2.18.0
 pyparsing==3.1.2
 pytz==2024.1
 requests==2.32.3
-setuptools==70.1.1
+setuptools==70.2.0
 snowballstemmer==2.2.0
 Sphinx==7.3.7
 sphinx-intl==2.2.0
