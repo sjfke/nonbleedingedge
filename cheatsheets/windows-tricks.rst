@@ -23,10 +23,10 @@ Next make sure `Virtualization` is configured in ``Windows``, search for ``Turn 
 
 It should also be possible to do this from the command line
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
-    $ dsim.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all
-    $ dsim.exe /online /enable-feature /featurename:VirtualMachinePlatform /norestart
+    PS> dsim.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all
+    PS> dsim.exe /online /enable-feature /featurename:VirtualMachinePlatform /norestart
 
 Reboot your computer.
 
@@ -34,17 +34,17 @@ From the ``Microsoft Store`` install ``Windows Subsystem for Linux`` and ``Ubunt
 
 Alternatively directly install ``Ubuntu`` from the command line.
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
-    $ wsl --install
+    PS> wsl --install
 
 A further reboot maybe necessary, but ``Ubuntu 22.04.2 LTS`` or ``Ubuntu`` should now work.
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
-    $ wsl --list
-    $ wsl --help
-    $ wsl
+    PS> wsl --list
+    PS> wsl --help
+    PS> wsl
     Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.90.1-microsoft-standard-WSL2 x86_64)
 
      * Documentation:  https://help.ubuntu.com
@@ -61,9 +61,9 @@ Oh My Posh
 
 .. note:: Laptop must be configured to run scripts, `PowerShell  Scripting Cheatsheet - Introduction <https://nonbleedingedge.com/cheatsheets/powershell-scripts.html#introduction>`_
 
-.. code-block::
+.. code-block:: pwsh-session
 
-    $ Get-ExecutionPolicy -List
+    PS> Get-ExecutionPolicy -List
 
             Scope ExecutionPolicy
             ----- ---------------
@@ -83,9 +83,9 @@ Oh My Posh
 
 2. Install ``oh-my-posh`` from the ``Microsoft Store``, or from the command line.
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
-    $ winget install JanDeDobbeleer.OhMyPosh -s
+    PS> winget install JanDeDobbeleer.OhMyPosh -s
 
 3. Download `Meslo LGM NF fonts <https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip>`_ and unzip them.
 
@@ -98,14 +98,14 @@ Oh My Posh
 
 6. Configure  `Oh My Posh prompt <https://ohmyposh.dev/docs/installation/prompt>`_ by choosing a `Theme <https://ohmyposh.dev/docs/themes>`_
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
-    $ Test-Path $PROFILE -PathType Leaf         # If FALSE, then create it using New-Item
-    $ New-Item -Path $PROFILE -Type File -Force # Create the PowerShell_profile.ps1 file
+    PS> Test-Path $PROFILE -PathType Leaf         # If FALSE, then create it using New-Item
+    PS> New-Item -Path $PROFILE -Type File -Force # Create the PowerShell_profile.ps1 file
 
-    $ notepad $PROFILE                          # Choose your theme and Invoke it
+    PS> notepad $PROFILE                          # Choose your theme and Invoke it
 
-    $ Get-Content -Path $PROFILE
+    PS> Get-Content -Path $PROFILE
     # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\paradox.omp.json" | Invoke-Expression
     # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\dracula.omp.json" | Invoke-Expression
     # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\remk.omp.json" | Invoke-Expression
@@ -114,36 +114,36 @@ Oh My Posh
     oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnoster.omp.json" | Invoke-Expression
     # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnosterplus.omp.json" | Invoke-Expression
 
-    $ . $PROFILE                                # If errors open a new PowerShell
+    PS> . $PROFILE                                # If errors open a new PowerShell
 
 Update notifications via the ``Microsoft Store`` do not work, ``oh-my-posh`` update command line update alerts
 do not always trigger, so manually check on a regular basis, see
 `Oh My Posh upgrades <https://ohmyposh.dev/docs/installation/windows#update>`_
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
-    $ oh-my-posh notice                                # Is an upgrade is available?
+    PS> oh-my-posh notice                                # Is an upgrade is available?
 
-    $ oh-my-posh version                               # Existing version
-    $ winget upgrade JanDeDobbeleer.OhMyPosh -s winget # Upgrade
-    $ oh-my-posh version                               # New version
+    PS> oh-my-posh version                               # Existing version
+    PS> winget upgrade JanDeDobbeleer.OhMyPosh -s winget # Upgrade
+    PS> oh-my-posh version                               # New version
 
 Summary of the ``oh-my-posh`` commands
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
-    $ oh-my-posh help        # help summary
-    $ oh-my-posh help --help # help on the 'help' command
+    PS> oh-my-posh help        # help summary
+    PS> oh-my-posh help --help # help on the 'help' command
 
 Use ``Terminal Icons`` to add color and icons to ``oh-my-posh`` directory listings
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
-    $ Install-Module -Name Terminal-Icons -Repository PSGallery -Scope CurrentUser
-    $ Import-Module -Name Terminal-Icons
+    PS> Install-Module -Name Terminal-Icons -Repository PSGallery -Scope CurrentUser
+    PS> Import-Module -Name Terminal-Icons
 
     # Add to $PROFILE
-    $ Get-Content -Path $PROFILE
+    PS> Get-Content -Path $PROFILE
     oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnoster.omp.json" | Invoke-Expression
     Import-Module -Name Terminal-Icons
 
@@ -159,32 +159,32 @@ One novel approach is to use ``certutil`` to compute a hash to see if they are t
 * ``certutil`` supports hash algorithms: ``MD2``, ``MD4``, ``MD5``, ``SHA1``, ``SHA256``, ``SHA384`` ``SHA512``
 * Commonly used hash algorithms being, ``SHA1`` default, ``MD5`` and ``SHA256``
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
-    $ certutil -hashfile file1.txt
+    PS> certutil -hashfile file1.txt
     SHA1 hash of file1.txt:
     2236964ee87bff078491008b506044391975e2a6
     CertUtil: -hashfile command completed successfully.
 
-    $ certutil -hashfile file1.txt MD5
+    PS> certutil -hashfile file1.txt MD5
     MD5 hash of file1.txt:
     4ead6a1f65b3f97d86a093dfb87a8be2
     CertUtil: -hashfile command completed successfully.
 
-    $ certutil -hashfile file1.txt SHA256
+    PS> certutil -hashfile file1.txt SHA256
     SHA256 hash of file1.txt:
     dde3f13078dae2baf1d1a12ad3be20ce6cc0d370cbab0f579fca16dcc4791394
     CertUtil: -hashfile command completed successfully.
 
-    $ certutil -hashfile Fred_Flintstone.png SHA256
+    PS> certutil -hashfile Fred_Flintstone.png SHA256
     SHA256 hash of Fred_Flintstone.png:
     a4c8843ce4fb12654ccbe7aa14256c7e0243739d42874d42b531e74bc27ba32c
     CertUtil: -hashfile command completed successfully.
 
-    $ sha256_hash = Invoke-Expression "certutil -hashfile Fred_Flintstone.png SHA256 | Select-Object -Index 1"
-    $ write($sha256_hash) # a4c8843ce4fb12654ccbe7aa14256c7e0243739d42874d42b531e74bc27ba32c
+    PS> sha256_hash = Invoke-Expression "certutil -hashfile Fred_Flintstone.png SHA256 | Select-Object -Index 1"
+    PS> write($sha256_hash) # a4c8843ce4fb12654ccbe7aa14256c7e0243739d42874d42b531e74bc27ba32c
 
-    $ certutil -hashfile .\kustomize.exe SHA256
+    PS> certutil -hashfile .\kustomize.exe SHA256
     SHA256 hash of .\kustomize.exe:
     2cd041a2e4d3533ffa6f5f03dc2d9e0828bae7931021cc5d11dfcd644bd8b4c0
     CertUtil: -hashfile command completed successfully.
@@ -195,19 +195,19 @@ intended for manipulating certificates and so can do much more.
 Base 64 Encode/Decode
 =====================
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
-    $ [Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("EncodeMe-in-Base64"))
+    PS> [Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("EncodeMe-in-Base64"))
     RW5jb2RlTWUtaW4tQmFzZTY0
 
-    $ [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String('RW5jb2RlTWUtaW4tQmFzZTY0'))
+    PS> [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String('RW5jb2RlTWUtaW4tQmFzZTY0'))
     EncodeMe-in-Base64
 
 Using ``wsl``, if installed
 
 .. code-block:: console
 
-    $ wsl
+    PS> wsl
     $ echo -n 'EncodeMe-in-Base64' | base64
     RW5jb2RlTWUtaW4tQmFzZTY0
 
@@ -236,13 +236,13 @@ JSON, YAML File Filtering
 * ``jq`` is a lightweight command-line JSON processor, similar to ``sed``.
 * ``yq`` is a Python command-line (``jq`` wrapper) YAML/XML processor.
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
     # Installation
-    $ winget install jqlang.jq
+    PS> winget install jqlang.jq
 
     # Command Line examples
-    $ Write-Output '{"fruit":{"name":"apple","color":"green","price":1.20}}' | jq '.' # pretty-print
+    PS> Write-Output '{"fruit":{"name":"apple","color":"green","price":1.20}}' | jq '.' # pretty-print
     {
       "fruit": {
         "name": "apple",
@@ -251,11 +251,20 @@ JSON, YAML File Filtering
       }
     }
 
+    # {JSON} Placeholder - Free fake and reliable API for testing and prototyping.
+    PS> Invoke-RestMethod -uri https://jsonplaceholder.typicode.com/todos/1 | ConvertTo-Json -Depth 10 | jq '.'
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "delectus aut autem",
+      "completed": false
+    }
+
     # Get International Space Station Current Location
-    $ Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json | ConvertTo-Json -Depth 10 | jq '.'
+    PS> Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json | ConvertTo-Json -Depth 10 | jq '.'
     # -or-
-    $ Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json -outfile iss-now.json
-    $ jq '.' .\iss-now.json # pretty-print
+    PS> Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json -outfile iss-now.json
+    PS> jq '.' .\iss-now.json # pretty-print
     {
       "message": "success",
       "iss_position": {
@@ -265,20 +274,24 @@ JSON, YAML File Filtering
       "timestamp": 1719839316
     }
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
     # Installation
-    $ winget install --id MikeFarah.yq
+    PS> winget install --id MikeFarah.yq
 
     # Command Line examples
-    $ Write-Output '{"fruit":{"name":"apple","color":"green","price":1.20}}' | yq '.'
+    PS> Write-Output '{"fruit":{"name":"apple","color":"green","price":1.20}}' | yq '.'
     {"fruit": {"name": "apple", "color": "green", "price": 1.20}}
 
+    # {JSON} Placeholder - Free fake and reliable API for testing and prototyping.
+    PS> Invoke-RestMethod -uri https://jsonplaceholder.typicode.com/todos/1 | ConvertTo-Json -Depth 10 | yq '.'
+    {"userId": 1, "id": 1, "title": "delectus aut autem", "completed": false}
+
     # Get International Space Station Current Location
-    $ Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json | ConvertTo-Json -Depth 10 | yq '.'
+    PS> Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json | ConvertTo-Json -Depth 10 | yq '.'
     # -or-
-    $ Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json -outfile iss-now.json
-    $ yq '.' .\iss-now.json # pretty-print
+    PS> Invoke-RestMethod -uri http://api.open-notify.org/iss-now.json -outfile iss-now.json
+    PS> yq '.' .\iss-now.json # pretty-print
     {
       "message": "success",
       "iss_position": {
@@ -290,3 +303,4 @@ JSON, YAML File Filtering
 
 * `JSON Examples, see "jq JSON Cheatsheet" <https://nonbleedingedge.com/cheatsheets/jq.html>`_
 * `YAML, JSON Examples, see "yq YAML/JSON Cheatsheet" <https://nonbleedingedge.com/cheatsheets/yq.html>`_
+* `{JSON} Placeholder <https://jsonplaceholder.typicode.com/>`_ Free fake and reliable API for testing and prototyping.
