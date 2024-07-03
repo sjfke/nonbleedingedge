@@ -1910,8 +1910,8 @@ Updating packages in a `venv` session is done using `pip`.
     # Note: may need several iterations and manual additions to 'requirements.txt'
     $ pip list --outdated
     $ pip freeze > requirements.txt
-    # edit 'requirements.txt', replace '==' with '>='
     $ pip install -r requirements.txt --upgrade
+    # edit 'requirements.txt', replace '==' with '<=' on any failures
 
 If you are brave like `ActiveState`, `How to Update All Python Packages <https://www.activestate.com/resources/quick-reads/how-to-update-all-python-packages/>`_
 
@@ -1938,6 +1938,8 @@ iterations if new packages need to be installed because of dependencies.
 .. code-block:: console
 
     Settings => Project <name> => Python Interpreter
+    -or-
+    Python Packages Tool Window
 
 ``pipx``
 --------
