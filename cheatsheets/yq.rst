@@ -36,6 +36,8 @@ Installation
     $ brew install yq                  # MacOS
     $ winget install --id MikeFarah.yq # Windows
 
+    $ winget upgrade yq -s winget      # Upgrading on Windows
+
 
 YAML Example
 ============
