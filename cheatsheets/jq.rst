@@ -19,9 +19,11 @@ Installation
 
 .. code-block:: console
 
-    $ sudo dnf install jq      # Fedora
-    $ brew install jq          # MacOS
-    $ winget install jqlang.jq # Windows
+    $ sudo dnf install jq         # Fedora
+    $ brew install jq             # MacOS
+    $ winget install jqlang.jq    # Windows
+
+    $ winget upgrade jq -s winget # Upgrading on Windows
 
 Basic Usage
 ===========
