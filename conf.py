@@ -106,6 +106,7 @@ html_theme_options = {
 # html_static_path = ['_static']
 html_static_path = []
 
+html_extra_path = ['robots.txt']
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
