@@ -70,6 +70,37 @@ GPG key generation
 
 .. note:: Use ``gpg --full-generate-key`` to adjust expiry date etc.
 
+*****************************
+Sign and Encrypt/Decrypt Keys
+*****************************
+
+Notice, that ``--list-keys`` and ``--list-secret-keys`` produce the same output.
+
+.. code-block:: console
+
+    gpg --list-keys sjfke.pool.shark@hotmail.com
+    pub   ed25519 2024-03-05 [SC] [expires: 2027-03-05]
+          2B0A468BE38C555D1EBB89A20045294821C0C792
+    uid           [ultimate] Sjfke (Hotmail) <sjfke.pool.shark@hotmail.com>
+    sub   cv25519 2024-03-05 [E] [expires: 2027-03-05]
+
+    gpg --list-secret-keys sjfke.pool.shark@hotmail.com
+    sec   ed25519 2024-03-05 [SC] [expires: 2027-03-05]
+          2B0A468BE38C555D1EBB89A20045294821C0C792
+    uid           [ultimate] Sjfke (Hotmail) <sjfke.pool.shark@hotmail.com>
+    ssb   cv25519 2024-03-05 [E] [expires: 2027-03-05]
+
+Where ``[SC]`` means sign and certify and ``[E]`` means encrypt/decrypt
+
+* E = encrypt/decrypt (decrypt a message you received encrypted for you to read)
+* S = sign (sign data. For example a file or to send signed e-mail)
+* C = certify (sign another key, establishing a trust-relation)
+* A = authentication (log in to SSH with a PGP key; this is relatively new usage)
+
+References
+
+* `GPG - why am I encrypting with subkey instead of primary key? <https://serverfault.com/questions/397973/gpg-why-am-i-encrypting-with-subkey-instead-of-primary-key>`_
+* `Anatomy of a GPG Key <https://davesteele.github.io/gpg/2014/09/20/anatomy-of-a-gpg-key/>`_ by Dave Steele
 
 ********************
 Git GPG integrations

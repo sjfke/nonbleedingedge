@@ -23,7 +23,7 @@ copyright = '2024, Geoffrey Collis'
 author = 'Geoffrey Collis (sjfke)'
 
 # The short X.Y version
-version = '2024.1.8'
+version = '2024.1.9'
 # The full version, including alpha/beta/rc tags
 release = ''
 
@@ -106,6 +106,12 @@ html_theme_options = {
 # html_static_path = ['_static']
 html_static_path = []
 
+html_extra_path = ['robots.txt']
+
+html_last_updated_fmt = '%b %d, %Y'
+
+html_favicon = 'images/favicon.ico'
+# html_logo = 'images/lightbulb.png' # too big need to do better
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
