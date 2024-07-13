@@ -27,7 +27,7 @@ Docker Desktop
     * kubernetes-style ``configMaps`` are not supported, ``docker swarm`` *only*
     * primarily Windows, but available on Linux and MacOS (brew)
     * application slow to start and upgrade
-    * releases ``v4.29``, ``v4.30`` have issues, try manually start starting ``Docker Desktop Service``
+    * releases ``v4.29``, ``v4.30`` have issues, try manually starting service ``Docker Desktop Service``
 
 
 *************************
