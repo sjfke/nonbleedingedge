@@ -114,7 +114,7 @@ Oh My Posh
     oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnoster.omp.json" | Invoke-Expression
     # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnosterplus.omp.json" | Invoke-Expression
 
-    PS> . $PROFILE                                # If errors open a new PowerShell
+    PS> . $PROFILE                                # If errors, test by opening a new PowerShell
 
 Update notifications via the ``Microsoft Store`` do not work, ``oh-my-posh`` update command line update alerts
 do not always trigger, so manually check on a regular basis, see
@@ -122,10 +122,10 @@ do not always trigger, so manually check on a regular basis, see
 
 .. code-block:: pwsh-session
 
-    PS> oh-my-posh notice                                # Is an upgrade is available?
+    PS> oh-my-posh notice                                # Upgrade available? (unreliable)
 
     PS> oh-my-posh version                               # Existing version
-    PS> winget upgrade JanDeDobbeleer.OhMyPosh -s winget # Upgrade
+    PS> winget upgrade JanDeDobbeleer.OhMyPosh -s winget # Upgrade (do weekly, upgrades are frequent)
     PS> oh-my-posh version                               # New version
 
 Summary of the ``oh-my-posh`` commands
