@@ -32,7 +32,7 @@ and 3.7.14.
 
 As of November 2024, Python 3.12 and 3.13 are bug-fixed releases, with 3.9, 3.10 and 3.11 security fixes only.
 
-* `ython Developers Guide - Supported versions <https://devguide.python.org/versions/>`_
+* `Python Developers Guide - Supported versions <https://devguide.python.org/versions/>`_
 
 Python on Linux
 ---------------
