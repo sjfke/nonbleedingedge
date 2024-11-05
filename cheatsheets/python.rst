@@ -18,7 +18,7 @@ This is a brief summary of the Python version history derived from the
 * Python 0.9.0 was released in 1991.
 * Python 2.0 was released in 2000, with last release being Python 2.7.18 released in 2020.
 * Python 3.0 was released in 2008, this major revision is not completely backward-compatible.
-* Currently only Python 3.7 and later are supported.
+* Currently only Python 3.9 and later are supported.
 
 In 2021, Python 3.9.2 and 3.8.8 were expedited as all versions of Python (including 2.7) had security issues leading
 to possible remote code execution and web cache poisoning.
@@ -30,8 +30,9 @@ only receive security fixes in the future
 On September 7, 2022, four new releases were made due to a potential denial-of-service attack: 3.10.7, 3.9.14, 3.8.14,
 and 3.7.14.
 
-As of November 2022, Python 3.11.0 is the current stable release.
-Notable changes from 3.10 include increased program execution speed and improved error reporting
+As of November 2024, Python 3.12 and 3.13 are bug-fixed releases, with 3.9, 3.10 and 3.11 security fixes only.
+
+* `ython Developers Guide - Supported versions <https://devguide.python.org/versions/>`_
 
 Python on Linux
 ---------------
@@ -46,12 +47,22 @@ The author is using Python from the `Microsoft Store <https://apps.microsoft.com
 * `Python - Using Python on Windows <https://docs.python.org/3/using/windows.html>`_
 * `Microsoft - Get started using Python on Windows for beginners <https://learn.microsoft.com/en-us/windows/python/beginners>`_
 * `Microsoft - Get started using Python for web development on Windows <https://learn.microsoft.com/en-us/windows/python/web-frameworks>`_
-* `Microsoft Store - Python 3.11 <https://apps.microsoft.com/store/detail/python-311/9NRWMJP3717K>`_
-    * `Python 3.10 <https://apps.microsoft.com/store/detail/python-310/9PJPW5LDXLZ5>`_
-    * `Python 3.9 <https://apps.microsoft.com/store/detail/python-39/9P7QFQMJRFP7>`_
-    * `How to manage App execution aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
+* `Microsoft Store - Python 3.13 <https://apps.microsoft.com/detail/9pnrbtzxmb4z>`_
+    * `Python 3.12 <https://apps.microsoft.com/detail/9ncvdn91xzqp>`_
+    * `Python 3.11 <https://apps.microsoft.com/detail/9nrwmjp3717k>`_
 * `Anaconda offers the easiest way to perform Python/R data science <https://www.anaconda.com/>`_
 * `RealPython - Your Python Coding Environment on Windows: Setup Guide <https://realpython.com/python-coding-setup-windows/>`_
+
+Managing App execution is Windows version dependent, so first try:
+
+    * `How to manage App execution aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
+
+If that fails, try:
+
+.. code-block:: console
+
+    1. Press "Windows + I" and select "Apps > Advanced app settings";
+    2. Under "Choose where to get apps", change the selection to the desired one
 
 =====================
 Example Python Script
@@ -1394,7 +1405,12 @@ Dictionaries
     print(f"{name['first']} {name['last']}")                             # Fred Flintstone
     print(f"{name['first'].lower()} {name['last'].upper()}")             # fred FLINTSTONE
 
-=========================
+String Manipulation
+-------------------
+
+* `W3Schools - Built-In Methods <https://www.w3schools.com/python/python_ref_string.asp>`_
+* `PythonCheatsheet - Manipulating Strings - <https://www.pythoncheatsheet.org/cheatsheet/manipulating-strings>`_
+
 Reading and Writing Files
 =========================
 
