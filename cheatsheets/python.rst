@@ -48,14 +48,14 @@ The author is using Python from the `Microsoft Store <https://apps.microsoft.com
 * `Microsoft - Get started using Python on Windows for beginners <https://learn.microsoft.com/en-us/windows/python/beginners>`_
 * `Microsoft - Get started using Python for web development on Windows <https://learn.microsoft.com/en-us/windows/python/web-frameworks>`_
 * `Microsoft Store - Python 3.13 <https://apps.microsoft.com/detail/9pnrbtzxmb4z>`_
-    * `Python 3.12 <https://apps.microsoft.com/detail/9ncvdn91xzqp>`_
-    * `Python 3.11 <https://apps.microsoft.com/detail/9nrwmjp3717k>`_
+* `Microsoft Store - Python 3.12 <https://apps.microsoft.com/detail/9ncvdn91xzqp>`_
+* `Microsoft Store - Python 3.11 <https://apps.microsoft.com/detail/9nrwmjp3717k>`_
 * `Anaconda offers the easiest way to perform Python/R data science <https://www.anaconda.com/>`_
 * `RealPython - Your Python Coding Environment on Windows: Setup Guide <https://realpython.com/python-coding-setup-windows/>`_
 
-Managing App execution is Windows version dependent, so first try:
+To choose which installed version to run, see ``App Execution Aliases`` but this is Windows version dependent, so first try:
 
-    * `How to manage App execution aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
+    * `How to manage App Execution Aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
 
 If that fails, try:
 
