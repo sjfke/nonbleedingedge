@@ -1,14 +1,14 @@
 :github_url: https://github.com/sjfke/nonbleedingedge/blob/main/cheatsheets/python.rst
 
-*****************
+#################
 Python Cheatsheet
-*****************
+#################
 
 .. important:: Python-3 only, with an emphasis on using Python as a shell-scripting language.
 
-==========
+**********
 Background
-==========
+**********
 
 `Python <https://www.python.org/>`_ has had a long history, and has accumulated a lot of *new features*,
 *incompatibilities* and *tech-debt* over the years which can make learning the language complex and confusing.
@@ -35,12 +35,12 @@ As of November 2024, Python 3.12 and 3.13 are bug-fixed releases, with 3.9, 3.10
 * `Python Developers Guide - Supported versions <https://devguide.python.org/versions/>`_
 
 Python on Linux
----------------
+===============
 
 Almost all distributions provide Python by default.
 
 Python on Windows
------------------
+=================
 
 The author is using Python from the `Microsoft Store <https://apps.microsoft.com/store/apps>`_
 
@@ -64,10 +64,9 @@ If that fails, try:
 
     * `How to manage App Execution Aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
 
-
-=====================
+*********************
 Example Python Script
-=====================
+*********************
 
 An overly simple example, `flintstones.py <https://github.com/sjfke/python-projects/blob/main/flintstones.py>`_
 
@@ -189,9 +188,11 @@ None of these examples include :ref:`python-logging` and probably should.
 .. _python-docstrings:
 
 Python Docstrings
------------------
+=================
 
-The top 3 Python docstring formats are:
+Docstrings are covered in `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_ and provide the text
+for the built-in ``help()`` function.
+The top 3 Docstring styles being, *Sphinx*, *Google* and *Numpydoc*.
 
 * `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
 * `Sphinx: Example on how to document your Python docstrings <https://thomas-cokelaer.info/tutorials/sphinx/docstring_python.html>`_
@@ -200,15 +201,15 @@ The top 3 Python docstring formats are:
 
 Other references:
 
+* `Documenting Python Code: A Complete Guide <https://realpython.com/documenting-python-code/>`_
 * `JetBrains PyCharm: Creating documentation comments for Python functions <https://www.jetbrains.com/help/pycharm/creating-documentation-comments.html>`_
 * `VSCode: autoDocstring - Python Docstring Generator <https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring>`_
 * `Python Basics: Using docstrings to document functions <https://www.pythontutorial.net/python-basics/python-function-docstrings/>`_
-* `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_
 
 .. _python-logging:
 
 Python Logging
---------------
+==============
 
 .. code-block:: python
 
@@ -238,7 +239,7 @@ Python Logging
 .. _module-import:
 
 Module Import
--------------
+=============
 
 For illustration the file `fact.py` which contains a method called `fact` is copied into different folders.
 
@@ -269,7 +270,7 @@ For illustration the file `fact.py` which contains a method called `fact` is cop
     from fact import fact                 # from file './fact.py' import 'def fact(n)'
     # from subdir.fact import fact        # file is in subdir
     # from subdir.subdir.fact import fact # file is in subdir/subdir
-    # from fact import fact as factorial  # answer = factorial(n)
+    # from fact import fact as factorial  # different name, so answer = factorial(n)
 
     if (__name__ == '__main__'):
         n = random.randrange(1,10,1)
@@ -281,7 +282,7 @@ For illustration the file `fact.py` which contains a method called `fact` is cop
 .. _using-shebang:
 
 Using Shebang
--------------
+=============
 
 On ``UNIX`` and ``Linux`` systems it is common to have a ``shebang`` as the first line of the the script, so the
 Shell knows which interpreter to use.
@@ -299,7 +300,7 @@ Windows does not support ``shebang``, so the it is omitted from the examples, se
 * `Why is it better to use "#!/usr/bin/env NAME" instead of "#!/path/to/NAME" as my shebang? <https://unix.stackexchange.com/questions/29608/why-is-it-better-to-use-usr-bin-env-name-instead-of-path-to-name-as-my>`_
 
 Print to stderr and stdout
---------------------------
+==========================
 
 From `sys — System-specific parameters and functions <https://docs.python.org/3/library/sys.html>`_
     `sys.stdin`, `sys.stdout`, `sys.stderr`, file objects used for standard input, output and errors.
@@ -313,14 +314,14 @@ From `sys — System-specific parameters and functions <https://docs.python.org/
     print(f"hello, {a}", file=sys.stdout) # 'hello, fred' (stdout)
     print(f"hello, {a}", file=sys.stderr) # 'hello, fred' (stderr)
 
-====================
+********************
 Object Class Example
-====================
+********************
 
 Simple ``Person`` object in file named ``Person.py``, without Docstrings for brevity.
 
 Using Python decorators
------------------------
+=======================
 
 This is considered the *pythonic* approach because it **only supports attributes**, there are
 no functions `get_name()`, `set_name()` etc.
@@ -404,8 +405,38 @@ no functions `get_name()`, `set_name()` etc.
             __str += "}"
             return __str
 
+Decorator Usage
+---------------
+
+.. code-block:: python
+
+    import Person
+    f = Person.Person(name='fred',age=99)
+    b = Person.Person(name='barney',age=9)
+    b.__str__()        # 'Person: barney, 9, M, c569ea0b-90bf-4433-b620-9472f6afbd8f'
+    f.__repr__()       # "{'name': fred, 'age': 99, 'sex': M, 'uuid': be1f8143-8619-477d-9658-aece55b8c98f}"
+
+    dir(f)             # methods and attributes
+    help(f)            # methods, attributes and docstrings
+
+    ## 'Person' object using decorator approach - get(), set() calls fail!
+    #
+    f.name='freddy'    # attribute update
+    f.name             # 'freddy'
+    f.get_name()       # *** fails, no attribute 'get_name' ***
+
+    f.set_name('fred') # *** fails, no attribute 'set_name' ***
+    f.name             # 'freddy'
+    f.get_name()       # *** fails, no attribute 'get_name' ***
+
+    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
+    f.get_uuid()       # *** fails,  no attribute 'get_uuid' ***
+
+    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
+    AttributeError: property 'uuid' of 'Person' object has no setter
+
 Using the Property Class
-------------------------
+========================
 
 This approach supports attributes  **AND** `get_name()`, `set_name()` etc.
 
@@ -483,8 +514,8 @@ This approach supports attributes  **AND** `get_name()`, `set_name()` etc.
     sex = property(get_sex, set_sex, None, None)
     uuid = property(get_uuid, None, None, None)
 
-Example usage
--------------
+Property Class Usage
+--------------------
 
 .. code-block:: python
 
@@ -497,24 +528,6 @@ Example usage
     dir(f)             # methods and attributes
     help(f)            # methods, attributes and docstrings
 
-    ## 'Person' object using decorator approach - get(), set() calls fail!
-    #
-    f.name='freddy'    # attribute update
-    f.name             # 'freddy'
-    f.get_name()       # *** fails, no attribute 'get_name' ***
-
-    f.set_name('fred') # *** fails, no attribute 'set_name' ***
-    f.name             # 'freddy'
-    f.get_name()       # *** fails, no attribute 'get_name' ***
-
-    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
-    f.get_uuid()       # *** fails,  no attribute 'get_uuid' ***
-
-    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
-    AttributeError: property 'uuid' of 'Person' object has no setter
-
-    ## 'Person' object using property class approach
-    #
     f.name='freddy'    # attribute update
     f.name             # 'freddy'
     f.get_name()       # 'freddy'
@@ -530,12 +543,12 @@ Example usage
     AttributeError: property 'uuid' of 'Person' object has no setter
 
 
-=====================
-Language Key Features
-=====================
+*******************
+Language Data Types
+*******************
 
 Lists
------
+=====
 
 * Mutable
 * Ordered collections of arbitrary objects, accessed by offset
@@ -596,7 +609,7 @@ Lists
     isinstance(L1, dict)            # False, it is a dict object
 
 Dictionaries
-------------
+============
 
 * Mutable
 * Unordered collections of arbitrary objects, accessed by key
@@ -673,7 +686,7 @@ Dictionaries
 
 
 Tuples
-------
+======
 
 * Immutable
 * Ordered collections of arbitrary objects, accessed by offset
@@ -717,7 +730,7 @@ Tuples
     isinstance(t3, tuple)           # True
 
 Sets
-----
+====
 
 * Mutable, but the elements are immutable and unique
 * Unordered collections of arbitrary objects, accessed by key
@@ -835,7 +848,7 @@ Augmented Assignment Operators and Methods
 
 
 Heapq (binary tree)
--------------------
+===================
 
 Heaps are binary trees for which every parent node has a value less than or equal to any of its children.
 
@@ -879,11 +892,12 @@ Heaps are binary trees for which every parent node has a value less than or equa
     smallest_item = heapq.heappop(heap) # (1, 'J')
 
 
-
-Operators
----------
+****************
+Python Operators
+****************
 
 Arithmetic operators
+====================
 
 .. code-block:: python
 
@@ -901,6 +915,7 @@ Arithmetic operators
     print(a ** b) # 8 (exponent)
 
 Comparison operators
+====================
 
 .. code-block:: python
 
@@ -913,6 +928,7 @@ Comparison operators
     print(a <= b) # True
 
 Bitwise operators
+=================
 
 .. code-block:: python
 
@@ -934,7 +950,8 @@ Bitwise operators
 
 * `RealPython: Overview of Python’s Bitwise Operators <https://realpython.com/python-bitwise-operators/>`_
 
-Assignment operators
+Assignment
+==========
 
 .. code-block:: python
 
@@ -949,6 +966,7 @@ Assignment operators
     b //= a # b is 1 (floor division)
 
 Logical Operators
+=================
 
 .. code-block:: python
 
@@ -958,6 +976,7 @@ Logical Operators
     print(not(a > b) and c < d) # True
 
 Rich Comparisons
+================
 
 .. code-block:: python
 
@@ -993,7 +1012,7 @@ References:
 * `PEP 207 – Rich Comparisons <https://peps.python.org/pep-0207/>`_
 
 Object Checking
----------------
+===============
 
 List of classinfo types:
 
@@ -1002,24 +1021,23 @@ List of classinfo types:
     print([t.__name__ for t in __builtins__.__dict__.values() if isinstance(t, type)])
 
 
-Python-3.11 classinfo types: ::
+Python-3.13 classinfo types: ::
 
-    ['BuiltinImporter', 'bool', 'memoryview', 'bytearray', 'bytes', 'classmethod', 'complex', 'dict',
-    'enumerate', 'filter', 'float', 'frozenset', 'property', 'int', 'list', 'map', 'object', 'range',
-    'reversed', 'set', 'slice', 'staticmethod', 'str', 'super', 'tuple', 'type', 'zip', 'BaseException',
-    'BaseExceptionGroup', 'Exception', 'GeneratorExit', 'KeyboardInterrupt', 'SystemExit', 'ArithmeticError',
-    'AssertionError', 'AttributeError', 'BufferError', 'EOFError', 'ImportError', 'LookupError',
-    'MemoryError', 'NameError', 'OSError', 'ReferenceError', 'RuntimeError', 'StopAsyncIteration',
-    'StopIteration', 'SyntaxError', 'SystemError', 'TypeError', 'ValueError', 'Warning',
-    'FloatingPointError', 'OverflowError', 'ZeroDivisionError', 'BytesWarning', 'DeprecationWarning',
-    'EncodingWarning', 'FutureWarning', 'ImportWarning', 'PendingDeprecationWarning', 'ResourceWarning',
-    'RuntimeWarning', 'SyntaxWarning', 'UnicodeWarning', 'UserWarning', 'BlockingIOError',
-    'ChildProcessError', 'ConnectionError', 'FileExistsError', 'FileNotFoundError', 'InterruptedError',
-    'IsADirectoryError', 'NotADirectoryError', 'PermissionError', 'ProcessLookupError', 'TimeoutError',
-    'IndentationError', 'IndexError', 'KeyError', 'ModuleNotFoundError', 'NotImplementedError',
-    'RecursionError', 'UnboundLocalError', 'UnicodeError', 'BrokenPipeError', 'ConnectionAbortedError',
-    'ConnectionRefusedError', 'ConnectionResetError', 'TabError', 'UnicodeDecodeError',
-    'UnicodeEncodeError', 'UnicodeTranslateError', 'ExceptionGroup', 'OSError', 'OSError', 'OSError']
+    ['BuiltinImporter', 'bool', 'memoryview', 'bytearray', 'bytes', 'classmethod', 'complex', 'dict', 'enumerate', 'filter',
+    'float', 'frozenset', 'property', 'int', 'list', 'map', 'object', 'range', 'reversed', 'set', 'slice', 'staticmethod',
+    'str', 'super', 'tuple', 'type', 'zip', 'BaseException', 'BaseExceptionGroup', 'Exception', 'GeneratorExit',
+    'KeyboardInterrupt', 'SystemExit', 'ArithmeticError', 'AssertionError', 'AttributeError', 'BufferError', 'EOFError',
+    'ImportError', 'LookupError', 'MemoryError', 'NameError', 'OSError', 'ReferenceError', 'RuntimeError',
+    'StopAsyncIteration', 'StopIteration', 'SyntaxError', 'SystemError', 'TypeError', 'ValueError', 'Warning',
+    'FloatingPointError', 'OverflowError', 'ZeroDivisionError', 'BytesWarning', 'DeprecationWarning', 'EncodingWarning',
+    'FutureWarning', 'ImportWarning', 'PendingDeprecationWarning', 'ResourceWarning', 'RuntimeWarning', 'SyntaxWarning',
+    'UnicodeWarning', 'UserWarning', 'BlockingIOError', 'ChildProcessError', 'ConnectionError', 'FileExistsError',
+    'FileNotFoundError', 'InterruptedError', 'IsADirectoryError', 'NotADirectoryError', 'PermissionError',
+    'ProcessLookupError', 'TimeoutError', 'IndentationError', '_IncompleteInputError', 'IndexError', 'KeyError',
+    'ModuleNotFoundError', 'NotImplementedError', 'PythonFinalizationError', 'RecursionError', 'UnboundLocalError',
+    'UnicodeError', 'BrokenPipeError', 'ConnectionAbortedError', 'ConnectionRefusedError', 'ConnectionResetError',
+    'TabError', 'UnicodeDecodeError', 'UnicodeEncodeError', 'UnicodeTranslateError', 'ExceptionGroup', 'OSError',
+    'OSError', 'OSError']
 
 Checking what an object is:
 
@@ -1057,8 +1075,12 @@ Checking what an object is:
     isinstance(L, (list, tuple))          # True, because it is a list
     isinstance(T, (list, tuple))          # True, because it is a tuple
 
+*****************
+Python Statements
+*****************
+
 IF statements
--------------
+=============
 
  .. code-block:: python
 
@@ -1079,7 +1101,7 @@ IF statements
 
 
 While Loops
------------
+===========
 
  .. code-block:: python
 
@@ -1092,7 +1114,7 @@ While Loops
 
 
 For Loops
----------
+=========
 
  .. code-block:: python
 
@@ -1128,12 +1150,8 @@ For Loops
     for key,value in D.items():
         print(f"key={key}, value={value}") # key=spam, value=None \n key=eggs, value=2 \n key=ham, value=1
 
-
-
-
-
 Try/Except
-----------
+==========
 
 .. code-block:: python
 
@@ -1203,9 +1221,12 @@ Try/Except
 
     invalid literal for int() with base 10: '<?xml version="1.0" encoding="UTF-8"?>'
 
+********************
+Dates and Timestamps
+********************
 
 DateTime and TimeZone
----------------------
+=====================
 
 .. code-block:: python
 
@@ -1219,6 +1240,11 @@ DateTime and TimeZone
     utc.tzinfo                               # datetime.timezone.utc
     utc.utcoffset()                          # datetime.timedelta(0)
 
+Timestamps
+==========
+
+.. code-block:: python
+
     # UNIX epoch (UTC)
     import time
     from datetime import datetime, timezone
@@ -1227,8 +1253,12 @@ DateTime and TimeZone
     int(time.mktime(utc.timetuple()))        # UNIX epoch as int
     round(time.mktime(utc.timetuple()))      # UNIX epoch as int
 
+**************
+Python Strings
+**************
+
 String Formatting
------------------
+=================
 
 Python string formatting has evolved over the years, and while all three formats are supported
 in Python3, the ***f-string*** format is the one that should be used.
@@ -1245,12 +1275,14 @@ double-quote.
 * `Python: Input and Output - Fancier Output Formatting <https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting>`_
 * `Python: Formatted string literals <https://docs.python.org/3/reference/lexical_analysis.html#f-strings>`_
 
-For Docstrings:
+For Docstrings
+--------------
 
 * `use str() for __str__ <https://docs.python.org/3/library/stdtypes.html#str>`_
 * `use repr() for __repr__ <https://docs.python.org/3/library/functions.html#repr>`_
 
-Strings
+Text
+----
 
 .. code-block:: python
 
@@ -1286,6 +1318,7 @@ Strings
     print(f"{c:10.7};{d:10.7}")          # short     ;long st
 
 Numbers
+-------
 
 .. code-block:: python
 
@@ -1338,6 +1371,7 @@ Numbers
     str(pi).zfill(7)                      # '3.141592653589793'
 
 DateTime, UNIX Epoch and TimeStamps
+-----------------------------------
 
 .. code-block:: python
 
@@ -1398,6 +1432,7 @@ DateTime, UNIX Epoch and TimeStamps
 
 
 Dictionaries
+------------
 
 .. code-block:: python
 
@@ -1409,19 +1444,23 @@ Dictionaries
     print(f"{name['first'].lower()} {name['last'].upper()}")             # fred FLINTSTONE
 
 String Manipulation
--------------------
+===================
 
 * `W3Schools - Built-In Methods <https://www.w3schools.com/python/python_ref_string.asp>`_
 * `PythonCheatsheet - Manipulating Strings - <https://www.pythoncheatsheet.org/cheatsheet/manipulating-strings>`_
 
+*************************
 Reading and Writing Files
-=========================
+*************************
 
 * `Python3: Input and Output <https://docs.python.org/3/tutorial/inputoutput.html>`_
 * `Python3: Reading and Writing Files <https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files>`_
 
-Text Files Sequential Access
-----------------------------
+Text Files
+==========
+
+Sequential Access
+-----------------
 
 .. code-block:: python
 
@@ -1461,8 +1500,8 @@ Text Files Sequential Access
     outfile_handle.close()
 
 
-Text Files Random Access
-------------------------
+Random Access
+-------------
 
 .. code-block:: python
 
@@ -1477,7 +1516,7 @@ Text Files Random Access
 * `linecache — Random access to text lines <https://docs.python.org/3/library/linecache.html>`_
 
 File, and Directory Tests
--------------------------
+=========================
 
 .. code-block:: python
 
@@ -1497,7 +1536,7 @@ File, and Directory Tests
 * `pathlib — Object-oriented filesystem paths <https://docs.python.org/3/library/pathlib.html>`_
 
 JSON files
-----------
+==========
 
 .. code-block:: python
 
@@ -1517,7 +1556,7 @@ JSON files
 
 
 XML files
----------
+=========
 
 .. code-block:: xml
 
@@ -1603,9 +1642,9 @@ References:
 * `XML Processing Modules - Security issues <https://docs.python.org/3/library/xml.html>`_
 * `Structured Markup Processing Tools <https://docs.python.org/3/library/markup.html>`_
 
-==========
+**********
 Decorators
-==========
+**********
 
 A decorator is a function that takes another function extending its behavior without explicitly modifying it,
 a kind of *wrapper*.
@@ -1626,7 +1665,7 @@ meaning a function:
 * can be stored in data structures such as hash tables, lists etc.
 
 Functions as objects, arguments, and return values
---------------------------------------------------
+==================================================
 
 Functions as objects
 
@@ -1672,7 +1711,7 @@ Returning functions from inside another function.
 
 
 Functions and Methods
----------------------
+=====================
 
 A common use is to wrap functions and methods, to extend their capabilities.
 
@@ -1738,7 +1777,7 @@ Another simple more realistic execution time example
 
 
 Decorator chaining
-------------------
+==================
 
 .. code-block:: python
 
@@ -1768,9 +1807,9 @@ Decorator chaining
     print(num21()) # 200 = (10 * 10) * 2
 
 
-===================
+*******************
 Python Environments
-===================
+*******************
 
 If using `UNIX`, `Linux` or `MacOS` there is a version of Python installed and used by the operating system.
 Your own work should not interfere with this so it is normal to use your own environment, see
@@ -1784,7 +1823,7 @@ These releases do not have `pipenv`, only `python` and `idle3` so use `VirtualEn
 * `Eclipse Download <https://www.eclipse.org/downloads/>`_ and `PyDev <https://www.pydev.org/>`_
 
 ``pip``
--------
+=======
 
 The *original* normally run in a :ref:`virtualenv-label`.
 
@@ -1822,7 +1861,7 @@ The *original* normally run in a :ref:`virtualenv-label`.
 
 
 ``pipenv``
-----------
+==========
 
 * `Github: Pipenv <https://github.com/pypa/pipenv>`_
 * `Pipenv: A Guide to the New Python Packaging Tool <https://realpython.com/pipenv-guide/>`_
@@ -1867,7 +1906,7 @@ Setup a new Python project in Eclipse, and change the project to use it.
 .. _virtualenv-label:
 
 VirtualEnv
-----------
+==========
 
 * `RealPython: Python Virtual Environments: A Primer <https://realpython.com/python-virtual-environments-a-primer/>`_
 * `Python: venv — Creation of virtual environments <https://docs.python.org/3/library/venv.html>`_
@@ -1961,17 +2000,17 @@ iterations if new packages need to be installed because of dependencies.
     Python Packages Tool Window
 
 ``pipx``
---------
+========
 
 * `pipx — Install and Run Python Applications in Isolated Environments <https://pypa.github.io/pipx/>`_
 * `pipx — Comparison to Other Tools <https://pypa.github.io/pipx/comparisons/>`_
 
-==========================
+**************************
 Useful Python 3 references
-==========================
+**************************
 
 Language Fundamentals
----------------------
+=====================
 
 * `Python: Built-in Types <https://docs.python.org/3/library/stdtypes.html>`_
 * `Python: Built-in Exceptions <https://docs.python.org/3/library/exceptions.html>`_
@@ -1980,12 +2019,12 @@ Language Fundamentals
 * `Python: Errors and Exceptions <https://docs.python.org/3/tutorial/errors.html>`_
 
 Docstrings
-----------
+==========
 * `BetterProgramming: start Writing Python Docstrings <https://betterprogramming.pub/the-guide-to-python-docstrings-3d40340e824b>`_ is limited views per month
 * `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
 
 f-Strings
----------
+=========
 
 * `RealPython: Python 3's f-Strings: An Improved String Formatting Syntax <https://realpython.com/python-f-strings/>`_
 * `GeeksForGeeks: f-strings in Python <https://www.geeksforgeeks.org/formatted-string-literals-f-strings-python/>`_
@@ -1996,7 +2035,7 @@ f-Strings
     Supports almost all the ***.format()**** options in `Pyformat: Using % and .format() for great good! <https://pyformat.info/>`_
 
 Strings
--------
+=======
 
 * `W3Schools: Python String Methods <https://www.w3schools.com/python/python_ref_string.asp>`_
 * `Python: Text Processing Services <https://docs.python.org/3/library/text.html>`_
@@ -2006,7 +2045,7 @@ Strings
 * `PyFormat: Using % and .format() for great good! <https://pyformat.info/>`_
 
 PEP Guides
-----------
+==========
 
 * `PEP 0 – Index of Python Enhancement Proposals (PEPs) <https://peps.python.org/pep-0000/>`_
 * `PEP 8 – Style Guide for Python Code <https://peps.python.org/pep-0008/>`_
@@ -2015,7 +2054,7 @@ PEP Guides
 * `PEP 318 – Decorators for Functions and Methods <https://peps.python.org/pep-0318/>`_
 
 Introductory Guides
--------------------
+===================
 
 * `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
 * `Tutorials Point - Python Tutorial <https://www.tutorialspoint.com/python/>`_
@@ -2024,19 +2063,25 @@ Introductory Guides
 * `Online Python-3 Compiler (Interpreter) <https://www.tutorialspoint.com/execute_python3_online.php>`_
 
 Intermediate Guides
--------------------
+===================
 
 * `Packaging Python <https://packaging.python.org/en/latest/tutorials/packaging-projects/>`_
 * `Python Modules and Packages – An Introduction <https://realpython.com/python-modules-packages/>`_
 * `The Hitchhiker’s Guide to Python <https://docs.python-guide.org/>`_
 
 Graphical User Interfaces
--------------------------
+=========================
 
 * `Tkinter - Python interface to Tcl/Tk <https://docs.python.org/3/library/tkinter.html>`_
 * `Overview of wxPython <https://wxpython.org/pages/overview/index.html>`_
 * `Learn Python PyQt <https://pythonpyqt.com/>`_
 * `Welcome to Kivy <https://kivy.org/doc/stable/>`_
+
+Generating Diagrams
+===================
+
+* `Diagrams Diagram as Code <https://diagrams.mingrammer.com/>`_
+
 
 
 
