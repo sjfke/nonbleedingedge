@@ -53,16 +53,17 @@ The author is using Python from the `Microsoft Store <https://apps.microsoft.com
 * `Anaconda offers the easiest way to perform Python/R data science <https://www.anaconda.com/>`_
 * `RealPython - Your Python Coding Environment on Windows: Setup Guide <https://realpython.com/python-coding-setup-windows/>`_
 
-To choose which installed version to run, see ``App Execution Aliases`` but this is Windows version dependent, so first try:
-
-    * `How to manage App Execution Aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
-
-If that fails, try:
+Choosing which installed version to run, is controlled with *App Execution Aliases*
 
 .. code-block:: console
 
     1. Press "Windows + I" and select "Apps > Advanced app settings";
     2. Under "Choose where to get apps", change the selection to the desired one
+
+If that fails, try:
+
+    * `How to manage App Execution Aliases on Windows 11/10 <https://www.thewindowsclub.com/manage-app-execution-aliases-on-windows-10>`_
+
 
 =====================
 Example Python Script
@@ -123,14 +124,16 @@ An overly simple example, `flintstones.py <https://github.com/sjfke/python-proje
         args = parser.parse_args()
 
         if args.verbose >= 1:
-            print("args: {0}".format(args.__str__()))
+            print(f"args: {args.__str__()}")
 
         if args.names:
-            print("{0}".format(get_names()))
+            print(f"{get_names()}")
         elif args.ages:
-            print("{0}".format(get_ages()))
+            print(f"{get_ages()}")
         elif args.person:
-            print("{0}".format(get_person(name=args.person)))
+            print(f"{get_person(name=args.person)}")
+        else:
+            parser.print_help()
 
         sys.exit(0)
 
