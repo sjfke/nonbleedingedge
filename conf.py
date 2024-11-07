@@ -91,11 +91,12 @@ html_theme = "sphinx_rtd_theme"
 #
 # html_theme_options = {}
 html_theme_options = {
-    'canonical_url': '',
     'analytics_id': '',
     'logo_only': False,
     'prev_next_buttons_location': 'bottom',
     'style_external_links': True,
+    'version_selector': True,
+    'language_selector': True,
     # Toc options
     'collapse_navigation': True,
     'sticky_navigation': True,
