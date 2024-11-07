@@ -23,7 +23,7 @@ copyright = '2024, Geoffrey Collis'
 author = 'Geoffrey Collis (sjfke)'
 
 # The short X.Y version
-version = '2024.11.7'
+version = '2024.11.07'
 # The full version, including alpha/beta/rc tags
 release = ''
 
