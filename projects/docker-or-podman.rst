@@ -115,7 +115,7 @@ To be equivalent to ``Docker Desktop`` both ``Podman`` and ``Podman Desktop`` ne
 Testing
 *******
 
-A modified example from `CodeJava <https://codejava.net/all-tutorials>`_, `JSP Servlet JDBC MySQL C.R.U.D Example <https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example>`_ is used the details of
+A modified example from `CodeJava <https://www.codejava.net/all-tutorials>`_, `JSP Servlet JDBC MySQL C.R.U.D Example <https://www.codejava.net/coding/jsp-servlet-jdbc-mysql-create-read-update-delete-crud-example>`_ is used the details of
 which are on GitHub `sjfke - tomcat containers <https://github.com/sjfke/tomcat-containers>`_
 
 Separate containers are used for:
