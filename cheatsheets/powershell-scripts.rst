@@ -123,10 +123,10 @@ Language Overview
 *****************
 
 The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is built on 
-top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us/dotnet/standard/clr>`_ , and 
-manipulates `.NET objects <https://docs.microsoft.com/en-us/dotnet/api/system.object>`_. If the language itself 
+top of the `.NET Common Language Runtime (CLR) <https://learn.microsoft.com/en-us/dotnet/standard/clr>`_ , and
+manipulates `.NET objects <https://learn.microsoft.com/en-us/dotnet/api/system.object>`_. If the language itself
 does not provide what you need, there may be a `Popular PowerShell Module <https://social.technet.microsoft.com/wiki/contents/articles/4308.popular-powershell-modules.aspx>`_
-you can download or you can access the `.Net APIs <https://docs.microsoft.com/en-us/dotnet/api>`_ directly, a good example being `ArrayLists <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_ which 
+you can download or you can access the `.Net APIs <https://learn.microsoft.com/en-us/dotnet/api>`_ directly, a good example being `ArrayLists <https://learn.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_ which
 are dynamic in size unlike a *PowerShell Array*.
 
 In common with other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
@@ -1178,8 +1178,8 @@ which have many options not covered here.
 
 See also:
 
-* `Microsoft docs: set-content <https://docs.microsoft.com//powershell/module/microsoft.powershell.management/set-content>`_
-* `Microsoft docs: add-content <https://docs.microsoft.com//powershell/module/microsoft.powershell.management/add-content>`_
+* `Microsoft docs: set-content <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-content>`_
+* `Microsoft docs: add-content <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/add-content>`_
 * `Microsoft docs: out-file <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-file>`_
 * `Microsoft docs: new-temporaryfile <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/new-temporaryfile>`_
 
