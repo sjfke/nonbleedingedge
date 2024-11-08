@@ -12,7 +12,7 @@ Sphinx Links
 * `Sphinx HomePage <https://www.sphinx-doc.org/en/master/index.html>`_
 * `Sphinx Tutorial <https://sphinx-tutorial.readthedocs.io/>`_
 * `Sphinx Cheatsheet <https://sphinx-tutorial.readthedocs.io/cheatsheet/>`_
-* `Sphinx Extensions <http://www.sphinx-doc.org/en/stable/usage/extensions/index.html>`_
+* `Sphinx Extensions <https://www.sphinx-doc.org/en/stable/usage/extensions/index.html>`_
 
 Restructured Text Links
 =======================
@@ -46,7 +46,6 @@ To Be Checked Links
     - https://www.sphinx-doc.org/en/master/usage/markdown.html
     - https://myst-parser.readthedocs.io/en/latest/index.html
 
-* `Openalea Sphinx <http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`_
 * `Example pypi project <https://pythonhosted.org/an_example_pypi_project/sphinx.html>`_
 * `reStructuredText Directives <https://docutils.sourceforge.io/docs/ref/rst/directives.html>`_
 * `reStructuredText Markup Specification <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_
