@@ -27,8 +27,8 @@ Setup pipenv::
 Useful Links
 ============
 
-* `Installing Python 3 on Linux <http://docs.python-guide.org/en/latest/starting/install3/linux/>`_
-* `Pipenv & Virtual Environments <http://docs.python-guide.org/en/latest/dev/virtualenvs/#virtualenvironments-ref>`_
+* `Installing Python 3 on Linux <https://docs.python-guide.org/en/latest/starting/install3/linux/>`_
+* `Pipenv & Virtual Environments <https://docs.python-guide.org/dev/virtualenvs/>`_
 * `Basic Usage of Pipenv <https://docs.pipenv.org/basics/#general-recommendations-version-control>`_
 * `Pipenv: Python Dev Workflow for Humans <https://docs.pipenv.org/>`_
 
