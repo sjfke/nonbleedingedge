@@ -152,7 +152,8 @@ Some references which may help at the beginning.
 Environment
 ===========
 
-Environment variables are
+Environment variables are:
+
 * Machine (or System) scope
 * User scope
 * Process scope
@@ -244,7 +245,7 @@ Executables
     PS> where.exe notepad
     C:\Windows\System32\notepad.exe
     C:\Windows\notepad.exe
-    C:\Users\geoff\AppData\Local\Microsoft\WindowsApps\notepad.exe
+    C:\Users\sjfke\AppData\Local\Microsoft\WindowsApps\notepad.exe
 
     PS> get-command notepad
     CommandType     Name                                               Version    Source
@@ -256,7 +257,7 @@ Executables
     -----------     ----                                               -------    ------
     Application     notepad.exe                                        10.0.22... C:\Windows\System32\notepad.exe
     Application     notepad.exe                                        10.0.22... C:\Windows\notepad.exe
-    Application     notepad.exe                                        0.0.0.0    C:\Users\geoff\AppData\Local\Microsoft\WindowsApps\notepad.exe
+    Application     notepad.exe                                        0.0.0.0    C:\Users\sfjke\AppData\Local\Microsoft\WindowsApps\notepad.exe
 
     PS> get-command notepad | format-list
     Name            : notepad.exe
@@ -483,7 +484,6 @@ The examples are very simple, much more is possible, but remember an object is r
 
 More detailed examples:
 
-
 * `AdamTheAutomator: Resolving DNS Records with PowerShell <https://adamtheautomator.com/resolve-dnsname/>`_
 * `Microsoft Docs: Resolve-DnsName <https://docs.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname>`_
 * `Microsoft Docs: DnsClient Module <https://docs.microsoft.com/en-us/powershell/module/dnsclient/>`_
@@ -640,7 +640,7 @@ in the example which is shows only running services in alphabetic *DisplayName* 
 .. image:: ../images/running-services.png
     :width: 500px
     :align: center
-    :height: 350px
+    :height: 400px
 
 The ``out-gridview`` in combination with ``import-csv`` *cmdlets* can quickly render CSV files, 
 and avoids having to use ``Microsoft Excel`` or ``Microsoft Access``.

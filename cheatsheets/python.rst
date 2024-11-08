@@ -83,6 +83,7 @@ An overly simple example, `flintstones.py <https://github.com/sjfke/python-proje
     def get_names():
         """
         Get Flintstones family firstnames
+        :return: dictionary of ages
         """
         return _dict.keys()
 
@@ -90,14 +91,17 @@ An overly simple example, `flintstones.py <https://github.com/sjfke/python-proje
     def get_ages():
         """
         Get Flintstones family ages
+        :return: dictionary of ages
         """
 
         return _dict.values()
 
 
-    def get_person(name=None):
+    def get_persons_age(name=None):
         """
         Get age of Flintstones family member
+        :param name: firstname
+        :return: integer age, KeyError or None
         """
 
         if name is not None:
@@ -192,7 +196,7 @@ Python Docstrings
 
 Docstrings are covered in `PEP 257 – Docstring Conventions <https://peps.python.org/pep-0257/>`_ and provide the text
 for the built-in ``help()`` function.
-The top 3 Docstring styles being, *Sphinx*, *Google* and *Numpydoc*.
+The top 3 Docstring styles being, *Sphinx*, *Google* and *Numpydoc*, the *Example Python Script* is using *Sphinx*
 
 * `Sphinx: Writing docstrings <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
 * `Sphinx: Example on how to document your Python docstrings <https://thomas-cokelaer.info/tutorials/sphinx/docstring_python.html>`_
