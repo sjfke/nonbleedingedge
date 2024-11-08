@@ -637,10 +637,12 @@ Others such as ``format-list``, ``out-gridview`` are available as illustrated he
 The *cmdlet* ``out-gridview`` produces a graphical table than can be ordered and filtered, as shown 
 in the example which is shows only running services in alphabetic *DisplayName* order.
 
-.. image:: ../images/running-services.png
+.. figure:: ../images/running-services.png
     :width: 500px
     :align: center
-    :height: 400px
+    :height: 350px
+
+    Running Services Example
 
 The ``out-gridview`` in combination with ``import-csv`` *cmdlets* can quickly render CSV files, 
 and avoids having to use ``Microsoft Excel`` or ``Microsoft Access``.
@@ -652,10 +654,12 @@ and avoids having to use ``Microsoft Excel`` or ``Microsoft Access``.
    PS> import-csv -Path file.csv -Delimeter "," | out-gridview  # comma ',' separated file.
    
    
-.. image:: ../images/file-csv-gridview.png
-    :width: 300px
+.. figure:: ../images/file-csv-gridview.png
+    :width: 250px
     :align: center
     :height: 160px
+
+    CSV Example
 
 Formatting Variables
 ====================
