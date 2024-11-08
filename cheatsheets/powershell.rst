@@ -364,7 +364,7 @@ Computer Information
 Further reading:
 
 * `Introduction to CIM Cmdlets <https://devblogs.microsoft.com/powershell/introduction-to-cim-cmdlets/>`_
-* `Microsoft Docs: Get-CimInstance <https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance>`_
+* `Microsoft Docs: Get-CimInstance <https://learn.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance>`_
 
 Network Information
 ===================
@@ -485,8 +485,8 @@ The examples are very simple, much more is possible, but remember an object is r
 More detailed examples:
 
 * `AdamTheAutomator: Resolving DNS Records with PowerShell <https://adamtheautomator.com/resolve-dnsname/>`_
-* `Microsoft Docs: Resolve-DnsName <https://docs.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname>`_
-* `Microsoft Docs: DnsClient Module <https://docs.microsoft.com/en-us/powershell/module/dnsclient/>`_
+* `Microsoft Docs: Resolve-DnsName <https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname>`_
+* `Microsoft Docs: DnsClient Module < https://learn.microsoft.com/en-us/powershell/module/dnsclient/>`_
 
 
 Web-Pages and REST API's
@@ -580,7 +580,7 @@ Generic examples are stolen from further reading reference.
 
 Further reading:
 
-* `Microsoft Docs: ActiveDirectory Module <https://docs.microsoft.com/en-us/powershell/module/activedirectory>`_
+* `Microsoft Docs: ActiveDirectory Module <https://learn.microsoft.com/en-us/powershell/module/activedirectory>`_
 * `AdamTheAutomator: Active Directory Scripts Galore: Come and Get It! <https://adamtheautomator.com/active-directory-scripts/>`_
 * `Huge List Of PowerShell Commands for Active Directory, Office 365 and more <https://activedirectorypro.com/powershell-commands/>`_
 
