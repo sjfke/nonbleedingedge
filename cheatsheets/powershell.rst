@@ -30,7 +30,7 @@ My personal preference:
 * lower-case format for ``cmdlets``, so ``get-help`` rather than ``Get-Help``;
 * camelCase for variable names, so ``dateString`` , rather than ``date_string``;
 
-A `Windows Powershell ISE <https://docs.microsoft.com/en-us/powershell/scripting/components/ise/introducing-the-windows-powershell-ise?view=powershell-7>`_  
+A `Windows Powershell ISE <https://learn.microsoft.com/en-us/powershell/scripting/components/ise/introducing-the-windows-powershell-ise?view=powershell-7>`_
 is provided if you need more interactive assistance and is very useful when learning. You might also want to consider `Windows Terminal <https://github.com/microsoft/terminal>`_ which supports various command-line tools and shells like 
 Command Prompt, PowerShell, WSL, and includes multiple tabs, panes, Unicode and UTF-8 character support, a GPU accelerated text rendering engine, and 
 custom themes, styles, and configurations.
@@ -43,7 +43,6 @@ While learning I found the following helpful when starting:
 * `PowerShell GitHub - Recommended Training and Reading <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#recommended-training-and-reading>`_ **a very good place to start**
 * `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
 * `PowerShell equivalents for common Linux/bash commands <https://mathieubuisson.github.io/powershell-linux-bash/>`_
-* `10 PowerShell cmdlets you can use instead of CMD commands <https://www.techrepublic.com/article/pro-tip-migrate-to-powershell-from-cmd-with-these-common-cmdlets/>`_
 
 Getting Started
 ===============
@@ -142,12 +141,6 @@ Examples of common commands.
    PS> get-computerinfo                            # computer information
    PS> get-disk                                    # disk serial number, state etc.
    PS> get-volume                                  # volumes on your disk.
-
-Some references which may help at the beginning.
-
-* `PowerShell for Experienced Bash users <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#map-book-for-experienced-bash-users>`_
-* `10 basic PowerShell commands that every Windows 10 user should know <https://www.thewindowsclub.com/basic-powershell-commands-windows>`_
-* `10 PowerShell commands every Windows admin should know <https://www.techrepublic.com/blog/10-things/10-powershell-commands-every-windows-admin-should-know/>`_
 
 Environment
 ===========
@@ -380,7 +373,7 @@ A lot more information is available than shown here, see further reading.
 
 Further reading:
 
-* `Microsoft Docs: NetTCPIP <https://docs.microsoft.com/en-us/powershell/module/nettcpip>`_
+* `Microsoft Docs: NetTCPIP <https://learn.microsoft.com/en-us/powershell/module/nettcpip>`_
 
 Services
 ========
@@ -425,9 +418,8 @@ Windows EventLog
    
 Further reading:
 
-* `Collen M. Morrow: Parsing Windows event logs with PowerShell <https://colleenmorrow.com/2012/09/20/parsing-windows-event-logs-with-powershell/>`_
-* `Microsoft Docs: Get-WinEvent <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent>`_
-* `Microsoft Docs: Get-EventLog <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-eventlog>`_
+* `Microsoft Docs: Get-WinEvent <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent>`_
+* `Microsoft Docs: Get-EventLog <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-eventlog>`_
 
 HotFixes
 ========
@@ -486,7 +478,7 @@ More detailed examples:
 
 * `AdamTheAutomator: Resolving DNS Records with PowerShell <https://adamtheautomator.com/resolve-dnsname/>`_
 * `Microsoft Docs: Resolve-DnsName <https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname>`_
-* `Microsoft Docs: DnsClient Module < https://learn.microsoft.com/en-us/powershell/module/dnsclient/>`_
+* `Microsoft Docs: DnsClient Module <https://learn.microsoft.com/en-us/powershell/module/dnsclient/>`_
 
 
 Web-Pages and REST API's
@@ -553,8 +545,8 @@ Web-Pages and REST API's
  
 More detailed examples:
 
-* `Microsoft Docs: Get content from a web page <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-WebRequest>`_
-* `Microsoft Docs: Send an HTTP or HTTPS request to a RESTful web service <https://docs.microsoft.com/powershell/module/Microsoft.PowerShell.Utility/Invoke-RestMethod>`_
+* `Microsoft Docs: Get content from a web page <https://learn.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Utility/Invoke-WebRequest>`_
+* `Microsoft Docs: Send an HTTP or HTTPS request to a RESTful web service <https://learn.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Utility/Invoke-RestMethod>`_
 * `AdamTheAutomator: Invoke-WebRequest - PowerShell’s Web Swiss Army Knife <https://adamtheautomator.com/invoke-webrequest/>`_
 * `Microsoft Docs: HttpUtility Class <hhttps://docs.microsoft.com/en-us/dotnet/api/system.web.httputility>`_
 * `{JSON} Placeholder <https://jsonplaceholder.typicode.com/>`_ Free fake and reliable API for testing and prototyping.
@@ -705,6 +697,6 @@ Specified as ``{<index>, <alignment><width>:<format_spec>}``
 More detailed examples:
 
 * `PowershellPrimer.com: Formatting Output <https://powershellprimer.com/html/0013.html>`_
-* `Microsoft Docs: Get-Date <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/get-date?view=powershell-6>`_
+* `Microsoft Docs: Get-Date <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date>`_
 
 
