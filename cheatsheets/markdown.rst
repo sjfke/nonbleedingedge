@@ -79,15 +79,15 @@ Basics
 
 * `Markdown-Guide <https://www.markdownguide.org/>`_ is a free and open-source reference guide
 * `Markdown-Guide Cheat-Sheet <https://www.markdownguide.org/cheat-sheet/>`_ a quick reference to the Markdown syntax
-* `Basic Syntax <https://www.markdownguide.org/basic-syntax>`_ the Markdown elements outlined in the original design document.
-* `Extended Syntax <https://www.markdownguide.org/extended-syntax>`_ advanced features that build on the basic Markdown syntax.
+* `Basic Syntax <https://markdownguide.offshoot.io/basic-syntax/>`_ the Markdown elements outlined in the original design document.
+* `Extended Syntax <https://markdownguide.offshoot.io/extended-syntax/>`_ advanced features that build on the basic Markdown syntax.
 
 Syntax Highlighting
 -------------------
 
 * `Markdown Supported Languages <https://github.com/jincheng9/markdown_supported_languages>`_ a full list of supported languages
 * `Markdown Syntax highlighting <https://rust-lang.github.io/mdBook/format/theme/syntax-highlighting.html>`_ for mdBook a command line tool
-* `Bitbucket - MarkdownDemo <https://bitbucket.org/tutorials/markdowndemo/src/master/#markdown-header-code-and-syntax-highlighting>`_ supported Bitbucket Markdown
+* `Bitbucket - MarkdownDemo <https://bitbucket.org/tutorials/markdowndemo/src/master/>`_ supported Bitbucket Markdown
 
 Tables
 ------
@@ -106,8 +106,8 @@ Editors and Linters
 -------------------
 
 * `Visual Studio Code <https://code.visualstudio.com/>`_, and the `VS Code - Extension Marketplace <https://code.visualstudio.com/docs/editor/extension-marketplace>`_
-    * `GitHub Markdown Preview <https://github.com/mjbvz/vscode-github-markdown-preview#readme>`_
-    * `Markdown Preview GitHub Styling <https://github.com/mjbvz/vscode-github-markdown-preview-style#readme>`_
+    * `GitHub Markdown Preview <https://github.com/mjbvz/vscode-github-markdown-preview/blob/master/README.md>`_
+    * `Markdown Preview GitHub Styling <https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles>`_
     * `markdownlint <https://github.com/DavidAnson/vscode-markdownlint>`_
 
 * `JetBrains Developer Tools <https://www.jetbrains.com/>`_, and the `Jetbrains Markdown plugin <https://plugins.jetbrains.com/plugin/7793-markdown/docs>`_
