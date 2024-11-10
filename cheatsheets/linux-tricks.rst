@@ -43,9 +43,9 @@ Password Generators
 * `nixCraft tree <https://www.cyberciti.biz/faq/linux-show-directory-structure-command-line/>`_
 * `OSTechNix tree <https://www.ostechnix.com/view-directory-tree-structure-linux/>`_
 * `GeeksForGeeks tree <https://www.geeksforgeeks.org/tree-command-unixlinux/>`_
-* `hier - description of the file system hierarchy <https://linux.die.net/man/7/hier>`_
+* `hier - description of the file system hierarchy <https://man.cx/hier>`_
 
-
+.. code-block:: console
 
 	$ brew install tree     # MacOS
 	$ sudo dnf install tree # Fedora
@@ -363,7 +363,7 @@ Gnome Desktop Custom Launcher
 =============================
 
 Using `PyCharm Community Edition <https://www.jetbrains.com/pycharm/>`_ as an example,
-`download the PyCharm Community Edition <https://www.jetbrains.com/pycharm/download/#section=linux>`_ and unpack the
+`download the PyCharm Community Edition <https://www.jetbrains.com/pycharm/download/?section=linux>`_ and unpack the
 ``tar.gz`` file into ``$HOME/Applications``
 
 Create the ``com.jetbrains.pycharm.community.desktop`` file, modify it as necessary, and then copy it to
@@ -384,8 +384,8 @@ Create the ``com.jetbrains.pycharm.community.desktop`` file, modify it as necess
 
     $ cp ./com.jetbrains.pycharm.community.desktop $HOME/.local/share/applications
 
-* `Adding a Custom Launcher to Gnome Shell <https://hackeradam.com/post/custom-launcher-gnome-shell/>`_
-* `Guide to Desktop Entry Files in Linux <https://www.baeldung.com/linux/desktop-entry-files>`_
+* `Adding a Custom Launcher to Gnome Shell <https://hackeradam.com/adding-a-custom-launcher-to-gnome-shell/>`_
+* `Guide to Desktop Entry Files in Linux <https://www.baeldung.com/linux/desktop-entry-files/>`_
 * `KDE and GNOME desktop environments have adopted a similar format <https://specifications.freedesktop.org/desktop-entry-spec/latest/index.html#introduction>`_
 * `DBUS Specification Message Protocol Names <https://dbus.freedesktop.org/doc/dbus-specification.html#message-protocol-names>`_
 
@@ -459,84 +459,86 @@ Linux Network Tools
 +----------------------------------------------------------------------+----------------------------------------------------+
 | Command                                                              | Description                                        |
 +======================================================================+====================================================+
-| `ping, ping6 <https://linux.die.net/man/8/ping>`_                    | Send ICMP ECHO_REQUEST to network hosts            |
+| `ping <https://man.cx/ping>`_                                        | Send ICMP ECHO_REQUEST to network hosts            |
+| `ping6 <https://man.cx/ping6>`_                                      |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `hping3 <https://linux.die.net/man/8/hping3>`_                       | TCP/IP equivalent of ping                          |
+| `hping3 <https://man.cx/hping3>`_                                    | TCP/IP equivalent of ping                          |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `curl <https://linux.die.net/man/1/curl>`_,                          | Access URL meta-data or content                    |
-| `wget <https://linux.die.net/man/1/wget>`_,                          |                                                    |
+| `curl <https://man.cx/curl>`_                                        | Access URL meta-data or content                    |
+| `wget <https://man.cx/wget>`_                                        |                                                    |
 | `HTTPie <https://httpie.io/docs/cli>`_                               |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `tc <https://linux.die.net/man/8/tc>`_                               | Show / manipulate traffic control settings         |
+| `tc <https://man.cx/tc>`_                                            | Show / manipulate traffic control settings         |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `dig <https://linux.die.net/man/1/dig>`_,                            | DNS lookup utilities                               |
-| `nslookup <https://linux.die.net/man/1/nslookup>`_,                  |                                                    |
-| `host <https://linux.die.net/man/1/host>`_,                          |                                                    |
-| `whois <https://www.baeldung.com/linux/whois-command>`_              |                                                    |
+| `dig <https://man.cx/dig>`_                                          | DNS lookup utilities                               |
+| `nslookup <https://man.cx/nslookup>`_                                |                                                    |
+| `host <https://man.cx/host>`_                                        |                                                    |
+| `whois <https://man.cx/whois>`_                                      |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `ssh <https://linux.die.net/man/1/ssh>`_,                            | Secure client connection and copy                  |
-| `scp <https://linux.die.net/man/1/scp>`_                             |                                                    |
-| `sftp <https://linux.die.net/man/1/sftp>`_                           |                                                    |
+| `ssh <https://man.cx/ssh>`_                                          | Secure client connection and copy                  |
+| `scp <https://man.cx/scp>`_                                          |                                                    |
+| `sftp <https://man.cx/sftp>`_                                        |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `telnet <https://linux.die.net/man/1/telnet>`_,                      | Insecure client connection and copy                |
-| `ftp <https://linux.die.net/man/1/ftp>`_,                            |                                                    |
+| `telnet <https://man.cx/telnet>`_                                    | Insecure client connection and copy                |
+| `ftp <https://man.cx/ftp>`_                                          |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `rsync <https://linux.die.net/man/1/rsync>`_                         | Sophisticated remote/local file-copying            |
+| `rsync <https://man.cx/rsync>`_                                      | Sophisticated remote/local file-copying            |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `tcpdump <https://linux.die.net/man/8/tcpdump>`_,                    | Dump and analyze network traffic                   |
-| `wireshark <https://linux.die.net/man/1/wireshark>`_,                |                                                    |
-| `tshark <https://linux.die.net/man/1/tshark>`_                       |                                                    |
+| `tcpdump <https://man.cx/tcpdump>`_                                  | Dump and analyze network traffic                   |
+| `wireshark <https://man.cx/wireshark>`_                              |                                                    |
+| `tshark <https://man.cx/tshark>`_                                    |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `ngrep <https://linux.die.net/man/8/ngrep>`_                         | Network grep                                       |
+| `ngrep <https://man.cx/ngrep>`_                                      | Network grep                                       |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `ifconfig <https://linux.die.net/man/8/ifconfig>`_,                  | Show/manipulate ip routing, devices, and tunnels   |
-| `route <https://linux.die.net/man/8/route>`_,                        |                                                    |
-| `ethtool <https://linux.die.net/man/8/ethtool>`_,                    |                                                    |
-| `ip <https://linux.die.net/man/8/ip>`_                               |                                                    |
+| `ifconfig <https://man.cx/ifconfig>`_                                | Show/manipulate ip routing, devices, and tunnels   |
+| `route <https://man.cx/route>`_                                      |                                                    |
+| `ethtool <https://man.cx/ethtool>`_                                  |                                                    |
+| `ip <https://man.cx/ip>`_                                            |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `iw <https://linux.die.net/man/8/iw>`_,                              | Configure a wireless network interface             |
-| `iwconfig <https://linux.die.net/man/8/iwconfig>`_                   |                                                    |
+| `iw <https://man.cx/iw>`_                                            | Configure a wireless network interface             |
+| `iwconfig <https://man.cx/iwconfig>`_                                |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `nmap <https://linux.die.net/man/1/nmap>`_,                          | Network exploration tool and security/port scanner |
-| `zenmap <https://linux.die.net/man/1/zenmap>`_                       |                                                    |
+| `nmap <https://man.cx/nmap>`_                                        | Network exploration tool and security/port scanner |
+| `zenmap <https://man.cx/zenmap>`_                                    |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `p0f <https://linux.die.net/man/1/p0f>`_                             | Identify remote systems passively                  |
+| `p0f <https://man.cx/p0f>`_                                          | Identify remote systems passively                  |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `openvpn <https://linux.die.net/man/8/openvpn>`_,                    | Secure VPN tunnels                                 |
+| `openvpn <https://man.cx/openvpn>`_                                  | Secure VPN tunnels                                 |
 | `wireguard <https://www.wireguard.com/>`_                            |                                                    |
-| `stunnel <https://linux.die.net/man/8/stunnel>`_                     |                                                    |
+| `stunnel <https://man.cx/stunnel>`_                                  |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `nc <https://linux.die.net/man/1/nc>`_,                              | Arbitrary TCP and UDP connections and listeners    |
-| `socat <https://linux.die.net/man/1/socat>`_                         |                                                    |
+| `nc <https://man.cx/nc>`_                                            | Arbitrary TCP and UDP connections and listeners    |
+| `socat <https://man.cx/socat>`_                                      |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `netstat <https://linux.die.net/man/8/netstat>`_,                    | Troubleshoot connections, processes, file usage    |
-| `ss <https://linux.die.net/man/8/ss>`_,                              |                                                    |
-| `lsof <https://linux.die.net/man/8/lsof>`_,                          |                                                    |
-| `fuser <https://linux.die.net/man/1/fuser>`_                         |                                                    |
+| `netstat <https://man.cx/netstat>`_                                  | Troubleshoot connections, processes, file usage    |
+| `ss <https://man.cx/ss>`_                                            | Dump socket statistics                             |
+| `lsof <https://man.cx/lsof>`_                                        | List open files                                    |
+| `fuser <https://man.cx/fuser>`_                                      | Identify processes using files or sockets          |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `iptables <https://linux.die.net/man/8/netstat>`_,                   | Firewall, TCP/IP packet filtering and NAT          |
-| `ip6tables <https://linux.die.net/man/8/ip6tables>`_,                |                                                    |
+| `iptables <https://man.cx/iptables>`_                                | Firewall, TCP/IP packet filtering and NAT          |
+| `ip6tables <https://man.cx/iptables>`_                               |                                                    |
 | `nftables <https://www.netfilter.org/projects/nftables/index.html>`_ |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `arp <https://linux.die.net/man/8/arp>`_,                            | Manipulate the system ARP cache                    |
-| `arptables <https://linux.die.net/man/8/arptables>`_,                |                                                    |
+| `arp <https://man.cx/arp>`_                                          | Manipulate the system ARP cache                    |
+| `arptables <https://man.cx/arptables>`_                              |                                                    |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `traceroute <https://linux.die.net/man/8/traceroute>`_,              | Troubleshoot connections, processes, file usage    |
-| `mtr <https://linux.die.net/man/8/mtr>`_,                            |                                                    |
-| `tcptraceroute <https://linux.die.net/man/1/tcptraceroute>`_         |                                                    |
+| `traceroute <https://man.cx/traceroute>`_                            | Print the route packets take to network host       |
+| `mtr <https://man.cx/mtr>`_                                          | Combined traceroute and ping                       |
+| `tcptraceroute <https://man.cx/tcptraceroute>`_                      | Traceroute implementation using TCP packets        |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `iptraf <https://linux.die.net/man/8/iptraf>`_,                      | Troubleshoot network bandwidth issues              |
-| `nethogs <https://linux.die.net/man/8/nethogs>`_,                    |                                                    |
-| `iftop <https://linux.die.net/man/8/iftop>`_,                        |                                                    |
-| `ntop <https://linux.die.net/man/8/ntop>`_                           |                                                    |
+| `iptraf <https://man.cx/iptraf>`_                                    | Interactive Colorful IP LAN Monitor                |
+| `nethogs <https://man.cx/nethogs>`_                                  | Net top tool grouping bandwidth per process        |
+| `iftop <https://man.cx/iftop>`_                                      | Display bandwidth usage on an interface by host    |
+| `ntop <https://man.cx/ntop>`_                                        | Display top network users                          |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `ab <https://linux.die.net/man/1/ab>`_,                              | Benchmarking tools                                 |
-| `nload <https://linux.die.net/man/1/nload>`_,                        |                                                    |
-| `iperf <https://linux.die.net/man/1/iperf>`_                         |                                                    |
+| `ab <https://man.cx/ab>`_                                            | Apache HTTP server benchmarking tool               |
+| `nload <https://man.cx/nload>`_                                      | Displays the current network usage                 |
+| `iperf <https://man.cx/iperf>`_                                      | Throughput, latency, link capacity, responsiveness |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `ipcalc <https://linux.die.net/man/1/ipcalc>`_                       | Simple manipulation of IP addresses                |
+| `ipcalc <https://man.cx/ipcalc>`_                                    | An IPv4 Netmask/broadcast/etc calculator           |
+| `ipv6calc <https://man.cx/ipv6calc>`_                                | Format, calculate, show, filter IPv6/IPv4/MAC      |
 +----------------------------------------------------------------------+----------------------------------------------------+
-| `nsenter <https://linuxhint.com/nsenter-linux-command/>`_            | Enter container process's namespace                |
+| `nsenter <https://man.cx/nsenter>`_                                  | Run program in different namespaces                |
 +----------------------------------------------------------------------+----------------------------------------------------+
 | `Python HTTP modules <https://docs.python.org/3/library/http.html>`_ | HTTP serve files in CWD, ``python -m http.server`` |
 +----------------------------------------------------------------------+----------------------------------------------------+
@@ -589,7 +591,7 @@ Of course backup everything you want to keep because you are going to reformat t
 
 The *live* installation is process is well documented and robust so simply follow:
 
-* `Download Fedora 36 Workstation <https://getfedora.org/en/workstation/download/>`_
+* `Download Fedora 36 Workstation <https://fedoraproject.org/en/workstation/download/>`_
 * `Creating and using a live installation image <https://docs.fedoraproject.org/en-US/quick-docs/creating-and-using-a-live-installation-image/index.html>`_
 
 Next add the `RPM Fusion <https://rpmfusion.org/RPM%20Fusion>`_ repositories, by installing and configuring them as
