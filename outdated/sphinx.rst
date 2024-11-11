@@ -12,7 +12,7 @@ Sphinx Links
 * `Sphinx HomePage <https://www.sphinx-doc.org/en/master/index.html>`_
 * `Sphinx Tutorial <https://sphinx-tutorial.readthedocs.io/>`_
 * `Sphinx Cheatsheet <https://sphinx-tutorial.readthedocs.io/cheatsheet/>`_
-* `Sphinx Extensions <https://www.sphinx-doc.org/en/stable/usage/extensions/index.html>`_
+* `Sphinx Extensions <https://www.sphinx-doc.org/en/master/usage/extensions/index.html>`_
 
 Restructured Text Links
 =======================
