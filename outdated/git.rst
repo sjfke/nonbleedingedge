@@ -154,8 +154,8 @@ Need to merge just file f of branch B into file f of branch A, when all changes 
 Useful Commands
 ===============
 
-* `Getting started <http://git-scm.com/book/en/Getting-Started>`_
-* `Git Basics <http://git-scm.com/book/en/Git-Basics-Viewing-the-Commit-History>`_
+* `Getting started <https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control>`_
+* `Git Basics <https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository>`_
 
 Working with hash::
 

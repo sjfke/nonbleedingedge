@@ -11,7 +11,7 @@ Useful Links
 ------------
 
 * `GNU: Screen User’s Manual <https://www.gnu.org/software/screen/manual/screen.html>`_
-* `Screen Quick Reference <http://aperiodic.net/screen/quick_reference>`_
+* `Screen Quick Reference <https://aperiodic.net/screen/quick_reference>`_
 * `Howto Geek: How to Use Linux's screen Command <https://www.howtogeek.com/662422/how-to-use-linuxs-screen-command/>`_
 * `GNU 'screen' Status Line(s) <https://www.gilesorr.com/blog/screen-status-bar.html>`_
 

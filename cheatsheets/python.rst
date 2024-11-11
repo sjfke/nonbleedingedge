@@ -1823,7 +1823,7 @@ Your own work should not interfere with this so it is normal to use your own env
 On Windows various Python releases are available from `Microsoft App Store <https://apps.microsoft.com/store/apps>`_.
 These releases do not have `pipenv`, only `python` and `idle3` so use `VirtualEnv` with an IDE like:
 
-* `PyCharm Community Edition Download <https://www.jetbrains.com/pycharm/download/#section=windows>`_
+* `PyCharm Community Edition Download <https://www.jetbrains.com/pycharm/download/?section=windows>`_
 * `Eclipse Download <https://www.eclipse.org/downloads/>`_ and `PyDev <https://www.pydev.org/>`_
 
 ``pip``
@@ -1870,7 +1870,7 @@ The *original* normally run in a :ref:`virtualenv-label`.
 * `Github: Pipenv <https://github.com/pypa/pipenv>`_
 * `Pipenv: A Guide to the New Python Packaging Tool <https://realpython.com/pipenv-guide/>`_
 * `Pipenv: Python Dev Workflow for Humans <https://pipenv.pypa.io/en/latest/>`_
-* `The Hitchhicker's Guide to Python: Advanced Usage <https://pipenv.pypa.io/en/latest/advanced/>`_
+* `The Hitchhiker’s Guide to Python!: Installing Pipenv <https://docs.python-guide.org/dev/virtualenvs/#installing-pipenv>`_
 
 .. code-block:: shell-session
 
@@ -2006,8 +2006,8 @@ iterations if new packages need to be installed because of dependencies.
 ``pipx``
 ========
 
-* `pipx — Install and Run Python Applications in Isolated Environments <https://pypa.github.io/pipx/>`_
-* `pipx — Comparison to Other Tools <https://pypa.github.io/pipx/comparisons/>`_
+* `pipx — Install and Run Python Applications in Isolated Environments <https://pipx.pypa.io/stable/>`_
+* `pipx — Comparison to Other Tools <https://pipx.pypa.io/stable/comparisons/>`_
 
 **************************
 Useful Python 3 references
@@ -2061,10 +2061,10 @@ Introductory Guides
 ===================
 
 * `Learn Python - the hard way <https://learnpythonthehardway.org/python3/>`_
-* `Tutorials Point - Python Tutorial <https://www.tutorialspoint.com/python/>`_
+* `Tutorials Point - Python Tutorial <https://www.tutorialspoint.com/python/index.htm>`_
 * `Real Python - Tutorials <https://realpython.com/>`_
 * `W3Schools - Python Tutorial <https://www.w3schools.com/python/>`_
-* `Online Python-3 Compiler (Interpreter) <https://www.tutorialspoint.com/execute_python3_online.php>`_
+* `Online Python-3 Compiler (Interpreter) <https://www.tutorialspoint.com/online_python_compiler.php>`_
 
 Intermediate Guides
 ===================

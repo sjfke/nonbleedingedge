@@ -217,7 +217,7 @@ Backup references
 =================
 
 * `StackExchange: Correct way to create a GPG backup <https://security.stackexchange.com/questions/243959/what-is-the-correct-way-to-create-a-backup-copy-of-a-pgp-key-pair>`_
-* `HackerThink: How to export a GPG private key and public key to a file <https://hackerthink.com/solutions/how-to-export-a-gpg-private-key-and-public-key-to-a-file/>`_
+* `StackExchange: How to export a GPG private key and public key to a file <https://unix.stackexchange.com/questions/481939/how-to-export-a-gpg-private-key-and-public-key-to-a-file>`_
 * `How-To-Geek: Back Up and Restore Your GPG Keys on Linux <https://www.howtogeek.com/816878/how-to-back-up-and-restore-gpg-keys-on-linux/>`_
 * `JWillikers:  Backup and Restore GPG key <https://www.jwillikers.com/backup-and-restore-a-gpg-key>`_
 

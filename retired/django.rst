@@ -27,8 +27,8 @@ Setup pipenv::
 Useful Links
 ============
 
-* `Installing Python 3 on Linux <http://docs.python-guide.org/en/latest/starting/install3/linux/>`_
-* `Pipenv & Virtual Environments <http://docs.python-guide.org/en/latest/dev/virtualenvs/#virtualenvironments-ref>`_
+* `Installing Python 3 on Linux <https://docs.python-guide.org/en/latest/starting/install3/linux/>`_
+* `Pipenv & Virtual Environments <https://docs.python-guide.org/dev/virtualenvs/>`_
 * `Basic Usage of Pipenv <https://docs.pipenv.org/basics/#general-recommendations-version-control>`_
 * `Pipenv: Python Dev Workflow for Humans <https://docs.pipenv.org/>`_
 
@@ -99,7 +99,7 @@ Create the Django App (A Django project can have many apps)::
 REST API
 ========
 
-* `Django REST framework <http://www.django-rest-framework.org/tutorial/quickstart/>`_
+* `Django REST framework <https://www.django-rest-framework.org/tutorial/quickstart/>`_
 
 Project setup::
 
@@ -118,11 +118,11 @@ Useful Links
 ============
 
 * `Fedora 26: Firewall with Firewalld <https://www.hiroom2.com/2017/07/12/fedora-26-firewalld-en/>`_
-* `Introduction to Sphinx <http://www.writethedocs.org/guide/tools/sphinx/>`_
-* `reStructuredText Basics <http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_
-* `Quick reStructuredText <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_
-* `A ReStructuredText Primer <http://docutils.sourceforge.net/docs/user/rst/quickstart.html>`_
-* `HTML theming support <http://www.sphinx-doc.org/en/master/theming.html>`_
+* `Introduction to Sphinx <https://www.writethedocs.org/guide/tools/sphinx/>`_
+* `reStructuredText Basics <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_
+* `Quick reStructuredText <https://docutils.sourceforge.net/docs/user/rst/quickref.html>`_
+* `A ReStructuredText Primer <https://docutils.sourceforge.net/docs/user/rst/quickstart.html>`_
+* `HTML theming support <https://www.sphinx-doc.org/en/master/usage/theming.html>`_
 
 Tutorial Links
 ==============

@@ -9,9 +9,9 @@ Apache Maven
 General introductions
 =====================
 
-* `Maven in 5 minutes <http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html>`_
-* `Maven Getting started <http://maven.apache.org/guides/getting-started/index.html>`_
-* `Maven book <http://www.sonatype.com/books/maven-book/reference/public-book.html>`_
+* `Maven in 5 minutes <https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html>`_
+* `Maven Getting started <https://maven.apache.org/guides/getting-started/index.html>`_
+* `Maven by Example <https://books.sonatype.com/mvnex-book/reference/index.html>`_
 
 Installing Maven
 ================
@@ -45,7 +45,7 @@ Frequently used Basic commands::
     user1@desktop$ mvn [clean] install # see <packaging> and <version> in pom.xml
 
     user1@desktop$ mvn site # build project website, see
-    # - http://maven.apache.org/plugins/maven-site-plugin/ and
+    # - https://maven.apache.org/plugins/maven-site-plugin/ and
     # - http://maven.apache.org/plugins/maven-archetype-plugin/examples/site.html (-DarchetypeArtifactId=maven-archetype-site-simple)
     # - "almost plain text" http://maven.apache.org/doxia/references/apt-format.html
 
@@ -157,7 +157,7 @@ Using Artifactory proxy
 =======================
 
 # - http://www.theserverside.com/tt/articles/article.tss?l=SettingUpMavenRepository
-# - http://www.jfrog.org/ # artifactory home page (alternative: # http://nexus.sonatype.org/)
+# - https://jfrog.com/help/r/jfrog-installation-setup-documentation/installing-artifactory # artifactory home page (alternative: # https://www.sonatype.com/products/sonatype-nexus-repository)
 # - add the following to the pom.xml::
 
       <url>http://maven.apache.org</url>
@@ -223,7 +223,7 @@ Create runnable jar, by including all dependencies and creating mainClass
 =========================================================================
 
 # - add the following to the jar file
-# - http://maven.apache.org/plugins/maven-assembly-plugin/
+# - https://maven.apache.org/plugins/maven-assembly-plugin/
 ::
 
       <plugins>
@@ -284,8 +284,8 @@ Stop encoding waring messages during builds (maven-2.x)
 Site depolyment (mvn site-deploy)
 =================================
 
-# http://maven.apache.org/plugins/maven-site-plugin/usage.html
-# http://maven.apache.org/settings.html#Servers
+# https://maven.apache.org/plugins/maven-site-plugin/usage.html
+# https://maven.apache.org/settings.html#Servers
 
 # add the following to the pom.xml::
 
@@ -356,7 +356,7 @@ Subversion
 Install m2eclipse on FC11
 =========================
 
-# http://forums.fedoraforum.org/showthread.php?t=229455
+# https://forums.fedoraforum.org/showthread.php?t=229455
 This HOWTO outlines the installation of the M2Eclipse plugin in Fedora Eclipse on Fedora 11.
 
 It is assumed that eclipse-jdt has been installed.
@@ -364,8 +364,8 @@ It is assumed that eclipse-jdt has been installed.
 1. Install eclipse-emf
 2. Start eclipse with: eclipse -clean
 3. Go to Help -> Software Updates...
-4. Add site http://download.eclipse.org/webtools/updates/
-5. Add site http://m2eclipse.sonatype.org/update/
+4. Add site https://download.eclipse.org/webtools/updates/
+5. Add site https://m2eclipse.sonatype.org/update/
 6. Go to Maven Integration for Eclipse Update Site -> Maven Integration
 7. Select Maven integration for Eclipse (Required)
 8. Press Install...
@@ -374,7 +374,7 @@ It is assumed that eclipse-jdt has been installed.
 Making eclipse use a JDK
 ========================
 # modify the eclipse.ini file-startup; add -vm and path to jdk
-# http://wiki.eclipse.org/Eclipse.ini#Specifying_the_JVM
+# https://wiki.eclipse.org/Eclipse.ini#Specifying_the_JVM
 ::
 
     plugins/org.eclipse.equinox.launcher_1.0.201.R35x_v20090715.jar
@@ -413,12 +413,12 @@ Making eclipse use a JDK
     /home/user1/Applications/eclipse/eclipse $*
 
     m2eclipse: Adding M2_REPO
-    http://www.mkyong.com/maven/how-to-configure-m2_repo-variable-in-eclipse-ide/
+    https://www.mkyong.com/maven/how-to-configure-m2_repo-variable-in-eclipse-ide/
     $ mvn -Declipse.workspace=/home/user1/my-workspace eclipse:configure-workspace
     You do not need any pom.xml file to execute this command, just run this “mvn” command everywhere you want.
 
     m2eclipse: Adding M2_REPO
-    http://maven.apache.org/guides/mini/guide-ide-eclipse.html
+    https://maven.apache.org/guides/mini/guide-ide-eclipse.html
     Eclipse needs to know the path to the local maven repository.
     Therefore the classpath variable M2_REPO has to be set. Execute the following command:
     $ mvn -Declipse.workspace=/home/user1/my-workspace eclipse:add-maven-repo

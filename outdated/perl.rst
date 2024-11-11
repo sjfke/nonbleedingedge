@@ -10,7 +10,7 @@ Useful Links
 =============
 
 * `Perl <https://www.perl.org/docs.html>`_
-* `Perldoc Documentation <http://perldoc.perl.org/>`_
+* `Perldoc Documentation <https://perldoc.perl.org/>`_
 * `Perl meta::cpan <https://metacpan.org/>`_
 * `Perl Tutorialspoint <https://www.tutorialspoint.com/perl/perl_introduction.htm>`_
 * `Perl Online books <https://www.perl.org/books/library.html>`_
@@ -20,8 +20,8 @@ Useful Links
 Perl Reference Tutorial
 =======================
 
-* `perlreftut <http://perldoc.perl.org/perlreftut.html>`_ tutorial
-* `perlref <http://perldoc.perl.org/perlref.html>`_ manual
+* `perlreftut <https://perldoc.perl.org/perlreftut.html>`_ tutorial
+* `perlref <https://perldoc.perl.org/perlref.html>`_ manual
 
 Make Rule 1
 -----------
@@ -111,7 +111,7 @@ Warning::
 Building a hash from an array
 =============================
 
-* `Perl Arrays <http://www.tutorialspoint.com/perl/perl_arrays.htm>`_
+* `Perl Arrays <https://www.tutorialspoint.com/perl/perl_arrays.htm>`_
 
 ::
 

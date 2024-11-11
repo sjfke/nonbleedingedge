@@ -20,7 +20,7 @@ your favourite functions into the source when writing and testing.
 
 It is possible to split your script into multiple files, create libraries of your favourite utilities etc.
 I do not cover this topic, the example script shows where/how to ``source`` you library files, and if you wish to create your 
-own modules, see `How to Write a PowerShell Script Module <https://docs.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module>`_.
+own modules, see `How to Write a PowerShell Script Module <https://learn.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module>`_.
 
 ************
 Introduction
@@ -123,22 +123,22 @@ Language Overview
 *****************
 
 The language makes use of `.Net Framework <https://en.wikipedia.org/wiki/.NET_Framework>`_ and is built on 
-top of the `.NET Common Language Runtime (CLR) <https://docs.microsoft.com/en-us/dotnet/standard/clr>`_ , and 
-manipulates `.NET objects <https://docs.microsoft.com/en-us/dotnet/api/system.object>`_. If the language itself 
-does not provide what you need, there may be a `Popular PowerShell Module <https://social.technet.microsoft.com/wiki/contents/articles/4308.popular-powershell-modules.aspx>`_
-you can download or you can access the `.Net APIs <https://docs.microsoft.com/en-us/dotnet/api>`_ directly, a good example being `ArrayLists <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_ which 
+top of the `.NET Common Language Runtime (CLR) <https://learn.microsoft.com/en-us/dotnet/standard/clr>`_ , and
+manipulates `.NET objects <https://learn.microsoft.com/en-us/dotnet/api/system.object>`_. If the language itself
+does not provide what you need, there may be a `Popular PowerShell Module <https://learn.microsoft.com/en-us/archive/technet-wiki/4308.popular-powershell-modules>`_
+you can download or you can access the `.Net APIs <https://learn.microsoft.com/en-us/dotnet/api>`_ directly, a good example being `ArrayLists <https://learn.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_ which
 are dynamic in size unlike a *PowerShell Array*.
 
 In common with other object oriented languages, ``PowerShell`` has features such *inheritance*, *subclasses*, *getters*, *setters*, *modules* etc.
 Functions and methods support both ``named`` and ``positional`` arguments, that can be mixed liberally, but done inappropriately can make the intention
-more confusing. Often it is clearer to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather
+more confusing. Often it is clearer to use `splatting <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_ rather
 than individual name or positional parameters.
 
 Useful starting points when learning about the language:
 
 * `PowerShell GitHub - Recommended Training and Reading <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#recommended-training-and-reading>`_
 * `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
-* `Windows PowerShell Portal <https://social.technet.microsoft.com/wiki/contents/articles/24187.windows-powershell-portal.aspx>`_
+* `Windows PowerShell Portal <https://learn.microsoft.com/en-us/archive/technet-wiki/24187.windows-powershell-portal>`_
 
 Unlike most texts on programming languages, let us starts with a simple but realistic PowerShell example, with many of
 the language details being covered in subsequent sections.
@@ -277,10 +277,10 @@ the syntax version and to be more strict on the use of uninitialized variables.
 
 Things to note:
 
-* The `#requires -version 4 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires>`_ PowerShell version 4 syntax, (use *version 2*, if windows is very old);
+* The `#requires -version 4 <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_requires>`_ PowerShell version 4 syntax, (use *version 2*, if windows is very old);
 * Initial comment block ``.SYNOPSIS...`` provides the ``get-help`` text, **note** line-spacing is important;
-* The `param() <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_ block must be the first *non-comment line* for command-line arguments;
-* The `Set-StrictMode -Version 2 <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of uninitialized variables;
+* The `param() <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_ block must be the first *non-comment line* for command-line arguments;
+* The `Set-StrictMode -Version 2 <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/set-strictmode>`_ checks the usage of uninitialized variables;
 
 
 *******************
@@ -402,7 +402,7 @@ Useful references:
 
 * `TutorialsPoint Powershell Array for more detailed explanation <https://www.tutorialspoint.com/powershell/powershell_array.htm>`_
 * `PowerShellExplained ArrayList for dynamically resizable arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_
-* `Microsoft Docs ArrayList Class for dynamically resizable arrays <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
+* `Microsoft Docs ArrayList Class for dynamically resizable arrays <https://learn.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
 * `Kevin Blumenfeld's GitHub Gist Collection Type Guidance <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_
 
 
@@ -490,7 +490,7 @@ it is possible to create custom PowerShell objects, but to date I have never nee
 For more details, read:
 
 * `David Bluemenfeld: Collection Type Guidance <https://gist.github.com/kevinblumenfeld/4a698dbc90272a336ed9367b11d91f1c>`_;
-* `Microsoft TechNet: Creating Custom Objects <https://social.technet.microsoft.com/wiki/contents/articles/7804.powershell-creating-custom-objects.aspx>`_;
+* `Microsoft TechNet: Creating Custom Objects <https://learn.microsoft.com/en-us/archive/technet-wiki/7804.powershell-creating-custom-objects>`_;
 * `Kevin Marquette: Everything you wanted to know about PSCustomObject <https://powershellexplained.com/2016-10-28-powershell-everything-you-wanted-to-know-about-pscustomobject/>`_;
 
 Functions
@@ -504,7 +504,7 @@ While each function call returns a reference to a new (*different*) object, be c
 it is easy to create multiple references to the same object.
 
 While mixing named (*order independent*) and positional (*order dependent*) arguments is permitted it can cause strange errors, so unless you are only
-supplying one or two arguments, a better approach is to use `splatting <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_.
+supplying one or two arguments, a better approach is to use `splatting <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting>`_.
 The following contrived example illustrates the basics but the ``param ( ... )`` section has many options not shown here. 
 
 .. code-block:: powershell
@@ -586,8 +586,8 @@ The following contrived example illustrates the basics but the ``param ( ... )``
 
 Further reading:
 
-* Microsoft Docs, `Chapter 9 - Functions <https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions>`_ 
-* Microsoft Docs, `About Functions Advanced Parameters <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_.
+* Microsoft Docs, `Chapter 9 - Functions <https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/09-functions>`_
+* Microsoft Docs, `About Functions Advanced Parameters <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_.
 
 ArrayList
 =========
@@ -642,7 +642,7 @@ ArrayList
 
 Further reading:
 
-* `The .Net ArrayList Class <https://docs.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
+* `The .Net ArrayList Class <https://learn.microsoft.com/en-us/dotnet/api/system.collections.arraylist>`_
 * `Powershell: Everything you wanted to know about arrays <https://powershellexplained.com/2018-10-15-Powershell-arrays-Everything-you-wanted-to-know/>`_    
 
 IF/Switch commands
@@ -1003,7 +1003,7 @@ Entire technical books are dedicated to Regular Expressions, the above is very b
 For more details see:
 
 * `Jeffrey Friedl: Mastering Regular Expressions <https://www.oreilly.com/library/view/mastering-regular-expressions/0596528124/>`_
-* `Microsoft Docs: About Regular Expressions <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_regular_expressions>`_
+* `Microsoft Docs: About Regular Expressions <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters>`_
 * `Powershell: The many ways to use regex <https://powershellexplained.com/2017-07-31-Powershell-regex-regular-expression/>`_
 * `Test and Debug: Regular Expression 101 <https://regex101.com/>`_
 * `Test and Debug: RegEx <https://www.regextester.com/>`_
@@ -1133,9 +1133,9 @@ This example accepts all commandline arguments as file names and does not consid
 Writing Files
 =============
 
-Simplest approach is to use `set-content <https://docs.microsoft.com/powershell/module/microsoft.powershell.management/set-content>`_, 
-`add-content <https://docs.microsoft.com/powershell/module/microsoft.powershell.management/add-content>`_ and 
-`clear-content <https://docs.microsoft.com/powershell/module/microsoft.powershell.management/clear-content>`_ *cmd-lets*, 
+Simplest approach is to use `set-content <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-content>`_,
+`add-content <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/add-content>`_ and
+`clear-content <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/clear-content>`_ *cmd-lets*,
 which have many options not covered here.
 
 .. code-block:: powershell
@@ -1178,10 +1178,10 @@ which have many options not covered here.
 
 See also:
 
-* `Microsoft docs: set-content <https://docs.microsoft.com//powershell/module/microsoft.powershell.management/set-content>`_
-* `Microsoft docs: add-content <https://docs.microsoft.com//powershell/module/microsoft.powershell.management/add-content>`_
-* `Microsoft docs: out-file <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-file>`_
-* `Microsoft docs: new-temporaryfile <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/new-temporaryfile>`_
+* `Microsoft docs: set-content <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-content>`_
+* `Microsoft docs: add-content <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/add-content>`_
+* `Microsoft docs: out-file <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/out-file>`_
+* `Microsoft docs: new-temporaryfile <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/new-temporaryfile>`_
 
 Displaying CSV Files
 ====================
@@ -1214,8 +1214,8 @@ The ``out-gridview`` renders the output the data in an interactive table.
 
     PS> import-csv -delimiter ';' file.csv | out-gridview
 
-* `Microsoft docs: Import-CSV <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/import-csv>`_
-* `Microsoft docs: Out-GridView <https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/out-gridview>`_
+* `Microsoft docs: Import-CSV <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-csv>`_
+* `Microsoft docs: Out-GridView <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/out-gridview>`_
 
 Reading and Writing JSON Files
 ==============================
@@ -1288,19 +1288,19 @@ PowerShell requires that ``ConvertTo-Json`` and ``ConvertFrom-Json`` modules are
 
 Further reading:
    
-* `ConvertFrom-Json converts a JSON-formatted string to a custom object or a hash table. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json>`_
-* `ConvertTo-Json converts an object to a JSON-formatted string. <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json>`_
+* `ConvertFrom-Json converts a JSON-formatted string to a custom object or a hash table. <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-json>`_
+* `ConvertTo-Json converts an object to a JSON-formatted string. <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertto-json>`_
 * `W3Schools: Introduction to JSON <https://www.w3schools.com/js/js_json_intro.asp>`_
 
 Reading XML Files
 =================
 
 ``Powershell`` supports full manipulation of the XML DOM, read the `Introduction to XML <https://www.w3schools.com/XML/xml_whatis.asp>`_ 
-and `.NET XmlDocument Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more detailed information. The examples shown 
+and `.NET XmlDocument Class <https://learn.microsoft.com/en-us/dotnet/api/system.xml.xmldocument>`_ for more detailed information. The examples shown
 are very rudimentary, and only show a few of the manipulations you can perform on XML objects.
 
-**Note**, cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and 
-`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
+**Note**, cmdlets `Export-Clixml <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and
+`Import-Clixml <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save
 and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
 
 .. code-block:: pwsh-session
@@ -1379,10 +1379,10 @@ and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
 Writing XML Files
 =================
 
-To generate an XML file, use the `XmlTextWriter Class <https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
+To generate an XML file, use the `XmlTextWriter Class <https://learn.microsoft.com/en-us/dotnet/api/system.xml.xmltextwriter>`_
 
-**Note**: cmdlets `Export-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and
-`Import-Clixml <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save 
+**Note**: cmdlets `Export-Clixml <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/export-clixml>`_ and
+`Import-Clixml <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-clixml>`_ provide a simplified way to save
 and reload your ``PowerShell`` objects and are ``Microsoft`` specific.
 
 .. code-block:: powershell
@@ -1516,14 +1516,14 @@ Specified as ``{<index>, <alignment><width>:<format_spec>}``
 More detailed formatting examples:
 
 * `PowershellPrimer.com: Formatting Output <https://powershellprimer.com/html/0013.html>`_
-* `Microsoft documentation: Get-Date <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date>`_
+* `Microsoft documentation: Get-Date <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-date>`_
 
 Output methods:
 
-* `Microsoft Docs: Write Output <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-output>`_
-* `Microsoft Docs: Write Warning <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-warning>`_
-* `Microsoft Docs: Write Host <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host>`_
-* `Microsoft Docs: Write Error <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error>`_
+* `Microsoft Docs: Write Output <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-output>`_
+* `Microsoft Docs: Write Warning <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-warning>`_
+* `Microsoft Docs: Write Host <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-host>`_
+* `Microsoft Docs: Write Error <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/write-error>`_
 
 ***********************
 Security Considerations
@@ -1583,7 +1583,7 @@ A sensible working setup for a typical windows server installation
 PowerShell Execution Policies
 =============================
 
-`Execution policies <https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_
+`Execution policies <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies>`_
 are a safety feature to control the conditions under which ``PowerShell`` loads configuration
 files and runs scripts, with the intention to prevent the execution of malicious scripts. This is augmented with the notion
 of a ``Execution Policy Scope``, conditions under which the ``Execution Policy`` is applied
@@ -1939,10 +1939,10 @@ OpenSSL file: authenticode-selfsign-openssl.cnf
 This is the result of many iterations and consulting many references, most relevant being:
 
 * `OpenSSL Cookbook - 3rd Edition by Ivan Ristic <https://www.feistyduck.com/library/openssl-cookbook/online/>`_
-* `openssl-req, req - PKCS#10 certificate request and certificate generating utility <https://www.openssl.org/docs/man1.1.1/man1/req.html>`_
-* `openssl-x509 - Certificate display and signing command <https://www.openssl.org/docs/manmaster/man1/openssl-x509.html>`_
-* `x509v3_config - X509 V3 certificate extension configuration format <https://www.openssl.org/docs/manmaster/man5/x509v3_config.htm>`_ v3_req, v3_ca
-* `openssl-pkcs12 - PKCS#12 file command <https://www.openssl.org/docs/manmaster/man1/openssl-pkcs12.html>`_
+* `openssl-req, req - PKCS#10 certificate request and certificate generating utility <https://docs.openssl.org/1.1.1/man1/req/>`_
+* `openssl-x509 - Certificate display and signing command <https://docs.openssl.org/master/man1/openssl-x509/>`_
+* `x509v3_config - X509 V3 certificate extension configuration format <https://docs.openssl.org/3.0/man5/x509v3_config/>`_ v3_req, v3_ca
+* `openssl-pkcs12 - PKCS#12 file command <https://docs.openssl.org/master/man1/openssl-pkcs12/>`_
 
 .. code-block:: ini
 

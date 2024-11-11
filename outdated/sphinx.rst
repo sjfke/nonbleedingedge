@@ -9,10 +9,10 @@ Sphinx Cheatsheet
 Sphinx Links
 ============
 
-* `Sphinx HomePage <http://www.sphinx-doc.org/en/stable/index.html>`_
+* `Sphinx HomePage <https://www.sphinx-doc.org/en/master/index.html>`_
 * `Sphinx Tutorial <https://sphinx-tutorial.readthedocs.io/>`_
 * `Sphinx Cheatsheet <https://sphinx-tutorial.readthedocs.io/cheatsheet/>`_
-* `Sphinx Extensions <http://www.sphinx-doc.org/en/stable/usage/extensions/index.html>`_
+* `Sphinx Extensions <https://www.sphinx-doc.org/en/master/usage/extensions/index.html>`_
 
 Restructured Text Links
 =======================
@@ -46,12 +46,11 @@ To Be Checked Links
     - https://www.sphinx-doc.org/en/master/usage/markdown.html
     - https://myst-parser.readthedocs.io/en/latest/index.html
 
-* `Openalea Sphinx <http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`_
 * `Example pypi project <https://pythonhosted.org/an_example_pypi_project/sphinx.html>`_
-* `reStructuredText Directives <http://docutils.sourceforge.net/docs/ref/rst/directives.html>`_
-* `reStructuredText Markup Specification <http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html>`_
+* `reStructuredText Directives <https://docutils.sourceforge.io/docs/ref/rst/directives.html>`_
+* `reStructuredText Markup Specification <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_
 * `Online reStructure Editor (reStructure) <https://www.tutorialspoint.com/online_restructure_editor.php>`_
-* `Sphinx Domains <http://www.sphinx-doc.org/en/stable/usage/restructuredtext/domains.html>`_
+* `Sphinx Domains <https://www.sphinx-doc.org/en/master/usage/domains/>`_
 
 
 Miscellaneous

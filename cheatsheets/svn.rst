@@ -8,10 +8,10 @@ Useful Links
 ============
 
 * `Apache Subversion <https://subversion.apache.org/>`_
-* `Version Control with Subversion <http://svnbook.red-bean.com/>`_
-* `Subversion 1.6 <http://svnbook.red-bean.com/en/1.6/index.html>`_
-* `Subversion 1.7 <http://svnbook.red-bean.com/en/1.7/index.html>`_
-* `Subversion Nightly build 1.8 <http://svnbook.red-bean.com/nightly/en/index.html>`_
+* `Version Control with Subversion <https://svnbook.red-bean.com/>`_
+* `Subversion 1.6 <https://svnbook.red-bean.com/en/1.6/index.html>`_
+* `Subversion 1.7 <https://svnbook.red-bean.com/en/1.7/index.html>`_
+* `Subversion Nightly build 1.8 <https://svnbook.red-bean.com/nightly/en/index.html>`_
 * `TortoiseSVN (Subversion for Windows) <https://tortoisesvn.net/>`_
 
 
