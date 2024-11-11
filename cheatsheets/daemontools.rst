@@ -16,7 +16,7 @@ Setup pipenv
 
 Useful Links
 
-* `Installing Python 3 on Linux < https://docs.python-guide.org/starting/install3/linux/>`_
+* `Installing Python 3 on Linux <https://docs.python-guide.org/starting/install3/linux/>`_
 
 
 Common commands
