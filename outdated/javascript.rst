@@ -22,8 +22,8 @@ String Methods:
 
 Useful Links:
 
-* `String Methods <http://www.w3schools.com/js/js_string_methods.asp>`_
-* `String Objects <http://www.w3schools.com/jsref/jsref_obj_string.asp>`_
+* `String Methods <https://www.w3schools.com/js/js_string_methods.asp>`_
+* `String Objects <https://www.w3schools.com/jsref/jsref_obj_string.asp>`_
 
 ::
 
