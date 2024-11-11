@@ -7,7 +7,7 @@ Systemctl vs Service Cheatsheet
 Useful Links
 ============
 
-* `ArchLinux systemd <https://wiki.archlinux.org/title/systemd>`_
+* `ArchLinux systemd <https://wiki.archlinux.org/title/Systemd>`_
 * `ArchLinux systemd/User <https://wiki.archlinux.org/title/Systemd/User>`_
 * `Wikipedia systemd, System and Service Manager <https://en.wikipedia.org/wiki/Systemd>`_
 
