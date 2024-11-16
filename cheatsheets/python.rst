@@ -271,7 +271,7 @@ For illustration the file `fact.py` which contains a method called `fact` is cop
     import random                         # module in sys.path (List) and sys.modules (Dictionary)
     from sys import exit                  # so exit() and not sys.exit(), module in (sys.path, sys.modules)
 
-    from fact import fact                 # from file './fact.py' import 'def fact(n)'
+                    from fact import fact # from file './fact.py' import 'def fact(n)'
     # from subdir.fact import fact        # file is in subdir
     # from subdir.subdir.fact import fact # file is in subdir/subdir
     # from fact import fact as factorial  # different name, so answer = factorial(n)
@@ -322,7 +322,7 @@ From `sys — System-specific parameters and functions <https://docs.python.org/
 Object Class Example
 ********************
 
-Simple ``Person`` object in file named ``Person.py``, without Docstrings for brevity.
+Simple ``Person`` object in file named ``Person.py``
 
 Using Python decorators
 =======================
@@ -335,9 +335,17 @@ no functions `get_name()`, `set_name()` etc.
     import os
     import uuid
 
+
     class Person:
+        Gender = {'M', 'F', 'N', 'Male', 'Female', 'Neuter'}
 
         def __init__(self, name, age, sex='M'):
+            """
+            Create person object
+            :param name: of person, (string)
+            :param age: of person (integer)
+            :param sex: one of set Gender
+            """
             self.__name = name
 
             if not isinstance(age, int):
@@ -346,31 +354,49 @@ no functions `get_name()`, `set_name()` etc.
                 self.__age = age
             else:
                 self.__age = 0
+            if sex in Person.Gender:
+                self.__sex = sex
+            else:
+                raise ValueError('Invalid Gender')
 
-            self.__sex = sex
             self.__uuid = str(uuid.uuid4())
 
-        # a getter function, uses a property decorator
         @property
         def name(self):
+            """
+            Get Name Property
+            :return: name of person (string)
+            """
             return self.__name
 
-        # a setter function
         @name.setter
         def name(self, value):
+            """
+            Set Name Property
+            :param value: name of person (string)
+            :return: None
+            """
             self.__name = value
 
-        # a deleter function
         # @name.deleter
         # def name(self):
         #     del self._value
 
         @property
         def age(self):
+            """
+            Get Age Property
+            :return: age of person (integer)
+            """
             return self.__age
 
         @age.setter
         def age(self, value):
+            """
+            Set Age Property
+            :param value: value: age of person (integer)
+            :return: None or ValueError
+            """
             if not isinstance(value, int):
                 raise ValueError(f"invalid int for age: '{value}'")
             elif value > 0:
@@ -380,18 +406,37 @@ no functions `get_name()`, `set_name()` etc.
 
         @property
         def sex(self):
+            """
+            Get Sex Property
+            :return: Person.Gender
+            """
             return self.__sex
 
         @sex.setter
         def sex(self, value):
-            self.__sex = value
+            """
+            Set Sex Property
+            :param value: gender of person (Gender element)
+            :return: None or ValueError
+            """
+            if sex in Person.Gender:
+                self.__sex = sex
+            else:
+                raise ValueError('Invalid Gender')
 
         @property
         def uuid(self):
+            """
+            Get UUID Property
+            :return: UUID value (string)
+            """
             return self.__uuid
 
         def __str__(self):
-            """ String representation """
+            """
+            String representation
+            :return: human-readable representation (string)
+            """
             __str = 'Person: '
             __str += str(self.__name) + ', '
             __str += str(self.__age) + ', '
@@ -400,7 +445,10 @@ no functions `get_name()`, `set_name()` etc.
             return __str
 
         def __repr__(self):
-            """ repr() string representation """
+            """
+            repr() string representation
+            :return: repr() string representation
+            """
             __str = "{"
             __str += f"'name': {self.__name}, "
             __str += f"'age': {self.__age}, "
@@ -414,35 +462,60 @@ Decorator Usage
 
 .. code-block:: python
 
-    import Person
-    f = Person.Person(name='fred',age=99)
-    b = Person.Person(name='barney',age=9)
-    b.__str__()        # 'Person: barney, 9, M, c569ea0b-90bf-4433-b620-9472f6afbd8f'
-    f.__repr__()       # "{'name': fred, 'age': 99, 'sex': M, 'uuid': be1f8143-8619-477d-9658-aece55b8c98f}"
+    from Person import Person
 
-    dir(f)             # methods and attributes
-    help(f)            # methods, attributes and docstrings
+    dir(Person)          # methods and attributes
+    help (Person)        # methods, attributes and docstrings
 
-    ## 'Person' object using decorator approach - get(), set() calls fail!
-    #
-    f.name='freddy'    # attribute update
-    f.name             # 'freddy'
-    f.get_name()       # *** fails, no attribute 'get_name' ***
+    print(Person.Gender) # {'Female', 'F', 'Neuter', 'N', 'M', 'Male'}
 
-    f.set_name('fred') # *** fails, no attribute 'set_name' ***
-    f.name             # 'freddy'
-    f.get_name()       # *** fails, no attribute 'get_name' ***
+    fred = Person('Fred', 35)
+    print(fred)          # Person: Fred, 35, M, ec99f6ed-52a1-469d-966a-f85c723282f8
+    print(repr(fred))    # {'name': Fred, 'age': 35, 'sex': M, 'uuid': ec99f6ed-52a1-469d-966a-f85c723282f8}
+    print(fred.name)     # Fred
+    fred.name = 'Freddy'
+    print(fred.name)     # Freddy
 
-    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
-    f.get_uuid()       # *** fails,  no attribute 'get_uuid' ***
+    wilma = Person('Wilma', 30, 'F')
+    print(wilma)         # Person: Wilma, 30, F, e1870e1a-03c9-4f24-9334-ea55423b682c
+    print(repr(wilma))   # {'name': Wilma, 'age': 30, 'sex': F, 'uuid': e1870e1a-03c9-4f24-9334-ea55423b682c}
 
-    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
+    # Bad Gender
+    pebbles = Person(age=1, name='pebbles', sex='femail')
+    Traceback (most recent call last):
+      File "<python-input-13>", line 1, in <module>
+        pebbles = Person(age=1, name='pebbles', sex='femail')
+      File "C:\Users\geoff\Sandbox\Python\person-decorators\Person.py", line 26, in __init__
+        raise ValueError('Invalid Gender')
+    ValueError: Invalid Gender
+
+    # No Setter Attribute
+    fred.uuid = 'c6a5353d-068b-4263-96a3-a8f2c5aa25ad'
+    Traceback (most recent call last):
+      File "<python-input-14>", line 1, in <module>
+        fred.uuid = 'c6a5353d-068b-4263-96a3-a8f2c5aa25ad'
+        ^^^^^^^^^
     AttributeError: property 'uuid' of 'Person' object has no setter
+
+    # No getter, setter functions
+    print(fred.get_name())
+    Traceback (most recent call last):
+      File "<python-input-5>", line 1, in <module>
+        print(fred.get_name())
+              ^^^^^^^^^^^^^
+    AttributeError: 'Person' object has no attribute 'get_name'
+
+    fred.set_name('Freddie')
+    Traceback (most recent call last):
+      File "<python-input-15>", line 1, in <module>
+        fred.set_name('Freddie')
+        ^^^^^^^^^^^^^
+    AttributeError: 'Person' object has no attribute 'set_name'
 
 Using the Property Class
 ========================
 
-This approach supports attributes  **AND** `get_name()`, `set_name()` etc.
+This approach supports attributes **AND** `get_name()`, `set_name()` etc.
 
 .. code-block:: python
 
@@ -451,8 +524,15 @@ This approach supports attributes  **AND** `get_name()`, `set_name()` etc.
 
 
     class Person:
+        Gender = {'M', 'F', 'N', 'Male', 'Female', 'Neuter'}
 
         def __init__(self, name, age, sex='M'):
+            """
+            Create person object
+            :param name: of person, (string)
+            :param age: of person (integer)
+            :param sex: one of set Gender
+            """
             self.__name = name
 
             if not isinstance(age, int):
@@ -462,19 +542,42 @@ This approach supports attributes  **AND** `get_name()`, `set_name()` etc.
             else:
                 self.__age = 0
 
-            self.__sex = sex
+            self.__age = age
+            if sex in Person.Gender:
+                self.__sex = sex
+            else:
+                raise ValueError('Invalid Gender')
             self.__uuid = str(uuid.uuid4())
 
         def get_name(self):
+            """
+            Name Getter
+            :return: name of person (string)
+            """
             return self.__name
 
         def set_name(self, value):
+            """
+            Name Setter
+            :param value: new name of person (string)
+            :return: None
+            """
             self.__name = value
 
         def get_age(self):
+            """
+            Age Getter
+            :return: age of person (integer)
+            """
             return self.__age
 
         def set_age(self, value):
+            """
+            Age Setter
+            :param value: age of person (integer)
+            :return: None
+            """
+
             if not isinstance(value, int):
                 raise ValueError(f"invalid int for age: '{value}'")
             elif value > 0:
@@ -483,16 +586,35 @@ This approach supports attributes  **AND** `get_name()`, `set_name()` etc.
                 self.__age = 0
 
         def get_sex(self):
+            """
+            Sex (Gender) Getter
+            :return: gender of person (Gender element)
+            """
             return self.__sex
 
         def set_sex(self, value):
-            self.__sex = value
+            """
+            Sex (Gender) Setter
+            :param value: gender of person (Gender element)
+            :return: None or ValueError
+            """
+            if sex in Person.Gender:
+                self.__sex = sex
+            else:
+                raise ValueError('Invalid Gender')
 
         def get_uuid(self):
+            """
+            UUID Getter
+            :return: UUID value (string)
+            """
             return self.__uuid
 
         def __str__(self):
-            """ String representation """
+            """
+            String representation
+            :return: human-readable representation (string)
+            """
             __str = 'Person: '
             __str += str(self.__name) + ', '
             __str += str(self.__age) + ', '
@@ -501,7 +623,10 @@ This approach supports attributes  **AND** `get_name()`, `set_name()` etc.
             return __str
 
         def __repr__(self):
-            """ repr() string representation """
+            """
+            repr() string representation
+            :return: programmatic representation (JSON string)
+            """
             __str = "{"
             __str += f"'name': {self.__name}, "
             __str += f"'age': {self.__age}, "
@@ -510,42 +635,56 @@ This approach supports attributes  **AND** `get_name()`, `set_name()` etc.
             __str += "}"
             return __str
 
+        # Python attributes requires:
+        # property(fget=None, fset=None, fdel=None, doc=None)
+        name = property(get_name, set_name, None, None)
+        age = property(get_age, set_age, None, None)
+        sex = property(get_sex, set_sex, None, None)
+        uuid = property(get_uuid, None, None, None)
 
-    # Python attributes requires:
-    # property(fget=None, fset=None, fdel=None, doc=None)
-    name = property(get_name, set_name, None, None)
-    age = property(get_age, set_age, None, None)
-    sex = property(get_sex, set_sex, None, None)
-    uuid = property(get_uuid, None, None, None)
 
 Property Class Usage
 --------------------
 
 .. code-block:: python
 
-    import Person
-    f = Person.Person(name='fred',age=99)
-    b = Person.Person(name='barney',age=9)
-    b.__str__()        # 'Person: barney, 9, M, c569ea0b-90bf-4433-b620-9472f6afbd8f'
-    f.__repr__()       # "{'name': fred, 'age': 99, 'sex': M, 'uuid': be1f8143-8619-477d-9658-aece55b8c98f}"
+    from Person import Person
 
-    dir(f)             # methods and attributes
-    help(f)            # methods, attributes and docstrings
+    dir(Person)            # methods and attributes
+    help(Person)           # methods, attributes and docstrings
 
-    f.name='freddy'    # attribute update
-    f.name             # 'freddy'
-    f.get_name()       # 'freddy'
+    print(Person.Gender)   # {'Female', 'F', 'Neuter', 'N', 'M', 'Male'}
 
-    f.set_name('fred') # getter/setter update
-    f.name             # 'fred'
-    f.get_name()       # 'fred'
+    fred = Person('Fred', 35)
+    print(fred)            # Person: Fred, 35, M, 5b3cdec1-faba-4e4c-98f4-f5daf7d4cff1
+    print(repr(fred))      # {'name': Fred, 'age': 35, 'sex': M, 'uuid': 5b3cdec1-faba-4e4c-98f4-f5daf7d4cff1}
+    print(fred.name)       # 'Fred'
+    print(fred.get_name()) # 'Fred'
+    fred.name = 'Freddie'
+    print(fred.name)       # Freddie
+    fred.set_name('Freddy')
+    print(fred.name)       # Freddy
 
-    f.uuid             # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
-    f.get_uuid()       # 'f54b2c5c-014f-4bb3-aeee-8a18db0e7030'
+    wilma = Person('Wilma', 30, 'F')
+    print(wilma)           # Person: Wilma, 30, F, 7b1c33ef-c04c-4ff9-82ae-5ac8d47a1251
+    print(repr(wilma))     # {'name': Wilma, 'age': 30, 'sex': F, 'uuid': 7b1c33ef-c04c-4ff9-82ae-5ac8d47a1251}
 
-    f.uuid = 'be1f8143-8619-477d-9658-aece55b8c98f'
+    # Bad Gender
+    pebbles = Person(age=1, name='pebbles', sex='femail')
+    Traceback (most recent call last):
+      File "<python-input-2>", line 1, in <module>
+        pebbles = Person(age=1, name='pebbles', sex='femail')
+      File "C:\Users\geoff\Sandbox\Python\person\Person.py", line 29, in __init__
+        raise ValueError('Invalid Gender')
+    ValueError: Invalid Gender
+
+    # No Setter method
+    fred.uuid = '70129350-0418-40a2-9db9-14d1e8e8674b'
+    Traceback (most recent call last):
+      File "<python-input-3>", line 1, in <module>
+        fred.uuid = '70129350-0418-40a2-9db9-14d1e8e8674b'
+        ^^^^^^^^^
     AttributeError: property 'uuid' of 'Person' object has no setter
-
 
 *******************
 Language Data Types
