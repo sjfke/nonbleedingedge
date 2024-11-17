@@ -342,22 +342,26 @@ no functions `get_name()`, `set_name()` etc.
         def __init__(self, name, age, sex='M'):
             """
             Create person object
-            :param name: of person, (string)
-            :param age: of person (integer)
+            :param name: of person, (str)
+            :param age: of person (int)
             :param sex: one of set Gender
             """
             self.__name = name
 
             if not isinstance(age, int):
-                raise ValueError(f"invalid int for age: '{age}'")
-            elif age > 0:
-                self.__age = age
+                raise TypeError(f"Invalid int for age: {age}")
+            if not isinstance(sex, str):
+                raise TypeError(f"Invalid str for sex: {sex}")
+
+            if age > 150 or age < 0:
+                raise ValueError(f"Invalid age: {age}")
             else:
-                self.__age = 0
+                self.__age = age
+
             if sex in Person.Gender:
                 self.__sex = sex
             else:
-                raise ValueError('Invalid Gender')
+                raise ValueError(f"Invalid Gender: {sex}")
 
             self.__uuid = str(uuid.uuid4())
 
@@ -365,7 +369,7 @@ no functions `get_name()`, `set_name()` etc.
         def name(self):
             """
             Get Name Property
-            :return: name of person (string)
+            :return: name of person (str)
             """
             return self.__name
 
@@ -373,10 +377,13 @@ no functions `get_name()`, `set_name()` etc.
         def name(self, value):
             """
             Set Name Property
-            :param value: name of person (string)
-            :return: None
+            :param value: name of person (str)
+            :return: None, TypeError
             """
-            self.__name = value
+            if not isinstance(value, str):
+                raise TypeError(f"Invalid str for name: {value}")
+            else:
+                self.__name = value
 
         # @name.deleter
         # def name(self):
@@ -395,10 +402,12 @@ no functions `get_name()`, `set_name()` etc.
             """
             Set Age Property
             :param value: value: age of person (integer)
-            :return: None or ValueError
+            :return: None, TypeError or ValueError
             """
             if not isinstance(value, int):
-                raise ValueError(f"invalid int for age: '{value}'")
+                raise TypeError(f"Age must be an int: {value}")
+            elif value > 150:
+                raise ValueError(f"Invalid age: '{value}'")
             elif value > 0:
                 self.__age = value
             else:
@@ -417,12 +426,14 @@ no functions `get_name()`, `set_name()` etc.
             """
             Set Sex Property
             :param value: gender of person (Gender element)
-            :return: None or ValueError
+            :return: None, TypeError or ValueError
             """
-            if sex in Person.Gender:
-                self.__sex = sex
+            if not isinstance(value, str):
+                raise TypeError(f"Sex must be a str: {value}")
+            elif value in Person.Gender:
+                self.__sex = value
             else:
-                raise ValueError('Invalid Gender')
+                raise ValueError(f"Invalid Gender: {value}")
 
         @property
         def uuid(self):
@@ -435,7 +446,7 @@ no functions `get_name()`, `set_name()` etc.
         def __str__(self):
             """
             String representation
-            :return: human-readable representation (string)
+            :return: human-readable representation (str)
             """
             __str = 'Person: '
             __str += str(self.__name) + ', '
@@ -447,7 +458,7 @@ no functions `get_name()`, `set_name()` etc.
         def __repr__(self):
             """
             repr() string representation
-            :return: repr() string representation
+            :return: programmatic representation (JSON string)
             """
             __str = "{"
             __str += f"'name': {self.__name}, "
@@ -485,7 +496,7 @@ Decorator Usage
     Traceback (most recent call last):
       File "<python-input-13>", line 1, in <module>
         pebbles = Person(age=1, name='pebbles', sex='femail')
-      File "C:\Users\geoff\Sandbox\Python\person-decorators\Person.py", line 26, in __init__
+      File "C:\Users\sjfke\Sandbox\Python\Person.py", line 26, in __init__
         raise ValueError('Invalid Gender')
     ValueError: Invalid Gender
 
@@ -529,45 +540,51 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
         def __init__(self, name, age, sex='M'):
             """
             Create person object
-            :param name: of person, (string)
-            :param age: of person (integer)
+            :param name: of person, (str)
+            :param age: of person (int)
             :param sex: one of set Gender
             """
             self.__name = name
 
             if not isinstance(age, int):
-                raise ValueError(f"invalid int for age: '{age}'")
-            elif age > 0:
-                self.__age = age
-            else:
-                self.__age = 0
+                raise TypeError(f"Invalid int for age: {age}")
+            if not isinstance(sex, str):
+                raise TypeError(f"Invalid str for sex: {sex}")
 
-            self.__age = age
+            if age > 150 or age < 0:
+                raise ValueError(f"Invalid age: {age}")
+            else:
+                self.__age = age
+
             if sex in Person.Gender:
                 self.__sex = sex
             else:
-                raise ValueError('Invalid Gender')
+                raise ValueError(f"Invalid Gender: {sex}")
+
             self.__uuid = str(uuid.uuid4())
 
         def get_name(self):
             """
             Name Getter
-            :return: name of person (string)
+            :return: name of person (str)
             """
             return self.__name
 
         def set_name(self, value):
             """
             Name Setter
-            :param value: new name of person (string)
-            :return: None
+            :param value: new name of person (str)
+            :return: None or TypeError
             """
-            self.__name = value
+            if not isinstance(value, str):
+                raise TypeError(f"Invalid str for name: {value}")
+            else:
+                self.__name = value
 
         def get_age(self):
             """
             Age Getter
-            :return: age of person (integer)
+            :return: age of person (int)
             """
             return self.__age
 
@@ -575,11 +592,13 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
             """
             Age Setter
             :param value: age of person (integer)
-            :return: None
+            :return: None, TypeError or ValueError
             """
 
             if not isinstance(value, int):
-                raise ValueError(f"invalid int for age: '{value}'")
+                raise TypeError(f"Age must be an int: {value}")
+            elif value > 150:
+                raise ValueError(f"Invalid age: '{value}'")
             elif value > 0:
                 self.__age = value
             else:
@@ -588,7 +607,7 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
         def get_sex(self):
             """
             Sex (Gender) Getter
-            :return: gender of person (Gender element)
+            :return: Person.Gender
             """
             return self.__sex
 
@@ -596,12 +615,14 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
             """
             Sex (Gender) Setter
             :param value: gender of person (Gender element)
-            :return: None or ValueError
+            :return: None, TypeError or ValueError
             """
-            if sex in Person.Gender:
-                self.__sex = sex
+            if not isinstance(value, str):
+                raise TypeError(f"Sex must be a str: {value}")
+            elif value in Person.Gender:
+                self.__sex = value
             else:
-                raise ValueError('Invalid Gender')
+                raise ValueError(f"Invalid Gender: {value}")
 
         def get_uuid(self):
             """
@@ -613,7 +634,7 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
         def __str__(self):
             """
             String representation
-            :return: human-readable representation (string)
+            :return: human-readable representation (str)
             """
             __str = 'Person: '
             __str += str(self.__name) + ', '
@@ -635,13 +656,10 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
             __str += "}"
             return __str
 
-        # Python attributes requires:
-        # property(fget=None, fset=None, fdel=None, doc=None)
-        name = property(get_name, set_name, None, None)
-        age = property(get_age, set_age, None, None)
-        sex = property(get_sex, set_sex, None, None)
-        uuid = property(get_uuid, None, None, None)
-
+        name = property(fget=get_name, fset=set_name(), fdel=None, doc=None)
+        age = property(fget=get_age, fset=set_age, fdel=None, doc=None)
+        sex = property(fget=get_sex, fset=set_sex, fdel=None, doc=None)
+        uuid = property(fget=get_uuid, fset=None, fdel=None, doc=None)
 
 Property Class Usage
 --------------------
