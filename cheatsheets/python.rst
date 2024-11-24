@@ -76,42 +76,40 @@ An overly simple example, `flintstones.py <https://github.com/sjfke/python-proje
     import sys
 
     # https://docs.python.org/3/howto/argparse.html
-
     _dict = {'Fred': 30, 'Wilma': 25, 'Pebbles': 1, 'Dino': 5}
 
 
-    def get_names():
+    def get_names() -> list[str]:
         """
         Get Flintstones family firstnames
-        :return: dictionary of ages
+        :return: list of names
         """
-        return _dict.keys()
+        return list(_dict.keys())
 
 
-    def get_ages():
+    def get_ages() -> list[int]:
         """
         Get Flintstones family ages
-        :return: dictionary of ages
+        :return: list of ages
         """
+        return list(_dict.values())
 
-        return _dict.values()
 
-
-    def get_persons_age(name=None):
+    def get_person(name: str = None) -> (dict[str,int] | None):
         """
         Get age of Flintstones family member
         :param name: firstname
-        :return: integer age, KeyError or None
+        :return: integer age or None
         """
-
         if name is not None:
 
             try:
                 _ans = {name: _dict[name]}
                 return _ans
             except KeyError:
-                return f"KeyError: {name}"
-                # return "KeyError: {0}".format(name)  # prior to Python 3.6
+                print(f"KeyError: {name} not found", file=sys.stderr)
+                # print("KeyError: {0} not found".format(name))  # prior to Python 3.6
+                return None
         else:
             return None
 
@@ -121,7 +119,7 @@ An overly simple example, `flintstones.py <https://github.com/sjfke/python-proje
         parser = argparse.ArgumentParser(description='Simple Command Line Application')
         parser.add_argument('-n', '--names', action='store_true', default=False, help='display names')
         parser.add_argument('-a', '--ages', action='store_true', default=False, help='display ages')
-        parser.add_argument('-p', '--person', type=str, default=None, help='display person')
+        parser.add_argument('-p', '--person', type=str, default=None, help='display person age')
         parser.add_argument('-v', '--verbose', action='count', default=0)
 
         args = parser.parse_args()
@@ -165,21 +163,20 @@ Example usage
 
 .. code-block:: shell-session
 
-    $ python .\flintstones.py --help
+    $ python .\flintstones.py
     usage: flintstones.py [-h] [-n] [-a] [-p PERSON] [-v]
 
     Simple Command Line Application
 
-    optional arguments:
-      -h, --help            show this help message and exit
-      -n, --names           display names
-      -a, --ages            display ages
-      -p PERSON, --person PERSON
-                            person to display
+    options:
+      -h, --help           show this help message and exit
+      -n, --names          display names
+      -a, --ages           display ages
+      -p, --person PERSON  display person age
       -v, --verbose
 
     $ python .\flintstones.py -n
-    dict_keys(['Fred', 'Wilma', 'Pebbles', 'Dino'])
+    ['Fred', 'Wilma', 'Pebbles', 'Dino']
 
 Other simple `argparse` examples are available on `GitHub (sjfke): Python Projects <https://github.com/sjfke/python-projects>`_ :
 
@@ -245,43 +242,64 @@ Python Logging
 Module Import
 =============
 
-For illustration the file `fact.py` which contains a method called `fact` is copied into different folders.
+For illustration the file `Fact.py` which contains a method called `Fact` is copied into different folders.
 
 .. code-block:: dosbatch
 
     C:\USERS\FACTORIAL
     │   fact-test.py
-    │   fact.py
+    │   Fact.py
     │
     └───subdir
-        │   fact.py
+        │   Fact.py
         │
         └───subdir
-                fact.py
+                Fact.py
+
+.. code-block:: shell-session
+
+    $ cat Fact.py
+    def Fact(n):
+        return 1 if n == 1 else n * Fact(n-1)
 
 .. code-block:: python
 
-    # fact.py
-    def fact(n):
-        return 1 if n == 1 else n * fact(n-1)
+    >>> help('modules')                                 # list all modules
+    >>> import random                                   # module in sys.path (List) and sys.modules (Dictionary)
+    >>> from sys import exit                            # so exit() and not sys.exit(), module in (sys.path, sys.modules)
+    >>> dir()                                           # list local namespace, notice 'exit' and 'random'
+    ['__annotations__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__',
+     '__package__', '__spec__', 'exit', 'random']
 
-.. code-block:: python
+    >>> dir(random)
+    ['BPF', 'LOG4', 'NV_MAGICCONST', 'RECIP_BPF', 'Random', 'SG_MAGICCONST', 'SystemRandom', 'TWOPI', '_ONE',
+     '_Sequence', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__',
+     '__package__', '__spec__', '_accumulate', '_acos', '_bisect', '_ceil', '_cos', '_e', '_exp', '_fabs',
+     '_floor', '_index', '_inst', '_isfinite', '_lgamma', '_log', '_log2', '_os', '_parse_args', '_pi',
+     '_random', '_repeat', '_sha512', '_sin', '_sqrt', '_test', '_test_generator', '_urandom', 'betavariate',
+     'binomialvariate', 'choice', 'choices', 'expovariate', 'gammavariate', 'gauss', 'getrandbits', 'getstate',
+     'lognormvariate', 'main', 'normalvariate', 'paretovariate', 'randbytes', 'randint', 'random', 'randrange',
+     'sample', 'seed', 'setstate', 'shuffle', 'triangular', 'uniform', 'vonmisesvariate', 'weibullvariate']
+    >>>
 
-    # fact-test.py
-    import random                         # module in sys.path (List) and sys.modules (Dictionary)
-    from sys import exit                  # so exit() and not sys.exit(), module in (sys.path, sys.modules)
+    >>> from Fact import Fact                               # file './fact.py'
+    >>> from subdir.Fact import Fact as sub_fact            # file './subdir/Fact.py' as 'sub_fact'
+    >>> from subdir.subdir.Fact import Fact as sub_sub_fact # file './subdir/subdir/fact.py' as 'sub_sub_fact'
+    >>> from Fact import Fact as factorial                  # file './fact.py' as factorial
 
-                    from fact import fact # from file './fact.py' import 'def fact(n)'
-    # from subdir.fact import fact        # file is in subdir
-    # from subdir.subdir.fact import fact # file is in subdir/subdir
-    # from fact import fact as factorial  # different name, so answer = factorial(n)
+    >>> n = random.randrange(1,10,1)
+    >>> answer = Fact(n)
+    >>> print(f"fact({n}) = {answer}")                      # fact(3) = 6
+    >>>
+    >>> answer = sub_fact(n)
+    >>> print(f"sub_fact({n}) = {answer}")                  # sub_fact(3) = 6
+    >>>
+    >>> answer = sub_sub_fact(n)
+    >>> print(f"sub_sub_fact({n}) = {answer}")              # sub_sub_fact(3) = 6
+    >>>
+    >>> answer = factorial(n)
+    >>> print(f"factorial({n}) = {answer}")                 # factorial(3) = 6
 
-    if (__name__ == '__main__'):
-        n = random.randrange(1,10,1)
-        answer = fact(n)
-        print(f"fact({n}) = {answer}")
-
-        exit(0)
 
 .. _using-shebang:
 
@@ -339,7 +357,7 @@ no functions `get_name()`, `set_name()` etc.
     class Person:
         Gender = {'M', 'F', 'N', 'Male', 'Female', 'Neuter'}
 
-        def __init__(self, name, age, sex='M'):
+        def __init__(self, name: str, age: int, sex: str = 'M') -> None:
             """
             Create person object
             :param name: of person, (str)
@@ -366,7 +384,7 @@ no functions `get_name()`, `set_name()` etc.
             self.__uuid = str(uuid.uuid4())
 
         @property
-        def name(self):
+        def name(self) -> str:
             """
             Get Name Property
             :return: name of person (str)
@@ -374,7 +392,7 @@ no functions `get_name()`, `set_name()` etc.
             return self.__name
 
         @name.setter
-        def name(self, value):
+        def name(self, value: str) -> None:
             """
             Set Name Property
             :param value: name of person (str)
@@ -390,7 +408,7 @@ no functions `get_name()`, `set_name()` etc.
         #     del self._value
 
         @property
-        def age(self):
+        def age(self) -> int:
             """
             Get Age Property
             :return: age of person (integer)
@@ -398,7 +416,7 @@ no functions `get_name()`, `set_name()` etc.
             return self.__age
 
         @age.setter
-        def age(self, value):
+        def age(self, value: int) -> None:
             """
             Set Age Property
             :param value: value: age of person (integer)
@@ -414,7 +432,7 @@ no functions `get_name()`, `set_name()` etc.
                 self.__age = 0
 
         @property
-        def sex(self):
+        def sex(self) -> str:
             """
             Get Sex Property
             :return: Person.Gender
@@ -422,7 +440,7 @@ no functions `get_name()`, `set_name()` etc.
             return self.__sex
 
         @sex.setter
-        def sex(self, value):
+        def sex(self, value: str) -> None:
             """
             Set Sex Property
             :param value: gender of person (Gender element)
@@ -436,14 +454,14 @@ no functions `get_name()`, `set_name()` etc.
                 raise ValueError(f"Invalid Gender: {value}")
 
         @property
-        def uuid(self):
+        def uuid(self) -> str:
             """
             Get UUID Property
             :return: UUID value (string)
             """
             return self.__uuid
 
-        def __str__(self):
+        def __str__(self) -> str:
             """
             String representation
             :return: human-readable representation (str)
@@ -455,7 +473,7 @@ no functions `get_name()`, `set_name()` etc.
             __str += str(self.__uuid)
             return __str
 
-        def __repr__(self):
+        def __repr__(self) -> str:
             """
             repr() string representation
             :return: programmatic representation (JSON string)
@@ -537,7 +555,7 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
     class Person:
         Gender = {'M', 'F', 'N', 'Male', 'Female', 'Neuter'}
 
-        def __init__(self, name, age, sex='M'):
+        def __init__(self, name: str, age: int, sex: str = 'M') -> None:
             """
             Create person object
             :param name: of person, (str)
@@ -563,14 +581,14 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
 
             self.__uuid = str(uuid.uuid4())
 
-        def get_name(self):
+        def get_name(self) -> str:
             """
             Name Getter
             :return: name of person (str)
             """
             return self.__name
 
-        def set_name(self, value):
+        def set_name(self, value: str) -> None:
             """
             Name Setter
             :param value: new name of person (str)
@@ -581,14 +599,14 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
             else:
                 self.__name = value
 
-        def get_age(self):
+        def get_age(self) -> int:
             """
             Age Getter
             :return: age of person (int)
             """
             return self.__age
 
-        def set_age(self, value):
+        def set_age(self, value: int) -> None:
             """
             Age Setter
             :param value: age of person (integer)
@@ -604,14 +622,14 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
             else:
                 self.__age = 0
 
-        def get_sex(self):
+        def get_sex(self) -> str:
             """
             Sex (Gender) Getter
             :return: Person.Gender
             """
             return self.__sex
 
-        def set_sex(self, value):
+        def set_sex(self, value: str) -> None:
             """
             Sex (Gender) Setter
             :param value: gender of person (Gender element)
@@ -624,14 +642,14 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
             else:
                 raise ValueError(f"Invalid Gender: {value}")
 
-        def get_uuid(self):
+        def get_uuid(self) -> str:
             """
             UUID Getter
             :return: UUID value (string)
             """
             return self.__uuid
 
-        def __str__(self):
+        def __str__(self) -> str:
             """
             String representation
             :return: human-readable representation (str)
@@ -643,7 +661,7 @@ This approach supports attributes **AND** `get_name()`, `set_name()` etc.
             __str += str(self.__uuid)
             return __str
 
-        def __repr__(self):
+        def __repr__(self) -> str:
             """
             repr() string representation
             :return: programmatic representation (JSON string)
