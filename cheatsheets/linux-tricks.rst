@@ -82,6 +82,38 @@ Fedora package installer `DNF <https://www.rootusers.com/25-useful-dnf-command-e
     $ sudo dnf grouplist                                # list which groups are available, installed, not-installed.
     $ sudo dnf groupinfo "System Tools"                 # what is installed by this group
 
+LS commands
+===========
+
+* `lshw Command in Linux: Get Hardware Details  <https://linuxhandbook.com/lshw-command/>`_
+* `ls* Commands Are Even More Useful Than You May Have Thought <https://www.cyberciti.biz/open-source/command-line-hacks/linux-ls-commands-examples/>`_
+
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+| Command     | Description                                                                                                               |
++=============+===========================================================================================================================+
+| lsblk       | `list block devices <https://linuxhandbook.com/lsblk-command/>`_                                                          |
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+| lsb_release | `provides LSB (Linux Standard Base) information.  <https://commandmasters.com/commands/lsb_release-linux/>`_              |
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+| lscpu       | `display information about the CPU architecture <https://linuxhint.com/lscpu-command/>`_                                  |
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+| lsipc       | `show information on IPC facilities currently employed in the system <https://commandmasters.com/commands/lsipc-linux/>`_ |
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+| lslocks     | `list local system locks <https://www.thegeekdiary.com/lslocks-command-examples-in-linux/>`_                              |
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+| lslogins    | `display information about known users in the system <https://commandmasters.com/commands/lslogins-linux/>`_              |
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+| lsmem       | `list the ranges of available memory with their online status <https://www.man7.org/linux/man-pages/man1/lsmem.1.html>`_  |
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+| lsns        | `list namespaces <https://commandmasters.com/commands/lsns-linux/>`_                                                      |
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+| lspci       | `list all PCI devices <https://commandmasters.com/commands/lspci-linux/>`_                                                |
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+| lsusb       | `list USB devices <https://commandmasters.com/commands/lsusb-linux/>`_                                                    |
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+| lsof        | `list open files <https://linuxhandbook.com/lsof-command/>`_                                                              |
++-------------+---------------------------------------------------------------------------------------------------------------------------+
+
 Terminal Pagers
 ===============
 
