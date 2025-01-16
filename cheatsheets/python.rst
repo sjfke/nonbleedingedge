@@ -242,6 +242,9 @@ Python Logging
 Module Import
 =============
 
+Importing from sub-directories
+------------------------------
+
 For illustration the file `Fact.py` which contains a method called `Fact` is copied into different folders.
 
 .. code-block:: dosbatch
@@ -300,11 +303,47 @@ For illustration the file `Fact.py` which contains a method called `Fact` is cop
     >>> answer = factorial(n)
     >>> print(f"factorial({n}) = {answer}")                 # factorial(3) = 6
 
+Importing a filename with '-'
+-----------------------------
+
+`Python-3.1` introduced an `importlib` module to handle this for the current directory and it's sub-directories.
+
+.. code-block:: python
+
+    >>> import ok_file_name
+    >>>
+    >>> import importlib
+    >>> bad_file_name = importlib.import_module("bad-file-name")
+    >>>
+    >>> bad_path_name = importlib.import_module("bad-sub-folder.bad-file-name")
+    >>> dir()
+    ['__annotations__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'importlib', 'bad_path_name', 'bad_file_name', 'ok_file_name']
+
+
+Import from a parent directory
+------------------------------
+
+The parent directory needs to be added to the `PYTHONPATH`
+
+.. code-block:: python
+
+    >>> import sys
+    >>> import os
+    >>> sys.path.append(os.getcwd() + '/..')
+
+    >>> import ok_parent_filename
+    >>>
+    >>> import importlib
+    >>> bad_parent_filename = importlib.import_module("bad-parent-filename")
+
+    >>> dir()
+    ['__annotations__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'os', 'sys', 'importlib', 'bad_parent_filename', 'ok_parent_filename']
+
 
 .. _using-shebang:
 
-Using Shebang
-=============
+Using Shebang with Python
+=========================
 
 On ``UNIX`` and ``Linux`` systems it is common to have a ``shebang`` as the first line of the the script, so the
 Shell knows which interpreter to use.
