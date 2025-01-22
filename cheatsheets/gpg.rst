@@ -125,6 +125,7 @@ Git GPG integrations
 
     # Global auto-sign commits and tags
     $ git config --global --list
+    $ git config --global user.name Geoff
     $ git config --global user.email geoffreycollis@hotmail.com
     $ git config --global user.signingKey 09D708FAED728E4C
     $ git config --global commit.gpgSign true
@@ -132,6 +133,7 @@ Git GPG integrations
 
     # Project (local) auto-sign commits and tags
     $ git config --local --list
+    $ git config --local user.name Sjfke
     $ git config --local user.email sjfke.pool.shark@hotmail.com
     $ git config --local user.signingKey 49220AC61317062D
     $ git config --local commit.gpgSign true
