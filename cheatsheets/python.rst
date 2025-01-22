@@ -156,8 +156,8 @@ Function calls
     Support *named* and *positional* arguments.
 
 The ``Docstrings``, the text between the *triple double-quotes* after the function definition, are important but
-no single agreed format is in use and style varies considerably, see :ref:`python-docstrings`, a single line description is illustrated above, and
-`PyCharm Community Edition <https://www.jetbrains.com/pycharm/download>`_ Docstrings are used on the GitHub version.
+no single agreed format is in use and style varies considerably, see :ref:`python-docstrings`. For consistency the
+`PyCharm Community Edition <https://www.jetbrains.com/pycharm/download>`_ Docstrings are used throughout this document.
 
 Example usage
 
