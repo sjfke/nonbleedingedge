@@ -1475,6 +1475,7 @@ double-quote.
 * `RealPython: Python 3's f-Strings: An Improved String Formatting Syntax (Guide) <https://realpython.com/python-f-strings/>`_
 * `Python: Input and Output - Fancier Output Formatting <https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting>`_
 * `Python: Formatted string literals <https://docs.python.org/3/reference/lexical_analysis.html#f-strings>`_
+* `Python F-strings <https://www.pythontutorial.net/python-basics/python-f-strings/>`_, covers literal ``{`` and ``}`` characters
 
 For Docstrings
 --------------
