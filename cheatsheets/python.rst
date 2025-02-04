@@ -1489,9 +1489,40 @@ Text
 .. code-block:: python
 
     a = 'one'; b = 'two'
-    print("%s %s" % (a, b))     # one two
-    print("{} {}".format(a, b)) # one two
-    print(f"{a} {b}")           # one two
+    print("%s %s" % (a, b))                       # one two
+    print("{} {}".format(a, b))                   # one two
+    print(f"{a} {b}")                             # one two
+
+    # Dictionary format
+    print("{'a': '%s', 'b': '%s'}" % (a, b))      # {'a': 'one', 'b': 'two'}
+    print("{{'a': '{}', 'b': '{}'}}".format(a,b)) # {'a': 'one', 'b': 'two'}
+    print(f"{{'a': '{a}', 'b': '{b}'}}")          # {'a': 'one', 'b': 'two'}
+
+    # List format
+    print("['a', '%s', 'b', '%s']" % (a, b))      # ['a', 'one', 'b', 'two']
+    print("['a', '{}', 'b', '{}']".format(a,b))   # ['a', 'one', 'b', 'two']
+    print(f"['a', '{a}', 'b', '{b}']")            # ['a', 'one', 'b', 'two']
+
+    # Tuple format
+    print("('a', '%s', 'b', '%s')" % (a, b))      # ('a', 'one', 'b', 'two')
+    print("('a', '{}', 'b', '{}')".format(a,b))   # ('a', 'one', 'b', 'two')
+    print(f"('a', '{a}', 'b', '{b}')")            # ('a', 'one', 'b', 'two')
+
+    # Concatenation
+    print("%s-%s" % (a,b))                        # one-two
+    print("{}-{}".format(a,b))                    # one-two
+    print(f"{a}-{b}")                             # one-two
+
+    # Concatenation using join
+    print("%s" % ("-".join((a,b))))               # one-two
+    print("{}".format("-".join((a,b))))           # one-two
+    print(f"{'-'.join((a,b))}")                   # one-two
+
+
+Alignment and Padding
+---------------------
+
+.. code-block:: python
 
     # Padding (10) and aligning strings
     c = 'short'; d = 'long string with more text'
