@@ -389,121 +389,96 @@ no functions `get_name()`, `set_name()` etc.
 
 .. code-block:: python
 
-    import os
     import uuid
 
 
     class Person:
-        Gender = {'M', 'F', 'N', 'Male', 'Female', 'Neuter'}
 
-        def __init__(self, name: str, age: int, sex: str = 'M') -> None:
-            """
-            Create person object
-            :param name: of person, (str)
-            :param age: of person (int)
-            :param sex: one of set Gender
-            """
+        def __init__(self, name, age, sex='M') -> None:
             self.__name = name
 
             if not isinstance(age, int):
-                raise TypeError(f"Invalid int for age: {age}")
-            if not isinstance(sex, str):
-                raise TypeError(f"Invalid str for sex: {sex}")
-
-            if age > 150 or age < 0:
-                raise ValueError(f"Invalid age: {age}")
-            else:
+                raise ValueError(f"invalid int for age: '{age}'")
+            elif age > 0:
                 self.__age = age
-
-            if sex in Person.Gender:
-                self.__sex = sex
             else:
-                raise ValueError(f"Invalid Gender: {sex}")
+                self.__age = 0
 
+            self.__sex = sex
             self.__uuid = str(uuid.uuid4())
 
-        @property
-        def name(self) -> str:
+        def get_name(self) -> str:
             """
-            Get Name Property
-            :return: name of person (str)
+            Getter Name
+            :return: name of person
+            :rtype: str
             """
             return self.__name
 
-        @name.setter
-        def name(self, value: str) -> None:
+        def set_name(self, value) -> None:
             """
-            Set Name Property
-            :param value: name of person (str)
-            :return: None, TypeError
+            Setter name
+            :param value: name of person
+            :type value: str
+            :return: None
+            :rtype: NoneType
             """
-            if not isinstance(value, str):
-                raise TypeError(f"Invalid str for name: {value}")
-            else:
-                self.__name = value
+            self.__name = value
 
-        # @name.deleter
-        # def name(self):
-        #     del self._value
-
-        @property
-        def age(self) -> int:
+        def get_age(self) -> int:
             """
-            Get Age Property
-            :return: age of person (integer)
+            Getter age
+            :return: age of person
+            :rtype: int
             """
             return self.__age
 
-        @age.setter
-        def age(self, value: int) -> None:
+        def set_age(self, value) -> None:
             """
-            Set Age Property
-            :param value: value: age of person (integer)
-            :return: None, TypeError or ValueError
+            Setter age
+            :param value: age of person
+            :type value: int
+            :return: None
+            :rtype: NoneType
             """
             if not isinstance(value, int):
-                raise TypeError(f"Age must be an int: {value}")
-            elif value > 150:
-                raise ValueError(f"Invalid age: '{value}'")
+                raise ValueError(f"invalid int for age: '{value}'")
             elif value > 0:
                 self.__age = value
             else:
                 self.__age = 0
 
-        @property
-        def sex(self) -> str:
+        def get_sex(self) -> str:
             """
-            Get Sex Property
-            :return: Person.Gender
+            Getter gender
+            :return: gender of person
+            :rtype: str
             """
             return self.__sex
 
-        @sex.setter
-        def sex(self, value: str) -> None:
+        def set_sex(self, value) -> None:
             """
-            Set Sex Property
-            :param value: gender of person (Gender element)
-            :return: None, TypeError or ValueError
+            Setter gender
+            :param value: gender of person ('M', 'F', 'N')
+            :type value: str
+            :return: None
+            :rtype: NoneType
             """
-            if not isinstance(value, str):
-                raise TypeError(f"Sex must be a str: {value}")
-            elif value in Person.Gender:
-                self.__sex = value
-            else:
-                raise ValueError(f"Invalid Gender: {value}")
+            self.__sex = value
 
-        @property
-        def uuid(self) -> str:
+        def get_uuid(self) -> str:
             """
-            Get UUID Property
-            :return: UUID value (string)
+            Getter uuid
+            :return:UUID value
+            :rtype: str
             """
             return self.__uuid
 
         def __str__(self) -> str:
             """
             String representation
-            :return: human-readable representation (str)
+            :return: human readable representation
+            :rtype: str
             """
             __str = 'Person: '
             __str += str(self.__name) + ', '
@@ -515,15 +490,23 @@ no functions `get_name()`, `set_name()` etc.
         def __repr__(self) -> str:
             """
             repr() string representation
-            :return: programmatic representation (JSON string)
+            :return: programmatic representation
+            :rtype: str
             """
             __str = "{"
-            __str += f"'name': {self.__name}, "
+            __str += f"'name': '{self.__name}', "
             __str += f"'age': {self.__age}, "
-            __str += f"'sex': {self.__sex}, "
-            __str += f"'uuid': {self.__uuid}"
+            __str += f"'sex': '{self.__sex}', "
+            __str += f"'uuid': '{self.__uuid}'"
             __str += "}"
             return __str
+
+        # Python attributes requires, property(fget=None, fset=None, fdel=None, doc=None)
+        name = property(get_name, set_name, None, None)
+        age = property(get_age, set_age, None, None)
+        sex = property(get_sex, set_sex, None, None)
+        uuid = property(get_uuid, None, None, None)
+
 
 Decorator Usage
 ---------------
@@ -1492,6 +1475,7 @@ double-quote.
 * `RealPython: Python 3's f-Strings: An Improved String Formatting Syntax (Guide) <https://realpython.com/python-f-strings/>`_
 * `Python: Input and Output - Fancier Output Formatting <https://docs.python.org/3/tutorial/inputoutput.html#fancier-output-formatting>`_
 * `Python: Formatted string literals <https://docs.python.org/3/reference/lexical_analysis.html#f-strings>`_
+* `Python F-strings <https://www.pythontutorial.net/python-basics/python-f-strings/>`_, covers literal ``{`` and ``}`` characters
 
 For Docstrings
 --------------
@@ -1505,9 +1489,40 @@ Text
 .. code-block:: python
 
     a = 'one'; b = 'two'
-    print("%s %s" % (a, b))     # one two
-    print("{} {}".format(a, b)) # one two
-    print(f"{a} {b}")           # one two
+    print("%s %s" % (a, b))                       # one two
+    print("{} {}".format(a, b))                   # one two
+    print(f"{a} {b}")                             # one two
+
+    # Dictionary format
+    print("{'a': '%s', 'b': '%s'}" % (a, b))      # {'a': 'one', 'b': 'two'}
+    print("{{'a': '{}', 'b': '{}'}}".format(a,b)) # {'a': 'one', 'b': 'two'}
+    print(f"{{'a': '{a}', 'b': '{b}'}}")          # {'a': 'one', 'b': 'two'}
+
+    # List format
+    print("['a', '%s', 'b', '%s']" % (a, b))      # ['a', 'one', 'b', 'two']
+    print("['a', '{}', 'b', '{}']".format(a,b))   # ['a', 'one', 'b', 'two']
+    print(f"['a', '{a}', 'b', '{b}']")            # ['a', 'one', 'b', 'two']
+
+    # Tuple format
+    print("('a', '%s', 'b', '%s')" % (a, b))      # ('a', 'one', 'b', 'two')
+    print("('a', '{}', 'b', '{}')".format(a,b))   # ('a', 'one', 'b', 'two')
+    print(f"('a', '{a}', 'b', '{b}')")            # ('a', 'one', 'b', 'two')
+
+    # Concatenation
+    print("%s-%s" % (a,b))                        # one-two
+    print("{}-{}".format(a,b))                    # one-two
+    print(f"{a}-{b}")                             # one-two
+
+    # Concatenation using join
+    print("%s" % ("-".join((a,b))))               # one-two
+    print("{}".format("-".join((a,b))))           # one-two
+    print(f"{'-'.join((a,b))}")                   # one-two
+
+
+Alignment and Padding
+---------------------
+
+.. code-block:: python
 
     # Padding (10) and aligning strings
     c = 'short'; d = 'long string with more text'
