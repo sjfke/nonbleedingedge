@@ -71,17 +71,20 @@ Password Generators
     $ sudo dnf remove httpd                             # remove package
     $ sudo dnf reinstall httpd -y                       # reinstall package
     $ sudo dnf search php                               # search for a package
-    $ sudo dnf provides /etc/httpd/conf/httpd.conf      # which package provides the file (whether installed or not)
-    $ sudo dnf provides httpd                           # which package provides 'httpd' (whether installed or not)
-    $ sudo dnf info httpd                               # package info (whether installed or not)
-    $ sudo dnf repoquery --list httpd                   # list the files installed by package (whether installed or not)
+    $ sudo dnf provides /etc/httpd/conf/httpd.conf      # which package provides the file (installed or not)
+    $ sudo dnf provides httpd                           # which package provides 'httpd' (installed or not)
+    $ sudo dnf info httpd                               # package info (installed or not)
+    $ sudo dnf repoquery --list httpd                   # list the files (to be) installed by package
     $ sudo dnf history                                  # installation history
     $ sudo dnf history info 13                          # what did install 13 do
     $ sudo dnf history undo 13 -y                       # undo install 13
     $ sudo dnf history redo 13 -y                       # redo install 13
     $ sudo dnf list installed                           # list installed packages
-    $ sudo dnf grouplist                                # list which groups are available, installed, not-installed.
+    $ sudo dnf grouplist                                # list which groups are available, installed, not-installed
     $ sudo dnf groupinfo "System Tools"                 # what is installed by this group
+    $ sudo dnf repolist                                 # reports being used
+    $ sudo dnf clean all                                # clean dnf caches
+
 
 ``dnf5`` Useful Commands
 ========================
@@ -93,6 +96,7 @@ Fedora package installer changed from ``DNF`` to ``DNF5`` starting with ``Fedora
 * `How to Use dnf5 Command for Fedora Package Management <https://www.tecmint.com/dnf5-command/>`_
 
 .. code-block:: console
+
     $ sudo dnf check-update                             # check for available updates
     $ sudo dnf update                                   # update installed packages
     $ sudo dnf upgrade                                  # upgrade installed packages and dependencies
@@ -106,19 +110,19 @@ Fedora package installer changed from ``DNF`` to ``DNF5`` starting with ``Fedora
     $ sudo dnf update                                   # update installed packages
     $ sudo dnf install unbound-1.4.20-28.el7.x86_64.rpm # install local package
     $ sudo dnf search php                               # search for a package
-    $ sudo dnf provides /etc/httpd/conf/httpd.conf      # which package provides the file
-    $ sudo dnf provides httpd                           # which package provides 'http'
-    $ sudo dnf info httpd                               # package info
-    $ sudo dnf repoquery --list httpd                   # list the files installed by package
+    $ sudo dnf provides /etc/httpd/conf/httpd.conf      # which package provides the file (installed or not)
+    $ sudo dnf provides httpd                           # which package provides 'httpd' (installed or not)
+    $ sudo dnf info httpd                               # package info (installed or not)
+    $ sudo dnf repoquery --list httpd                   # list the files (to be) installed by package
     $ sudo dnf history list                             # installation history
     $ sudo dnf history info 13                          # what did install 13 do
     $ sudo dnf history undo 13 -y                       # undo install 13
     $ sudo dnf history redo 13 -y                       # redo install 13
     $ sudo dnf list --installed                         # list installed packages
-    $ sudo dnf group list                               # list which groups are available, installed, not-installed.
+    $ sudo dnf group list                               # list which groups are available, installed, not-installed
     $ sudo dnf group install system-tools               # installed this group
     $ sudo dnf group info system-tools                  # what is installed by this group
-    $ sudo dnf repolist                                 # reports being used,
+    $ sudo dnf repolist                                 # reports being used
     $ sudo dnf clean all                                # clean dnf caches
 
 LS commands
