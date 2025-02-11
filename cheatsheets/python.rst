@@ -1663,18 +1663,38 @@ DateTime, UNIX Epoch and TimeStamps
     print("{:{dfmt}}".format(today, dfmt="%B %d %Y"))                    # March 01 2023
     print(f"{today:%B %d %Y}")                                           # March 01 2023
 
+Lists
+-----
+
+.. code-block:: python
+
+    list = ['Fred', 'Flintstone']
+    print("%s %s" % (list[0], list[1]))                                  # Fred Flintstone
+    print("{p[0]} {p[1]}".format(p=list))                                # Fred Flintstone
+    print(f"{list[0]} {list[1]}")                                        # Fred Flintstone
+    print(f"{list[0].lower()} {list[1].upper()}")                        # fred FLINTSTONE
+
+Tuple
+-----
+.. code-block:: python
+
+    tuple = ('Fred', 'Flintstone')
+    print("%s %s" % (tuple))                                             # Fred Flintstone
+    print("%s %s" % (tuple[0], tuple[1]))                                # Fred Flintstone
+    print("{p[0]} {p[1]}".format(p=tuple))                               # Fred Flintstone
+    print(f"{tuple[0].lower()} {tuple[1].upper()}")                      # fred FLINTSTONE
 
 Dictionaries
 ------------
 
 .. code-block:: python
 
-    name = {'first': 'Fred', 'last': 'Flintstone'}
-    print("%(first)s %(last)s" % name)                                   # Fred Flintstone
-    print("{first} {last}".format(**name))                               # Fred Flintstone
-    print("{p[first]} {p[last]}".format(p=name))                         # Fred Flintstone
-    print(f"{name['first']} {name['last']}")                             # Fred Flintstone
-    print(f"{name['first'].lower()} {name['last'].upper()}")             # fred FLINTSTONE
+    dict = {'first': 'Fred', 'last': 'Flintstone'}
+    print("%(first)s %(last)s" % dict)                                   # Fred Flintstone
+    print("{first} {last}".format(**dict))                               # Fred Flintstone
+    print("{p[first]} {p[last]}".format(p=dict))                         # Fred Flintstone
+    print(f"{dict['first']} {dict['last']}")                             # Fred Flintstone
+    print(f"{dict['first'].lower()} {dict['last'].upper()}")             # fred FLINTSTONE
 
 String Manipulation
 ===================
