@@ -85,7 +85,7 @@ Oh My Posh
 
 .. code-block:: pwsh-session
 
-    PS> winget install JanDeDobbeleer.OhMyPosh -s
+    PS> winget install JanDeDobbeleer.OhMyPosh -s winget
 
 3. Download `Meslo LGM NF fonts <https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip>`_ and unzip them.
 
