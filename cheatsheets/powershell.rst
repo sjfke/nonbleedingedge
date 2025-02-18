@@ -38,10 +38,9 @@ custom themes, styles, and configurations.
 There are a lot of online documents and tutorials about ``PowerShell`` but unfortunately, as is often the case, this means what you are searching for is 
 either not simple to explain or not well understood by the author(s) or both... so be careful about blindly doing a *copy-and-paste* of examples.
 
-While learning I found the following helpful when starting:
+When starting:
 
-* `PowerShell GitHub - Recommended Training and Reading <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#recommended-training-and-reading>`_ **a very good place to start**
-* `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
+* `Introduction to PowerShell <https://learn.microsoft.com/en-us/training/modules/introduction-to-powershell/>`_
 * `PowerShell equivalents for common Linux/bash commands <https://mathieubuisson.github.io/powershell-linux-bash/>`_
 
 Getting Started

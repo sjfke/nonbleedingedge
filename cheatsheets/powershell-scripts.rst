@@ -136,9 +136,8 @@ than individual name or positional parameters.
 
 Useful starting points when learning about the language:
 
-* `PowerShell GitHub - Recommended Training and Reading <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell#recommended-training-and-reading>`_
-* `PowerShell GitHub - Learning Powershell <https://github.com/PowerShell/PowerShell/tree/master/docs/learning-powershell>`_
-* `Windows PowerShell Portal <https://learn.microsoft.com/en-us/archive/technet-wiki/24187.windows-powershell-portal>`_
+* `Introduction to scripting in PowerShell <https://learn.microsoft.com/en-us/training/modules/script-with-powershell/>`_
+* `*tutorials*point - Powershell Tutorial <https://www.tutorialspoint.com/powershell/index.htm>`_
 
 Unlike most texts on programming languages, let us starts with a simple but realistic PowerShell example, with many of
 the language details being covered in subsequent sections.

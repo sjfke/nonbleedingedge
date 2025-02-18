@@ -158,9 +158,6 @@ At the time of writing 2018.11.26 the `dnf groupupdate Multimedia`, produces the
       - conflicting requests
       - nothing provides chromium-libs(x86-64) = 69.0.3497.100-1.fc29 needed by chromium-libs-media-freeworld-69.0.3497.100-1.fc29.x86_64
 
-So `chromium` seems to break `Rhythmbox <https://ask.fedoraproject.org/en/question/91677/rhythmbox-does-not-see-music-files-there-are-tons-of-them/>`_ 
-because you cannot groupupdate `Multimedia`.
-
 Remove `chromium` and try `easily install Chrome & Steam on Fedora <https://fedoramagazine.org/third-party-repositories-fedora/>`_
 
 ::

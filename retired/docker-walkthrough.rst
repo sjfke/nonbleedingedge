@@ -25,7 +25,6 @@ Useful Links
 * `Docker Hub (Dev-test pipeline automation, 100,000+ free apps, public and private registries) <https://hub.docker.com/>`_
 * `BusyBox: The Swiss Army Knife of Embedded Linux <https://busybox.net/about.html>`_
 * `Homebrew: The missing package manager for macOS <https://brew.sh/>`_
-* `Homebrew installation <https://www.howtogeek.com/211541/homebrew-for-os-x-easily-installs-desktop-apps-and-terminal-utilities/>`_
 * `AWS CloudFormation <https://aws.amazon.com/cloudformation/>`_
 
 Installation

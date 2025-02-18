@@ -85,7 +85,7 @@ Oh My Posh
 
 .. code-block:: pwsh-session
 
-    PS> winget install JanDeDobbeleer.OhMyPosh -s
+    PS> winget install JanDeDobbeleer.OhMyPosh -s winget
 
 3. Download `Meslo LGM NF fonts <https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip>`_ and unzip them.
 
@@ -304,3 +304,26 @@ JSON, YAML File Filtering
 * `JSON Examples, see "jq JSON Cheatsheet" <https://nonbleedingedge.com/cheatsheets/jq.html>`_
 * `YAML, JSON Examples, see "yq YAML/JSON Cheatsheet" <https://nonbleedingedge.com/cheatsheets/yq.html>`_
 * `{JSON} Placeholder <https://jsonplaceholder.typicode.com/>`_ Free fake and reliable API for testing and prototyping.
+
+Wipe a USB drive on Windows 11
+==============================
+
+Start a `CMD` shell as `Administrator`
+
+.. code-block:: bat
+
+    C:\Windows\System32>diskpart
+    DISKPART> list disk
+
+      Disk ###  Status         Size     Free     Dyn  Gpt
+      --------  -------------  -------  -------  ---  ---
+      Disk 0    Online          476 GB  2048 KB        *
+      Disk 1    Online           57 GB      0 B        *
+
+    DISKPART> select disk 1
+
+    Disk 1 is now the selected disk.
+
+    DISKPART> clean all
+
+.. note:: The `clean all` may appear to hang, unplug USB device if this happens.
