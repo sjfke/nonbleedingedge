@@ -274,7 +274,7 @@ References
 * `Github podman-compose <https://github.com/containers/podman-compose>`_
 * `podman kube play <https://docs.podman.io/en/latest/markdown/podman-kube-play.1.html>`_
 * `Podman Releases <https://github.com/containers/podman/releases>`_
-* `Openshift API index <https://docs.openshift.com/container-platform/4.15/rest_api/index.html>`_ - pod, deployment etc. specifications
+* `Openshift API index <https://docs.openshift.com/container-platform/4.17/rest_api/workloads_apis/workloads-apis-index.html>`_
 * `Kubernetes manifests <https://loft.sh/blog/kubernetes-manifests-everything-you-need-to-know/>`_
 * `Compose file version 3 reference <https://docs.docker.com/compose/compose-file/compose-file-v3/>`_
 * `Docker Swarm vs Kubernetes <https://phoenixnap.com/blog/kubernetes-vs-docker-swarm>`_

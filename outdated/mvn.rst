@@ -156,7 +156,7 @@ Forcing JDK-1.5 compatibility
 Using Artifactory proxy
 =======================
 
-# - http://www.theserverside.com/tt/articles/article.tss?l=SettingUpMavenRepository
+# - https://www.theserverside.com/video/How-to-set-up-and-use-a-JFrog-Artifactory-Maven-repository
 # - https://jfrog.com/help/r/jfrog-installation-setup-documentation/installing-artifactory # artifactory home page (alternative: # https://www.sonatype.com/products/sonatype-nexus-repository)
 # - add the following to the pom.xml::
 
