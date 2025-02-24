@@ -375,11 +375,129 @@ From `sys — System-specific parameters and functions <https://docs.python.org/
     print(f"hello, {a}", file=sys.stdout) # 'hello, fred' (stdout)
     print(f"hello, {a}", file=sys.stderr) # 'hello, fred' (stderr)
 
-********************
-Object Class Example
-********************
+*********************
+Object Class Examples
+*********************
 
-Simple ``Person`` object in file named ``Person.py``
+``Python`` objects do not support `encapsulation <https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)>`_
+unlike many object-oriented programming languages.
+
+It is possible to indicate that data is not intended to be modified by prefixing a variable with ``_`` (underscore) or
+``__`` (double underscore).
+
+Similarly a constant value is indicated making it **UPPERCASE** which can optionally be prefixed with ``_`` (underscore)
+or ``__`` (double underscore) but this does not prevent it from being updated.
+
+It is recommended that `mypy <https://www.mypy-lang.org/>`_ is used to check for **encapsulation violations** and
+**static typing** because the ``Python`` language does not enforce it.
+
+By convention ``getter`` and ``setter`` methods are discouraged in preference of the ``pythonic`` way of using attributes.
+
+The following 3 examples attempt to cover the most common approaches.
+
+Simple Person Object
+====================
+
+This is the *classic* way to declare objects.
+
+.. code-block:: python
+
+    import uuid
+
+
+    class Person:
+        GENDER = {'M', 'F', 'N', 'Male', 'Female', 'Neuter'}
+
+        def __init__(self, name: str, age: int, sex: str = 'M') -> None:
+            """
+            Create person object
+            :param name: of person, (str)
+            :param age: of person (int)
+            :param sex: one of set Gender
+            """
+            self.name = name
+
+            if not isinstance(age, int):
+                raise TypeError(f"Invalid int for age: {age}")
+            if not isinstance(sex, str):
+                raise TypeError(f"Invalid str for sex: {sex}")
+
+            if age > 150 or age < 0:
+                raise ValueError(f"Invalid age: {age}")
+            else:
+                self.age = age
+
+            if sex in Person.GENDER:
+                self.sex = sex
+            else:
+                raise ValueError(f"Invalid Gender: {sex}")
+
+            self._uuid1 = str(uuid.uuid1())
+            self.__uuid4 = str(uuid.uuid4())
+
+        def __str__(self) -> str:
+            """
+            String representation
+            :return: human-readable representation (str)
+            """
+            __str = 'Person: '
+            __str += str(self.name) + ', '
+            __str += str(self.age) + ', '
+            __str += str(self.sex) + ', '
+            __str += str(self._uuid1) + ', '
+            __str += str(self.__uuid4)
+            return __str
+
+        def __repr__(self) -> str:
+            """
+            repr() string representation
+            :return: programmatic representation (JSON string)
+            """
+            __str = "{"
+            __str += f"'name': '{self.name}', "
+            __str += f"'age': '{self.age}', "
+            __str += f"'sex': '{self.sex}', "
+            __str += f"'_uuid1': '{self._uuid1}', "
+            __str += f"'__uuid4': '{self.__uuid4}'"
+            __str += "}"
+            return __str
+
+
+.. code-block:: python
+
+    >>> from Person_Simple import Person
+
+    # Can 'get' and 'set' the value of GENDER constant
+    >>> Person.GENDER        # {'M', 'F', 'Female', 'N', 'Neuter', 'Male'}
+    >>> Person.GENDER.add('Non-Binary')
+    >>> Person.GENDER        # {'Non-Binary', 'M', 'F', 'Female', 'N', 'Neuter', 'Male'}
+
+    >>> fred = Person('Fred', 35)
+    >>> fred.name     # 'Fred'
+    >>> str(fred)     # 'Person: Fred, 35, M, 248b33a7-f2b1-11ef-bbc7-58961dcb95f2, 6131de2c-5b7a-4a35-b63a-cca6bf83c440'
+    >>> repr(fred)    # "{'name': Fred, 'age': '35', 'sex': 'M', '_uuid1': '248b33a7-f2b1-11ef-bbc7-58961dcb95f2', '__uuid4': '6131de2c-5b7a-4a35-b63a-cca6bf83c440'}"
+    >>> fred.age      # 35
+    >>> fred.age = 36
+    >>> repr(fred)    # "{'name': Fred, 'age': '36', 'sex': 'M', '_uuid1': '248b33a7-f2b1-11ef-bbc7-58961dcb95f2', '__uuid4': '6131de2c-5b7a-4a35-b63a-cca6bf83c440'}"
+
+    # BUT can 'get' and 'set' the value of '_uuid1'
+    >>> import uuid
+    >>> fred._uuid1                     # '248b33a7-f2b1-11ef-bbc7-58961dcb95f2'
+    >>> fred._uuid1 = uuid.uuid1()      # UUID('1d8d3b9e-f2b6-11ef-9664-58961dcb95f2')
+    >>> fred._uuid1 = str(uuid.uuid1()) # '2d13a040-f2b6-11ef-9482-58961dcb95f2'
+    >>> repr(fred)    # "{'name': 'Fred', 'age': '36', 'sex': 'M', '_uuid1': '2d13a040-f2b6-11ef-9482-58961dcb95f2', '__uuid4': '6131de2c-5b7a-4a35-b63a-cca6bf83c440'}"
+
+    # BUT can 'get' the value of '__uuid4' AFTER it has been 'set'
+    >>> fred.__uuid4                     # AttributeError: 'Person' object has no attribute '__uuid4'. Did you mean: '_uuid1'?
+    >>> fred.__uuid4 = str(uuid.uuid4())
+    >>> fred.__uuid4                     # '2ebfda94-abdc-4a52-b170-4f03476cf6fa'
+    # NOTICE '__uuid4' NOW has TWO values, the old and the new
+    >>> repr(fred)  # "{'name': Fred, 'age': '36', 'sex': 'M', '_uuid1': '2d13a040-f2b6-11ef-9482-58961dcb95f2', '__uuid4': '6131de2c-5b7a-4a35-b63a-cca6bf83c440'}"
+
+
+The above example is a very simple ``Person`` object, **BUT** clearly indicates to **BE CAREFUL** to manually adhere
+to the intended encapsulation.
+
 
 Using Python decorators
 =======================
