@@ -514,11 +514,12 @@ Person Object with Attributes
 
 .. code-block:: python
 
+    from typing import ClassVar
     import uuid
 
 
     class Person:
-        GENDER = {'M', 'F', 'N', 'Male', 'Female', 'Neuter'}
+        GENDER: ClassVar[set] = {'M', 'F', 'N', 'Male', 'Female', 'Neuter'}
 
         def __init__(self, name: str, age: int, sex: str = 'M') -> None:
             """
@@ -692,11 +693,12 @@ Person Object with Decorators
 
 .. code-block:: python
 
+    from typing import ClassVar
     import uuid
 
 
     class Person:
-        GENDER = {'M', 'F', 'N', 'Male', 'Female', 'Neuter'}
+        GENDER: ClassVar[set] = {'M', 'F', 'N', 'Male', 'Female', 'Neuter'}
 
         def __init__(self, name: str, age: int, sex: str = 'M') -> None:
             """
