@@ -591,7 +591,7 @@ Person Object with Attributes
         def __get_sex(self) -> str:
             """
             Sex (GENDER) Getter
-            :return: Person.Gender
+            :return: Person.GENDER
             """
             return self.__sex
 
@@ -774,7 +774,7 @@ Person Object with Decorators
         def sex(self) -> str:
             """
             Sex (GENDER) Getter
-            :return: Person.Gender
+            :return: Person.GENDER
             """
             return self.__sex
 
