@@ -157,6 +157,22 @@ LS commands
 | lsof        | `list open files <https://linuxhandbook.com/lsof-command/>`_                                                              |
 +-------------+---------------------------------------------------------------------------------------------------------------------------+
 
+``ss`` an alternative to ``netstat``
+====================================
+
+Some Linux distributions do not provide ``netstat``, but may provide ``ss``
+
+* `ss - another utility to investigate sockets <https://www.man7.org/linux/man-pages/man8/ss.8.html>`_
+
+.. code-block::
+
+    $ ss -tlp
+    State              Recv-Q              Send-Q                           Local Address:Port                            Peer Address:Port             Process
+    LISTEN             0                   4096                                127.0.0.11:43225                                0.0.0.0:*
+    LISTEN             0                   80                                     0.0.0.0:3306                                 0.0.0.0:*
+    LISTEN             0                   80                                        [::]:3306                                    [::]:*
+    $ ss --help
+
 Terminal Pagers
 ===============
 
