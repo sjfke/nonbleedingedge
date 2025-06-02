@@ -357,27 +357,25 @@ cURL installation
     PS> winget install cURL.cURL
     PS> winget list curl
 
-Like all ``winget`` packages
+* Package Installation: ``%localappdata%\Microsoft\WinGet\Packages``
+* Package Links: ``%localappdata%\Microsoft\WinGet\Links\``
 
-* Package Installation: ``C:\Users\geoff\AppData\Local\Microsoft\WinGet\Packages``
-* Links: ``%localappdata%\Microsoft\WinGet\Links\``
-
-.. warning:: use ``curl.exe`` because ``PowerShell`` has an ``Invoke-WebRequest`` alias ``curl``
+.. warning:: Use ``curl.exe`` because ``Invoke-WebRequest`` has an alias ``curl``
 
 cURL examples
 -------------
 
 .. code-block:: console
 
-    $ curl.exe https://www.nonbleedingedge.com # HTTP GET
-    $ curl.exe -I https://nonbleedingedge.com  # get HTTP headers
-    $ curl -D - https://nonbleedingedge.com    # store the HTTP headers that a site sends back
+    $ curl.exe https://www.nonbleedingedge.com  # HTTP GET
+    $ curl.exe -I https://nonbleedingedge.com   # get HTTP headers
+    $ curl.exe -D - https://nonbleedingedge.com # store the HTTP headers that a site sends back
 
     $ curl.exe -o favicon.ico https://nonbleedingedge.com/_static/favicon.ico # get/save icon image
 
-    $ curl --request POST https://yourwebsite.com   # examples see 'Everything curl' URL
-    $ curl --request DELETE https://yourwebsite.com # examples see 'Everything curl' URL
-    $ curl --request PUT https://yourwebsite.com    # examples see 'Everything curl' URL
+    $ curl.exe --request POST https://yourwebsite.com   # examples see 'Everything curl' URL above
+    $ curl.exe --request DELETE https://yourwebsite.com # examples see 'Everything curl' URL above
+    $ curl.exe --request PUT https://yourwebsite.com    # examples see 'Everything curl' URL above
 
     $ curl.exe -v telnet://<remote server>:port # test remote connection
     $ curl.exe -v telnet://192.168.0.1:22 # test for ssh (port 22) on server 192.168.0.1
