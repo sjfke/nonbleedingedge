@@ -328,16 +328,69 @@ Start a `CMD` shell as `Administrator`
 
 .. note:: The `clean all` may appear to hang, unplug USB device if this happens.
 
+Testing Remote Connections
+==========================
+
+The examples are testing for ``SSH`` daemon (port 22) on host ``192.168.0.1``
+
+Test-NetConnection
+------------------
+
+``PowerShell`` provides `Test-NetConnection <https://learn.microsoft.com/en-us/powershell/module/nettcpip/test-netconnection>`_
+
+.. code-block:: pwsh-session
+
+    PS> Test-NetConnection -ComputerName 192.168.0.1 -Port 22
+    PS> get-help Test-NetConnection
+
+**Python:** `telnetlib — Telnet client <https://docs.python.org/3.11/library/telnetlib.html>`_
+----------------------------------------------------------------------------------------------
+
+.. warning:: 'telnetlib' was deprecated in Python 3.12 and removed in Python 3.13
+
+.. code-block:: pwsh-session
+
+    PS> python3.12 -c "import telnetlib; tel=telnetlib.Telnet('192.168.0.1','22',10); print(tel.host,tel.port); tel.close()"
+    PS> python
+    >>> import telnetlib
+    >>> tel = telnetlib.Telnet('192.168.0.1', 22, 10) # 10 second timeout
+    >>> print(tel.host, tel.port) # 192.168.0.1 22
+    >>> tel.close()
+    >>> exit()
+
+**Python:** `socket — Low-level networking interface <https://docs.python.org/3/library/socket.html>`_
+------------------------------------------------------------------------------------------------------
+
+.. code-block:: pwsh-session
+
+    PS> python3 -c "import socket; s = socket.socket(); s.settimeout(10); s.connect(('192.168.0.1', 22)); print(s)"
+    PS> python3
+    >>> import socket
+    >>> s = socket.socket()
+    >>> s.settimeout(10)
+    >>> s.connect(('192.168.0.1', 22))
+    >>> print(s) # "<socket.socket fd=1376, family=2, type=1, proto=0, laddr=('127.0.0.1', 52243), raddr=('192.168.0.1', 22)>"
+    >>> exit()
+
+`curl - transfer a URL <https://www.man7.org/linux/man-pages/man1/curl.1.html>`_
+--------------------------------------------------------------------------------
+
+cURL can do *much much more* see, :ref:`_curl-on-windows`
+
+.. code-block:: pwsh-session
+
+    PS> winget install cURL.cURL                  # installation
+    PS> curl.exe -v telnet://<remote server>:port # typical command
+    PS> curl.exe -v telnet://192.168.0.1:22       # test
+
+.. _curl-on-windows:
 
 cURL on Windows
 ===============
 
 There are a vast amount of use-cases for curl, such as:
 
-* FTP upload
-* Proxy support
-* SSL connections
-* HTTP post
+* FTP upload, Proxy support, SSL connections, HTTP post
 
 It also supports the use of all the following protocols: ``DICT``, ``FILE``, ``FTP``, ``FTPS``, ``GOPHER``, ``HTTP``,
 ``HTTPS``, ``IMAP``, ``IMAPS``, ``LDAP``, ``LDAPS``, ``POP3``, ``POP3S``, ``RTMP``, ``RTSP``, ``SCP``, ``SFTP``,
