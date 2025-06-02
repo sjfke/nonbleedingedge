@@ -353,34 +353,30 @@ cURL installation
 
 .. code-block:: pwsh-session
 
-    # NOTE will install as `curl.exe`
-    PS> winget install cURL.cURL
-    PS> winget list curl
+    # Package Installation: '%localappdata%\Microsoft\WinGet\Packages'
+    # Package Links: '%localappdata%\Microsoft\WinGet\Links\'
+    PS> winget install cURL.cURL # installation
+    PS> winget list curl         # version installed
+    PS> curl.exe -h              # help
 
-* Package Installation: ``%localappdata%\Microsoft\WinGet\Packages``
-* Package Links: ``%localappdata%\Microsoft\WinGet\Links\``
-
-.. warning:: Use ``curl.exe`` because ``Invoke-WebRequest`` has an alias ``curl``
+.. warning:: Use ``curl.exe`` because ``Invoke-WebRequest`` has a ``curl`` alias
 
 cURL examples
 -------------
 
-.. code-block:: console
+.. code-block:: pwsh-session
 
-    $ curl.exe https://www.nonbleedingedge.com  # HTTP GET
-    $ curl.exe -I https://nonbleedingedge.com   # get HTTP headers
-    $ curl.exe -D - https://nonbleedingedge.com # store the HTTP headers that a site sends back
+    PS> curl.exe https://www.nonbleedingedge.com  # HTTP GET
+    PS> curl.exe -I https://nonbleedingedge.com   # get HTTP headers
+    PS> curl.exe -D - https://nonbleedingedge.com # store the HTTP headers that a site sends back
 
-    $ curl.exe -o favicon.ico https://nonbleedingedge.com/_static/favicon.ico # get/save icon image
+    PS> curl.exe -o favicon.ico https://nonbleedingedge.com/_static/favicon.ico # get/save icon image
 
-    $ curl.exe --request POST https://yourwebsite.com   # examples see 'Everything curl' URL above
-    $ curl.exe --request DELETE https://yourwebsite.com # examples see 'Everything curl' URL above
-    $ curl.exe --request PUT https://yourwebsite.com    # examples see 'Everything curl' URL above
+    PS> curl.exe --request POST https://nonbleedingedge.com   # examples see 'Everything curl' URL above
+    PS> curl.exe --request DELETE https://nonbleedingedge.com # examples see 'Everything curl' URL above
+    PS> curl.exe --request PUT https://nonbleedingedge.com    # examples see 'Everything curl' URL above
 
-    $ curl.exe -v telnet://<remote server>:port # test remote connection
-    $ curl.exe -v telnet://192.168.0.1:22 # test for ssh (port 22) on server 192.168.0.1
+    PS> curl.exe -v telnet://<remote server>:port # test remote connection
+    PS> curl.exe -v telnet://192.168.0.1:22 # test for ssh (port 22) on server 192.168.0.1
 
-Some simple ``PUT`` and ``DELETE`` examples
-
-* `cURL: PUT request examples <https://blog.marcnuri.com/curl-put-request-examples>`_
-* `cURL: DELETE request examples <https://blog.marcnuri.com/curl-delete-request-examples>`_
+Simple `PUT <https://blog.marcnuri.com/curl-put-request-examples>`_ and `DELETE <https://blog.marcnuri.com/curl-delete-request-examples>`_ examples
