@@ -23,7 +23,7 @@ copyright = '2024, Geoffrey Collis'
 author = 'Geoffrey Collis (sjfke)'
 
 # The short X.Y version
-version = '2024.11.11'
+version = '2025.06.22'
 # The full version, including alpha/beta/rc tags
 release = ''
 
@@ -53,7 +53,7 @@ templates_path = ['_templates']
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = {'.rst': 'restructuredtext'}
 
 # The master toctree document.
 master_doc = 'index'

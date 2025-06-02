@@ -375,7 +375,7 @@ Test-NetConnection
 `curl - transfer a URL <https://www.man7.org/linux/man-pages/man1/curl.1.html>`_
 --------------------------------------------------------------------------------
 
-cURL can do *much much more* see, :ref:`_curl-on-windows`
+cURL can do *much much more* see, :ref:`curl-on-windows`
 
 .. code-block:: pwsh-session
 

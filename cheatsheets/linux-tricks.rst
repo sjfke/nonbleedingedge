@@ -570,7 +570,8 @@ The examples are testing for ``SSH`` daemon (port 22) on host ``192.168.0.1``
     #    v: verbose output
     #    z: only scan for open ports
 
-Using `telnet - user interface to the TELNET protocol <https://www.commandlinux.com/man-page/man1/telnet.1.html>`_
+`telnet - user interface to the TELNET protocol <https://www.commandlinux.com/man-page/man1/telnet.1.html>`_
+------------------------------------------------------------------------------------------------------------
 
 .. code-block:: console
 
