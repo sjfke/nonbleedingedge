@@ -547,72 +547,77 @@ Update Ubuntu
 Testing Remote Connections
 ==========================
 
-The examples are testing for ``SSH`` (port 22) on host ``192.168.0.1``
+The examples are testing for ``SSH`` daemon (port 22) on host ``192.168.0.1``
 
 `ncat - Concatenate and redirect sockets <https://www.man7.org/linux/man-pages/man1/ncat.1.html>`_
+--------------------------------------------------------------------------------------------------
 
 .. code-block:: console
 
     $ nc [-options] [HostName or IP] [PortNumber]
     $ nc -zvw10 192.168.0.1 22
-        z: zero-I/O mode which is used for scanning
-        v: for verbose output
-        w10: timeout wait 10 seconds
+    #    z: zero-I/O mode which is used for scanning
+    #    v: verbose output
+    #    w10: timeout wait 10 seconds
 
 `nmap - Network exploration tool and security / port scanner <https://www.commandlinux.com/man-page/man1/nmap.1.html>`_
+-----------------------------------------------------------------------------------------------------------------------
 
 .. code-block:: console
 
     $ nmap [-options] [HostName or IP] [-p] [PortNumber]
     $ nmap 192.168.0.1 -p 22
-        v: verbose output
-        z: only scan for open ports
+    #    v: verbose output
+    #    z: only scan for open ports
 
-`telnet - user interface to the TELNET protocol <https://www.commandlinux.com/man-page/man1/telnet.1.html>`_
+Using `telnet - user interface to the TELNET protocol <https://www.commandlinux.com/man-page/man1/telnet.1.html>`_
 
 .. code-block:: console
 
+    # Maybe not installed
     $ telnet [HostName or IP] [PortNumber]
     $ telnet 192.168.0.1 22
 
 
 **Python:** `telnetlib — Telnet client <https://docs.python.org/3.11/library/telnetlib.html>`_
+----------------------------------------------------------------------------------------------
 
-.. warning:: Deprecated in Python 3.12 and removed in Python 3.13
+.. warning:: 'telnetlib' was deprecated in Python 3.12 and removed in Python 3.13
 
 .. code-block:: console
 
-    $ python -c "import telnetlib; tel=telnetlib.Telnet('192.168.0.1','22',10); print tel; tel.close()"
+    $ python3.12 -c "import telnetlib; tel=telnetlib.Telnet('192.168.0.1','22',10); print(tel.host,tel.port); tel.close()"
     $ python
     >>> import telnetlib
-    >>> tn = telnetlib.Telnet(192.168.0.1, 22)
-    >>> print tel
+    >>> tel = telnetlib.Telnet('192.168.0.1', 22, 10) # 10 second timeout
+    >>> print(tel.host, tel.port) # 192.168.0.1 22
     >>> tel.close()
     >>> exit()
 
 **Python:** `socket — Low-level networking interface <https://docs.python.org/3/library/socket.html>`_
+------------------------------------------------------------------------------------------------------
 
 .. code-block:: console
 
-    $ Python -c "import socket; s = socket.socket(); s.settimeout(10); s.connect(('192.168.0.1', 22));"
-    $ python
+    $ python3 -c "import socket; s = socket.socket(); s.settimeout(10); s.connect(('192.168.0.1', 22)); print(s)"
+    $ python3
     >>> import socket
     >>> s = socket.socket()
+    >>> s.settimeout(10)
     >>> s.connect(('192.168.0.1', 22))
+    >>> print(s) # "<socket.socket fd=1376, family=2, type=1, proto=0, laddr=('127.0.0.1', 52243), raddr=('192.168.0.1', 22)>"
     >>> exit()
 
 `curl - transfer a URL <https://www.man7.org/linux/man-pages/man1/curl.1.html>`_
+--------------------------------------------------------------------------------
 
-cURL can do much much more, `cURL - The Ultimate Reference Guide <https://www.petergirnus.com/blog/curl-command-line-ultimate-reference-guide>`_
+cURL can do *much much more* see, `cURL - The Ultimate Reference Guide <https://www.petergirnus.com/blog/curl-command-line-ultimate-reference-guide>`_
+and `Everything curl <https://everything.curl.dev/http/post/simple.html>`_
 
 .. code-block:: console
 
     $ curl -v telnet://<remote server>:port
     $ curl -v telnet://192.168.0.1:22
-
-    # NOTE it is also available on Windows:
-    PS1> winget install cURL.cURL
-    PS1> winget list curl
 
 Linux Network Tools
 ===================
