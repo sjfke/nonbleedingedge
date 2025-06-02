@@ -327,3 +327,60 @@ Start a `CMD` shell as `Administrator`
     DISKPART> clean all
 
 .. note:: The `clean all` may appear to hang, unplug USB device if this happens.
+
+
+cURL on Windows
+===============
+
+There are a vast amount of use-cases for curl, such as:
+
+* FTP upload
+* Proxy support
+* SSL connections
+* HTTP post
+
+It also supports the use of all the following protocols: ``DICT``, ``FILE``, ``FTP``, ``FTPS``, ``GOPHER``, ``HTTP``,
+``HTTPS``, ``IMAP``, ``IMAPS``, ``LDAP``, ``LDAPS``, ``POP3``, ``POP3S``, ``RTMP``, ``RTSP``, ``SCP``, ``SFTP``,
+``SMB``, ``SMBS``, ``SMTP``, ``SMTPS``, ``TELNET``, and ``TFTP``.
+
+* `curl - transfer a URL <https://www.man7.org/linux/man-pages/man1/curl.1.html>`_
+* `cURL - The Ultimate Reference Guide <https://www.petergirnus.com/blog/curl-command-line-ultimate-reference-guide>`_
+* `keycdn - Popular curl Examples <https://www.keycdn.com/support/popular-curl-examples>`_
+* `Everything curl <https://everything.curl.dev/http/post/simple.html>`_
+
+cURL installation
+-----------------
+
+.. code-block:: pwsh-session
+
+    # NOTE will install as `curl.exe`
+    PS> winget install cURL.cURL
+    PS> winget list curl
+
+* Package Installation: ``%localappdata%\Microsoft\WinGet\Packages``
+* Package Links: ``%localappdata%\Microsoft\WinGet\Links\``
+
+.. warning:: Use ``curl.exe`` because ``Invoke-WebRequest`` has an alias ``curl``
+
+cURL examples
+-------------
+
+.. code-block:: console
+
+    $ curl.exe https://www.nonbleedingedge.com  # HTTP GET
+    $ curl.exe -I https://nonbleedingedge.com   # get HTTP headers
+    $ curl.exe -D - https://nonbleedingedge.com # store the HTTP headers that a site sends back
+
+    $ curl.exe -o favicon.ico https://nonbleedingedge.com/_static/favicon.ico # get/save icon image
+
+    $ curl.exe --request POST https://yourwebsite.com   # examples see 'Everything curl' URL above
+    $ curl.exe --request DELETE https://yourwebsite.com # examples see 'Everything curl' URL above
+    $ curl.exe --request PUT https://yourwebsite.com    # examples see 'Everything curl' URL above
+
+    $ curl.exe -v telnet://<remote server>:port # test remote connection
+    $ curl.exe -v telnet://192.168.0.1:22 # test for ssh (port 22) on server 192.168.0.1
+
+Some simple ``PUT`` and ``DELETE`` examples
+
+* `cURL: PUT request examples <https://blog.marcnuri.com/curl-put-request-examples>`_
+* `cURL: DELETE request examples <https://blog.marcnuri.com/curl-delete-request-examples>`_
