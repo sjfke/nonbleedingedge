@@ -151,6 +151,22 @@ Use ``Terminal Icons`` to add color and icons to ``oh-my-posh`` directory listin
 
 Want more, see `My Ultimate PowerShell prompt with Oh My Posh and the Windows Terminal <https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal>`_
 
+Updating Git For Windows
+========================
+
+`Git for Windows <https://gitforwindows.org/>`_ We bring the awesome Git SCM to Windows
+
+.. code-block:: pwsh-session
+
+    PS> git update-git-for-windows
+    Git for Windows 2.50.0.windows.2 (64-bit)
+    Update 2.50.1.windows.1 is available
+    Download and install Git for Windows 2.50.1 [N/y]? y
+    ######################################################################################### 100.0%
+    PS> git update-git-for-windows
+    Git for Windows 2.50.1.windows.1 (64-bit)
+    Up to date
+
 Are Files Identical?
 ====================
 
