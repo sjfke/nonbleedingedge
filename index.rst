@@ -26,7 +26,7 @@ This site is written by an **aging techie** so obviously is **Non-Bleeding-Edge*
 
     * It attempts to condense various work experience into quick reference guides.
     * The style is deliberately terse, like an engineering logbook.
-    * Suggestions, comments, corrections or contributions are always welcomed.
+    * Suggestions, comments, corrections or contributions are `always welcomed <https://github.com/sjfke/nonbleedingedge>`_.
 
 
 .. toctree::
