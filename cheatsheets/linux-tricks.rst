@@ -173,6 +173,45 @@ Some Linux distributions do not provide ``netstat``, but may provide ``ss``
     LISTEN             0                   80                                        [::]:3306                                    [::]:*
     $ ss --help
 
+``envsubst`` command
+====================
+
+Replace an environment variable in a text file.
+
+.. code-block:: console
+
+    # install if missing, for example on fedora
+    $ sudo dnf install gettext-envsubst
+
+    # create file
+    $ cat > infile <<'EOF'
+    > VAR1=${VAR1}
+    > VAR2=${VAR2}
+    > VAR3=${VAR3}
+    > EOF
+
+    # create environment variables
+    $ export  VAR1="one" VAR2="two" VAR3="three"
+
+    # replace all
+    $ envsubst < infile
+    VAR1=one
+    VAR2=two
+    VAR3=three
+
+    # selective replace
+    $ envsubst '${VAR1} ${VAR3}' < infile
+    VAR1=one
+    VAR2=${VAR2}
+    VAR3=three
+
+    # change the values
+    $ export  VAR1="once" VAR2="twice" VAR3="thrice"
+    $ envsubst < infile
+    VAR1=once
+    VAR2=twice
+    VAR3=thrice
+
 Terminal Pagers
 ===============
 

@@ -1278,6 +1278,38 @@ Bitwise operators
 
 * `RealPython: Overview of Python’s Bitwise Operators <https://realpython.com/python-bitwise-operators/>`_
 
+Lambda operators
+================
+
+Lambda functions, are meant to be small, one-line functions used for a short period
+
+.. code-block:: python
+
+    square = lambda x: x** 2
+    print(square(5)) # 25
+
+    add = lambda x,y: x+y
+    print(add(3,4)) # 7
+
+    # square each value
+    L1 = (1, 2, 3, 4, 5)
+    print(list(map(lambda x: x** 2, L1))) # [1, 4, 9, 16, 25]
+
+    # find even numbers
+    L2 = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    print(list(filter(lambda x: x % 2 == 0, L2))) # [2, 4, 6, 8, 10]
+
+    # reduce
+    from functools import reduce
+    print(reduce(lambda x,y: x + y, L1)) # 15 = ((((1+2)+3)+4)+5)
+
+    # sort names list by lastname
+    names = ["John Smith", "Jane Doe", "Bob Johnson", "Alice Williams"]
+    names.sort(key=lambda name: name.split()[-1])
+    print(names)  # ['Jane Doe', 'Bob Johnson', 'John Smith', 'Alice Williams']
+
+* `reduce function <https://docs.python.org/3/library/functools.html#functools.reduce>`_
+
 Assignment
 ==========
 
