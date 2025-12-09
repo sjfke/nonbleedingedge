@@ -1,8 +1,8 @@
-﻿alabaster==1.0.0
+alabaster==1.0.0
 babel==2.17.0
-certifi==2025.10.5
+certifi==2025.11.12
 charset-normalizer==3.4.4
-click==8.3.0
+click==8.3.1
 colorama==0.4.6
 docutils==0.21.2
 idna==3.11
@@ -15,6 +15,8 @@ Pygments==2.19.2
 pyparsing==3.2.5
 pytz==2025.2
 requests==2.32.5
+roman-numerals==3.1.0
+roman-numerals-py==3.1.0
 setuptools==80.9.0
 snowballstemmer==3.0.1
 Sphinx==8.2.3
@@ -29,5 +31,5 @@ sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==2.0.0
 sphinxcontrib-serializinghtml==2.0.0
 sphinxemoji==0.3.1
-urllib3==2.5.0
+urllib3==2.6.1
 zipp==3.23.0
