@@ -61,6 +61,22 @@ Oh My Posh
 
 .. note:: Laptop must be configured to run scripts, `PowerShell  Scripting Cheatsheet - Introduction <https://nonbleedingedge.com/cheatsheets/powershell-scripts.html#introduction>`_
 
+For all users
+
+.. code-block:: pwsh-session
+
+    PS> Get-ExecutionPolicy -List
+
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser       Undefined
+     LocalMachine       RemoteSigned
+
+For just for your account
+
 .. code-block:: pwsh-session
 
     PS> Get-ExecutionPolicy -List
@@ -73,23 +89,40 @@ Oh My Posh
       CurrentUser    RemoteSigned
      LocalMachine       Undefined
 
+
 * `Oh My Posh Docs <https://ohmyposh.dev/docs>`_
-* `Nerd Fonts <https://www.nerdfonts.com/>`_
-* `Meslo LGM NF download <https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip>`_
 * `PowerShell - Customizing your shell environment <https://learn.microsoft.com/en-us/powershell/scripting/learn/shell/creating-profiles>`_
 * `PowerShell - about_Profiles <https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles/>`_
+* `Nerd Fonts <https://www.nerdfonts.com/>`_
+* `Meslo LGM NF font download <https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip>`_
+
+.. warning:: `Oh My Posh <https://ohmypo.sh/docs>`_ installation and configuration instructions are **incorrect**
 
 1. Install `Windows Terminal <https://github.com/microsoft/terminal>`_ from the ``Microsoft Store``
 
-2. Install ``oh-my-posh`` from the ``Microsoft Store``, or from the command line.
+2. Install ``oh-my-posh`` from the ``Microsoft Store``, the ``winget`` command line **does not** work properly.
+
+3. Check the ``oh-my-posh`` installation
 
 .. code-block:: pwsh-session
 
-    PS> winget install JanDeDobbeleer.OhMyPosh -s winget
+    PS> get-childitem Env: | where {$_.Name -like 'POSH*' -or $_.Name -like 'POWER*'}
+    Name                           Value
+    ----                           -----
+    POSH_CURSOR_COLUMN             1
+    POSH_CURSOR_LINE               7
+    POSH_INSTALLER                 ws
+    POSH_SESSION_ID                81500ca2-d587-4be6-8429-d38ca5c50117
+    POSH_SHELL                     pwsh
+    POSH_SHELL_VERSION             5.1.26100.7462
+    POSH_THEMES_PATH               C:\Users\sjfke\AppData\Local\Programs\oh-my-posh\themes\
+    POWERLINE_COMMAND              oh-my-posh
 
-3. Download `Meslo LGM NF fonts <https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip>`_ and unzip them.
+4. Install ``Meslo LGM NF fonts`` which include the required ``Nerd fonts``.
 
-4. In the font folder select all the 73 font files, ``.ttf`` and `right-click` to install them.
+.. code-block:: pwsh-session
+
+    PS> oh-my-posh font install meslo
 
 5. Open `Windows Terminal <https://github.com/microsoft/terminal>`_
 
@@ -98,14 +131,17 @@ Oh My Posh
 
 6. Configure  `Oh My Posh prompt <https://ohmyposh.dev/docs/installation/prompt>`_ by choosing a `Theme <https://ohmyposh.dev/docs/themes>`_
 
+.. warning:: `Oh My Posh <https://ohmypo.sh/docs>`_ configuration instructions are **incorrect**, the following works
+
 .. code-block:: pwsh-session
 
     PS> Test-Path $PROFILE -PathType Leaf         # If FALSE, then create it using New-Item
     PS> New-Item -Path $PROFILE -Type File -Force # Create the PowerShell_profile.ps1 file
 
-    PS> notepad $PROFILE                          # Choose your theme and Invoke it
+    PS> notepad $PROFILE                          # Choose your theme and update your profile
 
     PS> Get-Content -Path $PROFILE
+    # oh-my-posh init pwsh | Invoke-Expression
     # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\paradox.omp.json" | Invoke-Expression
     # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\dracula.omp.json" | Invoke-Expression
     # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\remk.omp.json" | Invoke-Expression
@@ -114,16 +150,16 @@ Oh My Posh
     oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnoster.omp.json" | Invoke-Expression
     # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnosterplus.omp.json" | Invoke-Expression
 
-    PS> . $PROFILE                                # If errors, test by opening a new PowerShell
+    # This will probably fail, documentation is incorrect
+    PS> . $PROFILE                                # IGNORE errors
 
-Update notifications via the ``Microsoft Store`` do not work, ``oh-my-posh`` update command line update alerts
-do not always trigger, so manually check on a regular basis, see
-`Oh My Posh upgrades <https://ohmyposh.dev/docs/installation/windows#update>`_
+Open the ``Terminal`` from the task bar, and the PowerShell should be using your chosen theme.
+
+``Microsoft Store`` will provide update notifications, but to do manually.
 
 .. code-block:: pwsh-session
 
     PS> oh-my-posh notice                                # Upgrade available? (unreliable)
-
     PS> oh-my-posh version                               # Existing version
     PS> winget upgrade JanDeDobbeleer.OhMyPosh -s winget # Upgrade (do weekly, upgrades are frequent)
     PS> oh-my-posh version                               # New version
@@ -135,21 +171,22 @@ Summary of the ``oh-my-posh`` commands
     PS> oh-my-posh help        # help summary
     PS> oh-my-posh help --help # help on the 'help' command
 
-Use ``Terminal Icons`` to add color and icons to ``oh-my-posh`` directory listings
+It is recommended to use ``Terminal Icons`` to add color and icons to ``PowerShell`` directory listings,
+for your account ``-Scope CurrentUser``, and for all users ``-Scope LocalMachine``.
 
 .. code-block:: pwsh-session
 
     PS> Install-Module -Name Terminal-Icons -Repository PSGallery -Scope CurrentUser
     PS> Import-Module -Name Terminal-Icons
 
-    # Add to $PROFILE
+    # Append to $PROFILE
     PS> Get-Content -Path $PROFILE
     oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnoster.omp.json" | Invoke-Expression
     Import-Module -Name Terminal-Icons
 
-.. warning:: Exercise caution when installing from `PowerShell Gallery <https://www.powershellgallery.com/>`_
-
 Want more, see `My Ultimate PowerShell prompt with Oh My Posh and the Windows Terminal <https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal>`_
+
+.. warning:: Exercise caution when installing from `PowerShell Gallery <https://www.powershellgallery.com/>`_
 
 Updating Git For Windows
 ========================
