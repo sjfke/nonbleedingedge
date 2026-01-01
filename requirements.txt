@@ -7,12 +7,12 @@ colorama==0.4.6
 docutils==0.21.2
 idna==3.11
 imagesize==1.4.1
-importlib_metadata==8.7.0
+importlib_metadata==8.7.1
 Jinja2==3.1.6
 MarkupSafe==3.0.3
 packaging==25.0
 Pygments==2.19.2
-pyparsing==3.2.5
+pyparsing==3.3.1
 pytz==2025.2
 requests==2.32.5
 roman-numerals==3.1.0
@@ -30,6 +30,6 @@ sphinxcontrib-jquery==4.1
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==2.0.0
 sphinxcontrib-serializinghtml==2.0.0
-sphinxemoji==0.3.1
-urllib3==2.6.1
+sphinxemoji==0.3.2
+urllib3==2.6.2
 zipp==3.23.0
