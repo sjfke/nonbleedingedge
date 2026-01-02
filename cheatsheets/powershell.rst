@@ -88,6 +88,23 @@ You should become familiar with ``get-help`` and ``get-member`` cmdlets
 Quick Introduction
 ==================
 
+Which version is installed?
+
+.. code-block:: pwsh-session
+
+    PS> $PSVersionTable
+
+    Name                           Value
+    ----                           -----
+    PSVersion                      5.1.26100.7462
+    PSEdition                      Desktop
+    PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0...}
+    BuildVersion                   10.0.26100.7462
+    CLRVersion                     4.0.30319.42000
+    WSManStackVersion              3.0
+    PSRemotingProtocolVersion      2.3
+    SerializationVersion           1.1.0.1
+
 Examples of common commands.
 
 .. code-block:: pwsh-session
