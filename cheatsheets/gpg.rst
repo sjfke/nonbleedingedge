@@ -30,6 +30,32 @@ Basic Command Examples
     $ gpg --output geoffreycollis-hotmail-pub.gpg --armor --export geoffreycollis@hotmail.com
     $ gpg --output sjfke-pool-shark-hotmail-pub.gpg --armor --export 49220AC61317062D
 
+************************
+Windows GPG Agent Errors
+************************
+
+Sometimes on Windows the following error is displayed, often after starting ``Docker-Desktop``.
+
+.. code-block:: console
+
+    PS> gpg --list-secret-keys
+    gpg: can't connect to the gpg-agent: IPC connect call failed
+
+To fix this issue, try running the following command or rebooting the Windows system
+
+.. code-block:: console
+
+    PS> gpg-connect-agent killagent /bye; gpg-connect-agent bye
+    gpg-connect-agent: no running gpg-agent - starting 'C:\\Program Files (x86)\\GnuPG\\bin\\gpg-agent.exe'
+    gpg-connect-agent: waiting for the agent to come up ... (8s)
+    gpg-connect-agent: connection to the agent established
+    OK closing connection
+    gpg-connect-agent: no running gpg-agent - starting 'C:\\Program Files (x86)\\GnuPG\\bin\\gpg-agent.exe'
+    gpg-connect-agent: waiting for the agent to come up ... (8s)
+    gpg-connect-agent: connection to the agent established
+    OK closing connection
+    PS>
+
 ******************
 GPG key generation
 ******************

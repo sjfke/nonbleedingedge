@@ -83,6 +83,9 @@ Suggested Laptop settings
 
 Locally developed ``PowerShell scripts`` will be executed but those from any other source will need to be signed.
 
+For just for your account
+-------------------------
+
 .. code-block:: pwsh-session
 
     PS C:\WINDOWS\system32> Get-ExecutionPolicy -List
@@ -96,6 +99,22 @@ Locally developed ``PowerShell scripts`` will be executed but those from any oth
 
     PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
+For all users
+-------------
+
+.. code-block:: pwsh-session
+
+    PS> Get-ExecutionPolicy -List
+
+            Scope ExecutionPolicy
+            ----- ---------------
+    MachinePolicy       Undefined
+       UserPolicy       Undefined
+          Process       Undefined
+      CurrentUser       Undefined
+     LocalMachine       RemoteSigned
+
+    PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 
 Suggested Server settings
 =========================
@@ -116,6 +135,24 @@ All ``PowerShell scripts`` should be signed, if *too restrictive* for your envir
 
     PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope CurrentUser
     PS C:\WINDOWS\system32> Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+
+Which version is installed?
+===========================
+
+.. code-block:: pwsh-session
+
+    PS> $PSVersionTable
+
+    Name                           Value
+    ----                           -----
+    PSVersion                      5.1.26100.7462
+    PSEdition                      Desktop
+    PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0...}
+    BuildVersion                   10.0.26100.7462
+    CLRVersion                     4.0.30319.42000
+    WSManStackVersion              3.0
+    PSRemotingProtocolVersion      2.3
+    SerializationVersion           1.1.0.1
 
 
 *****************
