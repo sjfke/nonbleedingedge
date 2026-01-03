@@ -96,11 +96,17 @@ For just for your account
 * `Nerd Fonts <https://www.nerdfonts.com/>`_
 * `Meslo LGM NF font download <https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip>`_
 
-.. warning:: `Oh My Posh <https://ohmypo.sh/docs>`_ installation and configuration instructions are **incorrect**
+.. warning:: `Oh My Posh <https://ohmypo.sh/docs>`_ installation and configuration instructions have **changed**
 
 1. Install `Windows Terminal <https://github.com/microsoft/terminal>`_ from the ``Microsoft Store``
 
-2. Install ``oh-my-posh`` from the ``Microsoft Store``, the ``winget`` command line **does not** work properly.
+2. Install ``oh-my-posh`` using the ``winget`` command line, the ``Microsoft Store`` version is **outdated**.
+
+.. code-block::
+
+    PS> winget install JanDeDobbeleer.OhMyPosh --source winget # install
+    PS> winget upgrade JanDeDobbeleer.OhMyPosh --source winget # any upgrades
+
 
 3. Check the ``oh-my-posh`` installation
 
@@ -110,12 +116,11 @@ For just for your account
     Name                           Value
     ----                           -----
     POSH_CURSOR_COLUMN             1
-    POSH_CURSOR_LINE               7
+    POSH_CURSOR_LINE               22
     POSH_INSTALLER                 ws
-    POSH_SESSION_ID                81500ca2-d587-4be6-8429-d38ca5c50117
+    POSH_SESSION_ID                a5f16181-1894-4fcc-b94f-23159d4968dd
     POSH_SHELL                     pwsh
     POSH_SHELL_VERSION             5.1.26100.7462
-    POSH_THEMES_PATH               C:\Users\sjfke\AppData\Local\Programs\oh-my-posh\themes\
     POWERLINE_COMMAND              oh-my-posh
 
 4. Install ``Meslo LGM NF fonts`` which include the required ``Nerd fonts``.
@@ -131,8 +136,6 @@ For just for your account
 
 6. Configure  `Oh My Posh prompt <https://ohmyposh.dev/docs/installation/prompt>`_ by choosing a `Theme <https://ohmyposh.dev/docs/themes>`_
 
-.. warning:: `Oh My Posh <https://ohmypo.sh/docs>`_ configuration instructions are **incorrect**, the following works
-
 .. code-block:: pwsh-session
 
     PS> Test-Path $PROFILE -PathType Leaf         # If FALSE, then create it using New-Item
@@ -142,20 +145,33 @@ For just for your account
 
     PS> Get-Content -Path $PROFILE
     # oh-my-posh init pwsh | Invoke-Expression
-    # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\paradox.omp.json" | Invoke-Expression
-    # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\dracula.omp.json" | Invoke-Expression
-    # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\remk.omp.json" | Invoke-Expression
-    # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\jtracey93.omp.json" | Invoke-Expression
-    # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\mt.omp.json" | Invoke-Expression
-    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnoster.omp.json" | Invoke-Expression
-    # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnosterplus.omp.json" | Invoke-Expression
+    # oh-my-posh init pwsh --config "paradox" | Invoke-Expression
+    # oh-my-posh init pwsh --config "dracula" | Invoke-Expression
+    # oh-my-posh init pwsh --config "remk" | Invoke-Expression
+    # oh-my-posh init pwsh --config "jtracey93" | Invoke-Expression
+    # oh-my-posh init pwsh --config "mt" | Invoke-Expression
+    oh-my-posh init pwsh --config "agnoster" | Invoke-Expression
+    # oh-my-posh init pwsh --config "agnosterplus" | Invoke-Expression
 
-    # This will probably fail, documentation is incorrect
-    PS> . $PROFILE                                # IGNORE errors
+    # These will probably fail, with 'PowerShell 5.1' the default on 'Windows-11'
+    PS> . $PROFILE                                      # IGNORE errors
+    PS> oh-my-posh init pwsh --eval | Invoke-Expression # IGNORE traceback errors
+
+    PS> $PSVersionTable
+    Name                           Value
+    ----                           -----
+    PSVersion                      5.1.26100.7462
+    PSEdition                      Desktop
+    PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0...}
+    BuildVersion                   10.0.26100.7462
+    CLRVersion                     4.0.30319.42000
+    WSManStackVersion              3.0
+    PSRemotingProtocolVersion      2.3
+    SerializationVersion           1.1.0.1
 
 Open the ``Terminal`` from the task bar, and the PowerShell should be using your chosen theme.
 
-``Microsoft Store`` will provide update notifications, but to do manually.
+To do manual updates.
 
 .. code-block:: pwsh-session
 
@@ -181,7 +197,7 @@ for your account ``-Scope CurrentUser``, and for all users ``-Scope LocalMachine
 
     # Append to $PROFILE
     PS> Get-Content -Path $PROFILE
-    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnoster.omp.json" | Invoke-Expression
+    oh-my-posh init pwsh --config "agnoster" | Invoke-Expression
     Import-Module -Name Terminal-Icons
 
 Want more, see `My Ultimate PowerShell prompt with Oh My Posh and the Windows Terminal <https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal>`_
