@@ -115,12 +115,6 @@ For just for your account
     PS> get-childitem Env: | where {$_.Name -like 'POSH*' -or $_.Name -like 'POWER*'}
     Name                           Value
     ----                           -----
-    POSH_CURSOR_COLUMN             1
-    POSH_CURSOR_LINE               22
-    POSH_INSTALLER                 ws
-    POSH_SESSION_ID                a5f16181-1894-4fcc-b94f-23159d4968dd
-    POSH_SHELL                     pwsh
-    POSH_SHELL_VERSION             5.1.26100.7462
     POWERLINE_COMMAND              oh-my-posh
 
 4. Install ``Meslo LGM NF fonts`` which include the required ``Nerd fonts``.
@@ -153,7 +147,7 @@ For just for your account
     oh-my-posh init pwsh --config "agnoster" | Invoke-Expression
     # oh-my-posh init pwsh --config "agnosterplus" | Invoke-Expression
 
-    # These will probably fail, with 'PowerShell 5.1' the default on 'Windows-11'
+    # These might fail, with 'PowerShell 5.1' the default on 'Windows-11'
     PS> . $PROFILE                                      # IGNORE errors
     PS> oh-my-posh init pwsh --eval | Invoke-Expression # IGNORE traceback errors
 
@@ -169,7 +163,21 @@ For just for your account
     PSRemotingProtocolVersion      2.3
     SerializationVersion           1.1.0.1
 
-Open the ``Terminal`` from the task bar, and the PowerShell should be using your chosen theme.
+If the above failed, open the ``Terminal`` from the task bar, and the PowerShell should be using your chosen theme.
+
+.. code-block:: pwsh-session
+
+    PS> get-childitem Env: | where {$_.Name -like 'POSH*' -or $_.Name -like 'POWER*'}
+    Name                           Value
+    ----                           -----
+    POSH_CURSOR_COLUMN             1
+    POSH_CURSOR_LINE               22
+    POSH_INSTALLER                 ws
+    POSH_SESSION_ID                a5f16181-1894-4fcc-b94f-23159d4968dd
+    POSH_SHELL                     pwsh
+    POSH_SHELL_VERSION             5.1.26100.7462
+    POWERLINE_COMMAND              oh-my-posh
+
 
 To do manual updates.
 
