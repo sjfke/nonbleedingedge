@@ -72,17 +72,14 @@ This site is written by an **aging techie** so obviously is **Non-Bleeding-Edge*
 
 .. toctree::
     :maxdepth: 1
-    :caption: Headlines:
+    :caption: 2026 Headlines:
     :glob:
 
-    headlines/*
+    headlines/2026*
 
 .. toctree::
-    :caption: Retired
     :maxdepth: 1
+    :caption: 2025 Headlines:
+    :glob:
 
-    retired/docker-walkthrough
-    retired/eclipse-remote-dev
-    retired/fedora29-install
-    retired/django
-    retired/catalina-upgrade
+    headlines/2025*
