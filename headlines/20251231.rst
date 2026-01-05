@@ -1,0 +1,81 @@
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/headlines/20251231.rst
+
+##########
+31.12.2025
+##########
+
+*************
+News Articles
+*************
+
+Hong Kong’s newest anti-scam technology is over-the-counter banking
+===================================================================
+
+Funds in ‘Money Safe’ accounts are only available when customers appear for face-to-face verification
+
+* `<https://www.theregister.com/2025/12/31/hong_kong_antiscam_money_safe/>`_
+
+
+An early end to the holidays: 'Heartbleed of MongoDB' is now under active exploit
+=================================================================================
+
+You didn't think you'd get to enjoy your time off without a major cybersecurity incident, did you?
+
+* `<https://www.theregister.com/2025/12/30/mongodb_vuln_exploited_cve_2025_14847/>`_
+* related `<https://thehackernews.com/2025/12/new-mongodb-flaw-lets-unauthenticated.html>`_
+* related `<https://thehackernews.com/2025/12/mongodb-vulnerability-cve-2025-14847.html>`_
+
+Nvidia spends $5B on Intel bailout, instantly gets $2.5B richer
+===============================================================
+
+The deal negotiated in September locked Nvidia into a purchase price of $23 per share. Intel shares traded at $36 on Monday
+
+* `<https://www.theregister.com/2025/12/29/nvidia_intel_5_billion/>`_
+
+
+The most durable tech is boring, old, and everywhere
+====================================================
+
+From COBOL and C to Linux and SQL, the unglamorous software that keeps the world running refuses to disappear
+
+* `<https://www.theregister.com/2025/12/31/long_lived_tech/>`_
+
+
+Tis the season when tech leaders rub their crystal balls
+========================================================
+
+2026 is the year where AI must meet ROI in the enterprise, and the key to delivering it is data governance.
+
+* `<https://www.theregister.com/2025/12/30/tech_leaders_predictions_2026/>`_
+
+
+Almost 80 European deep tech university spinouts reached $1B valuations or $100M in revenue in 2025
+===================================================================================================
+
+* `<https://techcrunch.com/2025/12/30/76-european-deep-tech-university-spinouts-reached-unicorn-or-centaur-status/>`_
+
+CSA Issues Alert on Critical SmarterMail Bug Allowing Remote Code Execution
+===========================================================================
+
+* `<https://thehackernews.com/2025/12/csa-issues-alert-on-critical.html>`_
+* `<https://www.smartertools.com/smartermail/business-email-server>`_
+
+
+China Mandates 50% Domestic Equipment Rule For Chipmakers
+=========================================================
+
+* `<https://slashdot.org/story/25/12/30/205238/china-mandates-50-domestic-equipment-rule-for-chipmakers>`_
+
+
+Groq Investor Sounds Alarm On Data Centers 
+==========================================
+
+* `<https://slashdot.org/story/25/12/30/2016207/groq-investor-sounds-alarm-on-data-centers>`_
+* `<https://www.axios.com/2025/12/29/groq-alex-davis-data-center-concerns>`_
+
+'Foreign Tech Workers Are Avoiding Travel To the US'
+====================================================
+
+* `<https://news.slashdot.org/story/25/12/30/2341244/foreign-tech-workers-are-avoiding-travel-to-the-us>`_
+* `<https://www.computerworld.com/article/4110681/foreign-tech-workers-are-avoiding-travel-to-the-us.html>`_
+

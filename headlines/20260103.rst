@@ -1,0 +1,43 @@
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/headlines/20260103.rst
+
+##########
+03.01.2026
+##########
+
+*************
+News Articles
+*************
+
+Has Microsoft Discontinued Offline Activation of Windows?
+=========================================================
+
+* `<https://tech.slashdot.org/story/26/01/03/1947258/has-microsoft-discontinued-offline-activation-of-windows>`_
+* `<https://www.neowin.net/news/report-microsoft-quietly-kills-official-way-to-activate-windows-1110-without-internet/>`_
+
+Dell's XPS Brand May Return Just a Year After Being Retired, Report Claims
+==========================================================================
+
+* `<https://it.slashdot.org/story/26/01/02/192248/dells-xps-brand-may-return-just-a-year-after-being-retired-report-claims>`_
+
+Claude is his copilot: Rust veteran designs new Rue programming language with help from AI bot
+==============================================================================================
+
+Rust veteran Steve Klabnik is using an LLM to explore memory safety without garbage collection
+
+* `<https://www.theregister.com/2026/01/03/claude_copilot_rue_steve_klabnik/>`_
+
+
+Finally - a terminal solution to the browser wars
+=================================================
+
+A full-featured, Sixel-capable terminal browser for those who’d rather skip AI assistants
+
+* `<https://www.theregister.com/2026/01/02/brow6el_browser_terminal/>`_
+* `<https://codeberg.org/janantos/brow6el>`_
+
+
+Jobs Vulnerable to AI Replacement Actually 'Thriving, Not Dying Out', Report Suggests
+=====================================================================================
+
+* `<https://it.slashdot.org/story/26/01/03/0259241/jobs-vulnerable-to-ai-replacement-actually-thriving-not-dying-out-report-suggests>`_
+

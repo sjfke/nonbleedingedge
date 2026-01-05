@@ -71,6 +71,13 @@ This site is written by an **aging techie** so obviously is **Non-Bleeding-Edge*
     outdated/mvn
 
 .. toctree::
+    :maxdepth: 1
+    :caption: Headlines:
+    :glob:
+
+    headlines/*
+
+.. toctree::
     :caption: Retired
     :maxdepth: 1
 
