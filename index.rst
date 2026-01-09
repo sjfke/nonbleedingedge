@@ -75,7 +75,7 @@ This site is written by an **aging techie** so obviously is **Non-Bleeding-Edge*
     :caption: 2026 Headlines:
     :glob:
 
-    headlines/2026*
+    headlines/2026-Jan
 
 .. toctree::
     :maxdepth: 1

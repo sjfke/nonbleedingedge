@@ -5,9 +5,10 @@ January 2026
 ############
 
 A human curated list of interesting technical news articles, hopefully with no hallucinations |:laughing:|
+To display click the date ``DD.MM.YYYY`` admonition.
 
 .. admonition:: 07.01.2026
-    :collapsible: open
+    :collapsible: closed
 
     **Black Cat Behind SEO Poisoning Malware Campaign Targeting Popular Software Searches**
 
@@ -24,7 +25,7 @@ A human curated list of interesting technical news articles, hopefully with no h
 
     **Fake Windows BSODs check in at Europe's hotels to con staff into running malware**
 
-    Phishers posing as Booking.com use panic-inducing blue screens to bypass security controls
+    *Phishers posing as Booking.com use panic-inducing blue screens to bypass security controls*
 
     * `<https://www.theregister.com/2026/01/06/russia_hackers_hotel_bsods/>`_
 
