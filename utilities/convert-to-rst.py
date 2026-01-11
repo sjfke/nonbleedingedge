@@ -6,7 +6,7 @@ import re
 DD_MM_YYYY = re.compile(r"^(0[1-9]|[12]\d|3[01]).(0[1-9]|1[0-2]).(19|20)\d{2}$")
 
 
-def convert_contents(lines, line_numbers=False, verbose=0):
+def convert_contents(lines, line_numbers=False):
     line_count = 0
     embolden = True
 
@@ -43,15 +43,15 @@ def convert_contents(lines, line_numbers=False, verbose=0):
     return None
 
 
-def display_contents(lines, line_numbers=False, verbose=0):
+def display_contents(lines, line_numbers=False):
     line_count = 0
 
     for line in lines:
         line_count += 1
         if line_numbers:
-            print("{:03d}: {}".format(line_count, line.rstrip()))  # remove newline '\n'
+            print(f"{line_count:03d}: {line.rstrip()}")  # remove newline '\n'
         else:
-            print("{}".format(line.rstrip()))  # remove newline '\n'
+            print(f"{line.rstrip()}")  # remove newline '\n'
 
     return None
 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.verbose > 1:
-        print("args: {0}".format(args.__str__()))
+        print(f"args: {args.__str__()}")
 
     # Note equivalent of: filename = open('filename.txt', 'r')
     # Done by: add_argument('filename', nargs='?', type=argparse.FileType('r'), default=sys.stdin)
@@ -77,16 +77,16 @@ if __name__ == '__main__':
         contents = args.filename.readlines()
 
         if args.verbose >= 1:
-            print("filename: {0}".format(args.filename))
+            print("filename: {args.filename}")
 
         if args.raw:
-            print("contents: {0}".format(contents))
+            print(f"contents: {contents}")
             sys.exit(0)
 
         if args.convert:
-            convert_contents(lines=contents, line_numbers=args.number, verbose=args.verbose)
+            convert_contents(lines=contents, line_numbers=args.number)
         else:
-            display_contents(lines=contents, line_numbers=args.number, verbose=args.verbose)
+            display_contents(lines=contents, line_numbers=args.number)
 
         sys.exit(0)
 
