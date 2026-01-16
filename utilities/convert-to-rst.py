@@ -64,7 +64,7 @@ if __name__ == '__main__':
     parser.add_argument('-n', '--number', action='store_true', default=False, help='display line numbers')
     parser.add_argument('-r', '--raw', action='store_true', default=False, help='display raw content')
     parser.add_argument('-v', '--verbose', action='count', default=0)
-    parser.add_argument('filename', nargs='?', type=argparse.FileType('r'), default=sys.stdin)
+    parser.add_argument('filename', nargs='?', type=argparse.FileType('r', encoding='utf-8'), default=sys.stdin)
 
     args = parser.parse_args()
 
@@ -72,12 +72,12 @@ if __name__ == '__main__':
         print(f"args: {args.__str__()}")
 
     # Note equivalent of: filename = open('filename.txt', 'r')
-    # Done by: add_argument('filename', nargs='?', type=argparse.FileType('r'), default=sys.stdin)
+    # Done by: add_argument('filename', nargs='?', type=argparse.FileType('r', encoding='utf-8'), default=sys.stdin)
     try:
         contents = args.filename.readlines()
 
         if args.verbose >= 1:
-            print("filename: {args.filename}")
+            print(f"filename: {args.filename}")
 
         if args.raw:
             print(f"contents: {contents}")

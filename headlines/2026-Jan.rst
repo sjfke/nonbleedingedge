@@ -5,7 +5,170 @@ January 2026
 ############
 
 A human curated list of interesting technical news articles, hopefully with no hallucinations |:laughing:|
-To display click the date ``DD.MM.YYYY`` admonition.
+
+To display click the date ``DD.MM.YYYY`` `admonition <https://dictionary.cambridge.org/us/dictionary/english/admonition>`_
+
+.. admonition::   09.01.2026
+    :collapsible: closed
+
+    **Google Is Adding an 'AI Inbox' To Gmail That Summarizes Emails**
+
+    * `<https://tech.slashdot.org/story/26/01/08/2212216/google-is-adding-an-ai-inbox-to-gmail-that-summarizes-emails>`_
+    * `<https://techcrunch.com/2026/01/08/gmail-debuts-a-personalized-ai-inbox-ai-overviews-in-search-and-more/>`_
+
+    **Google pushing Gemini into Gmail, but you can turn it off**
+
+    *Love Google AI Overviews? Now they're in your inbox*
+
+    * `<https://www.theregister.com/2026/01/08/google_gemini_gmail/>`_
+    * `<https://blog.google/products-and-platforms/products/gmail/gmail-is-entering-the-gemini-era/>`_
+
+    **As agents run amok, CrowdStrike's $740M SGNL deal aims to help get a grip on identity security**
+
+    *Authentication is basically solved. Authorization is another thing entirely...*
+
+    * `<https://www.theregister.com/2026/01/08/crowdstrikes_740m_sgnl_deal_proves/>`_
+    * `<https://sgnl.ai/>`_
+
+    **Patch Cisco ISE bug now before attackers abuse proof-of-concept exploit**
+
+    *No reports of active exploitation â€¦ yet*
+
+    * `<https://www.theregister.com/2026/01/08/rcisco_ise_bug_poc/>`_
+    * related `<https://thehackernews.com/2026/01/cisco-patches-ise-security.html>`_
+
+    **Trend Micro Apex Central RCE Flaw Scores 9.8 CVSS in On-Prem Windows Versions**
+
+    * `<https://thehackernews.com/2026/01/trend-micro-apex-central-rce-flaw.html>`_
+
+    **Linus Torvalds: Stop making an issue out of AI slop in kernel docs â€“ you're not changing anybody's mind**
+
+    * `<https://www.theregister.com/2026/01/08/linus_versus_llms_ai_slop_docs/>`_
+
+    **CISA Retires 10 Emergency Cybersecurity Directives Issued Between 2019 and 2024**
+
+    * `<https://thehackernews.com/2026/01/cisa-retires-10-emergency-cybersecurity.html>`_
+
+    **Anthropic adds Allianz to growing list of enterprise wins**
+
+    * `<https://techcrunch.com/2026/01/09/anthropic-adds-allianz-to-growing-list-of-enterprise-wins/>`_
+
+    **French Court Orders Google DNS to Block Pirate Sites, Dismisses 'Cloudflare-First' Defense**
+
+    * `<https://yro.slashdot.org/story/26/01/08/224243/french-court-orders-google-dns-to-block-pirate-sites-dismisses-cloudflare-first-defense>`_
+
+    **Microsoft Turns Copilot Chats Into a Checkout Lane**
+
+    * `<https://slashdot.org/story/26/01/08/2156225/microsoft-turns-copilot-chats-into-a-checkout-lane>`_
+
+    **While you pay through the nose for memory, Samsung expects to triple its profits in Q4**
+
+    *Memory pricing expected to surge another 60% in Q1 with relief years away*
+
+    * `<https://www.theregister.com/2026/01/08/samsung_memory_profits/>`_
+
+    **Wi-Fi Advocates Get Win From FCC With Vote To Allow Higher-Power Devices**
+
+    * `<https://mobile.slashdot.org/story/26/01/08/2151202/wi-fi-advocates-get-win-from-fcc-with-vote-to-allow-higher-power-devices>`_
+
+    **Bank of England's Oracle cloud migration bill triples as project grinds on**
+
+    *Initial Â£7M estimate proves optimistic after multiple contract uplifts*
+
+    * `<https://www.theregister.com/2026/01/09/bank_of_england_oracle/>`_
+
+    **CES 2026: Everything revealed, from Nvidiaâ€™s debuts to AMDâ€™s new chips to Razerâ€™s AI oddities**
+
+    * `<https://techcrunch.com/2026/01/08/ces-2026-everything-revealed-from-nvidias-debuts-to-amds-new-chips-to-razers-ai-oddities/>`_
+
+    **Boffins probe commercial AI models, find an entire Harry Potter book**
+
+    *Dark copyright evasion magic makes light work of developers' guardrails*
+
+    * `<https://www.theregister.com/2026/01/09/boffins_probe_commercial_ai_models/>`_
+
+    **FBI Warns North Korean Hackers Using Malicious QR Codes in Spear-Phishing**
+
+    * `<https://thehackernews.com/2026/01/fbi-warns-north-korean-hackers-using.html>`_
+
+.. admonition::   08.01.2026
+    :collapsible: closed
+
+    **The State of Trusted Open Source**
+
+    * `<https://thehackernews.com/2026/01/the-state-of-trusted-open-source.html>`_
+
+    **Mem-ageddon: AI chip frenzy to wallop DRAM prices with 70% hike**
+
+    *Samsung and SK hynix readying another gouge as server silicon squeeze leaves PCs and phones out in the cold*
+
+    * `<https://www.theregister.com/2026/01/06/memory_firm_profits_up_as/>`_
+    * `<https://news.slashdot.org/story/26/01/07/2250243/ai-chip-frenzy-to-wallop-dram-prices-with-70-hike>`_
+
+    **Microsoft Cancels Plans To Rate Limit Exchange Online Bulk Emails**
+
+    * `<https://it.slashdot.org/story/26/01/07/1659220/microsoft-cancels-plans-to-rate-limit-exchange-online-bulk-emails>`_
+    * related `<https://www.theregister.com/2026/01/07/exchange_online_recipient_rate/>`_
+
+    **CISA Flags Microsoft Office and HPE OneView Bugs as Actively Exploited**
+
+    * `<https://thehackernews.com/2026/01/cisa-flags-microsoft-office-and-hpe.html>`_
+
+    **Coolify Discloses 11 Critical Flaws Enabling Full Server Compromise on Self-Hosted Instances**
+
+    * `<https://thehackernews.com/2026/01/coolify-discloses-11-critical-flaws.html>`_
+    * `<https://coolify.io/>`_
+
+    **Ransomware attacks kept climbing in 2025 as gangs refused to stay dead**
+
+    *Cop wins hit crime infrastructure, not the people behind it*
+
+    * `<https://www.theregister.com/2026/01/08/ransomware_2025_emsisoft/>`_
+
+    **JPMorgan Chase Reaches a Deal To Take Over the Apple Credit Card**
+
+    * `<https://news.slashdot.org/story/26/01/07/2135246/jpmorgan-chase-reaches-a-deal-to-take-over-the-apple-credit-card>`_
+    * `<https://techcrunch.com/2026/01/07/jpmorgan-chase-becomes-the-new-issuer-of-the-apple-card/>`_
+
+    **Tailwind CSS Lets Go 75% Of Engineers After 40% Traffic Drop From Google**
+
+    * `<https://it.slashdot.org/story/26/01/08/1756211/tailwind-css-lets-go-75-of-engineers-after-40-traffic-drop-from-google>`_
+    * `<https://devclass.com/2026/01/08/tailwind-labs-lays-off-75-percent-of-its-engineers-thanks-to-brutal-impact-of-ai/>`_
+
+    **Cisco Patches ISE Security Vulnerability After Public PoC Exploit Release**
+
+    * `<https://thehackernews.com/2026/01/cisco-patches-ise-security.html>`_
+
+    **ThreatsDay Bulletin: RustFS Flaw, Iranian Ops, WebUI RCE, Cloud Leaks, and 12 More Stories**
+
+    * `<https://thehackernews.com/2026/01/threatsday-bulletin-rustfs-flaw-iranian.html>`_
+
+
+    * `<https://slashdot.org/story/26/01/08/1918257/the-downside-to-using-ai-for-all-those-boring-tasks-at-work>`_
+
+    **Researchers Uncover NodeCordRAT Hidden in npm Bitcoin-Themed Packages**
+
+    * `<https://thehackernews.com/2026/01/researchers-uncover-nodecordrat-hidden.html>`_
+
+    **China-Linked UAT-7290 Targets Telecoms with Linux Malware and ORB Nodes**
+
+    * `<https://thehackernews.com/2026/01/china-linked-uat-7290-targets-telecoms.html>`_
+
+    **WhatsApp Worm Spreads Astaroth Banking Trojan Across Brazil via Contact Auto-Messaging**
+
+    * `<https://thehackernews.com/2026/01/whatsapp-worm-spreads-astaroth-banking.html>`_
+
+    **LEGO Says Smart Brick Won't Replace Traditional Play After CES Backlash**
+
+    * `<https://slashdot.org/story/26/01/08/145236/lego-says-smart-brick-wont-replace-traditional-play-after-ces-backlash>`_
+
+    **SteamOS Continues Its Slow Spread Across the PC Gaming Landscape**
+
+    * `<https://games.slashdot.org/story/26/01/08/052240/steamos-continues-its-slow-spread-across-the-pc-gaming-landscape>`_
+
+    **Bose Open-Sources Its SoundTouch Home Theater Smart Speakers Ahead of End-of-Life**
+
+    * `<https://news.slashdot.org/story/26/01/07/2126224/bose-open-sources-its-soundtouch-home-theater-smart-speakers-ahead-of-end-of-life>`_
 
 .. admonition:: 07.01.2026
     :collapsible: closed
