@@ -13,6 +13,18 @@ Useful Links
 * `Adding a GPG key to your GitHub account <https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account>`_
 * `Telling Git about your signing key <https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key>`_
 
+************
+Installation
+************
+
+The ``GnuPG`` executables are installed on ``Linux``, and should be on ``MacOS``, if not use ``brew``
+
+.. code-block::
+
+    $ brew install gnupg   # MacOS install
+
+On ``Windows`` it is necessary to install `Gpg4win - a secure solution... <https://www.gpg4win.org/>`_
+
 **********************
 Basic Command Examples
 **********************
