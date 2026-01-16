@@ -13,6 +13,18 @@ Useful Links
 * `Adding a GPG key to your GitHub account <https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account>`_
 * `Telling Git about your signing key <https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key>`_
 
+************
+Installation
+************
+
+The ``GnuPG`` executables are installed on ``Linux``, and should be on ``MacOS``, if not use ``brew``
+
+.. code-block::
+
+    $ brew install gnupg   # MacOS install
+
+On ``Windows`` it is necessary to install `Gpg4win - a secure solution... <https://www.gpg4win.org/>`_
+
 **********************
 Basic Command Examples
 **********************
@@ -136,6 +148,8 @@ Git GPG integrations
 * `Use GPG Signing Keys with Git (and GitHub) on Windows 10 <https://medium.com/@ryanmillerc/use-gpg-signing-keys-with-git-on-windows-10-github-4acbced49f68>`_
 * `Git Tools - Signing Your Work <https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work>`_
 
+.. warning::  **'Gpg4win 5'** changed the location of the **'git'** executables
+
 .. code-block:: console
 
     $ gpg --list-secret-keys --keyid-format=long | grep -E "sec|uid"               # Unix
@@ -145,7 +159,11 @@ Git GPG integrations
     sec   ed25519/49220AC61317062D 2023-03-31 [SC] [expires: 2024-01-25]
     uid                 [ultimate] Sjfke <sjfke.pool.shark@hotmail.com>
 
-    # On Windows with 'Git for Windows' installed
+
+    # On Windows with 'Git for Windows 5' installed
+    $ git config --global gpg.program "C:\Program Files\GnuPG\bin\gpg.exe"
+
+    # On Windows with 'Git for Windows 4' installed
     $ where.exe gpg  # C:\Program Files (x86)\GnuPG\bin\gpg.exe
     $ git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
 
@@ -172,6 +190,11 @@ Git GPG integrations
     $ git config --local --unset user.signingKey
     $ git config --local --unset commit.gpgSign
     $ git config --local --unset tag.gpgSign
+
+    # Where are the 'git' configuration files?
+    $ git config --list --show-origin
+    $ git config --list --global --show-origin
+    $ git config --list --local --show-origin
 
 For `GitHub <https://github.com>`_  add these keys to `SSH and GPG keys <https://github.com/settings/keys>`_
 
