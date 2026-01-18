@@ -57,7 +57,7 @@ To fix this issue, try running the following command or rebooting the Windows sy
 
 .. code-block:: console
 
-    PS> gpg-connect-agent killagent /bye; gpg-connect-agent bye
+    PS> gpg-connect-agent killagent /bye; gpg-connect-agent /bye
     gpg-connect-agent: no running gpg-agent - starting 'C:\\Program Files (x86)\\GnuPG\\bin\\gpg-agent.exe'
     gpg-connect-agent: waiting for the agent to come up ... (8s)
     gpg-connect-agent: connection to the agent established
