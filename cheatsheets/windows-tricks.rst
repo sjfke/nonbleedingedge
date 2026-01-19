@@ -510,3 +510,23 @@ cURL examples
     PS> curl.exe -v telnet://192.168.0.1:22 # test for ssh (port 22) on server 192.168.0.1
 
 Simple `PUT <https://blog.marcnuri.com/curl-put-request-examples>`_ and `DELETE <https://blog.marcnuri.com/curl-delete-request-examples>`_ examples
+
+
+VS-Code
+=======
+
+On Windows install ``Visual Studio Code`` from the ``Microsoft Store``, otherwise
+
+* `Download Visual Studio Code <https://code.visualstudio.com/download>`_
+* `Visual Studio Code on Linux <https://code.visualstudio.com/docs/setup/linux>`_
+* `Visual Studio Code on macOS <https://code.visualstudio.com/docs/setup/mac>`_
+
+Installed Extensions
+--------------------
+
+On ``Windows`` the command is as follow, ``Linux`` and ``MacOS`` are similar
+
+.. code-block:: pwsh-session
+
+    # Commands to list and install the VS-Code extensions
+    PS> code --list-extensions | %  { "code --install-extension $_" }
