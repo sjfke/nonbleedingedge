@@ -4,6 +4,29 @@
 Windows Tricks Cheatsheet
 *************************
 
+Windows - which version?
+========================
+
+There are many ways, but ``winver`` is the most common and displays the ``About Windows`` dialogue.
+
+However, it is also possible from the ``PowerShell`` command line, as the following examples show.
+
+.. code-block:: pwsh-session
+
+    PS> cmd.exe win /c ver
+    Microsoft Windows [Version 10.0.26200.7623]
+
+    PS> Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, BuildNumber, OSArchitecture
+    Caption                   Version    BuildNumber OSArchitecture
+    -------                   -------    ----------- --------------
+    Microsoft Windows 11 Home 10.0.26200 26200       64-bit
+
+    PS> Get-CimInstance Win32_OperatingSystem | Format-Table -AutoSize
+    SystemDirectory     Organization BuildNumber RegisteredUser               SerialNumber            Version
+    ---------------     ------------ ----------- --------------               ------------            -------
+    C:\windows\system32              26200       sjfke.pool.shark@hotmail.com 00342-21579-03310-AAOEM 10.0.26200
+
+
 WSL - Windows Subsystem for Linux
 =================================
 
