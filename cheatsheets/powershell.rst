@@ -23,7 +23,7 @@ through the alternatives. Cmdlets are **case-insensitive** but hyphens are signi
 can be written as ``where``, which in my opinion is clearer. Other ``*-object`` examples include ``select``, ``sort``, ``tee``,  and ``measure``.
 
 Variable names are also **case-insensitive**, can include ``_``, and **camelCase** can be used to make variable names more human readable, but *camelCase* is 
-irrelevent to ``PowerShell``, so ``dogCat``, ``dogcat`` and ``DogCat`` are the same variable.
+irrelevant to ``PowerShell``, so ``dogCat``, ``dogcat`` and ``DogCat`` are the same variable.
 
 My personal preference:
 
@@ -118,7 +118,7 @@ Examples of common commands.
    PS> remove-item dir2                            # delete a directory
    PS> rmdir dir2                                  # using the 'rmdir' alias to delete a directory
    
-   PS> new-item fred.txt, wilma.txt                # create two empty files ('ni')
+   PS> new-item fred.txt, wilma.txt                # create two empty files ('ni') NOTE: 'comma separated'
    PS> remove-item fred.txt                        # delete file ('ri','rm','rmdir','del','erase','rd')
    PS> rm fred.txt                                 # using the 'rm' alias to delete a file
    
