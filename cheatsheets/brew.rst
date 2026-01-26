@@ -46,19 +46,27 @@ Basic Commands
 Homebrew Updating
 *****************
 
-* ``brew update`` updates `Homebrew` itself
-* ``brew upgrade`` updates the installed packages.
+* ``brew update`` to refresh the package definitions
+* ``brew upgrade`` to install the lastest version of the installed packages
 
 Typical workflow
 
 .. code-block:: console
 
+    $ brew update  [--verbose]  # update the formulae and Homebrew itself
+    $ brew upgrade [--verbose]  # upgrade installed packages
+
+Full workflow
+
+.. code-block:: console
+
     $ brew doctor  [--verbose]  # ensure brew is clean and consistent
     $ brew update  [--verbose]  # update the formulae and Homebrew itself
-    $ brew outdated             # what is outdated
-    $ brew upgrade [--verbose]  # upgrade everything
+    $ brew outdated             # what packages are outdated
+    $ brew upgrade [--verbose]  # upgrade installed packages
     $ brew upgrade <formula>    # upgrade a specific formula
     $ brew doctor  [--verbose]  # ensure brew is still clean and consistent
+
 
 **************
 Homebrew Casks
