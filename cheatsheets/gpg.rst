@@ -116,13 +116,13 @@ Notice, that ``--list-keys`` and ``--list-secret-keys`` produce the same output.
 
 .. code-block:: console
 
-    gpg --list-keys sjfke.pool.shark@hotmail.com
+    $ gpg --list-keys sjfke.pool.shark@hotmail.com
     pub   ed25519 2024-03-05 [SC] [expires: 2027-03-05]
           2B0A468BE38C555D1EBB89A20045294821C0C792
     uid           [ultimate] Sjfke (Hotmail) <sjfke.pool.shark@hotmail.com>
     sub   cv25519 2024-03-05 [E] [expires: 2027-03-05]
 
-    gpg --list-secret-keys sjfke.pool.shark@hotmail.com
+    $ gpg --list-secret-keys sjfke.pool.shark@hotmail.com
     sec   ed25519 2024-03-05 [SC] [expires: 2027-03-05]
           2B0A468BE38C555D1EBB89A20045294821C0C792
     uid           [ultimate] Sjfke (Hotmail) <sjfke.pool.shark@hotmail.com>
@@ -197,6 +197,24 @@ Git GPG integrations
     $ git config --list --local --show-origin
 
 For `GitHub <https://github.com>`_  add these keys to `SSH and GPG keys <https://github.com/settings/keys>`_
+
+*********************
+Change GPG passphrase
+*********************
+
+.. code-block:: console
+
+    $ gpg --list-keys sjfke.pool.shark@hotmail.com
+    pub   ed25519 2024-03-05 [SC] [expires: 2027-03-05]
+          2B0A468BE38C555D1EBB89A20045294821C0C792
+    uid           [ultimate] Sjfke (Hotmail) <sjfke.pool.shark@hotmail.com>
+    sub   cv25519 2024-03-05 [E] [expires: 2027-03-05]
+
+    $ gpg --edit-key 2B0A468BE38C555D1EBB89A20045294821C0C792
+    gpg> password
+    # enter current passphrase, enter new passphrase with verification
+    gpg> save
+    gpg> quit
 
 ******************
 Exporting GPG keys
