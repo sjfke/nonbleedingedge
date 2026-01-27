@@ -211,9 +211,10 @@ Change GPG passphrase
     sub   cv25519 2024-03-05 [E] [expires: 2027-03-05]
 
     $ gpg --edit-key 2B0A468BE38C555D1EBB89A20045294821C0C792
-    $ gpg> password
-    # enter previous passphrase, enter new passphrase with verification
-    $ gpg> save
+    gpg> password
+    # enter current passphrase, enter new passphrase with verification
+    gpg> save
+    gpg> quit
 
 ******************
 Exporting GPG keys
