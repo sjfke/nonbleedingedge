@@ -15,6 +15,90 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   23.01.2026
+    :collapsible: closed
+
+    **Devs begin to assess options for MySQL's future beyond Oracle**
+
+    *As Big Red's governance of the popular database comes into question, contributors to MySQL consider wresting control*
+
+    * `<https://www.theregister.com/2026/01/23/mysql_post_oracle/>`_
+
+    **VS Code tasks config file abused to run malicious code**
+
+    * `<https://devclass.com/2026/01/22/vs-code-tasks-config-file-abused-to-run-malicious-code/>`_
+
+    **Fortinet admits FortiGate SSO bug still exploitable despite December patch**
+
+    *Fix didn't quite do the job – attackers spotted logging in*
+
+    * `<https://www.theregister.com/2026/01/23/fortinet_fortigate_patch/>`_
+    * `<https://thehackernews.com/2026/01/fortinet-confirms-active-forticloud-sso.html>`_
+
+    **Microsoft 365 outage drags on for nearly 10 hours during bad night for North American infra**
+
+    *Down to 364.5 already: Redmond's crappy 2026 continues*
+
+    * `<https://www.theregister.com/2026/01/23/microsoft_365_outage/>`_
+    * `<https://techcrunch.com/2026/01/22/microsoft-365-hit-by-outage-preventing-access-to-emails-and-files/>`_
+
+    **Intel puts consumer chip production on back burner as datacenters make a run on Xeons**
+
+    *CFO David Zinsner says foundry capacity should improve starting in Q2*
+
+    * `<https://www.theregister.com/2026/01/23/intel_earnings_q4_2025/>`_
+
+    **Microsoft Flags Multi-Stage AitM Phishing and BEC Attacks Targeting Energy Firms**
+
+    * `<https://thehackernews.com/2026/01/microsoft-flags-multi-stage-aitm.html>`_
+
+    **Crims compromised energy firms' Microsoft accounts, sent 600 phishing emails**
+
+    *Logging in, not breaking in*
+
+    * `<https://www.theregister.com/2026/01/22/crims_compromised_energy_firms_microsoft/>`_
+
+    **EU Parliament Calls For Detachment From US Tech Giants**
+
+    * `<https://slashdot.org/story/26/01/22/2253207/eu-parliament-calls-for-detachment-from-us-tech-giants>`_
+
+    **Cursor used agents to write a browser, proving AI can write shoddy code at scale**
+
+    *Project kind-of worked but left a lot of messes for humans to clean up*
+
+    * `<https://www.theregister.com/2026/01/22/cursor_ai_wrote_a_browser/>`_
+
+    **Oracle, Michael Dell, named as investors in JV that will run TikTok's US operations**
+
+    *Big Red gets to store data, advise on security, and store the 'I'll watch just one more video' algo*
+
+    * `<https://www.theregister.com/2026/01/23/jv_announces_tiktok_us_acquisition/>`_
+
+    **PowerShell architect retires after decades at the prompt**
+
+    *After Microsoft, Google, and a long fight for automation, Jeffrey Snover hangs up his keyboard*
+
+    * `<https://www.theregister.com/2026/01/22/powershell_snover_retires/>`_
+
+    **Raspberry Pi flashes new branded USB drives that promise speedy performance**
+
+    *The aluminum sticks come in 128GB and 256GB variants*
+
+    * `<https://www.theregister.com/2026/01/22/raspberry_pi_usb_drive/>`_
+
+    **Phishing Attack Uses Stolen Credentials to Install LogMeIn RMM for Persistent Access**
+
+    * `<https://thehackernews.com/2026/01/phishing-attack-uses-stolen-credentials.html>`_
+
+    **New Osiris Ransomware Emerges as New Strain Using POORTRY Driver in BYOVD Attack**
+
+    * `<https://thehackernews.com/2026/01/new-osiris-ransomware-emerges-as-new.html>`_
+
+    **AI conference's papers contaminated by AI hallucinations**
+
+
+    * `<https://www.theregister.com/2026/01/22/neurips_papers_contaiminated_ai_hallucinations/>`_
+
 .. admonition::   22.01.2026
     :collapsible: closed
 
