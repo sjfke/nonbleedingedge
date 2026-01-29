@@ -15,6 +15,121 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   22.01.2026
+    :collapsible: closed
+
+    **Critical GNU InetUtils telnetd Flaw Lets Attackers Bypass Login and Gain Root Access**
+
+    * `<https://thehackernews.com/2026/01/critical-gnu-inetutils-telnetd-flaw.html>`_
+    * `<https://www.theregister.com/2026/01/22/root_telnet_bug/>`_
+
+    **Zoom and GitLab Release Security Updates Fixing RCE, DoS, and 2FA Bypass Flaws**
+
+    * `<https://thehackernews.com/2026/01/zoom-and-gitlab-release-security.html>`_
+
+    **Another week, another emergency patch as Cisco plugs Unified Comms zero-day**
+
+    *The critical-rated flaw leaves unpatched systems open to full takeover*
+
+    * `<https://www.theregister.com/2026/01/22/another_week_another_emergency_patch/>`_
+    * `<https://thehackernews.com/2026/01/cisco-fixes-actively-exploited-zero-day.html>`_
+
+    **SmarterMail Auth Bypass Exploited in the Wild Two Days After Patch Release**
+
+    * `<https://thehackernews.com/2026/01/smartermail-auth-bypass-exploited-in.html>`_
+
+    **Apple Reportedly Replacing Siri Interface With Actual Chatbot Experience For iOS 27**
+
+    * `<https://apple.slashdot.org/story/26/01/21/2333212/apple-reportedly-replacing-siri-interface-with-actual-chatbot-experience-for-ios-27>`_
+    * `<https://9to5mac.com/2026/01/21/apple-reportedly-replacing-siri-interface-with-actual-chatbot-experience-for-ios-27/>`_
+
+    **FortiGate firewalls hit by silent SSO intrusions and config theft**
+
+    *Admins say attackers are still getting in despite recent patches*
+
+    * `<https://www.theregister.com/2026/01/22/fortigate_firewalls_hit_by_silent/>`_
+    * `<https://thehackernews.com/2026/01/automated-fortigate-attacks-exploit.html>`_
+
+    **Malicious PyPI Package Impersonates SymPy, Deploys XMRig Miner on Linux Hosts**
+
+    * `<https://thehackernews.com/2026/01/malicious-pypi-package-impersonates.html>`_
+
+    **Notepad will now tell you all the ways Microsoft has enshittified it**
+
+    *Veteran text editor gets more AI enhancements while Paint will be able to generate coloring books*
+
+    * `<https://www.theregister.com/2026/01/22/microsoft_notepad_update/>`_
+
+    **Debian's FreedomBox Blend promises an easier home cloud**
+
+    *There are other home server, NAS, and media-streaming distros, but this aspires to much more*
+
+    * `<https://www.theregister.com/2026/01/22/debians_freedombox_blend/>`_
+
+    **Cohesity fortifies Identity Resilience for Active Directory and Entra ID**
+
+    * `<https://blocksandfiles.com/2026/01/21/cohesity-further-fortifies-identity-security/>`_
+
+    **Apps for boycotting American products surge to the top of the Danish App Store**
+
+    * `<https://techcrunch.com/2026/01/21/apps-for-boycotting-american-products-surge-to-the-top-of-the-danish-app-store/>`_
+
+    **Bank of England: Financial sector failing to implement basic cybersecurity controls**
+
+    *Mind the cyber gap – similar flaws highlighted multiple years in a row*
+
+    * `<https://www.theregister.com/2026/01/22/financial_sector_cyber_gap/>`_
+    * `<https://www.bankofengland.co.uk/financial-stability/operational-resilience-of-the-financial-sector/2025-cbest-thematic>`_
+
+    **Everest ransomware gang said to be sitting on mountain of Under Armour data**
+
+    *Have I Been Pwned reckons 72.7M customer accounts affected, sportswear firm remains silent*
+
+    * `<https://www.theregister.com/2026/01/21/under_armour_everest/>`_
+
+    **EU's Digital Networks Act sets telcos squabbling before the ink is dry**
+
+    *Comms harmonization plan already drawing fire from operators and Big Tech alike*
+
+    * `<https://www.theregister.com/2026/01/22/eu_digital_networks/>`_
+
+    **Europe's GDPR cops dished out €1.2B in fines last year as data breaches piled up**
+
+    *Regulators logged over 400 personal data breach notifications a day for first time since law came into force*
+
+    * `<https://www.theregister.com/2026/01/22/europes_gdpr_cops_dished_out/>`_
+
+    **SAP scores £275M award from UK tax collector – sans competition**
+
+    *System handling £800B must be SaaS and sovereign. Only German vendor fits the bill, says HMRC*
+
+    * `<https://www.theregister.com/2026/01/22/sap_275_million_award_from/>`_
+
+    **eBay updates legalese to ban AI-powered shop-bots**
+
+    *This establishment does not serve agents, says digital tat bazaar*
+
+    * `<https://www.theregister.com/2026/01/22/ebay_updates_legalese_to_ban/>`_
+
+    **Davos discussion mulls how to keep AI agents from running wild**
+
+    *Where the shiny new FOMO object collides with insider-threat reality*
+
+    * `<https://www.theregister.com/2026/01/21/davos_ai_agents_security/>`_
+
+    **ThreatsDay Bulletin: Pixel Zero-Click, Redis RCE, China C2s, RAT Ads, Crypto Scams & 15+ Stories**
+
+    * `<https://thehackernews.com/2026/01/threatsday-bulletin-pixel-zero-click.html>`_
+
+    **Under Armour says it’s ‘aware’ of data breach claims after 72M customer records were posted online**
+
+    * `<https://techcrunch.com/2026/01/22/under-armour-says-its-aware-of-data-breach-claims-after-72m-customer-records-were-posted-online/>`_
+    * `<https://www.theregister.com/2026/01/21/under_armour_everest/>`_
+
+    **North Korean PurpleBravo Campaign Targeted 3,136 IP Addresses via Fake Job Interviews**
+
+    * `<https://thehackernews.com/2026/01/north-korean-purplebravo-campaign.html>`_
+
 .. admonition::   21.01.2026
     :collapsible: closed
 
