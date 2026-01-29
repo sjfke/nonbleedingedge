@@ -15,6 +15,70 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   19.01.2026
+    :collapsible: closed
+
+    **Microsoft Forced to Issue Emergency Out-of-Band Windows Update**
+
+    * `<https://tech.slashdot.org/story/26/01/18/1932246/microsoft-forced-to-issue-emergency-out-of-band-windows-update>`_
+    * `<https://www.theregister.com/2026/01/19/windows_11_shutdown_bug/>`_
+
+    **Microsoft Intune changes to start biting unprepared admins**
+
+    *Mobile application management updates mean apps could soon be blocked*
+
+    * `<https://www.theregister.com/2026/01/19/microsoft_intune_deadline/>`_
+
+    **Hundreds Answer Europe's 'Public Call for Evidence' on an Open Digital Ecosystem Strategy**
+
+    * `<https://news.slashdot.org/story/26/01/18/2054259/hundreds-answer-europes-public-call-for-evidence-on-an-open-digital-ecosystem-strategy>`_
+    * `<https://www.helpnetsecurity.com/2026/01/09/eu-call-for-evidence-open-source/>`_
+
+    **Price, battery life, performance – that's how you sell PCs**
+
+    *Traditional considerations back in vogue. On-device AI? Not so much*
+
+    * `<https://www.theregister.com/2026/01/19/price_battery_life_performance_pc/>`_
+
+    **IMF Warns Global Economic Resilience at Risk if AI Falters**
+
+    * `<https://slashdot.org/story/26/01/19/1423221/imf-warns-global-economic-resilience-at-risk-if-ai-falters>`_
+
+    **New StackWarp Hardware Flaw Breaks AMD SEV-SNP Protections on Zen 1–5 CPUs**
+
+    * `<https://thehackernews.com/2026/01/new-stackwarp-hardware-flaw-breaks-amd.html>`_
+    * related `<https://www.theregister.com/2026/01/15/stackwarp_bug_amd_cpus/>`_
+
+    **CrashFix Chrome Extension Delivers ModeloRAT Using ClickFix-Style Browser Crash Lures**
+
+    * `<https://thehackernews.com/2026/01/crashfix-chrome-extension-delivers.html>`_
+
+    **Security Bug in StealC Malware Panel Let Researchers Spy on Threat Actor Operations**
+
+    * `<https://thehackernews.com/2026/01/security-bug-in-stealc-malware-panel.html>`_
+
+    **DevOps & SaaS Downtime: The High (and Hidden) Costs for Cloud-First Businesses**
+
+    * `<https://thehackernews.com/2026/01/high-costs-of-devops-saas-downtime.html>`_
+
+    **More US States are Putting Bitcoin on Public Balance Sheets**
+
+    * `<https://yro.slashdot.org/story/26/01/19/076259/more-us-states-are-putting-bitcoin-on-public-balance-sheets>`_
+
+    **Hiring at India’s Big Four outsourcers stalls, as AI seemingly makes an impact**
+
+    *Revenue growth is sluggish, too*
+
+    * `<https://www.theregister.com/2026/01/19/hcl_infosys_tcs_wipro_results/>`_
+
+    **Acer Sues Verizon, AT&T, and T-Mobile, Alleging Infringment on Acer's Cellular Networking Patents**
+
+    * `<https://yro.slashdot.org/story/26/01/18/006222/acer-sues-verizon-att-and-t-mobile-alleging-infringment-on-acers-cellular-networking-patents>`_
+
+    **Weekly Recap: Fortinet Exploits, RedLine Clipjack, NTLM Crack, Copilot Attack & More**
+
+    * `<https://thehackernews.com/2026/01/weekly-recap-fortinet-exploits-redline.html>`_
+
 .. admonition::   18.01.2026
     :collapsible: closed
 
