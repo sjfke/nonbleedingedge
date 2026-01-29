@@ -15,6 +15,85 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   21.01.2026
+    :collapsible: closed
+
+    **Microsoft admits Outlook might freeze when saving files to OneDrive**
+
+    *January update is the gift that keeps on giving*
+
+    * `<https://www.theregister.com/2026/01/21/outlook_freeze_onedrive/>`_
+
+    **Curl shutters bug bounty program to remove incentive for submitting AI slop**
+
+    *Maintainer hopes hackers send bug reports anyway, will keep shaming ‘silly' ones*
+
+    * `<https://www.theregister.com/2026/01/21/curl_ends_bug_bounty/>`_
+    * `<https://it.slashdot.org/story/26/01/20/2251253/curl-removes-bug-bounties>`_
+
+    **Cloudflare whacks WAF bypass bug that opened side door for attackers**
+
+    *ACME validation had a challenge-request hole*
+
+    * `<https://www.theregister.com/2026/01/20/cloudflare_fixes_acme_validation/>`_
+    * related `<https://thehackernews.com/2026/01/cloudflare-fixes-acme-validation-bug.html>`_
+
+    **CERT/CC Warns binary-parser Bug Allows Node.js Privilege-Level Code Execution**
+
+    * `<https://thehackernews.com/2026/01/certcc-warns-binary-parser-bug-allows.html>`_
+
+    **LastPass Warns of Fake Maintenance Messages Targeting Users' Master Passwords**
+
+    * `<https://thehackernews.com/2026/01/lastpass-warns-of-fake-maintenance.html>`_
+
+    **Mozilla starts offering RPMs of Firefox Nightly**
+
+    *More packaging options for the leading all-FOSS browser*
+
+    * `<https://www.theregister.com/2026/01/20/mozilla_offers_firefox_rpm/>`_
+
+    **Django 6.0 release notes**
+
+    * `<https://docs.djangoproject.com/en/6.0/releases/6.0/>`_
+    * `<https://versionlog.com/django/>`_
+
+    **Microsoft updates React Native for Windows. Developers ask, ‘Why not use MAUI?’**
+
+    * `<https://devclass.com/2026/01/20/microsoft-updates-react-native-for-windows-developers-ask-why-not-use-maui/>`_
+
+    **Chainlit AI Framework Flaws Enable Data Theft via File Read and SSRF Bugs**
+
+    * `<https://thehackernews.com/2026/01/chainlit-ai-framework-flaws-enable-data.html>`_
+
+    **VoidLink Linux Malware Framework Built with AI Assistance Reaches 88,000 Lines of Code**
+
+    * `<https://thehackernews.com/2026/01/voidlink-linux-malware-framework-built.html>`_
+    * `<https://www.theregister.com/2026/01/20/voidlink_ai_developed/>`_
+    * related `<https://www.theregister.com/2026/01/14/voidlink_linux_malware/>`_
+    * related `<https://thehackernews.com/2026/01/new-advanced-linux-voidlink-malware.html>`_
+
+    **Exposure Assessment Platforms Signal a Shift in Focus**
+
+    * `<https://thehackernews.com/2026/01/exposure-assessment-platforms-signal.html>`_
+
+    **MX Linux 25.1 brings back switchable init systems**
+
+    *Dislike systemd but occasionally need it for something? MX can help*
+
+    * `<https://www.theregister.com/2026/01/21/mx_25_1_init_diversity/>`_
+
+    **Adobe Acrobat now lets you edit files using prompts, generate podcast summaries**
+
+    * `<https://techcrunch.com/2026/01/21/adobe-acrobat-now-lets-you-edit-files-using-prompts-generate-podcast-summaries/>`_
+
+    **NYT Games’ Scrabble-like game Crossplay is a dream come true**
+
+    * `<https://techcrunch.com/2026/01/21/nyt-games-scrabble-like-game-crossplay-is-a-dream-come-true/>`_
+
+    **Consumers spent more on mobile apps than games in 2025, driven by AI app adoption**
+
+    * `<https://techcrunch.com/2026/01/21/consumers-spent-more-on-mobile-apps-than-games-in-2025-driven-by-ai-app-adoption/>`_
+
 .. admonition::   20.01.2026
     :collapsible: closed
 
