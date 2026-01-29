@@ -15,6 +15,118 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   15.01.2026
+    :collapsible: closed
+
+    **Windows App forgets how to log in with first security update of the year**
+
+    *January patch trips up Azure Virtual Desktop and Windows 365 authentication*
+
+    * `<https://www.theregister.com/2026/01/15/windows_app_credential_failures/>`_
+
+    **Code signing Windows apps may be easier and more secure with new Azure Artifact service**
+
+    * `<https://devclass.com/2026/01/14/code-signing-windows-apps-may-be-easier-and-more-secure-with-new-azure-artifact-service/>`_
+
+    **Wine 11 runs Windows apps in Linux and macOS better than ever**
+
+    *Transparently runs 16, 32, and 64-bit Windows apps, but still doesn't use the Microsoft store.*
+
+    * `<https://www.theregister.com/2026/01/15/wine_11_arrives_faster_and/>`_
+    * related `<https://tech.slashdot.org/story/26/01/13/2035229/wine-110-released>`_
+
+    **AWS flips switch on Euro cloud as customers fret about digital sovereignty**
+
+    *EU-only ops, German subsidiaries, and a pinky promise your data won't end up in Uncle Sam's hands*
+
+    * `<https://www.theregister.com/2026/01/15/aws_european_sovereign_cloud/>`_
+
+    **New Linux malware targets the cloud, steals creds, and then vanishes**
+
+    *Cloud-native, 37 plugins … an attacker's dream*
+
+    * `<https://www.theregister.com/2026/01/14/voidlink_linux_malware/>`_
+    * related `<https://thehackernews.com/2026/01/new-advanced-linux-voidlink-malware.html>`_
+
+    **CrowdStrike shareholders lose battle to recoup losses from 2024 outage**
+
+    *Investors didn't present a valid claim, says judge, but they're welcome to try again*
+
+    * `<https://www.theregister.com/2026/01/14/crowdstrike_shareholders_lawsuit_dismiss/>`_
+
+    **France fines telcos €42M for sub-par security prior to 24M customer breach**
+
+    *Three major GDPR violations, including a lack of basic security controls, lead to hefty dent in profits*
+
+    * `<https://www.theregister.com/2026/01/14/france_fines_free_free_mobile/>`_
+
+    **Dell Tells Staff To Get Ready For the 'Biggest Transformation in Company History'**
+
+    * `<https://tech.slashdot.org/story/26/01/14/199210/dell-tells-staff-to-get-ready-for-the-biggest-transformation-in-company-history>`_
+
+    **PowerStore stores more, has better file ops and resiliency power**
+
+    * `<https://blocksandfiles.com/2026/01/13/powerstore-stores-more-has-better-file-ops-and-resiliency-power/>`_
+
+    **Dell wants £10m+ from VMware if Tesco case goes against it**
+
+    *Retail giant's disty, reseller, and vendor all say they can't and won't sell*
+
+    * `<https://www.theregister.com/2026/01/15/dell_vmware_claim_tesco_case/>`_
+
+    **Palo Alto Fixes GlobalProtect DoS Flaw That Can Crash Firewalls Without Login**
+
+    * `<https://thehackernews.com/2026/01/palo-alto-fixes-globalprotect-dos-flaw.html>`_
+
+    **Veeam’s Chief Product Officer resigns**
+
+    * `<https://blocksandfiles.com/2026/01/14/veeams-chief-product-officer-resigns/>`_
+
+    **Veeam confirms acquisition of Object First**
+
+    * `<https://blocksandfiles.com/2026/01/14/object-first-bought-by-veeam/>`_
+
+    **App downloads declined again in 2025, but consumer spending soared to nearly $156B**
+
+    * `<https://techcrunch.com/2026/01/14/app-downloads-declined-again-in-2025-but-consumer-spending-soared-to-nearly-156b/>`_
+
+    **Raspberry Pi 5 gets LLM smarts with AI HAT+ 2**
+
+
+    * `<https://www.theregister.com/2026/01/15/pi_5_ai_hat_2/>`_
+
+    **Budget smartphones will be hit hardest as memory prices rise**
+
+    *When margins are this tight, mergers might follow*
+
+    * `<https://www.theregister.com/2026/01/15/memory_crisis_smartphones/>`_
+
+    **UK Police Blame Microsoft Copilot for Intelligence Mistake**
+
+    * `<https://it.slashdot.org/story/26/01/14/1519213/uk-police-blame-microsoft-copilot-for-intelligence-mistake>`_
+
+    **Microsoft taps UK courts to dismantle cybercrime host RedVDS**
+
+    *Redmond says cheap virtual desktops powered a global wave of phishing and fraud*
+
+    * `<https://www.theregister.com/2026/01/15/microsoft_uk_courts_redvds/>`_
+
+    **Digg launches its new Reddit rival to the public**
+
+    * `<https://techcrunch.com/2026/01/14/digg-launches-its-new-reddit-rival-to-the-public/>`_
+
+    **Researchers Null-Route Over 550 Kimwolf and Aisuru Botnet Command Servers**
+
+    * `<https://thehackernews.com/2026/01/kimwolf-botnet-infected-over-2-million.html>`_
+
+    **ThreatsDay Bulletin: AI Voice Cloning Exploit, Wi-Fi Kill Switch, PLC Vulns, and 14 More Stories**
+
+    * `<https://thehackernews.com/2026/01/threatsday-bulletin-ai-voice-cloning.html>`_
+
+    **Widespread Verizon Outage Prompts Emergency Alerts in Washington, New York City**
+
+    * `<https://tech.slashdot.org/story/26/01/14/1918256/widespread-verizon-outage-prompts-emergency-alerts-in-washington-new-york-city>`_
+
 .. admonition::   14.01.2026
     :collapsible: closed
 
