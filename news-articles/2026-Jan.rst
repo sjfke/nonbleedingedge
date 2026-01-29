@@ -15,6 +15,94 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   16.01.2026
+    :collapsible: closed
+
+    **AWS CodeBuild Misconfiguration Exposed GitHub Repos to Potential Supply Chain Attacks**
+
+    * `<https://thehackernews.com/2026/01/aws-codebuild-misconfiguration-exposed.html>`_
+    * `<https://www.theregister.com/2026/01/15/codebuild_flaw_aws/>`_
+
+    **Cisco Patches Zero-Day RCE Exploited by China-Linked APT in Secure Email Gateways**
+
+    * `<https://thehackernews.com/2026/01/cisco-patches-zero-day-rce-exploited-by.html>`_
+    * `<https://www.theregister.com/2026/01/15/cisco_fixes_cve_2025_20393/>`_
+
+    **Oracle Trying To Lure Workers To Nashville For New 'Global' HQ**
+
+    * `<https://developers.slashdot.org/story/26/01/15/2114210/oracle-trying-to-lure-workers-to-nashville-for-new-global-hq>`_
+
+    **Bond, debt bond: Investors shaken, not stirred by Oracle’s borrowing spree sue Big Red**
+
+    *Investors upset that company failed to inform them might need to take out even more debt.*
+
+    * `<https://www.theregister.com/2026/01/15/oracle_faces_class_action_over/>`_
+
+    **Apple is Fighting for TSMC Capacity as Nvidia Takes Center Stage**
+
+    * `<https://apple.slashdot.org/story/26/01/15/166213/apple-is-fighting-for-tsmc-capacity-as-nvidia-takes-center-stage>`_
+    * `<https://www.culpium.com/p/exclusiveapple-is-fighting-for-tsmc>`_
+
+    **Vibe coded applications full of security blunders**
+
+    * `<https://devclass.com/2026/01/15/vibe-coded-applications-full-of-security-blunders/>`_
+
+    **Flipping one bit leaves AMD CPUs open to VM vuln**
+
+    *Fix landed in July, but OEM firmware updates are required*
+
+    * `<https://www.theregister.com/2026/01/15/stackwarp_bug_amd_cpus/>`_
+
+    **RondoDox botnet linked to large-scale exploit of critical HPE OneView bug**
+
+    *Check Point observes 40K+ attack attempts in our hours, with government organizations under fire*
+
+    * `<https://www.theregister.com/2026/01/16/rondodox_botnet_hpe_oneview/>`_
+
+    **Wikipedia Signs AI Licensing Deals On Its 25th Birthday**
+
+    * `<https://news.slashdot.org/story/26/01/15/1516207/wikipedia-signs-ai-licensing-deals-on-its-25th-birthday>`_
+    * `<https://techcrunch.com/2026/01/15/wikimedia-foundation-announces-new-ai-partnerships-with-amazon-meta-microsoft-perplexity-and-others/>`_
+
+    **Microsoft is Closing Its Employee Library and Cutting Back on Subscriptions**
+
+    * `<https://news.slashdot.org/story/26/01/15/1754223/microsoft-is-closing-its-employee-library-and-cutting-back-on-subscriptions>`_
+
+    **Apple, Google pulled into Grok controversy as campaigners demand app store takedown**
+
+    *The chatbot's challenges no longer just Elon Musk’s problem, as campaigners call on tech giants to step in*
+
+    * `<https://www.theregister.com/2026/01/15/apple_google_pulled_into_grok/>`_
+
+    **Bankrupt scooter startup left one private key to rule them all**
+
+    *Owner reverse-engineered his ride, revealing authentication was never properly individualized*
+
+    * `<https://www.theregister.com/2026/01/16/bankrupt_scooter_startup_key/>`_
+
+    **Storage News Ticker – 15 January**
+
+    * `<https://blocksandfiles.com/2026/01/15/storage-news-ticker-15-january/>`_
+
+    **Probably not the best security in the world: Carlsberg wristbands spill visitor pics**
+
+    *Researcher shows how anyone can access Copenhagen experience attendees' names, videos*
+
+    * `<https://www.theregister.com/2026/01/16/carlsberg_experience_vulnerability/>`_
+
+    **Chinese spies used Maduro's capture as a lure to phish US govt agencies**
+
+    *What's next for Venezuela? Click on the file and see*
+
+    * `<https://www.theregister.com/2026/01/15/chinese_spies_used_maduros_capture/>`_
+    * `<https://thehackernews.com/2026/01/lotuslite-backdoor-targets-us-policy.html>`_
+
+    **Over half of AI projects are shelved due to complex infrastructure**
+
+    *The answer seems to be educating the enterprise workforce, and creating smarter use cases*
+
+    * `<https://www.theregister.com/2026/01/15/half_ai_projects_shelved/>`_
+
 .. admonition::   15.01.2026
     :collapsible: closed
 
