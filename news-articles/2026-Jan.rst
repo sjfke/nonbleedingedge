@@ -15,6 +15,70 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   20.01.2026
+    :collapsible: closed
+
+    **jQuery 4.0 released, first major version since 2016**
+
+    * `<https://devclass.com/2026/01/19/jquery-4-0-released-first-major-version-since-2016/>`_
+    * `<https://blog.jquery.com/2026/01/17/jquery-4-0-0/>`_
+
+    **Cloudflare Fixes ACME Validation Bug Allowing WAF Bypass to Origin Servers**
+
+    * `<https://thehackernews.com/2026/01/cloudflare-fixes-acme-validation-bug.html>`_
+
+    **Three Flaws in Anthropic MCP Git Server Enable File Access and Code Execution**
+
+    * `<https://thehackernews.com/2026/01/three-flaws-in-anthropic-mcp-git-server.html>`_
+    * `<https://www.theregister.com/2026/01/20/anthropic_prompt_injection_flaws/>`_
+
+    **Google Gemini Prompt Injection Flaw Exposed Private Calendar Data via Malicious Invites**
+
+    * `<https://thehackernews.com/2026/01/google-gemini-prompt-injection-flaw.html>`_
+
+    **Rackspace Customers Grapple With 'Devastating' Email Hosting Price Hike**
+
+    * `<https://it.slashdot.org/story/26/01/19/1955239/rackspace-customers-grapple-with-devastating-email-hosting-price-hike>`_
+    * `<https://www.theregister.com/2026/01/20/rackspace_price_changes/>`_
+
+    **Asus Confirms It Won't Launch Phones in 2026, May Leave Android Altogether**
+
+    * `<https://mobile.slashdot.org/story/26/01/19/1933224/asus-confirms-it-wont-launch-phones-in-2026-may-leave-android-altogether>`_
+
+    **Evelyn Stealer Malware Abuses VS Code Extensions to Steal Developer Credentials and Crypto**
+
+    * `<https://thehackernews.com/2026/01/evelyn-stealer-malware-abuses-vs-code.html>`_
+
+    **Windows 11, not AI, kick-started the PC upgrade cycle**
+
+    *Corporate IT refreshed hardware to stay supported, not chase new features*
+
+    * `<https://www.theregister.com/2026/01/20/windows_11_pc_refresh/>`_
+    * related `<https://www.theregister.com/2026/01/19/price_battery_life_performance_pc/>`_
+
+    **Why Secrets in JavaScript Bundles are Still Being Missed**
+
+    * `<https://thehackernews.com/2026/01/why-secrets-in-javascript-bundles-are.html>`_
+
+    **Hackers Use LinkedIn Messages to Spread RAT Malware Through DLL Sideloading**
+
+    * `<https://thehackernews.com/2026/01/hackers-use-linkedin-messages-to-spread.html>`_
+    * related `<https://thehackernews.com/2026/01/lotuslite-backdoor-targets-us-policy.html>`_
+
+    **Well, there goes the metaverse!**
+
+    * `<https://techcrunch.com/2026/01/19/well-there-goes-the-metaverse/>`_
+
+    **Majority of CEOs report zero payoff from AI splurge**
+
+    *PwC survey finds more than half of 4,500+ biz leaders see no revenue growth nor cost savings*
+
+    * `<https://www.theregister.com/2026/01/20/pwc_ai_ceo_survey/>`_
+
+    **Tudou Guarantee Marketplace Halts Telegram Transactions After Processing Over $12 Billion**
+
+    * `<https://thehackernews.com/2026/01/tudou-guarantee-marketplace-halts.html>`_
+
 .. admonition::   19.01.2026
     :collapsible: closed
 
