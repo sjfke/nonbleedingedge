@@ -15,6 +15,78 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   26.01.2026
+    :collapsible: closed
+
+    **Microsoft rushes out another fix for cloud storage after January update**
+
+
+    * `<https://www.theregister.com/2026/01/26/microsoft_outofband_patch/>`_
+
+    **Microsoft probes Windows 11 boot failures tied to January security updates**
+
+    *Some machines are failing to start after security updates, prompting yet another Microsoft investigation*
+
+    * `<https://www.theregister.com/2026/01/26/microsoft_probes_windows_11_boot/>`_
+
+    **Surrender as a service: Microsoft unlocks BitLocker for feds**
+
+    *If you're serious about encryption, keep control of your encryption keys*
+
+    * `<https://www.theregister.com/2026/01/23/surrender_as_a_service_microsoft/>`_
+
+    **Sandia boffins let three AI agents loose in the lab. Science, not chaos, ensued**
+
+    *Researchers demonstrate fourfold improvement to LED steering results after enlisting the help of some good old-fashion AI*
+
+    * `<https://www.theregister.com/2026/01/26/sandia_ai_agents_feature/>`_
+
+    **Apple will reportedly unveil its Gemini-powered Siri assistant in February**
+
+    * `<https://techcrunch.com/2026/01/25/apple-will-reportedly-unveil-its-gemini-powered-siri-assistant-in-february/>`_
+
+    **Google Discover Replaces News Headlines With Sometimes Inaccurate AI-Generated Alternatives**
+
+    * `<https://news.slashdot.org/story/26/01/26/001230/google-discover-replaces-news-headlines-with-sometimes-inaccurate-ai-generated-alternatives>`_
+
+    **New Linux/Android 2-in-1 Tablet 'Open Slate' Announced by Brax Technologies**
+
+    * `<https://news.slashdot.org/story/26/01/25/2226239/new-linuxandroid-2-in-1-tablet-open-slate-announced-by-brax-technologies>`_
+    * `<https://community.braxtech.net/t/introducing-open-slate-our-next-community-driven-project/4043>`_
+
+    **The Android 'NexPhone': Linux on Demand, Dual-Boots Into Windows 11 - and Transforms Into a Workstation**
+
+    * `<https://mobile.slashdot.org/story/26/01/25/060240/the-android-nexphone-linux-on-demand-dual-boots-into-windows-11---and-transforms-into-a-workstation>`_
+    * `<https://itsfoss.com/news/nexphone-returns/>`_
+
+    **KDE's 'Plasma Login Manager' Stops Supporting FreeBSD - Because Systemd**
+
+    * `<https://bsd.slashdot.org/story/26/01/26/0135254/kdes-plasma-login-manager-stops-supporting-freebsd---because-systemd>`_
+
+    **Konni Hackers Deploy AI-Generated PowerShell Backdoor Against Blockchain Developers**
+
+    * `<https://thehackernews.com/2026/01/konni-hackers-deploy-ai-generated.html>`_
+
+    **Emmabuntüs DE 6: A newbie-friendly Linux to help those in need**
+
+    *A distro aimed at helping people, reducing e-waste – and helping a charity, too*
+
+    * `<https://www.theregister.com/2026/01/25/emmabuntus_6_charitable_linux/>`_
+
+    **Oracle AI sailed the world on Royal Navy flagship via cloud-at-the-edge kit**
+
+    *Big Red says 'sovereign' platform supports decision-making and operational learning at sea*
+
+    * `<https://www.theregister.com/2026/01/26/royal_navy_oracle_ai/>`_
+
+    **Is Google Prioritizing YouTube and X Over News Publishers on Discover?**
+
+    * `<https://news.slashdot.org/story/26/01/26/008257/is-google-prioritizing-youtube-and-x-over-news-publishers-on-discover>`_
+
+    **Weekly Recap: Firewall Flaws, AI-Built Malware, Browser Traps, Critical CVEs & More**
+
+    * `<https://thehackernews.com/2026/01/weekly-recap-firewall-flaws-ai-built.html>`_
+
 .. admonition::   25.01.2026
     :collapsible: closed
 
