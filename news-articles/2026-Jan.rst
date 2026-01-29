@@ -8,6 +8,32 @@ A human curated list of interesting technical news articles, hopefully with no h
 
 To display click the date ``DD.MM.YYYY`` `admonition <https://dictionary.cambridge.org/us/dictionary/english/admonition>`_
 
+.. admonition::   11.01.2026
+    :collapsible: closed
+
+    **C# (and C) Grew in Popularity in 2025, Says TIOBE**
+
+    * `<https://developers.slashdot.org/story/26/01/11/0532214/c-and-c-grew-in-popularity-in-2025-says-tiobe>`_
+
+    **Four More Tech Bloggers Are Switching to Linux**
+
+    * `<https://linux.slashdot.org/story/26/01/10/2231218/four-more-tech-bloggers-are-switching-to-linux>`_
+    * `<https://www.escapistmagazine.com/news-i-put-a-bullet-in-windows-and-now-use-linux-and-you-can-too/>`_
+
+    **Brussels plots open source push to pry Europe off Big Tech**
+
+    *Call for Evidence casts FOSS as a way to break US dependence*
+
+    * `<https://www.theregister.com/2026/01/11/eu_open_source_consultation/>`_
+
+    **Europol Arrests 34 Black Axe Members in Spain Over €5.9M Fraud and Organized Crime**
+
+    * `<https://thehackernews.com/2026/01/europol-arrests-34-black-axe-members-in.html>`_
+
+    **MuddyWater Launches RustyWater RAT via Spear-Phishing Across Middle East Sectors**
+
+    * `<https://thehackernews.com/2026/01/muddywater-launches-rustywater-rat-via.html>`_
+
 .. admonition::   10.01.2026
     :collapsible: closed
 
