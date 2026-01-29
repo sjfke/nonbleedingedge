@@ -8,6 +8,107 @@ A human curated list of interesting technical news articles, hopefully with no h
 
 To display click the date ``DD.MM.YYYY`` `admonition <https://dictionary.cambridge.org/us/dictionary/english/admonition>`_
 
+.. admonition::   12.01.2026
+    :collapsible: closed
+
+    **Microsoft teases targeted Copilot removal for admins**
+
+    *Yes, you can get rid of it – assuming nobody's looked at it in 28 days*
+
+    * `<https://www.theregister.com/2026/01/12/microsoft_copilot_removal/>`_
+
+    **Apple Partners With Google on Siri Upgrade, Declares Gemini 'Most Capable Foundation'**
+
+    * `<https://apple.slashdot.org/story/26/01/12/166200/apple-partners-with-google-on-siri-upgrade-declares-gemini-most-capable-foundation>`_
+    * `<https://www.theregister.com/2026/01/12/apple_taps_google_gemini_siri/>`_
+    * `<https://techcrunch.com/2026/01/12/googles-gemini-to-power-apples-ai-features-like-siri/>`_
+
+    **Gentoo Linux Plans Migration from GitHub Over 'Attempts to Force Copilot Usage for Our Repositories'**
+
+    * `<https://linux.slashdot.org/story/26/01/11/1926219/gentoo-linux-plans-migration-from-github-over-attempts-to-force-copilot-usage-for-our-repositories>`_
+    * `<https://www.gentoo.org/news/2026/01/05/new-year.html>`_
+
+    **n8n Supply Chain Attack Abuses Community Nodes to Steal OAuth Tokens**
+
+    * `<https://thehackernews.com/2026/01/n8n-supply-chain-attack-abuses.html>`_
+    * related `<https://thehackernews.com/2026/01/critical-n8n-vulnerability-cvss-100.html>`_
+    * related `<https://thehackernews.com/2026/01/new-n8n-vulnerability-99-cvss-lets.html>`_
+
+    **Why It Is Difficult To Resize Windows on MacOS 26**
+
+    * `<https://apple.slashdot.org/story/26/01/12/176259/why-it-is-difficult-to-resize-windows-on-macos-26>`_
+    * `<https://daringfireball.net/2026/01/resizing_windows_macos_26>`_
+
+    **Don’t bother with the retailer’s website, says Google: Gemini can shop for you**
+
+    *You can check out anytime you like, but please don’t ever leave*
+
+    * `<https://www.theregister.com/2026/01/12/google_gemini_agentic_ai_shopping_protocol/>`_
+    * `<https://techcrunch.com/2026/01/11/google-announces-a-new-protocol-to-facilitate-commerce-using-ai-agents/>`_
+
+    **Instagram says there’s been ‘no breach’ despite password reset requests**
+
+    * `<https://techcrunch.com/2026/01/11/instagram-says-theres-been-no-breach-despite-password-reset-requests/>`_
+
+    **Cloudflare CEO threatens to make the Winter Olympics a political football after Italy slugs it with a fine**
+
+    *Labels Rome's comms regulator ‘a quasi-judicial body’ that works on behalf of ‘shadowy, European media cabal’*
+
+    * `<https://www.theregister.com/2026/01/12/cloudflare_vs_italy/>`_
+    * `<https://tech.slashdot.org/story/26/01/12/1423251/cloudflare-threatens-italy-exit-after-163m-fine-for-refusing-piracy-blocks>`_
+
+    **PC shipments set to hit the buffers as AI guzzles memory**
+
+    *High-margin infrastructure kit takes precedence, leaving laptops and desktops wanting*
+
+    * `<https://www.theregister.com/2026/01/12/memory_shortages_price_hikes/>`_
+
+    **Businesses in 2026: Maybe we should finally look into that AI security stuff**
+
+    *Survey finds security checks nearly doubled in a year as leaders wise up*
+
+    * `<https://www.theregister.com/2026/01/12/ai_security_wef_survey/>`_
+
+    **Researchers Uncover Service Providers Fueling Industrial-Scale Pig Butchering Fraud**
+
+    * `<https://thehackernews.com/2026/01/researchers-uncover-service-providers.html>`_
+
+    **Microsoft euthanizes ancient deployment toolkit**
+
+    *Immediate retirement for freebie automation platform*
+
+    * `<https://www.theregister.com/2026/01/12/microsoft_deployment_platform/>`_
+
+    **Developers have made $550B on Apple’s App Store since 2008**
+
+    * `<https://techcrunch.com/2026/01/12/developers-have-made-550-billion-on-apples-app-store-since-2008/>`_
+
+    **GoBruteforcer Botnet Targets Crypto Project Databases by Exploiting Weak Credentials**
+
+    * `<https://thehackernews.com/2026/01/gobruteforcer-botnet-targets-crypto.html>`_
+
+    **Linux Hit a New All-Time High for Steam Market Share in December**
+
+    * `<https://linux.slashdot.org/story/26/01/12/0411249/linux-hit-a-new-all-time-high-for-steam-market-share-in-december>`_
+
+    **IceWM soldiers on while Budgie jumps the Wayland ship**
+
+    *Two new Linux GUIs – plus Phoenix, an experimental new X server in Zig*
+
+    * `<https://www.theregister.com/2026/01/12/icewm_budgie_x_server/>`_
+
+    **Weekly Recap: AI Automation Exploits, Telecom Espionage, Prompt Poaching & More**
+
+    * `<https://thehackernews.com/2026/01/weekly-recap-ai-automation-exploits.html>`_
+
+    **US President Calls for 10% Credit Card Interest Cap, Banks Push Back**
+
+    * `<https://news.slashdot.org/story/26/01/12/152240/us-president-calls-for-10-credit-card-interest-cap-banks-push-back>`_
+
+    **Fintech firm Betterment confirms data breach after hackers send fake crypto scam notification to users**
+
+    * `<https://techcrunch.com/2026/01/12/fintech-firm-betterment-confirms-data-breach-after-hackers-send-fake-crypto-scam-notification-to-users/>`_
+
 .. admonition::   11.01.2026
     :collapsible: closed
 
