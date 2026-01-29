@@ -15,6 +15,29 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   18.01.2026
+    :collapsible: closed
+
+    **To Pressure Security Professionals, Mandiant Releases Database That Cracks Weak NTLM Passwords in 12 Hours**
+
+    * `<https://it.slashdot.org/story/26/01/17/194230/to-pressure-security-professionals-mandiant-releases-database-that-cracks-weak-ntlm-passwords-in-12-hours>`_
+
+
+    * `<https://news.slashdot.org/story/26/01/18/0556221/53-of-crypto-tokens-launched-since-2021-have-failed-most-in-2025>`_
+
+    **T2/Linux Brings a Flagship KDE Plasma Linux Desktop to RISC-V and ARM64**
+
+    * `<https://linux.slashdot.org/story/26/01/17/0610216/t2linux-brings-a-flagship-kde-plasma-linux-desktop-to-risc-v-and-arm64>`_
+    * `<https://forum.gnoppix.org/t/t2-linux-brings-a-flagship-kde-plasma-linux-desktop-to-risc-v-and-arm64/4088>`_
+
+    **Nearly 5 Million Accounts Removed Under Australia's New Social Media Ban**
+
+    * `<https://tech.slashdot.org/story/26/01/17/0440228/nearly-5-million-accounts-removed-under-australias-new-social-media-ban>`_
+
+    **Storage news ticker – 16 January 2026**
+
+    * `<https://blocksandfiles.com/2026/01/16/storage-news-ticker-16-january-2026/>`_
+
 .. admonition::   17.01.2026
     :collapsible: closed
 
