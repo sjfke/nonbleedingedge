@@ -1,12 +1,20 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/headlines/20251231.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/headlines/2025-Dec.rst
 
 #############
 December 2025
 #############
 
-*************
-News Articles
-*************
+A human curated list of interesting technical news articles, hopefully with no hallucinations |:laughing:|
+
+Display and Searching
+=====================
+
+To display click the date ``DD.MM.YYYY`` title.
+
+At the moment, ``site search`` will point out the pages of interest, which are organized ``per month`` to keep the numer of files
+needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
+articles in that month. *A better solution is needed.*
+
 
 Hong Kong’s newest anti-scam technology is over-the-counter banking
 ===================================================================
