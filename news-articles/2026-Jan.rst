@@ -15,6 +15,142 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   14.01.2026
+    :collapsible: closed
+
+    **Microsoft Fixes 114 Windows Flaws in January 2026 Patch, One Actively Exploited**
+
+    * `<https://thehackernews.com/2026/01/microsoft-fixes-114-windows-flaws-in.html>`_
+    * `<https://www.theregister.com/2026/01/14/patch_tuesday_january_2026/>`_
+
+    **Firefox 147 brings GPU boost, tidier tabs, and video that follows you around**
+
+    *Latest update focuses on hardware acceleration, security tightening, and a handful of quality-of-life tweaks*
+
+    * `<https://www.theregister.com/2026/01/14/firefox_and_tbird_147/>`_
+
+    **Hasta la vista! Microsoft finally ends extended updates for ancient Windows version**
+
+    *Support expires for Windows Server 2008, and the codebase released to manufacturing in 2006*
+
+    * `<https://www.theregister.com/2026/01/14/microsoft_calls_time_on_the/>`_
+
+    **Never-Before-Seen Linux Malware Is 'Far More Advanced Than Typical'**
+
+    * `<https://it.slashdot.org/story/26/01/14/0238210/never-before-seen-linux-malware-is-far-more-advanced-than-typical>`_
+    * related `<https://thehackernews.com/2026/01/new-advanced-linux-voidlink-malware.html>`_
+
+    **Malicious Chrome Extension Steals MEXC API Keys by Masquerading as Trading Tool**
+
+    * `<https://thehackernews.com/2026/01/malicious-chrome-extension-steals-mexc.html>`_
+
+    **Europe is Rediscovering the Virtues of Cash**
+
+    * `<https://news.slashdot.org/story/26/01/14/1436212/europe-is-rediscovering-the-virtues-of-cash>`_
+
+    **Critical Node.js Vulnerability Can Cause Server Crashes via async_hooks Stack Overflow**
+
+    * `<https://thehackernews.com/2026/01/critical-nodejs-vulnerability-can-cause.html>`_
+
+    **Fortinet Fixes Critical FortiSIEM Flaw Allowing Unauthenticated Remote Code Execution**
+
+    * `<https://thehackernews.com/2026/01/fortinet-fixes-critical-fortisiem-flaw.html>`_
+
+    **Hackers Exploit c-ares DLL Side-Loading to Bypass Security and Deploy Malware**
+
+    * `<https://thehackernews.com/2026/01/hackers-exploit-c-ares-dll-side-loading.html>`_
+
+    **Global Tech-Sector Layoffs Surpass 244,000 In 2025**
+
+    * `<https://tech.slashdot.org/story/26/01/13/2046204/global-tech-sector-layoffs-surpass-244000-in-2025>`_
+
+    **Meta Closes Three VR Studios As Part of Its Metaverse Cuts**
+
+    * `<https://games.slashdot.org/story/26/01/13/2356235/meta-closes-three-vr-studios-as-part-of-its-metaverse-cuts>`_
+    * `<https://techcrunch.com/2026/01/14/meta-to-reportedly-lay-off-10-of-reality-labs-staff/>`_
+    * related `<https://tech.slashdot.org/story/26/01/13/1443226/meta-begins-job-cuts-as-it-shifts-from-metaverse-to-ai-devices>`_
+
+    **Buy servers now or cry later: DRAM price spike threatens infrastructure budgets**
+
+    *Component up 63% since September, more pricey memory coming to a supply chain near you*
+
+    * `<https://www.theregister.com/2026/01/14/dram_infrastructure_costs/>`_
+    * related `<https://www.theregister.com/2026/01/13/idc_pc_sales_memory_shortage_effects/>`_
+
+    **Wine 11.0 Released**
+
+    * `<https://tech.slashdot.org/story/26/01/13/2035229/wine-110-released>`_
+
+    **Open source MySQL repository has no commits in more than three months**
+
+    * `<https://devclass.com/2026/01/13/open-source-mysql-repository-has-no-commits-in-more-than-three-months/>`_
+
+    **JPEG-XL Image Support Returns To Latest Chrome/Chromium Code**
+
+    * `<https://slashdot.org/story/26/01/13/2026229/jpeg-xl-image-support-returns-to-latest-chromechromium-code>`_
+
+    **Apple Bundles Creative Apps Into a Single Subscription**
+
+    * `<https://tech.slashdot.org/story/26/01/13/2019228/apple-bundles-creative-apps-into-a-single-subscription>`_
+    * related `<https://techcrunch.com/2026/01/13/apple-launches-creator-studio-bundle-of-apps-for-12-99-per-month/>`_
+
+    **Popular Python libraries used in Hugging Face models subject to poisoned metadata attack**
+
+    *The open-source libraries were created by Salesforce, Nvidia, and Apple with a Swiss group*
+
+    * `<https://www.theregister.com/2026/01/13/ai_python_library_bugs_allow/>`_
+
+    **Cyber-stricken Belgian hospitals refuse ambulances, transfer critical patients**
+
+    *Attack enters second day with major disruption to healthcare provision*
+
+    * `<https://www.theregister.com/2026/01/14/belgium_hospital_cyberattack/>`_
+
+    **Eurail passengers taken for a ride as data breach spills passports, bank details**
+
+    *Travel biz tells customers to change passwords beyond its own services*
+
+    * `<https://www.theregister.com/2026/01/14/eurail_breach/>`_
+
+    **Spanish power giant sparks breach probe amid claims of massive data grab**
+
+    *Endesa says payment info stolen after alleged crook boasted of 1 TB-plus haul*
+
+    * `<https://www.theregister.com/2026/01/14/endesa_breach/>`_
+
+    **Anthropic Invests $1.5 Million in the Python Software Foundation and Open Source Security**
+
+    * `<https://developers.slashdot.org/story/26/01/13/1613232/anthropic-invests-15-million-in-the-python-software-foundation-and-open-source-security>`_
+
+    **Anthropic Claude wants to be your helpful colleague, always looking over your shoulder**
+
+    *Just be careful not to entrust the AI model with your sensitive data*
+
+    * `<https://www.theregister.com/2026/01/13/anthropic_previews_claude_cowork_for/>`_
+
+    **A consumer watchdog issued a warning about Google’s AI agent shopping protocol — Google says she’s wrong**
+
+    * `<https://techcrunch.com/2026/01/13/a-consumer-watchdog-issued-a-warning-about-googles-ai-agent-shopping-protocol-google-says-shes-wrong/>`_
+
+    **AI's $3T infrastructure binge continues despite lack of clear profits**
+
+    *Investment in datacenters to peak by 2029, place your bets please*
+
+    * `<https://www.theregister.com/2026/01/14/ai_investment/>`_
+
+    **Fly.io introduces Sprites: lightweight, persistent VMs to isolate agentic AI**
+
+    * `<https://devclass.com/2026/01/13/fly-io-introduces-sprites-lightweight-persistent-vms-to-isolate-agentic-ai/>`_
+
+    **AI Agents Are Becoming Privilege Escalation Paths**
+
+    * `<https://thehackernews.com/2026/01/ai-agents-are-becoming-privilege.html>`_
+
+
+    **New crooks on the block get crafty with blockchain to evade defenses**
+
+    * `<https://www.theregister.com/2026/01/14/deadlock_ransomware_smart_contracts/>`_
+
 .. admonition::   13.01.2026
     :collapsible: closed
 
