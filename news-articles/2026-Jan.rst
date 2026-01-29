@@ -6,7 +6,14 @@ January 2026
 
 A human curated list of interesting technical news articles, hopefully with no hallucinations |:laughing:|
 
-To display click the date ``DD.MM.YYYY`` `admonition <https://dictionary.cambridge.org/us/dictionary/english/admonition>`_
+Display and Searching
+=====================
+
+To display click the date ``DD.MM.YYYY`` title.
+
+At the moment, ``site search`` will point out the pages of interest, which are organized ``per month`` to keep the numer of files
+needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
+articles in that month. *A better solution is needed.*
 
 .. admonition::   12.01.2026
     :collapsible: closed
