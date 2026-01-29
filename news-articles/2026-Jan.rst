@@ -1,4 +1,4 @@
-:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/headlines/20260103.rst
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/headlines/2026-Jan.rst
 
 ############
 January 2026
@@ -14,6 +14,112 @@ To display click the date ``DD.MM.YYYY`` title.
 At the moment, ``site search`` will point out the pages of interest, which are organized ``per month`` to keep the numer of files
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
+
+.. admonition::   13.01.2026
+    :collapsible: closed
+
+    **How Markdown Took Over the World**
+
+    * `<https://it.slashdot.org/story/26/01/12/2049226/how-markdown-took-over-the-world>`_
+
+    **Developer writes script to throw AI out of Windows**
+
+    *Satya Nadella's call to accept and embrace desktop brainboxes faces skepticism*
+
+    * `<https://www.theregister.com/2026/01/13/script_removes_ai_from_windows/>`_
+
+    **Federal agencies told to fix or ditch Gogs as exploited zero-day lands on CISA hit list**
+
+    *Git server flaw that attackers have been abusing for months has now caught the attention of US cyber cops*
+
+    * `<https://www.theregister.com/2026/01/13/cisa_gogs_exploit/>`_
+    * `<https://thehackernews.com/2026/01/cisa-warns-of-active-exploitation-of.html>`_
+    * `<https://gogs.io/>`_
+
+    **Lenovo has a hunch you’re about to try quitting VMware**
+
+    *Tweaks its hardware to run multiple private cloud stacks, and shift between them*
+
+    * `<https://www.theregister.com/2026/01/13/lenovo_fx_multi_hypervisor_hci/>`_
+
+    **JPMorgan Warns 10% Credit Card Rate Cap Would Backfire on Consumers and Economy**
+
+    * `<https://slashdot.org/story/26/01/13/165244/jpmorgan-warns-10-credit-card-rate-cap-would-backfire-on-consumers-and-economy>`_
+    * related `<https://news.slashdot.org/story/26/01/12/152240/us-president-calls-for-10-credit-card-interest-cap-banks-push-back>`_
+
+    **Signal Creator Marlinspike Wants To Do For AI What He Did For Messaging**
+
+    * `<https://slashdot.org/story/26/01/13/1529250/signal-creator-marlinspike-wants-to-do-for-ai-what-he-did-for-messaging>`_
+
+    **ServiceNow Patches Critical AI Platform Flaw Allowing Unauthenticated User Impersonation**
+
+    * `<https://thehackernews.com/2026/01/servicenow-patches-critical-ai-platform.html>`_
+
+    **Slackbot is an AI agent now**
+
+    * `<https://techcrunch.com/2026/01/13/slackbot-is-an-ai-agent-now/>`_
+
+    **New Advanced Linux VoidLink Malware Targets Cloud and container Environments**
+
+    * `<https://thehackernews.com/2026/01/new-advanced-linux-voidlink-malware.html>`_
+
+    **Meta Begins Job Cuts as It Shifts From Metaverse to AI Devices**
+
+    * `<https://tech.slashdot.org/story/26/01/13/1443226/meta-begins-job-cuts-as-it-shifts-from-metaverse-to-ai-devices>`_
+    * `<https://meta.slashdot.org/story/26/01/12/2216207/meta-plans-to-cut-around-10-of-employees-in-reality-labs-division>`_
+
+    **Brazil orders Meta to suspend policy banning third-party AI chatbots from WhatsApp**
+
+    * `<https://techcrunch.com/2026/01/13/brazil-orders-meta-to-suspend-policy-banning-third-party-ai-chatbots-from-whatsapp/>`_
+
+    **European Firms Hit Hiring Brakes Over AI and Slowing Growth**
+
+    * `<https://slashdot.org/story/26/01/12/2324253/european-firms-hit-hiring-brakes-over-ai-and-slowing-growth>`_
+
+    **Dutch cops cuff alleged AVCheck malware kingpin in Amsterdam**
+
+
+    * `<https://www.theregister.com/2026/01/13/avcheck_arrest/>`_
+
+    **Apple launches ‘Creator Studio’ bundle of apps for $12.99 per month**
+
+    * `<https://techcrunch.com/2026/01/13/apple-launches-creator-studio-bundle-of-apps-for-12-99-per-month/>`_
+
+    **Microsoft Pledges Full Power Costs, No Tax Breaks in Response To AI Data Center Backlash**
+
+    * `<https://it.slashdot.org/story/26/01/13/146211/microsoft-pledges-full-power-costs-no-tax-breaks-in-response-to-ai-data-center-backlash>`_
+    * `<https://hardware.slashdot.org/story/26/01/13/0416241/trump-says-microsoft-to-make-changes-to-curb-data-center-power-costs-for-americans>`_
+    * related `<https://www.theregister.com/2026/01/13/renewables_ai_datacenters/>`_
+
+    **Viral Chinese App 'Are You Dead?' Checks On Those Who Live Alone**
+
+    * `<https://tech.slashdot.org/story/26/01/12/2318223/viral-chinese-app-are-you-dead-checks-on-those-who-live-alone>`_
+    * related `<https://www.snugsafe.com/>`_
+
+    **Even Linus Torvalds Is Vibe Coding Now**
+
+    * `<https://linux.slashdot.org/story/26/01/12/2311234/even-linus-torvalds-is-vibe-coding-now>`_
+    * `<https://www.theregister.com/2026/01/13/linus_torvalds_vibe_coding/>`_
+
+    **New Malware Campaign Delivers Remcos RAT Through Multi-Stage Windows Attack**
+
+    * `<https://thehackernews.com/2026/01/new-malware-campaign-delivers-remcos.html>`_
+    * related `<https://thehackernews.com/2025/05/fileless-remcos-rat-delivered-via-lnk.html>`_
+
+    **Hands-on with Bee, Amazon’s latest AI wearable**
+
+    * `<https://techcrunch.com/2026/01/12/hands-on-with-bee-amazons-latest-ai-wearable/>`_
+    * related `<https://techcrunch.com/2026/01/12/why-amazon-bought-bee-an-ai-wearable/>`_
+
+    **Birmingham pauses Oracle relaunch to get staff on board**
+
+    *Europe's largest council delays Fusion reimplementation four years after go-live disaster*
+
+    * `<https://www.theregister.com/2026/01/13/birmingham_oracle_delay/>`_
+
+    **More than 100 new tech unicorns were minted in 2025 — here they are**
+
+    * `<https://techcrunch.com/2026/01/12/at-least-36-new-tech-unicorns-were-minted-in-2025-so-far/>`_
 
 .. admonition::   12.01.2026
     :collapsible: closed
