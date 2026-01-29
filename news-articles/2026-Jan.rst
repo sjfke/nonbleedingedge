@@ -15,6 +15,79 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   17.01.2026
+    :collapsible: closed
+
+    **Sorry Dave, I’m afraid I can’t do that! PCs refuse to shut down after Microsoft patch**
+
+    *Microsoft claims it's a Secure Launch bug*
+
+    * `<https://www.theregister.com/2026/01/16/patch_tuesday_secure_launch_bug_no_shutdown/>`_
+    * `<https://tech.slashdot.org/story/26/01/16/2144202/patch-tuesday-update-makes-windows-pcs-refuse-to-shut-down>`_
+
+    **Windows Backup adds second-chance restore at sign-in**
+
+    *First sign-in restore aims to cut rebuilds when users skip setup options*
+
+    * `<https://www.theregister.com/2026/01/16/microsoft_windows_backup/>`_
+
+    **Cloudflare Acquires Team Behind Open Source Framework Astro**
+
+    * `<https://thenewstack.io/cloudflare-acquires-team-behind-open-source-framework-astro/>`_
+    * `<https://news.slashdot.org/story/26/01/16/2120240/cloudflare-acquires-team-behind-open-source-framework-astro>`_
+
+    **Five Malicious Chrome Extensions Impersonate Workday and NetSuite to Hijack Accounts**
+
+    * `<https://thehackernews.com/2026/01/five-malicious-chrome-extensions.html>`_
+
+    **Fast Pair, loose security: Bluetooth accessories open to silent hijack**
+
+    *Sloppy implementation of Google spec leaves 'hundreds of millions' of devices vulnerable*
+
+    * `<https://www.theregister.com/2026/01/17/fast_pair_flaw/>`_
+
+    **GootLoader Malware Uses 500–1,000 Concatenated ZIP Archives to Evade Detection**
+
+    * `<https://thehackernews.com/2026/01/gootloader-malware-uses-5001000.html>`_
+
+    **Ready for a newbie-friendly Linux? Mint team officially releases v 22.3, 'Zena'**
+
+    *Newer kernel, newer Cinnamon, new tools, and even new icons*
+
+    * `<https://www.theregister.com/2026/01/16/linux_mint_223_zena_officially_release/>`_
+
+    **TSMC Says AI Demand Is 'Endless' After Record Q4 Earnings**
+
+    * `<https://slashdot.org/story/26/01/16/213211/tsmc-says-ai-demand-is-endless-after-record-q4-earnings>`_
+
+    **Hard Drive Prices Have Surged By an Average of 46% Since September**
+
+    * `<https://hardware.slashdot.org/story/26/01/16/1332213/hard-drive-prices-have-surged-by-an-average-of-46-since-september>`_
+
+    **Verizon Offers $20 Credit After Nationwide Outage Stranded Users in SOS Mode For Hours**
+
+    * `<https://tech.slashdot.org/story/26/01/16/179214/verizon-offers-20-credit-after-nationwide-outage-stranded-users-in-sos-mode-for-hours>`_
+
+    **Ruby on Rails Creator Says AI Coding Tools Still Can't Match Most Junior Programmers**
+
+    * `<https://developers.slashdot.org/story/26/01/16/166254/ruby-on-rails-creator-says-ai-coding-tools-still-cant-match-most-junior-programmers>`_
+
+    **Experiment suggests AI chatbot would save insurance agents a whopping 3 minutes a day**
+
+    *Does that kind of time saving actually pay for itself?*
+
+    * `<https://www.theregister.com/2026/01/16/axlerod_ai_saves_insurance_agents_time/>`_
+
+    **Micron breaks ground on humungous NY DRAM fab after beating bats and tree huggers**
+
+    *Chipmaker claims the four-fab site could expand US-based DRAM production by a factor of 12*
+
+    * `<https://www.theregister.com/2026/01/16/micron_fab_breaks_ground/>`_
+
+    **X is down for the second time this week**
+
+    * `<https://techcrunch.com/2026/01/16/x-is-down-for-the-second-time-this-week/>`_
+
 .. admonition::   16.01.2026
     :collapsible: closed
 
