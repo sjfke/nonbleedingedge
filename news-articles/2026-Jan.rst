@@ -8,6 +8,77 @@ A human curated list of interesting technical news articles, hopefully with no h
 
 To display click the date ``DD.MM.YYYY`` `admonition <https://dictionary.cambridge.org/us/dictionary/english/admonition>`_
 
+.. admonition::   10.01.2026
+    :collapsible: closed
+
+    **Microsoft May Soon Allow IT Admins To Uninstall Copilot**
+
+    * `<https://it.slashdot.org/story/26/01/09/2219256/microsoft-may-soon-allow-it-admins-to-uninstall-copilot>`_
+
+    **Intel Is 'Going Big Time Into 14A,' Says CEO Lip-Bu Tan**
+
+    * `<https://hardware.slashdot.org/story/26/01/09/2231201/intel-is-going-big-time-into-14a-says-ceo-lip-bu-tan>`_
+
+    **iOS 26 Shows Unusually Slow Adoption Months After Release**
+
+    * `<https://tech.slashdot.org/story/26/01/09/162240/ios-26-shows-unusually-slow-adoption-months-after-release>`_
+    * `<https://www.macrumors.com/2026/01/08/ios-26-shows-unusually-slow-adoption/>`_
+
+    **Microsoft Windows Media Player stops serving up CD album info**
+
+    *No naming that tune and no album covers*
+
+    * `<https://www.theregister.com/2026/01/09/microsoft_windows_media_player_forgets/>`_
+    * `<https://news.slashdot.org/story/26/01/09/1742218/microsoft-windows-media-player-stops-serving-up-cd-album-info>`_
+
+    **Most devs don't trust AI-generated code, but fail to check it anyway**
+
+    *Developer survey from Sonar finds AI tool adoption has created a verification bottleneck*
+
+    * `<https://www.theregister.com/2026/01/09/devs_ai_code/>`_
+
+    **Send To Kindle from Microsoft Word is Discontinued**
+
+    * `<https://it.slashdot.org/story/26/01/09/1516254/send-to-kindle-from-microsoft-word-is-discontinued>`_
+
+    **Craigslist at 30: No Algorithms, No Ads, No Problem**
+
+    * `<https://tech.slashdot.org/story/26/01/09/1618243/craigslist-at-30-no-algorithms-no-ads-no-problem>`_
+
+    **Pushed By GenAI And Front End Upgrades, Ethernet Switching Hits New Highs**
+
+    * `<https://www.nextplatform.com/2026/01/08/pushed-by-genai-and-front-end-upgrades-ethernet-switching-hits-new-highs/>`_
+
+    **Debian goes retro with a spatial desktop that time forgot**
+
+    *Trixie plus a carefully configured MATE setup, and absolutely nothing else*
+
+    * `<https://www.theregister.com/2026/01/09/desktop_classic_system/>`_
+
+    **QR codes a powerful new phishing weapon in hands of Pyongyang cyberspies**
+
+    *State-backed attackers are using QR codes to slip past enterprise security and help themselves to cloud logins, the FBI says*
+
+    * `<https://www.theregister.com/2026/01/09/pyongyangs_cyberspies_are_turning_qr/>`_
+
+    **More US States Are Preparing Age-Verification Laws for App Stores**
+
+    * `<https://yro.slashdot.org/story/26/01/10/054252/more-us-states-are-preparing-age-verification-laws-for-app-stores>`_
+
+    **AI Is Intensifying a 'Collapse' of Trust Online, Experts Say**
+
+    * `<https://news.slashdot.org/story/26/01/09/2237231/ai-is-intensifying-a-collapse-of-trust-online-experts-say>`_
+
+    **UK government exempting itself from flagship cyber law inspires little confidence**
+
+    *Ministers promise equivalent standards just without the legal obligation*
+
+    * `<https://www.theregister.com/2026/01/10/csr_bill_analysis/>`_
+
+    **Storage News Ticker – 9 January**
+
+    * `<https://blocksandfiles.com/2026/01/09/storage-news-ticker-9-january/>`_
+
 .. admonition::   09.01.2026
     :collapsible: closed
 
