@@ -15,6 +15,96 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   27.01.2026
+    :collapsible: closed
+
+    **Microsoft Office Zero-Day (CVE-2026-21509) - Emergency Patch Issued for Active Exploitation**
+
+    * `<https://thehackernews.com/2026/01/microsoft-issues-emergency-patch-for.html>`_
+
+    **Microsoft previews command-line tool created because calling modern Windows APIs is too difficult**
+
+    * `<https://devclass.com/2026/01/26/microsoft-previews-command-line-tool-created-because-calling-modern-windows-apis-is-too-difficult/>`_
+
+    **How one developer used Claude to build a memory-safe extension of C**
+
+    *Robin Rowe talks about coding, programming education, and China in the age of AI*
+
+    * `<https://www.theregister.com/2026/01/26/trapc_claude_c_memory_safe_robin_rowe/>`_
+
+
+    **Developer behind it is sick with worry he might have changed software development in nasty ways**
+
+    * `<https://www.theregister.com/2026/01/27/ralph_wiggum_claude_loops/>`_
+
+    **Succession: Linux kernel community gets continuity plan for post-Linus era**
+
+    *Conclave doc outlines path to eternal releases*
+
+    * `<https://www.theregister.com/2026/01/27/linux_continuity_plan/>`_
+
+    **Android phones are getting more anti-theft features**
+
+    * `<https://techcrunch.com/2026/01/27/android-phones-are-getting-more-anti-theft-features/>`_
+
+    **TikTok alternative Skylight soars to 380K+ users after TikTok US deal finalized**
+
+    * `<https://techcrunch.com/2026/01/26/tiktok-alternative-skylight-soars-to-380k-users-after-tiktok-u-s-deal-finalized/>`_
+    * `<https://tech.slashdot.org/story/26/01/27/0036229/tiktok-alternative-skylight-soars-to-380k-users-after-tiktok-us-deal-finalized>`_
+
+    **Lawsuit Alleges That WhatsApp Has No End-to-End Encryption**
+
+    * `<https://uk.pcmag.com/security/162799/lawsuit-alleges-that-whatsapp-has-no-end-to-end-encryption>`_
+    * `<https://it.slashdot.org/story/26/01/27/0550249/lawsuit-alleges-that-whatsapp-has-no-end-to-end-encryption>`_
+
+    **WhatsApp Rolls Out Lockdown-Style Security Mode to Protect Targeted Users From Spyware**
+
+    * `<https://thehackernews.com/2026/01/whatsapp-rolls-out-lockdown-style.html>`_
+
+    **Meta to test premium subscriptions on Instagram, Facebook, and WhatsApp**
+
+    * `<https://techcrunch.com/2026/01/26/meta-to-test-premium-subscriptions-on-instagram-facebook-and-whatsapp/>`_
+
+    **Gemini In Google Calendar Now Helps You Find the Best Meeting Time For All Attendees**
+
+    * `<https://tech.slashdot.org/story/26/01/26/2230202/gemini-in-google-calendar-now-helps-you-find-the-best-meeting-time-for-all-attendees>`_
+
+    **ReactOS Celebrates 30 Years**
+
+    * `<https://news.slashdot.org/story/26/01/27/0053233/reactos-celebrates-30-years>`_
+    * `<https://reactos.org/blogs/30yrs-of-ros/>`_
+
+    **Amazon To Shut Down All Amazon Go and Amazon Fresh Stores**
+
+    * `<https://slashdot.org/story/26/01/27/1625211/amazon-to-shut-down-all-amazon-go-and-amazon-fresh-stores>`_
+    * `<https://techcrunch.com/2026/01/27/amazon-is-closing-its-physical-amazon-go-and-amazon-fresh-stores/>`_
+
+    **Pinterest Cuts Up To 15% Jobs To Redirect Resources To AI**
+
+    * `<https://slashdot.org/story/26/01/27/1457232/pinterest-cuts-up-to-15-jobs-to-redirect-resources-to-ai>`_
+    * `<https://techcrunch.com/2026/01/27/pinterest-to-lay-off-15-of-staff-to-redirect-resources-to-ai/>`_
+
+    **ClickFix Attacks Expand Using Fake CAPTCHAs, Microsoft Scripts, and Trusted Web Services**
+
+    * `<https://thehackernews.com/2026/01/clickfix-attacks-expand-using-fake.html>`_
+
+    **Trump Administration**
+
+    *Government by AI? Trump Administration Plans to Write Regulations Using Artificial Intelligence*
+
+    * `<https://www.propublica.org/article/trump-artificial-intelligence-google-gemini-transportation-regulations>`_
+    * `<https://news.slashdot.org/story/26/01/26/1948215/dot-plans-to-use-google-gemini-ai-to-write-regulations>`_
+
+    **AI adoption at work flatlined in Q4, says Gallup**
+
+    *Points to a use-case problem*
+
+    * `<https://www.theregister.com/2026/01/26/workplace_ai_adoption_falls_flat/>`_
+
+    **How a 15,000-Person Island Stumbled Into a $70 Million AI Windfall**
+
+    * `<https://tech.slashdot.org/story/26/01/26/1731231/how-a-15000-person-island-stumbled-into-a-70-million-ai-windfall>`_
+
 .. admonition::   26.01.2026
     :collapsible: closed
 
