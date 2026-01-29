@@ -15,6 +15,92 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   24.01.2026
+    :collapsible: closed
+
+    **Campaigner Launches $2 Billion Legal Action In UK Against Apple Over Wallet's 'Hidden Fees'**
+
+    * `<https://news.slashdot.org/story/26/01/23/2328228/campaigner-launches-2-billion-legal-action-in-uk-against-apple-over-wallets-hidden-fees>`_
+
+    **Microsoft gave FBI a set of BitLocker encryption keys to unlock suspects’ laptops: Reports**
+
+    * `<https://techcrunch.com/2026/01/23/microsoft-gave-fbi-a-set-of-bitlocker-encryption-keys-to-unlock-suspects-laptops-reports/>`_
+    * `<https://it.slashdot.org/story/26/01/23/1910235/microsoft-gave-fbi-a-set-of-bitlocker-encryption-keys-to-unlock-suspects-laptops>`_
+    * `<https://www.theregister.com/2026/01/23/surrender_as_a_service_microsoft/>`_
+
+    **Apple's Secret Product Plans Stolen in Luxshare Cyberattack**
+
+    * `<https://apple.slashdot.org/story/26/01/23/1017203/apples-secret-product-plans-stolen-in-luxshare-cyberattack>`_
+    * `<https://www.macrumors.com/2026/01/21/apple-product-plans-stolen-in-luxshare-cyberattack/>`_
+
+    **CISA won't attend infosec industry's biggest conference this year**
+
+    *But ex-CISA boss and new RSAC CEO Jen Easterly will be there*
+
+    * `<https://www.theregister.com/2026/01/24/cisa_skipping_rsa_exclusive/>`_
+
+    **AI-powered cyberattack kits are 'just a matter of time,' warns Google exec**
+
+    *Security chief says criminals are already automating workflows, with full end-to-end tools likely within years*
+
+    * `<https://www.theregister.com/2026/01/23/ai_cyberattack_google_security/>`_
+
+    **Microsoft shifting to cloud management software brings possibility of it peeking into your estate**
+
+    *Deprecation of popular management tool requires a new look at Azure-based system*
+
+    * `<https://www.theregister.com/2026/01/23/microsoft_shifting_to_cloud_management/>`_
+
+    **China’s Deepin Linux gets a slick desktop - and, yes, built-in AI**
+
+    *Where FOSS desktop OSes meet geopolitics*
+
+    * `<https://www.theregister.com/2026/01/23/deepin_25010/>`_
+
+    **How an experienced developer teamed up with Claude to create Elo programming language**
+
+    *Bernand Lambeau, the human half of a pair programming team, explains how he's using AI*
+
+    * `<https://www.theregister.com/2026/01/24/human_ai_pair_programming_elo/>`_
+
+    **Hacker taps Raspberry Pi to turn Wi-Fi signals into wall art**
+
+    *Pipe local wireless noise through an SDR into an RPi, and 64 LED filaments do the rest*
+
+    * `<https://www.theregister.com/2026/01/23/raspberry_pi_wifi_wall_art/>`_
+
+    **CISA Adds Actively Exploited VMware vCenter Flaw CVE-2024-37079 to KEV Catalog**
+
+    * `<https://thehackernews.com/2026/01/cisa-adds-actively-exploited-vmware.html>`_
+
+    **CISA Updates KEV Catalog with Four Actively Exploited Software Vulnerabilities**
+
+    * `<https://thehackernews.com/2026/01/cisa-updates-kev-catalog-with-four.html>`_
+
+    **Wall Street Pushes Solo 401(k)s as More Americans Work for Themselves**
+
+    * `<https://news.slashdot.org/story/26/01/23/1218254/wall-street-pushes-solo-401ks-as-more-americans-work-for-themselves>`_
+
+    **TikTok Is Now Collecting Even More Data About Its Users**
+
+    * `<https://yro.slashdot.org/story/26/01/23/236200/tiktok-is-now-collecting-even-more-data-about-its-users>`_
+    * `<https://techcrunch.com/2026/01/23/tiktok-users-freak-out-over-apps-immigration-status-collection-heres-what-it-means/>`_
+
+    **Storage news ticker – 23 January**
+
+    * `<https://blocksandfiles.com/2026/01/23/storage-news-ticker-22-january/>`_
+
+    **New DynoWiper Malware Used in Attempted Sandworm Attack on Polish Power Sector**
+
+    * `<https://thehackernews.com/2026/01/new-dynowiper-malware-used-in-attempted.html>`_
+
+    **Multi-Stage Phishing Campaign Targets Russia with Amnesia RAT and Ransomware**
+
+    * `<https://thehackernews.com/2026/01/multi-stage-phishing-campaign-targets.html>`_
+
+
+    * `<https://slashdot.org/story/26/01/23/0757223/almost-everyone-laid-off-at-vimeo-following-bending-spoons-buyout>`_
+
 .. admonition::   23.01.2026
     :collapsible: closed
 
