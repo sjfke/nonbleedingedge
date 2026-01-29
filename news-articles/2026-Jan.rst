@@ -15,6 +15,127 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   28.01.2026
+    :collapsible: closed
+
+    **Old Windows quirks help punch through new admin defenses**
+
+    *Google researcher sits on UAC bypass for ages, only for it to become valid with new security feature*
+
+    * `<https://www.theregister.com/2026/01/28/google_windows_admin_exploit/>`_
+
+    **Apple releases iOS 26.2.1 with bug fixes**
+
+    *The update, along with iPadOS 26.2.1 and watchOS 26.2.1 also adds support for the new AirTags.*
+
+    * `<https://www.macworld.com/article/3043280/apple-releases-ios-26-2-1-with-bug-fixes.html>`_
+
+    **Apple updates iOS 12 for the first time since 2023**
+
+    *The small update ensures FaceTime and iMessage will keep working on 13-year-old iPhones.*
+
+    * `<https://www.macworld.com/article/3043346/apple-updates-ios-12-for-the-first-time-since-2023.html>`_
+    * `<https://apple.slashdot.org/story/26/01/27/2336257/apple-updates-ios-12-for-the-first-time-since-2023>`_
+
+    **Samsung teases new privacy feature to hide your Galaxy phone screen from onlookers**
+
+    * `<https://techcrunch.com/2026/01/28/samsung-teases-new-privacy-feature-to-hide-your-galaxy-phone-screen-from-onlookers/>`_
+
+    **Fake Python Spellchecker Packages on PyPI Delivered Hidden Remote Access Trojan**
+
+    * `<https://thehackernews.com/2026/01/fake-python-spellchecker-packages-on.html>`_
+
+    **Google Warns of Active Exploitation of WinRAR Vulnerability CVE-2025-8088**
+
+    * `<https://thehackernews.com/2026/01/google-warns-of-active-exploitation-of.html>`_
+
+    **Critical vm2 Node.js Flaw Allows Sandbox Escape and Arbitrary Code Execution**
+
+    * `<https://thehackernews.com/2026/01/critical-vm2-nodejs-flaw-allows-sandbox.html>`_
+
+    **Paranoid WhatsApp users rejoice: Encrypted app gets one-click privacy toggle**
+
+    *Meta also replaces a legacy C++ media-handling security library with Rust*
+
+    * `<https://www.theregister.com/2026/01/27/whatsapp_strict_account_settings_meta_rust/>`_
+
+    **Redis hits $300M ARR as AI workloads drive growth**
+
+    * `<https://blocksandfiles.com/2026/01/27/redis-300-million-arr/>`_
+
+    **Have I Been Pwned: SoundCloud data breach impacts 29.8 million accounts**
+
+    * `<https://www.bleepingcomputer.com/news/security/have-i-been-pwned-soundcloud-data-breach-impacts-298-million-accounts/>`_
+    * `<https://yro.slashdot.org/story/26/01/27/2223256/soundcloud-data-breach-impacts-298-million-accounts>`_
+
+    **Fortinet Patches CVE-2026-24858 After Active FortiOS SSO Exploitation Detected**
+
+    * `<https://thehackernews.com/2026/01/fortinet-patches-cve-2026-24858-after.html>`_
+
+    **Oracle silent over user complaints about OCI London 'wobble' last week**
+
+    *But did it falter? Oracle debuts Schrödinger's cloud*
+
+    * `<https://www.theregister.com/2026/01/28/oci_access_complaints/>`_
+
+    **Citigroup Mandates AI Training For 175,000 Employees To Help Them 'Reinvent Themselves'**
+
+    * `<https://slashdot.org/story/26/01/27/1825244/citigroup-mandates-ai-training-for-175000-employees-to-help-them-reinvent-themselves>`_
+
+    **Trump’s acting cybersecurity chief uploaded sensitive government docs to ChatGPT**
+
+    * `<https://techcrunch.com/2026/01/28/trumps-acting-cybersecurity-chief-uploaded-sensitive-government-docs-to-chatgpt/>`_
+
+    **Amazon Inadvertently Announces Cloud Unit Layoffs In Email To Employees**
+
+    * `<https://slashdot.org/story/26/01/28/0457219/amazon-inadvertently-announces-cloud-unit-layoffs-in-email-to-employees>`_
+    * `<https://techcrunch.com/2026/01/28/amazon-says-it-is-laying-off-16000-employees/>`_
+
+    **Mozilla is Building an AI 'Rebel Alliance' To Take on Industry Heavweights OpenAI, Anthropic**
+
+    * `<https://tech.slashdot.org/story/26/01/27/1818232/mozilla-is-building-an-ai-rebel-alliance-to-take-on-industry-heavweights-openai-anthropic>`_
+
+    **WebAssembly gaining adoption “behind the scenes” as technology advances**
+
+    * `<https://devclass.com/2026/01/28/webassembly-gaining-adoption-behind-the-scenes-as-technology-advances/>`_
+
+    **Microsoft Azure OpenAI Service takes an unscheduled day off in Sweden**
+
+    *Cascading backend failures kept users locked out until home time*
+
+    * `<https://www.theregister.com/2026/01/28/azure_openai_service_sweden/>`_
+
+    **UK tax collector plans £2B tech binge as legacy systems refuse to die**
+
+    *AWS and Capgemini loom large in HMRC's procurement pipeline*
+
+    * `<https://www.theregister.com/2026/01/28/hmrc_tech_pipeline/>`_
+
+    **Flush with cash, SK hynix spawns mysteriously named 'AI Co.'**
+
+    *Memory boom funds $10B punt on 'solutions' outfit that's still light on details*
+
+    * `<https://www.theregister.com/2026/01/28/sk_hynix_ai_co/>`_
+
+    **OpenAI Releases Prism, a Claude Code-Like App For Scientific Research**
+
+    * `<https://science.slashdot.org/story/26/01/27/2157226/openai-releases-prism-a-claude-code-like-app-for-scientific-research>`_
+
+    **Mustang Panda Deploys Updated COOLCLIENT Backdoor in Government Cyber Attacks**
+
+    * `<https://thehackernews.com/2026/01/mustang-panda-deploys-updated.html>`_
+
+    **LinkedIn will let you show off your vibe coding chops with a certificate**
+
+    * `<https://techcrunch.com/2026/01/28/linkedin-will-let-you-show-off-your-vibe-coding-chops-with-a-certificate/>`_
+
+    **Nudify app proliferation shows naked ambition of Apple and Google**
+
+    *Researchers with the Tech Transparency Project found all sorts of apps that let users create fake non-consensual nudes of real people*
+
+    * `<https://www.theregister.com/2026/01/27/nudify_app_proliferation_shows_naked/>`_
+    * `<https://www.techtransparencyproject.org/articles/nudify-apps-widely-available-in-apple-and-google-app-stores>`_
+
 .. admonition::   27.01.2026
     :collapsible: closed
 
