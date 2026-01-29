@@ -15,6 +15,34 @@ At the moment, ``site search`` will point out the pages of interest, which are o
 needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
 articles in that month. *A better solution is needed.*
 
+.. admonition::   25.01.2026
+    :collapsible: closed
+
+    **Former Canonical Developer Advocate Warns Snap Store Isn't Safe After Slow Responses to Malware Reports**
+
+    * `<https://linux.slashdot.org/story/26/01/24/2332205/former-canonical-developer-advocate-warns-snap-store-isnt-safe-after-slow-responses-to-malware-reports>`_
+    * `<https://linuxiac.com/linux-snap-users-warned-as-attackers-push-malware-through-old-trusted-apps/>`_
+
+    **Microsoft 365 Endured 9+ Hours of Outages Thursday**
+
+    * `<https://it.slashdot.org/story/26/01/24/2031221/microsoft-365-endured-9-hours-of-outages-thursday>`_
+
+    **Gmail is having issues with spam and misclassification**
+
+    * `<https://techcrunch.com/2026/01/24/gmail-is-having-issues-with-spam-and-misclassification/>`_
+
+    **Intel Is Still Struggling In The Datacenter, But It Could Get Better**
+
+    * `<https://www.nextplatform.com/2026/01/23/intel-is-still-struggling-in-the-datacenter-but-it-could-get-better/>`_
+
+    **Infotainment, EV Charger Exploits Earn $1M at Pwn2Own Automotive 2026**
+
+    * `<https://it.slashdot.org/story/26/01/25/0131222/infotainment-ev-charger-exploits-earn-1m-at-pwn2own-automotive-2026>`_
+
+    **Legal AI giant Harvey acquires Hexus as competition heats up in legal tech**
+
+    * `<https://techcrunch.com/2026/01/23/legal-ai-giant-harvey-acquires-hexus-as-competition-heats-up-in-legal-tech/>`_
+
 .. admonition::   24.01.2026
     :collapsible: closed
 
