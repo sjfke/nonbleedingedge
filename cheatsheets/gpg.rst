@@ -8,10 +8,12 @@ GPG - GNU Privacy Guard
 Useful Links
 ************
 
-* `The GNU Privacy Handbook <https://www.gnupg.org/gph/en/manual.pdf>`_
-* `Generating a new GPG key <https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key>`_
-* `Adding a GPG key to your GitHub account <https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account>`_
-* `Telling Git about your signing key <https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key>`_
+.. hlist::
+
+    * `The GNU Privacy Handbook <https://www.gnupg.org/gph/en/manual.pdf>`_
+    * `Generating a new GPG key <https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key>`_
+    * `Adding a GPG key to your GitHub account <https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account>`_
+    * `Telling Git about your signing key <https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key>`_
 
 ************
 Installation
@@ -148,7 +150,7 @@ Git GPG integrations
 * `Use GPG Signing Keys with Git (and GitHub) on Windows 10 <https://medium.com/@ryanmillerc/use-gpg-signing-keys-with-git-on-windows-10-github-4acbced49f68>`_
 * `Git Tools - Signing Your Work <https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work>`_
 
-.. warning::  **'Gpg4win 5'** changed the location of the **'git'** executables
+.. warning::  **'Gpg4win 5'** uses 64-bit executables changing the location of the **'git'** executables
 
 .. code-block:: console
 
