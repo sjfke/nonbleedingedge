@@ -1244,3 +1244,69 @@ articles in that month. *A better solution is needed.*
     **Three in 10 US teens use AI chatbots every day, but safety concerns are growing**
 
     * `<https://techcrunch.com/2025/12/09/three-in-ten-u-s-teens-use-ai-chatbots-every-day-but-safety-concerns-are-growing/>`_
+
+.. admonition::   09.12.2025
+    :collapsible: closed
+    
+    **DJ Garman drops the ball instead of the bass in AWS re:Invent keynote**
+
+    *But the 25 announcements in the last 10 minutes included a few well worth waiting for*
+
+    * `<https://www.theregister.com/2025/12/08/aws_reinvent_keynote_recap_corey_quinn/>`_
+    
+    **Researchers spot 700 percent increase in hypervisor ransomware attacks**
+
+    *Get your Hyper-V and VMware ESXi setups in order, people*
+
+    * `<https://www.theregister.com/2025/12/09/hypervisor_ransomware_attacks_increasing/>`_
+    
+    **Microsoft Excel Turns 40, Remains Stubbornly Unkillable**
+
+    * `<https://it.slashdot.org/story/25/12/09/1428239/microsoft-excel-turns-40-remains-stubbornly-unkillable>`_
+    * `<https://www.theregister.com/2025/12/09/excel_generational_affection/>`_
+    
+    **Microsoft 365 boosts prices in 2026 ... to pay for more AI and security**
+
+    *All those new features wonÆt fund themselves*
+
+    * `<https://www.theregister.com/2025/12/05/microsoft_365_prices_up_2026/>`_
+    
+    **AWS shows Rust love at re:Invent: 10 times faster than Kotlin, one tenth the latency of Go**
+
+    * `<https://devclass.com/2025/12/08/aws-shows-rust-love-at-reinvent-10-times-faster-than-kotlin-one-tenth-the-latency-of-go/>`_
+    
+    **Researchers Find Malicious VS Code, Go, npm, and Rust Packages Stealing Developer Data**
+
+    * `<https://thehackernews.com/2025/12/researchers-find-malicious-vs-code-go.html>`_
+    
+    **Mistral AI surfs vibe coding tailwinds with new coding models**
+
+    * `<https://techcrunch.com/2025/12/09/mistral-ai-surfs-vibe-coding-tailwinds-with-new-coding-models/>`_
+    
+    **IBM straps AI to Db2 console in bid to modernize the old warhorse**
+
+    *Intelligence Center features aim to unify management across on-prem, cloud, and containerized estates*
+
+    * `<https://www.theregister.com/2025/12/08/ibm_db2_intelligence_center/>`_
+    
+    **HPE networking shines while servers dim and Alletra glistens**
+
+    * `<https://blocksandfiles.com/2025/12/05/hpe-networking-shines-while-servers-dim/>`_
+    
+    **Claude Code is coming to Slack, and that's a bigger deal than it sounds**
+
+    * `<https://techcrunch.com/2025/12/08/claude-code-is-coming-to-slack-and-thats-a-bigger-deal-than-it-sounds/>`_
+    * `<https://developers.slashdot.org/story/25/12/09/0417242/claude-code-is-coming-to-slack>`_
+    
+    **Google details security measures for Chrome's agentic features**
+
+    * `<https://techcrunch.com/2025/12/08/google-details-security-measures-for-chromes-agentic-features/>`_
+    * `<https://thehackernews.com/2025/12/google-adds-layered-defenses-to-chrome.html>`_
+    
+    **Storm-0249 Escalates Ransomware Attacks with ClickFix, Fileless PowerShell, and DLL Sideloading**
+
+    * `<https://thehackernews.com/2025/12/storm-0249-escalates-ransomware-attacks.html>`_
+    
+    **STAC6565 Targets Canada in 80% of Attacks as Gold Blade Deploys QWCrypt Ransomware**
+
+    * `<https://thehackernews.com/2025/12/stac6565-targets-canada-in-80-of.html>`_
