@@ -823,3 +823,84 @@ articles in that month. *A better solution is needed.*
     *Adult site, streaming platform, and Japanese retailer expose user info, but not credentials*
 
     * `<https://www.theregister.com/2025/12/16/trio_of_breaches/>`_
+
+.. admonition::   15.12.2025
+    :collapsible: closed
+    
+    **Nutanix takes another swipe at VMware with sovereign cloud push**
+
+    *On-prem control planes, dark-site upgrades, and multicloud policies target regulated deployments*
+
+    * `<https://www.theregister.com/2025/12/15/nutanix_sovereign_cloud/>`_
+    
+    **Apple, Google forced to issue emergency 0-day patches**
+
+    *Both admit attackers were already exploiting the bugs, with scant detail and hints of spyware-grade abuse*
+
+    * `<https://www.theregister.com/2025/12/15/apple_follows_google_by_emergency/>`_
+    * related `<https://thehackernews.com/2025/12/apple-issues-security-updates-after-two.html>`_
+    
+    **LG's Software Update Forces Microsoft Copilot Onto Smart TVs**
+
+    * `<https://entertainment.slashdot.org/story/25/12/15/1430224/lgs-software-update-forces-microsoft-copilot-onto-smart-tvs>`_
+    
+    **Security Researcher Found Critical Kindle Vulnerabilities That Allowed Hijacking Amazon Accounts**
+
+    * `<https://it.slashdot.org/story/25/12/15/0833242/security-researcher-found-critical-kindle-vulnerabilities-that-allowed-hijacking-amazon-accounts>`_
+    
+    **Rust boosted by permanent adoption for Linux kernel code**
+
+    * `<https://devclass.com/2025/12/15/rust-boosted-by-permanent-adoption-for-linux-kernel-code/>`_
+    * related `<https://linux.slashdot.org/story/25/12/13/0347245/rust-in-linuxs-kernel-is-no-longer-experimental>`_
+    
+    **Facebook Messenger's desktop app is no more**
+
+    * `<https://techcrunch.com/2025/12/15/facebook-messengers-desktop-app-is-no-more/>`_
+    
+    **FreePBX Patches Critical SQLi, File-Upload, and AUTHTYPE Bypass Flaws Enabling RCE**
+
+    * `<https://thehackernews.com/2025/12/freepbx-authentication-bypass-exposed.html>`_
+    
+    **VolkLocker Ransomware Exposed by Hard-Coded Master Key Allowing Free Decryption**
+
+    * `<https://thehackernews.com/2025/12/volklocker-ransomware-exposed-by-hard.html>`_
+    
+    **Weekly Recap: Apple 0-Days, WinRAR Exploit, LastPass Fines, .NET RCE, OAuth Scams & More**
+
+    * `<https://thehackernews.com/2025/12/weekly-recap-apple-0-days-winrar.html>`_
+    
+    **Roomba Maker 'iRobot' Files for Bankruptcy After 35 Years**
+
+    * `<https://hardware.slashdot.org/story/25/12/15/0152212/roomba-maker-irobot-files-for-bankruptcy-after-35-years>`_
+    * `<https://www.theregister.com/2025/12/15/irobot_chapter_11/>`_
+    * `<https://techcrunch.com/2025/12/14/how-irobot-lost-its-way-home/>`_
+    
+    **Workday project at Washington University hits $266M**
+
+    *Protests force disclosure of costs totaling $16,000 per student over 7 year rollout replacing 80 legacy systems*
+
+    * `<https://www.theregister.com/2025/12/12/washington_university_workday_costs_revealed/>`_
+    
+    **Honeypots can help defenders, or damn them if implemented badly**
+
+    *PLUS: Crims could burn your AI budgets thanks to weak defaults; CISA's top 25 vulns for 2025; And more*
+
+    * `<https://www.theregister.com/2025/12/14/infosec_news_in_brief/>`_
+    
+    **WhatsApp's biggest market is becoming its toughest test**
+
+    * `<https://techcrunch.com/2025/12/14/whatsapps-biggest-market-is-becoming-its-toughest-test/>`_
+    
+    **Japan just sent origami to space to unfurl possibilities for outsized antennas**
+
+    *That's just one of 16 innovative and experimental sats that launched Sunday*
+
+    * `<https://www.theregister.com/2025/12/15/jaxa_innovative_satellite_technology_demonstration/>`_
+    
+    **Phantom Stealer Spread by ISO Phishing Emails Hitting Russian Finance Sector**
+
+    * `<https://thehackernews.com/2025/12/phantom-stealer-spread-by-iso-phishing.html>`_
+    
+    **Thea Energy previews Helios, its pixel-inspired fusion power plant**
+
+    * `<https://techcrunch.com/2025/12/15/thea-energy-previews-helios-its-pixel-inspired-fusion-power-plant/>`_
