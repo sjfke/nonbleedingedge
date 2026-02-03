@@ -1473,3 +1473,94 @@ articles in that month. *A better solution is needed.*
     **Sneeit WordPress RCE Exploited in the Wild While ICTBroadcast Bug Fuels Frost Botnet Attacks**
 
     * `<https://thehackernews.com/2025/12/sneeit-wordpress-rce-exploited-in-wild.html>`_
+
+.. admonition::   04.12.2025
+    :collapsible: closed
+    
+    
+    **Finish reading this, then patch**
+
+    * `<https://www.theregister.com/2025/12/03/exploitation_is_imminent_react_vulnerability/>`_
+    * `<https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components>`_
+    * related `<https://thehackernews.com/2025/11/critical-react-native-cli-flaw-exposed.html>`_
+    
+    **Microsoft sharpens the blocking axe for Exchange Web Services**
+
+    *Starting in March, Frontline Worker and Kioskûonly mailboxes lose EWS access*
+
+    * `<https://www.theregister.com/2025/12/03/microsoft_exchange_web_services_mailboxes/>`_
+    
+    **Windows 11 still barely pulling ahead of 10 despite end-of-support push**
+
+    *Statcounter shows the gap narrowing as users cling to older hardware and familiar workflows*
+
+    * `<https://www.theregister.com/2025/12/03/windows_11_statcounter/>`_
+    
+    **TLS 1.3 includes welcome improvements, but still allows long-lived secrets**
+
+    *Tricky tradeoffs are hard to avoid when designing systems, but the choice not to use LLMs for some tasks is clear*
+
+    * `<https://www.theregister.com/2025/12/04/tls_13_includes_welcome_improvements/>`_
+    
+    **Record 29.7 Tbps DDoS Attack Linked to AISURU Botnet with up to 4 Million Infected Hosts**
+
+    * `<https://thehackernews.com/2025/12/record-297-tbps-ddos-attack-linked-to.html>`_
+    
+    **Bun JavaScript runtime acquired by Anthropic, tying its future to AI coding**
+
+    * `<https://devclass.com/2025/12/03/bun-javascript-runtime-acquired-by-anthropic-tying-its-future-to-ai-coding/>`_
+    * related `<https://developers.slashdot.org/story/25/12/03/0437256/anthropic-acquires-bun-in-first-acquisition>`_
+    
+    **AWS piles on S3 upgrades from vector search to 50 TB objects**
+
+    * `<https://blocksandfiles.com/2025/12/03/aws-s3/>`_
+    
+    **HPE positions Morpheus stack as enterprise alternative to VMware**
+
+    *IT giant touts unified management, stretched clusters, and AI-ready networking at Discover Barcelona*
+
+    * `<https://www.theregister.com/2025/12/03/hpe_morpheus_discover/>`_
+    
+    **HPE adds all-flash 7700 and high-end 5720 to StoreOnce backup line**
+
+    * `<https://blocksandfiles.com/2025/12/03/hpe-storeonce-deduping-backup/>`_
+    
+    **Databricks looking to raise another $5 billion**
+
+    * `<https://blocksandfiles.com/2025/12/02/databricks-looking-to-raise-another-5-billion/>`_
+    
+    **Pure Storage hikes full-year forecast after solid Q3**
+
+    * `<https://blocksandfiles.com/2025/12/03/pure-storage-q3-2026/>`_
+    
+    **After Nearly 30 Years, Crucial Will Stop Selling RAM To Consumers**
+
+    * `<https://hardware.slashdot.org/story/25/12/03/2118251/after-nearly-30-years-crucial-will-stop-selling-ram-to-consumers>`_
+    * `<https://www.theregister.com/2025/12/03/micron_cuts_crucial/>`_
+    
+    **Rust core library partly polished for industrial safety spec**
+
+    *Ferrous Systems achieves IEC 61508 (SIL 2) certification for systems that demand reliability*
+
+    * `<https://www.theregister.com/2025/12/04/rust_core_library_partly_polished/>`_
+    
+    **GoldFactory Hits Southeast Asia with Modified Banking Apps Driving 11,000+ Infections**
+
+    * `<https://thehackernews.com/2025/12/goldfactory-hits-southeast-asia-with.html>`_
+    
+    **HPE Gets The Lead Out On Juniper-Aruba Networking Integration**
+
+    * `<https://www.nextplatform.com/2025/12/03/hpe-gets-the-lead-out-on-juniper-aruba-networking-integration/>`_
+    
+    **With Celestial AI Buy, Marvell Scales Up The Datacenter And Itself**
+
+    * `<https://www.nextplatform.com/2025/12/04/with-celestial-ai-buy-marvell-scales-up-the-datacenter-and-itself/>`_
+    
+    **With Trainium4, AWS Will Crank Up Everything But The Clocks**
+
+    * `<https://www.nextplatform.com/2025/12/03/with-trainium4-aws-will-crank-up-everything-but-the-clocks/>`_
+    
+    **Breadbox 2.0: This is the Commodore 64 Ultimate**
+
+    * `<https://www.galaxus.ch/en/page/breadbox-20-this-is-the-commodore-64-ultimate-38732>`_
+    * `<https://www.galaxus.ch/en/page/the-commodore-64-ultimate-comes-with-more-than-100-classic-games-40714>`_
