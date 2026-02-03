@@ -1697,3 +1697,56 @@ articles in that month. *A better solution is needed.*
     **SmartTube YouTube App For Android TV Breached To Push Malicious Update**
 
     * `<https://news.slashdot.org/story/25/12/02/1924229/smarttube-youtube-app-for-android-tv-breached-to-push-malicious-update>`_
+
+.. admonition::   02.12.2025
+    :collapsible: closed
+    
+    **A Windows Update Broke Login Button, and Microsoft's Advice is To Click Where It Used To Be**
+
+    * `<https://tech.slashdot.org/story/25/12/01/1710222/a-windows-update-broke-login-button-and-microsofts-advice-is-to-click-where-it-used-to-be>`_
+    
+    **Stealthy browser extensions waited years before infecting 4.3M Chrome, Edge users with backdoors and spyware**
+
+    *And some are still active in the Microsoft Edge store*
+
+    * `<https://www.theregister.com/2025/12/01/chrome_edge_malicious_browser_extensions/>`_
+    
+    **Google Patches 107 Android Flaws, Including Two Framework Bugs Exploited in the Wild**
+
+    * `<https://thehackernews.com/2025/12/google-patches-107-android-flaws.html>`_
+    
+    **Apple AI Chief Retiring After Siri Failure**
+
+    * `<https://apple.slashdot.org/story/25/12/02/0021253/apple-ai-chief-retiring-after-siri-failure>`_
+    * `<https://www.macrumors.com/2025/12/01/apple-ai-chief-retiring-after-siri-failure/>`_
+    * `<https://techcrunch.com/2025/12/01/apple-just-named-a-new-ai-chief-with-google-and-microsoft-expertise-as-john-giannandrea-steps-down/>`_
+    
+    **AWS re:Invent 2025: How to watch and follow along live**
+
+    * `<https://techcrunch.com/2025/12/01/aws-reinvent-2025-how-to-watch-and-follow-along-live/>`_
+    
+    **Festivitas lets you decorate your Apple devices with holiday lights and snow**
+
+    * `<https://techcrunch.com/2025/12/01/festivitas-lets-you-decorate-your-apple-devices-with-holiday-lights-and-snow/>`_
+    
+    **Swiss Illegal Cryptocurrency Mixing Service Shut Down**
+
+    * `<https://slashdot.org/story/25/12/02/0042253/swiss-illegal-cryptocurrency-mixing-service-shut-down>`_
+    * `<https://www.europol.europa.eu/media-press/newsroom/news/europol-and-partners-shut-down-cryptomixer>`_
+    * `<https://techcrunch.com/2025/12/01/european-cops-shut-down-crypto-mixing-website-that-helped-launder-1-3-billion-euros/>`_
+    
+    **IETF draft calls for grant of five nonillion IPv6 addresses to ham radio operators**
+
+    *Would not massively deplete IPv6, might challenge internet governance*
+
+    * `<https://www.theregister.com/2025/12/02/ham_radio_ipv6_ietf_draft/>`_
+    
+    **Nvidia plows $2B into Synopsys to make GPUs a must-have for design, simulation customers**
+
+    *You could do that on a CPU, but who can say no to a 30x GPU speed boost?*
+
+    * `<https://www.theregister.com/2025/12/01/nvidia_synopsys_2b/>`_
+    
+    **Top Consultancies Freeze Starting Salaries as AI Threatens 'Pyramid' Model**
+
+    * `<https://tech.slashdot.org/story/25/12/01/1241232/top-consultancies-freeze-starting-salaries-as-ai-threatens-pyramid-model>`_
