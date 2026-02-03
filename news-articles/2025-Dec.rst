@@ -981,3 +981,108 @@ articles in that month. *A better solution is needed.*
     **A comprehensive list of 2025 tech layoffs**
 
     * `<https://techcrunch.com/2025/12/12/tech-layoffs-2025-list/>`_
+
+.. admonition::   12.12.2025
+    :collapsible: closed
+    
+    **VMware kills vSphere Foundation in parts of EMEA**
+
+    *Broadcom told The Register that EMEA customers need to check with their local dealer to see if VVF remains on the menu*
+
+    * `<https://www.theregister.com/2025/12/11/vmware_kills_vsphere_foundation_parts_emea/>`_
+    * `<https://slashdot.org/story/25/12/11/2324224/vmware-kills-vsphere-foundation-in-parts-of-emea>`_
+    * related `<https://www.theregister.com/2025/12/11/european_cloud_trade_group_vmware_broadcom/>`_
+    
+    **Google is building an experimental new browser and a new kind of web app**
+
+    * `<https://www.theverge.com/tech/842000/google-disco-browser-ai-experiment>`_
+    * `<https://tech.slashdot.org/story/25/12/11/2022257/google-is-building-an-experimental-new-browser-and-a-new-kind-of-web-app>`_
+    * `<https://techcrunch.com/2025/12/11/google-debuts-disco-a-gemini-powered-tool-for-making-web-apps-from-browser-tabs/>`_
+    
+    **Google fixes super-secret 8th Chrome 0-day**
+
+    *No details, no CVE, update your browser now*
+
+    * `<https://www.theregister.com/2025/12/11/google_fixes_supersecret_8th_chrome/>`_
+    * related `<https://thehackernews.com/2025/12/chrome-targeted-by-active-in-wild.html>`_
+    
+    **Microsoft promises more bug payouts, with or without a bounty program**
+
+    *Critical vulnerabilities found in third-party applications eligible for award under 'in scope by default' move*
+
+    * `<https://www.theregister.com/2025/12/12/microsoft_more_bug_payouts/>`_
+    * related `<https://www.theregister.com/2025/03/17/microsoft_bug_report_troll/>`_
+    
+    **New React RSC Vulnerabilities Enable DoS and Source Code Exposure**
+
+    * `<https://thehackernews.com/2025/12/new-react-rsc-vulnerabilities-enable.html>`_
+    
+    **Here we go again: Microsoft in UK court over cloud licensing**
+
+    *Competition Appeal Tribunal to decide if multibillion-pound overcharging case can go to trial*
+
+    * `<https://www.theregister.com/2025/12/12/microsoft_cat_cloud_licensing/>`_
+    
+    **Half of exposed React servers remain unpatched amid active exploitation**
+
+    *Wiz says React2Shell attacks accelerating, ranging from cryptominers to state-linked crews*
+
+    * `<https://www.theregister.com/2025/12/12/vulnerable_react_instances_unpatched/>`_
+    
+    **VS Code update brings agent overload, TypeScript 7 preview, and the end of IntelliCode**
+
+    * `<https://devclass.com/2025/12/11/vs-code-update-brings-agent-overload-typescript-7-preview-and-the-end-of-intellicode/>`_
+    * related `<https://www.youtube.com/watch?v=Qfnod4Sw0gY>`_
+    
+    **Cisco Stock Hits New All-Time High, 25 Years After the Dotcom Bubble Burst**
+
+    * `<https://slashdot.org/story/25/12/11/2013233/cisco-stock-hits-new-all-time-high-25-years-after-the-dotcom-bubble-burst>`_
+    
+    **New Advanced Phishing Kits Use AI and MFA Bypass Tactics to Steal Credentials at Scale**
+
+    * `<https://thehackernews.com/2025/12/new-advanced-phishing-kits-use-ai-and.html>`_
+    
+    **Salesforce opts for seat-based AI licensing as customers demand predictability**
+
+    *Analysts say the shift offers stability, but embedded usage caps ensure vendors keep control*
+
+    * `<https://www.theregister.com/2025/12/12/ai_agents_salesforce_pricing/>`_
+    * related `<https://www.theregister.com/2025/08/01/forrester_ai_enterprise_software/>`_
+    
+    **Researcher claims Salt Typhoon spies attended Cisco training scheme**
+
+    *Skills gained later fed Beijing's cyber operations, according to SentinelLabs expert*
+
+    * `<https://www.theregister.com/2025/12/11/salt_typhoon_cisco_training/>`_
+    
+    **Legacy Update expands archive of vanished Microsoft downloads**
+
+    *Preserving not just updates, but also lots of the now-deleted optional extras*
+
+    * `<https://www.theregister.com/2025/12/11/legacy_update_update/>`_
+    
+    **Oracle Is Using OpenAI To Build A Platform For The Enterprise**
+
+    * `<https://www.nextplatform.com/2025/12/11/oracle-is-using-openai-to-build-a-platform-for-the-enterprise/>`_
+    
+    **Google launched its deepest AI research agent yet ù on the same day OpenAI dropped GPT-5.2**
+
+    * `<https://techcrunch.com/2025/12/11/google-launched-its-deepest-ai-research-agent-yet-on-the-same-day-openai-dropped-gpt-5-2/>`_
+    
+    **Russian hackers debut simple ransomware service, but store keys in plain text**
+
+    *Operators accidentally left a way for you to get your data back*
+
+    * `<https://www.theregister.com/2025/12/11/cybervolk_ransomware_is_back/>`_
+    
+    **AWS Graviton5 Strikes A Different Balance For Server CPUs**
+
+    * `<https://www.nextplatform.com/2025/12/04/aws-graviton5-strikes-a-different-balance-for-server-cpus/>`_
+    
+    **CISA Flags Actively Exploited GeoServer XXE Flaw in Updated KEV Catalog**
+
+    * `<https://thehackernews.com/2025/12/cisa-flags-actively-exploited-geoserver.html>`_
+    
+    **Storage news ticker - 12 December 2025**
+
+    * `<https://blocksandfiles.com/2025/12/11/storage-news-ticker-12-decemnber-2025/>`_
