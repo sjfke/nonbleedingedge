@@ -1750,3 +1750,61 @@ articles in that month. *A better solution is needed.*
     **Top Consultancies Freeze Starting Salaries as AI Threatens 'Pyramid' Model**
 
     * `<https://tech.slashdot.org/story/25/12/01/1241232/top-consultancies-freeze-starting-salaries-as-ai-threatens-pyramid-model>`_
+
+.. admonition::   01.12.2025
+    :collapsible: closed
+    
+    **Windows 11 needs an XP SP2 moment, says ex-Microsoft engineer**
+
+    *Stop AI bloat, fix the operating system, implores veteran software developer Dave Plummer*
+
+    * `<https://www.theregister.com/2025/12/01/windows_needs_another_xp_sp2/>`_
+    
+    **Linux Kernel 6.18 Officially Released**
+
+    * `<https://linux.slashdot.org/story/25/12/01/0218201/linux-kernel-618-officially-released>`_
+    * `<https://9to5linux.com/linux-kernel-6-18-officially-released-could-be-the-next-lts-kernel-series>`_
+    
+    **OCaml maintainers reject massive AI-generated pull request**
+
+    * `<https://devclass.com/2025/11/27/ocaml-maintainers-reject-massive-ai-generated-pull-request/>`_
+    
+    **Morgan Stanley Warns Oracle Credit Protection Nearing Record High**
+
+    * `<https://developers.slashdot.org/story/25/11/30/1933216/morgan-stanley-warns-oracle-credit-protection-nearing-record-high>`_
+    
+    **Swiss government says give M365, and all SaaS, a miss as it lacks end-to-end encryption**
+
+    *PLUS: Exercise app tells spies to stop mapping; GitLab scan reveals 17,000 secrets; Leak exposes IranÆs Charming Kitten; And more!*
+
+    * `<https://www.theregister.com/2025/12/01/infosec_news_in_brief/>`_
+    
+    **Cheaper 1 GB Raspberry Pi 5 lands as memory costs go through the roof**
+
+    *Budget model slips in at $45 while other boards climb amid AI-driven component crunch*
+
+    * `<https://www.theregister.com/2025/12/01/raspberry_pi_5_1gb/>`_
+    
+    **Speccy clone storms back for Christmas without a shred of Sinclair code**
+
+    *Rubber-key revival leans on Linux, emulation, and third-party ROMs*
+
+    * `<https://www.theregister.com/2025/12/01/the_spectrum/>`_
+    
+    **Tomiris Shifts to Public-Service Implants for Stealthier C2 in Attacks on Government Targets**
+
+    * `<https://thehackernews.com/2025/12/tomiris-shifts-to-public-service.html>`_
+    
+    **New Albiriox MaaS Malware Targets 400+ Apps for On-Device Fraud and Screen Control**
+
+    * `<https://thehackernews.com/2025/12/new-albiriox-maas-malware-targets-400.html>`_
+    
+    **Microsoft appears to move on from its most loyal æcustomersÆ û Contoso and Fabrikam**
+
+    *Outfit called 'Zava' selling 'intelligent athletic apparel' is now in the spotlight as Redmond's fake brand for the AI age*
+
+    * `<https://www.theregister.com/2025/12/01/microsoft_contoso_fabrikam_zava/>`_
+    
+    **Weekly Recap: Hot CVEs, npm Worm Returns, Firefox RCE, M365 Email Raid & More**
+
+    * `<https://thehackernews.com/2025/12/weekly-recap-hot-cves-npm-worm-returns.html>`_
