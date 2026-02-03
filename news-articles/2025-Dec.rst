@@ -1310,3 +1310,166 @@ articles in that month. *A better solution is needed.*
     **STAC6565 Targets Canada in 80% of Attacks as Gold Blade Deploys QWCrypt Ransomware**
 
     * `<https://thehackernews.com/2025/12/stac6565-targets-canada-in-80-of.html>`_
+
+.. admonition::   08.12.2025
+    :collapsible: closed
+    
+    **Windows 10 support ending: your options starting from October 2025**
+
+    * `<https://www.digitec.ch/en/page/windows-10-support-ending-your-options-starting-from-october-2025-36908>`_
+    * `<https://0patch.com/ No more patching headaches What is 0patch? | How does it work?>`_
+    
+    **Microsoft quietly shuts down Windows shortcut flaw after years of espionage abuse**
+
+    *Silent Patch Tuesday mitigation ends ability to hide malicious commands in .lnk files*
+
+    * `<https://www.theregister.com/2025/12/04/microsoft_lnk_bug_fix/>`_
+    
+    **Latest Windows 11 updates may break the OS's most basic bits**
+
+    *Microsoft warns Start menu, Explorer, and other XAML apps can crash or vanish on managed devices*
+
+    * `<https://www.theregister.com/2025/12/04/windows_11_start_explorer/>`_
+    
+    **Chinese Hackers Have Started Exploiting the Newly Disclosed React2Shell Vulnerability**
+
+    * `<https://thehackernews.com/2025/12/chinese-hackers-have-started-exploiting.html>`_
+    * `<https://thehackernews.com/2025/12/critical-react2shell-flaw-added-to-cisa.html>`_
+    
+    **Cloudflare outage on December 5, 2025**
+
+    * `<https://blog.cloudflare.com/5-december-2025-outage/>`_
+    
+    **New Jolla Phone Now Available for Pre-Order as an Independent Linux Phone**
+
+    * `<https://9to5linux.com/new-jolla-phone-now-available-for-pre-order-as-an-independent-linux-phone>`_
+    * `<https://mobile.slashdot.org/story/25/12/07/0523228/new-jolla-phone-now-available-for-pre-order-as-an-independent-linux-phone>`_
+    
+    **Homebrew Can Now Help You Install Flatpaks Too**
+
+    * `<https://news.slashdot.org/story/25/12/07/0651234/homebrew-can-now-help-you-install-flatpaks-too>`_
+    * `<https://tech.yahoo.com/computing/articles/homebrew-now-help-install-flatpaks-175146379.html>`_
+    
+    **IBM drops $11B on Confluent to feed next-gen AI ambitions**
+
+    *Big BlueÆs latest mega-buy hands it a real-time data-streaming powerhouse built on Kafka*
+
+    * `<https://www.theregister.com/2025/12/08/ibm_drops_11b_on_confluent/>`_
+    * `<https://blocksandfiles.com/2025/12/08/ibm-confluent/>`_
+    * `<https://techcrunch.com/2025/12/08/ibm-to-acquire-confluent-for-11b-as-it-seeks-to-bolster-its-data-offerings/>`_
+    
+    **Server prices set to jump 15% as memory costs spike**
+
+    *Major OEMs are plotting double-digit hikes as DRAM and NAND shortages bite*
+
+    * `<https://www.theregister.com/2025/12/04/server_prices_15_percent_jump_memory_costs/>`_
+    
+    **Linux 6.18 crowned LTS kernel û and Alpine 3.23 wastes no time adopting it**
+
+    *Umpteen other distros just put out new versions, but this one is our favorite*
+
+    * `<https://www.theregister.com/2025/12/05/new_lts_kernel_and_alpine/>`_
+    
+    **All the biggest news from AWS' big tech show re:Invent 2025**
+
+    * `<https://techcrunch.com/2025/12/04/all-the-biggest-news-from-aws-big-tech-show-reinvent-2025/>`_
+    
+    **FreeBSD 15 trims legacy fat and revamps how OS is built**
+
+    *Project retires 32-bit ports, embraces pkgbase, and modernizes build process*
+
+    * `<https://www.theregister.com/2025/12/05/freebsd_15/>`_
+    * `<https://tech.slashdot.org/story/25/12/07/0627214/new-freebsd-15-retires-32-bit-ports-and-modernizes-builds>`_
+    
+    **Is Ruby Still a 'Serious' Programming Language?**
+
+    * `<https://developers.slashdot.org/story/25/12/07/0248219/is-ruby-still-a-serious-programming-language>`_
+    * `<https://www.wired.com/story/ruby-is-not-a-serious-programming-language/>`_
+    
+    **Apache warns of 10.0-rated flaw in Tika metadata ingestion tool**
+
+    *PLUS: New kind of DDOS from the Americas; Predator still hunting spyware targets; NIST issues IoT advice; And more!*
+
+    * `<https://www.theregister.com/2025/12/08/infosec_news_in_brief/>`_
+    * `<https://thehackernews.com/2025/12/critical-xxe-bug-cve-2025-66516-cvss.html>`_
+    
+    **Block all AI browsers for the foreseeable future: Gartner**
+
+    *Analysts worry lazy users could have agents complete mandatory infosec training, and attackers could do far nastier things*
+
+    * `<https://www.theregister.com/2025/12/08/gartner_recommends_ai_browser_ban/>`_
+    
+    **Researchers Uncover 30+ Flaws in AI Coding Tools Enabling Data Theft and RCE Attacks**
+
+    * `<https://thehackernews.com/2025/12/researchers-uncover-30-flaws-in-ai.html>`_
+    
+    **Zero-Click Agentic Browser Attack Can Delete Entire Google Drive Using Crafted Emails**
+
+    * `<https://thehackernews.com/2025/12/zero-click-agentic-browser-attack-can.html>`_
+    
+    **Novel clickjacking attack relies on CSS and SVG**
+
+    *Who needs JavaScript?*
+
+    * `<https://www.theregister.com/2025/12/05/css_svg_clickjacking/>`_
+    
+    **Datacenters are hoarding grid power just in case, says Uptime Institute**
+
+    *Warning that over-reserved capacity is blocking new connections*
+
+    * `<https://www.theregister.com/2025/12/08/uptime_institute_datacenter_grid/>`_
+    
+    **X shuts down European Commission ad account after Ç120M fine announcement**
+
+    *Brussels accused of using Ad Composer quirk to post link disguised as a video*
+
+    * `<https://www.theregister.com/2025/12/08/x_european_commission_ad/>`_
+    * `<https://techcrunch.com/2025/12/07/x-deactivates-european-commissions-ad-account-after-the-company-was-fined-e120m/>`_
+    
+    **Salesforce has come up with the most credible threat yet to ServiceNow, and Benioff is crowing about it**
+
+    *Some within the CRM giant balked, but Benioff prevailed*
+
+    * `<https://www.theregister.com/2025/12/05/salesforce_agentforce_vs_servicenow/>`_
+    
+    **Amazon Pitches AI Tools as Co-Workers While Axing Jobs**
+
+    * `<https://slashdot.org/story/25/12/08/141202/amazon-pitches-ai-tools-as-co-workers-while-axing-jobs>`_
+    
+    **Death to one-time text codes: Passkeys are the new hotness in MFA**
+
+    *Wanna know a secret?*
+
+    * `<https://www.theregister.com/2025/12/06/multifactor_authentication_passkeys/>`_
+    
+    **Storage news ticker û 4 December 2025**
+
+    * `<https://blocksandfiles.com/2025/12/04/storage-news-ticker-4-december-2025/>`_
+    
+    **Linus Torvalds Defends Windows' Blue Screen of Death**
+
+    * `<https://linux.slashdot.org/story/25/12/06/0155255/linus-torvalds-defends-windows-blue-screen-of-death>`_
+    
+    **Weekly Recap: USB Malware, React2Shell, WhatsApp Worms, AI IDE Bugs & More**
+
+    * `<https://thehackernews.com/2025/12/weekly-recap-usb-malware-react2shell.html>`_
+    
+    **CISA Reports PRC Hackers Using BRICKSTORM for Long-Term Access in U.S. Systems**
+
+    * `<https://thehackernews.com/2025/12/cisa-reports-prc-hackers-using.html>`_
+    
+    **Android Malware FvncBot, SeedSnatcher, and ClayRat Gain Stronger Data Theft Features**
+
+    * `<https://thehackernews.com/2025/12/android-malware-fvncbot-seedsnatcher.html>`_
+    
+    **Intellexa Leaks Reveal Zero-Days and Ads-Based Vector for Predator Spyware Delivery**
+
+    * `<https://thehackernews.com/2025/12/intellexa-leaks-reveal-zero-days-and.html>`_
+    
+    **JPCERT Confirms Active Command Injection Attacks on Array AG Gateways**
+
+    * `<https://thehackernews.com/2025/12/jpcert-confirms-active-command.html>`_
+    
+    **Sneeit WordPress RCE Exploited in the Wild While ICTBroadcast Bug Fuels Frost Botnet Attacks**
+
+    * `<https://thehackernews.com/2025/12/sneeit-wordpress-rce-exploited-in-wild.html>`_
