@@ -904,3 +904,80 @@ articles in that month. *A better solution is needed.*
     **Thea Energy previews Helios, its pixel-inspired fusion power plant**
 
     * `<https://techcrunch.com/2025/12/15/thea-energy-previews-helios-its-pixel-inspired-fusion-power-plant/>`_
+
+.. admonition::   14.12.2025
+    :collapsible: closed
+    
+    **Apple Issues Security Updates After Two WebKit Flaws Found Exploited in the Wild**
+
+    * `<https://thehackernews.com/2025/12/apple-issues-security-updates-after-two.html>`_
+    
+    **Google and Apple roll out emergency security updates after zero-day attacks**
+
+    * `<https://techcrunch.com/2025/12/12/google-and-apple-roll-out-emergency-security-updates-after-zero-day-attacks/>`_
+    
+    **With iOS 26.2, Apple lets you roll back Liquid Glass again ù this time on the Lock Screen**
+
+    * `<https://techcrunch.com/2025/12/12/with-ios-26-2-apple-lets-you-roll-back-liquid-glass-again-this-time-on-the-lock-screen/>`_
+    
+    **New Rule Forbids GNOME Shell Extensions Made Using AI-Generated Code**
+
+    * `<https://tech.slashdot.org/story/25/12/14/0453227/new-rule-forbids-gnome-shell-extensions-made-using-ai-generated-code>`_
+    * `<https://www.phoronix.com/news/GNOME-Extensions-Block-AI>`_
+    
+    **Is the R Programming Language Surging in Popularity?**
+
+    * `<https://developers.slashdot.org/story/25/12/14/0340217/is-the-r-programming-language-surging-in-popularity>`_
+    
+    **Applets Are Officially Going, But Java In the Browser Is Better Than Ever**
+
+    * `<https://developers.slashdot.org/story/25/12/13/2316245/applets-are-officially-going-but-java-in-the-browser-is-better-than-ever>`_
+    * `<https://frequal.com/java/AppletsGoneButJavaInTheBrowserBetterThanEver.html>`_
+    * `<https://flavour.sourceforge.io/>`_
+    * `<https://frequal.com/Flavour/book.html>`_
+    
+    **Microsoft RasMan DoS 0-day gets unofficial patch - and a working exploit**
+
+    *Exploit hasn't been picked up by any malware detection engines, CEO tells The Reg*
+
+    * `<https://www.theregister.com/2025/12/12/microsoft_windows_rasman_dos_0day/>`_
+    
+    **System76 Launches First Stable Release of COSMIC Desktop and Pop!_OS 24.04 LTS**
+
+    * `<https://news.slashdot.org/story/25/12/14/0112231/system76-launches-first-stable-release-of-cosmic-desktop-and-popos-2404-lts>`_
+    * `<https://9to5linux.com/system76-launches-first-stable-release-of-cosmic-desktop-and-pop_os-24-04-lts>`_
+    
+    **Fake OSINT and GPT Utility GitHub Repos Spread PyStoreRAT Malware Payloads**
+
+    * `<https://thehackernews.com/2025/12/fake-osint-and-gpt-utility-github-repos.html>`_
+    
+    **Rust in Linux's Kernel 'is No Longer Experimental'**
+
+    * `<https://linux.slashdot.org/story/25/12/13/0347245/rust-in-linuxs-kernel-is-no-longer-experimental>`_
+    * `<https://thenewstack.io/rust-goes-mainstream-in-the-linux-kernel/>`_
+    
+    **Framework Raises DDR5 Memory Prices By 50% For DIY Laptops**
+
+    * `<https://hardware.slashdot.org/story/25/12/12/2258200/framework-raises-ddr5-memory-prices-by-50-for-diy-laptops>`_
+    
+    **CISA Adds Actively Exploited Sierra Wireless Router Flaw Enabling RCE Attacks**
+
+    * `<https://thehackernews.com/2025/12/cisa-adds-actively-exploited-sierra.html>`_
+    
+    **The future of long-term data storage is clear and will last 14 billion years**
+
+    *SPhotoix moves its 5D Memory Crystalcold storage tech closer to deployment in data centers*
+
+    * `<https://www.theregister.com/2025/12/14/sphotonix_moves_5d_memory_crystal/>`_
+    
+    **OK, what's going on with LinkedIn's algo?**
+
+    * `<https://techcrunch.com/2025/12/12/ok-whats-going-on-with-linkedins-algo/>`_
+    
+    **Google Translate now lets you hear real-time translations in your headphones**
+
+    * `<https://techcrunch.com/2025/12/12/google-translate-now-lets-you-hear-real-time-translations-in-your-headphones/>`_
+    
+    **A comprehensive list of 2025 tech layoffs**
+
+    * `<https://techcrunch.com/2025/12/12/tech-layoffs-2025-list/>`_
