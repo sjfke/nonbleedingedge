@@ -1,0 +1,70 @@
+github_url: https://github.com/sjfke/nonbleedingedge/blob/main/headlines/2026-01-28.rst
+
+##########
+2026.01.28
+##########
+
+A human curated list of interesting technical news articles, hopefully with no hallucinations |:laughing:|
+
+`Old Windows quirks help punch through new admin defenses <https://www.theregister.com/2026/01/28/google_windows_admin_exploit/>`_
+    *Google researcher sits on UAC bypass for ages, only for it to become valid with new security feature*
+
+`Apple releases iOS 26.2.1 with bug fixes <https://www.macworld.com/article/3043280/apple-releases-ios-26-2-1-with-bug-fixes.html>`_
+    *The update, along with iPadOS 26.2.1 and watchOS 26.2.1 also adds support for the new AirTags.*
+
+`Apple updates iOS 12 for the first time since 2023 <https://www.macworld.com/article/3043346/apple-updates-ios-12-for-the-first-time-since-2023.html>`_
+    *The small update ensures FaceTime and iMessage will keep working on 13-year-old iPhones.*
+
+    * `Apple Updates iOS 12 For the First Time Since 2023 <https://apple.slashdot.org/story/26/01/27/2336257/apple-updates-ios-12-for-the-first-time-since-2023>`_
+
+`Samsung teases new privacy feature to hide your Galaxy phone screen from onlookers <https://techcrunch.com/2026/01/28/samsung-teases-new-privacy-feature-to-hide-your-galaxy-phone-screen-from-onlookers/>`_
+
+`Fake Python Spellchecker Packages on PyPI Delivered Hidden Remote Access Trojan <https://thehackernews.com/2026/01/fake-python-spellchecker-packages-on.html>`_
+
+`Google Warns of Active Exploitation of WinRAR Vulnerability CVE-2025-8088 <https://thehackernews.com/2026/01/google-warns-of-active-exploitation-of.html>`_
+
+`Critical vm2 Node.js Flaw Allows Sandbox Escape and Arbitrary Code Execution <https://thehackernews.com/2026/01/critical-vm2-nodejs-flaw-allows-sandbox.html>`_
+
+`Paranoid WhatsApp users rejoice: Encrypted app gets one-click privacy toggle <https://www.theregister.com/2026/01/27/whatsapp_strict_account_settings_meta_rust/>`_
+    *Meta also replaces a legacy C++ media-handling security library with Rust*
+
+`Redis hits $300M ARR as AI workloads drive growth <https://blocksandfiles.com/2026/01/27/redis-300-million-arr/>`_
+
+`Have I Been Pwned: SoundCloud data breach impacts 29.8 million accounts <https://www.bleepingcomputer.com/news/security/have-i-been-pwned-soundcloud-data-breach-impacts-298-million-accounts/>`_
+    * `SoundCloud Data Breach Impacts 29.8 Million Accounts <https://yro.slashdot.org/story/26/01/27/2223256/soundcloud-data-breach-impacts-298-million-accounts>`_
+
+`Fortinet Patches CVE-2026-24858 After Active FortiOS SSO Exploitation Detected <https://thehackernews.com/2026/01/fortinet-patches-cve-2026-24858-after.html>`_
+
+`Oracle silent over user complaints about OCI London 'wobble' last week <https://www.theregister.com/2026/01/28/oci_access_complaints/>`_
+    *But did it falter? Oracle debuts Schrödinger's cloud*
+
+`Citigroup Mandates AI Training For 175,000 Employees To Help Them 'Reinvent Themselves' <https://slashdot.org/story/26/01/27/1825244/citigroup-mandates-ai-training-for-175000-employees-to-help-them-reinvent-themselves>`_
+
+`Trump’s acting cybersecurity chief uploaded sensitive government docs to ChatGPT <https://techcrunch.com/2026/01/28/trumps-acting-cybersecurity-chief-uploaded-sensitive-government-docs-to-chatgpt/>`_
+
+`Amazon Inadvertently Announces Cloud Unit Layoffs In Email To Employees <https://slashdot.org/story/26/01/28/0457219/amazon-inadvertently-announces-cloud-unit-layoffs-in-email-to-employees>`_
+    * `Amazon says it is laying off 16,000 employees <https://techcrunch.com/2026/01/28/amazon-says-it-is-laying-off-16000-employees/>`_
+
+`Mozilla is Building an AI 'Rebel Alliance' To Take on Industry Heavyweights OpenAI, Anthropic <https://tech.slashdot.org/story/26/01/27/1818232/mozilla-is-building-an-ai-rebel-alliance-to-take-on-industry-heavweights-openai-anthropic>`_
+
+`WebAssembly gaining adoption “behind the scenes” as technology advances <https://devclass.com/2026/01/28/webassembly-gaining-adoption-behind-the-scenes-as-technology-advances/>`_
+
+`Microsoft Azure OpenAI Service takes an unscheduled day off in Sweden <https://www.theregister.com/2026/01/28/azure_openai_service_sweden/>`_
+    *Cascading backend failures kept users locked out until home time*
+
+`UK tax collector plans £2B tech binge as legacy systems refuse to die <https://www.theregister.com/2026/01/28/hmrc_tech_pipeline/>`_
+    *AWS and Capgemini loom large in HMRC's procurement pipeline*
+
+`Flush with cash, SK hynix spawns mysteriously named 'AI Co.' <https://www.theregister.com/2026/01/28/sk_hynix_ai_co/>`_
+    *Memory boom funds $10B punt on 'solutions' outfit that's still light on details*
+
+`OpenAI Releases Prism, a Claude Code-Like App For Scientific Research <https://science.slashdot.org/story/26/01/27/2157226/openai-releases-prism-a-claude-code-like-app-for-scientific-research>`_
+
+`Mustang Panda Deploys Updated COOLCLIENT Backdoor in Government Cyber Attacks <https://thehackernews.com/2026/01/mustang-panda-deploys-updated.html>`_
+
+`LinkedIn will let you show off your vibe coding chops with a certificate <https://techcrunch.com/2026/01/28/linkedin-will-let-you-show-off-your-vibe-coding-chops-with-a-certificate/>`_
+
+`Nudify app proliferation shows naked ambition of Apple and Google <https://www.theregister.com/2026/01/27/nudify_app_proliferation_shows_naked/>`_
+    *Researchers with the Tech Transparency Project found all sorts of apps that let users create fake non-consensual nudes of real people*
+
+    * `Nudify Apps Widely Available in Apple and Google App Stores <https://www.techtransparencyproject.org/articles/nudify-apps-widely-available-in-apple-and-google-app-stores>`_
