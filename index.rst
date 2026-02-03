@@ -30,7 +30,7 @@ This site is written by an **aging techie** so obviously is **Non-Bleeding-Edge*
 
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :caption: Cheatsheets:
 
     cheatsheets/powershell
@@ -54,13 +54,13 @@ This site is written by an **aging techie** so obviously is **Non-Bleeding-Edge*
     cheatsheets/pymysql
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :caption: Projects:
 
     projects/docker-or-podman
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :caption: Outdated:
 
     outdated/git
@@ -71,7 +71,7 @@ This site is written by an **aging techie** so obviously is **Non-Bleeding-Edge*
     outdated/mvn
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :caption: News Articles:
     :glob:
 
