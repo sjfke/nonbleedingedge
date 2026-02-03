@@ -1086,3 +1086,103 @@ articles in that month. *A better solution is needed.*
     **Storage news ticker - 12 December 2025**
 
     * `<https://blocksandfiles.com/2025/12/11/storage-news-ticker-12-decemnber-2025/>`_
+
+.. admonition::   11.12.2025
+    :collapsible: closed
+    
+    **Microsoft won't fix .NET RCE bug affecting slew of enterprise apps, researchers say**
+
+    *Devs and users should know better, Microsoft tells watchTowr*
+
+    * `<https://www.theregister.com/2025/12/10/microsoft_wont_fix_net_rce/>`_
+    
+    
+    **Flare warns devs are unwittingly publishing production-level secrets**
+
+    * `<https://www.theregister.com/2025/12/11/docker_hub_secrets_leak/>`_
+    
+    **ThreatsDay Bulletin: Spyware Alerts, Mirai Strikes, Docker Leaks, ValleyRAT Rootkit ù and 20 More Stories**
+
+    * `<https://thehackernews.com/2025/12/threatsday-bulletin-spyware-alerts.html>`_
+    
+    **Chrome Targeted by Active In-the-Wild Exploit Tied to Undisclosed High-Severity Flaw**
+
+    * `<https://thehackernews.com/2025/12/chrome-targeted-by-active-in-wild.html>`_
+    
+    **Qualcomm Acquires RISC-V Chip Designer Ventana Micro Systems**
+
+    * `<https://hardware.slashdot.org/story/25/12/10/2135233/qualcomm-acquires-risc-v-chip-designer-ventana-micro-systems>`_
+    
+    **NANOREMOTE Malware Uses Google Drive API for Hidden Control on Windows Systems**
+
+    * `<https://thehackernews.com/2025/12/nanoremote-malware-uses-google-drive.html>`_
+    
+    **Ubuntu Will Have Native AMD ROCm AI/ML and HPC Libraries In Next LTS Release**
+
+    * `<https://news.slashdot.org/story/25/12/10/2122240/ubuntu-will-have-native-amd-rocm-aiml-and-hpc-libraries-in-next-lts-release>`_
+    
+    **Research: AI can help or hinder software development, and old-style best practices make the difference**
+
+    * `<https://devclass.com/2025/12/11/research-ai-can-help-or-hinder-software-development-and-old-style-best-practices-make-the-difference/>`_
+    
+    
+    **More than half of internet-exposed instances already compromised**
+
+    * `<https://www.theregister.com/2025/12/10/gogs_0day_under_active_exploitation/>`_
+    * `<https://thehackernews.com/2025/12/unpatched-gogs-zero-day-exploited.html>`_
+    
+    **HDMI Forum Continues To Block HDMI 2.1 For Linux, Valve Says**
+
+    * `<https://linux.slashdot.org/story/25/12/10/1652206/hdmi-forum-continues-to-block-hdmi-21-for-linux-valve-says>`_
+    
+    **Oracle raises AI spending estimate, spooks investors**
+
+    *But if you assume cloud IOUs will be fulfilled, business is booming*
+
+    * `<https://www.theregister.com/2025/12/11/oracle_q2_fy_2026/>`_
+    
+    **You can now share live video with emergency services on Android**
+
+    * `<https://techcrunch.com/2025/12/10/you-can-now-share-live-video-with-emergency-services-on-android/>`_
+    
+    **Microsoft research shows chatbots seeping into everyday life**
+
+    *Copilot û your cuddly companion for nighttime introspection*
+
+    * `<https://www.theregister.com/2025/12/11/microsoft_research_chatbots/>`_
+    
+    **Users report chaos as Legal Aid Agency stumbles back online after cyberattack**
+
+    *Workers frustrated with security-first changes to workflows and teething issues*
+
+    * `<https://www.theregister.com/2025/12/11/legal_aid_agency_recovery/>`_
+    
+    **Active Attacks Exploit Gladinet's Hard-Coded Keys for Unauthorized Access and Code Execution**
+
+    * `<https://thehackernews.com/2025/12/hard-coded-gladinet-keys-let-attackers.html>`_
+    
+    **Reddit is testing verification badges**
+
+    * `<https://techcrunch.com/2025/12/10/reddit-is-testing-verification-badges/>`_
+    
+    **WIRTE Leverages AshenLoader Sideloading to Install the AshTag Espionage Backdoor**
+
+    * `<https://thehackernews.com/2025/12/wirte-leverages-ashenloader-sideloading.html>`_
+    
+    **State attorneys general warn Microsoft, OpenAI, Google, and other AI giants to fix ædelusionalÆ outputs**
+
+    * `<https://techcrunch.com/2025/12/10/state-attorneys-general-warn-microsoft-openai-google-and-other-ai-giants-to-fix-delusional-outputs/>`_
+    
+    **GPT-5.2 Arrives as OpenAI Scrambles To Respond To Gemini 3's Gains**
+
+    * `<https://slashdot.org/story/25/12/11/1844246/gpt-52-arrives-as-openai-scrambles-to-respond-to-gemini-3s-gains>`_
+    * `<https://techcrunch.com/2025/12/11/openai-fires-back-at-google-with-gpt-5-2-after-code-red-memo/>`_
+    
+    **Security flaws in Freedom Chat app exposed usersÆ phone numbers and PINs**
+
+    * `<https://techcrunch.com/2025/12/11/security-flaws-in-freedom-chat-app-exposed-users-phone-numbers-and-pins/>`_
+    
+    **Why Switzerland Is Weighing a 10 Million Population Limit**
+
+    * `<https://news.slashdot.org/story/25/12/11/1639230/why-switzerland-is-weighing-a-10-million-population-limit>`_
+    * `<https://www.msn.com/en-us/news/world/why-switzerland-is-weighing-a-10-million-population-limit/ar-AA1S56Ut>`_
