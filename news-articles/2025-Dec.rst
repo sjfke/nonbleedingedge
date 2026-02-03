@@ -1186,3 +1186,61 @@ articles in that month. *A better solution is needed.*
 
     * `<https://news.slashdot.org/story/25/12/11/1639230/why-switzerland-is-weighing-a-10-million-population-limit>`_
     * `<https://www.msn.com/en-us/news/world/why-switzerland-is-weighing-a-10-million-population-limit/ar-AA1S56Ut>`_
+
+.. admonition::   10.12.2025
+    :collapsible: closed
+    
+    **Microsoft reports 7.8-rated zero day, plus 56 more in December Patch Tuesday**
+
+    *Plus critical critical Notepad++, Ivanti, and Fortinet updates, and one of these patches an under-attack security hole*
+
+    * `<https://www.theregister.com/2025/12/09/december_2025_patch_tuesday/>`_
+    * `<https://thehackernews.com/2025/12/microsoft-issues-security-fixes-for-56.html>`_
+    
+    **Fortinet, Ivanti, and SAP Issue Urgent Patches for Authentication and Code Execution Flaws**
+
+    * `<https://thehackernews.com/2025/12/fortinet-ivanti-and-sap-issue-urgent.html>`_
+    
+    **Three PCIe Encryption Weaknesses Expose PCIe 5.0+ Systems to Faulty Data Handling**
+
+    * `<https://thehackernews.com/2025/12/three-pcie-encryption-weaknesses-expose.html>`_
+    
+    **JetBrains abandons Fleet IDE, pins hopes on forthcoming Air agentic development tool**
+
+    * `<https://devclass.com/2025/12/09/jetbrains-abandons-fleet-ide-pins-hopes-on-forthcoming-air-agentic-development-tool/>`_
+    
+    **Linux Foundation aims to become the Switzerland of AI agents**
+
+    *An attempt to provide vendor-neutral oversight as the agent train barrels on*
+
+    * `<https://www.theregister.com/2025/12/09/linux_foundation_agentic_ai_foundation/>`_
+    
+    **OpenAI Joins the Linux Foundation's New Agentic AI Foundation**
+
+    * `<https://news.slashdot.org/story/25/12/09/2255209/openai-joins-the-linux-foundations-new-agentic-ai-foundation>`_
+    * `<https://techcrunch.com/2025/12/09/openai-anthropic-and-block-join-new-linux-foundation-effort-to-standardize-the-ai-agent-era/>`_
+    
+    **Microsoft 365 Prices Rising For Businesses and Governments in July 2026**
+
+    * `<https://it.slashdot.org/story/25/12/09/1953225/microsoft-365-prices-rising-for-businesses-and-governments-in-july-2026>`_
+    * related `<https://www.theregister.com/2025/12/05/microsoft_365_prices_up_2026/>`_
+    
+    **Apple's Slow AI Pace Becomes a Strength As Market Grows Weary of Spending**
+
+    * `<https://apple.slashdot.org/story/25/12/09/2118205/apples-slow-ai-pace-becomes-a-strength-as-market-grows-weary-of-spending>`_
+    
+    **Lenovo leans into SAN, hypervisor multiplicity, Azure Local and AI hyperconvergence**
+
+    * `<https://blocksandfiles.com/2025/12/10/lenovo-leans-into-san-hypervisor-multiplicity-azure-local-and-ai-hyperconvergence/>`_
+    
+    **Warning: WinRAR Vulnerability CVE-2025-6218 Under Active Attack by Multiple Threat Groups**
+
+    * `<https://thehackernews.com/2025/12/warning-winrar-vulnerability-cve-2025.html>`_
+    
+    **Storage news ticker û 10 December 2025**
+
+    * `<https://blocksandfiles.com/2025/12/09/storage-news-ticker-11-december-2025/>`_
+    
+    **Three in 10 US teens use AI chatbots every day, but safety concerns are growing**
+
+    * `<https://techcrunch.com/2025/12/09/three-in-ten-u-s-teens-use-ai-chatbots-every-day-but-safety-concerns-are-growing/>`_
