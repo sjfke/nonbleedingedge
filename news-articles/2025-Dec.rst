@@ -1564,3 +1564,136 @@ articles in that month. *A better solution is needed.*
 
     * `<https://www.galaxus.ch/en/page/breadbox-20-this-is-the-commodore-64-ultimate-38732>`_
     * `<https://www.galaxus.ch/en/page/the-commodore-64-ultimate-comes-with-more-than-100-classic-games-40714>`_
+
+.. admonition::   03.12.2025
+    :collapsible: closed
+    
+    **Another open source project dies of neglect, leaving thousands scrambling**
+
+    *Paying Ingress NGINX maintainers for their work might have avoided this outcome*
+
+    * `<https://www.theregister.com/2025/12/02/ingress_nginx_opinion/>`_
+    * `<https://news.slashdot.org/story/25/12/02/2253248/kubernetes-is-retiring-its-popular-ingress-nginx-controller>`_
+    * related `<https://www.f5.com/products/nginx/nginx-ingress-controller>`_
+    * related `<https://github.com/traefik/traefik>`_
+    * related `<https://www.theregister.com/2025/11/14/nginx_retirement/>`_
+    
+    **Google's Vibe Coding Platform Deletes Entire Drive**
+
+    * `<https://hardware.slashdot.org/story/25/12/02/0546206/googles-vibe-coding-platform-deletes-entire-drive>`_
+    * `<https://www.theregister.com/2025/12/01/google_antigravity_wipes_d_drive/>`_
+    
+    **Two Android 0-day bugs disclosed and fixed, plus 105 more to patch**
+
+    *Christmas comes early for attackers this year*
+
+    * `<https://www.theregister.com/2025/12/02/android_0_days/>`_
+    * related `<https://thehackernews.com/2025/12/google-patches-107-android-flaws.html>`_
+    
+    **Android 16 adds AI notification summaries, new customization options, and more**
+
+    * `<https://techcrunch.com/2025/12/02/android-16-adds-ai-notification-summaries-new-customization-options-and-more/>`_
+    
+    **Microsoft mops up Mesh after another metaverse misfire**
+
+    *Dreams of a virtual world linger on in Teams*
+
+    * `<https://www.theregister.com/2025/12/02/microsoft_mesh_axed/>`_
+    
+    **Malicious Rust Crate Delivers OS-Specific Malware to Web3 Developer Systems**
+
+    * `<https://thehackernews.com/2025/12/malicious-rust-crate-delivers-os.html>`_
+    
+    **Picklescan Bugs Allow Malicious PyTorch Models to Evade Scans and Execute Code**
+
+    * `<https://thehackernews.com/2025/12/picklescan-bugs-allow-malicious-pytorch.html>`_
+    
+    **Zig quits GitHub, says Microsoft's AI obsession has ruined the service**
+
+    *Zig prez complains about 'vibe-scheduling' after safe sleep bug goes unaddressed for eons*
+
+    * `<https://www.theregister.com/2025/12/02/zig_quits_github_microsoft_ai_obsession/>`_
+    * related `<https://devclass.com/2025/11/27/zig-project-ditches-github-for-codeberg-but-move-could-be-costly/>`_
+    
+    **AWS re:Invent**
+
+    * `<https://techcrunch.com/2025/12/02/all-the-biggest-news-from-aws-big-tech-show-reinvent-2025/>`_
+    * `<https://techcrunch.com/2025/12/02/aws-reinvent-2025-how-to-watch-and-follow-along-live/>`_
+    * `<https://www.theregister.com/2025/12/03/amazon_enterprise_ai_walled_garden/>`_
+    * `<https://www.theregister.com/2025/12/02/aws_ai_factories/>`_
+    * `<https://www.theregister.com/2025/12/02/aws_kiro_devops_coding_agents/>`_
+    
+    **AWS Transform revamp uses AI to shift applications from MicrosoftÆs SQL Server**
+
+    * `<https://devclass.com/2025/12/02/aws-transform-revamp-uses-ai-to-shift-applications-from-microsofts-sql-server/>`_
+    
+    **AWS debuts Lambda managed instances on EC2: more control, lower cost for high volume users**
+
+    * `<https://devclass.com/2025/12/01/aws-debuts-lambda-managed-instances-on-ec2-more-control-lower-cost-for-high-volume-users/>`_
+    
+    **Linux 6.18 arrives as the year's final drop and likely next LTS**
+
+    *Bye-bye bcachefs, but hello there bhyve*
+
+    * `<https://www.theregister.com/2025/12/03/kernel_version_618/>`_
+    
+    **Anthropic Acquires Bun In First Acquisition**
+
+    * `<https://developers.slashdot.org/story/25/12/03/0437256/anthropic-acquires-bun-in-first-acquisition>`_
+    * `<https://www.linkedin.com/posts/mikekrieger_anthropic-acquires-bun-as-claude-code-reaches-activity-7401686833233076224-n3TI/>`_
+    
+    **OpenAI Declares 'Code Red' As Google Catches Up In AI Race**
+
+    * `<https://tech.slashdot.org/story/25/12/02/2221238/openai-declares-code-red-as-google-catches-up-in-ai-race>`_
+    
+    **Apple swaps one ex-Google AI chief for another**
+
+    *Amar Subramanya spent mere months at Microsoft before replacing John Giannandrea*
+
+    * `<https://www.theregister.com/2025/12/02/apple_ai_chief/>`_
+    * related `<https://apple.slashdot.org/story/25/12/02/0021253/apple-ai-chief-retiring-after-siri-failure>`_
+    
+    **MongoDB talks up its AI chops by talking down PostgreSQL**
+
+    *CEO touts win from 'super-high growth' customer that couldn't scale on rival system*
+
+    * `<https://www.theregister.com/2025/12/02/mongodb_postgresql_scalability/>`_
+    
+    **The Road To HPC And AI Profits Is Paved With Good Intentions**
+
+    * `<https://www.nextplatform.com/2025/12/01/the-road-to-hpc-and-ai-profits-is-paved-with-good-intentions/>`_
+    
+    **French AI shop Mistral rolls out full suite of Apache-licensed models**
+
+    *Lineup spans 3B to 14B parameters, from edge devices to multi-GPU rigs*
+
+    * `<https://www.theregister.com/2025/12/02/mistral_3/>`_
+    
+    **HereÆs your worst nightmare: E-tailer can only resume partial sales 45 days after ransomware attack**
+
+    *JapanÆs Askul still canÆt run all its sites, but at least the fax line held up OK*
+
+    * `<https://www.theregister.com/2025/12/03/askul_partial_ransomware_recovery/>`_
+    
+    **Two paths to Enlightenment: AV Linux 25 and MX Moksha step forward**
+
+    *Whether you want a studio rig or a featherweight desktop, MX Linux spins have you covered*
+
+    * `<https://www.theregister.com/2025/12/02/av_linux_25/>`_
+    
+    **Pat Gelsinger's EUV lithography gig gets $150M wink from Uncle Sam**
+
+    *Commerce Department wants equity in xLight as it backs a free-electron laser to challenge ASML*
+
+    * `<https://www.theregister.com/2025/12/03/us_150m_xlight/>`_
+    * `<https://yro.slashdot.org/story/25/12/02/0530257/trump-administration-to-take-equity-stake-in-former-intel-ceos-chip-startup>`_
+    
+    **London grid crunch delays new housing amid datacenter boom**
+
+    *Assembly report urges clearer planning as soaring AI power demands strain capital's network*
+
+    * `<https://www.theregister.com/2025/12/02/london_datacenter_new_homes/>`_
+    
+    **SmartTube YouTube App For Android TV Breached To Push Malicious Update**
+
+    * `<https://news.slashdot.org/story/25/12/02/1924229/smarttube-youtube-app-for-android-tv-breached-to-push-malicious-update>`_
