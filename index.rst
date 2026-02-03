@@ -71,13 +71,6 @@ This site is written by an **aging techie** so obviously is **Non-Bleeding-Edge*
     outdated/mvn
 
 .. toctree::
-    :maxdepth: 4
-    :caption: News:
-    :glob:
-
-    news-articles/Jan-2026/*
-
-.. toctree::
     :maxdepth: 1
     :caption: News Articles:
     :glob:
