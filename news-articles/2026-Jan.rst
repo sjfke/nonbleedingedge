@@ -1,0 +1,2127 @@
+:github_url: https://github.com/sjfke/nonbleedingedge/blob/main/headlines/2026-Jan.rst
+
+############
+January 2026
+############
+
+A human curated list of interesting technical news articles, hopefully with no hallucinations |:laughing:|
+
+Display and Searching
+=====================
+
+To display click the date ``DD.MM.YYYY`` title.
+
+At the moment, ``site search`` will point out the pages of interest, which are organized ``per month`` to keep the numer of files
+needed to a reasonable number. The ``contents`` are collapsed so manually searching in your browser will search all the
+articles in that month. *A better solution is needed.*
+
+.. admonition::   28.01.2026
+    :collapsible: closed
+
+    **Old Windows quirks help punch through new admin defenses**
+
+    *Google researcher sits on UAC bypass for ages, only for it to become valid with new security feature*
+
+    * `<https://www.theregister.com/2026/01/28/google_windows_admin_exploit/>`_
+
+    **Apple releases iOS 26.2.1 with bug fixes**
+
+    *The update, along with iPadOS 26.2.1 and watchOS 26.2.1 also adds support for the new AirTags.*
+
+    * `<https://www.macworld.com/article/3043280/apple-releases-ios-26-2-1-with-bug-fixes.html>`_
+
+    **Apple updates iOS 12 for the first time since 2023**
+
+    *The small update ensures FaceTime and iMessage will keep working on 13-year-old iPhones.*
+
+    * `<https://www.macworld.com/article/3043346/apple-updates-ios-12-for-the-first-time-since-2023.html>`_
+    * `<https://apple.slashdot.org/story/26/01/27/2336257/apple-updates-ios-12-for-the-first-time-since-2023>`_
+
+    **Samsung teases new privacy feature to hide your Galaxy phone screen from onlookers**
+
+    * `<https://techcrunch.com/2026/01/28/samsung-teases-new-privacy-feature-to-hide-your-galaxy-phone-screen-from-onlookers/>`_
+
+    **Fake Python Spellchecker Packages on PyPI Delivered Hidden Remote Access Trojan**
+
+    * `<https://thehackernews.com/2026/01/fake-python-spellchecker-packages-on.html>`_
+
+    **Google Warns of Active Exploitation of WinRAR Vulnerability CVE-2025-8088**
+
+    * `<https://thehackernews.com/2026/01/google-warns-of-active-exploitation-of.html>`_
+
+    **Critical vm2 Node.js Flaw Allows Sandbox Escape and Arbitrary Code Execution**
+
+    * `<https://thehackernews.com/2026/01/critical-vm2-nodejs-flaw-allows-sandbox.html>`_
+
+    **Paranoid WhatsApp users rejoice: Encrypted app gets one-click privacy toggle**
+
+    *Meta also replaces a legacy C++ media-handling security library with Rust*
+
+    * `<https://www.theregister.com/2026/01/27/whatsapp_strict_account_settings_meta_rust/>`_
+
+    **Redis hits $300M ARR as AI workloads drive growth**
+
+    * `<https://blocksandfiles.com/2026/01/27/redis-300-million-arr/>`_
+
+    **Have I Been Pwned: SoundCloud data breach impacts 29.8 million accounts**
+
+    * `<https://www.bleepingcomputer.com/news/security/have-i-been-pwned-soundcloud-data-breach-impacts-298-million-accounts/>`_
+    * `<https://yro.slashdot.org/story/26/01/27/2223256/soundcloud-data-breach-impacts-298-million-accounts>`_
+
+    **Fortinet Patches CVE-2026-24858 After Active FortiOS SSO Exploitation Detected**
+
+    * `<https://thehackernews.com/2026/01/fortinet-patches-cve-2026-24858-after.html>`_
+
+    **Oracle silent over user complaints about OCI London 'wobble' last week**
+
+    *But did it falter? Oracle debuts Schrödinger's cloud*
+
+    * `<https://www.theregister.com/2026/01/28/oci_access_complaints/>`_
+
+    **Citigroup Mandates AI Training For 175,000 Employees To Help Them 'Reinvent Themselves'**
+
+    * `<https://slashdot.org/story/26/01/27/1825244/citigroup-mandates-ai-training-for-175000-employees-to-help-them-reinvent-themselves>`_
+
+    **Trump’s acting cybersecurity chief uploaded sensitive government docs to ChatGPT**
+
+    * `<https://techcrunch.com/2026/01/28/trumps-acting-cybersecurity-chief-uploaded-sensitive-government-docs-to-chatgpt/>`_
+
+    **Amazon Inadvertently Announces Cloud Unit Layoffs In Email To Employees**
+
+    * `<https://slashdot.org/story/26/01/28/0457219/amazon-inadvertently-announces-cloud-unit-layoffs-in-email-to-employees>`_
+    * `<https://techcrunch.com/2026/01/28/amazon-says-it-is-laying-off-16000-employees/>`_
+
+    **Mozilla is Building an AI 'Rebel Alliance' To Take on Industry Heavweights OpenAI, Anthropic**
+
+    * `<https://tech.slashdot.org/story/26/01/27/1818232/mozilla-is-building-an-ai-rebel-alliance-to-take-on-industry-heavweights-openai-anthropic>`_
+
+    **WebAssembly gaining adoption “behind the scenes” as technology advances**
+
+    * `<https://devclass.com/2026/01/28/webassembly-gaining-adoption-behind-the-scenes-as-technology-advances/>`_
+
+    **Microsoft Azure OpenAI Service takes an unscheduled day off in Sweden**
+
+    *Cascading backend failures kept users locked out until home time*
+
+    * `<https://www.theregister.com/2026/01/28/azure_openai_service_sweden/>`_
+
+    **UK tax collector plans £2B tech binge as legacy systems refuse to die**
+
+    *AWS and Capgemini loom large in HMRC's procurement pipeline*
+
+    * `<https://www.theregister.com/2026/01/28/hmrc_tech_pipeline/>`_
+
+    **Flush with cash, SK hynix spawns mysteriously named 'AI Co.'**
+
+    *Memory boom funds $10B punt on 'solutions' outfit that's still light on details*
+
+    * `<https://www.theregister.com/2026/01/28/sk_hynix_ai_co/>`_
+
+    **OpenAI Releases Prism, a Claude Code-Like App For Scientific Research**
+
+    * `<https://science.slashdot.org/story/26/01/27/2157226/openai-releases-prism-a-claude-code-like-app-for-scientific-research>`_
+
+    **Mustang Panda Deploys Updated COOLCLIENT Backdoor in Government Cyber Attacks**
+
+    * `<https://thehackernews.com/2026/01/mustang-panda-deploys-updated.html>`_
+
+    **LinkedIn will let you show off your vibe coding chops with a certificate**
+
+    * `<https://techcrunch.com/2026/01/28/linkedin-will-let-you-show-off-your-vibe-coding-chops-with-a-certificate/>`_
+
+    **Nudify app proliferation shows naked ambition of Apple and Google**
+
+    *Researchers with the Tech Transparency Project found all sorts of apps that let users create fake non-consensual nudes of real people*
+
+    * `<https://www.theregister.com/2026/01/27/nudify_app_proliferation_shows_naked/>`_
+    * `<https://www.techtransparencyproject.org/articles/nudify-apps-widely-available-in-apple-and-google-app-stores>`_
+
+.. admonition::   27.01.2026
+    :collapsible: closed
+
+    **Microsoft Office Zero-Day (CVE-2026-21509) - Emergency Patch Issued for Active Exploitation**
+
+    * `<https://thehackernews.com/2026/01/microsoft-issues-emergency-patch-for.html>`_
+
+    **Microsoft previews command-line tool created because calling modern Windows APIs is too difficult**
+
+    * `<https://devclass.com/2026/01/26/microsoft-previews-command-line-tool-created-because-calling-modern-windows-apis-is-too-difficult/>`_
+
+    **How one developer used Claude to build a memory-safe extension of C**
+
+    *Robin Rowe talks about coding, programming education, and China in the age of AI*
+
+    * `<https://www.theregister.com/2026/01/26/trapc_claude_c_memory_safe_robin_rowe/>`_
+
+
+    **Developer behind it is sick with worry he might have changed software development in nasty ways**
+
+    * `<https://www.theregister.com/2026/01/27/ralph_wiggum_claude_loops/>`_
+
+    **Succession: Linux kernel community gets continuity plan for post-Linus era**
+
+    *Conclave doc outlines path to eternal releases*
+
+    * `<https://www.theregister.com/2026/01/27/linux_continuity_plan/>`_
+
+    **Android phones are getting more anti-theft features**
+
+    * `<https://techcrunch.com/2026/01/27/android-phones-are-getting-more-anti-theft-features/>`_
+
+    **TikTok alternative Skylight soars to 380K+ users after TikTok US deal finalized**
+
+    * `<https://techcrunch.com/2026/01/26/tiktok-alternative-skylight-soars-to-380k-users-after-tiktok-u-s-deal-finalized/>`_
+    * `<https://tech.slashdot.org/story/26/01/27/0036229/tiktok-alternative-skylight-soars-to-380k-users-after-tiktok-us-deal-finalized>`_
+
+    **Lawsuit Alleges That WhatsApp Has No End-to-End Encryption**
+
+    * `<https://uk.pcmag.com/security/162799/lawsuit-alleges-that-whatsapp-has-no-end-to-end-encryption>`_
+    * `<https://it.slashdot.org/story/26/01/27/0550249/lawsuit-alleges-that-whatsapp-has-no-end-to-end-encryption>`_
+
+    **WhatsApp Rolls Out Lockdown-Style Security Mode to Protect Targeted Users From Spyware**
+
+    * `<https://thehackernews.com/2026/01/whatsapp-rolls-out-lockdown-style.html>`_
+
+    **Meta to test premium subscriptions on Instagram, Facebook, and WhatsApp**
+
+    * `<https://techcrunch.com/2026/01/26/meta-to-test-premium-subscriptions-on-instagram-facebook-and-whatsapp/>`_
+
+    **Gemini In Google Calendar Now Helps You Find the Best Meeting Time For All Attendees**
+
+    * `<https://tech.slashdot.org/story/26/01/26/2230202/gemini-in-google-calendar-now-helps-you-find-the-best-meeting-time-for-all-attendees>`_
+
+    **ReactOS Celebrates 30 Years**
+
+    * `<https://news.slashdot.org/story/26/01/27/0053233/reactos-celebrates-30-years>`_
+    * `<https://reactos.org/blogs/30yrs-of-ros/>`_
+
+    **Amazon To Shut Down All Amazon Go and Amazon Fresh Stores**
+
+    * `<https://slashdot.org/story/26/01/27/1625211/amazon-to-shut-down-all-amazon-go-and-amazon-fresh-stores>`_
+    * `<https://techcrunch.com/2026/01/27/amazon-is-closing-its-physical-amazon-go-and-amazon-fresh-stores/>`_
+
+    **Pinterest Cuts Up To 15% Jobs To Redirect Resources To AI**
+
+    * `<https://slashdot.org/story/26/01/27/1457232/pinterest-cuts-up-to-15-jobs-to-redirect-resources-to-ai>`_
+    * `<https://techcrunch.com/2026/01/27/pinterest-to-lay-off-15-of-staff-to-redirect-resources-to-ai/>`_
+
+    **ClickFix Attacks Expand Using Fake CAPTCHAs, Microsoft Scripts, and Trusted Web Services**
+
+    * `<https://thehackernews.com/2026/01/clickfix-attacks-expand-using-fake.html>`_
+
+    **Trump Administration**
+
+    *Government by AI? Trump Administration Plans to Write Regulations Using Artificial Intelligence*
+
+    * `<https://www.propublica.org/article/trump-artificial-intelligence-google-gemini-transportation-regulations>`_
+    * `<https://news.slashdot.org/story/26/01/26/1948215/dot-plans-to-use-google-gemini-ai-to-write-regulations>`_
+
+    **AI adoption at work flatlined in Q4, says Gallup**
+
+    *Points to a use-case problem*
+
+    * `<https://www.theregister.com/2026/01/26/workplace_ai_adoption_falls_flat/>`_
+
+    **How a 15,000-Person Island Stumbled Into a $70 Million AI Windfall**
+
+    * `<https://tech.slashdot.org/story/26/01/26/1731231/how-a-15000-person-island-stumbled-into-a-70-million-ai-windfall>`_
+
+.. admonition::   26.01.2026
+    :collapsible: closed
+
+    **Microsoft rushes out another fix for cloud storage after January update**
+
+
+    * `<https://www.theregister.com/2026/01/26/microsoft_outofband_patch/>`_
+
+    **Microsoft probes Windows 11 boot failures tied to January security updates**
+
+    *Some machines are failing to start after security updates, prompting yet another Microsoft investigation*
+
+    * `<https://www.theregister.com/2026/01/26/microsoft_probes_windows_11_boot/>`_
+
+    **Surrender as a service: Microsoft unlocks BitLocker for feds**
+
+    *If you're serious about encryption, keep control of your encryption keys*
+
+    * `<https://www.theregister.com/2026/01/23/surrender_as_a_service_microsoft/>`_
+
+    **Sandia boffins let three AI agents loose in the lab. Science, not chaos, ensued**
+
+    *Researchers demonstrate fourfold improvement to LED steering results after enlisting the help of some good old-fashion AI*
+
+    * `<https://www.theregister.com/2026/01/26/sandia_ai_agents_feature/>`_
+
+    **Apple will reportedly unveil its Gemini-powered Siri assistant in February**
+
+    * `<https://techcrunch.com/2026/01/25/apple-will-reportedly-unveil-its-gemini-powered-siri-assistant-in-february/>`_
+
+    **Google Discover Replaces News Headlines With Sometimes Inaccurate AI-Generated Alternatives**
+
+    * `<https://news.slashdot.org/story/26/01/26/001230/google-discover-replaces-news-headlines-with-sometimes-inaccurate-ai-generated-alternatives>`_
+
+    **New Linux/Android 2-in-1 Tablet 'Open Slate' Announced by Brax Technologies**
+
+    * `<https://news.slashdot.org/story/26/01/25/2226239/new-linuxandroid-2-in-1-tablet-open-slate-announced-by-brax-technologies>`_
+    * `<https://community.braxtech.net/t/introducing-open-slate-our-next-community-driven-project/4043>`_
+
+    **The Android 'NexPhone': Linux on Demand, Dual-Boots Into Windows 11 - and Transforms Into a Workstation**
+
+    * `<https://mobile.slashdot.org/story/26/01/25/060240/the-android-nexphone-linux-on-demand-dual-boots-into-windows-11---and-transforms-into-a-workstation>`_
+    * `<https://itsfoss.com/news/nexphone-returns/>`_
+
+    **KDE's 'Plasma Login Manager' Stops Supporting FreeBSD - Because Systemd**
+
+    * `<https://bsd.slashdot.org/story/26/01/26/0135254/kdes-plasma-login-manager-stops-supporting-freebsd---because-systemd>`_
+
+    **Konni Hackers Deploy AI-Generated PowerShell Backdoor Against Blockchain Developers**
+
+    * `<https://thehackernews.com/2026/01/konni-hackers-deploy-ai-generated.html>`_
+
+    **Emmabuntüs DE 6: A newbie-friendly Linux to help those in need**
+
+    *A distro aimed at helping people, reducing e-waste – and helping a charity, too*
+
+    * `<https://www.theregister.com/2026/01/25/emmabuntus_6_charitable_linux/>`_
+
+    **Oracle AI sailed the world on Royal Navy flagship via cloud-at-the-edge kit**
+
+    *Big Red says 'sovereign' platform supports decision-making and operational learning at sea*
+
+    * `<https://www.theregister.com/2026/01/26/royal_navy_oracle_ai/>`_
+
+    **Is Google Prioritizing YouTube and X Over News Publishers on Discover?**
+
+    * `<https://news.slashdot.org/story/26/01/26/008257/is-google-prioritizing-youtube-and-x-over-news-publishers-on-discover>`_
+
+    **Weekly Recap: Firewall Flaws, AI-Built Malware, Browser Traps, Critical CVEs & More**
+
+    * `<https://thehackernews.com/2026/01/weekly-recap-firewall-flaws-ai-built.html>`_
+
+.. admonition::   25.01.2026
+    :collapsible: closed
+
+    **Former Canonical Developer Advocate Warns Snap Store Isn't Safe After Slow Responses to Malware Reports**
+
+    * `<https://linux.slashdot.org/story/26/01/24/2332205/former-canonical-developer-advocate-warns-snap-store-isnt-safe-after-slow-responses-to-malware-reports>`_
+    * `<https://linuxiac.com/linux-snap-users-warned-as-attackers-push-malware-through-old-trusted-apps/>`_
+
+    **Microsoft 365 Endured 9+ Hours of Outages Thursday**
+
+    * `<https://it.slashdot.org/story/26/01/24/2031221/microsoft-365-endured-9-hours-of-outages-thursday>`_
+
+    **Gmail is having issues with spam and misclassification**
+
+    * `<https://techcrunch.com/2026/01/24/gmail-is-having-issues-with-spam-and-misclassification/>`_
+
+    **Intel Is Still Struggling In The Datacenter, But It Could Get Better**
+
+    * `<https://www.nextplatform.com/2026/01/23/intel-is-still-struggling-in-the-datacenter-but-it-could-get-better/>`_
+
+    **Infotainment, EV Charger Exploits Earn $1M at Pwn2Own Automotive 2026**
+
+    * `<https://it.slashdot.org/story/26/01/25/0131222/infotainment-ev-charger-exploits-earn-1m-at-pwn2own-automotive-2026>`_
+
+    **Legal AI giant Harvey acquires Hexus as competition heats up in legal tech**
+
+    * `<https://techcrunch.com/2026/01/23/legal-ai-giant-harvey-acquires-hexus-as-competition-heats-up-in-legal-tech/>`_
+
+.. admonition::   24.01.2026
+    :collapsible: closed
+
+    **Campaigner Launches $2 Billion Legal Action In UK Against Apple Over Wallet's 'Hidden Fees'**
+
+    * `<https://news.slashdot.org/story/26/01/23/2328228/campaigner-launches-2-billion-legal-action-in-uk-against-apple-over-wallets-hidden-fees>`_
+
+    **Microsoft gave FBI a set of BitLocker encryption keys to unlock suspects’ laptops: Reports**
+
+    * `<https://techcrunch.com/2026/01/23/microsoft-gave-fbi-a-set-of-bitlocker-encryption-keys-to-unlock-suspects-laptops-reports/>`_
+    * `<https://it.slashdot.org/story/26/01/23/1910235/microsoft-gave-fbi-a-set-of-bitlocker-encryption-keys-to-unlock-suspects-laptops>`_
+    * `<https://www.theregister.com/2026/01/23/surrender_as_a_service_microsoft/>`_
+
+    **Apple's Secret Product Plans Stolen in Luxshare Cyberattack**
+
+    * `<https://apple.slashdot.org/story/26/01/23/1017203/apples-secret-product-plans-stolen-in-luxshare-cyberattack>`_
+    * `<https://www.macrumors.com/2026/01/21/apple-product-plans-stolen-in-luxshare-cyberattack/>`_
+
+    **CISA won't attend infosec industry's biggest conference this year**
+
+    *But ex-CISA boss and new RSAC CEO Jen Easterly will be there*
+
+    * `<https://www.theregister.com/2026/01/24/cisa_skipping_rsa_exclusive/>`_
+
+    **AI-powered cyberattack kits are 'just a matter of time,' warns Google exec**
+
+    *Security chief says criminals are already automating workflows, with full end-to-end tools likely within years*
+
+    * `<https://www.theregister.com/2026/01/23/ai_cyberattack_google_security/>`_
+
+    **Microsoft shifting to cloud management software brings possibility of it peeking into your estate**
+
+    *Deprecation of popular management tool requires a new look at Azure-based system*
+
+    * `<https://www.theregister.com/2026/01/23/microsoft_shifting_to_cloud_management/>`_
+
+    **China’s Deepin Linux gets a slick desktop - and, yes, built-in AI**
+
+    *Where FOSS desktop OSes meet geopolitics*
+
+    * `<https://www.theregister.com/2026/01/23/deepin_25010/>`_
+
+    **How an experienced developer teamed up with Claude to create Elo programming language**
+
+    *Bernand Lambeau, the human half of a pair programming team, explains how he's using AI*
+
+    * `<https://www.theregister.com/2026/01/24/human_ai_pair_programming_elo/>`_
+
+    **Hacker taps Raspberry Pi to turn Wi-Fi signals into wall art**
+
+    *Pipe local wireless noise through an SDR into an RPi, and 64 LED filaments do the rest*
+
+    * `<https://www.theregister.com/2026/01/23/raspberry_pi_wifi_wall_art/>`_
+
+    **CISA Adds Actively Exploited VMware vCenter Flaw CVE-2024-37079 to KEV Catalog**
+
+    * `<https://thehackernews.com/2026/01/cisa-adds-actively-exploited-vmware.html>`_
+
+    **CISA Updates KEV Catalog with Four Actively Exploited Software Vulnerabilities**
+
+    * `<https://thehackernews.com/2026/01/cisa-updates-kev-catalog-with-four.html>`_
+
+    **Wall Street Pushes Solo 401(k)s as More Americans Work for Themselves**
+
+    * `<https://news.slashdot.org/story/26/01/23/1218254/wall-street-pushes-solo-401ks-as-more-americans-work-for-themselves>`_
+
+    **TikTok Is Now Collecting Even More Data About Its Users**
+
+    * `<https://yro.slashdot.org/story/26/01/23/236200/tiktok-is-now-collecting-even-more-data-about-its-users>`_
+    * `<https://techcrunch.com/2026/01/23/tiktok-users-freak-out-over-apps-immigration-status-collection-heres-what-it-means/>`_
+
+    **Storage news ticker – 23 January**
+
+    * `<https://blocksandfiles.com/2026/01/23/storage-news-ticker-22-january/>`_
+
+    **New DynoWiper Malware Used in Attempted Sandworm Attack on Polish Power Sector**
+
+    * `<https://thehackernews.com/2026/01/new-dynowiper-malware-used-in-attempted.html>`_
+
+    **Multi-Stage Phishing Campaign Targets Russia with Amnesia RAT and Ransomware**
+
+    * `<https://thehackernews.com/2026/01/multi-stage-phishing-campaign-targets.html>`_
+
+
+    * `<https://slashdot.org/story/26/01/23/0757223/almost-everyone-laid-off-at-vimeo-following-bending-spoons-buyout>`_
+
+.. admonition::   23.01.2026
+    :collapsible: closed
+
+    **Devs begin to assess options for MySQL's future beyond Oracle**
+
+    *As Big Red's governance of the popular database comes into question, contributors to MySQL consider wresting control*
+
+    * `<https://www.theregister.com/2026/01/23/mysql_post_oracle/>`_
+
+    **VS Code tasks config file abused to run malicious code**
+
+    * `<https://devclass.com/2026/01/22/vs-code-tasks-config-file-abused-to-run-malicious-code/>`_
+
+    **Fortinet admits FortiGate SSO bug still exploitable despite December patch**
+
+    *Fix didn't quite do the job – attackers spotted logging in*
+
+    * `<https://www.theregister.com/2026/01/23/fortinet_fortigate_patch/>`_
+    * `<https://thehackernews.com/2026/01/fortinet-confirms-active-forticloud-sso.html>`_
+
+    **Microsoft 365 outage drags on for nearly 10 hours during bad night for North American infra**
+
+    *Down to 364.5 already: Redmond's crappy 2026 continues*
+
+    * `<https://www.theregister.com/2026/01/23/microsoft_365_outage/>`_
+    * `<https://techcrunch.com/2026/01/22/microsoft-365-hit-by-outage-preventing-access-to-emails-and-files/>`_
+
+    **Intel puts consumer chip production on back burner as datacenters make a run on Xeons**
+
+    *CFO David Zinsner says foundry capacity should improve starting in Q2*
+
+    * `<https://www.theregister.com/2026/01/23/intel_earnings_q4_2025/>`_
+
+    **Microsoft Flags Multi-Stage AitM Phishing and BEC Attacks Targeting Energy Firms**
+
+    * `<https://thehackernews.com/2026/01/microsoft-flags-multi-stage-aitm.html>`_
+
+    **Crims compromised energy firms' Microsoft accounts, sent 600 phishing emails**
+
+    *Logging in, not breaking in*
+
+    * `<https://www.theregister.com/2026/01/22/crims_compromised_energy_firms_microsoft/>`_
+
+    **EU Parliament Calls For Detachment From US Tech Giants**
+
+    * `<https://slashdot.org/story/26/01/22/2253207/eu-parliament-calls-for-detachment-from-us-tech-giants>`_
+
+    **Cursor used agents to write a browser, proving AI can write shoddy code at scale**
+
+    *Project kind-of worked but left a lot of messes for humans to clean up*
+
+    * `<https://www.theregister.com/2026/01/22/cursor_ai_wrote_a_browser/>`_
+
+    **Oracle, Michael Dell, named as investors in JV that will run TikTok's US operations**
+
+    *Big Red gets to store data, advise on security, and store the 'I'll watch just one more video' algo*
+
+    * `<https://www.theregister.com/2026/01/23/jv_announces_tiktok_us_acquisition/>`_
+
+    **PowerShell architect retires after decades at the prompt**
+
+    *After Microsoft, Google, and a long fight for automation, Jeffrey Snover hangs up his keyboard*
+
+    * `<https://www.theregister.com/2026/01/22/powershell_snover_retires/>`_
+
+    **Raspberry Pi flashes new branded USB drives that promise speedy performance**
+
+    *The aluminum sticks come in 128GB and 256GB variants*
+
+    * `<https://www.theregister.com/2026/01/22/raspberry_pi_usb_drive/>`_
+
+    **Phishing Attack Uses Stolen Credentials to Install LogMeIn RMM for Persistent Access**
+
+    * `<https://thehackernews.com/2026/01/phishing-attack-uses-stolen-credentials.html>`_
+
+    **New Osiris Ransomware Emerges as New Strain Using POORTRY Driver in BYOVD Attack**
+
+    * `<https://thehackernews.com/2026/01/new-osiris-ransomware-emerges-as-new.html>`_
+
+    **AI conference's papers contaminated by AI hallucinations**
+
+
+    * `<https://www.theregister.com/2026/01/22/neurips_papers_contaiminated_ai_hallucinations/>`_
+
+.. admonition::   22.01.2026
+    :collapsible: closed
+
+    **Critical GNU InetUtils telnetd Flaw Lets Attackers Bypass Login and Gain Root Access**
+
+    * `<https://thehackernews.com/2026/01/critical-gnu-inetutils-telnetd-flaw.html>`_
+    * `<https://www.theregister.com/2026/01/22/root_telnet_bug/>`_
+
+    **Zoom and GitLab Release Security Updates Fixing RCE, DoS, and 2FA Bypass Flaws**
+
+    * `<https://thehackernews.com/2026/01/zoom-and-gitlab-release-security.html>`_
+
+    **Another week, another emergency patch as Cisco plugs Unified Comms zero-day**
+
+    *The critical-rated flaw leaves unpatched systems open to full takeover*
+
+    * `<https://www.theregister.com/2026/01/22/another_week_another_emergency_patch/>`_
+    * `<https://thehackernews.com/2026/01/cisco-fixes-actively-exploited-zero-day.html>`_
+
+    **SmarterMail Auth Bypass Exploited in the Wild Two Days After Patch Release**
+
+    * `<https://thehackernews.com/2026/01/smartermail-auth-bypass-exploited-in.html>`_
+
+    **Apple Reportedly Replacing Siri Interface With Actual Chatbot Experience For iOS 27**
+
+    * `<https://apple.slashdot.org/story/26/01/21/2333212/apple-reportedly-replacing-siri-interface-with-actual-chatbot-experience-for-ios-27>`_
+    * `<https://9to5mac.com/2026/01/21/apple-reportedly-replacing-siri-interface-with-actual-chatbot-experience-for-ios-27/>`_
+
+    **FortiGate firewalls hit by silent SSO intrusions and config theft**
+
+    *Admins say attackers are still getting in despite recent patches*
+
+    * `<https://www.theregister.com/2026/01/22/fortigate_firewalls_hit_by_silent/>`_
+    * `<https://thehackernews.com/2026/01/automated-fortigate-attacks-exploit.html>`_
+
+    **Malicious PyPI Package Impersonates SymPy, Deploys XMRig Miner on Linux Hosts**
+
+    * `<https://thehackernews.com/2026/01/malicious-pypi-package-impersonates.html>`_
+
+    **Notepad will now tell you all the ways Microsoft has enshittified it**
+
+    *Veteran text editor gets more AI enhancements while Paint will be able to generate coloring books*
+
+    * `<https://www.theregister.com/2026/01/22/microsoft_notepad_update/>`_
+
+    **Debian's FreedomBox Blend promises an easier home cloud**
+
+    *There are other home server, NAS, and media-streaming distros, but this aspires to much more*
+
+    * `<https://www.theregister.com/2026/01/22/debians_freedombox_blend/>`_
+
+    **Cohesity fortifies Identity Resilience for Active Directory and Entra ID**
+
+    * `<https://blocksandfiles.com/2026/01/21/cohesity-further-fortifies-identity-security/>`_
+
+    **Apps for boycotting American products surge to the top of the Danish App Store**
+
+    * `<https://techcrunch.com/2026/01/21/apps-for-boycotting-american-products-surge-to-the-top-of-the-danish-app-store/>`_
+
+    **Bank of England: Financial sector failing to implement basic cybersecurity controls**
+
+    *Mind the cyber gap – similar flaws highlighted multiple years in a row*
+
+    * `<https://www.theregister.com/2026/01/22/financial_sector_cyber_gap/>`_
+    * `<https://www.bankofengland.co.uk/financial-stability/operational-resilience-of-the-financial-sector/2025-cbest-thematic>`_
+
+    **Everest ransomware gang said to be sitting on mountain of Under Armour data**
+
+    *Have I Been Pwned reckons 72.7M customer accounts affected, sportswear firm remains silent*
+
+    * `<https://www.theregister.com/2026/01/21/under_armour_everest/>`_
+
+    **EU's Digital Networks Act sets telcos squabbling before the ink is dry**
+
+    *Comms harmonization plan already drawing fire from operators and Big Tech alike*
+
+    * `<https://www.theregister.com/2026/01/22/eu_digital_networks/>`_
+
+    **Europe's GDPR cops dished out €1.2B in fines last year as data breaches piled up**
+
+    *Regulators logged over 400 personal data breach notifications a day for first time since law came into force*
+
+    * `<https://www.theregister.com/2026/01/22/europes_gdpr_cops_dished_out/>`_
+
+    **SAP scores £275M award from UK tax collector – sans competition**
+
+    *System handling £800B must be SaaS and sovereign. Only German vendor fits the bill, says HMRC*
+
+    * `<https://www.theregister.com/2026/01/22/sap_275_million_award_from/>`_
+
+    **eBay updates legalese to ban AI-powered shop-bots**
+
+    *This establishment does not serve agents, says digital tat bazaar*
+
+    * `<https://www.theregister.com/2026/01/22/ebay_updates_legalese_to_ban/>`_
+
+    **Davos discussion mulls how to keep AI agents from running wild**
+
+    *Where the shiny new FOMO object collides with insider-threat reality*
+
+    * `<https://www.theregister.com/2026/01/21/davos_ai_agents_security/>`_
+
+    **ThreatsDay Bulletin: Pixel Zero-Click, Redis RCE, China C2s, RAT Ads, Crypto Scams & 15+ Stories**
+
+    * `<https://thehackernews.com/2026/01/threatsday-bulletin-pixel-zero-click.html>`_
+
+    **Under Armour says it’s ‘aware’ of data breach claims after 72M customer records were posted online**
+
+    * `<https://techcrunch.com/2026/01/22/under-armour-says-its-aware-of-data-breach-claims-after-72m-customer-records-were-posted-online/>`_
+    * `<https://www.theregister.com/2026/01/21/under_armour_everest/>`_
+
+    **North Korean PurpleBravo Campaign Targeted 3,136 IP Addresses via Fake Job Interviews**
+
+    * `<https://thehackernews.com/2026/01/north-korean-purplebravo-campaign.html>`_
+
+.. admonition::   21.01.2026
+    :collapsible: closed
+
+    **Microsoft admits Outlook might freeze when saving files to OneDrive**
+
+    *January update is the gift that keeps on giving*
+
+    * `<https://www.theregister.com/2026/01/21/outlook_freeze_onedrive/>`_
+
+    **Curl shutters bug bounty program to remove incentive for submitting AI slop**
+
+    *Maintainer hopes hackers send bug reports anyway, will keep shaming ‘silly' ones*
+
+    * `<https://www.theregister.com/2026/01/21/curl_ends_bug_bounty/>`_
+    * `<https://it.slashdot.org/story/26/01/20/2251253/curl-removes-bug-bounties>`_
+
+    **Cloudflare whacks WAF bypass bug that opened side door for attackers**
+
+    *ACME validation had a challenge-request hole*
+
+    * `<https://www.theregister.com/2026/01/20/cloudflare_fixes_acme_validation/>`_
+    * related `<https://thehackernews.com/2026/01/cloudflare-fixes-acme-validation-bug.html>`_
+
+    **CERT/CC Warns binary-parser Bug Allows Node.js Privilege-Level Code Execution**
+
+    * `<https://thehackernews.com/2026/01/certcc-warns-binary-parser-bug-allows.html>`_
+
+    **LastPass Warns of Fake Maintenance Messages Targeting Users' Master Passwords**
+
+    * `<https://thehackernews.com/2026/01/lastpass-warns-of-fake-maintenance.html>`_
+
+    **Mozilla starts offering RPMs of Firefox Nightly**
+
+    *More packaging options for the leading all-FOSS browser*
+
+    * `<https://www.theregister.com/2026/01/20/mozilla_offers_firefox_rpm/>`_
+
+    **Django 6.0 release notes**
+
+    * `<https://docs.djangoproject.com/en/6.0/releases/6.0/>`_
+    * `<https://versionlog.com/django/>`_
+
+    **Microsoft updates React Native for Windows. Developers ask, ‘Why not use MAUI?’**
+
+    * `<https://devclass.com/2026/01/20/microsoft-updates-react-native-for-windows-developers-ask-why-not-use-maui/>`_
+
+    **Chainlit AI Framework Flaws Enable Data Theft via File Read and SSRF Bugs**
+
+    * `<https://thehackernews.com/2026/01/chainlit-ai-framework-flaws-enable-data.html>`_
+
+    **VoidLink Linux Malware Framework Built with AI Assistance Reaches 88,000 Lines of Code**
+
+    * `<https://thehackernews.com/2026/01/voidlink-linux-malware-framework-built.html>`_
+    * `<https://www.theregister.com/2026/01/20/voidlink_ai_developed/>`_
+    * related `<https://www.theregister.com/2026/01/14/voidlink_linux_malware/>`_
+    * related `<https://thehackernews.com/2026/01/new-advanced-linux-voidlink-malware.html>`_
+
+    **Exposure Assessment Platforms Signal a Shift in Focus**
+
+    * `<https://thehackernews.com/2026/01/exposure-assessment-platforms-signal.html>`_
+
+    **MX Linux 25.1 brings back switchable init systems**
+
+    *Dislike systemd but occasionally need it for something? MX can help*
+
+    * `<https://www.theregister.com/2026/01/21/mx_25_1_init_diversity/>`_
+
+    **Adobe Acrobat now lets you edit files using prompts, generate podcast summaries**
+
+    * `<https://techcrunch.com/2026/01/21/adobe-acrobat-now-lets-you-edit-files-using-prompts-generate-podcast-summaries/>`_
+
+    **NYT Games’ Scrabble-like game Crossplay is a dream come true**
+
+    * `<https://techcrunch.com/2026/01/21/nyt-games-scrabble-like-game-crossplay-is-a-dream-come-true/>`_
+
+    **Consumers spent more on mobile apps than games in 2025, driven by AI app adoption**
+
+    * `<https://techcrunch.com/2026/01/21/consumers-spent-more-on-mobile-apps-than-games-in-2025-driven-by-ai-app-adoption/>`_
+
+.. admonition::   20.01.2026
+    :collapsible: closed
+
+    **jQuery 4.0 released, first major version since 2016**
+
+    * `<https://devclass.com/2026/01/19/jquery-4-0-released-first-major-version-since-2016/>`_
+    * `<https://blog.jquery.com/2026/01/17/jquery-4-0-0/>`_
+
+    **Cloudflare Fixes ACME Validation Bug Allowing WAF Bypass to Origin Servers**
+
+    * `<https://thehackernews.com/2026/01/cloudflare-fixes-acme-validation-bug.html>`_
+
+    **Three Flaws in Anthropic MCP Git Server Enable File Access and Code Execution**
+
+    * `<https://thehackernews.com/2026/01/three-flaws-in-anthropic-mcp-git-server.html>`_
+    * `<https://www.theregister.com/2026/01/20/anthropic_prompt_injection_flaws/>`_
+
+    **Google Gemini Prompt Injection Flaw Exposed Private Calendar Data via Malicious Invites**
+
+    * `<https://thehackernews.com/2026/01/google-gemini-prompt-injection-flaw.html>`_
+
+    **Rackspace Customers Grapple With 'Devastating' Email Hosting Price Hike**
+
+    * `<https://it.slashdot.org/story/26/01/19/1955239/rackspace-customers-grapple-with-devastating-email-hosting-price-hike>`_
+    * `<https://www.theregister.com/2026/01/20/rackspace_price_changes/>`_
+
+    **Asus Confirms It Won't Launch Phones in 2026, May Leave Android Altogether**
+
+    * `<https://mobile.slashdot.org/story/26/01/19/1933224/asus-confirms-it-wont-launch-phones-in-2026-may-leave-android-altogether>`_
+
+    **Evelyn Stealer Malware Abuses VS Code Extensions to Steal Developer Credentials and Crypto**
+
+    * `<https://thehackernews.com/2026/01/evelyn-stealer-malware-abuses-vs-code.html>`_
+
+    **Windows 11, not AI, kick-started the PC upgrade cycle**
+
+    *Corporate IT refreshed hardware to stay supported, not chase new features*
+
+    * `<https://www.theregister.com/2026/01/20/windows_11_pc_refresh/>`_
+    * related `<https://www.theregister.com/2026/01/19/price_battery_life_performance_pc/>`_
+
+    **Why Secrets in JavaScript Bundles are Still Being Missed**
+
+    * `<https://thehackernews.com/2026/01/why-secrets-in-javascript-bundles-are.html>`_
+
+    **Hackers Use LinkedIn Messages to Spread RAT Malware Through DLL Sideloading**
+
+    * `<https://thehackernews.com/2026/01/hackers-use-linkedin-messages-to-spread.html>`_
+    * related `<https://thehackernews.com/2026/01/lotuslite-backdoor-targets-us-policy.html>`_
+
+    **Well, there goes the metaverse!**
+
+    * `<https://techcrunch.com/2026/01/19/well-there-goes-the-metaverse/>`_
+
+    **Majority of CEOs report zero payoff from AI splurge**
+
+    *PwC survey finds more than half of 4,500+ biz leaders see no revenue growth nor cost savings*
+
+    * `<https://www.theregister.com/2026/01/20/pwc_ai_ceo_survey/>`_
+
+    **Tudou Guarantee Marketplace Halts Telegram Transactions After Processing Over $12 Billion**
+
+    * `<https://thehackernews.com/2026/01/tudou-guarantee-marketplace-halts.html>`_
+
+.. admonition::   19.01.2026
+    :collapsible: closed
+
+    **Microsoft Forced to Issue Emergency Out-of-Band Windows Update**
+
+    * `<https://tech.slashdot.org/story/26/01/18/1932246/microsoft-forced-to-issue-emergency-out-of-band-windows-update>`_
+    * `<https://www.theregister.com/2026/01/19/windows_11_shutdown_bug/>`_
+
+    **Microsoft Intune changes to start biting unprepared admins**
+
+    *Mobile application management updates mean apps could soon be blocked*
+
+    * `<https://www.theregister.com/2026/01/19/microsoft_intune_deadline/>`_
+
+    **Hundreds Answer Europe's 'Public Call for Evidence' on an Open Digital Ecosystem Strategy**
+
+    * `<https://news.slashdot.org/story/26/01/18/2054259/hundreds-answer-europes-public-call-for-evidence-on-an-open-digital-ecosystem-strategy>`_
+    * `<https://www.helpnetsecurity.com/2026/01/09/eu-call-for-evidence-open-source/>`_
+
+    **Price, battery life, performance – that's how you sell PCs**
+
+    *Traditional considerations back in vogue. On-device AI? Not so much*
+
+    * `<https://www.theregister.com/2026/01/19/price_battery_life_performance_pc/>`_
+
+    **IMF Warns Global Economic Resilience at Risk if AI Falters**
+
+    * `<https://slashdot.org/story/26/01/19/1423221/imf-warns-global-economic-resilience-at-risk-if-ai-falters>`_
+
+    **New StackWarp Hardware Flaw Breaks AMD SEV-SNP Protections on Zen 1–5 CPUs**
+
+    * `<https://thehackernews.com/2026/01/new-stackwarp-hardware-flaw-breaks-amd.html>`_
+    * related `<https://www.theregister.com/2026/01/15/stackwarp_bug_amd_cpus/>`_
+
+    **CrashFix Chrome Extension Delivers ModeloRAT Using ClickFix-Style Browser Crash Lures**
+
+    * `<https://thehackernews.com/2026/01/crashfix-chrome-extension-delivers.html>`_
+
+    **Security Bug in StealC Malware Panel Let Researchers Spy on Threat Actor Operations**
+
+    * `<https://thehackernews.com/2026/01/security-bug-in-stealc-malware-panel.html>`_
+
+    **DevOps & SaaS Downtime: The High (and Hidden) Costs for Cloud-First Businesses**
+
+    * `<https://thehackernews.com/2026/01/high-costs-of-devops-saas-downtime.html>`_
+
+    **More US States are Putting Bitcoin on Public Balance Sheets**
+
+    * `<https://yro.slashdot.org/story/26/01/19/076259/more-us-states-are-putting-bitcoin-on-public-balance-sheets>`_
+
+    **Hiring at India’s Big Four outsourcers stalls, as AI seemingly makes an impact**
+
+    *Revenue growth is sluggish, too*
+
+    * `<https://www.theregister.com/2026/01/19/hcl_infosys_tcs_wipro_results/>`_
+
+    **Acer Sues Verizon, AT&T, and T-Mobile, Alleging Infringment on Acer's Cellular Networking Patents**
+
+    * `<https://yro.slashdot.org/story/26/01/18/006222/acer-sues-verizon-att-and-t-mobile-alleging-infringment-on-acers-cellular-networking-patents>`_
+
+    **Weekly Recap: Fortinet Exploits, RedLine Clipjack, NTLM Crack, Copilot Attack & More**
+
+    * `<https://thehackernews.com/2026/01/weekly-recap-fortinet-exploits-redline.html>`_
+
+.. admonition::   18.01.2026
+    :collapsible: closed
+
+    **To Pressure Security Professionals, Mandiant Releases Database That Cracks Weak NTLM Passwords in 12 Hours**
+
+    * `<https://it.slashdot.org/story/26/01/17/194230/to-pressure-security-professionals-mandiant-releases-database-that-cracks-weak-ntlm-passwords-in-12-hours>`_
+
+
+    * `<https://news.slashdot.org/story/26/01/18/0556221/53-of-crypto-tokens-launched-since-2021-have-failed-most-in-2025>`_
+
+    **T2/Linux Brings a Flagship KDE Plasma Linux Desktop to RISC-V and ARM64**
+
+    * `<https://linux.slashdot.org/story/26/01/17/0610216/t2linux-brings-a-flagship-kde-plasma-linux-desktop-to-risc-v-and-arm64>`_
+    * `<https://forum.gnoppix.org/t/t2-linux-brings-a-flagship-kde-plasma-linux-desktop-to-risc-v-and-arm64/4088>`_
+
+    **Nearly 5 Million Accounts Removed Under Australia's New Social Media Ban**
+
+    * `<https://tech.slashdot.org/story/26/01/17/0440228/nearly-5-million-accounts-removed-under-australias-new-social-media-ban>`_
+
+    **Storage news ticker – 16 January 2026**
+
+    * `<https://blocksandfiles.com/2026/01/16/storage-news-ticker-16-january-2026/>`_
+
+.. admonition::   17.01.2026
+    :collapsible: closed
+
+    **Sorry Dave, I’m afraid I can’t do that! PCs refuse to shut down after Microsoft patch**
+
+    *Microsoft claims it's a Secure Launch bug*
+
+    * `<https://www.theregister.com/2026/01/16/patch_tuesday_secure_launch_bug_no_shutdown/>`_
+    * `<https://tech.slashdot.org/story/26/01/16/2144202/patch-tuesday-update-makes-windows-pcs-refuse-to-shut-down>`_
+
+    **Windows Backup adds second-chance restore at sign-in**
+
+    *First sign-in restore aims to cut rebuilds when users skip setup options*
+
+    * `<https://www.theregister.com/2026/01/16/microsoft_windows_backup/>`_
+
+    **Cloudflare Acquires Team Behind Open Source Framework Astro**
+
+    * `<https://thenewstack.io/cloudflare-acquires-team-behind-open-source-framework-astro/>`_
+    * `<https://news.slashdot.org/story/26/01/16/2120240/cloudflare-acquires-team-behind-open-source-framework-astro>`_
+
+    **Five Malicious Chrome Extensions Impersonate Workday and NetSuite to Hijack Accounts**
+
+    * `<https://thehackernews.com/2026/01/five-malicious-chrome-extensions.html>`_
+
+    **Fast Pair, loose security: Bluetooth accessories open to silent hijack**
+
+    *Sloppy implementation of Google spec leaves 'hundreds of millions' of devices vulnerable*
+
+    * `<https://www.theregister.com/2026/01/17/fast_pair_flaw/>`_
+
+    **GootLoader Malware Uses 500–1,000 Concatenated ZIP Archives to Evade Detection**
+
+    * `<https://thehackernews.com/2026/01/gootloader-malware-uses-5001000.html>`_
+
+    **Ready for a newbie-friendly Linux? Mint team officially releases v 22.3, 'Zena'**
+
+    *Newer kernel, newer Cinnamon, new tools, and even new icons*
+
+    * `<https://www.theregister.com/2026/01/16/linux_mint_223_zena_officially_release/>`_
+
+    **TSMC Says AI Demand Is 'Endless' After Record Q4 Earnings**
+
+    * `<https://slashdot.org/story/26/01/16/213211/tsmc-says-ai-demand-is-endless-after-record-q4-earnings>`_
+
+    **Hard Drive Prices Have Surged By an Average of 46% Since September**
+
+    * `<https://hardware.slashdot.org/story/26/01/16/1332213/hard-drive-prices-have-surged-by-an-average-of-46-since-september>`_
+
+    **Verizon Offers $20 Credit After Nationwide Outage Stranded Users in SOS Mode For Hours**
+
+    * `<https://tech.slashdot.org/story/26/01/16/179214/verizon-offers-20-credit-after-nationwide-outage-stranded-users-in-sos-mode-for-hours>`_
+
+    **Ruby on Rails Creator Says AI Coding Tools Still Can't Match Most Junior Programmers**
+
+    * `<https://developers.slashdot.org/story/26/01/16/166254/ruby-on-rails-creator-says-ai-coding-tools-still-cant-match-most-junior-programmers>`_
+
+    **Experiment suggests AI chatbot would save insurance agents a whopping 3 minutes a day**
+
+    *Does that kind of time saving actually pay for itself?*
+
+    * `<https://www.theregister.com/2026/01/16/axlerod_ai_saves_insurance_agents_time/>`_
+
+    **Micron breaks ground on humungous NY DRAM fab after beating bats and tree huggers**
+
+    *Chipmaker claims the four-fab site could expand US-based DRAM production by a factor of 12*
+
+    * `<https://www.theregister.com/2026/01/16/micron_fab_breaks_ground/>`_
+
+    **X is down for the second time this week**
+
+    * `<https://techcrunch.com/2026/01/16/x-is-down-for-the-second-time-this-week/>`_
+
+.. admonition::   16.01.2026
+    :collapsible: closed
+
+    **AWS CodeBuild Misconfiguration Exposed GitHub Repos to Potential Supply Chain Attacks**
+
+    * `<https://thehackernews.com/2026/01/aws-codebuild-misconfiguration-exposed.html>`_
+    * `<https://www.theregister.com/2026/01/15/codebuild_flaw_aws/>`_
+
+    **Cisco Patches Zero-Day RCE Exploited by China-Linked APT in Secure Email Gateways**
+
+    * `<https://thehackernews.com/2026/01/cisco-patches-zero-day-rce-exploited-by.html>`_
+    * `<https://www.theregister.com/2026/01/15/cisco_fixes_cve_2025_20393/>`_
+
+    **Oracle Trying To Lure Workers To Nashville For New 'Global' HQ**
+
+    * `<https://developers.slashdot.org/story/26/01/15/2114210/oracle-trying-to-lure-workers-to-nashville-for-new-global-hq>`_
+
+    **Bond, debt bond: Investors shaken, not stirred by Oracle’s borrowing spree sue Big Red**
+
+    *Investors upset that company failed to inform them might need to take out even more debt.*
+
+    * `<https://www.theregister.com/2026/01/15/oracle_faces_class_action_over/>`_
+
+    **Apple is Fighting for TSMC Capacity as Nvidia Takes Center Stage**
+
+    * `<https://apple.slashdot.org/story/26/01/15/166213/apple-is-fighting-for-tsmc-capacity-as-nvidia-takes-center-stage>`_
+    * `<https://www.culpium.com/p/exclusiveapple-is-fighting-for-tsmc>`_
+
+    **Vibe coded applications full of security blunders**
+
+    * `<https://devclass.com/2026/01/15/vibe-coded-applications-full-of-security-blunders/>`_
+
+    **Flipping one bit leaves AMD CPUs open to VM vuln**
+
+    *Fix landed in July, but OEM firmware updates are required*
+
+    * `<https://www.theregister.com/2026/01/15/stackwarp_bug_amd_cpus/>`_
+
+    **RondoDox botnet linked to large-scale exploit of critical HPE OneView bug**
+
+    *Check Point observes 40K+ attack attempts in our hours, with government organizations under fire*
+
+    * `<https://www.theregister.com/2026/01/16/rondodox_botnet_hpe_oneview/>`_
+
+    **Wikipedia Signs AI Licensing Deals On Its 25th Birthday**
+
+    * `<https://news.slashdot.org/story/26/01/15/1516207/wikipedia-signs-ai-licensing-deals-on-its-25th-birthday>`_
+    * `<https://techcrunch.com/2026/01/15/wikimedia-foundation-announces-new-ai-partnerships-with-amazon-meta-microsoft-perplexity-and-others/>`_
+
+    **Microsoft is Closing Its Employee Library and Cutting Back on Subscriptions**
+
+    * `<https://news.slashdot.org/story/26/01/15/1754223/microsoft-is-closing-its-employee-library-and-cutting-back-on-subscriptions>`_
+
+    **Apple, Google pulled into Grok controversy as campaigners demand app store takedown**
+
+    *The chatbot's challenges no longer just Elon Musk’s problem, as campaigners call on tech giants to step in*
+
+    * `<https://www.theregister.com/2026/01/15/apple_google_pulled_into_grok/>`_
+
+    **Bankrupt scooter startup left one private key to rule them all**
+
+    *Owner reverse-engineered his ride, revealing authentication was never properly individualized*
+
+    * `<https://www.theregister.com/2026/01/16/bankrupt_scooter_startup_key/>`_
+
+    **Storage News Ticker – 15 January**
+
+    * `<https://blocksandfiles.com/2026/01/15/storage-news-ticker-15-january/>`_
+
+    **Probably not the best security in the world: Carlsberg wristbands spill visitor pics**
+
+    *Researcher shows how anyone can access Copenhagen experience attendees' names, videos*
+
+    * `<https://www.theregister.com/2026/01/16/carlsberg_experience_vulnerability/>`_
+
+    **Chinese spies used Maduro's capture as a lure to phish US govt agencies**
+
+    *What's next for Venezuela? Click on the file and see*
+
+    * `<https://www.theregister.com/2026/01/15/chinese_spies_used_maduros_capture/>`_
+    * `<https://thehackernews.com/2026/01/lotuslite-backdoor-targets-us-policy.html>`_
+
+    **Over half of AI projects are shelved due to complex infrastructure**
+
+    *The answer seems to be educating the enterprise workforce, and creating smarter use cases*
+
+    * `<https://www.theregister.com/2026/01/15/half_ai_projects_shelved/>`_
+
+.. admonition::   15.01.2026
+    :collapsible: closed
+
+    **Windows App forgets how to log in with first security update of the year**
+
+    *January patch trips up Azure Virtual Desktop and Windows 365 authentication*
+
+    * `<https://www.theregister.com/2026/01/15/windows_app_credential_failures/>`_
+
+    **Code signing Windows apps may be easier and more secure with new Azure Artifact service**
+
+    * `<https://devclass.com/2026/01/14/code-signing-windows-apps-may-be-easier-and-more-secure-with-new-azure-artifact-service/>`_
+
+    **Wine 11 runs Windows apps in Linux and macOS better than ever**
+
+    *Transparently runs 16, 32, and 64-bit Windows apps, but still doesn't use the Microsoft store.*
+
+    * `<https://www.theregister.com/2026/01/15/wine_11_arrives_faster_and/>`_
+    * related `<https://tech.slashdot.org/story/26/01/13/2035229/wine-110-released>`_
+
+    **AWS flips switch on Euro cloud as customers fret about digital sovereignty**
+
+    *EU-only ops, German subsidiaries, and a pinky promise your data won't end up in Uncle Sam's hands*
+
+    * `<https://www.theregister.com/2026/01/15/aws_european_sovereign_cloud/>`_
+
+    **New Linux malware targets the cloud, steals creds, and then vanishes**
+
+    *Cloud-native, 37 plugins … an attacker's dream*
+
+    * `<https://www.theregister.com/2026/01/14/voidlink_linux_malware/>`_
+    * related `<https://thehackernews.com/2026/01/new-advanced-linux-voidlink-malware.html>`_
+
+    **CrowdStrike shareholders lose battle to recoup losses from 2024 outage**
+
+    *Investors didn't present a valid claim, says judge, but they're welcome to try again*
+
+    * `<https://www.theregister.com/2026/01/14/crowdstrike_shareholders_lawsuit_dismiss/>`_
+
+    **France fines telcos €42M for sub-par security prior to 24M customer breach**
+
+    *Three major GDPR violations, including a lack of basic security controls, lead to hefty dent in profits*
+
+    * `<https://www.theregister.com/2026/01/14/france_fines_free_free_mobile/>`_
+
+    **Dell Tells Staff To Get Ready For the 'Biggest Transformation in Company History'**
+
+    * `<https://tech.slashdot.org/story/26/01/14/199210/dell-tells-staff-to-get-ready-for-the-biggest-transformation-in-company-history>`_
+
+    **PowerStore stores more, has better file ops and resiliency power**
+
+    * `<https://blocksandfiles.com/2026/01/13/powerstore-stores-more-has-better-file-ops-and-resiliency-power/>`_
+
+    **Dell wants £10m+ from VMware if Tesco case goes against it**
+
+    *Retail giant's disty, reseller, and vendor all say they can't and won't sell*
+
+    * `<https://www.theregister.com/2026/01/15/dell_vmware_claim_tesco_case/>`_
+
+    **Palo Alto Fixes GlobalProtect DoS Flaw That Can Crash Firewalls Without Login**
+
+    * `<https://thehackernews.com/2026/01/palo-alto-fixes-globalprotect-dos-flaw.html>`_
+
+    **Veeam’s Chief Product Officer resigns**
+
+    * `<https://blocksandfiles.com/2026/01/14/veeams-chief-product-officer-resigns/>`_
+
+    **Veeam confirms acquisition of Object First**
+
+    * `<https://blocksandfiles.com/2026/01/14/object-first-bought-by-veeam/>`_
+
+    **App downloads declined again in 2025, but consumer spending soared to nearly $156B**
+
+    * `<https://techcrunch.com/2026/01/14/app-downloads-declined-again-in-2025-but-consumer-spending-soared-to-nearly-156b/>`_
+
+    **Raspberry Pi 5 gets LLM smarts with AI HAT+ 2**
+
+
+    * `<https://www.theregister.com/2026/01/15/pi_5_ai_hat_2/>`_
+
+    **Budget smartphones will be hit hardest as memory prices rise**
+
+    *When margins are this tight, mergers might follow*
+
+    * `<https://www.theregister.com/2026/01/15/memory_crisis_smartphones/>`_
+
+    **UK Police Blame Microsoft Copilot for Intelligence Mistake**
+
+    * `<https://it.slashdot.org/story/26/01/14/1519213/uk-police-blame-microsoft-copilot-for-intelligence-mistake>`_
+
+    **Microsoft taps UK courts to dismantle cybercrime host RedVDS**
+
+    *Redmond says cheap virtual desktops powered a global wave of phishing and fraud*
+
+    * `<https://www.theregister.com/2026/01/15/microsoft_uk_courts_redvds/>`_
+
+    **Digg launches its new Reddit rival to the public**
+
+    * `<https://techcrunch.com/2026/01/14/digg-launches-its-new-reddit-rival-to-the-public/>`_
+
+    **Researchers Null-Route Over 550 Kimwolf and Aisuru Botnet Command Servers**
+
+    * `<https://thehackernews.com/2026/01/kimwolf-botnet-infected-over-2-million.html>`_
+
+    **ThreatsDay Bulletin: AI Voice Cloning Exploit, Wi-Fi Kill Switch, PLC Vulns, and 14 More Stories**
+
+    * `<https://thehackernews.com/2026/01/threatsday-bulletin-ai-voice-cloning.html>`_
+
+    **Widespread Verizon Outage Prompts Emergency Alerts in Washington, New York City**
+
+    * `<https://tech.slashdot.org/story/26/01/14/1918256/widespread-verizon-outage-prompts-emergency-alerts-in-washington-new-york-city>`_
+
+.. admonition::   14.01.2026
+    :collapsible: closed
+
+    **Microsoft Fixes 114 Windows Flaws in January 2026 Patch, One Actively Exploited**
+
+    * `<https://thehackernews.com/2026/01/microsoft-fixes-114-windows-flaws-in.html>`_
+    * `<https://www.theregister.com/2026/01/14/patch_tuesday_january_2026/>`_
+
+    **Firefox 147 brings GPU boost, tidier tabs, and video that follows you around**
+
+    *Latest update focuses on hardware acceleration, security tightening, and a handful of quality-of-life tweaks*
+
+    * `<https://www.theregister.com/2026/01/14/firefox_and_tbird_147/>`_
+
+    **Hasta la vista! Microsoft finally ends extended updates for ancient Windows version**
+
+    *Support expires for Windows Server 2008, and the codebase released to manufacturing in 2006*
+
+    * `<https://www.theregister.com/2026/01/14/microsoft_calls_time_on_the/>`_
+
+    **Never-Before-Seen Linux Malware Is 'Far More Advanced Than Typical'**
+
+    * `<https://it.slashdot.org/story/26/01/14/0238210/never-before-seen-linux-malware-is-far-more-advanced-than-typical>`_
+    * related `<https://thehackernews.com/2026/01/new-advanced-linux-voidlink-malware.html>`_
+
+    **Malicious Chrome Extension Steals MEXC API Keys by Masquerading as Trading Tool**
+
+    * `<https://thehackernews.com/2026/01/malicious-chrome-extension-steals-mexc.html>`_
+
+    **Europe is Rediscovering the Virtues of Cash**
+
+    * `<https://news.slashdot.org/story/26/01/14/1436212/europe-is-rediscovering-the-virtues-of-cash>`_
+
+    **Critical Node.js Vulnerability Can Cause Server Crashes via async_hooks Stack Overflow**
+
+    * `<https://thehackernews.com/2026/01/critical-nodejs-vulnerability-can-cause.html>`_
+
+    **Fortinet Fixes Critical FortiSIEM Flaw Allowing Unauthenticated Remote Code Execution**
+
+    * `<https://thehackernews.com/2026/01/fortinet-fixes-critical-fortisiem-flaw.html>`_
+
+    **Hackers Exploit c-ares DLL Side-Loading to Bypass Security and Deploy Malware**
+
+    * `<https://thehackernews.com/2026/01/hackers-exploit-c-ares-dll-side-loading.html>`_
+
+    **Global Tech-Sector Layoffs Surpass 244,000 In 2025**
+
+    * `<https://tech.slashdot.org/story/26/01/13/2046204/global-tech-sector-layoffs-surpass-244000-in-2025>`_
+
+    **Meta Closes Three VR Studios As Part of Its Metaverse Cuts**
+
+    * `<https://games.slashdot.org/story/26/01/13/2356235/meta-closes-three-vr-studios-as-part-of-its-metaverse-cuts>`_
+    * `<https://techcrunch.com/2026/01/14/meta-to-reportedly-lay-off-10-of-reality-labs-staff/>`_
+    * related `<https://tech.slashdot.org/story/26/01/13/1443226/meta-begins-job-cuts-as-it-shifts-from-metaverse-to-ai-devices>`_
+
+    **Buy servers now or cry later: DRAM price spike threatens infrastructure budgets**
+
+    *Component up 63% since September, more pricey memory coming to a supply chain near you*
+
+    * `<https://www.theregister.com/2026/01/14/dram_infrastructure_costs/>`_
+    * related `<https://www.theregister.com/2026/01/13/idc_pc_sales_memory_shortage_effects/>`_
+
+    **Wine 11.0 Released**
+
+    * `<https://tech.slashdot.org/story/26/01/13/2035229/wine-110-released>`_
+
+    **Open source MySQL repository has no commits in more than three months**
+
+    * `<https://devclass.com/2026/01/13/open-source-mysql-repository-has-no-commits-in-more-than-three-months/>`_
+
+    **JPEG-XL Image Support Returns To Latest Chrome/Chromium Code**
+
+    * `<https://slashdot.org/story/26/01/13/2026229/jpeg-xl-image-support-returns-to-latest-chromechromium-code>`_
+
+    **Apple Bundles Creative Apps Into a Single Subscription**
+
+    * `<https://tech.slashdot.org/story/26/01/13/2019228/apple-bundles-creative-apps-into-a-single-subscription>`_
+    * related `<https://techcrunch.com/2026/01/13/apple-launches-creator-studio-bundle-of-apps-for-12-99-per-month/>`_
+
+    **Popular Python libraries used in Hugging Face models subject to poisoned metadata attack**
+
+    *The open-source libraries were created by Salesforce, Nvidia, and Apple with a Swiss group*
+
+    * `<https://www.theregister.com/2026/01/13/ai_python_library_bugs_allow/>`_
+
+    **Cyber-stricken Belgian hospitals refuse ambulances, transfer critical patients**
+
+    *Attack enters second day with major disruption to healthcare provision*
+
+    * `<https://www.theregister.com/2026/01/14/belgium_hospital_cyberattack/>`_
+
+    **Eurail passengers taken for a ride as data breach spills passports, bank details**
+
+    *Travel biz tells customers to change passwords beyond its own services*
+
+    * `<https://www.theregister.com/2026/01/14/eurail_breach/>`_
+
+    **Spanish power giant sparks breach probe amid claims of massive data grab**
+
+    *Endesa says payment info stolen after alleged crook boasted of 1 TB-plus haul*
+
+    * `<https://www.theregister.com/2026/01/14/endesa_breach/>`_
+
+    **Anthropic Invests $1.5 Million in the Python Software Foundation and Open Source Security**
+
+    * `<https://developers.slashdot.org/story/26/01/13/1613232/anthropic-invests-15-million-in-the-python-software-foundation-and-open-source-security>`_
+
+    **Anthropic Claude wants to be your helpful colleague, always looking over your shoulder**
+
+    *Just be careful not to entrust the AI model with your sensitive data*
+
+    * `<https://www.theregister.com/2026/01/13/anthropic_previews_claude_cowork_for/>`_
+
+    **A consumer watchdog issued a warning about Google’s AI agent shopping protocol — Google says she’s wrong**
+
+    * `<https://techcrunch.com/2026/01/13/a-consumer-watchdog-issued-a-warning-about-googles-ai-agent-shopping-protocol-google-says-shes-wrong/>`_
+
+    **AI's $3T infrastructure binge continues despite lack of clear profits**
+
+    *Investment in datacenters to peak by 2029, place your bets please*
+
+    * `<https://www.theregister.com/2026/01/14/ai_investment/>`_
+
+    **Fly.io introduces Sprites: lightweight, persistent VMs to isolate agentic AI**
+
+    * `<https://devclass.com/2026/01/13/fly-io-introduces-sprites-lightweight-persistent-vms-to-isolate-agentic-ai/>`_
+
+    **AI Agents Are Becoming Privilege Escalation Paths**
+
+    * `<https://thehackernews.com/2026/01/ai-agents-are-becoming-privilege.html>`_
+
+
+    **New crooks on the block get crafty with blockchain to evade defenses**
+
+    * `<https://www.theregister.com/2026/01/14/deadlock_ransomware_smart_contracts/>`_
+
+.. admonition::   13.01.2026
+    :collapsible: closed
+
+    **How Markdown Took Over the World**
+
+    * `<https://it.slashdot.org/story/26/01/12/2049226/how-markdown-took-over-the-world>`_
+
+    **Developer writes script to throw AI out of Windows**
+
+    *Satya Nadella's call to accept and embrace desktop brainboxes faces skepticism*
+
+    * `<https://www.theregister.com/2026/01/13/script_removes_ai_from_windows/>`_
+
+    **Federal agencies told to fix or ditch Gogs as exploited zero-day lands on CISA hit list**
+
+    *Git server flaw that attackers have been abusing for months has now caught the attention of US cyber cops*
+
+    * `<https://www.theregister.com/2026/01/13/cisa_gogs_exploit/>`_
+    * `<https://thehackernews.com/2026/01/cisa-warns-of-active-exploitation-of.html>`_
+    * `<https://gogs.io/>`_
+
+    **Lenovo has a hunch you’re about to try quitting VMware**
+
+    *Tweaks its hardware to run multiple private cloud stacks, and shift between them*
+
+    * `<https://www.theregister.com/2026/01/13/lenovo_fx_multi_hypervisor_hci/>`_
+
+    **JPMorgan Warns 10% Credit Card Rate Cap Would Backfire on Consumers and Economy**
+
+    * `<https://slashdot.org/story/26/01/13/165244/jpmorgan-warns-10-credit-card-rate-cap-would-backfire-on-consumers-and-economy>`_
+    * related `<https://news.slashdot.org/story/26/01/12/152240/us-president-calls-for-10-credit-card-interest-cap-banks-push-back>`_
+
+    **Signal Creator Marlinspike Wants To Do For AI What He Did For Messaging**
+
+    * `<https://slashdot.org/story/26/01/13/1529250/signal-creator-marlinspike-wants-to-do-for-ai-what-he-did-for-messaging>`_
+
+    **ServiceNow Patches Critical AI Platform Flaw Allowing Unauthenticated User Impersonation**
+
+    * `<https://thehackernews.com/2026/01/servicenow-patches-critical-ai-platform.html>`_
+
+    **Slackbot is an AI agent now**
+
+    * `<https://techcrunch.com/2026/01/13/slackbot-is-an-ai-agent-now/>`_
+
+    **New Advanced Linux VoidLink Malware Targets Cloud and container Environments**
+
+    * `<https://thehackernews.com/2026/01/new-advanced-linux-voidlink-malware.html>`_
+
+    **Meta Begins Job Cuts as It Shifts From Metaverse to AI Devices**
+
+    * `<https://tech.slashdot.org/story/26/01/13/1443226/meta-begins-job-cuts-as-it-shifts-from-metaverse-to-ai-devices>`_
+    * `<https://meta.slashdot.org/story/26/01/12/2216207/meta-plans-to-cut-around-10-of-employees-in-reality-labs-division>`_
+
+    **Brazil orders Meta to suspend policy banning third-party AI chatbots from WhatsApp**
+
+    * `<https://techcrunch.com/2026/01/13/brazil-orders-meta-to-suspend-policy-banning-third-party-ai-chatbots-from-whatsapp/>`_
+
+    **European Firms Hit Hiring Brakes Over AI and Slowing Growth**
+
+    * `<https://slashdot.org/story/26/01/12/2324253/european-firms-hit-hiring-brakes-over-ai-and-slowing-growth>`_
+
+    **Dutch cops cuff alleged AVCheck malware kingpin in Amsterdam**
+
+
+    * `<https://www.theregister.com/2026/01/13/avcheck_arrest/>`_
+
+    **Apple launches ‘Creator Studio’ bundle of apps for $12.99 per month**
+
+    * `<https://techcrunch.com/2026/01/13/apple-launches-creator-studio-bundle-of-apps-for-12-99-per-month/>`_
+
+    **Microsoft Pledges Full Power Costs, No Tax Breaks in Response To AI Data Center Backlash**
+
+    * `<https://it.slashdot.org/story/26/01/13/146211/microsoft-pledges-full-power-costs-no-tax-breaks-in-response-to-ai-data-center-backlash>`_
+    * `<https://hardware.slashdot.org/story/26/01/13/0416241/trump-says-microsoft-to-make-changes-to-curb-data-center-power-costs-for-americans>`_
+    * related `<https://www.theregister.com/2026/01/13/renewables_ai_datacenters/>`_
+
+    **Viral Chinese App 'Are You Dead?' Checks On Those Who Live Alone**
+
+    * `<https://tech.slashdot.org/story/26/01/12/2318223/viral-chinese-app-are-you-dead-checks-on-those-who-live-alone>`_
+    * related `<https://www.snugsafe.com/>`_
+
+    **Even Linus Torvalds Is Vibe Coding Now**
+
+    * `<https://linux.slashdot.org/story/26/01/12/2311234/even-linus-torvalds-is-vibe-coding-now>`_
+    * `<https://www.theregister.com/2026/01/13/linus_torvalds_vibe_coding/>`_
+
+    **New Malware Campaign Delivers Remcos RAT Through Multi-Stage Windows Attack**
+
+    * `<https://thehackernews.com/2026/01/new-malware-campaign-delivers-remcos.html>`_
+    * related `<https://thehackernews.com/2025/05/fileless-remcos-rat-delivered-via-lnk.html>`_
+
+    **Hands-on with Bee, Amazon’s latest AI wearable**
+
+    * `<https://techcrunch.com/2026/01/12/hands-on-with-bee-amazons-latest-ai-wearable/>`_
+    * related `<https://techcrunch.com/2026/01/12/why-amazon-bought-bee-an-ai-wearable/>`_
+
+    **Birmingham pauses Oracle relaunch to get staff on board**
+
+    *Europe's largest council delays Fusion reimplementation four years after go-live disaster*
+
+    * `<https://www.theregister.com/2026/01/13/birmingham_oracle_delay/>`_
+
+    **More than 100 new tech unicorns were minted in 2025 — here they are**
+
+    * `<https://techcrunch.com/2026/01/12/at-least-36-new-tech-unicorns-were-minted-in-2025-so-far/>`_
+
+.. admonition::   12.01.2026
+    :collapsible: closed
+
+    **Microsoft teases targeted Copilot removal for admins**
+
+    *Yes, you can get rid of it – assuming nobody's looked at it in 28 days*
+
+    * `<https://www.theregister.com/2026/01/12/microsoft_copilot_removal/>`_
+
+    **Apple Partners With Google on Siri Upgrade, Declares Gemini 'Most Capable Foundation'**
+
+    * `<https://apple.slashdot.org/story/26/01/12/166200/apple-partners-with-google-on-siri-upgrade-declares-gemini-most-capable-foundation>`_
+    * `<https://www.theregister.com/2026/01/12/apple_taps_google_gemini_siri/>`_
+    * `<https://techcrunch.com/2026/01/12/googles-gemini-to-power-apples-ai-features-like-siri/>`_
+
+    **Gentoo Linux Plans Migration from GitHub Over 'Attempts to Force Copilot Usage for Our Repositories'**
+
+    * `<https://linux.slashdot.org/story/26/01/11/1926219/gentoo-linux-plans-migration-from-github-over-attempts-to-force-copilot-usage-for-our-repositories>`_
+    * `<https://www.gentoo.org/news/2026/01/05/new-year.html>`_
+
+    **n8n Supply Chain Attack Abuses Community Nodes to Steal OAuth Tokens**
+
+    * `<https://thehackernews.com/2026/01/n8n-supply-chain-attack-abuses.html>`_
+    * related `<https://thehackernews.com/2026/01/critical-n8n-vulnerability-cvss-100.html>`_
+    * related `<https://thehackernews.com/2026/01/new-n8n-vulnerability-99-cvss-lets.html>`_
+
+    **Why It Is Difficult To Resize Windows on MacOS 26**
+
+    * `<https://apple.slashdot.org/story/26/01/12/176259/why-it-is-difficult-to-resize-windows-on-macos-26>`_
+    * `<https://daringfireball.net/2026/01/resizing_windows_macos_26>`_
+
+    **Don’t bother with the retailer’s website, says Google: Gemini can shop for you**
+
+    *You can check out anytime you like, but please don’t ever leave*
+
+    * `<https://www.theregister.com/2026/01/12/google_gemini_agentic_ai_shopping_protocol/>`_
+    * `<https://techcrunch.com/2026/01/11/google-announces-a-new-protocol-to-facilitate-commerce-using-ai-agents/>`_
+
+    **Instagram says there’s been ‘no breach’ despite password reset requests**
+
+    * `<https://techcrunch.com/2026/01/11/instagram-says-theres-been-no-breach-despite-password-reset-requests/>`_
+
+    **Cloudflare CEO threatens to make the Winter Olympics a political football after Italy slugs it with a fine**
+
+    *Labels Rome's comms regulator ‘a quasi-judicial body’ that works on behalf of ‘shadowy, European media cabal’*
+
+    * `<https://www.theregister.com/2026/01/12/cloudflare_vs_italy/>`_
+    * `<https://tech.slashdot.org/story/26/01/12/1423251/cloudflare-threatens-italy-exit-after-163m-fine-for-refusing-piracy-blocks>`_
+
+    **PC shipments set to hit the buffers as AI guzzles memory**
+
+    *High-margin infrastructure kit takes precedence, leaving laptops and desktops wanting*
+
+    * `<https://www.theregister.com/2026/01/12/memory_shortages_price_hikes/>`_
+
+    **Businesses in 2026: Maybe we should finally look into that AI security stuff**
+
+    *Survey finds security checks nearly doubled in a year as leaders wise up*
+
+    * `<https://www.theregister.com/2026/01/12/ai_security_wef_survey/>`_
+
+    **Researchers Uncover Service Providers Fueling Industrial-Scale Pig Butchering Fraud**
+
+    * `<https://thehackernews.com/2026/01/researchers-uncover-service-providers.html>`_
+
+    **Microsoft euthanizes ancient deployment toolkit**
+
+    *Immediate retirement for freebie automation platform*
+
+    * `<https://www.theregister.com/2026/01/12/microsoft_deployment_platform/>`_
+
+    **Developers have made $550B on Apple’s App Store since 2008**
+
+    * `<https://techcrunch.com/2026/01/12/developers-have-made-550-billion-on-apples-app-store-since-2008/>`_
+
+    **GoBruteforcer Botnet Targets Crypto Project Databases by Exploiting Weak Credentials**
+
+    * `<https://thehackernews.com/2026/01/gobruteforcer-botnet-targets-crypto.html>`_
+
+    **Linux Hit a New All-Time High for Steam Market Share in December**
+
+    * `<https://linux.slashdot.org/story/26/01/12/0411249/linux-hit-a-new-all-time-high-for-steam-market-share-in-december>`_
+
+    **IceWM soldiers on while Budgie jumps the Wayland ship**
+
+    *Two new Linux GUIs – plus Phoenix, an experimental new X server in Zig*
+
+    * `<https://www.theregister.com/2026/01/12/icewm_budgie_x_server/>`_
+
+    **Weekly Recap: AI Automation Exploits, Telecom Espionage, Prompt Poaching & More**
+
+    * `<https://thehackernews.com/2026/01/weekly-recap-ai-automation-exploits.html>`_
+
+    **US President Calls for 10% Credit Card Interest Cap, Banks Push Back**
+
+    * `<https://news.slashdot.org/story/26/01/12/152240/us-president-calls-for-10-credit-card-interest-cap-banks-push-back>`_
+
+    **Fintech firm Betterment confirms data breach after hackers send fake crypto scam notification to users**
+
+    * `<https://techcrunch.com/2026/01/12/fintech-firm-betterment-confirms-data-breach-after-hackers-send-fake-crypto-scam-notification-to-users/>`_
+
+.. admonition::   11.01.2026
+    :collapsible: closed
+
+    **C# (and C) Grew in Popularity in 2025, Says TIOBE**
+
+    * `<https://developers.slashdot.org/story/26/01/11/0532214/c-and-c-grew-in-popularity-in-2025-says-tiobe>`_
+
+    **Four More Tech Bloggers Are Switching to Linux**
+
+    * `<https://linux.slashdot.org/story/26/01/10/2231218/four-more-tech-bloggers-are-switching-to-linux>`_
+    * `<https://www.escapistmagazine.com/news-i-put-a-bullet-in-windows-and-now-use-linux-and-you-can-too/>`_
+
+    **Brussels plots open source push to pry Europe off Big Tech**
+
+    *Call for Evidence casts FOSS as a way to break US dependence*
+
+    * `<https://www.theregister.com/2026/01/11/eu_open_source_consultation/>`_
+
+    **Europol Arrests 34 Black Axe Members in Spain Over €5.9M Fraud and Organized Crime**
+
+    * `<https://thehackernews.com/2026/01/europol-arrests-34-black-axe-members-in.html>`_
+
+    **MuddyWater Launches RustyWater RAT via Spear-Phishing Across Middle East Sectors**
+
+    * `<https://thehackernews.com/2026/01/muddywater-launches-rustywater-rat-via.html>`_
+
+.. admonition::   10.01.2026
+    :collapsible: closed
+
+    **Microsoft May Soon Allow IT Admins To Uninstall Copilot**
+
+    * `<https://it.slashdot.org/story/26/01/09/2219256/microsoft-may-soon-allow-it-admins-to-uninstall-copilot>`_
+
+    **Intel Is 'Going Big Time Into 14A,' Says CEO Lip-Bu Tan**
+
+    * `<https://hardware.slashdot.org/story/26/01/09/2231201/intel-is-going-big-time-into-14a-says-ceo-lip-bu-tan>`_
+
+    **iOS 26 Shows Unusually Slow Adoption Months After Release**
+
+    * `<https://tech.slashdot.org/story/26/01/09/162240/ios-26-shows-unusually-slow-adoption-months-after-release>`_
+    * `<https://www.macrumors.com/2026/01/08/ios-26-shows-unusually-slow-adoption/>`_
+
+    **Microsoft Windows Media Player stops serving up CD album info**
+
+    *No naming that tune and no album covers*
+
+    * `<https://www.theregister.com/2026/01/09/microsoft_windows_media_player_forgets/>`_
+    * `<https://news.slashdot.org/story/26/01/09/1742218/microsoft-windows-media-player-stops-serving-up-cd-album-info>`_
+
+    **Most devs don't trust AI-generated code, but fail to check it anyway**
+
+    *Developer survey from Sonar finds AI tool adoption has created a verification bottleneck*
+
+    * `<https://www.theregister.com/2026/01/09/devs_ai_code/>`_
+
+    **Send To Kindle from Microsoft Word is Discontinued**
+
+    * `<https://it.slashdot.org/story/26/01/09/1516254/send-to-kindle-from-microsoft-word-is-discontinued>`_
+
+    **Craigslist at 30: No Algorithms, No Ads, No Problem**
+
+    * `<https://tech.slashdot.org/story/26/01/09/1618243/craigslist-at-30-no-algorithms-no-ads-no-problem>`_
+
+    **Pushed By GenAI And Front End Upgrades, Ethernet Switching Hits New Highs**
+
+    * `<https://www.nextplatform.com/2026/01/08/pushed-by-genai-and-front-end-upgrades-ethernet-switching-hits-new-highs/>`_
+
+    **Debian goes retro with a spatial desktop that time forgot**
+
+    *Trixie plus a carefully configured MATE setup, and absolutely nothing else*
+
+    * `<https://www.theregister.com/2026/01/09/desktop_classic_system/>`_
+
+    **QR codes a powerful new phishing weapon in hands of Pyongyang cyberspies**
+
+    *State-backed attackers are using QR codes to slip past enterprise security and help themselves to cloud logins, the FBI says*
+
+    * `<https://www.theregister.com/2026/01/09/pyongyangs_cyberspies_are_turning_qr/>`_
+
+    **More US States Are Preparing Age-Verification Laws for App Stores**
+
+    * `<https://yro.slashdot.org/story/26/01/10/054252/more-us-states-are-preparing-age-verification-laws-for-app-stores>`_
+
+    **AI Is Intensifying a 'Collapse' of Trust Online, Experts Say**
+
+    * `<https://news.slashdot.org/story/26/01/09/2237231/ai-is-intensifying-a-collapse-of-trust-online-experts-say>`_
+
+    **UK government exempting itself from flagship cyber law inspires little confidence**
+
+    *Ministers promise equivalent standards just without the legal obligation*
+
+    * `<https://www.theregister.com/2026/01/10/csr_bill_analysis/>`_
+
+    **Storage News Ticker – 9 January**
+
+    * `<https://blocksandfiles.com/2026/01/09/storage-news-ticker-9-january/>`_
+
+.. admonition::   09.01.2026
+    :collapsible: closed
+
+    **Google Is Adding an 'AI Inbox' To Gmail That Summarizes Emails**
+
+    * `<https://tech.slashdot.org/story/26/01/08/2212216/google-is-adding-an-ai-inbox-to-gmail-that-summarizes-emails>`_
+    * `<https://techcrunch.com/2026/01/08/gmail-debuts-a-personalized-ai-inbox-ai-overviews-in-search-and-more/>`_
+
+    **Google pushing Gemini into Gmail, but you can turn it off**
+
+    *Love Google AI Overviews? Now they're in your inbox*
+
+    * `<https://www.theregister.com/2026/01/08/google_gemini_gmail/>`_
+    * `<https://blog.google/products-and-platforms/products/gmail/gmail-is-entering-the-gemini-era/>`_
+
+    **As agents run amok, CrowdStrike's $740M SGNL deal aims to help get a grip on identity security**
+
+    *Authentication is basically solved. Authorization is another thing entirely...*
+
+    * `<https://www.theregister.com/2026/01/08/crowdstrikes_740m_sgnl_deal_proves/>`_
+    * `<https://sgnl.ai/>`_
+
+    **Patch Cisco ISE bug now before attackers abuse proof-of-concept exploit**
+
+    *No reports of active exploitation â€¦ yet*
+
+    * `<https://www.theregister.com/2026/01/08/rcisco_ise_bug_poc/>`_
+    * related `<https://thehackernews.com/2026/01/cisco-patches-ise-security.html>`_
+
+    **Trend Micro Apex Central RCE Flaw Scores 9.8 CVSS in On-Prem Windows Versions**
+
+    * `<https://thehackernews.com/2026/01/trend-micro-apex-central-rce-flaw.html>`_
+
+    **Linus Torvalds: Stop making an issue out of AI slop in kernel docs â€“ you're not changing anybody's mind**
+
+    * `<https://www.theregister.com/2026/01/08/linus_versus_llms_ai_slop_docs/>`_
+
+    **CISA Retires 10 Emergency Cybersecurity Directives Issued Between 2019 and 2024**
+
+    * `<https://thehackernews.com/2026/01/cisa-retires-10-emergency-cybersecurity.html>`_
+
+    **Anthropic adds Allianz to growing list of enterprise wins**
+
+    * `<https://techcrunch.com/2026/01/09/anthropic-adds-allianz-to-growing-list-of-enterprise-wins/>`_
+
+    **French Court Orders Google DNS to Block Pirate Sites, Dismisses 'Cloudflare-First' Defense**
+
+    * `<https://yro.slashdot.org/story/26/01/08/224243/french-court-orders-google-dns-to-block-pirate-sites-dismisses-cloudflare-first-defense>`_
+
+    **Microsoft Turns Copilot Chats Into a Checkout Lane**
+
+    * `<https://slashdot.org/story/26/01/08/2156225/microsoft-turns-copilot-chats-into-a-checkout-lane>`_
+
+    **While you pay through the nose for memory, Samsung expects to triple its profits in Q4**
+
+    *Memory pricing expected to surge another 60% in Q1 with relief years away*
+
+    * `<https://www.theregister.com/2026/01/08/samsung_memory_profits/>`_
+
+    **Wi-Fi Advocates Get Win From FCC With Vote To Allow Higher-Power Devices**
+
+    * `<https://mobile.slashdot.org/story/26/01/08/2151202/wi-fi-advocates-get-win-from-fcc-with-vote-to-allow-higher-power-devices>`_
+
+    **Bank of England's Oracle cloud migration bill triples as project grinds on**
+
+    *Initial Â£7M estimate proves optimistic after multiple contract uplifts*
+
+    * `<https://www.theregister.com/2026/01/09/bank_of_england_oracle/>`_
+
+    **CES 2026: Everything revealed, from Nvidiaâ€™s debuts to AMDâ€™s new chips to Razerâ€™s AI oddities**
+
+    * `<https://techcrunch.com/2026/01/08/ces-2026-everything-revealed-from-nvidias-debuts-to-amds-new-chips-to-razers-ai-oddities/>`_
+
+    **Boffins probe commercial AI models, find an entire Harry Potter book**
+
+    *Dark copyright evasion magic makes light work of developers' guardrails*
+
+    * `<https://www.theregister.com/2026/01/09/boffins_probe_commercial_ai_models/>`_
+
+    **FBI Warns North Korean Hackers Using Malicious QR Codes in Spear-Phishing**
+
+    * `<https://thehackernews.com/2026/01/fbi-warns-north-korean-hackers-using.html>`_
+
+.. admonition::   08.01.2026
+    :collapsible: closed
+
+    **The State of Trusted Open Source**
+
+    * `<https://thehackernews.com/2026/01/the-state-of-trusted-open-source.html>`_
+
+    **Mem-ageddon: AI chip frenzy to wallop DRAM prices with 70% hike**
+
+    *Samsung and SK hynix readying another gouge as server silicon squeeze leaves PCs and phones out in the cold*
+
+    * `<https://www.theregister.com/2026/01/06/memory_firm_profits_up_as/>`_
+    * `<https://news.slashdot.org/story/26/01/07/2250243/ai-chip-frenzy-to-wallop-dram-prices-with-70-hike>`_
+
+    **Microsoft Cancels Plans To Rate Limit Exchange Online Bulk Emails**
+
+    * `<https://it.slashdot.org/story/26/01/07/1659220/microsoft-cancels-plans-to-rate-limit-exchange-online-bulk-emails>`_
+    * related `<https://www.theregister.com/2026/01/07/exchange_online_recipient_rate/>`_
+
+    **CISA Flags Microsoft Office and HPE OneView Bugs as Actively Exploited**
+
+    * `<https://thehackernews.com/2026/01/cisa-flags-microsoft-office-and-hpe.html>`_
+
+    **Coolify Discloses 11 Critical Flaws Enabling Full Server Compromise on Self-Hosted Instances**
+
+    * `<https://thehackernews.com/2026/01/coolify-discloses-11-critical-flaws.html>`_
+    * `<https://coolify.io/>`_
+
+    **Ransomware attacks kept climbing in 2025 as gangs refused to stay dead**
+
+    *Cop wins hit crime infrastructure, not the people behind it*
+
+    * `<https://www.theregister.com/2026/01/08/ransomware_2025_emsisoft/>`_
+
+    **JPMorgan Chase Reaches a Deal To Take Over the Apple Credit Card**
+
+    * `<https://news.slashdot.org/story/26/01/07/2135246/jpmorgan-chase-reaches-a-deal-to-take-over-the-apple-credit-card>`_
+    * `<https://techcrunch.com/2026/01/07/jpmorgan-chase-becomes-the-new-issuer-of-the-apple-card/>`_
+
+    **Tailwind CSS Lets Go 75% Of Engineers After 40% Traffic Drop From Google**
+
+    * `<https://it.slashdot.org/story/26/01/08/1756211/tailwind-css-lets-go-75-of-engineers-after-40-traffic-drop-from-google>`_
+    * `<https://devclass.com/2026/01/08/tailwind-labs-lays-off-75-percent-of-its-engineers-thanks-to-brutal-impact-of-ai/>`_
+
+    **Cisco Patches ISE Security Vulnerability After Public PoC Exploit Release**
+
+    * `<https://thehackernews.com/2026/01/cisco-patches-ise-security.html>`_
+
+    **ThreatsDay Bulletin: RustFS Flaw, Iranian Ops, WebUI RCE, Cloud Leaks, and 12 More Stories**
+
+    * `<https://thehackernews.com/2026/01/threatsday-bulletin-rustfs-flaw-iranian.html>`_
+
+
+    * `<https://slashdot.org/story/26/01/08/1918257/the-downside-to-using-ai-for-all-those-boring-tasks-at-work>`_
+
+    **Researchers Uncover NodeCordRAT Hidden in npm Bitcoin-Themed Packages**
+
+    * `<https://thehackernews.com/2026/01/researchers-uncover-nodecordrat-hidden.html>`_
+
+    **China-Linked UAT-7290 Targets Telecoms with Linux Malware and ORB Nodes**
+
+    * `<https://thehackernews.com/2026/01/china-linked-uat-7290-targets-telecoms.html>`_
+
+    **WhatsApp Worm Spreads Astaroth Banking Trojan Across Brazil via Contact Auto-Messaging**
+
+    * `<https://thehackernews.com/2026/01/whatsapp-worm-spreads-astaroth-banking.html>`_
+
+    **LEGO Says Smart Brick Won't Replace Traditional Play After CES Backlash**
+
+    * `<https://slashdot.org/story/26/01/08/145236/lego-says-smart-brick-wont-replace-traditional-play-after-ces-backlash>`_
+
+    **SteamOS Continues Its Slow Spread Across the PC Gaming Landscape**
+
+    * `<https://games.slashdot.org/story/26/01/08/052240/steamos-continues-its-slow-spread-across-the-pc-gaming-landscape>`_
+
+    **Bose Open-Sources Its SoundTouch Home Theater Smart Speakers Ahead of End-of-Life**
+
+    * `<https://news.slashdot.org/story/26/01/07/2126224/bose-open-sources-its-soundtouch-home-theater-smart-speakers-ahead-of-end-of-life>`_
+
+.. admonition:: 07.01.2026
+    :collapsible: closed
+
+    **Black Cat Behind SEO Poisoning Malware Campaign Targeting Popular Software Searches**
+
+    * `<https://thehackernews.com/2026/01/black-cat-behind-seo-poisoning-malware.html>`_
+
+    **Logitech Caused Its Mice To Freak Out By Not Renewing a Certificate**
+
+    * `<https://it.slashdot.org/story/26/01/07/1636213/logitech-caused-its-mice-to-freak-out-by-not-renewing-a-certificate>`_
+
+    **Google Will Now Only Release Android Source Code Twice a Year**
+
+    * `<https://tech.slashdot.org/story/26/01/06/2154225/google-will-now-only-release-android-source-code-twice-a-year>`_
+    * `<https://www.androidauthority.com/aosp-source-code-schedule-3630018/>`_
+
+    **Fake Windows BSODs check in at Europe's hotels to con staff into running malware**
+
+    *Phishers posing as Booking.com use panic-inducing blue screens to bypass security controls*
+
+    * `<https://www.theregister.com/2026/01/06/russia_hackers_hotel_bsods/>`_
+
+    **'Everyone Hates OneDrive, Microsoft's Cloud App That Steals Then Deletes All Your Files'**
+
+    * `<https://it.slashdot.org/story/26/01/07/152242/everyone-hates-onedrive-microsofts-cloud-app-that-steals-then-deletes-all-your-files>`_
+
+    **Microsoft scraps Exchange Online spam clamp after customers cry foul**
+
+    Negative feedback sinks Redmond's plan to cap outbound email recipients
+
+    * `<https://www.theregister.com/2026/01/07/exchange_online_recipient_rate/>`_
+
+    **HSBC app takes a dim view of sideloaded Bitwarden installations**
+
+    *Customers report being locked out after grabbing the password manager via F-Droid*
+
+    * `<https://www.theregister.com/2026/01/07/hsbc_bitwarden_sideloaded/>`_
+
+    **HackerOne 'ghosted' me for months over $8,500 bug bounty, says researcher**
+
+    *Long after CVEs issued and open source flaws fixed*
+
+    * `<https://www.theregister.com/2026/01/07/hackerone_ghosted_researcher/>`_
+
+    **Brave refurbishes Rust adblocking engine for reduced memory footprint**
+
+    *Have your privacy cake and consume the web too*
+
+    * `<https://www.theregister.com/2026/01/06/brave_refurbishes_rust_adblocking_engine/>`_
+
+    **Ruby 4.0 released – but its best new features are not production ready**
+
+    * `<https://devclass.com/2026/01/06/ruby-4-0-released-but-its-best-new-features-are-not-production-ready/>`_
+
+    **What if Linux ran Windows… and meant it? Meet Loss32**
+
+    It's crazy, a million-to-one shot, but it might just work
+
+    * `<https://www.theregister.com/2026/01/06/loss32_crazy_or_inspired/>`_
+
+    **UK Urged To Unplug From US Tech Giants as Digital Sovereignty Fears Grow**
+
+    * `<https://news.slashdot.org/story/26/01/06/1614223/many-schools-dont-think-students-can-read-full-novels-anymore>`_
+
+    **Ministry of Justice splurged £50M on security – still missed Legal Aid Agency cyberattack**
+
+    *High-risk system compromised long before intrusion was finally spotted*
+
+    * `<https://www.theregister.com/2026/01/07/legal_aid_agency_attack/>`_
+
+    **UK to spend £23M on AI to tell benefit claimants where to go**
+
+    *Department for Work and Pensions lines up bot bouncers for one of Europe's largest call-handling systems*
+
+    * `<https://www.theregister.com/2026/01/07/dwp_ai_call_handling/>`_
+
+    **Researchers poison stolen data to make AI systems return wrong results**
+
+    *Wanted: Chief Disinformation Officer to pollute company knowledge graphs*
+
+    * `<https://www.theregister.com/2026/01/06/ai_data_pollution_defense/>`_
+
+    **Critical n8n Vulnerability (CVSS 10.0) Allows Unauthenticated Attackers to Take Full Control**
+
+    * `<https://thehackernews.com/2026/01/critical-n8n-vulnerability-cvss-100.html>`_
+    * related `<https://thehackernews.com/2026/01/new-n8n-vulnerability-99-cvss-lets.html>`_
+
+    **Microsoft Warns Misconfigured Email Routing Can Enable Internal Domain Phishing**
+
+    * `<https://thehackernews.com/2026/01/microsoft-warns-misconfigured-email.html>`_
+
+    **Veeam Patches Critical RCE Vulnerability with CVSS 9.0 in Backup & Replication**
+
+    * `<https://thehackernews.com/2026/01/veeam-patches-critical-rce.html>`_
+
+    **Ongoing Attacks Exploiting Critical RCE Vulnerability in Legacy D-Link DSL Routers**
+
+    * `<https://thehackernews.com/2026/01/active-exploitation-hits-legacy-d-link.html>`_
+
+    **Snowflake gets frosty with Google Gemini**
+
+    *Munge that corporate data using the LLM of your choice*
+
+    * `<https://www.theregister.com/2026/01/06/snowflake_google_gemini_support/>`_
+
+    **WD Black and Blue replaced by Sandisk Optimus branding**
+
+    * `<https://blocksandfiles.com/2026/01/07/wd-black-and-blue-replaced-by-sandisk-optimus-branding/>`_
+
+    **Storage Ticker – 6 January 2026**
+
+    * `<https://blocksandfiles.com/2026/01/06/storage-ticker-6-january-2026/>`_
+
+    **Lenovo shows off new laptops that twist and roll**
+
+    *The company has also redesigned the X1 Carbon’s internals for easier repairs*
+
+    * `<https://www.theregister.com/2026/01/07/lenovo_rollable_thinkpad/>`_
+
+    *Humongous 52-inch Dell monitor will make you feel like king of the internet with four screens in one*
+
+    *Also: The XPS brand is back*
+
+    * `<https://www.theregister.com/2026/01/06/dell_52inch_monitor_four_screens_in_one/>`_
+
+    **Dell Walks Back AI-First Messaging After Learning Consumers Don't Care**
+
+    * `<https://tech.slashdot.org/story/26/01/07/1556212/dell-walks-back-ai-first-messaging-after-learning-consumers-dont-care>`_
+
+    **Intel Is Making Its Own Handheld Gaming PC Chips At CES 2026**
+
+    * `<https://hardware.slashdot.org/story/26/01/06/2141257/intel-is-making-its-own-handheld-gaming-pc-chips-at-ces-2026>`_
+
+    **Lego Unveils Smart Bricks, Its 'Most Significant Evolution' in 50 years**
+
+    * `<https://tech.slashdot.org/story/26/01/06/1842257/lego-unveils-smart-bricks-its-most-significant-evolution-in-50-years>`_
+    * `<https://www.theregister.com/2026/01/06/lego_crams_an_asic_in/>`_
+    * related `<https://games.slashdot.org/story/26/01/05/217258/legos-smart-brick-gives-the-iconic-analog-toy-a-new-digital-brain>`_
+
+    **Nvidia's New G-Sync Pulsar Monitors Target Motion Blur at the Human Retina Level**
+
+    * `<https://tech.slashdot.org/story/26/01/06/1859211/nvidias-new-g-sync-pulsar-monitors-target-motion-blur-at-the-human-retina-level>`_
+
+.. admonition:: 06.01.2026
+    :collapsible: closed
+
+    **GNOME and Firefox Consider Disabling Middle Click Paste By Default**
+
+    * `<https://tech.slashdot.org/story/26/01/05/2059225/gnome-and-firefox-consider-disabling-middle-click-paste-by-default>`_
+    * `<https://www.phoronix.com/news/GNOME-Firefox-MiddleClick-Paste>`_
+
+    **Dramatic drop in Stack Overflow questions as devs look elsewhere for help**
+
+    * `<https://devclass.com/2026/01/05/dramatic-drop-in-stack-overflow-questions-as-devs-look-elsewhere-for-help/>`_
+    * related `<https://developers.slashdot.org/story/26/01/05/1431212/stack-overflow-went-from-200000-monthly-questions-to-nearly-zero>`_
+
+    **One criminal, 50 hacked organizations, and all because MFA wasn't turned on**
+
+    Crim used infostealer to get cloud credentials
+
+    * `<https://www.theregister.com/2026/01/06/50_global_orgs_hacked/>`_
+
+    **Critical AdonisJS Bodyparser Flaw (CVSS 9.2) Enables Arbitrary File Write on Servers**
+
+    * `<https://thehackernews.com/2026/01/critical-adonisjs-bodyparser-flaw-cvss.html>`_
+
+    **New n8n Vulnerability (9.9 CVSS) Lets Authenticated Users Execute System Commands**
+
+    * `<https://thehackernews.com/2026/01/new-n8n-vulnerability-99-cvss-lets.html>`_
+    * `<https://n8n.io/>`_
+
+    **AMD clocks in with higher CPU speeds, leaves architecture untouched**
+
+    *New chips same as the old chips*
+
+    * `<https://www.theregister.com/2026/01/06/amd_ryzen_refresh/>`_
+    * `<https://techcrunch.com/2026/01/05/amd-unveils-new-ai-pc-processors-for-general-use-and-gaming-at-ces/>`_
+
+    **Intel unleashes Panther Lake CPUs, first built on 18A process**
+
+    *Company claims its Ultra Series 3 processors will offer the best battery life yet*
+
+    * `<https://www.theregister.com/2026/01/05/intel_unleashes_panther_lake_cpus/>`_
+
+    **Qualcomm is determined to cut a slice out of Intel's PC pie with latest Snapdragon chips**
+
+    *Enterprises have been slow to adopt Arm laptops so far*
+
+    * `<https://www.theregister.com/2026/01/05/qualcomm_launches_snapdragon_x2_plus/>`_
+
+    **Baby's got clack: HP pushes PC-in-a-keyboard for businesses with hot desks**
+
+    *Notebook updates and enterprise tools also inbound from IT giant*
+
+    * `<https://www.theregister.com/2026/01/06/hp_keyboard_pc/>`_
+
+    **SanDisk Says Goodbye To WD Blue and Black SSDs, Hello To New 'Optimus' Drives**
+
+    * `<https://hardware.slashdot.org/story/26/01/05/1957206/sandisk-says-goodbye-to-wd-blue-and-black-ssds-hello-to-new-optimus-drives>`_
+
+    **Claude devs complain about surprise usage limits, Anthropic blames expiring bonus**
+
+    *Holiday hangover?*
+
+    * `<https://www.theregister.com/2026/01/05/claude_devs_usage_limits/>`_
+
+    **AWS raises GPU prices 15% on a Saturday, hopes you weren't paying attention**
+
+    *An anomaly or the beginning of a new trend? My bet's on the latter*
+
+    * `<https://www.theregister.com/2026/01/05/aws_price_increase/>`_
+
+    **Nvidia says it's more than doubled the DGX Spark’s performance since launch**
+
+    *Just maybe not in the way you're thinking*
+
+    * `<https://www.theregister.com/2026/01/05/nvidia_dgx_spark_speed/>`_
+
+    **Every conference is an AI conference as Nvidia unpacks its Vera Rubin CPUs and GPUs at CES**
+
+    *Teasing the next generation earlier than usual*
+
+    * `<https://www.theregister.com/2026/01/05/ces_rubin_nvidia/>`_
+
+    **ServiceNow snags Microsoft vet to run legal amid M&A spree**
+
+    *Hossein Nowbar waged antitrust battles and created new legal policies around AI for Redmond*
+
+    * `<https://www.theregister.com/2026/01/05/servicenow_hossein_nowbar_president_legal/>`_
+
+    **Hyundai and Boston Dynamics Unveil Humanoid Robot Atlas At CES**
+
+    * `<https://hardware.slashdot.org/story/26/01/06/0420253/hyundai-and-boston-dynamics-unveil-humanoid-robot-atlas-at-ces>`_
+    * `<https://www.youtube.com/watch?v=5eMSMiL7F2o&t=138s>`_
+    * `<https://techcrunch.com/2026/01/05/boston-dynamicss-next-gen-humanoid-robot-will-have-google-deepmind-dna/>`_
+
+    **Lego's Smart Brick Gives the Iconic Analog Toy a New Digital Brain**
+
+    * `<https://games.slashdot.org/story/26/01/05/217258/legos-smart-brick-gives-the-iconic-analog-toy-a-new-digital-brain>`_
+    * `<https://www.lego.com/en-us/smart-play>`_
+    * `<https://techcrunch.com/2026/01/05/lego-smart-bricks-introduce-a-new-way-to-build-and-they-dont-require-screens/>`_
+
+.. admonition:: 05.01.2026
+    :collapsible: closed
+
+    **Gmail preparing to drop POP3 mail fetching**
+
+    *It's January 2026, and Google is finding innovative new ways to make one of its services worse*
+
+    * `<https://www.theregister.com/2026/01/05/gmail_dropping_pop3/>`_
+    * `<https://support.google.com/mail/answer/16604719>`_
+
+    **Microsoft's Risky Bet That Windows Can Become The Platform for AI Agents**
+
+    * `<https://tech.slashdot.org/story/26/01/04/0054205/microsofts-risky-bet-that-windows-can-become-the-platform-for-ai-agents>`_
+    * `<https://www.geekwire.com/2025/how-microsoft-is-betting-on-ai-agents-in-windows-dusting-off-a-winning-playbook-from-the-past/>`_
+    * `<https://www.theregister.com/2026/01/02/microsoft_ceo_satya_nadella_calls/>`_
+
+    **Stack Overflow Went From 200,000 Monthly Questions To Nearly Zero**
+
+    * `<https://developers.slashdot.org/story/26/01/05/1431212/stack-overflow-went-from-200000-monthly-questions-to-nearly-zero>`_
+    * `<https://data.stackexchange.com/stackoverflow/query/1926661#graph>`_
+
+    **The State of Cybersecurity in 2025: Key Segments, Insights, and Innovations**
+
+    * `<https://thehackernews.com/2026/01/the-state-of-cybersecurity-in-2025key.html>`_
+
+    **Samsung Co-CEO Says Soaring Memory Chip Prices Will 'Inevitably' Impact Smartphone Costs**
+
+    * `<https://mobile.slashdot.org/story/26/01/05/144211/samsung-co-ceo-says-soaring-memory-chip-prices-will-inevitably-impact-smartphone-costs>`_
+
+    **Workstation Owner Sadly Marks the End-of-Life for HP-UX**
+
+    * `<https://tech.slashdot.org/story/26/01/05/0520224/workstation-owner-sadly-marks-the-end-of-life-for-hp-ux>`_
+    * `<https://www.osnews.com/story/144094/hp-ux-hits-end-of-life-today-and-im-sad/>`_
+    * `<https://www.theregister.com/2026/01/05/hpux_end_of_life/>`_
+
+    **Weekly Recap: IoT Exploits, Wallet Breaches, Rogue Extensions, AI Abuse & More**
+
+    * `<https://thehackernews.com/2026/01/weekly-recap-iot-exploits-wallet.html>`_
+
+    **Samsung's CES Concepts Disguise AI Speakers as Turntables and Cassette Players**
+
+    * `<https://entertainment.slashdot.org/story/26/01/05/1530247/samsungs-ces-concepts-disguise-ai-speakers-as-turntables-and-cassette-players>`_
+    * `<https://global.samsungdisplay.com/31412>`_
+
+    **Archboot Adds COSMIC Desktop as a New Install and Rescue Option**
+
+    * `<https://tech.slashdot.org/story/26/01/04/0432252/archboot-adds-cosmic-desktop-as-a-new-install-and-rescue-option>`_
+
+    **Bitfinex Hack Convict Ilya Lichtenstein Released Early Under U.S. First Step Act**
+
+    * `<https://thehackernews.com/2026/01/bitfinex-hack-convict-ilya-lichtenstein.html>`_
+    * `<https://techcrunch.com/2026/01/03/bitfinex-hacker-ilya-lichtenstein-credits-trump-for-early-release-from-prison/>`_
+
+    **Flutterwave buys Nigeria’s Mono in rare African fintech exit**
+
+    * `<https://techcrunch.com/2026/01/05/flutterwave-buys-nigerias-mono-in-rare-african-fintech-exit/>`_
+
+    **New VVS Stealer Malware Targets Discord Accounts via Obfuscated Python Code**
+
+    * `<https://thehackernews.com/2026/01/new-vvs-stealer-malware-targets-discord.html>`_
+
+    **As US Communities Start Fighting Back, Many Datacenters are Blocked**
+
+    * `<https://news.slashdot.org/story/26/01/05/0445216/as-us-communities-start-fighting-back-many-datacenters-are-blocked>`_
+
+    **Google previews new Gemini features for TV at CES 2026**
+
+    * `<https://techcrunch.com/2026/01/05/google-previews-new-gemini-features-for-tv-at-ces-2026/>`_
+
+    **Amazon’s AI assistant comes to the web with Alexa.com**
+
+    * `<https://techcrunch.com/2026/01/05/alexa-without-an-echo-amazons-ai-chatbot-comes-to-the-web-and-a-revamped-alexa-app/>`_
+
+    **LG’s new OLED TV is just 9mm thick**
+
+    * `<https://techcrunch.com/2026/01/05/lgs-new-oled-tv-is-just-9mm-thick/>`_
+
+    **Teradar reveals its first terahertz-band vision sensor for cars**
+
+    * `<https://techcrunch.com/2026/01/05/teradar-reveals-its-first-terahertz-band-vision-sensor-for-cars/>`_
+
+    **Tesla annual sales decline 9% as it’s overtaken by BYD as global EV leader**
+
+    * `<https://techcrunch.com/2026/01/02/tesla-annual-sales-decline-9-as-its-overtaken-by-byd-as-global-ev-leader/>`_
+
+.. admonition:: 03.01.2026
+    :collapsible: closed
+
+    **Has Microsoft Discontinued Offline Activation of Windows?**
+
+    * `<https://tech.slashdot.org/story/26/01/03/1947258/has-microsoft-discontinued-offline-activation-of-windows>`_
+    * `<https://www.neowin.net/news/report-microsoft-quietly-kills-official-way-to-activate-windows-1110-without-internet/>`_
+
+    **Dell's XPS Brand May Return Just a Year After Being Retired, Report Claims**
+
+    * `<https://it.slashdot.org/story/26/01/02/192248/dells-xps-brand-may-return-just-a-year-after-being-retired-report-claims>`_
+
+    **Claude is his copilot: Rust veteran designs new Rue programming language with help from AI bot**
+
+    *Rust veteran Steve Klabnik is using an LLM to explore memory safety without garbage collection*
+
+    * `<https://www.theregister.com/2026/01/03/claude_copilot_rue_steve_klabnik/>`_
+
+    **Finally - a terminal solution to the browser wars**
+
+    *A full-featured, Sixel-capable terminal browser for those who’d rather skip AI assistants*
+
+    * `<https://www.theregister.com/2026/01/02/brow6el_browser_terminal/>`_
+    * `<https://codeberg.org/janantos/brow6el>`_
+
+    **Jobs Vulnerable to AI Replacement Actually 'Thriving, Not Dying Out', Report Suggests**
+
+    * `<https://it.slashdot.org/story/26/01/03/0259241/jobs-vulnerable-to-ai-replacement-actually-thriving-not-dying-out-report-suggests>`_
+
+.. admonition:: 02.01.2026
+    :collapsible: closed
+
+    **Cybercriminals Abuse Google Cloud Email Feature in Multi-Stage Phishing Campaign**
+
+    * `<https://thehackernews.com/2026/01/cybercriminals-abuse-google-cloud-email.html>`_
+
+    **European banks plan to cut 200,000 jobs as AI takes hold**
+
+    * `<https://techcrunch.com/2026/01/01/european-banks-plan-to-cut-200000-jobs-as-ai-takes-hold/>`_
+
+    **ASUS Announces Price Hikes Starting January 5**
+
+    * `<https://it.slashdot.org/story/26/01/02/0444220/asus-announces-price-hikes-starting-january-5>`_
+    * `<https://videocardz.com/newz/asus-officially-announces-price-hikes-from-january-5-right-before-ces-2026>`_
+
+    **No Standard iPhone 18 Launch This Year, Reports Suggest**
+
+    * `<https://mobile.slashdot.org/story/26/01/01/1816240/no-standard-iphone-18-launch-this-year-reports-suggest>`_
+    * `<https://www.macrumors.com/2026/01/01/no-iphone-18-launch-this-year/>`_
+
+    **Safe CEO: AI is an assistant, not a replacement**
+
+    *There is no automated substitute for experienced staff, and 'if there's one thing AI has a never-ending thirst for ... it's data'*
+
+    * `<https://www.theregister.com/2026/01/02/safe_ceo_interview/>`_
+
+    **A beginner’s guide to Mastodon, the open source Twitter alternative**
+
+    * `<https://techcrunch.com/2026/01/01/what-is-mastodon/>`_
+
+.. admonition:: 01.01.2026
+    :collapsible: closed
+
+    **IPv6 just turned 30 and still hasn’t taken over the world, but don't call it a failure**
+
+    *The world has passed it by in many ways, yet it remains relevant*
+
+    * `<https://www.theregister.com/2025/12/31/ipv6_at_30/>`_
+
+    **DarkSpectre Hackers Spread Malware To 8.8 Million Chrome, Edge, and Firefox Users**
+
+    * `<https://it.slashdot.org/story/25/12/31/2021253/darkspectre-hackers-spread-malware-to-88-million-chrome-edge-and-firefox-users>`_
+
+    **RondoDox Botnet Exploits Critical React2Shell Flaw to Hijack IoT Devices and Web Servers**
+
+    * `<https://thehackernews.com/2026/01/rondodox-botnet-exploits-critical.html>`_
+
+    **European Space Agency hit again as cybercrims claim 200 GB data up for sale**
+
+    As in past incidents, ESA says the impact was limited to external systems
+
+    * `<https://www.theregister.com/2025/12/31/european_space_agency_hacked/>`_
