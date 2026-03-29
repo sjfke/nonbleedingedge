@@ -235,6 +235,30 @@ Want more, see `My Ultimate PowerShell prompt with Oh My Posh and the Windows Te
 
 .. warning:: Exercise caution when installing from `PowerShell Gallery <https://www.powershellgallery.com/>`_
 
+Updating Microsoft Store Applications
+=====================================
+
+* `Use WinGet to install and manage applications <https://learn.microsoft.com/en-us/windows/package-manager/winget/>`_
+* `upgrade command (winget) <https://learn.microsoft.com/en-us/windows/package-manager/winget/upgrade>`_
+* `list command (winget) <https://learn.microsoft.com/en-us/windows/package-manager/winget/list>`_
+
+.. code-block:: pwsh-session
+
+    PS> winget upgrade --all
+    PS> winget list
+    PS> winget list -q Python
+    Name                    Id                                                                       Version     Source
+    ---------------------------------------------------------------------------------------------------------------------
+    Python 3.14.3           Python.Python.3.13                                                       > 3.13.12   winget
+    Python 3.13.12 (64-bit) Python.Python.3.13                                                       3.13.12     winget
+    Python Launcher         Python.Launcher                                                          > 3.13.5    winget
+    PyCharm 2025.3.2.1      JetBrains.PyCharm                                                        2025.3.2.1  winget
+    Python 3.12             9NCVDN91XZQP                                                             3.12.2800.0 msstore
+    Python 3.13             9PNRBTZXMB4Z                                                             3.13.3312.0 msstore
+    Python Install Manager  9NQ7512CXL7T                                                             25.2.240.0  msstore
+    Python 3.11             MSIX\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0 3.11.2544.0
+
+
 Updating Git For Windows
 ========================
 
